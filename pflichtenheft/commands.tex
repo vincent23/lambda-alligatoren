@@ -7,5 +7,5 @@
 }
 
 \newcommand{\req}[2][]{
-	\item[/#2/]\ifthenelse{\equal{#1}{}}{}{ \textbf{#1}}
+	\item[/#2/]\label{#2}\ifthenelse{\equal{#1}{}}{}{ \textbf{#1}}
 }
