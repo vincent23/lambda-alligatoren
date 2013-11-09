@@ -18,7 +18,7 @@ REFS=$(MAIN_FILE).out
 DOCUMENTS_TEX=$(DOCUMENTS:=.tex)
 DOCUMENTS_AUX=$(DOCUMENTS:=.aux)
 
-all: $(DOCUMENTS_TEX) $(TOC) $(REFS)
+all: $(DOCUMENTS_TEX)
 	pdflatex $(MAIN_FILE).tex
 
 clean:
