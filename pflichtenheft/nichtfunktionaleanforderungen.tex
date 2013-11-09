@@ -1,1 +1,52 @@
 \section{Nichtfunktionale Anforderungen}
+
+\subsection{Allgemeine Ziele \textit{(Auftraggebersicht)}}
+\begin{itemize}
+	\item[/NF010/] Das Spielprinzip vermittelt unterschwellig die Funktionsweise des (typenlosen) Lambda Kalküls
+	\item[/NF020/] Das Spiel bietet Langzeitmotivation
+	\item[/NF030/] Das Spiel ist für die Nutzung durch mehrere Personen ausgelegt (Geschwister, Betreuer etc.)
+	\item[/NF040/] Die Navigation durch das Spiel ist intuitiv, sowohl für Kinder als auch Erwachsene
+	\item[/NF050/] Das Spiel ist insgesamt kindgerecht entworfen:
+		\begin{itemize}
+			\item Piktogramme werden überall verwendet, wo möglich
+			\item Auf Schrift, insbesondere auch "$\lambda$", wird so weit es geht vermieden
+		\end{itemize}
+\end{itemize}
+
+\subsection{Benutzbarkeit, Performance und Stabilität \textit{(Nutzersicht)}}
+\begin{itemize}
+	\item[/NF110/] Die Bedienung des Spiels verläuft insgesamt frustrationsfrei (Präzisierung folgt):
+	\item[/NF120/] Die Ladezeiten der Levels beträgt durchweg unter 15 Sekunden
+	\item[/NF130/] Die Simulation und deren Animationen verlaufen auf aktueller Hardware flüssig
+	\item[/NF140/] Es wird möglichst auf immer wiederkehrende Animationen, die den Spielfluss unterbrechen, verzichtet
+	\item[/NF150/] Das Spiel läuft stabil; es gilt:
+		\begin{itemize}
+			\item das Spiel verhält sich zu jeder Zeit vorhersehbar
+			\item alle (Folge-)Zustände und Übergänge sind zu jeder Zeit definiert
+			\item unerwartete Eingaben und Zustände werden abgefangen
+			\item es geschieht kein unerwartetes Beenden der App
+			\item es gibt definierte Grenzen in denen das Programm stabil läuft. Überschreiten dieser wird verhindert. Eine solche Grenze könnte lauten "Es sind höchstens 1000 Krokodile und Eier auf dem Spielfeld"
+		\end{itemize}
+	\item[/NF160/] Das Spiel behält sich implizit alle relevanten Interaktionen des Nutzers, also:
+		\begin{itemize}
+			\item aktuelle Zustände werden beim Verlassen wenn möglich automatisch gesichert
+			\item falls nicht möglich wird der Nutzer gewarnt
+		\end{itemize}
+\end{itemize}
+
+\subsection{Qualität und Rechtliches \textit{(Entwicklersicht)}}
+\begin{itemize}
+	\item Der im Zuge des Projekts erstellte Code ist gut
+		\begin{itemize}
+			\item zu warten
+			\item zu erweitern
+			\item dokumentiert
+		\end{itemize}
+	\item Das Projekt baut auf libgdx auf
+	\item Eine kommerzielle Veröffentlichung des Produkts ist möglich, u.a. gilt
+		\begin{itemize}
+			\item benutzte Assets und Bibliotheken sind kommerziell nutzbar
+			\item es finden sich Hinweise auf die jeweiligen Urheber und Lizenzen im Programm
+		\end{itemize}
+	\item Das Spiel entspricht den Datenschutzbestimmungen innerhalb der EU
+\end{itemize}
