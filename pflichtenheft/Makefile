@@ -11,6 +11,8 @@ DOCUMENTS=\
 	systemmodelle\
 	testfaelle\
 	zielbestimmung\
+	commands\
+
 
 TOC=$(MAIN_FILE).toc
 REFS=$(MAIN_FILE).out

@@ -1,0 +1,11 @@
+\usepackage{ifthen}
+
+\newenvironment{requirements}{
+	\begin{itemize}
+}{
+	\end{itemize}
+}
+
+\newcommand{\req}[2][]{
+	\item[/#2/]\ifthenelse{\equal{#1}{}}{}{ \textbf{#1}}
+}
