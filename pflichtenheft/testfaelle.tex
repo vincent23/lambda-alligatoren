@@ -1,1 +1,31 @@
 \section{Globale Testfälle}
+
+\subsection{Funktionssequenzen}
+
+\begin{requirements}
+
+	\req{T010} Ein Benutzerprofil erstellen, speichern, löschen, auswählen, zum Anmelden benutzen.
+  	
+  \req{T020} Das Tutorial starten, beenden, wieder öffnen, erfolgreich abschließen.
+  	
+  \req{T030} Ein Level auswählen, starten, spielen, schließen, wieder laden, erfolgreich beenden.
+  	
+  \req{T040} Den Platziermodus starten, die Endkonstellation angezeigen lassen, die Ausgangskonstellation mithilfe von Drag and Drop manipulieren, Tipps einblenden lassen, Elemente durch anklicken färben, zum Ursprungszustand zurückkehren, den Platziermodus beenden.
+  
+  \req{T050} Den Simulationsmodus starten, die automatische Simulation starten, stoppen, schrittweise die Simulation ablaufen lassen, Schritte zurück gehen, die Simulationsgeschwindigkeit einstellen, die Zoomfunktion nutzen, den Simulationsmodus beenden.
+  	
+  \req{T060} Den Sandboxmoudus öffnen, eigene Anfangs- und Endkonstellationen mithilfe von Drag and Drop erstellen, Elemente durch Anklicken färben, das erstellte Level speichern, ein bereits erstelltes Level in den Sandboxmodus importieren, den Sandboxmouds beenden.
+  
+  \req{T070} Den Elternbereich öffnen, einzelne Benutzer auswählen, ausgewählte Informationen über deren Lernfortschritt abrufen, den Elternbereich wieder verlassen.
+  		
+\end{requirements}
+  		
+\subsection{Datenkonsistenzen}
+
+\begin{requirements}
+  		
+  \req{T080} Der Levelfortschritt wird für jedes Benutzerprofil individuell gespeichert und verwaltet. Gleiches gilt für die Informationen über den Lernfortschritt des jeweiligen Benutzers und für dessen Achievements.
+  		
+	\req{T090} Die vom Benutzer gemachten Einstellungen werden unter dessen Benutzerprofil gespeichert. Meldet sich der Benutzer wieder nach dem Schließen der Application an, werden die an sein Benutzerprofil gebundenen Einstellungen verwendet.
+
+\end{requirements}	
