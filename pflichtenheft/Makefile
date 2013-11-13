@@ -1,3 +1,4 @@
+#!/usr/bin/make -f
 MAIN_FILE=pflichtenheft
 
 DOCUMENTS=\
@@ -24,6 +25,6 @@ all: $(DOCUMENTS_TEX)
 	pdflatex $(MAIN_FILE).tex
 
 clean:
-	rm $(DOCUMENTS_AUX) $(TOC) $(REFS) $(MAIN_FILE).pdf $(MAIN_FILE).log
+	rm -f $(DOCUMENTS_AUX) $(TOC) $(REFS) $(MAIN_FILE).pdf $(MAIN_FILE).log
 
 .PHONY: all clean
