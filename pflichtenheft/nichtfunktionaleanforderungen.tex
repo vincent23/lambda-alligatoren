@@ -2,46 +2,62 @@
 
 \subsection{Allgemeine Ziele \textit{(Auftraggebersicht)}}
 \begin{requirements}
-	\req{NF110} Das Spielprinzip vermittelt unterschwellig die Funktionsweise des (typenlosen) Lambda Kalküls
-	\req{NF120} Das Spiel bietet Langzeitmotivation
-	\req{NF130} Das Spiel ist für die Nutzung durch mehrere Personen ausgelegt (Geschwister, Betreuer etc.)
-	\req{NF140} Die Navigation durch das Spiel ist intuitiv, sowohl für Kinder als auch Erwachsene
-	\req{NF150} Das Spiel ist insgesamt kindgerecht entworfen:
+	\req{NF110} Das Spielprinzip vermittelt unterschwellig die Funktionsweise des (typenlosen) Lambda Kalküls.
+	\req{NF120} Das Spiel bietet Langzeitmotivation (vgl. Erfolgesystem).
+	\req{NF130} Das Spiel ist für die Nutzung durch mehrere Personen ausgelegt (Geschwister, Betreuer etc.).
+	\req{NF140} Die Navigation durch das Spiel ist intuitiv, sowohl für Kinder als auch Erwachsene. Dies wird während ab der Implementierungsphase regelmäßig, d.h. mindestens dreiwöchig, durch externe Tester aus den jeweiligen Altersgruppen sichergestellt.
+	\req{NF150} Das Spiel ist insgesamt kindgerecht entworfen, d.h.:
 		\begin{itemize}
-			\item Piktogramme werden überall verwendet, wo möglich
-			\item Auf Schrift, insbesondere auch "$\lambda$", wird so weit es geht vermieden
+			\item Piktogramme werden überall verwendet, wo möglich.
+			\item Schrift, insbesondere auch "$\lambda$", wird so weit es geht vermieden.
+			\item Falls vorhanden, wird jeglicher Text so einfach wie möglich verfasst (keine Fachbegriffe, Fremdwörter, obszöne Sprache).
 		\end{itemize}
 \end{requirements}
 
 \subsection{Benutzbarkeit, Performance und Stabilität \textit{(Nutzersicht)}}
 \begin{requirements}
-	\req{NF210} Die Bedienung des Spiels verläuft insgesamt frustrationsfrei (Präzisierung folgt):
-	\req{NF220} Die Ladezeiten der Levels beträgt durchweg unter 15 Sekunden.
-	\req{NF230} Die Simulation und deren Animationen verlaufen auf aktueller Hardware flüssig.
-	\req{NF240} Es wird möglichst auf immer wiederkehrende Animationen, die den Spielfluss unterbrechen, verzichtet.
-	\req{NF250} Das Spiel läuft stabil; es gilt:
+	\req{NF210} Die Bedienung des Spiels verläuft insgesamt frustrationsfrei. Dies wird während ab der Implementierungsphase regelmäßig, d.h. mindestens dreiwöchig, durch externe Tester aus den jeweiligen Altersgruppen sichergestellt.
+	\req{NF220} Die Ladezeiten der Levels beträgt durchweg unter 10 Sekunden.
+	\req{NF230} Während Wartezeiten wird dem Nutzer vermittelt, dass er warten muss.
+	\req{NF231} * Eventuelle Wartezeiten werden für den Nutzer interessant gestaltet (Trivia, Animationen).
+	\req{NF240} Die Simulation und deren Animationen verlaufen auf aktueller Hardware flüssig.
+	\req{NF250} Es wird auf immer wiederkehrende Animationen, die den Spielfluss unterbrechen, verzichtet.
+	\req{NF260} Das Spiel läuft stabil; es gilt:
 		\begin{itemize}
 			\item das Spiel verhält sich zu jeder Zeit vorhersehbar.
 			\item alle (Folge-)Zustände und Übergänge sind zu jeder Zeit definiert.
-			\item unerwartete Eingaben und Zustände werden abgefangen.
+			\item unerwartete Eingaben, Zustände und externe Programmunterbrechungen werden abgefangen.
 			\item es geschieht kein unerwartetes Beenden der App.
-			\item es gibt definierte Grenzen in denen das Programm stabil läuft. Überschreiten dieser wird verhindert. Eine solche Grenze könnte lauten "Es sind höchstens 1000 Krokodile und Eier auf dem Spielfeld".
+			\item es gibt definierte Grenzen in denen das Programm stabil läuft. Diese Grenzen lauten:
+				\begin{itemize}
+					\item Es sind zusammen höchstens 1000 Krokodile und Eier auf dem Spielfeld.
+					\item Es kann höchstens 5 Nutzerprofile gleichzeitig geben.
+				\end{itemize}
+			\item Das Überschreiten der Grenzen wird verhindert und der Nutzer in diesem Fall informiert.
 		\end{itemize}
 	\req{NF260} Das Spiel behält sich implizit alle relevanten Interaktionen des Nutzers, also:
 		\begin{itemize}
-			\item aktuelle Zustände werden beim Verlassen wenn möglich automatisch gesichert.
+			\item relevante Daten werden beim Verlassen von Zuständen automatisch gesichert.
 			\item falls Sichern nicht möglich ist, wird der Nutzer gewarnt.
+			\item beim Betreten eines Zustands wird automatisch der letzte Zustand wiederhergestellt.
 		\end{itemize}
 \end{requirements}
 
 \subsection{Qualität und Rechtliches \textit{(Entwicklersicht)}}
 \begin{requirements}
-	\req{NF310} Der im Zuge des Projekts erstellte Code ist gut
+	\req{NF310} Die im Zuge des Projekts erstellten Artefakte (Assets, Code, Daten) sind gut
 		\begin{itemize}
 			\item zu warten (Einhaltung des Eclipse Codestils).
 			\item zu erweitern (Modularer Aufbau).
 			\item dokumentiert (Javadoc).
-			\item mit Testfällen abgedeckt (jUnit, Emma).
+			\item mit Testfällen abgedeckt (jUnit, Emma >= 70\%).
+		\end{itemize}
+	\req{NF320} Die Software setzt auf marktübliche Standards und Formate. Dies sind:
+		\begin{itemize}
+			\item SVG Format für Vektorgrafiken.
+			\item PNG Format für Pixelgrafiken.
+			\item WAV, OGG und/oder MP3 für Audiodateien.
+			\item XML und/oder JSON für hierarchisch strukturierte Daten in Textdateien.
 		\end{itemize}
 	\req{NF330} Das Projekt baut auf libgdx auf.
 	\req{NF340} Eine kommerzielle Veröffentlichung des Produkts ist möglich, u.a. gilt:
@@ -49,5 +65,10 @@
 			\item benutzte Assets und Bibliotheken sind kommerziell nutzbar.
 			\item es finden sich Hinweise auf die jeweiligen Urheber und Lizenzen im Programm.
 		\end{itemize}
-	\req{NF350} Das Spiel verlangt vom Nutzer nur die nötigsten Daten und Berechtigungen.
+	\req{NF350} Das Spiel verlangt vom Nutzer nur die nötigsten Daten und Berechtigungen. Das sind:
+		\begin{itemize}
+			\item * Nutzername für das Profil.
+			\item * Android Berechtigung READ\_EXTERNAL\_STORAGE: Exportierte Sandboxdateien lesen.
+			\item * Android Berechtigung WRITE\_EXTERNAL\_STORAGE: Exportierte Sandboxdateien schreiben.
+		\end{itemize}
 \end{requirements}
