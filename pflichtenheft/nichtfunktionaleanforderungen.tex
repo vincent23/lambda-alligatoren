@@ -2,11 +2,9 @@
 
 \subsection{Allgemeine Ziele \textit{(Auftraggebersicht)}}
 \begin{requirements}
-	\req{NF110} Das Spielprinzip vermittelt unterschwellig die Funktionsweise des (typenlosen) Lambda Kalküls.
-	\req{NF120} Das Spiel bietet Langzeitmotivation (vgl. Erfolgesystem).
-	\req{NF130} Das Spiel ist für die Nutzung durch mehrere Personen ausgelegt (Geschwister, Betreuer etc.).
-	\req{NF140} Die Navigation durch das Spiel ist intuitiv, sowohl für Kinder als auch Erwachsene. Dies wird während ab der Implementierungsphase regelmäßig, d.h. mindestens dreiwöchig, durch externe Tester aus den jeweiligen Altersgruppen sichergestellt.
-	\req{NF150} Das Spiel ist insgesamt kindgerecht entworfen, d.h.:
+	\req{NF110} Das Spiel bietet Langzeitmotivation (vgl. Erfolgesystem).
+	\req{NF120} Die Navigation durch das Spiel ist intuitiv, sowohl für Kinder als auch Erwachsene. Dies wird während ab der Implementierungsphase regelmäßig, d.h. mindestens dreiwöchig, durch externe Tester aus den jeweiligen Altersgruppen sichergestellt.
+	\req{NF130} Das Spiel ist insgesamt kindgerecht entworfen, d.h.:
 		\begin{itemize}
 			\item Piktogramme werden überall verwendet, wo möglich.
 			\item Schrift, insbesondere auch "$\lambda$", wird so weit es geht vermieden.
@@ -19,10 +17,10 @@
 	\req{NF210} Die Bedienung des Spiels verläuft insgesamt frustrationsfrei. Dies wird während ab der Implementierungsphase regelmäßig, d.h. mindestens dreiwöchig, durch externe Tester aus den jeweiligen Altersgruppen sichergestellt.
 	\req{NF220} Die Ladezeiten der Levels beträgt durchweg unter 10 Sekunden.
 	\req{NF230} Während Wartezeiten wird dem Nutzer vermittelt, dass er warten muss.
-	\req{NF231} * Eventuelle Wartezeiten werden für den Nutzer interessant gestaltet (Trivia, Animationen).
-	\req{NF240} Die Simulation und deren Animationen verlaufen auf aktueller Hardware flüssig.
-	\req{NF250} Es wird auf immer wiederkehrende Animationen, die den Spielfluss unterbrechen, verzichtet.
-	\req{NF260} Das Spiel läuft stabil; es gilt:
+	\req{NF240} * Eventuelle Wartezeiten werden für den Nutzer interessant gestaltet (Trivia, Animationen).
+	\req{NF250} Die Simulation und deren Animationen verlaufen auf aktueller Hardware flüssig.
+	\req{NF260} Es wird auf immer wiederkehrende Animationen, die den Spielfluss unterbrechen, verzichtet.
+	\req{NF270} Das Spiel läuft stabil; es gilt:
 		\begin{itemize}
 			\item das Spiel verhält sich zu jeder Zeit vorhersehbar.
 			\item alle (Folge-)Zustände und Übergänge sind zu jeder Zeit definiert.
@@ -35,7 +33,7 @@
 				\end{itemize}
 			\item Das Überschreiten der Grenzen wird verhindert und der Nutzer in diesem Fall informiert.
 		\end{itemize}
-	\req{NF260} Das Spiel behält sich implizit alle relevanten Interaktionen des Nutzers, also:
+	\req{NF280} Das Spiel behält sich implizit alle relevanten Interaktionen des Nutzers, also:
 		\begin{itemize}
 			\item relevante Daten werden beim Verlassen von Zuständen automatisch gesichert.
 			\item falls Sichern nicht möglich ist, wird der Nutzer gewarnt.
