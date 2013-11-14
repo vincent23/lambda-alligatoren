@@ -4,19 +4,55 @@
 
 \begin{requirements}
 
-  \req{T110} Ein Benutzerprofil erstellen, speichern, löschen, auswählen, zum Anmelden benutzen.
+	\req{T110} Ein Benutzerprofil erstellen und zum Anmelden benutzen
+	
+	\begin{itemize}
+	
+  			\item Max startet die Application und wählt im erscheinenden Startfenster den Unterpunkt 'Benutzerprofil'. Im erscheinenden Fenster klickt Max auf den Menüpunkt 'Benutzerprofil erstellen'.
+  			
+  			\item Im folgenden Dialog gibt Max ein Benutzernamen in das entsprechende Feld ein und wählt eines der präsentierten Bilder als Profilbild. Diese Eingaben bestätigt er mit einem Klick auf den entsprechenden Button und hat so ein neues Benutzerprofil erstellt. Falls es schon einen Benutzer mit dem gewählten Namen im System gibt, wird Max dazu aufgefordert, einen anderen Namen einzugeben.
+  			
+  			\item Im nun erscheinenden 'Benutzerprofil'-Fenster klickt Max den Unterpunkt 'Benutzerprofil Wählen' an, wodurch er ein Liste mit allen im System gespeicherten Benutzerprofil präsentiert bekommt. Durch einen Klick auf den entsprechenden Listeneintrag ist Max nun mit seinem Benutzerprofil angemeldet und findet sich im Startmenü wieder.
+  			
+	\end{itemize}
+
   	
-  \req{T120} Das Tutorial starten, beenden, wieder öffnen, erfolgreich abschließen.
+  	\req{T120} Ein Level auswählen, spielen, erfolgreich beenden.
   	
-  \req{T130} Ein Level auswählen, starten, spielen, schließen, wieder laden, erfolgreich beenden.
+  	\begin{itemize}
   	
-  \req{T140} Den Platziermodus starten, die Endkonstellation angezeigen lassen, die Ausgangskonstellation mithilfe von Drag and Drop manipulieren, Tipps einblenden lassen, Elemente durch anklicken färben, zum Ursprungszustand zurückkehren, den Platziermodus beenden.
-  
-  \req{T150} Den Simulationsmodus starten, die automatische Simulation starten, stoppen, schrittweise die Simulation ablaufen lassen, Schritte zurück gehen, die Simulationsgeschwindigkeit einstellen, die Zoomfunktion nutzen, den Simulationsmodus beenden.
+  			\item Anne startet die Application und wählt im erscheinenden Startfenster den Unterpunkt 'Spielen'. Im folgenden Fenster klickt Sie auf die Option 'Kampagne' und bekommt so eine Levelübersicht präsentiert. Durch ein Klick auf eine bereits freigeschaltetes Level startet Sie das eigentliche Spiel. Falls das angeklickte Level noch nicht freigeschaltet ist passiert nichts.
+  			
+  			\item Anne findet sich nun im Platziermodus wieder. Sie bekommt auf der linken Bildschirmhälfte die Ausgangskonstellation und die zu dessen Manipulation verfügbaren Spielelemente, also Alligatoren und Eier präsentiert, auf der rechten Bildschirmhälfte die Endkonstellation. Durch ein Klick auf das 'Bestätigen-Symbol' wird die Endkonstellation ausgeblendet, auf dem Bildschirm ist nun nur noch die Ausgangskonstellation, die Spielelemente und eine Menüleiste zu sehen. Per Drag and Drop zieht Anne einzelne Spielelemente in den Ausgangszustand und verändert diesen so, wobei sie auch durch einen Klick auf das entsprechende Element dessen Farbe verändert.
+  			
+  			\item Anne wählt über die Menüleiste das 'Endkonstellations'-Symbol und bekommt so noch einmal die 'Endkonstellation' angezeigt. Diese Ansicht schließt sie wieder um anschließend über einen Klick in der Menüleiste ein Fenster mit Tipps zum derzeitigen Level angezeigt zu bekommen. Auch dieses schließt sie und versetzt die Konstellation durch den 'Zurücksetzen'-Button wieder in den Ursprungszustand. Nun verändert Sie die Konstellation von neuem und wechselt abschließend durch einen Klick auf das 'Bestätigen'-Symbol in den Simulationsmodus.
+  			
+  			\item Im Simulationsmodus wird der Bildschirm von der im Simulationsmodus erstellten Konstellation und einer Menüleiste auf der sich unter anderem Optionen zur Steuerung der Simulation befinden eingenommen. Anne startet die automatische Simulation durch einen Klick auf den 'Start'-Button. Die Konstellation wird nun ohne Unterbrechung gemäß dem Spielregeln immer weiter reduziert. Durch einen Klick auf das 'Stopp'-Button stoppt Sie dies und macht durch das Klicken des 'Zurück'-Buttons einen Schritt der Simulation rückgängig. Durch das mehrmalige Benutzen des 'Vorwärts'-Buttons lässt Sie die Simulation nun mehrmals schrittweise vorwärts laufen. Anschließend verändert sie die Geschwindigkeit der automatischen Simulation über eine Scrollbar in der Menüleiste und lässt sie dann durch einen Klick des 'Start'-Buttons in der von ihr eingestellten Geschwindigkeit ablaufen. Als der Endzustand durch die Simulation erreicht wurde, stoppt diese und Anne bekommt über ein Dialogfenster präsentiert, das sie das Level erfolgreich abgeschlossen hat und wie viel Zeit sie dafür gebraucht hat. Über das Klicken des 'Bestätigen'-Buttons verlässt Anne den Simulationsmodus und findet sich in der Levelübersicht wieder.
+  			
+	\end{itemize}
+	
   	
-  \req{T160} Den Sandboxmoudus öffnen, eigene Anfangs- und Endkonstellationen mithilfe von Drag and Drop erstellen, Elemente durch Anklicken färben, das erstellte Level speichern, ein bereits erstelltes Level in den Sandboxmodus importieren, den Sandboxmouds beenden.
-  
-  \req{T170} Den Elternbereich öffnen, einzelne Benutzer auswählen, ausgewählte Informationen über deren Lernfortschritt abrufen, den Elternbereich wieder verlassen.
+  	\req{T130} sich für den Elternbereich anmelden, Informationen über einen Benutzer abrufen, ein Profil löschen, den Elternbereich verlassen.
+  	
+  	\begin{itemize}
+  	
+		    \item Susanne startet die Application und wählt im Startmenü den Unterpunkt 'Elternbereich'. Im anschließenden Dialogfenster gibt sie ihren Benutzernamen und das dazugehörige Passwort in die dazu vorgesehenen Felder ein und klickt anschließend auf das 'Bestätigen'-Symbol. Nachdem das System ihre Eingaben verifiziert hat findet sich Susanne im Elternbereich wieder.
+		
+		    \item Im Menü wählt Susanne den Unterpunkt 'Benutzerstatistiken' wodurch ihr eine Liste mit allen im System gespeicherten Benutzer präsentiert  wird. Durch einen Klick auf einen der Listeneinträge wechselt sie in ein neues Fenster, welches sich aus Informationen zum Lern- und Spielfortschritt des gewählten Benutzers zusammensetzt. Durch ein Klick auf das 'Bestätigen'-Symbol wechselt sie wieder in Listenansicht, welche sie dann mithilfe des 'Zurück'-Buttons verlässt und in den Elternbereich zurückkehrt.
+		
+		    \item Susanne wählt nun den Menüpunkt 'Benutzerprofil löschen'. Auch hier bekommt sie eine Liste der Benutzer angezeigt. Nach einem Klick auf den gewünschten Listeneintrag erscheint ein Dialogfenster, indem sie gefragt wird, ob sie das gewählte Benutzerprofil wirklich löschen will. Susanne bestätigt dies durch einen Klick auf das entsprechende Symbol und der Benutzer ist so aus dem System gelöscht. Susanne kehrt wieder in die Listenansicht zurück, welche sie verlässt und so in den Elternbereich wechselt. Auch diesen verlässt sie und befindet sich nun wieder im Startmenü.
+  	
+  	\end{itemize}
+  	
+  	
+  	\req{T140} Das Tutorial starten, beenden, laden, erfolgreich abschließen.
+  	
+  	\begin{itemize}
+
+	      \item Tim startet die Application und klickt im Startfenster den Menüpunkt 'Spielen'. Im anschließenden Fenster wählt klickt er den Eintrag Tutorial und bekommt so die einzelnen Tutoriallevel präsentiert.
+  	
+  	\end{itemize}
+ 
   		
 \end{requirements}
   		
@@ -26,6 +62,8 @@
   		
   \req{T210} Der Levelfortschritt wird für jedes Benutzerprofil individuell gespeichert und verwaltet. Gleiches gilt für die Informationen über den Lernfortschritt des jeweiligen Benutzers und für dessen Achievements.
   		
-  \req{T220} Die vom Benutzer gemachten Einstellungen werden unter dessen Benutzerprofil gespeichert. Meldet sich der Benutzer wieder nach dem Schließen der Application an, werden die an sein Benutzerprofil gebundenen Einstellungen verwendet.
+	\req{T220} Die vom Benutzer gemachten Einstellungen werden unter dessen Benutzerprofil gespeichert. Meldet sich der Benutzer wieder nach dem Schließen der Application an, werden die an sein Benutzerprofil gebundenen Einstellungen verwendet.
+	
+	\req{T230} Es gibt keine Möglichkeit, zwei Profile mit dem selben Namen anzulegen. Wird ein Profil gelöscht, steht der dazu gehörende Name wieder frei zur Verfügung.
 
 \end{requirements}	
