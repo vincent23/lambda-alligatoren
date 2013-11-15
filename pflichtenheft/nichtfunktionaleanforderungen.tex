@@ -14,13 +14,14 @@
 
 \subsection{Benutzbarkeit, Performance und Stabilität \textit{(Nutzersicht)}}
 \begin{requirements}
-	\req{NF210} Die Bedienung des Spiels verläuft insgesamt frustrationsfrei. Dies wird während ab der Implementierungsphase regelmäßig, d.h. mindestens dreiwöchig, durch externe Tester aus den jeweiligen Altersgruppen sichergestellt.
-	\req{NF220} Die Ladezeiten der Levels beträgt durchweg unter 10 Sekunden.
-	\req{NF230} Während Wartezeiten wird dem Nutzer vermittelt, dass er warten muss.
-	\req{NF240} * Eventuelle Wartezeiten werden für den Nutzer interessant gestaltet (Trivia, Animationen).
-	\req{NF250} Die Simulation und deren Animationen verlaufen auf aktueller Hardware flüssig.
-	\req{NF260} Es wird auf immer wiederkehrende Animationen, die den Spielfluss unterbrechen, verzichtet.
-	\req{NF270} Das Spiel läuft stabil; es gilt:
+	\req{NF210} Das Spiel ist durchgehend mit einem einizigen Finger bedienbar. D.h. alle Funtkionen können über sogenannte Singletouch Eingaben ausgelöst bzw. bedient werden.
+	\req{NF220} Die Bedienung des Spiels verläuft insgesamt frustrationsfrei. Dies wird während ab der Implementierungsphase regelmäßig, d.h. mindestens dreiwöchig, durch externe Tester sichergestellt.
+	\req{NF230} Die Ladezeiten der Levels beträgt durchweg unter 10 Sekunden.
+	\req{NF240} Während Wartezeiten wird dem Nutzer vermittelt, dass er warten muss.
+	\req{NF250} * Eventuelle Wartezeiten werden für den Nutzer interessant gestaltet (Trivia, Animationen).
+	\req{NF260} Die Simulation und deren Animationen verlaufen auf aktueller Hardware flüssig.
+	\req{NF270} Es wird auf immer wiederkehrende Animationen, die den Spielfluss unterbrechen, verzichtet.
+	\req{NF280} Das Spiel läuft stabil; es gilt:
 		\begin{itemize}
 			\item das Spiel verhält sich zu jeder Zeit vorhersehbar.
 			\item alle (Folge-)Zustände und Übergänge sind zu jeder Zeit definiert.
@@ -34,7 +35,7 @@
 				\end{itemize}
 			\item Das Überschreiten der Grenzen wird verhindert und der Nutzer in diesem Fall informiert.
 		\end{itemize}
-	\req{NF280} Das Spiel behält sich implizit alle relevanten Interaktionen des Nutzers, also:
+	\req{NF290} Das Spiel behält sich implizit alle relevanten Interaktionen des Nutzers, also:
 		\begin{itemize}
 			\item relevante Daten werden beim Verlassen von Zuständen automatisch gesichert.
 			\item falls Sichern nicht möglich ist, wird der Nutzer gewarnt.
