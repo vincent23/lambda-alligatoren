@@ -1,3 +1,5 @@
+
+
 \section{Globale Testfälle}
 
 \subsection{Funktionssequenzen}
@@ -7,63 +9,110 @@
 	\req{T110} Ein Benutzerprofil erstellen und zum Anmelden benutzen
 	
 	\begin{itemize}
+  			\item Der Anwender startet die Application und wählt im erscheinenden Startfenster den 'Benutzer'-Button, welcher den Namen des zurzeit angemeldeten Benutzer und dessen Profilbild anzeigt.
+  			
+  			\item Im folgenden Fenster wird dem Benutzer eine Liste aller zurzeit im System gespeicherten Benutzer präsentiert. Er scrollt an das Ende dieser Liste und klickt den Listeneintrag mit dem Plus-Symbol.
+  			
+  			\item Der Nutzer gibt nun über die angezeigte Bildschirmtastatur den von ihm gewünschten Benutzernamen in das dafür vorgesehene Feld ein und klickt auf den 'Weiter'-Button. 
+  			
+  			\item Das anschließende Fenster wird von einer Übersicht der möglichen Profildbildern eingenommen, von denen der Anwender eins durch einen Klick auswählt. Durch einen Klick des 'Weiter'-Buttons bestätigt er seine gemachten Eingaben und das entsprechende Profil ist nun im System gespeichert. 
+  			
+  			\item Der Benutzer befindet sich jetzt wieder im Startmenü, wobei er nun mit seinem neu erstellten Profil angemeldet ist, was ihm durch die Beschriftung des 'Benutzer'-Buttons auch angezeigt wird.
+
+  			
+	\end{itemize}
 	
-  			\item Max startet die Application und wählt im erscheinenden Startfenster den Unterpunkt 'Benutzerprofil'. Im erscheinenden Fenster klickt Max auf den Menüpunkt 'Benutzerprofil erstellen'.
+	
+	\req{T120} Ein Benutzerprofil ändern und Löschen 
+	
+	\begin{itemize}
+  			\item Der Anwender startet die Application und wählt im  Startfenster den 'Einstellungen'-Button.
   			
-  			\item Im folgenden Dialog gibt Max ein Benutzernamen in das entsprechende Feld ein und wählt eines der präsentierten Bilder als Profilbild. Diese Eingaben bestätigt er mit einem Klick auf den entsprechenden Button und hat so ein neues Benutzerprofil erstellt. Falls es schon einen Benutzer mit dem gewählten Namen im System gibt, wird Max dazu aufgefordert, einen anderen Namen einzugeben.
+  			\item Im folgenden Fenster wählt er den Menüpunkt 'Benutzerprofil' und im anschließenden Bildschirm die Option 'Benutzerprofil ändern'.
   			
-  			\item Im nun erscheinenden 'Benutzerprofil'-Fenster klickt Max den Unterpunkt 'Benutzerprofil Wählen' an, wodurch er ein Liste mit allen im System gespeicherten Benutzerprofil präsentiert bekommt. Durch einen Klick auf den entsprechenden Listeneintrag ist Max nun mit seinem Benutzerprofil angemeldet und findet sich im Startmenü wieder.
+  			\item Wie bei der Neuanmeldung kann der Nutzer nun seinen Namen über eine Bildschirmtastatur eingeben und anschließend ein neues Profilbild wählen. Durch einen Klick auf 'Weiter'-Button sind die Änderungen nun im System gespeichert. 
+  			
+  			\item Der Anwender findet sich nun im 'Benutzerprofil'-Fenster wieder und wählt die Option 'Profil löschen'.
+  			
+  			\item Im folgenden Dialog wird der Benutzer gefragt, ob er wirklich das derzeitig ausgewählte Profil löschen will, was er durch einen Klick auf den 'OK'-Button bestätigt. Das Profil ist nun aus dem System gelöscht.
+
   			
 	\end{itemize}
 
   	
-  	\req{T120} Ein Level auswählen, spielen, erfolgreich beenden.
+  	\req{T130} Ein Level auswählen, spielen, erfolgreich beenden.
   	
   	\begin{itemize}
   	
-  			\item Anne startet die Application und wählt im erscheinenden Startfenster den Unterpunkt 'Spielen'. Im folgenden Fenster klickt Sie auf die Option 'Kampagne' und bekommt so eine Levelübersicht präsentiert. Durch ein Klick auf eine bereits freigeschaltetes Level startet Sie das eigentliche Spiel. Falls das angeklickte Level noch nicht freigeschaltet ist passiert nichts.
+  			\item Der Spieler startet die Application und wählt im erscheinenden Startfenster den 'Spielen'-Button.
   			
-  			\item Anne findet sich nun im Platziermodus wieder. Sie bekommt auf der linken Bildschirmhälfte die Ausgangskonstellation und die zu dessen Manipulation verfügbaren Spielelemente, also Alligatoren und Eier präsentiert, auf der rechten Bildschirmhälfte die Endkonstellation. Durch ein Klick auf das 'Bestätigen-Symbol' wird die Endkonstellation ausgeblendet, auf dem Bildschirm ist nun nur noch die Ausgangskonstellation, die Spielelemente und eine Menüleiste zu sehen. Per Drag and Drop zieht Anne einzelne Spielelemente in den Ausgangszustand und verändert diesen so, wobei sie auch durch einen Klick auf das entsprechende Element dessen Farbe verändert.
+  			\item Im folgenden Fenster wird ihm eine Übersicht der verschiedenen Level Pakete präsentiert, von denen er eines anklickt und es so startet.
   			
-  			\item Anne wählt über die Menüleiste das 'Endkonstellations'-Symbol und bekommt so noch einmal die 'Endkonstellation' angezeigt. Diese Ansicht schließt sie wieder um anschließend über einen Klick in der Menüleiste ein Fenster mit Tipps zum derzeitigen Level angezeigt zu bekommen. Auch dieses schließt sie und versetzt die Konstellation durch den 'Zurücksetzen'-Button wieder in den Ursprungszustand. Nun verändert Sie die Konstellation von neuem und wechselt abschließend durch einen Klick auf das 'Bestätigen'-Symbol in den Simulationsmodus.
+  			\item In dem jetzt angezeigten Fenster werden dem Benutzer die einzelnen Level des Paketes präsentiert. Durch einen Klick auf das entsprechende Level startet er dieses.
   			
-  			\item Im Simulationsmodus wird der Bildschirm von der im Simulationsmodus erstellten Konstellation und einer Menüleiste auf der sich unter anderem Optionen zur Steuerung der Simulation befinden eingenommen. Anne startet die automatische Simulation durch einen Klick auf den 'Start'-Button. Die Konstellation wird nun ohne Unterbrechung gemäß dem Spielregeln immer weiter reduziert. Durch einen Klick auf das 'Stopp'-Button stoppt Sie dies und macht durch das Klicken des 'Zurück'-Buttons einen Schritt der Simulation rückgängig. Durch das mehrmalige Benutzen des 'Vorwärts'-Buttons lässt Sie die Simulation nun mehrmals schrittweise vorwärts laufen. Anschließend verändert sie die Geschwindigkeit der automatischen Simulation über eine Scrollbar in der Menüleiste und lässt sie dann durch einen Klick des 'Start'-Buttons in der von ihr eingestellten Geschwindigkeit ablaufen. Als der Endzustand durch die Simulation erreicht wurde, stoppt diese und Anne bekommt über ein Dialogfenster präsentiert, das sie das Level erfolgreich abgeschlossen hat und wie viel Zeit sie dafür gebraucht hat. Über das Klicken des 'Bestätigen'-Buttons verlässt Anne den Simulationsmodus und findet sich in der Levelübersicht wieder.
+  			\item Der Spieler findet sich nun im Platziermodus wieder. Er bekommt auf der linken Bildschirmhälfte die Ausgangskonstellation und die zu dessen Manipulation verfügbaren Spielelemente, also Alligatoren und Eier präsentiert, auf der rechten Bildschirmhälfte die Endkonstellation. Durch ein Klick auf das 'Bestätigen-Symbol' blendet er die Endkonstellation aus, auf dem Bildschirm ist nun nur noch die Ausgangskonstellation, die Spielelemente und eine Menüleiste zu sehen. 
+  			
+  			\item Per Drag and Drop zieht der Anwender nun einzelne Spielelemente in den Ausgangszustand und verfärbt durch einen Klick speziell gekennzeichnete Symbol.
+  			
+  			\item Der Benutzer wählt über die Menüleiste das 'Endkonstellations'-Symbol und bekommt so noch einmal die 'Endkonstellation' angezeigt. Diese Ansicht schließt er wieder um anschließend über einen Klick in der Menüleiste ein Fenster mit Tipps zum derzeitigen Level angezeigt zu bekommen. 
+  			
+  			\item Anschließend öffnet der Spieler über einen Klick auf das 'Menü'-Symbol das Spielmenü und wählt den Unterpunkt 'Zurücksetzen'. Im folgenden Dialogfenster bestätigt er sein Entscheidung und kehrt in den Platziermodus zurück, in den sich nun die Ausgangskonstellation wieder in ihrem Ursprungszustand befindet. 
+  			
+  			\item Der Benutzer beginn von neuem die Konstellation von neuem zu verändern und wechselt abschließend durch einen Klick auf das 'Bestätigen'-Symbol in den Simulationsmodus.
+  			
+  			\item Im Simulationsmodus wird der Bildschirm von der im Simulationsmodus erstellten Konstellation und einer Menüleiste auf der sich unter anderem Optionen zur Steuerung der Simulation befinden eingenommen. Der  Spieler startet die automatische Simulation durch einen Klick auf den 'Start'-Button. Die Konstellation wird nun ohne Unterbrechung gemäß dem Spielregeln immer weiter reduziert. 
+  			
+  			\item Durch einen Klick auf das 'Stopp'-Button stoppt er die Simulation und macht durch das Klicken des 'Zurück'-Buttons einen Schritt der Auswertung rückgängig. 
+  			
+  			\item Durch das Benutzen des 'Vorwärts'-Buttons lässt er die Simulation nun jeweils einen Schritt vorwärts laufen. 
+  			
+  			\item Anschließend verändert er die Geschwindigkeit der automatischen Simulation über eine Scrollbar in der Menüleiste und lässt 
+sie dann durch einen Klick des 'Start'-Buttons in der von ihm eingestellten Geschwindigkeit ablaufen. 
+  			
+  			\item Als der Endzustand durch die Simulation erreicht wurde, stoppt diese und der Anwender bekommt über ein Dialogfenster präsentiert, das er das Level erfolgreich abgeschlossen hat und wie viel Zeit er dafür gebraucht hat. Über das Klicken des 'Bestätigen'-Buttons verlässt der Anwender den Simulationsmodus und findet sich in der Levelübersicht wieder.
   			
 	\end{itemize}
+  	
+  	\req{T140} Informationen über Benutzer abrufen
+  	
+  	\begin{itemize}
+  	
+		\item Der Anwender startet die Application und klickt im Startmenü den 'Statistiken'-Button.
+		
+		\item Im folgenden Fenster werden dem Benutzer Auswahlmöglichkeiten zum zu betrachtenden Spielerprofil und zu der Art der Informationen sowie die eigentlichen Informationen zu den gewählten Parametern präsentiert. Über eine Drop-Down Liste wählt der Benutzer nun ein Profil, über das er Informationen angezeigt bekommen will.
+		
+		\item Durch einen Klick auf das entsprechende 'Kategorie'-Symbol bekommt der Anwender nun alle im System gespeicherten Informationen der jeweiligen Kategorie zum ausgewählten Benutzer präsentiert.
+		
+		\item Der Nutzer wählt nun ein anderes Benutzerprofil über die Drop-Down Liste und bekommt so entsprechen zu diesem Profil Informationen angezeigt.
+		
+  	
+  	\end{itemize}
+  	
+  	\req{T150} Einstellungen ändern und speichern
+  	
+  	\begin{itemize}
+  	
+		\item Der Benutzer startet die Application und klickt im Startmenü den 'Einstellungen'-Button.
+		
+		\item Im folgenden Fenster wählt der Anwender den Unterpunkt 'Spieleinstellungen'.
+		
+		\item Im jetzt eingeblendeten Bildschirm verändert der Nutzer mithilfe von Scrollbars die Lautstärke von FX und der Musik und setzt bei den Punkten Rot-Grün und Zoonmfunktion per Klick ein Häkchen an die entsprechende Stelle. Diese Einstellungen sind nun im System gespeichert.
 	
   	
-  	\req{T130} sich für den Elternbereich anmelden, Informationen über einen Benutzer abrufen, ein Profil löschen, den Elternbereich verlassen.
-  	
-  	\begin{itemize}
-  	
-		    \item Susanne startet die Application und wählt im Startmenü den Unterpunkt 'Elternbereich'. Im anschließenden Dialogfenster gibt sie ihren Benutzernamen und das dazugehörige Passwort in die dazu vorgesehenen Felder ein und klickt anschließend auf das 'Bestätigen'-Symbol. Nachdem das System ihre Eingaben verifiziert hat findet sich Susanne im Elternbereich wieder.
-		
-		    \item Im Menü wählt Susanne den Unterpunkt 'Benutzerstatistiken' wodurch ihr eine Liste mit allen im System gespeicherten Benutzer präsentiert  wird. Durch einen Klick auf einen der Listeneinträge wechselt sie in ein neues Fenster, welches sich aus Informationen zum Lern- und Spielfortschritt des gewählten Benutzers zusammensetzt. Durch ein Klick auf das 'Bestätigen'-Symbol wechselt sie wieder in Listenansicht, welche sie dann mithilfe des 'Zurück'-Buttons verlässt und in den Elternbereich zurückkehrt.
-		
-		    \item Susanne wählt nun den Menüpunkt 'Benutzerprofil löschen'. Auch hier bekommt sie eine Liste der Benutzer angezeigt. Nach einem Klick auf den gewünschten Listeneintrag erscheint ein Dialogfenster, indem sie gefragt wird, ob sie das gewählte Benutzerprofil wirklich löschen will. Susanne bestätigt dies durch einen Klick auf das entsprechende Symbol und der Benutzer ist so aus dem System gelöscht. Susanne kehrt wieder in die Listenansicht zurück, welche sie verlässt und so in den Elternbereich wechselt. Auch diesen verlässt sie und befindet sich nun wieder im Startmenü.
-  	
   	\end{itemize}
   	
   	
-  	\req{T140} Das Tutorial starten, beenden, laden, erfolgreich abschließen.
-  	
-  	\begin{itemize}
-
-	      \item Tim startet die Application und klickt im Startfenster den Menüpunkt 'Spielen'. Im anschließenden Fenster wählt klickt er den Eintrag Tutorial und bekommt so die einzelnen Tutoriallevel präsentiert.
-  	
-  	\end{itemize}
- 
-  		
 \end{requirements}
   		
 \subsection{Datenkonsistenzen}
 
 \begin{requirements}
   		
-  \req{T210} Der Levelfortschritt wird für jedes Benutzerprofil individuell gespeichert und verwaltet. Gleiches gilt für die Informationen über den Lernfortschritt des jeweiligen Benutzers und für dessen Achievements.
+  	\req{T210} Der Levelfortschritt wird für jedes Benutzerprofil individuell gespeichert und verwaltet. Gleiches gilt für die Informationen über den Lernfortschritt des jeweiligen Benutzers und für dessen Achievements.
   		
 	\req{T220} Die vom Benutzer gemachten Einstellungen werden unter dessen Benutzerprofil gespeichert. Meldet sich der Benutzer wieder nach dem Schließen der Application an, werden die an sein Benutzerprofil gebundenen Einstellungen verwendet.
 	
 	\req{T230} Es gibt keine Möglichkeit, zwei Profile mit dem selben Namen anzulegen. Wird ein Profil gelöscht, steht der dazu gehörende Name wieder frei zur Verfügung.
 
 \end{requirements}	
+  		
