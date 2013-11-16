@@ -3,20 +3,40 @@
 \subsection{Profildaten}
 \begin{requirements}
 	\req{D10} Über ein Spielerprofil sind folgende Daten zu speichern:\\
-	Spielername, Profilbild (optional)
+	\begin{requirements}
+		\req[Spielername] {D11}
+		\req[Profilbild] {D12+} 
+	\end{requirements}
+	
 	\req{D20} Über den Spielfortschritt sind folgende Daten zu speichern:\\
-	Levelfortschritt/erreichtes Level, erworbene Achievements, Achievementfortschritt, statistische Daten
+	\begin{requirements}
+		\req {D21+} Momentaner Fortschritt im Level
+		\req {D22} Absolvierte Level
+		\req {D23+} Benötigte Zeit für jedes absolvierte Level
+		\req {D24+} Benötigte Hinweise für jedes absolvierte Level
+		\req {D25+} Benötigte Resets für jedes absolvierte Level
+		\req {D26+} Errungene Achievements
+		\req {D27+} Gesamtspielzeit
+		\req {D28}+ Insgesamt genutzte Hinweise
+		\req {D29+} Insgesamt genutzte Resets
+	\end{requirements}
 \end{requirements}
 
 \subsection{Einstellungen}
 \begin{requirements}
 	\req{D30} Folgende Einstellungen sind zu speichern:\\
-	Zoom (Multitouch/Buttons), Soundoptionen: Soundtrack \& Effekte (an/aus, Lautstärke)
+	\begin{requirements}
+		\req {D31+} Zoom als Buttons oder mit Multitouch
+		\req {D32+} Rot-Grün Modus: An/Aus
+		\req {D33+} Lautstärke Effekte
+		\req {D34+} Lautstärke Hintergrundmusik
+	\end{requirements}
+
+
 \end{requirements}
 
-\subsection{Optionale Daten}
+\subsection{Level}
 \begin{requirements}
-	\req{D40} Falls eine Option zum Erstellen von Leveln im Sandbox-Modus zur Verfügung steht, müssen folgende Daten gespeichert werden:\\
-	Erstellte Level
+	\req{D40+} Gespeicherte Level im Sandbox Modus
 \end{requirements}
 	
