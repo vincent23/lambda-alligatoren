@@ -13,6 +13,11 @@ DOCUMENTS=\
 	testfaelle\
 	zielbestimmung\
 	commands\
+	Systemmodelle/anwendungsfaelle\
+	Systemmodelle/benutzerschnittstelle\
+	Systemmodelle/dynamischemodelle\
+	Systemmodelle/objektmodell\
+	Systemmodelle/szenarien\
 
 
 TOC=$(MAIN_FILE).toc
