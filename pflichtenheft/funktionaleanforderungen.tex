@@ -7,6 +7,8 @@
 	Man hat die Möglichkeit mehrere Spielerprofile zu erstellen und zwischen ihnen zu wechseln.
 	\req[Individueller Spielfortschritt für jedes Profil]{F120}
 	Die Spielerprofile sind vollkommen separat was ihren Spielfortschritt angeht. 
+	\req[Avatar Erstellung]{F430}
+	Es besteht die Möglichkeit eigene Avatare zu erstellen und diese als Indentifikationsobjekt der verschiedenen Spielerprofile zu nutzen.
 \end{requirements}
 
 \subsection{Spieldesign}
@@ -47,6 +49,13 @@
 			\req{F258} Lösen eines Levels ohne Hinweise
 			\req{F259} Erstellen eines nichtterminierenden Ausdrucks
 		\end{requirements}
+	\req[Kompabilität für Farbenblinde]{F410}
+	Das fertige Endprodukt kann ohne Abstriche auch von Menschen mit Rot-Grün Schwäche genutzt werden. Dazu werden die Alligatoren nicht durch Farbe sondern durch Muster unterschieden.
+	\req[Mehrsprachigkeit]{F420}
+	Kompabilität mit dem Deutschen und mindesten einer weiteren Fremdsprache
+	\req[Import und Export von Sandbox-Leveln]{F440}
+	Im Leveleditor ist es möglich fremde Kreationen zu laden und eigene Kreationen zu exportieren.
+	\req[Hinweis] Der Spielende hat die Möglichkeit, sollte er alleine nicht mehr weiter wissen, sich einen Hinweis einblenden.
 
 
 \end{requirements}
@@ -56,18 +65,27 @@
 
 \begin{requirements}
 	\req[Elternbereich mit Statistiken]{F310}
-	Eltern oder Lehrkörper haben die Möglichkeit die Fortschritte der verschiedenen Spielerprofile über verschiedene detaillierte Statistiken, beispielsweise ``verbrachte Zeit'' oder ``gelöste Level'' und mehr,  zu überwachen.
+	Eltern oder Lehrkörper haben die Möglichkeit die Fortschritte der verschiedenen Spielerprofile über verschiedene detaillierte Statistiken.
+	\begin{requirements}
+		\req[Spielzeit]{311} Im Spiel verbrachte Zeit.
+		\begin{requirements}
+			\req [Gesamtspielzeit] {311.1} 
+			\req [Spielzeit in der letzten Woche]{311.2} 
+		\end{requirements}
+		\req[Spielfortschritt]{312} Im Spiel erzielter Fortschritt.
+		\begin{requirements}
+			\req[Anzahl der gelösten Level] {312.1}
+			\req[Anzahl der gelösten Levelpakete] {312.2}
+			\req[durchschnittliche Zeit pro Level] {312.3}
+		\end{requirements}
+		\req[Nutzung der Hinweise]{313} Wie selbstständig wurden die Lösungen gefunden.
+		\begin{requirements}
+			\req[Gesamtanzahl ] {313.1}
+			\req[Durchschnittliche Nutzung pro Level]{313.2}
+		\end{requirements}
+	\end{requirements}
+	\req[Kindgerechtes Achievement System]{F320}
+	Als Feedback und Motivationelement für den Spielenden wird ein Achivement System integriert.
 \end{requirements}
 
-\subsection{Wunschkriterien}
 
-\begin{requirements}
-	\req[Kompabilität für Farbenblinde]{F410}
-	Das fertige Endprodukt kann ohne Abstriche auch von Menschen mit Rot-Grün Schwäche genutzt werden. Dazu werden die Alligatoren nicht durch Farbe sondern durch Muster unterschieden.
-	\req[Mehrsprachigkeit]{F420}
-	Kompabilität mit dem Deutschen und mindesten einer weiteren Fremdsprache
-	\req[Avatar Erstellung]{F430}
-	Es besteht die Möglichkeit eigene Avatare zu erstellen und diese als Indentifikationsobjekt der verschiedenen Spielerprofile zu nutzen.
-	\req[Import und Export von Sandbox-Leveln]{F440}
-	Im Leveleditor ist es möglich fremde Kreationen zu laden und eigene Kreationen zu exportieren.
-\end{requirements}
