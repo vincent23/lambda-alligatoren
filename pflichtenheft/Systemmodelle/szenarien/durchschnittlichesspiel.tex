@@ -1,0 +1,101 @@
+\subsubsection{Durchschnittliches Spiel}
+Voraussetzungen: Der Nutzer besitzt bereits ein eingerichtetes Spielerprofil.
+\newline
+\newline
+\paragraph{{[}Level wählen{]}}
+Der Nutzer befindet sich zu Beginn auf dem Hauptbildschirm des Spiels.
+Dort drückt er die Schaltfläche "Spielen", wodurch er sich anschließend 
+in der Levelpaketauswahl zu befindet. Diese stellt
+die Gruppierungen der einzelnen Level nach Schwierigkeit und 
+Hintergrunderzählung nebeneinander dar. Durch seitliches Wischen kann hier
+das gewünschte Paket in den Vordergrund gebracht und durch einfaches
+Drücken auf jenes ausgewählt werden, sofern der Spielfortschritt des 
+eingestellten Nutzerprofils dies vorsieht. Nach der Auswahl sieht der Nutzer
+ein Raster mit nummerierten Schaltflächen, die mit den einzelnen Leveln
+korrespondieren. Innerhalb eines Pakets sind immer alle Level sofort 
+spielbar. Da in frühen Levels eines Pakets allerdings Techniken vermittelt
+werden, die in späteren Leveln desselben vorausgesetzt werden, bietet sich 
+ein chronologisches Vorgehen an. 
+\newline
+\newline
+\paragraph{{[}Level Spielen{]}}
+\#\#\# Drückt der Nutzer nun auf eine zu einem
+Level gehörende Schaltfläche, so wird ihm je nach Level zuerst eine kurze
+Animation gezeigt, die die Hintergrunderzählung vermittelt. Diese kann 
+allerdings mit einer entsprechenden Schaltfläche übersprungen werden. \#\#\#
+\newline
+\newline
+Anschließend startet der Platziermodus, vor den sich zunächst das Overlay
+schiebt, das die für den Abschluss des Levels zu erreichenden Ziele
+erklärt. Bei Leveln, in denen es um bestimmte Formationen geht, die auf
+dem Spielfeld erscheinen müssen, ist dies ein Bild der Formation. Für
+Level, die eine bestimmte Anzahl an durchlaufenen Transformationen
+verlangen, ist dies ein mit Piktogrammen angreicherter Text.
+\newline
+\newline
+Der Dialog muss mittels einer Schaltfläche geschlossen werden, um den
+Platziermodus bedienen zu können. 
+\newline
+\newline
+\paragraph{{[}Platziermodus{]}}
+Der nun angezeigte Bildschirm enthält im Hintergrund zuerst die Darstellung
+des derzeitigen Zustands des Spielfelds. Davor befindet sich eine Leiste 
+mit jeweils einem Bild von Krokodil und Ei auf dem Bildschirm, von der aus 
+Kopien von diesen durch Ziehen und Loslassen auf dem Spielfeld platziert
+werden können. Das Ablegen an der richtigen Stelle wird durch eine zweite, 
+halbtransparente Darstellung des Objekts simuliert und sichergestellt. 
+Die erst einmal nur weißen Objekte können zunächst nur in bereits 
+existierenden Spalten platziert werden. Durch Drücken auf ein Objekt erscheint 
+ein Dialog, in dem eine diesem eine Farbe zugeordnet werden kann.
+Dort befindet sich eine Palette mit bereits existierenden Farben, von denen 
+grundsätzlich 12 voreingestellt sind. Durch Betätigen einer Schaltfläche
+"neu" können allerdings in einem weiteren Dialog, ähnlich wie aus Adobe 
+Photoshop bekannt, weitere definiert werden. Bei Krokodilen befindet sich
+im ersten Farbwahlbildschirm außerdem eine Schaltfläche, die mit einem
+Piktogramm das Teilen der Spalten unterhalb dessen andeutet. Ein Drücken
+dieser führt dieses Verhalten aus.
+\newline
+Solange sich noch weiße Eier auf dem Spielfeld befinden, deren Verhalten
+nicht definiert ist, kann nicht in den Simulationsmodus gewechselt werden.
+Dieser ist ansonsten durch drücken einer Schaltfläche vom Platziermodus
+aus erreichbar.
+\newline
+Außerdem enthält der Bildschirm des Platziermodus noch je eine Schaltfläche
+für das Spielmenü, für das Anzeigen der zu erreichenden Ziele des Levels, 
+für das Rückgängigmachen und Wiederholen einer Aktion, das Zurücksetzen
+des Spielfelds und, falls eingestellt, Schaltflächen für hinein- und 
+herauszoomen im Spielfeld.
+\newline
+\newline
+\paragraph{{[}Simulationsmodus{]}}
+Im Simulationsmodus sieht der Nutzer zunächst nur das Spielfeld, so wie
+er es im Platziermodus belegt hat. Die Drag-and-Drop Leiste ist verschwunden
+wie auch die Schaltflächen zum Rückgängigmachen und Wiederholen von 
+Platzieroperationen und für das Zurücksetzen des Felds. An deren Stellen 
+sind stattdessen Schaltflächen für das Rückgängigmachen und Wiederholen 
+einzelner Simulationsschritte als auch ein kombinierter
+"Start" und "Pause" Knopf für die automatische Simulation. Eine Schaltfläche,
+die zurück in den Platziermodus führt, ersetzt zudem den Knopf zum Übergang 
+in den Simulationsmodus.
+\newline
+Durch Anwenden der Transformationsregeln kann der Nutzer hier schrittweise
+überprüfen, wie sich seine Anordnung verhält. Sollten keine Transformationen
+mehr ausgeführt werden können, überprüft das Spiel, ob das Ziel erreicht
+wurde und zeigt einen Dialog zur Information über Erfolg oder Niederlage.
+Bei Leveln mit durch Zeit/Anzahl der Transformationen definierten Zielen
+überprüft das Spiel schon während der Simulation regelmäßig auf das Erreichen
+der Ziele.
+\newline
+\newline
+\paragraph{{[}Spielmenü{]}}
+Das Spielmenü beinhaltet zu jeder Zeit die Folgenden Punkte:
+\begin{itemize}
+	\item Weiterspielen
+	\item \textasciitilde\textasciitilde Levelziele anzeigen \textasciitilde\textasciitilde
+	\item Level beenden (zurück zur Levelübersicht des aktuellen Pakets)
+	\item Zurück zu Hauptbildschirm
+	\item \textasciitilde\textasciitilde Erfolge \textasciitilde\textasciitilde
+	\item Einstellungen
+\end{itemize}
+Im Platziermodus bietet es zudem den Eintrag "Spielfeld zurücksetzen",
+wodurch alle vom Nutzer platzierten Objekte wieder.
