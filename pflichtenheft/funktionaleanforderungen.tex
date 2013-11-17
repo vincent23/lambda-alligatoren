@@ -31,11 +31,15 @@ Die Anforderungen die Wunsch- statt Musskriterien sind, sind mit einem "`+"' in 
 	\req[Simulationsmodus]{F230}
 	Es gibt verschiedene Simulationsarten, mit denen Ausdrücke durchlaufen werden.
 		\begin{requirements}
-			\req[Automatischer Modus]{F231}
-			Einstellbare Geschwindigkeit der Abarbeitung der Ausdrücke.
-			\req[Manueller Modus]{F232+}
-			Schrittweise Abarbeitung des Ausdrucks.
-			\req[Schritt zurück]{F233+}
+			\req[Start der automatischen Auswertung]{F231}
+			Der Ausdruck kann automatisch schrittweise immer weiter ausgewertet werden.
+			\req[Anhalten der automatischen Auswertung]{F232}
+			Die automatische Auswertung des Ausdruckes kann abgebrochen werden.
+			\req[Evaluationsschritt ausführen]{F233}
+			Es kann ein einzelner Auswertungsschritt ausgeführt werden.
+			\req[Auswertung zurücksetzen]{F234}
+			Die Auswertung kann neu gestartet werden.
+			\req[Schritt zurück]{F235+}
 			Mindestens 30 Schritte können rückwärts abgerufen werden.
 		\end{requirements}
 	\req[Zoom \& Drag]{F240}
