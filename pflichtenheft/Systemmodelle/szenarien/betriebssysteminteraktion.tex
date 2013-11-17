@@ -1,0 +1,29 @@
+\subsubsection{Betriebssysteminteraktion}
+Der Benutzer befindet sich in einem Spielmodus (Platzier- bzw. 
+Simulationsmodus), als er sich gezwungen fühlt, das Spiel zu verlassen.
+Dies kann sowohl ein direktes Verlassen der Applikation über den "Home"
+Knopf von Android als Folge, als auch Ereignisse des Betriebssystems wie 
+z.B. einen eingehenden Anruf als Grund haben. \newline
+Die Applikation verliert dadurch ihre Grafikkontexte und wird nach einiger
+Zeit ganz aus dem Speicher entfernt. Daher speichert die App sofort
+ihren aktuellen Zustand, d.h. die Belegung des Spielfelds durch den Nutzer 
+und ggf. den Fortschritt der Simulation. \newline
+Bei einem direkten Wiedereintritt (ohne Verdrängung aus dem Hauptspeicher)
+stellt die Applikation nur ihren Grafikkontext wieder her. Dies wird dem
+Nutzer durch eine entsprechende Warteanzeige verdeutlicht. \newline
+Im anderen Fall startet das Spiel komplett neu, bietet aber, beim
+Starten des unterbrochenen Levels, an, den gespeicherten Spielstand
+wiederherzustellen. D.h., es gibt intern zu jedem einzelnen Level die Möglichkeit,
+einen zuletzt verwendeten Spielstand abzuspeichern, da man ja nicht
+unbedingt das zuletzt unterbrochene Level weiterspielen muss.
+\newline
+\newline
+\#\#\# Eine Alternative wäre, nur einen Spielstand speichern zu müssen, der 
+beim Eintritt des Nutzers in den Hauptbildschirm direkt angeboten wird,
+und beim Ablehnen verworfen wird. Der Vorteil ist, neben dem geringeren
+Speicheraufwand, dass man direkt weitermachen kann, wo man aufhörte.
+Nachteile sind aber, dass man kein anderes Level beginnen kann, ohne den
+Spielstand zu verwerfen. Außerdem muss ein Nutzerwechsel möglich sein, 
+was wahrscheinlich etwas inhomogen wirkt. Besser wäre es also, das
+obere Prinzip zu verfolgen, und trotzdem die Möglichkeit für einen
+"Quick-Continue" zu bieten. \#\#\#
