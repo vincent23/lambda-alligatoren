@@ -1,5 +1,6 @@
 *.class
-*.*~
+*~
+pflichtenheft.pdf
 
 # Package Files #
 *.jar
@@ -9,6 +10,5 @@
 # LaTeX #
 *.log
 *.aux
-*.pdf
 *.toc
 *.out
