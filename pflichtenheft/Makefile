@@ -27,8 +27,8 @@ DOCUMENTS_AUX=$(DOCUMENTS:=.aux)
 
 
 DIAGRAMS=\
+	Systemmodelle/player_class.svg\
 #	Systemmodelle/level_class.svg\
-#	Systemmodelle/player_class.svg\
 #	Systemmodelle/game_state.svg\
 
 DIAGRAMS_PDF=$(DIAGRAMS:.svg=.pdf)
