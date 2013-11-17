@@ -54,6 +54,48 @@ Wird beim Neustarten der App als Erstes geöffnet. Wird die App zum Ersten mal v
 \req{B3} Ein nicht verfügbares Level. Kann durch erfolgreiches Lösen der vorhergehenden Level freigeschaltet werden und wird dann verfügbar.
 \end{requirements}
 
+\subsubsection{Level (Platziermodus)}
+
+\begin{center}
+\setlength\fboxsep{20pt}
+\setlength\fboxrule{1pt}
+\fbox{
+\includegraphics[scale=0.5]{Systemmodelle/images/level.png}
+}
+\captionof{figure}{Level (Platziermodus)}
+\end{center}
+
+\begin{requirements}
+\req{B1} Zoom: Vergrößert/verkleinert die Termansicht. Kann im Einstellungsmenü (de-)aktiviert werden.
+\req{B2} Öffnet das Spielmenü.
+\req{B3} Öffnet einen Tipp zur Lösung des Levels. Wird erst nach einer gewissen Zeit, in der das Level nicht gelöst werden konnte, aktiviert.
+\req{B4} Anwählen oder nach unten ziehen zeigt die zur Lösung des Levels zu erreichende Konstellation.
+\req{B5} Arbeitsfläche. Auf dieser Fläche können zu den bereits vom Level vorgegebenen Alligatoren weitere hinzugefügt werden. Anwählen von platzierten Alligatoren öffnet eine Farbübersicht, aus der eine Farbe für diesen Alligator ausgewählt werden kann.
+\req{B6} Startet den Simulationsmodus.
+\req{B7} Alligatoren/Eier, die per Drag\&Drop auf der Arbeitsfläche platziert werden können.
+\end{requirements}
+
+\subsubsection{Level (Simulationsmodus)}
+
+\begin{center}
+\setlength\fboxsep{20pt}
+\setlength\fboxrule{1pt}
+\fbox{
+\includegraphics[scale=0.5]{Systemmodelle/images/level_simulation.png}
+}
+\captionof{figure}{Level (Simulationsmodus)}
+\end{center}
+
+\begin{requirements}
+\req{B1} Zoom: Vergrößert/verkleinert die Termansicht. Kann im Einstellungsmenü (de-)aktiviert werden.
+\req{B2} Öffnet das Spielmenü.
+\req{B3} Setzt, sofern möglich, die Simulation um einen Schritt zurück.
+\req{B4} Anwählen oder nach unten ziehen zeigt die zur Lösung des Levels zu erreichende Konstellation.
+\req{B5} Arbeitsfläche. Im Simulationsmodus kann diese nicht mehr verändert werden.
+\req{B6} Startet/pausiert den automatischen Simulationsdurchlauf.
+\req{B7} Führt einen einzelnen Schritt der Simulaton aus.
+\end{requirements}
+
 \subsubsection{Spielmenü}
 
 \begin{center}
