@@ -28,8 +28,17 @@
 }
 \date{\today}
 \maketitle
+\thispagestyle{empty}
+\pagenumbering{roman}
 
+\clearpage
+\pagestyle{empty}
 \tableofcontents
+
+\clearpage
+\pagestyle{plain}
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
 \input{zielbestimmung}
 \input{produkteinsatz}
