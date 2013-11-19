@@ -62,7 +62,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon Nov 18 12:56:14 CET 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue Nov 19 12:58:49 CET 2013'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -204,10 +204,10 @@
       name="Use Case Diagram 2"
 >
   <rectangle name="Fig0"
-    x="8"
+    x="56"
     y="0"
-    width="1072"
-    height="392"
+    width="960"
+    height="400"
     fill="1"
     fillcolor="white"
     stroke="1"
@@ -224,7 +224,7 @@
     strokecolor="black"
   />
   <group name="Fig2"
-       description="org.argouml.uml.diagram.use_case.ui.FigActor[16, 184, 92, 78]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.use_case.ui.FigActor[64, 184, 92, 78]pathVisible=false;stereotypeView=0;"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000151F"
        fill="1"
        fillcolor="white"
@@ -235,9 +235,9 @@
     </private>
     
     <rectangle name="Fig2.0"
-      x="16"
+      x="64"
       y="184"
-      width="70"
+      width="92"
       height="78"
       fill="0"
       fillcolor="white"
@@ -245,7 +245,7 @@
       strokecolor="black"
     />
     <text name="Fig2.1"
-      x="16"
+      x="64"
       y="239"
       width="92"
       height="23"
@@ -261,7 +261,7 @@
       justification="Center"
     >Grundschüler</text>
     <ellipse name="Fig2.2"
-      x="51"
+      x="110"
       y="201"
       rx="8"
       ry="7"
@@ -277,9 +277,9 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="51"
+      <moveto x="110"
               y="209" />
-      <lineto x="51"
+      <lineto x="110"
               y="224" />
     </path>
     <path name="Fig2.4"
@@ -289,9 +289,9 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="41"
+      <moveto x="100"
               y="214" />
-      <lineto x="61"
+      <lineto x="120"
               y="214" />
     </path>
     <path name="Fig2.5"
@@ -301,9 +301,9 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="51"
+      <moveto x="110"
               y="224" />
-      <lineto x="46"
+      <lineto x="105"
               y="239" />
     </path>
     <path name="Fig2.6"
@@ -313,13 +313,13 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="51"
+      <moveto x="110"
               y="224" />
-      <lineto x="56"
+      <lineto x="115"
               y="239" />
     </path>
     <group name="Fig2.7"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[51, 262, 0, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[110, 262, 0, 0]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000151F"
          fill="0"
          fillcolor="white"
@@ -330,7 +330,7 @@
       </private>
       
       <rectangle name="Fig2.7.0"
-        x="51"
+        x="110"
         y="262"
         width="0"
         height="0"
@@ -379,7 +379,7 @@
       justification="Center"
     >Benutzer anlegen</text>
     <group name="Fig3.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[459, 98, 92, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[459, 100, 118, 0]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001526"
          fill="0"
          fillcolor="white"
@@ -392,8 +392,8 @@
       
       <rectangle name="Fig3.2.0"
         x="459"
-        y="98"
-        width="92"
+        y="100"
+        width="118"
         height="0"
         fill="0"
         fillcolor="white"
@@ -402,8 +402,8 @@
       />
     </group>
     <rectangle name="Fig3.3"
-      x="458"
-      y="98"
+      x="10"
+      y="10"
       width="11"
       height="1"
       fill="1"
@@ -413,7 +413,7 @@
       visibility="0"
     />
     <group name="Fig3.4"
-         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[458, 98, 64, 19]"
+         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[10, 10, 64, 19]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001526"
          fill="1"
          fillcolor="white"
@@ -425,8 +425,8 @@
       </private>
       
       <rectangle name="Fig3.4.0"
-        x="458"
-        y="98"
+        x="10"
+        y="10"
         width="64"
         height="19"
         fill="0"
@@ -475,7 +475,7 @@
       justification="Center"
     >Benutzer auswählen</text>
     <group name="Fig4.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[467, 322, 92, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[466, 326, 134, 0]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000152E"
          fill="0"
          fillcolor="white"
@@ -487,9 +487,9 @@
       </private>
       
       <rectangle name="Fig4.2.0"
-        x="467"
-        y="322"
-        width="92"
+        x="466"
+        y="326"
+        width="134"
         height="0"
         fill="0"
         fillcolor="white"
@@ -498,8 +498,8 @@
       />
     </group>
     <rectangle name="Fig4.3"
-      x="466"
-      y="322"
+      x="10"
+      y="10"
       width="11"
       height="1"
       fill="1"
@@ -509,7 +509,7 @@
       visibility="0"
     />
     <group name="Fig4.4"
-         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[466, 322, 64, 19]"
+         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[10, 10, 64, 19]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000152E"
          fill="1"
          fillcolor="white"
@@ -521,8 +521,8 @@
       </private>
       
       <rectangle name="Fig4.4.0"
-        x="466"
-        y="322"
+        x="10"
+        y="10"
         width="64"
         height="19"
         fill="0"
@@ -540,24 +540,24 @@
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="8"
+    <moveto x="56"
             y="0" />
-    <lineto x="272"
-            y="0" />
-    <lineto x="272"
-            y="48" />
     <lineto x="240"
+            y="0" />
+    <lineto x="240"
+            y="48" />
+    <lineto x="208"
             y="72" />
-    <lineto x="8"
+    <lineto x="56"
             y="72" />
-    <lineto x="8"
+    <lineto x="56"
             y="0" />
   </path>
   <text name="Fig6"
-    x="0"
+    x="64"
     y="8"
-    width="264"
-    height="64"
+    width="173"
+    height="62"
     fill="0"
     fillcolor="white"
     stroke="1"
@@ -575,8 +575,8 @@ Anlegen und Auswählen
   <text name="Fig7"
     x="472"
     y="16"
-    width="121"
-    height="24"
+    width="122"
+    height="17"
     fill="0"
     fillcolor="white"
     stroke="1"
@@ -638,7 +638,7 @@ Anlegen und Auswählen
       justification="Center"
     >Name eingeben</text>
     <group name="Fig9.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[363, 194, 92, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[362, 195, 107, 0]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000153E"
          fill="0"
          fillcolor="white"
@@ -650,9 +650,9 @@ Anlegen und Auswählen
       </private>
       
       <rectangle name="Fig9.2.0"
-        x="363"
-        y="194"
-        width="92"
+        x="362"
+        y="195"
+        width="107"
         height="0"
         fill="0"
         fillcolor="white"
@@ -661,8 +661,8 @@ Anlegen und Auswählen
       />
     </group>
     <rectangle name="Fig9.3"
-      x="362"
-      y="194"
+      x="10"
+      y="10"
       width="11"
       height="1"
       fill="1"
@@ -672,7 +672,7 @@ Anlegen und Auswählen
       visibility="0"
     />
     <group name="Fig9.4"
-         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[362, 194, 64, 19]"
+         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[10, 10, 64, 19]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000153E"
          fill="1"
          fillcolor="white"
@@ -684,8 +684,8 @@ Anlegen und Auswählen
       </private>
       
       <rectangle name="Fig9.4.0"
-        x="362"
-        y="194"
+        x="10"
+        y="10"
         width="64"
         height="19"
         fill="0"
@@ -734,7 +734,7 @@ Anlegen und Auswählen
       justification="Center"
     >Avatar auswählen</text>
     <group name="Fig10.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[595, 242, 92, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[594, 244, 119, 0]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001546"
          fill="0"
          fillcolor="white"
@@ -746,9 +746,9 @@ Anlegen und Auswählen
       </private>
       
       <rectangle name="Fig10.2.0"
-        x="595"
-        y="242"
-        width="92"
+        x="594"
+        y="244"
+        width="119"
         height="0"
         fill="0"
         fillcolor="white"
@@ -757,8 +757,8 @@ Anlegen und Auswählen
       />
     </group>
     <rectangle name="Fig10.3"
-      x="594"
-      y="242"
+      x="10"
+      y="10"
       width="11"
       height="1"
       fill="1"
@@ -768,7 +768,7 @@ Anlegen und Auswählen
       visibility="0"
     />
     <group name="Fig10.4"
-         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[594, 242, 64, 19]"
+         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[10, 10, 64, 19]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001546"
          fill="1"
          fillcolor="white"
@@ -780,8 +780,8 @@ Anlegen und Auswählen
       </private>
       
       <rectangle name="Fig10.4.0"
-        x="594"
-        y="242"
+        x="10"
+        y="10"
         width="64"
         height="19"
         fill="0"
@@ -811,7 +811,7 @@ Anlegen und Auswählen
                         offset="53" />
     </private>
     <path name="Fig11.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -842,7 +842,7 @@ Anlegen und Auswählen
                         offset="13" />
     </private>
     <path name="Fig12.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -855,7 +855,7 @@ Anlegen und Auswählen
     </path>
   </group>
   <group name="Fig13"
-       description="org.argouml.uml.diagram.use_case.ui.FigActor[952, 184, 112, 78]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.use_case.ui.FigActor[896, 192, 112, 78]pathVisible=false;stereotypeView=0;"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001555"
        fill="1"
        fillcolor="white"
@@ -866,8 +866,8 @@ Anlegen und Auswählen
     </private>
     
     <rectangle name="Fig13.0"
-      x="952"
-      y="184"
+      x="896"
+      y="192"
       width="112"
       height="78"
       fill="0"
@@ -876,8 +876,8 @@ Anlegen und Auswählen
       strokecolor="black"
     />
     <text name="Fig13.1"
-      x="952"
-      y="239"
+      x="896"
+      y="247"
       width="112"
       height="23"
       fill="0"
@@ -892,8 +892,8 @@ Anlegen und Auswählen
       justification="Center"
     >Aussichtsperson</text>
     <ellipse name="Fig13.2"
-      x="1008"
-      y="201"
+      x="952"
+      y="209"
       rx="8"
       ry="7"
       fill="1"
@@ -908,10 +908,10 @@ Anlegen und Auswählen
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="1008"
-              y="209" />
-      <lineto x="1008"
-              y="224" />
+      <moveto x="952"
+              y="217" />
+      <lineto x="952"
+              y="232" />
     </path>
     <path name="Fig13.4"
       description="org.tigris.gef.presentation.FigLine"
@@ -920,10 +920,10 @@ Anlegen und Auswählen
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="998"
-              y="214" />
-      <lineto x="1018"
-              y="214" />
+      <moveto x="942"
+              y="222" />
+      <lineto x="962"
+              y="222" />
     </path>
     <path name="Fig13.5"
       description="org.tigris.gef.presentation.FigLine"
@@ -932,10 +932,10 @@ Anlegen und Auswählen
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="1008"
-              y="224" />
-      <lineto x="1003"
-              y="239" />
+      <moveto x="952"
+              y="232" />
+      <lineto x="947"
+              y="247" />
     </path>
     <path name="Fig13.6"
       description="org.tigris.gef.presentation.FigLine"
@@ -944,13 +944,13 @@ Anlegen und Auswählen
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="1008"
-              y="224" />
-      <lineto x="1013"
-              y="239" />
+      <moveto x="952"
+              y="232" />
+      <lineto x="957"
+              y="247" />
     </path>
     <group name="Fig13.7"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[1008, 262, 0, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[952, 270, 0, 0]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001555"
          fill="0"
          fillcolor="white"
@@ -961,8 +961,8 @@ Anlegen und Auswählen
       </private>
       
       <rectangle name="Fig13.7.0"
-        x="1008"
-        y="262"
+        x="952"
+        y="270"
         width="0"
         height="0"
         fill="0"
@@ -979,7 +979,7 @@ Anlegen und Auswählen
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="72"
+    <moveto x="120"
             y="216" />
     <lineto x="352"
             y="200" />
@@ -991,7 +991,7 @@ Anlegen und Auswählen
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="72"
+    <moveto x="128"
             y="216" />
     <lineto x="584"
             y="256" />
@@ -1005,7 +1005,7 @@ Anlegen und Auswählen
   >
     <moveto x="608"
             y="336" />
-    <lineto x="992"
+    <lineto x="944"
             y="224" />
   </path>
   <path name="Fig17"
@@ -1017,7 +1017,7 @@ Anlegen und Auswählen
   >
     <moveto x="584"
             y="112" />
-    <lineto x="992"
+    <lineto x="944"
             y="224" />
   </path>
   <path name="Fig18"
@@ -1027,9 +1027,9 @@ Anlegen und Auswählen
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="480"
+    <moveto x="432"
             y="208" />
-    <lineto x="992"
+    <lineto x="944"
             y="224" />
   </path>
   <path name="Fig19"
@@ -1041,7 +1041,7 @@ Anlegen und Auswählen
   >
     <moveto x="720"
             y="256" />
-    <lineto x="992"
+    <lineto x="944"
             y="224" />
   </path>
   <path name="Fig20"
@@ -1053,7 +1053,7 @@ Anlegen und Auswählen
   >
     <moveto x="448"
             y="112" />
-    <lineto x="72"
+    <lineto x="120"
             y="216" />
   </path>
   <path name="Fig21"
@@ -1065,7 +1065,7 @@ Anlegen und Auswählen
   >
     <moveto x="456"
             y="336" />
-    <lineto x="72"
+    <lineto x="120"
             y="216" />
   </path>
 </pgml>
