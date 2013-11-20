@@ -62,7 +62,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue Nov 19 13:12:37 CET 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Nov 20 20:06:43 CET 2013'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -377,7 +377,7 @@
   <rectangle name="Fig0"
     x="112"
     y="32"
-    width="784"
+    width="688"
     height="576"
     fill="1"
     fillcolor="white"
@@ -431,7 +431,7 @@
     justification="Center"
   >Usecase: Einstellungen</text>
   <group name="Fig4"
-       description="org.argouml.uml.diagram.use_case.ui.FigActor[136, 312, 113, 80]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.use_case.ui.FigActor[120, 192, 113, 80]pathVisible=false;stereotypeView=0;"
        href="-115-3--25-38--4a18edd9:1426af1e60e:-8000:0000000000000866"
        fill="1"
        fillcolor="white"
@@ -442,9 +442,9 @@
     </private>
     
     <rectangle name="Fig4.0"
-      x="136"
-      y="312"
-      width="112"
+      x="120"
+      y="192"
+      width="113"
       height="80"
       fill="0"
       fillcolor="white"
@@ -452,9 +452,9 @@
       strokecolor="black"
     />
     <text name="Fig4.1"
-      x="137"
-      y="367"
-      width="112"
+      x="121"
+      y="247"
+      width="110"
       height="25"
       fill="0"
       fillcolor="white"
@@ -468,8 +468,8 @@
       justification="Center"
     >Aufsichtsperson</text>
     <ellipse name="Fig4.2"
-      x="192"
-      y="329"
+      x="176"
+      y="209"
       rx="8"
       ry="7"
       fill="1"
@@ -484,10 +484,10 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="192"
-              y="337" />
-      <lineto x="192"
-              y="352" />
+      <moveto x="176"
+              y="217" />
+      <lineto x="176"
+              y="232" />
     </path>
     <path name="Fig4.4"
       description="org.tigris.gef.presentation.FigLine"
@@ -496,10 +496,10 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="182"
-              y="342" />
-      <lineto x="202"
-              y="342" />
+      <moveto x="166"
+              y="222" />
+      <lineto x="186"
+              y="222" />
     </path>
     <path name="Fig4.5"
       description="org.tigris.gef.presentation.FigLine"
@@ -508,10 +508,10 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="192"
-              y="352" />
-      <lineto x="187"
-              y="367" />
+      <moveto x="176"
+              y="232" />
+      <lineto x="171"
+              y="247" />
     </path>
     <path name="Fig4.6"
       description="org.tigris.gef.presentation.FigLine"
@@ -520,13 +520,13 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="192"
-              y="352" />
-      <lineto x="197"
-              y="367" />
+      <moveto x="176"
+              y="232" />
+      <lineto x="181"
+              y="247" />
     </path>
     <group name="Fig4.7"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[192, 392, 0, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[176, 272, 0, 0]"
          href="-115-3--25-38--4a18edd9:1426af1e60e:-8000:0000000000000866"
          fill="0"
          fillcolor="white"
@@ -537,8 +537,8 @@
       </private>
       
       <rectangle name="Fig4.7.0"
-        x="192"
-        y="392"
+        x="176"
+        y="272"
         width="0"
         height="0"
         fill="0"
@@ -865,7 +865,7 @@
     </group>
   </group>
   <group name="Fig10"
-       description="org.argouml.uml.diagram.use_case.ui.FigActor[816, 312, 71, 80]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.use_case.ui.FigActor[136, 384, 71, 80]pathVisible=false;stereotypeView=0;"
        href="-115-3--25-38--4a18edd9:1426af1e60e:-8000:0000000000000875"
        fill="1"
        fillcolor="white"
@@ -876,8 +876,8 @@
     </private>
     
     <rectangle name="Fig10.0"
-      x="816"
-      y="312"
+      x="136"
+      y="384"
       width="71"
       height="80"
       fill="0"
@@ -886,8 +886,8 @@
       strokecolor="black"
     />
     <text name="Fig10.1"
-      x="825"
-      y="367"
+      x="145"
+      y="439"
       width="52"
       height="25"
       fill="0"
@@ -902,8 +902,8 @@
       justification="Center"
     >Spieler</text>
     <ellipse name="Fig10.2"
-      x="851"
-      y="329"
+      x="171"
+      y="401"
       rx="8"
       ry="7"
       fill="1"
@@ -918,10 +918,10 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="851"
-              y="337" />
-      <lineto x="851"
-              y="352" />
+      <moveto x="171"
+              y="409" />
+      <lineto x="171"
+              y="424" />
     </path>
     <path name="Fig10.4"
       description="org.tigris.gef.presentation.FigLine"
@@ -930,10 +930,10 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="841"
-              y="342" />
-      <lineto x="861"
-              y="342" />
+      <moveto x="161"
+              y="414" />
+      <lineto x="181"
+              y="414" />
     </path>
     <path name="Fig10.5"
       description="org.tigris.gef.presentation.FigLine"
@@ -942,10 +942,10 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="851"
-              y="352" />
-      <lineto x="846"
-              y="367" />
+      <moveto x="171"
+              y="424" />
+      <lineto x="166"
+              y="439" />
     </path>
     <path name="Fig10.6"
       description="org.tigris.gef.presentation.FigLine"
@@ -954,13 +954,13 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="851"
-              y="352" />
-      <lineto x="856"
-              y="367" />
+      <moveto x="171"
+              y="424" />
+      <lineto x="176"
+              y="439" />
     </path>
     <group name="Fig10.7"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[851, 392, 0, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[171, 464, 0, 0]"
          href="-115-3--25-38--4a18edd9:1426af1e60e:-8000:0000000000000875"
          fill="0"
          fillcolor="white"
@@ -971,8 +971,8 @@
       </private>
       
       <rectangle name="Fig10.7.0"
-        x="851"
-        y="392"
+        x="171"
+        y="464"
         width="0"
         height="0"
         fill="0"
@@ -1277,10 +1277,10 @@
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="576"
+    <moveto x="432"
             y="320" />
-    <lineto x="840"
-            y="344" />
+    <lineto x="192"
+            y="424" />
   </path>
   <path name="Fig15"
     description="org.argouml.gefext.ArgoFigLine"
@@ -1289,10 +1289,10 @@
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="568"
+    <moveto x="432"
             y="384" />
-    <lineto x="840"
-            y="344" />
+    <lineto x="192"
+            y="424" />
   </path>
   <path name="Fig16"
     description="org.argouml.gefext.ArgoFigLine"
@@ -1301,10 +1301,10 @@
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="584"
+    <moveto x="424"
             y="448" />
-    <lineto x="840"
-            y="344" />
+    <lineto x="192"
+            y="424" />
   </path>
   <path name="Fig17"
     description="org.argouml.gefext.ArgoFigLine"
@@ -1313,10 +1313,10 @@
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="576"
-            y="504" />
-    <lineto x="840"
-            y="344" />
+    <moveto x="424"
+            y="512" />
+    <lineto x="192"
+            y="424" />
   </path>
   <path name="Fig18"
     description="org.argouml.gefext.ArgoFigLine"
@@ -1325,8 +1325,8 @@
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="200"
-            y="352" />
+    <moveto x="208"
+            y="224" />
     <lineto x="432"
             y="256" />
   </path>
@@ -1337,8 +1337,8 @@
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="200"
-            y="352" />
+    <moveto x="208"
+            y="224" />
     <lineto x="432"
             y="320" />
   </path>
@@ -1349,8 +1349,8 @@
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="200"
-            y="352" />
+    <moveto x="208"
+            y="224" />
     <lineto x="432"
             y="384" />
   </path>
@@ -1361,8 +1361,8 @@
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="200"
-            y="352" />
+    <moveto x="208"
+            y="224" />
     <lineto x="424"
             y="448" />
   </path>
@@ -1373,8 +1373,8 @@
     stroke="1"
     strokecolor="black"
   >
-    <moveto x="200"
-            y="352" />
+    <moveto x="208"
+            y="224" />
     <lineto x="424"
             y="512" />
   </path>
@@ -1387,8 +1387,8 @@
   >
     <moveto x="416"
             y="192" />
-    <lineto x="200"
-            y="352" />
+    <lineto x="208"
+            y="224" />
   </path>
 </pgml>
 <todo>

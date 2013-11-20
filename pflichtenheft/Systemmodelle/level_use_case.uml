@@ -62,7 +62,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue Nov 19 13:04:05 CET 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Nov 20 20:04:27 CET 2013'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -74,7 +74,7 @@
       isAbstract = 'false'>
       <UML:Namespace.ownedElement>
         <UML:Actor xmi.id = '-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000166D'
-          name = 'Grundschüler' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          name = 'Spieler' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
           isAbstract = 'false'/>
         <UML:UseCase xmi.id = '-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000166E'
           name = 'Level starten' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
@@ -427,9 +427,9 @@
       strokecolor="black"
     />
     <text name="Fig1.1"
-      x="144"
+      x="165"
       y="431"
-      width="92"
+      width="51"
       height="23"
       fill="0"
       fillcolor="white"
@@ -441,7 +441,7 @@
       bold="false"
       textsize="12"
       justification="Center"
-    >Grundschüler</text>
+    >Spieler</text>
     <ellipse name="Fig1.2"
       x="190"
       y="393"
@@ -784,8 +784,8 @@
       />
     </group>
     <rectangle name="Fig7.3"
-      x="26"
-      y="18"
+      x="10"
+      y="10"
       width="11"
       height="1"
       fill="1"
@@ -795,7 +795,7 @@
       visibility="0"
     />
     <group name="Fig7.4"
-         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[26, 18, 64, 19]"
+         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[10, 10, 64, 19]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001674"
          fill="1"
          fillcolor="white"
@@ -807,8 +807,8 @@
       </private>
       
       <rectangle name="Fig7.4.0"
-        x="26"
-        y="18"
+        x="10"
+        y="10"
         width="64"
         height="19"
         fill="0"
