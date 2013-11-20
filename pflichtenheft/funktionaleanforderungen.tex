@@ -46,53 +46,64 @@ Die Anforderungen die Wunsch- statt Musskriterien sind, sind mit einem "`+"' in 
 			\req[Schritt zurück]{F235+}
 			Mindestens 30 Schritte können rückwärts abgerufen werden.
 		\end{requirements}
-	\req[Zoom]{F240}
-	Der Spielende kann die Vergrößerungs-/Verkleinerungsstufe des Bildausschnittes im Spiel ändern.
-	Dies kann sowohl über extra dafür vorgesehene Buttons, als auch über eine Pinch-Geste erfolgen.
-	\req[Drag]{F245}
-	Der Spielende kann den Bildausschnitt des Spielfeldes durch Verschieben mit einer Touch-Geste ändern und so der Situation anpassen.
-	\req[Achievementsystem]{F250+}
+
+	
+	\req[Achievementsystem]{F240+}
 	Als Feedback und Motivationelement für den Spielenden wird ein Achivementsystem integriert.
 	Mindestens folgende Achievements sollen möglich sein:
 		\begin{requirements}
-			\req{F251+} Feste Anzahl Level in einem Levelpaket gelöst.
-			\req{F252+} Feste Anzahl gestorbener Alligatoren erreicht.
-			\req{F253+} Feste Anzahl erzeugter Alligatoren erreicht.
-			\req{F254+} Feste Gesamtspielzeit erreicht.
-			\req{F255+} Seit Spielstart eine feste Anzahl an Leveln gelöst.
-			\req{F256+} Feste Anzahl an Zeilen oder Spalten verwendet.
-			\req{F257+} Feste Anzahl gefressener Alligatoren in einem Level erreicht.
-			\req{F258+} Lösen eines Levels ohne Hinweise.
-			\req{F259+} Erstellen eines nichtterminierenden Ausdrucks.
+			\req{F241+} Feste Anzahl Level in einem Levelpaket gelöst.
+			\req{F242+} Feste Anzahl gestorbener Alligatoren erreicht.
+			\req{F243+} Feste Anzahl erzeugter Alligatoren erreicht.
+			\req{F244+} Feste Gesamtspielzeit erreicht.
+			\req{F245+} Seit Spielstart eine feste Anzahl an Leveln gelöst.
+			\req{F246+} Feste Anzahl an Zeilen oder Spalten verwendet.
+			\req{F247+} Feste Anzahl gefressener Alligatoren in einem Level erreicht.
+			\req{F248+} Lösen eines Levels ohne Hinweise.
+			\req{F249+} Erstellen eines nichtterminierenden Ausdrucks.
 		\end{requirements}
-	\req[Kompabilität für Farbenblinde]{F260+}
-	Das fertige Endprodukt kann ohne Abstriche auch von Menschen mit Rot-Grün Schwäche genutzt werden. Dazu werden die Alligatoren nicht durch Farbe, sondern durch Muster unterschieden.
-	\req[Mehrsprachigkeit]{F270+}
-	Kompabilität mit dem Deutschen und mindesten einer weiteren Fremdsprache.
-	\req[Import und Export von Sandbox-Leveln]{F280+}
+	\req[Import und Export von Sandbox-Leveln]{F250+}
 	Im Leveleditor ist es möglich fremde Kreationen zu laden und eigene Kreationen zu exportieren.
-	\req[Hinweise] {F290+} Der Spielende hat die Möglichkeit einen Hinweis einzublenden, sollte er das Level nicht lösen können.
-	\req [Splashscreen] {F300+} Beim Starten der App gibt es einen eröffnungsbildschirm, der vor dem Hauptmenü geöffnet wird.
-	\req [Ladebalken] {F310+} Bei relevanten Ladezeiten wird dem Spielenden der Ladefortschritt durch einen Ladebalken dargestellt.
-	\req [Krokodil-Trivia] {F320+} Beim Laden des Level werden dem Spielenden lustige, informative oder verrückte Fakten über Krodotile mitgeteilt.
-
-
+	\req[Hinweise] {F260+} Der Spielende hat die Möglichkeit einen Hinweis einzublenden, sollte er das Level nicht lösen können.
+	
 \end{requirements}
 
 
 \subsection{Kontrolle des Lernfortschritts}
 
 \begin{requirements}
-	\req[Elternbereich mit Statistiken]{F410}
+	\req[Elternbereich mit Statistiken]{F310}
 	Eltern oder Lehrkörper haben die Möglichkeit die Fortschritte der verschiedenen Spielerprofile über verschiedene detaillierte Statistiken zu verfolgen.
 	\begin{requirements}
-		\req[Spielzeit]{F411} Man kann die insgesamt im Spiel verbrachte Zeit für jeden Spieler ebenso wie die Zeit, die die Spieler in der letzten Woche im Spiel verbracht haben, einsehen.
+		\req[Spielzeit]{F311} Man kann die insgesamt im Spiel verbrachte Zeit für jeden Spieler ebenso wie die Zeit, die die Spieler in der letzten Woche im Spiel verbracht haben, einsehen.
 		\req[Spielfortschritt]{F412} Man kann sehen wie viele Level und Levelpakte gemeistert wurden.
 		Außerdem wird die durchschnittliche Zeit pro Level angegeben.
-		\req[Nutzung der Hinweise]{F413+} Man kann sehen, wie oft die einzelnen Spieler auf das eingebaute Hinweissystem zurückgreifen mussten, um die Lösung zu erreichen.
+		\req[Nutzung der Hinweise]{F313+} Man kann sehen, wie oft die einzelnen Spieler auf das eingebaute Hinweissystem zurückgreifen mussten, um die Lösung zu erreichen.
 		Außerdem wird die durchschnittliche Hinweisnutzung pro Level angegeben.
-		\req[Level zurücksetzten] {F414+} Man kann sehen, wie oft die einzelnen Spieler gesamte Level zurückgesetzt haben.
+		\req[Level zurücksetzten] {F314+} Man kann sehen, wie oft die einzelnen Spieler gesamte Level zurückgesetzt haben.
 		Außerdem wird die durchschnittliche Anzahl der Zurücksetzungen pro Level angegeben.
-		\req[Achievements]{F415+} Man kann einsehen, welche Achievements die einzelnen Spieler errungen haben.
+		\req[Achievements]{F315+} Man kann einsehen, welche Achievements die einzelnen Spieler errungen haben.
 	\end{requirements}
 \end{requirements}
+
+
+\subsection {Spielbedienung}
+\begin {requirements}
+	\req [Touch] {F410} Die Steuerung des Spiels erfolgt über den Touchscreen des genutzten Gerätes.
+	\req [Singe Touch] {F420} Es ist möglich den gesamten Funktionsumfang der App zu nutzen ohne auf 
+	\req[Zoom]{F430} Der Spielende kann die Vergrößerungs-/Verkleinerungsstufe des Bildausschnittes im Spiel ändern.
+	Dies kann sowohl über extra dafür vorgesehene Buttons, als auch über eine Pinch-Geste erfolgen.
+	\req[Drag and Drop]{F440}
+	Der Spielende kann den Bildausschnitt des Spielfeldes durch Verschieben mit einer Touch-Geste ändern und so der Situation anpassen.
+	\req[Mehrsprachigkeit]{F450+}
+	Kompabilität mit dem Deutschen und mindesten einer weiteren Fremdsprache.
+	\req[Kompabilität für Farbenblinde]{F460+}
+	Das fertige Endprodukt kann ohne Abstriche auch von Menschen mit Rot-Grün Schwäche genutzt werden. Dazu werden die Alligatoren nicht durch Farbe, sondern durch Muster unterschieden.
+\end {requirements}
+
+\subsection{Ladeverhalten}
+\begin {requirements}
+	\req [Splashscreen] {F400+} Beim Starten der App gibt es einen Eröffnungsbildschirm, der vor dem Hauptmenü geöffnet wird.
+	\req [Ladebalken] {F410+} Bei relevanten Ladezeiten wird dem Spielenden der Ladefortschritt durch einen Ladebalken dargestellt.
+	\req [Krokodil-Trivia] {F420+} Beim Laden des Level werden dem Spielenden lustige, informative oder verrückte Fakten über Krodotile mitgeteilt.
+\end {requirements}
