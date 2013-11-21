@@ -1,103 +1,131 @@
 
-
 \section{Globale Testfälle}
 
 \subsection{Funktionssequenzen}
 
 \begin{requirements}
 
-	\req{T110} Ein Benutzerprofil erstellen und zum Anmelden benutzen
+	\req{T110} Ein Benutzerprofil erstellen
+	
 	
 	\begin{itemize}
-  			\item Der Anwender startet die Application und wählt im erscheinenden Startfenster den 'Benutzer'-Button, welcher den Namen des zurzeit angemeldeten Benutzer und dessen Profilbild anzeigt.
+  			\item Der Anwender befindet sich im Startfenster und klickt den 'Benutzer'-Button (Hauptmenü / A5). Er gelangt so in ein neues Fenster in welchem ihm eine Liste aller zurzeit im System gespeicherten Benutzer präsentiert wird.
   			
-  			\item Im folgenden Fenster wird dem Benutzer eine Liste aller zurzeit im System gespeicherten Benutzer präsentiert. Er scrollt an das Ende dieser Liste und klickt den Listeneintrag mit dem Plus-Symbol.
+  			\item Er scrollt an das Ende dieser Liste und wählt den Listeneintrag mit dem Plus-Symbol (Profilauswahl / L2). Dadurch öffnet sich ein Dialogfenster zur Eingabe eines Benutzernamens.
   			
-  			\item Der Nutzer gibt nun über die angezeigte Bildschirmtastatur den von ihm gewünschten Benutzernamen in das dafür vorgesehene Feld ein und klickt auf den 'Weiter'-Button. 
+  			\item Der Benutzer klickt das zur Eingabe des Namens vorgesehene Feld (Profilerstellung (Teil 1) / M1) und gibt über die angezeigt Bildschirmtastatur seinen gewünschten Benutzernamen ein. Anschließend gelangt er durch einen Klick auf den 'Weiter'-Button (Profilerstellung (Teil 1) / M2) in das nächste Dialogfenster in welchem dem Anwender verschiedenen Profilbilder (Profilerstellung (Teil 2) / N1) präsentiert werden.
   			
-  			\item Das anschließende Fenster wird von einer Übersicht der möglichen Profildbildern eingenommen, von denen der Anwender eins durch einen Klick auswählt. Durch einen Klick des 'Weiter'-Buttons bestätigt er seine gemachten Eingaben und das entsprechende Profil ist nun im System gespeichert. 
+  			\item Durch einen Klick wählte er eines dieser Bilder und bestätigt mit dem Drücken des 'Weiter'-Buttons (Profilerstellung (Teil 2) / N2) seine Eingaben. Im System ist nun ein neues Benutzerprofil mit dem von ihm gewählten Namen und Profilbild gespeichert.
+  	\end{itemize}
+  	
+  	
+	
+	\req{T120} Ein Benutzerprofil editieren
+	
+	
+	\begin{itemize}
+  			\item Der Anwender wählt im Startfenster den 'Einstellungen'-Button (Hauptmenü / A2) und kommt so in das Einstellungsmenü.
   			
-  			\item Der Benutzer befindet sich jetzt wieder im Startmenü, wobei er nun mit seinem neu erstellten Profil angemeldet ist, was ihm durch die Beschriftung des 'Benutzer'-Buttons auch angezeigt wird.
-
+  			\item Hier klickt er den 'Profil Editieren'-Button (Einstellungsmenü / J6) und wechselt dadurch in die Listenansicht der im System gespeicherten Benutzerprofile. Er wählt nun einen der Listeneinträge aus wodurch ein analog zu T110 ablaufenden Dialog zur Eingabe eines Benutzernamens und der Wahl eines Profilbilds gestartet wird.
+  			
+  			\item Der Benutzer gibt einen neuen Namen ein, wählt ein neues Profilbild und speichert abschließend durch einen Klick des 'Weiter'-Buttons (Profilerstellung (Teil 2) / N2) die von ihm gemachten Änderungen im System.
+  	\end{itemize}
+  	
+	
+	
+	\req{T130} Ein Benutzerprofil löschen
+	
+	
+	\begin{itemize}
+  			\item Im Einstellungsmenü klickt der Anwender den 'Profil Editieren'-Button (Einstellungsmenü / J6) und wechselt so in die Listenansicht der im System gespeicherten Benutzerprofile. 
+  			
+  			\item Er wählt nun einen der Listeneinträge und klickt auf das 'X'-Symbol rechts neben dem Namen. Dadurch öffnet sich ein Dialog und der Benutzer bejaht die darin gestellte Frage, ob er das gewählte Profil wirklich löschen will, mit einem Klick auf den 'Weiter'-Button. Das gewählte Profil und alle damit verbundenen Daten sind so aus dem System gelöscht.
   			
 	\end{itemize}
 	
+
+	\req{T140} Ein Level starten
 	
-	\req{T120} Ein Benutzerprofil ändern und Löschen 
 	
 	\begin{itemize}
-  			\item Der Anwender startet die Application und wählt im  Startfenster den 'Einstellungen'-Button.
+  			\item Im Startmenü wählt der Spieler den 'Spielen'-Button (Startmenü / A1) und öffnet dadurch die Levelübersicht.
   			
-  			\item Im folgenden Fenster wählt er den Menüpunkt 'Benutzerprofil' und im anschließenden Bildschirm die Option 'Benutzerprofil ändern'.
+  			\item Hier klickt er einen der Levelblöcke (Levelübersicht / B2) und gelangt so in die Leveldetailansicht, in dem ihm alle im Block zusammengefassten Level präsentiert werden.
   			
-  			\item Wie bei der Neuanmeldung kann der Nutzer nun seinen Namen über eine Bildschirmtastatur eingeben und anschließend ein neues Profilbild wählen. Durch einen Klick auf 'Weiter'-Button sind die Änderungen nun im System gespeichert. 
+  			\item Durch einen Klick auf ein bereits freigeschaltetes Level (Leveldetailübersicht / C2) startet er dieses und wechselt so in den zum gewählten Level gehörenden Platziermodus.
+  	\end{itemize}
+  	
+  	
+  	
+  	\req{T150} Den Platziermodus bedienen
+  	
+	
+	\begin{itemize}
+			\item Nach dem Start eines Levels findet sich der Spieler im Platziermodus wieder. Per Drag and Drop zieht der er einzelne Spielelemente (Level (Platziermodus) / D7) auf die Arbeitsfläche (Level (Platziermodus) / D5) und verändert so die Ausgangskonstellation.
   			
-  			\item Der Anwender findet sich nun im 'Benutzerprofil'-Fenster wieder und wählt die Option 'Profil löschen'.
+  			\item Er klickt nun ein besonders gekennzeichneten Alligator an und öffnet so ein Kontextmenü in dem er die Möglichkeit hat die Farbe des Alligators neu zu wählen.
   			
-  			\item Im folgenden Dialog wird der Benutzer gefragt, ob er wirklich das derzeitig ausgewählte Profil löschen will, was er durch einen Klick auf den 'OK'-Button bestätigt. Das Profil ist nun aus dem System gelöscht.
-
+  			\item Durch einen Klick auf eine der angezeigten Farben schließt sich das Kontextmenü wieder und Alligator hat nun die gewählte Farbe.
   			
-	\end{itemize}
+  			\item Der Anwender benutzt nun den 'Zoom-In'-Button (Level (Platziermodus) / D1) und vergrößert so die auf der Arbeitsfläche dargestellten Elemente was er dann wieder durch den Klick des 'Zoom-Out'-Buttons  (Level (Platziermodus) / D2) wieder rückgängig macht.
+  			
+  			\item Er wählt jetzt das sich am oberen Bildschirmrand befindlichen Menüelement aus und zieht es nach unten auf den Bildschirm. Im dadurch entstandenen Bildschirmelement ist so die zu erreichende Endkonstellation des Levels angezeigt, welche durch Loslassen des Bildschirms anschließend wieder verschwindet. 
+  			
+  			\item Der Benutzer klick nun den 'Spielmenü'-Button (Level (Platziermodus) / D2) und wechselt so in das Spielmenü.
+  			
+  			\item Hier wählt er den Eintrag 'Zurücksetzen' (Spielmenü / G2) was den Neustart des Levels zur Folge hat. Aller bisher im Level gemachter Fortschritt wird dadurch verworfen.
+  			
+  			\item Er klickt anschließend den 'Tipp'-Button (Level (Platziermodus) / D3) und bekommt so einen Tipp zum derzeitigen Level angezeigt. Durch einen das Drücken des Klick des 'Next'-Buttons wird dieser wieder ausblendet.
+  			
+  			\item Der Spieler beginnt von neuem die auf der Arbeitsfläche präsentierte Ausgangskonstellation mithilfe der ihm zu Verfügung stehenden Spielelemente zu verändern. Abschließend wechselt er durch einen Klick auf den 'Start'-Button (Level (Platziermodus) / D6) in den Simulationsmodus.
+  	\end{itemize}
+  	
+  	
+  	
+  	\req{T160} Den Simulationsmodus bedienen
+  	
+	
+	\begin{itemize}
+	
+  			\item Der Benutzer befindet sich im Simulationsmodus und drückt den 'Start'-Button (Level (Simulationsmodus) / B5). Er startet so die automatische Auswertung der von ihm im Platziermodus erstellten Konstellation, welche auf der Arbeitsfläche (Level (Simulationsmodus) / E5) angezeigt wird.
+  			
+  			\item Durch den erneuten Klick des Buttons stoppt er die Auswertung wieder.
+  			
+  			\item Anschließend benutzt er den 'Vorwärts'-Button (Level (Simulationsmodus) / E7) um einen einzigen Schritt der Auswertung auszuführen, welchen er dann durch einen Klick des 'Rückwärts'-Buttons (Level (Simulationsmodus) / E3) wieder rückgängig macht.
+  			
+  			\item Jetzt verändert er die Geschwindigkeit der automatischen Simulation über eine Scrollbar in der Menüleiste und lässt diese dann wieder durch einen Klick des 'Start'-Buttons in der von ihm eingestellten Geschwindigkeit ablaufen. 
+  			
+  			\item Als der Endzustand durch die Auswertung erreicht wird, stoppt diese und der Anwender bekommt über ein Dialogfenster angezeigt, dass er das Level erfolgreich abgeschlossen hat. Mit einen Klick des 'Level'-Buttons (Levelerfolg / F2) wechselt er abschließend in in die Leveldetailansicht.
+  			
+  			
+  	\end{itemize}
+  			
 
   	
-  	\req{T130} Ein Level auswählen, spielen, erfolgreich beenden.
+  	\req{T170} Informationen über Benutzer abrufen
+  	
   	
   	\begin{itemize}
   	
-  			\item Der Spieler startet die Application und wählt im erscheinenden Startfenster den 'Spielen'-Button.
-  			
-  			\item Im folgenden Fenster wird ihm eine Übersicht der verschiedenen Level Pakete präsentiert, von denen er eines anklickt und es so startet.
-  			
-  			\item In dem jetzt angezeigten Fenster werden dem Benutzer die einzelnen Level des Paketes präsentiert. Durch einen Klick auf das entsprechende Level startet er dieses.
-  			
-  			\item Der Spieler findet sich nun im Platziermodus wieder. Er bekommt auf der linken Bildschirmhälfte die Ausgangskonstellation und die zu dessen Manipulation verfügbaren Spielelemente, also Alligatoren und Eier präsentiert, auf der rechten Bildschirmhälfte die Endkonstellation. Durch ein Klick auf das 'Bestätigen-Symbol' blendet er die Endkonstellation aus, auf dem Bildschirm ist nun nur noch die Ausgangskonstellation, die Spielelemente und eine Menüleiste zu sehen. 
-  			
-  			\item Per Drag and Drop zieht der Anwender nun einzelne Spielelemente in den Ausgangszustand und verfärbt durch einen Klick speziell gekennzeichnete Symbol.
-  			
-  			\item Der Benutzer wählt über die Menüleiste das 'Endkonstellations'-Symbol und bekommt so noch einmal die 'Endkonstellation' angezeigt. Diese Ansicht schließt er wieder um anschließend über einen Klick in der Menüleiste ein Fenster mit Tipps zum derzeitigen Level angezeigt zu bekommen. 
-  			
-  			\item Anschließend öffnet der Spieler über einen Klick auf das 'Menü'-Symbol das Spielmenü und wählt den Unterpunkt 'Zurücksetzen'. Im folgenden Dialogfenster bestätigt er sein Entscheidung und kehrt in den Platziermodus zurück, in den sich nun die Ausgangskonstellation wieder in ihrem Ursprungszustand befindet. 
-  			
-  			\item Der Benutzer beginn von neuem die Konstellation von neuem zu verändern und wechselt abschließend durch einen Klick auf das 'Bestätigen'-Symbol in den Simulationsmodus.
-  			
-  			\item Im Simulationsmodus wird der Bildschirm von der im Simulationsmodus erstellten Konstellation und einer Menüleiste auf der sich unter anderem Optionen zur Steuerung der Simulation befinden eingenommen. Der  Spieler startet die automatische Simulation durch einen Klick auf den 'Start'-Button. Die Konstellation wird nun ohne Unterbrechung gemäß dem Spielregeln immer weiter reduziert. 
-  			
-  			\item Durch einen Klick auf das 'Stopp'-Button stoppt er die Simulation und macht durch das Klicken des 'Zurück'-Buttons einen Schritt der Auswertung rückgängig. 
-  			
-  			\item Durch das Benutzen des 'Vorwärts'-Buttons lässt er die Simulation nun jeweils einen Schritt vorwärts laufen. 
-  			
-  			\item Anschließend verändert er die Geschwindigkeit der automatischen Simulation über eine Scrollbar in der Menüleiste und lässt 
-sie dann durch einen Klick des 'Start'-Buttons in der von ihm eingestellten Geschwindigkeit ablaufen. 
-  			
-  			\item Als der Endzustand durch die Simulation erreicht wurde, stoppt diese und der Anwender bekommt über ein Dialogfenster präsentiert, das er das Level erfolgreich abgeschlossen hat und wie viel Zeit er dafür gebraucht hat. Über das Klicken des 'Bestätigen'-Buttons verlässt der Anwender den Simulationsmodus und findet sich in der Levelübersicht wieder.
-  			
-	\end{itemize}
-  	
-  	\req{T140} Informationen über Benutzer abrufen
-  	
-  	\begin{itemize}
-  	
-		\item Der Anwender startet die Application und klickt im Startmenü den 'Statistiken'-Button.
+		\item Der Anwender befindet sich im Startmenü und wählt den 'Statistiken'-Button (Startmenü / A3) und wechselt so in das 'Statistiken'-Fenster
 		
-		\item Im folgenden Fenster werden dem Benutzer Auswahlmöglichkeiten zum zu betrachtenden Spielerprofil und zu der Art der Informationen sowie die eigentlichen Informationen zu den gewählten Parametern präsentiert. Über eine Drop-Down Liste wählt der Benutzer nun ein Profil, über das er Informationen angezeigt bekommen will.
+		\item Hier wählt er über eine Dropdown-Liste (Statistiken / K1) ein Benutzerprofil und über die Tabauswahl (Statistiken / K3) die Informationskategorie 'Spielzeit'. Ihm werden nun im dafür vorgesehenen Feld (Statistiken / K4) alle im System gespeicherten Informationen über die Spielzeit des ausgewählten Benutzer präsentiert.
 		
-		\item Durch einen Klick auf das entsprechende 'Kategorie'-Symbol bekommt der Anwender nun alle im System gespeicherten Informationen der jeweiligen Kategorie zum ausgewählten Benutzer präsentiert.
-		
-		\item Der Nutzer wählt nun ein anderes Benutzerprofil über die Drop-Down Liste und bekommt so entsprechen zu diesem Profil Informationen angezeigt.
+		\item Der Nutzer wählt jetzt über die Drop-Down Liste ein anderes Benutzerprofil und bekommt so entsprechen Informationen angezeigt, welche sich dann durch die anschließende Wahl der Informationskategorie 'Spielfortschritt' wieder verändern.
 		
   	
   	\end{itemize}
   	
-  	\req{T150} Einstellungen ändern und speichern
+  	
+  	
+  	\req{T180} Einstellungen ändern und speichern
+  	
   	
   	\begin{itemize}
   	
-		\item Der Benutzer startet die Application und klickt im Startmenü den 'Einstellungen'-Button.
+		\item Im Startmenü klickt der Anwender den 'Einstellungen'-Button und wechselt so in das entsprechende Fenster.
 		
-		\item Im folgenden Fenster wählt der Anwender den Unterpunkt 'Spieleinstellungen'.
-		
-		\item Im jetzt eingeblendeten Bildschirm verändert der Nutzer mithilfe von Scrollbars die Lautstärke von FX und der Musik und setzt bei den Punkten Rot-Grün und Zoonmfunktion per Klick ein Häkchen an die entsprechende Stelle. Diese Einstellungen sind nun im System gespeichert.
-	
+		\item Im jetzt eingeblendeten Bildschirm verändert der Nutzer mithilfe von Scrollbars (Einstellungen / J4, J5) die Musik- und Effektlautstärke und setzt bei den Punkten Rot-Grün und Zoonmfunktion (Einstellungen / J2, J3) per Klick ein Häkchen an die entsprechende Stelle. Durch einen Klick auf den 'Zurück'-Button (Einstellungen / J1) speichert er abschließend die von ihm gemachten Einstellungen im System.
   	
   	\end{itemize}
   	
@@ -112,7 +140,8 @@ sie dann durch einen Klick des 'Start'-Buttons in der von ihm eingestellten Gesc
   		
 	\req{T220} Die vom Benutzer gemachten Einstellungen werden unter dessen Benutzerprofil gespeichert. Meldet sich der Benutzer wieder nach dem Schließen der Application an, werden die an sein Benutzerprofil gebundenen Einstellungen verwendet.
 	
-	\req{T230} Es gibt keine Möglichkeit, zwei Profile mit dem selben Namen anzulegen. Wird ein Profil gelöscht, steht der dazu gehörende Name wieder frei zur Verfügung.
+	\req{T230} Es gibt keine Möglichkeit, zwei Profile mit dem selben Namen anzulegen. Wird ein Profil gelöscht, steht der dazu gehörende Name bei der Erstellung eines neuen Profils wieder frei zur Verfügung.
 
 \end{requirements}	
+  			
   		
