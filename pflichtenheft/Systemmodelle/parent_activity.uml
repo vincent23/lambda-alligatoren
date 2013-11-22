@@ -62,7 +62,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sun Nov 17 16:50:29 CET 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Nov 22 13:53:03 CET 2013'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -118,8 +118,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-676e7ef1:14266947d5b:-8000:00000000000013FA'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--42--85-676e7ef1:14266947d5b:-8000:00000000000013FE'
-                          language = '' body = 'Klicken des&#10;Statistiken-Buttons&#10;&#10;'/>
+                        <UML:ActionExpression xmi.id = '-115-3--20-96-6fa25188:1427fd79e99:-8000:0000000000001050'
+                          language = '' body = 'Klicken des&#10;Statistiken-Buttons&#10;Abb.1 A3'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -136,8 +136,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001401'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001402'
-                          language = '' body = 'Betrachten&#10; der Statistik'/>
+                        <UML:ActionExpression xmi.id = '-115-3--20-96-6fa25188:1427fd79e99:-8000:0000000000001051'
+                          language = '' body = 'Betrachten&#10; der Statistik&#10;Abb.11'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -188,8 +188,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000140D'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001417'
-                          language = '' body = 'Profil&#10; ändern'/>
+                        <UML:ActionExpression xmi.id = '-115-3--20-96-6fa25188:1427fd79e99:-8000:0000000000001052'
+                          language = '' body = 'Profil&#10; ändern&#10;Abb.11 K1'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -216,8 +216,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001415'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001416'
-                          language = '' body = 'Statistik &#10;ändern'/>
+                        <UML:ActionExpression xmi.id = '-115-3--20-96-6fa25188:1427fd79e99:-8000:0000000000001053'
+                          language = '' body = 'Statistik &#10;ändern&#10;Abb.11 K2,K3...'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -487,7 +487,7 @@
                         offset="10" />
     </private>
     <path name="Fig2.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -558,7 +558,7 @@
       x="392"
       y="72"
       width="128"
-      height="74"
+      height="59"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -571,8 +571,7 @@
       justification="Center"
     >Klicken des
 Statistiken-Buttons
-
-</text>
+Abb.1 A3</text>
   </group>
   <group name="Fig4"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
@@ -593,7 +592,7 @@ Statistiken-Buttons
                         offset="10" />
     </private>
     <path name="Fig4.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -606,7 +605,7 @@ Statistiken-Buttons
     </path>
   </group>
   <group name="Fig5"
-       description="org.argouml.uml.diagram.activity.ui.FigActionState[392, 208, 118, 50]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.activity.ui.FigActionState[392, 208, 118, 65]pathVisible=false;stereotypeView=0;"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:00000000000013FF"
        fill="1"
        fillcolor="white"
@@ -620,23 +619,23 @@ Statistiken-Buttons
       x="393"
       y="209"
       width="116"
-      height="48"
+      height="63"
       fill="1"
       fillcolor="255 0 255"
       stroke="0"
       strokecolor="255 0 255"
-      rounding="50"
+      rounding="65"
     />
     <rectangle name="Fig5.1"
       x="392"
       y="208"
       width="118"
-      height="50"
+      height="65"
       fill="1"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
-      rounding="50"
+      rounding="65"
     />
     <group name="Fig5.2"
          description="org.argouml.uml.diagram.ui.FigStereotypesGroup[400, 208, 102, 0]"
@@ -664,7 +663,7 @@ Statistiken-Buttons
       x="400"
       y="208"
       width="102"
-      height="44"
+      height="59"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -676,7 +675,8 @@ Statistiken-Buttons
       textsize="12"
       justification="Center"
     >Betrachten
- der Statistik</text>
+ der Statistik
+Abb.11</text>
   </group>
   <group name="Fig6"
        description="org.argouml.uml.diagram.state.ui.FigJunctionState[432, 304, 32, 32]pathVisible=false;stereotypeView=0;"
@@ -729,14 +729,14 @@ Statistiken-Buttons
                         offset="10" />
     </private>
     <path name="Fig7.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
       strokecolor="51 51 153"
     >
       <moveto x="448"
-              y="256" />
+              y="271" />
       <lineto x="448"
               y="304" />
     </path>
@@ -875,7 +875,7 @@ des Spiels</text>
                         offset="10" />
     </private>
     <path name="Fig10.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -888,7 +888,7 @@ des Spiels</text>
     </path>
   </group>
   <group name="Fig11"
-       description="org.argouml.uml.diagram.activity.ui.FigActionState[576, 296, 118, 50]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.activity.ui.FigActionState[576, 296, 118, 65]pathVisible=false;stereotypeView=0;"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000140B"
        fill="1"
        fillcolor="white"
@@ -902,23 +902,23 @@ des Spiels</text>
       x="577"
       y="297"
       width="116"
-      height="48"
+      height="63"
       fill="1"
       fillcolor="255 0 255"
       stroke="0"
       strokecolor="255 0 255"
-      rounding="50"
+      rounding="65"
     />
     <rectangle name="Fig11.1"
       x="576"
       y="296"
       width="118"
-      height="50"
+      height="65"
       fill="1"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
-      rounding="50"
+      rounding="65"
     />
     <group name="Fig11.2"
          description="org.argouml.uml.diagram.ui.FigStereotypesGroup[584, 296, 102, 0]"
@@ -946,7 +946,7 @@ des Spiels</text>
       x="584"
       y="296"
       width="102"
-      height="44"
+      height="59"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -958,7 +958,8 @@ des Spiels</text>
       textsize="12"
       justification="Center"
     >Profil
- ändern</text>
+ ändern
+Abb.11 K1</text>
   </group>
   <group name="Fig12"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
@@ -979,7 +980,7 @@ des Spiels</text>
                         offset="10" />
     </private>
     <path name="Fig12.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -1042,7 +1043,7 @@ des Spiels</text>
                         offset="10" />
     </private>
     <path name="Fig14.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -1055,7 +1056,7 @@ des Spiels</text>
     </path>
   </group>
   <group name="Fig15"
-       description="org.argouml.uml.diagram.activity.ui.FigActionState[576, 392, 118, 50]pathVisible=false;stereotypeView=0;"
+       description="org.argouml.uml.diagram.activity.ui.FigActionState[576, 392, 118, 65]pathVisible=false;stereotypeView=0;"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001413"
        fill="1"
        fillcolor="white"
@@ -1069,23 +1070,23 @@ des Spiels</text>
       x="577"
       y="393"
       width="116"
-      height="48"
+      height="63"
       fill="1"
       fillcolor="255 0 255"
       stroke="0"
       strokecolor="255 0 255"
-      rounding="50"
+      rounding="65"
     />
     <rectangle name="Fig15.1"
       x="576"
       y="392"
       width="118"
-      height="50"
+      height="65"
       fill="1"
       fillcolor="white"
       stroke="1"
       strokecolor="black"
-      rounding="50"
+      rounding="65"
     />
     <group name="Fig15.2"
          description="org.argouml.uml.diagram.ui.FigStereotypesGroup[584, 392, 102, 0]"
@@ -1113,7 +1114,7 @@ des Spiels</text>
       x="584"
       y="392"
       width="102"
-      height="44"
+      height="59"
       fill="0"
       fillcolor="white"
       stroke="0"
@@ -1125,7 +1126,8 @@ des Spiels</text>
       textsize="12"
       justification="Center"
     >Statistik 
-ändern</text>
+ändern
+Abb.11 K2,K3...</text>
   </group>
   <group name="Fig16"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
@@ -1146,7 +1148,7 @@ des Spiels</text>
                         offset="10" />
     </private>
     <path name="Fig16.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -1177,7 +1179,7 @@ des Spiels</text>
                         offset="10" />
     </private>
     <path name="Fig17.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -1242,7 +1244,7 @@ des Spiels</text>
                         offset="10" />
     </private>
     <path name="Fig19.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -1273,7 +1275,7 @@ des Spiels</text>
                         offset="10" />
     </private>
     <path name="Fig20.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -1306,7 +1308,7 @@ des Spiels</text>
                         offset="10" />
     </private>
     <path name="Fig21.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
@@ -1339,7 +1341,7 @@ des Spiels</text>
                         offset="10" />
     </private>
     <path name="Fig22.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
