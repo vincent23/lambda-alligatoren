@@ -1,4 +1,3 @@
-
 \section{Globale Testfälle}
 
 \subsection{Funktionssequenzen}
@@ -19,59 +18,77 @@
   	\end{itemize}
   	
   	
+  	
+  	\req{T120} Sich mit einem Benutzerprofil anmelden
+  	
+  	\begin{itemize}
+  			\item Der Spieler befindet sich im Startmenü, klickt auf den 'Benutzer'-Button (Hauptmenü / A5) und wechselt dadurch in eine Listenansicht in der ihm alle gespeicherten Profile angezeigt werden.
+  			
+  			\item Er scrollt durch die Liste und wählt einen der Einträge (Profilauswahl / L1) durch einen Klick aus und ist so im System mit dem gewählten Benutzerprofil angemeldet.
+  			
+	\end{itemize}
+  	
+  	
 	
-	\req{T120} Ein Benutzerprofil editieren
+	\req{T130} Ein Benutzerprofil editieren
 	
 	
 	\begin{itemize}
-  			\item Der Anwender wählt im Startfenster den 'Einstellungen'-Button (Hauptmenü / A2) und kommt so in das Einstellungsmenü.
+  			\item Der Anwender wählt im Startfenster den 'Einstellungen'-Button (Hauptmenü / A2) und kommt in das Einstellungsmenü.
   			
-  			\item Hier klickt er den 'Profil Editieren'-Button (Einstellungsmenü / J6) und wechselt dadurch in die Listenansicht der im System gespeicherten Benutzerprofile. Er wählt nun einen der Listeneinträge aus wodurch ein analog zu T110 ablaufenden Dialog zur Eingabe eines Benutzernamens und der Wahl eines Profilbilds gestartet wird.
+  			\item Hier klickt er den 'Profil Editieren'-Button (Einstellungsmenü / J6) und wechselt dadurch in ein Fenster, in dem sein aktueller Benutzernamen und aktuelles Benutzerprofil sowie eine 'Löschen'-Button angezeigt werden.
   			
-  			\item Der Benutzer gibt einen neuen Namen ein, wählt ein neues Profilbild und speichert abschließend durch einen Klick des 'Weiter'-Buttons (Profilerstellung (Teil 2) / N2) die von ihm gemachten Änderungen im System.
+  			\item Der Benutzer klickt auf den Benutzernamen wodurch sich ein in T110 beschriebenes Dialogfenster zu Eingabe eines Benutzernamens öffnet.
+  			
+  			\item Er gibt jetzt in das dafür vorgesehene Feld seinen neuen Benutzernamen ein, bestätigt diesen mit dem 'Weiter'-Button und gelangt so in das vorherige Fenster.
+  			
+  			\item Er klickt nun auf das Profilbild und kommt so entsprechend in ein Dialogfenster zur Wahl eines neuen Profilbilds. Durch einen Klick auf das gewünschte Bild wird dieses als neues zu Profil gehörende Bild im System gespeichert.
+  			
+  			
   	\end{itemize}
+
   	
 	
 	
-	\req{T130} Ein Benutzerprofil löschen
+	\req{T140} Ein Benutzerprofil löschen
 	
 	
 	\begin{itemize}
-  			\item Im Einstellungsmenü klickt der Anwender den 'Profil Editieren'-Button (Einstellungsmenü / J6) und wechselt so in die Listenansicht der im System gespeicherten Benutzerprofile. 
+  			\item Der Benutzer hat sich mit seinem Profil angemeldet und befindet sich im 'Profil Editieren'-Fenster. Er klickt auf den 'Löschen'-Button wodurch sich ein Dialog öffnet indem der Benutzer gefragt wird, ob er das derzeitige gewählte Profil wirklich löschen möchte.
   			
-  			\item Er wählt nun einen der Listeneinträge und klickt auf das 'X'-Symbol rechts neben dem Namen. Dadurch öffnet sich ein Dialog und der Benutzer bejaht die darin gestellte Frage, ob er das gewählte Profil wirklich löschen will, mit einem Klick auf den 'Weiter'-Button. Das gewählte Profil und alle damit verbundenen Daten sind so aus dem System gelöscht.
+  			\item Er bejaht dies mit einem Klick auf den 'Weiter'-Button und der Bildschirm wechselt wieder in das Startmenü. Das ausgewählte Profil und alle damit verbundenen Daten sind nun aus dem System gelöscht.
   			
 	\end{itemize}
 	
 
-	\req{T140} Ein Level starten
+	\req{T150} Ein Level starten
 	
 	
 	\begin{itemize}
-  			\item Im Startmenü wählt der Spieler den 'Spielen'-Button (Startmenü / A1) und öffnet dadurch die Levelübersicht.
+  			\item Im Startmenü wählt der Spieler den 'Spielen'-Button (Startmenü / A1) und öffnet so die Levelübersicht.
   			
-  			\item Hier klickt er einen der Levelblöcke (Levelübersicht / B2) und gelangt so in die Leveldetailansicht, in dem ihm alle im Block zusammengefassten Level präsentiert werden.
+  			\item Hier klickt er einen der Levelblöcke (Levelübersicht / B2) und gelangt in die Leveldetailansicht, in dem ihm alle im Block zusammengefassten Level präsentiert werden.
   			
-  			\item Durch einen Klick auf ein bereits freigeschaltetes Level (Leveldetailübersicht / C2) startet er dieses und wechselt so in den zum gewählten Level gehörenden Platziermodus.
+  			\item Durch einen Klick auf ein bereits freigeschaltetes Level (Leveldetailübersicht / C2) startet er dieses und wechselt in den zum gewählten Level gehörenden Platziermodus.
   	\end{itemize}
   	
   	
   	
-  	\req{T150} Den Platziermodus bedienen
+  	\req{T160} Den Platziermodus bedienen
   	
 	
 	\begin{itemize}
 			\item Nach dem Start eines Levels findet sich der Spieler im Platziermodus wieder. Per Drag and Drop zieht der er einzelne Spielelemente (Level (Platziermodus) / D7) auf die Arbeitsfläche (Level (Platziermodus) / D5) und verändert so die Ausgangskonstellation.
   			
-  			\item Er klickt nun ein besonders gekennzeichneten Alligator an und öffnet so ein Kontextmenü in dem er die Möglichkeit hat die Farbe des Alligators neu zu wählen.
+  			\item Er klickt nun ein besonders gekennzeichneten Alligator an und öffnet dadurch ein Kontextmenü in dem er die Möglichkeit hat die Farbe des Alligators neu zu wählen.
   			
-  			\item Durch einen Klick auf eine der angezeigten Farben schließt sich das Kontextmenü wieder und Alligator hat nun die gewählte Farbe.
+  			\item Durch einen Klick auf eine der angezeigten Farben schließt sich das Kontextmenü wieder und der Alligator hat nun die gewählte Farbe.
   			
-  			\item Der Anwender benutzt nun den 'Zoom-In'-Button (Level (Platziermodus) / D1) und vergrößert so die auf der Arbeitsfläche dargestellten Elemente was er dann wieder durch den Klick des 'Zoom-Out'-Buttons  (Level (Platziermodus) / D2) wieder rückgängig macht.
+  			\item Der Anwender benutzt nun den 'Zoom-In'-Button (Level (Platziermodus) / D1) und vergrößert so die auf der Arbeitsfläche dargestellten Elemente was er anschließend wieder durch den Klick des 'Zoom-Out'-Buttons  (Level (Platziermodus) / D2) wieder rückgängig macht.
   			
-  			\item Er wählt jetzt das sich am oberen Bildschirmrand befindlichen Menüelement aus und zieht es nach unten auf den Bildschirm. Im dadurch entstandenen Bildschirmelement ist so die zu erreichende Endkonstellation des Levels angezeigt, welche durch Loslassen des Bildschirms anschließend wieder verschwindet. 
+  			\item Er wählt jetzt das sich am oberen Bildschirmrand befindlichen Menüelement aus und zieht es nach unten auf den Bildschirm. Im dadurch entstandenen Bildschirmelement ist jetzt die zu erreichende Endkonstellation des Levels angezeigt, welche durch Loslassen des Bildschirms anschließend wieder verschwindet. 
   			
-  			\item Der Benutzer klick nun den 'Spielmenü'-Button (Level (Platziermodus) / D2) und wechselt so in das Spielmenü.
+  			\item Der Benutzer klick nun den 'Spielmenü'-Button (Level (Platziermodus) / D2) und wechselt in das Spielmenü.
   			
   			\item Hier wählt er den Eintrag 'Zurücksetzen' (Spielmenü / G2) was den Neustart des Levels zur Folge hat. Aller bisher im Level gemachter Fortschritt wird dadurch verworfen.
   			
@@ -82,7 +99,7 @@
   	
   	
   	
-  	\req{T160} Den Simulationsmodus bedienen
+  	\req{T170} Den Simulationsmodus bedienen
   	
 	
 	\begin{itemize}
@@ -102,23 +119,23 @@
   			
 
   	
-  	\req{T170} Informationen über Benutzer abrufen
+  	\req{T180} Informationen über Benutzer abrufen
   	
   	
   	\begin{itemize}
   	
-		\item Der Anwender befindet sich im Startmenü und wählt den 'Statistiken'-Button (Startmenü / A3) und wechselt so in das 'Statistiken'-Fenster
+		\item Der Anwender befindet sich im Startmenü und wählt den 'Statistiken'-Button (Startmenü / A3) und wechselt in das 'Statistiken'-Fenster
 		
 		\item Hier wählt er über eine Dropdown-Liste (Statistiken / K1) ein Benutzerprofil und über die Tabauswahl (Statistiken / K3) die Informationskategorie 'Spielzeit'. Ihm werden nun im dafür vorgesehenen Feld (Statistiken / K4) alle im System gespeicherten Informationen über die Spielzeit des ausgewählten Benutzer präsentiert.
 		
-		\item Der Nutzer wählt jetzt über die Drop-Down Liste ein anderes Benutzerprofil und bekommt so entsprechen Informationen angezeigt, welche sich dann durch die anschließende Wahl der Informationskategorie 'Spielfortschritt' wieder verändern.
+		\item Der Nutzer wählt jetzt über die Drop-Down Liste ein anderes Benutzerprofil und bekommt so entsprechende Informationen angezeigt, welche sich dann durch die anschließende Wahl der Informationskategorie 'Spielfortschritt' wieder verändern.
 		
   	
   	\end{itemize}
   	
   	
   	
-  	\req{T180} Einstellungen ändern und speichern
+  	\req{T190} Einstellungen ändern und speichern
   	
   	
   	\begin{itemize}
@@ -142,6 +159,6 @@
 	
 	\req{T230} Es gibt keine Möglichkeit, zwei Profile mit dem selben Namen anzulegen. Wird ein Profil gelöscht, steht der dazu gehörende Name bei der Erstellung eines neuen Profils wieder frei zur Verfügung.
 
-\end{requirements}	
+\end{requirements}		
   			
   		
