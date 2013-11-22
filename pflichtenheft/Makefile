@@ -26,7 +26,7 @@ DOCUMENTS_TEX=$(DOCUMENTS:=.tex)
 DOCUMENTS_AUX=$(DOCUMENTS:=.aux)
 
 all: $(DOCUMENTS_TEX)
-	pdflatex $(MAIN_FILE).tex
+	pdflatex -output-directory out $(MAIN_FILE).tex
 
 clean:
 	rm -f $(DOCUMENTS_AUX) $(TOC) $(REFS) $(MAIN_FILE).pdf $(MAIN_FILE).log
