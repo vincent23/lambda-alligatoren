@@ -13,28 +13,25 @@
 Hintergrunderzählung nebeneinander dar. 
 \item Durch seitliches Wischen kann hier das gewünschte Paket in den Vordergrund gebracht werden.
 \item Durch einfaches Drücken wird ein Levelpaket ausgewählt bzw. betreten.
-\item[+] Levelpakete können auch, aufgrund von zu geringem Spielfortschritt des 
+\item Einzelne Levelpakete können auch, aufgrund von zu geringem Spielfortschritt des 
 eingestellten Nutzerprofils, gesperrt sein.
 \item Nach der Auswahl sieht der Nutzer ein Raster mit nummerierten Schaltflächen.
 \item Jede Schaltfläche korrespondiert mit einem Level aus dem Levelpaket.
-\item[+] Innerhalb eines Pakets sind immer alle Level sofort spielbar.
-\item Die Level steigen in Schwierigkeit an und sind nach vorausgesetztem Wissen sortiert. Dies legt
-dem Spieler ein chronologisches Vorgehen nahe.
+\item Innerhalb eines Pakets sind Level erst nach erfolgreichem Abschluss aller vorhergehender Level aus dem Paket spielbar.
 \end{itemize}
 
 \paragraph{Level Spielen}\mbox{}\newline
 \begin{itemize}
 \item Der Nutzer befindet sich in der Levelauswahl.
-\item[+] Drückt der Nutzer nun auf eine zu einem
-Level gehörende Schaltfläche, so wird ihm je nach Level zuerst eine kurze
+\item Drückt der Nutzer nun auf eine zu einem
+Level gehörende Schaltfläche, so wird ihm, je nach Level, zuerst eine kurze
 Animation gezeigt, die die Hintergrunderzählung vermittelt. 
-\item[+] Diese kann allerdings mit einer entsprechenden Schaltfläche übersprungen werden.
+\item Diese kann allerdings mit einer entsprechenden Schaltfläche übersprungen werden.
 \item Das Level startet im Platziermodus.
 \item Vor diesen legt sich zunächst das Overlay, das die für den Abschluss des Levels zu erreichenden Ziele
 erklärt.
 \item[+] Bei Leveln, in denen es um bestimmte Konstellationen geht, die auf
-dem Spielfeld erscheinen müssen, ist dies ein Bild der Formation.
-\item[+] Für Level, die eine bestimmte Anzahl an durchlaufenen Transformationen
+dem Spielfeld erscheinen müssen, ist dies ein Bild der Formation; für Level, die eine bestimmte Anzahl an durchlaufenen Transformationen
 verlangen, ist dies ein mit Piktogrammen angreicherter Text.
 \item Der Dialog muss mittels einer Schaltfläche geschlossen werden, um den
 Platziermodus bedienen zu können. 
@@ -49,28 +46,28 @@ des derzeitigen Zustands des Spielfelds.
 \item Von diesen können Kopien durch Ziehen und Loslassen auf dem Spielfeld platziert werden. 
 \item Das Ablegen an der richtigen Stelle wird durch eine zweite, 
 halbtransparente Darstellung des Objekts simuliert und sichergestellt. 
-\item Die erst einmal nur weißen Objekte können zunächst nur in bereits 
+\item Die erst einmal ungefärbten Objekte können zunächst nur in bereits 
 existierenden Spalten platziert werden.
 \item  Durch Drücken auf ein Objekt erscheint 
 ein Dialog, in dem eine diesem eine Farbe zugeordnet werden kann.
-\item Dort befindet sich eine Palette mit bereits existierenden Farben, von denen 
-grundsätzlich 12 voreingestellt sind.
-\item[+] Durch Betätigen einer Schaltfläche ``neu'' öffnet sich ein weitere Dialog.
-\item[+] In diesem können, ähnlich wie aus Adobe Photoshop bekannt, weitere Farben definiert werden.
-\item Bei Krokodilen befindet sich im ersten Farbwahlbildschirm außerdem eine Schaltfläche, die mit einem
-Piktogramm das Teilen der Spalten unterhalb dessen andeutet.
-\item  Ein Drücken dieser fügt den Spalten unterhalb des Krokodils eine weitere hinzu.
-\item Solange sich noch weiße Eier auf dem Spielfeld befinden (deren Verhalten
+\item Dort befindet sich eine Palette mit zehn vordefinierten Farben.
+\item Durch drücken einer der Farben wird diese Farbe auf das Objekt angewandt und der Dialog geschlossen.
+\item Bei Alligatoren befindet sich im Farbwahldialog außerdem eine Schaltfläche, die mit einem
+Piktogramm das Teilen der Spalten unterhalb des Alligators andeutet.
+\item Ein Drücken dieser fügt den Spalten unterhalb des Krokodils eine weitere hinzu.
+\item Solange sich noch ungefärbte Eier auf dem Spielfeld befinden (deren Verhalten
 nicht definiert ist) kann nicht in den Simulationsmodus gewechselt werden.
 \item Der Simulationsmodus ist durch Drücken einer Schaltfläche vom Platziermodus
 aus erreichbar.
+\item Soll ein einzelnes Objekt vom Spielfeld entfernt werden, muss dieses durch ziehen und loslassen
+in die Objektleiste zurückgelegt werden.
 \item Es ist eine Schaltfläche vorhanden, die das Spielmenü öffnet.
 \item Desweiteren existiert eine Schaltfläche für das Anzeigen der zu erreichenden Ziele des Levels.
 \item Für das Rückgängigmachen und Wiederholen einer Aktion sind zwei Schaltflächen vorhanden.
 \item Das Zurücksetzen des Spielfelds kann durch eine weitere Schaltfläche ausgelöst werden.
 \item Eine Zwischenabfrage verhindert das versehentliche Zurücksetzen des Spielfelds.
 \item Falls eingestellt, gibt es Schaltflächen für das Hinein- und Herauszoomen im Spielfeld.
-\item[+] Ansonsten lässt sich die Zoomfunktion auch über die gängigen Pinchgesten mit zwei Fingern bedienen.
+\item Ansonsten lässt sich die Zoomfunktion auch über die gängigen Pinchgesten mit zwei Fingern bedienen.
 \end{itemize}
 
 \paragraph{Simulationsmodus}\mbox{}\newline
@@ -88,8 +85,8 @@ in den Simulationsmodus.
 \item Ausgeführte Transformationen werden auf dem Bildschirm gezeigt und hervorgehoben und auf das Spielfeld angewendet.
 \item Durch das Ausführen von Transformationen kann der Nutzer schrittweise
 überprüfen, wie sich seine Anordnung verhält.
-\item Standardmäßig zoomt das Spiel beim Starten koplett heraus, sodass alle Objekte auf dem Spielfeld sichtbar sind.
-\item Der manuelle Zoom bleibt während der automatischen Simulation verfügbar, sodass hier nachjustiert werden kann.
+\item Standardmäßig zoomt das Spiel beim Starten der automatischen Simulation koplett heraus, sodass alle Objekte auf dem Spielfeld sichtbar sind.
+\item Der manuelle Zoom bleibt während der automatischen Simulation verfügbar, sodass hier der Bildausschnitt nachjustiert werden kann.
 \item Wenn keine Transformationen mehr ausgeführt werden können, überprüft das Spiel, ob das Ziel erreicht
 wurde.
 \item Anschließend zeigt es einen Dialog zur Information über Erfolg oder Niederlage.
@@ -102,12 +99,9 @@ der Ziele.
 Das Spielmenü beinhaltet zu jeder Zeit die folgenden Punkte:
 \begin{itemize}
 	\item Weiterspielen
-	\item \textasciitilde\textasciitilde Levelziele anzeigen \textasciitilde\textasciitilde
-	\item Level beenden (zurück zur Levelübersicht des aktuellen Pakets)
-	\item Zurück zu Hauptbildschirm
-	\item \textasciitilde\textasciitilde Erfolge \textasciitilde\textasciitilde
+	\item Level zurücksetzen
 	\item Einstellungen
+	\item Level beenden (zurück zur Levelübersicht des aktuellen Pakets)
+	\item Erfolge
+	\item Zurück zu Hauptbildschirm
 \end{itemize}
-
-+ Im Platziermodus bietet es zudem den Eintrag ``Spielfeld zurücksetzen'',
-wodurch alle vom Nutzer platzierten Objekte im Spielfeld wieder entfernt werden.
