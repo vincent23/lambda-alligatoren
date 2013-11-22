@@ -1,34 +1,34 @@
 \section{Funktionale Anforderungen}
 
-Die Anforderungen die Wunsch- statt Musskriterien sind, sind mit einem "`+"' in der Indentifikationsnummer markiert.
+Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"' in der Identifikationsnummer markiert.
 
 \subsection{Profile}
 
 \begin{requirements}
 	\req[Spielerprofile]{F110+}
-	Man hat die Möglichkeit insgesamt bis zu 5 Spielerprofile zu erstellen und zwischen ihnen zu wechseln.
-	\req[Spielerprofile hinzufügen]{F111+} Spielerprofile werden einzeln hinzugefügt, dabei werden zunächst der Name und dann der Avatar ausgewählt.
+	Man hat die Möglichkeit, insgesamt bis zu 5 Spielerprofile zu erstellen und zwischen ihnen zu wechseln.
+	\req[Spielerprofile hinzufügen]{F111+} Spielerprofile werden einzeln hinzugefügt. Dabei werden zunächst der Name und dann der Avatar ausgewählt.
 	\req[Spielerprofile ändern] {F112+} Man kann Namen und Avatare der einzelnen Spielerprofile ändern.
 	\req[Spielerprofile löschen] {F113+} Spielerprofile lassen sich einzeln und mit sämtlichen zugehörigen Daten löschen.
 	\req[Individueller Spielfortschritt für jedes Profil]{F120+}
-	Die Spielerprofile sind vollkommen separat was ihren Spielfortschritt angeht.
+	Die Spielerprofile sind vollkommen separat, was ihren Spielfortschritt angeht.
 	\req[Avatarerstellung]{F130+}
-	Es besteht die Möglichkeit eigene Avatare zu erstellen und diese als Indentifikationsobjekt der verschiedenen Spielerprofile zu nutzen.
+	Es besteht die Möglichkeit, eigene Avatare zu erstellen und diese zur Identifikation der verschiedenen Spielerprofile zu nutzen.
 \end{requirements}
 
 \subsection{Spieldesign}
 
 \begin{requirements}
 	\req[Tutoriallevel]{F210+}
-	Tutoriallevel helfen dem lernenden Kind spielerisch neue Herausforderungen zu meistern.
-	\req[Platziermodus]{F220} In diesem Modus werden die Ausdrücke zusamengebaut
+	Tutoriallevel helfen dem lernenden Kind, spielerisch neue Herausforderungen zu meistern.
+	\req[Platziermodus]{F220} In diesem Modus werden die Ausdrücke zusammengebaut.
 		\begin{requirements}
 			\req[Elemente hinzufügen]{F221}
-			Eier und Alligatoren werden per Drag and Drop dem Spielfeld hinzugefügt.
+			Eier und Alligatoren werden per Drag and Drop aus der Objektleiste auf dem Spielfeld abgelegt.
 			\req[Elemente verschieben]{F222}
 			Ebenso werden Eier und Alligatoren durch Drag and Drop auf dem Spielfeld verschoben.
 			\req[Elemente löschen]{F223}
-			Eier und Alligatoren können durch Ziehen auf ein entsprechendes Symbol gelöscht werden.
+			Eier und Alligatoren können durch Ziehen in die Objektleiste vom Spielfeld entfernt werden.
 			\req[Elemente umfärben]{F224}
 			Die Farbe der Elemente wird durch ein Kontextmenü eingestellt, das sich durch einfache Berührung des Elements öffnet.
 		\end{requirements}
@@ -49,31 +49,31 @@ Die Anforderungen die Wunsch- statt Musskriterien sind, sind mit einem "`+"' in 
 
 	
 	\req[Achievementsystem]{F240+}
-	Als Feedback und Motivationelement für den Spielenden wird ein Achivementsystem integriert.
+	Als Feedback und Motivationselement für den Spieler wird ein Achievementsystem integriert.
 	Mindestens folgende Achievements sollen möglich sein:
 		\begin{requirements}
 			\req{F241+} Feste Anzahl Level in einem Levelpaket gelöst.
-			\req{F242+} Feste Anzahl gestorbener Alligatoren erreicht.
-			\req{F243+} Feste Anzahl erzeugter Alligatoren erreicht.
+			\req{F242+} Feste Anzahl gefressener Alligatoren erreicht.
+			\req{F243+} Feste Anzahl geschlüpfter oder in das Spielfeld eingefügter Alligatoren erreicht.
 			\req{F244+} Feste Gesamtspielzeit erreicht.
-			\req{F245+} Seit Spielstart eine feste Anzahl an Leveln gelöst.
+			\req{F245+} In einer Spielsitzung eine feste Anzahl an Leveln gelöst.
 			\req{F246+} Feste Anzahl an Zeilen oder Spalten verwendet.
 			\req{F247+} Feste Anzahl gefressener Alligatoren in einem Level erreicht.
 			\req{F248+} Lösen eines Levels ohne Hinweise.
 			\req{F249+} Erstellen eines nichtterminierenden Ausdrucks.
 		\end{requirements}
 	\req[Import und Export von Sandbox-Leveln]{F250+}
-	Im Leveleditor ist es möglich fremde Kreationen zu laden und eigene Kreationen zu exportieren.
-	\req[Hinweise] {F260+} Der Spielende hat die Möglichkeit einen Hinweis einzublenden, sollte er das Level nicht lösen können.
+	Im Leveleditor ist es möglich, (u.a. fremde) Spielstände vom Gerätespeicher zu laden und eigene Spielstände dorthin zu exportieren.
+	\req[Hinweise] {F260+} Der Spieler hat die Möglichkeit, einen Hinweis einzublenden, sollte er das Level nicht selbstständig lösen können.
 \end{requirements}
 
-\subsection{Kontrolle des Lernfortschritts}s
+\subsection{Kontrolle des Lernfortschritts}
 
 \begin{requirements}
 	\req[Elternbereich mit Statistiken]{F310}
-	Eltern oder Lehrkörper haben die Möglichkeit die Fortschritte der verschiedenen Spielerprofile über verschiedene detaillierte Statistiken zu verfolgen.
+	Eltern oder Lehrkörper haben die Möglichkeit, die Fortschritte der verschiedenen Spielerprofile über verschiedene detaillierte Statistiken zu verfolgen.
 	\begin{requirements}
-		\req[Spielzeit]{F311} Man kann die insgesamt im Spiel verbrachte Zeit für jeden Spieler ebenso wie die Zeit, die die Spieler in der letzten Woche im Spiel verbracht haben, einsehen.
+		\req[Spielzeit]{F311} Man kann die insgesamt im Spiel verbrachte Zeit für jeden Spieler, ebenso wie die Zeit, die ein beliebiger Spieler in der letzten Woche im Spiel verbracht hat, einsehen.
 		\req[Spielfortschritt]{F412} Man kann sehen wie viele Level und Levelpakte gemeistert wurden.
 		Außerdem wird die durchschnittliche Zeit pro Level angegeben.
 		\req[Nutzung der Hinweise]{F313+} Man kann sehen, wie oft die einzelnen Spieler auf das eingebaute Hinweissystem zurückgreifen mussten, um die Lösung zu erreichen.
@@ -87,11 +87,11 @@ Die Anforderungen die Wunsch- statt Musskriterien sind, sind mit einem "`+"' in 
 \subsection {Spielbedienung}
 \begin {requirements}
 	\req[Touch]{F410} Die Steuerung des Spiels erfolgt über den Touchscreen des genutzten Gerätes.
-	\req[Singe Touch]{F420} Es ist möglich den gesamten Funktionsumfang der App zu nutzen ohne mehr als einen Finger zu benutzen.
-	\req[Zoom]{F430} Der Spielende kann die Vergrößerungs-/Verkleinerungsstufe des Bildausschnittes im Spiel ändern.
-	Dies kann sowohl über extra dafür vorgesehene Buttons, als auch über eine Pinch-Geste erfolgen.
+	\req[Singe Touch]{F420} Es ist möglich, den gesamten Funktionsumfang der App zu nutzen, ohne mehr als einen Finger dazu zu benötigen.
+	\req[Zoom]{F430} Der Spieler kann die Vergrößerungs-/Verkleinerungsstufe des Bildausschnittes im Spiel ändern.
+	Dies kann sowohl über eigens dafür vorgesehene Buttons, als auch über eine Pinch-Geste erfolgen.
 	\req[Drag and Drop]{F440}
-	Der Spielende kann den Bildausschnitt des Spielfeldes durch Verschieben mit einer Touch-Geste ändern und so der Situation anpassen.
+	Der Spieler kann den Bildausschnitt des Spielfeldes durch Verschieben mit einer Touch-Geste ändern und so der Situation anpassen.
 	\req[Mehrsprachigkeit]{F450+}
 	Kompabilität mit dem Deutschen und mindesten einer weiteren Fremdsprache.
 	\req[Kompabilität für Farbenblinde]{F460+}
@@ -101,8 +101,8 @@ Die Anforderungen die Wunsch- statt Musskriterien sind, sind mit einem "`+"' in 
 \subsection{Ladeverhalten}
 \begin {requirements}
 	\req[Splashscreen]{F400+} Beim Starten der App gibt es einen Eröffnungsbildschirm, der vor dem Hauptmenü geöffnet wird.
-	\req[Ladebalken]{F410+} Bei relevanten Ladezeiten wird dem Spielenden der Ladefortschritt durch einen Ladebalken dargestellt.
-	\req [Ladebalken]{F420+} Bei relevanten Ladezeiten wird dem Spielenden der Ladefortschritt durch einen Ladebalken dargestellt.
-	\req[Krokodil-Trivia]{F430+} Beim Laden des Level werden dem Spielenden lustige, informative oder verrückte Fakten über Krodotile mitgeteilt.
-	\req[Levelstand] {F440+} Das Spiel kann sich den Stand innerhalb eines Levels merken und diesen beim erneuten Öffnen wiederherstellen.
+	\req[Ladebalken]{F410+} Bei Ladezeiten länger als eine Sekunde wird dem Spieler der Ladefortschritt durch einen Ladebalken dargestellt.
+	\req [Ladebalken]{F420+} Bei Ladezeiten länger als zehn Sekunde  wird dem Spieler der Ladefortschritt durch einen Ladebalken dargestellt.
+	\req[Krokodil-Trivia]{F430+} Beim Laden des Level werden dem Spieler lustige und interessante Fakten über Krokodile angezeigt.
+	\req[Levelstand] {F440+} Das Spiel merkt sich den Stand innerhalb eines Levels beim Verlassen der Spielmodi und kann diesen beim erneuten Öffnen wiederherstellen.
 \end {requirements}
