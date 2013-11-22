@@ -70,7 +70,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Nov 22 13:33:21 CET 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Nov 22 13:44:34 CET 2013'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -1941,8 +1941,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-bab9ed9:142660dbc10:-8000:000000000000141D'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C1B'
-                          language = '' body = 'Spielerprofil&#10; neu anlegen&#10; L2'/>
+                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C2E'
+                          language = '' body = 'Spielerprofil&#10; neu anlegen&#10; Abb.12 L2'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -1959,8 +1959,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-bab9ed9:142660dbc10:-8000:0000000000001423'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C1A'
-                          language = '' body = 'Spielerprofil &#10;auswählen&#10;L1'/>
+                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C2F'
+                          language = '' body = 'Spielerprofil &#10;auswählen&#10;Abb.12 L1'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -1977,8 +1977,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-bab9ed9:142660dbc10:-8000:0000000000001428'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C1E'
-                          language = '' body = 'Drücken des &#10;Play-Buttons&#10;A1'/>
+                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C30'
+                          language = '' body = 'Drücken des &#10;Play-Buttons&#10;Abb1 A1'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -2062,8 +2062,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-bab9ed9:142660dbc10:-8000:0000000000001442'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C22'
-                          language = '' body = 'Verlassen des Plaziermodus&#10; duch Drücken des Play-Buttons&#10;D6'/>
+                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C31'
+                          language = '' body = 'Verlassen des Plaziermodus&#10; duch Drücken des Play-Buttons&#10;Abb.4 D6'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -2080,8 +2080,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-bab9ed9:142660dbc10:-8000:0000000000001446'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C23'
-                          language = '' body = 'Simulation der&#10; Auswertung&#10;E6'/>
+                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C32'
+                          language = '' body = 'Simulation der&#10; Auswertung&#10;Abb.5 E6'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -2174,8 +2174,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-bab9ed9:142660dbc10:-8000:0000000000001464'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C29'
-                          language = '' body = 'Klicken auf das &#10;Achievement-Ikon&#10;F1'/>
+                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C35'
+                          language = '' body = 'Klicken auf das &#10;Achievement-Ikon&#10;Abb.6 F1'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -2192,8 +2192,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-bab9ed9:142660dbc10:-8000:0000000000001469'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C2B'
-                          language = '' body = 'Verlassen des &#10;Achievement Menüs&#10;H1'/>
+                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C34'
+                          language = '' body = 'Verlassen des &#10;Achievement Menüs&#10;Abb.8 H1'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -2220,8 +2220,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-bab9ed9:142660dbc10:-8000:0000000000001470'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C25'
-                          language = '' body = 'Klicken des &#10;Play-Buttons&#10;F3'/>
+                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C33'
+                          language = '' body = 'Klicken des &#10;Play-Buttons&#10;Abb.6 F3'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -2272,8 +2272,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C13'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C1C'
-                          language = '' body = 'A5'/>
+                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C2C'
+                          language = '' body = 'Abb.1 A5'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -6306,7 +6306,7 @@
       justification="Center"
     >Spielerprofil
  neu anlegen
- L2</text>
+ Abb.12 L2</text>
   </group>
   <group name="Fig11"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
@@ -6444,7 +6444,7 @@
       justification="Center"
     >Spielerprofil 
 auswählen
-L1</text>
+Abb.12 L1</text>
   </group>
   <group name="Fig14"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
@@ -6580,7 +6580,7 @@ L1</text>
       justification="Center"
     >Drücken des 
 Play-Buttons
-A1</text>
+Abb1 A1</text>
   </group>
   <group name="Fig17"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
@@ -7100,7 +7100,7 @@ Abb.4</text>
       justification="Center"
     >Verlassen des Plaziermodus
  duch Drücken des Play-Buttons
-D6</text>
+Abb.4 D6</text>
   </group>
   <group name="Fig28"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
@@ -7205,7 +7205,7 @@ D6</text>
       justification="Center"
     >Simulation der
  Auswertung
-E6</text>
+Abb.5 E6</text>
   </group>
   <group name="Fig30"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
@@ -7774,7 +7774,7 @@ Abb.8</text>
       justification="Center"
     >Klicken auf das 
 Achievement-Ikon
-F1</text>
+Abb.6 F1</text>
   </group>
   <group name="Fig44"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
@@ -7910,7 +7910,7 @@ F1</text>
       justification="Center"
     >Verlassen des 
 Achievement Menüs
-H1</text>
+Abb.8 H1</text>
   </group>
   <group name="Fig47"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
@@ -8109,7 +8109,7 @@ H1</text>
       justification="Center"
     >Klicken des 
 Play-Buttons
-F3</text>
+Abb.6 F3</text>
   </group>
   <group name="Fig52"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
@@ -8513,7 +8513,7 @@ F3</text>
       bold="false"
       textsize="12"
       justification="Center"
-    >A5</text>
+    >Abb.1 A5</text>
   </group>
   <group name="Fig62"
        description="org.argouml.uml.diagram.state.ui.FigTransition"
