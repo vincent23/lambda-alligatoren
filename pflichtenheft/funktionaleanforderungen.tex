@@ -47,7 +47,6 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 			Mindestens 30 Schritte können rückwärts abgerufen werden.
 		\end{requirements}
 
-	
 	\req[Achievementsystem]{F240+}
 	Als Feedback und Motivationselement für den Spieler wird ein Achievementsystem integriert.
 	Mindestens folgende Achievements sollen möglich sein:
@@ -66,6 +65,10 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 	Im Leveleditor ist es möglich, (u.a. fremde) Spielstände vom Gerätespeicher zu laden und eigene Spielstände dorthin zu exportieren.
 	\req[Hinweise] {F260+} Der Spieler hat die Möglichkeit, einen Hinweis einzublenden, sollte er das Level nicht selbstständig lösen können.
 \end{requirements}
+	\req[Spielgrenzen]{F270+} Das Überschreiten gewisser Grenzen in der App wird verhindert und der Nutzer wird darüber informiert. Ein Beispiel für diese Grenzen ist:
+	\begin{itemize}
+		\item Mehr als 300 Elemente können nicht gleichzeitig auf dem Spielfeld sein.
+	\end{itemize} 
 
 \subsection{Kontrolle des Lernfortschritts}
 
@@ -103,6 +106,15 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 	\req[Splashscreen]{F400+} Beim Starten der App gibt es einen Eröffnungsbildschirm, der vor dem Hauptmenü geöffnet wird.
 	\req[Ladebildschirm]{F410+} Bei Ladezeiten länger als drei Sekunden wird dem Spieler ein Ladebildschirm gezeigt.
 	\req [Ladebalken]{F420+} Auf dem Ladebildschirm zeigt ein Ladebalken dem Spieler den Ladefortschritt an.
-	\req[Krokodil-Trivia]{F430+} Beim Laden des Level werden dem Spieler lustige und interessante Fakten über Krokodile angezeigt.
-	\req[Levelstand] {F440+} Das Spiel merkt sich den Stand innerhalb eines Levels beim Verlassen der Spielmodi und kann diesen beim erneuten Öffnen wiederherstellen.
+	\req[Krokodil-Trivia]{F430+} Beim Laden des Level können dem Spieler lustige und interessante Fakten über Krokodile angezeigt werden.
+	\req[Animationen]{F435+} Beim Laden des Levels können dem Spieler Animationen gezeigt werden. 
+	\begin{itemize}
+		\item[+] die Animation kann mittels Knopfdruck übersprungen werden.
+	\end{itemize}
+	\req[Spieldaten]{F440+} Das Spiel behält sich Implizit alle relevanten Interaktionen des Spielers.
+	\begin{itemize}
+		\item Relevante Daten werden beim Verlassen von Zuständen automatisch gesichert.
+		\item Falls dies nicht möglich ist, wird dem Nutzer eine Warnung dargestellt.
+		\item Beim Wiederbetreten eines zuvor verlassenen Zustands werden die gespeicherten relevanten Daten wiederhergestellt.
+	\end{itemize }
 \end {requirements}
