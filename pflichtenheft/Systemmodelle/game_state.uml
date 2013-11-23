@@ -62,7 +62,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sun Nov 17 14:38:23 CET 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sat Nov 23 18:54:22 CET 2013'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -567,7 +567,7 @@
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="127-0-0-1--3910a667:14261fe48ad:-8000:000000000000086F"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig1.0"
@@ -586,7 +586,7 @@
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="167"
               y="95" />
@@ -712,7 +712,7 @@
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="127-0-0-1--3910a667:14261fe48ad:-8000:000000000000087B"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig5.0"
@@ -731,7 +731,7 @@
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="360"
               y="119" />
@@ -743,7 +743,7 @@
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="127-0-0-1--3910a667:14261fe48ad:-8000:000000000000087D"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig2.0"
@@ -762,7 +762,7 @@
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="296"
               y="184" />
@@ -1095,7 +1095,7 @@
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="127-0-0-1--2bea7de1:1426235da83:-8000:0000000000000A7C"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig14.0"
@@ -1114,7 +1114,7 @@
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="72"
               y="144" />
@@ -1175,7 +1175,7 @@
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="127-0-0-1--2bea7de1:1426235da83:-8000:0000000000000A7F"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig0.0"
@@ -1194,7 +1194,7 @@
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="508"
               y="359" />
@@ -1315,7 +1315,7 @@
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="127-0-0-1--2bea7de1:1426235da83:-8000:0000000000000A8A"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig9.0"
@@ -1334,7 +1334,7 @@
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="671"
               y="252" />

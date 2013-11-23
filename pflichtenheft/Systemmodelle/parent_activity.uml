@@ -62,7 +62,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Nov 22 13:53:03 CET 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sat Nov 23 18:55:35 CET 2013'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -714,7 +714,7 @@ Abb.11</text>
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001404"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig5.0"
@@ -733,7 +733,7 @@ Abb.11</text>
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="448"
               y="271" />
@@ -1028,7 +1028,7 @@ Abb.11 K1</text>
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001412"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig6.0"
@@ -1047,7 +1047,7 @@ Abb.11 K1</text>
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="448"
               y="336" />
@@ -1164,7 +1164,7 @@ Abb.11 K2,K3...</text>
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000141A"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig13.0"
@@ -1183,7 +1183,7 @@ Abb.11 K2,K3...</text>
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="432"
               y="416" />
@@ -1229,7 +1229,7 @@ Abb.11 K2,K3...</text>
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000141F"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig3.0"
@@ -1248,7 +1248,7 @@ Abb.11 K2,K3...</text>
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="526"
               y="112" />
@@ -1260,7 +1260,7 @@ Abb.11 K2,K3...</text>
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001420"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig18.0"
@@ -1279,7 +1279,7 @@ Abb.11 K2,K3...</text>
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="592"
               y="128" />
@@ -1293,7 +1293,7 @@ Abb.11 K2,K3...</text>
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001421"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig11.0"
@@ -1312,7 +1312,7 @@ Abb.11 K2,K3...</text>
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="632"
               y="297" />
@@ -1326,7 +1326,7 @@ Abb.11 K2,K3...</text>
        description="org.argouml.uml.diagram.state.ui.FigTransition"
        href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001422"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig15.0"
@@ -1345,7 +1345,7 @@ Abb.11 K2,K3...</text>
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="692"
               y="424" />
