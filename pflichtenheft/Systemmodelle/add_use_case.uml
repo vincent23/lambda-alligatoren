@@ -62,7 +62,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Nov 20 19:50:47 CET 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sat Nov 23 18:46:13 CET 2013'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -554,8 +554,8 @@
       />
     </group>
     <rectangle name="Fig3.3"
-      x="58"
-      y="-14"
+      x="10"
+      y="10"
       width="11"
       height="1"
       fill="1"
@@ -565,7 +565,7 @@
       visibility="0"
     />
     <group name="Fig3.4"
-         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[58, -14, 64, 19]"
+         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[10, 10, 64, 19]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:0000000000001526"
          fill="1"
          fillcolor="white"
@@ -577,8 +577,8 @@
       </private>
       
       <rectangle name="Fig3.4.0"
-        x="58"
-        y="-14"
+        x="10"
+        y="10"
         width="64"
         height="19"
         fill="0"
@@ -708,7 +708,7 @@
   <text name="Fig6"
     x="64"
     y="8"
-    width="173"
+    width="129"
     height="62"
     fill="0"
     fillcolor="white"
@@ -720,8 +720,8 @@
     bold="true"
     textsize="12"
     justification="Center"
-  >Use case Benutzer 
-Anlegen und Auswählen
+  >Benutzer Anlegen
+und Auswählen
 
 </text>
   <text name="Fig7"
@@ -1034,7 +1034,7 @@ Anlegen und Auswählen
        sourceConnector="-115-3--37-91-2f8de056:14276c874df:-8000:0000000000001954"
        destConnector="-115-3--37-91-2f8de056:14276c874df:-8000:0000000000001955"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig4.0"
@@ -1073,11 +1073,11 @@ Anlegen und Auswählen
                         offset="5" />
     </private>
     <path name="Fig13.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="460"
               y="328" />
@@ -1091,7 +1091,7 @@ Anlegen und Auswählen
        sourceConnector="-115-3--37-91-2f8de056:14276c874df:-8000:0000000000001957"
        destConnector="-115-3--37-91-2f8de056:14276c874df:-8000:0000000000001958"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig4.0"
@@ -1130,11 +1130,11 @@ Anlegen und Auswählen
                         offset="5" />
     </private>
     <path name="Fig14.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="489"
               y="316" />
@@ -1148,7 +1148,7 @@ Anlegen und Auswählen
        sourceConnector="-115-3--37-91-2f8de056:14276c874df:-8000:000000000000195A"
        destConnector="-115-3--37-91-2f8de056:14276c874df:-8000:000000000000195B"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig21.0"
@@ -1187,11 +1187,11 @@ Anlegen und Auswählen
                         offset="5" />
     </private>
     <path name="Fig15.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="456"
               y="171" />
@@ -1205,7 +1205,7 @@ Anlegen und Auswählen
        sourceConnector="-115-3--37-91-2f8de056:14276c874df:-8000:000000000000195D"
        destConnector="-115-3--37-91-2f8de056:14276c874df:-8000:000000000000195E"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig3.0"
@@ -1244,11 +1244,11 @@ Anlegen und Auswählen
                         offset="5" />
     </private>
     <path name="Fig16.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="504"
               y="97" />
@@ -1264,7 +1264,7 @@ Anlegen und Auswählen
        sourceConnector="-115-3--37-91-2f8de056:14276c874df:-8000:0000000000001960"
        destConnector="-115-3--37-91-2f8de056:14276c874df:-8000:0000000000001961"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig3.0"
@@ -1275,7 +1275,7 @@ Anlegen und Auswählen
                         classname="org.argouml.uml.diagram.ui.PathItemPlacement"
                         figclassname="org.argouml.uml.diagram.ui.FigTextGroup"
                         ownerhref="-115-3--37-91-2f8de056:14276c874df:-8000:000000000000195F"
-                        angle="270.0"
+                        angle="-86.0"
                         offset="25" />
       <argouml:pathitem figname="Fig17.2"
                         classname="org.argouml.uml.diagram.ui.PathItemPlacement"
@@ -1303,11 +1303,11 @@ Anlegen und Auswählen
                         offset="5" />
     </private>
     <path name="Fig17.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="525"
               y="105" />
@@ -1321,7 +1321,7 @@ Anlegen und Auswählen
        sourceConnector="-115-3--37-91-2f8de056:14276c874df:-8000:0000000000001963"
        destConnector="-115-3--37-91-2f8de056:14276c874df:-8000:0000000000001964"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig9.0"
@@ -1360,11 +1360,11 @@ Anlegen und Auswählen
                         offset="5" />
     </private>
     <path name="Fig18.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="585"
               y="260" />
@@ -1378,7 +1378,7 @@ Anlegen und Auswählen
        sourceConnector="-115-3--37-91-2f8de056:14276c874df:-8000:0000000000001966"
        destConnector="-115-3--37-91-2f8de056:14276c874df:-8000:0000000000001967"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig21.0"
@@ -1417,11 +1417,11 @@ Anlegen und Auswählen
                         offset="5" />
     </private>
     <path name="Fig19.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="471"
               y="188" />
@@ -1435,7 +1435,7 @@ Anlegen und Auswählen
        sourceConnector="-115-3--37-91-2f8de056:14276c874df:-8000:0000000000001969"
        destConnector="-115-3--37-91-2f8de056:14276c874df:-8000:000000000000196A"
        stroke="1"
-       strokecolor="51 51 153"
+       strokecolor="black"
   >
     <private>
       sourcePortFig="Fig9.0"
@@ -1474,11 +1474,11 @@ Anlegen und Auswählen
                         offset="5" />
     </private>
     <path name="Fig20.0"
-      description="org.tigris.gef.presentation.FigPoly"
+      description="org.argouml.gefext.ArgoFigPoly"
       fill="0"
       fillcolor="white"
       stroke="1"
-      strokecolor="51 51 153"
+      strokecolor="black"
     >
       <moveto x="593"
               y="243" />
@@ -1547,8 +1547,8 @@ Anlegen und Auswählen
       />
     </group>
     <rectangle name="Fig21.3"
-      x="114"
-      y="-22"
+      x="10"
+      y="10"
       width="11"
       height="1"
       fill="1"
@@ -1558,7 +1558,7 @@ Anlegen und Auswählen
       visibility="0"
     />
     <group name="Fig21.4"
-         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[114, -22, 64, 19]"
+         description="org.argouml.uml.diagram.ui.FigExtensionPointsCompartment[10, 10, 64, 19]"
          href="-115-3--42--85-676e7ef1:14266947d5b:-8000:000000000000153E"
          fill="1"
          fillcolor="white"
@@ -1570,8 +1570,8 @@ Anlegen und Auswählen
       </private>
       
       <rectangle name="Fig21.4.0"
-        x="114"
-        y="-22"
+        x="10"
+        y="10"
         width="64"
         height="19"
         fill="0"

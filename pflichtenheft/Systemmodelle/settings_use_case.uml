@@ -62,7 +62,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Nov 20 20:06:43 CET 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sat Nov 23 18:38:56 CET 2013'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -417,7 +417,7 @@
   <text name="Fig3"
     x="128"
     y="40"
-    width="150"
+    width="101"
     height="19"
     fill="0"
     fillcolor="white"
@@ -426,10 +426,10 @@
     textcolor="black"
     font="Dialog"
     italic="false"
-    bold="false"
+    bold="true"
     textsize="13"
     justification="Center"
-  >Usecase: Einstellungen</text>
+  >Einstellungen</text>
   <group name="Fig4"
        description="org.argouml.uml.diagram.use_case.ui.FigActor[120, 192, 113, 80]pathVisible=false;stereotypeView=0;"
        href="-115-3--25-38--4a18edd9:1426af1e60e:-8000:0000000000000866"
