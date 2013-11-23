@@ -3,22 +3,22 @@
 \subsection{Spielelemente}
 
 	\begin{description}
-		\item[Alligatoren] Alligatoren haben eine Farbe und können eine beliebige Anzahl von Eiern und Familien beschützen.
+		\item[Alligatoren] Alligatoren haben eine Farbe und bilden Familienoberhäupter. Das heißt, sie haben immer mindestens einen direkten Nachkommen.
 		Sie repräsentieren die Abstraktionen im \(\lambda\)-Kalkül.
-		Die Elemente, die vom Alligator beschützt werden, sind dabei unter ihm vertikal angeordnet.
+		Die Elemente, die zu der Familie eines Alligators gehören, sind dabei unter ihm vertikal angeordnet.
 		Alligatoren fressen, falls sie dazu die Möglichkeit haben, die rechts von ihnen stehende Familie und verschwinden daraufhin (siehe "`Fressregel"').
 
-		\item[Alte Alligatoren] Diese Art von Alligatoren beschützt mehrere Familien, frisst jedoch selbst keine andere Familien.
+		\item[Alte Alligatoren] Diese Art von Alligatoren haben immer mehrere direkte Nachkommen, frisst jedoch selbst keine andere Familien.
 		Alte Alligatoren dienen nur zur Darstellung von Klammern und greifen sonst nicht selbst in die Auswertung ein.
 
 		\item[Eier] Eier haben wie Alligatoren eine Farbe.
 		Sie stellen die Variablen des \(\lambda\)-Kalküls dar.
-		Zu einem Ei kann es entweder einen Alligator geben, der es direkt oder indirekt beschützt und die gleiche Farbe hat, oder das Ei kann unbeschützt existieren.
+		Aus ihnen schlüpft immer sofort die Familie, die ein Alligator mit der gleichen Farbe über ihm gerade gegessen hat.
 
-		\item[Familien] Familien sind Ansammlungen von Alligatoren, alten Alligatoren und Eiern, in denen normale und alte Alligatoren ihre Eier und Unterfamilien beschützen.
-		Eine Familie besteht dabei immer aus einem Alligator, der beliebig viele Unterfamilien und Eier beschützt.
-		Unterfamilien sind wieder genau so aufgebaut.
-		Familien sind dann keine Unterfamilien, wenn sie von keinem anderen Alligator beschützt wird.
+		\item[Familien] Familien sind Ansammlungen von Alligatoren, alten Alligatoren und Eiern, die den gleichen normalen oder alten Alligator als Familienoberhaupt haben, eigeschlossen diesem.
+		Eine Familie besteht dabei immer aus einem Alligator, der beliebig viele Unterfamilien und Eier als Nachkommen hat.
+		Unterfamilien sind wieder genauso aufgebaut.
+		Familien werden auch als Unterfamilien bezeichnet, wenn das Oberhaupt der Familie selbst wieder zu einer Familie gehört.
 
 	\end{description}
 
