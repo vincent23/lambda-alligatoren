@@ -46,29 +46,33 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 			\req[Schritt zurück]{F235+}
 			Mindestens 30 Schritte können rückwärts abgerufen werden.
 		\end{requirements}
+	\req[Modusübergang] {F240+}Sollte ein nichtauswertbarer Ausdruck im Platziermodus gebaut worden sein, z.B. nicht eingefärbte Elemente, ist es nicht möglich in den Simulationsmodus zu wechseln.
+	
 
-	\req[Achievementsystem]{F240+}
+	\req[Achievementsystem]{F250+}
 	Als Feedback und Motivationselement für den Spieler wird ein Achievementsystem integriert.
 	Mindestens folgende Achievements sollen möglich sein:
 		\begin{requirements}
-			\req{F241+} Feste Anzahl Level in einem Levelpaket gelöst.
-			\req{F242+} Feste Anzahl gefressener Alligatoren erreicht.
-			\req{F243+} Feste Anzahl geschlüpfter oder in das Spielfeld eingefügter Alligatoren erreicht.
-			\req{F244+} Feste Gesamtspielzeit erreicht.
-			\req{F245+} In einer Spielsitzung eine feste Anzahl an Leveln gelöst.
-			\req{F246+} Feste Anzahl an Zeilen oder Spalten verwendet.
-			\req{F247+} Feste Anzahl gefressener Alligatoren in einem Level erreicht.
-			\req{F248+} Lösen eines Levels ohne Hinweise.
-			\req{F249+} Erstellen eines nichtterminierenden Ausdrucks.
+			\req{F251+} Feste Anzahl Level in einem Levelpaket gelöst.
+			\req{F252+} Feste Anzahl gefressener Alligatoren erreicht.
+			\req{F253+} Feste Anzahl geschlüpfter oder in das Spielfeld eingefügter Alligatoren erreicht.
+			\req{F254+} Feste Gesamtspielzeit erreicht.
+			\req{F255+} In einer Spielsitzung eine feste Anzahl an Leveln gelöst.
+			\req{F256+} Feste Anzahl an Zeilen oder Spalten verwendet.
+			\req{F257+} Feste Anzahl gefressener Alligatoren in einem Level erreicht.
+			\req{F258+} Lösen eines Levels ohne Hinweise.
+			\req{F259+} Erstellen eines nichtterminierenden Ausdrucks.
 		\end{requirements}
-	\req[Import und Export von Sandbox-Leveln]{F250+}
+	\req[Import und Export von Sandbox-Leveln]{F260+}
 	Im Leveleditor ist es möglich, (u.a. fremde) Spielstände vom Gerätespeicher zu laden und eigene Spielstände dorthin zu exportieren.
-	\req[Hinweise] {F260+} Der Spieler hat die Möglichkeit, einen Hinweis einzublenden, sollte er das Level nicht selbstständig lösen können.
-\end{requirements}
-	\req[Spielgrenzen]{F270+} Das Überschreiten gewisser Grenzen in der App wird verhindert und der Nutzer wird darüber informiert. Ein Beispiel für diese Grenzen ist:
+	\req[Hinweise] {F270+} Der Spieler hat die Möglichkeit, einen Hinweis einzublenden, sollte er das Level nicht selbstständig lösen können.
+	\req[Spielgrenzen]{F280+} Das Überschreiten gewisser Grenzen in der App wird verhindert und der Nutzer wird darüber informiert. Ein Beispiel für diese Grenzen ist:
 	\begin{itemize}
 		\item Mehr als 300 Elemente können nicht gleichzeitig auf dem Spielfeld sein.
+		
 	\end{itemize} 
+\end{requirements}
+	
 
 \subsection{Kontrolle des Lernfortschritts}
 
@@ -116,5 +120,5 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 		\item Relevante Daten werden beim Verlassen von Zuständen automatisch gesichert.
 		\item Falls dies nicht möglich ist, wird dem Nutzer eine Warnung dargestellt.
 		\item Beim Wiederbetreten eines zuvor verlassenen Zustands werden die gespeicherten relevanten Daten wiederhergestellt.
-	\end{itemize }
+	\end{itemize}
 \end {requirements}
