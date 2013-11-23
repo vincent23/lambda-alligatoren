@@ -2,37 +2,36 @@
 
 \subsection{Spielelemente}
 
-	\begin{itemize}
-
-		\item \textbf{Alligatoren}: Alligatoren können eine beliebige Anzahl von Eiern, mit denen sie eine Farbe teilen, beschützen.
+	\begin{description}
+		\item[Alligatoren] Alligatoren können eine beliebige Anzahl von Eiern, mit denen sie eine Farbe teilen, beschützen.
 		Alligatoren fressen, falls sie dazu die Möglichkeit haben, die rechts von ihnen stehende Familie und verschwinden daraufhin.
-	
-		\item \textbf{Alte Alligatoren}: Diese Art von Alligatoren beschützt mehrere Familien, frisst jedoch selbst keine andere Familien.
 
-		\item \textbf{Eier}: Ein Ei wird immer von einem Alligator aus derselben Familie beschützt, es gibt also keine Eier, die nicht von einem normalen Alligator beschützt werden.
+		\item[Alte Alligatoren] Diese Art von Alligatoren beschützt mehrere Familien, frisst jedoch selbst keine andere Familien.
+
+		\item[Eier] Ein Ei wird immer von einem Alligator aus derselben Familie beschützt, es gibt also keine Eier, die nicht von einem normalen Alligator beschützt werden.
 		Das Ei hat dabei dieselbe Farbe wie der es bewachende Alligator.
 
-		\item \textbf{Familien}: Familien sind Ansammlungen von Alligatoren, alten Alligatoren und Eiern, in denen normale und alte Alligatoren ihre Eier bzw. Unterfamilien beschützten.
+		\item[Familien] Familien sind Ansammlungen von Alligatoren, alten Alligatoren und Eiern, in denen normale und alte Alligatoren ihre Eier bzw. Unterfamilien beschützten.
 		Die Familien haben dabei eine feste Struktur: An oberster Stelle kann ein alter Alligator stehen welcher von einer beliebigen Anzahl an normalen Alligatoren in vertikaler Anordnung gefolgt wird.
 		Unter diesen befinden sich dann horizontal beliebig viele Eier und Unterfamilien, welche sich wieder nach dem gleichen Schema zusammensetzen.
 
-	\end{itemize}
+	\end{description}
 
 \subsection{Auswertungsregeln}
 
-	\begin{itemize}
+	\begin{description}
 
-		\item \textbf{Das Fressen}: In einer Konstellation aus verschieden zusammengestellten Familien frisst immer der am weitesten links oben stehende Alligator die rechts von ihm stehende Familie.
+		\item[Die Fressregel] In einer Konstellation aus verschieden zusammengestellten Familien frisst immer der am weitesten links oben stehende Alligator die rechts von ihm stehende Familie.
 		Durch das Fressen verschwindet dieser Alligator, und alle von ihm beschützten Eier werden durch die gefressene Familie ersetzt.
 		Dieser Vorgang wiederholt sich so lange, bis es keinen Alligator mehr gibt, der eine rechtsstehende Familie fressen kann.
 
-		\item \textbf{Die Farben-Regel}: Eine Alligator kann keine Familie fressen, die die gleiche Farbverteilung wie seine eigene Familie besitzt.
+		\item[Die Umfärberegel] Eine Alligator kann keine Familie fressen, die die gleiche Farbverteilung wie seine eigene Familie besitzt.
 		Deshalb wird vor jedem Fressen überprüft, ob es zu einem Farbkonflikt kommt und gegebenenfalls muss die zu fressende Familie umgefärbt werden.
 
-		\item \textbf{Alte Alligatoren}: Alte Alligatoren beschützten immer mindestens zwei Familien.
+		\item[Alte Alligatoren] Alte Alligatoren beschützten immer mindestens zwei Familien.
 		Bewacht ein alter Alligator nach einer Abfolge von Fressvorgängen nur noch eine Familie, so verschwindet er.
 
-	\end{itemize}
+	\end{description}
 
 \subsection{Spielziele}
 
