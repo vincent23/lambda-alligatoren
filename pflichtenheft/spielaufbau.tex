@@ -4,56 +4,62 @@ Das Spiel ist in verschiedenen Leveln organisiert, welche selbst in größeren L
 Innerhalb eines solchen Levelpakets kann der Spieler durch das Lösen eines Levels das jeweils nächste Level freischalten und so nach und nach das gesamte Paket durchspielen.
 
 \subsection{Spielelemente}
-Der Spieler startet zunächst im Platziermodus und bekommt dort eine vom gewählten Level abhängende Ausgangskonstellation von Spielelementen präsentiert.
+Der Spieler startet zunächst im Platziermodus und bekommt dort eine vom gewählten Level abhängende Ausgangskonstellation von Spielelementen präsentiert. 
+Spielelemente sind dabei:
 
-	\begin{description}
-		\item[Alligatoren] Alligatoren haben eine Farbe und können eine beliebige Anzahl von Eiern und Familien beschützen.
-		Sie repräsentieren die Abstraktionen im \(\lambda\)-Kalkül.
-		Die Elemente, die vom Alligator beschützt werden, sind vertikal unter ihm angeordnet.
-		Alligatoren fressen, falls sie dazu die Möglichkeit haben, die rechts von ihnen stehende Familie und verschwinden daraufhin (siehe "`Fressregel"').
+        \begin{description}
+                \item[Alligatoren] Alligatoren haben eine Farbe und können eine beliebige Anzahl von Eiern und Familien beschützen.
+                Sie repräsentieren die Abstraktionen im \(\lambda\)-Kalkül.
+                Die Elemente, die vom Alligator beschützt werden, sind vertikal unter ihm angeordnet.
+                Alligatoren fressen, falls sie dazu die Möglichkeit haben, die rechts von ihnen stehende Familie und verschwinden daraufhin (siehe "`Fressregel"').
 
-		\item[Alte Alligatoren] Diese Art von Alligatoren beschützt mehrere Familien, frisst jedoch selbst keine andere Familien.
-		Alte Alligatoren dienen nur zur Darstellung von Klammern und greifen sonst nicht selbst in die Auswertung ein.
+                \item[Alte Alligatoren] Diese Art von Alligatoren beschützt mehrere Familien, frisst jedoch selbst keine andere Familien.
+                Alte Alligatoren dienen nur zur Darstellung von Klammern und greifen sonst nicht selbst in die Auswertung ein.
 
-		\item[Eier] Eier haben wie Alligatoren eine Farbe und repräsentieren die Variablen des \(\lambda\)-Kalküls.
-		Zu einem Ei gibt es entweder einen gleichfarbigen Alligator, der es direkt oder indirekt beschützt, oder das Ei kann unbeschützt existieren.
+                \item[Eier] Eier haben wie Alligatoren eine Farbe und repräsentieren die Variablen des \(\lambda\)-Kalküls.
+                Zu einem Ei gibt es entweder einen gleichfarbigen Alligator, der es direkt oder indirekt beschützt, oder das Ei kann unbeschützt existieren.
 
-		\item[Familien] Familien sind Ansammlungen von Alligatoren, alten Alligatoren und Eiern, in denen normale und alte Alligatoren ihre Eier und Unterfamilien beschützen.
-		Eine Familie besteht dabei immer aus einem Alligator, der beliebig viele Unterfamilien und Eier beschützt, wobei Unterfamilien wieder nach dem gleichen Schema aufgebaut sind.
+                \item[Familien] Familien sind Ansammlungen von Alligatoren, alten Alligatoren und Eiern, in denen normale und alte Alligatoren ihre Eier und Unterfamilien beschützen.
+                Eine Familie besteht dabei immer aus einem Alligator, der beliebig viele Unterfamilien und Eier beschützt, wobei Unterfamilien wieder nach dem gleichen Schema aufgebaut sind.
 
-	\end{description}
+        \end{description}
 
-
-\subsection{Regeln}
-Die Auswertung der je nach Aufgabenstellung vom Spieler veränderten Ausgangskonstellation bildet dabei den zweiten Teil des Spiels und erfolgt im Simulationsmouds. Sie folgt folgenden Regeln:
-
-\begin{description}
-		\item[Die Fressregel] In einer Konstellation aus verschieden zusammengestellten Familien frisst immer der am weitesten links oben stehende Alligator die rechts von ihm stehende Familie.
-		Durch das Fressen verschwindet dieser Alligator, und alle von ihm beschützten Eier gleicher Farbe werden durch die gefressene Familie ersetzt.
-		Dieser Vorgang wiederholt sich so lange, bis es keinen Alligator mehr gibt, der eine rechtsstehende Familie fressen kann.
-		Die Fressregel entspricht der \(\beta\)-Reduktion des \(\lambda\)-Kalküls.
-
-		\item[Die Umfärberegel] Ein Alligator kann keine Familie fressen, die eine Farbe enthält, welche auch in seiner Familie vorkommt.
-		Deshalb wird vor jedem Fressen überprüft, ob es zu einem Farbkonflikt kommt und gegebenenfalls muss die zu fressende Familie umgefärbt werden.
-		Die Umfärberegel entspricht der \(\alpha\)-Konversion im \(\lambda\)-Kalkül.
-
-		\item[Alte Alligatoren] Alte Alligatoren beschützten immer mindestens zwei Familien.
-		Bewacht ein alter Alligator nach einer Abfolge von Fressvorgängen nur noch eine Familie, so verschwindet er, da er nicht mehr benötigt wird.
-
-	\end{description}
 
 \subsection{Aufgaben}
 Vom gewählten Leveltyp abhängig gibt es eine der folgenden drei Aufgaben:
-	\begin{itemize}
-		\item Der Spieler bekommt zu Spielbeginn neben der Ausgangs- eine Endkonstellation , bestehend aus den Spielelementen, präsentiert.
-		Das Ziel ist nun die Anfangskonstellation so zu verändern, dass sie nach Ausführung aller Auswertungsregeln in die gegebene Endkonstellation überführt wird.
-		Das Manipulieren der Anfangskonstellation ist dabei die eigentliche Aufgabe des Spielers.
-		In einfacheren Leveln kann der Spieler dazu vorgegebene Elemente der Ausgangskonstellation umfärben, in komplexeren Level kann der er dann zusätzlich Spielelementen an dafür vorgesehenen Stellen in die Ausgangskonstellation einfügen. Die zur Manipulation der Ausgangskonstellation zur Verfügung stehenden Spielelemente sind dabei je nach Level in ihrer Anzahl und Farbe beschränkt.
+        \begin{itemize}
+                \item Der Spieler bekommt zu Spielbeginn neben der Ausgangs- eine Endkonstellation , bestehend aus den Spielelementen, präsentiert.
+                Das Ziel ist nun die Anfangskonstellation so zu verändern, dass sie nach Ausführung aller Auswertungsregeln (Siehe "`Auswertung"') in die gegebene Endkonstellation überführt wird.
+                Das Manipulieren der Anfangskonstellation ist dabei die eigentliche Aufgabe des Spielers.
+                In einfacheren Leveln kann der Spieler dazu vorgegebene Elemente der Ausgangskonstellation umfärben, in komplexeren Level kann der er dann zusätzlich Spielelementen an dafür vorgesehenen Stellen in die Ausgangskonstellation einfügen. 
+                Die zur Manipulation der Ausgangskonstellation zur Verfügung stehenden Spielelemente sind dabei je nach Level in ihrer Anzahl und Farbe beschränkt.
 
-		\item In der zweiten Art von Aufgabenstellung wird dem Spieler wie oben beschrieben eine Anfangskonstellation vorgegeben, welche er dann wieder je nach Schwierigkeitsgrad auf verschiedene Weisen verändern kann. Anstatt eine Endkonstellation wird aber eine bestimmte Anzahl von Auswertungsschritten vorgegeben, welche bei der Auswertung der von ihm verändert Anfangskonstellation erreicht werden muss.
+                \item In der zweiten Art von Aufgabenstellung wird dem Spieler wie oben beschrieben eine Anfangskonstellation vorgegeben, welche er dann wieder je nach Schwierigkeitsgrad auf verschiedene Weisen verändern kann.
+                Anstatt eine Endkonstellation wird aber eine bestimmte Anzahl von Auswertungsschritten vorgegeben, welche bei der Auswertung der von ihm verändert Anfangskonstellation erreicht werden muss.
 
-		\item Eine weitere Aufgabe ist es dem Spieler wieder eine Ausgangskonstellation zu präsentieren, die er diesmal aber selbst nicht manipulieren kann. Vielmehr wird ihm eine bestimmte Anzahl an Endkonstellationen zur Auswahl gegeben und er muss entscheiden, welche dieser Konstellation nach der Auswertung der Spielregeln erreicht wird.
+                \item Eine weitere Aufgabe ist es dem Spieler wieder eine Ausgangskonstellation zu präsentieren, die er diesmal aber selbst nicht manipulieren kann. 
+                Vielmehr wird ihm eine bestimmte Anzahl an Endkonstellationen zur Auswahl gegeben und er muss entscheiden, welche dieser Konstellation nach der Auswertung der Spielregeln erreicht wird.
 
-	\end{itemize}
+        \end{itemize}
 
-	Falls bei Auswertung der vom Spieler veränderten Anfangskonstellation eine vorher definierte Anzahl an Auswertungsschritten oder auf dem Bildschirm angezeigten Spielelemente überschritten wird, so gilt das Level als nicht bestanden. Gleiches gilt natürlich auch, falls die oben genannten Spielziele am Ende der Auswertung nicht erreicht wurden. \\
+        Falls bei Auswertung der vom Spieler veränderten Anfangskonstellation eine vorher definierte Anzahl an Auswertungsschritten oder auf dem Bildschirm angezeigten Spielelemente überschritten wird, so gilt das Level als nicht bestanden. 
+        Gleiches gilt natürlich auch, falls die oben genannten Spielziele am Ende der Auswertung nicht erreicht wurden.
+        
+\subsection{Auswertung}
+Die Auswertung der je nach Aufgabenstellung vom Spieler veränderten Ausgangskonstellation bildet dabei den zweiten Teil des Spiels und erfolgt im Simulationsmouds. 
+Sie folgt folgenden Regeln:
+
+\begin{description}
+                \item[Die Fressregel] In einer Konstellation aus verschieden zusammengestellten Familien frisst immer der am weitesten links oben stehende Alligator die rechts von ihm stehende Familie.
+                Durch das Fressen verschwindet dieser Alligator, und alle von ihm beschützten Eier gleicher Farbe werden durch die gefressene Familie ersetzt.
+                Dieser Vorgang wiederholt sich so lange, bis es keinen Alligator mehr gibt, der eine rechtsstehende Familie fressen kann.
+                Die Fressregel entspricht der \(\beta\)-Reduktion des \(\lambda\)-Kalküls.
+
+                \item[Die Umfärberegel] Ein Alligator kann keine Familie fressen, die eine Farbe enthält, welche auch in seiner Familie vorkommt.
+                Deshalb wird vor jedem Fressen überprüft, ob es zu einem Farbkonflikt kommt und gegebenenfalls muss die zu fressende Familie umgefärbt werden.
+                Die Umfärberegel entspricht der \(\alpha\)-Konversion im \(\lambda\)-Kalkül.
+
+                \item[Alte Alligatoren] Alte Alligatoren beschützten immer mindestens zwei Familien.
+                Bewacht ein alter Alligator nach einer Abfolge von Fressvorgängen nur noch eine Familie, so verschwindet er, da er nicht mehr benötigt wird.
+
+        \end{description}
