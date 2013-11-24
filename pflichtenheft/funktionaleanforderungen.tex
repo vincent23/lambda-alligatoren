@@ -131,10 +131,16 @@ Die Anforderungen, welche Wunsch- statt Musskriterien zuzuordnen sind, sind mit 
 	\begin{itemize}
 		\item[+] die Animation kann mittels Knopfdruck übersprungen werden.
 	\end{itemize}
-	\req[Spieldaten]{F440+} Das Spiel behält sich implizit alle relevanten Interaktionen des Spielers.
+	\req[Spieldaten]{F440+} Das Spiel behält sich implizit den Spielstand von Leveln
 	\begin{itemize}
-		\item Relevante Daten werden beim Verlassen von Zuständen automatisch gesichert.
+		\item Der momentane Spielstand wird beim Verlassen eines Zustands automatisch gesichert.
 		\item Falls dies nicht möglich ist, wird dem Nutzer eine Warnung dargestellt.
-		\item Beim Wiederbetreten eines zuvor verlassenen Zustands werden die gespeicherten relevanten Daten wiederhergestellt.
+		\item Beim Wiederbetreten eines zuvor verlassenen Zustands wird  der gespeicherte Spielstand wiederhergestellt.
+		\item Ein Spielstand beinhaltet:
+		\begin{itemize}
+			\item die aktuelle Konstellation der Alligatoren auf dem Spielfeld.
+			\item Ob der Hinweis schon genutzt wurde.
+		\end{Itemize}
 	\end{itemize}
+
 \end {requirements}
