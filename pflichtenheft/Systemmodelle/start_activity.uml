@@ -70,7 +70,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sat Nov 23 18:57:59 CET 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon Nov 25 00:24:40 CET 2013'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -2062,8 +2062,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-bab9ed9:142660dbc10:-8000:0000000000001442'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C31'
-                          language = '' body = 'Verlassen des Plaziermodus&#10; duch Drücken des Play-Buttons&#10;Abb.4 D6'/>
+                        <UML:ActionExpression xmi.id = '127-0-0-1-56f90bcc:1428c691191:-8000:0000000000000E32'
+                          language = '' body = 'Verlassen des Platziermodus&#10; duch Drücken des Play-Buttons&#10;Abb.4 D6'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -2174,8 +2174,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-bab9ed9:142660dbc10:-8000:0000000000001464'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--37-91-5c90d70e:14276ffa9ed:-8000:0000000000000C35'
-                          language = '' body = 'Klicken auf das &#10;Achievement-Ikon&#10;Abb.6 F1'/>
+                        <UML:ActionExpression xmi.id = '127-0-0-1-56f90bcc:1428c691191:-8000:0000000000000E33'
+                          language = '' body = 'Drücken auf das &#10;Achievement-Icon&#10;Abb.6 F1'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -7098,7 +7098,7 @@ Abb.4</text>
       bold="false"
       textsize="12"
       justification="Center"
-    >Verlassen des Plaziermodus
+    >Verlassen des Platziermodus
  duch Drücken des Play-Buttons
 Abb.4 D6</text>
   </group>
@@ -7772,8 +7772,8 @@ Abb.8</text>
       bold="false"
       textsize="12"
       justification="Center"
-    >Klicken auf das 
-Achievement-Ikon
+    >Drücken auf das 
+Achievement-Icon
 Abb.6 F1</text>
   </group>
   <group name="Fig44"

@@ -62,7 +62,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Sat Nov 23 18:55:35 CET 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon Nov 25 00:22:01 CET 2013'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -118,8 +118,8 @@
                     <UML:UninterpretedAction xmi.id = '-115-3--42--85-676e7ef1:14266947d5b:-8000:00000000000013FA'
                       isSpecification = 'false' isAsynchronous = 'false'>
                       <UML:Action.script>
-                        <UML:ActionExpression xmi.id = '-115-3--20-96-6fa25188:1427fd79e99:-8000:0000000000001050'
-                          language = '' body = 'Klicken des&#10;Statistiken-Buttons&#10;Abb.1 A3'/>
+                        <UML:ActionExpression xmi.id = '127-0-0-1-56f90bcc:1428c691191:-8000:0000000000000A83'
+                          language = '' body = 'Drücken des&#10;Statistiken-Buttons&#10;Abb.1 A3'/>
                       </UML:Action.script>
                     </UML:UninterpretedAction>
                   </UML:State.entry>
@@ -569,7 +569,7 @@
       bold="false"
       textsize="12"
       justification="Center"
-    >Klicken des
+    >Drücken des
 Statistiken-Buttons
 Abb.1 A3</text>
   </group>
