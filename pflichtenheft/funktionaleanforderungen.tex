@@ -1,6 +1,6 @@
 \section{Funktionale Anforderungen}
 
-Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"' in der Identifikationsnummer markiert.
+Die Anforderungen, welche Wunsch- statt Musskriterien zuzuordnen sind, sind mit einem "`+"' in der Identifikationsnummer markiert.
 
 \subsection{Profile}
 
@@ -19,11 +19,12 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 \subsection{Spieldesign}
 
 \begin{requirements}
-	\req[Spielstufen] {F205} Die einzelnen Aufgaben sind in einem Levelsystem verbaut, dass  die verschiedenen Rätsel in größere Levelpakete zusammenfasst.
-	\req [Levelpakete] {F207+} Innerhalb der Levelpakete ist der Fortschritt linear.
+	\req[Spielstufen] {F205} Die einzelnen Aufgaben sind in einem Levelsystem organisiert, das die verschiedenen Rätsel in größere Levelpakete zusammenfasst.
+	\req [Levelpakete] {F207+} Innerhalb der Levelpakete ist der Fortschritt linear, das heißt um ein Level spielen zu können muss erst das vorherige gelöst worden sein.
 	\req[Tutoriallevel]{F210+}
-	Tutoriallevel helfen dem lernenden Kind, spielerisch neue Herausforderungen zu meistern. Bei jeder Erweiterung des Spielkonzeptes gibt es ein Tutoriallevel, dass dem Spieler diese Erweiterung vermittelt.
-	\req[Platziermodus]{F220} In diesem Modus werden die Ausdrücke zusammengebaut.
+	Tutoriallevel helfen dem lernenden Kind, spielerisch neue Herausforderungen zu meistern.
+	Bei jeder Erweiterung des Spielkonzeptes gibt es ein Tutoriallevel, dass dem Spieler diese Erweiterung vermittelt.
+	\req[Platziermodus]{F220} In diesem Modus werden die Ausdrücke erstellt.
 		\begin{requirements}
 			\req[Elemente hinzufügen]{F221}
 			Eier und Alligatoren werden per Drag and Drop aus der Objektleiste auf dem Spielfeld abgelegt.
@@ -35,7 +36,7 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 			Die Farbe der Elemente wird durch ein Kontextmenü eingestellt, das sich durch einfache Berührung des Elements öffnet.
 		\end{requirements}
 	\req[Simulationsmodus]{F230}
-	Es gibt verschiedene Simulationsarten, mit denen Ausdrücke durchlaufen werden.
+	Es gibt verschiedene Simulationsarten, mit denen Ausdrücke ausgewertet werden.
 		\begin{requirements}
 			\req[Start der automatischen Auswertung]{F231}
 			Der Ausdruck kann automatisch schrittweise immer weiter ausgewertet werden.
@@ -51,7 +52,8 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 			\req [Kameraführung] {F236+} Während der Simulation folgt der gezeigte Bildschirmausschnitt dem Term und zeigt die Bereiche in denen die wichtigen Dinge geschehen spezifisch.
 		\end{requirements}
 	\req[Modusübergang] {F240+}Sollte ein nichtauswertbarer Ausdruck im Platziermodus gebaut worden sein, z.B. nicht eingefärbte Elemente, ist es nicht möglich in den Simulationsmodus zu wechseln.
-	\req [Farben der Elemente] {F245} Der Spieler hat die Möglichkeit Alligatoren in bis zu 6 Farben einzufärben. Sollten durch den Ausdruck mehr benötigt werden unterstützt das Spiel bis zu 30 Farben, die dem Spieler jedoch nicht direkt zugänglich sind.
+	\req [Farben der Elemente] {F245} Der Spieler hat die Möglichkeit Alligatoren in bis zu 6 Farben einzufärben.
+	Sollten durch den Ausdruck mehr benötigt werden, unterstützt das Spiel bis zu 30 Farben, die dem Spieler jedoch nicht direkt zugänglich sind.
 	\req[Achievementsystem]{F250+}
 	Als Feedback und Motivationselement für den Spieler wird ein Achievementsystem integriert.
 	Mindestens folgende Achievements sollen möglich sein:
@@ -69,13 +71,14 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 	\req[Import und Export von Sandbox-Leveln]{F260+}
 	Im Leveleditor ist es möglich, (u.a. fremde) Spielstände vom Gerätespeicher zu laden und eigene Spielstände dorthin zu exportieren.
 	\req[Hinweise] {F270+} Der Spieler hat die Möglichkeit, einen Hinweis einzublenden, sollte er das Level nicht selbstständig lösen können.
-	\req[Spielgrenzen]{F280+} Das Überschreiten gewisser Grenzen in der App wird verhindert und der Nutzer wird darüber informiert. Beispiele für diese Grenzen sind:
+	\req[Spielgrenzen]{F280+} Das Überschreiten gewisser Grenzen in der App wird verhindert und der Nutzer wird darüber informiert.
+	Beispiele für diese Grenzen sind:
 	\begin{itemize}
 		\item Mehr als 300 Elemente können nicht gleichzeitig auf dem Spielfeld sein.
 		\item Mehr als 30 verschiedene Farben werden beim Umfärben benötigt.
-	\end{itemize} 
+	\end{itemize}
 \end{requirements}
-	
+
 
 \subsection{Kontrolle des Lernfortschritts}
 
@@ -88,7 +91,7 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 		Außerdem wird die durchschnittliche Zeit pro Level angegeben.
 		\req[Nutzung der Hinweise]{F313+} Man kann sehen, wie oft die einzelnen Spieler auf das eingebaute Hinweissystem zurückgreifen mussten, um die Lösung zu erreichen.
 		Außerdem wird die durchschnittliche Hinweisnutzung pro Level angegeben.
-		\req[Level zurücksetzten] {F314+} Man kann sehen, wie oft die einzelnen Spieler gesamte Level zurückgesetzt haben.
+		\req[Level zurücksetzten]{F314+} Man kann sehen, wie oft die einzelnen Spieler gesamte Level zurückgesetzt haben.
 		Außerdem wird die durchschnittliche Anzahl der Zurücksetzungen pro Level angegeben.
 		\req[Achievements]{F315+} Man kann einsehen, welche Achievements die einzelnen Spieler errungen haben.
 	\end{requirements}
@@ -98,21 +101,23 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 \begin {requirements}
 	\req[Touch]{F410} Die Steuerung des Spiels erfolgt über den Touchscreen des genutzten Gerätes.
 	\req[Singe Touch]{F420} Es ist möglich, den gesamten Funktionsumfang der App zu nutzen, ohne mehr als einen Finger dazu zu benötigen.
-	\req [Ausblenden von Bedienelementen] {F425+}Elemente der Benutzeroberfläche, können in Situationen in denen sie nicht benötigt werden ausgeblendet sein.
+	\req[Ausblenden von Bedienelementen]{F425+} Elemente der Benutzeroberfläche werden in Situationen, in denen sie nicht benötigt werden, ausgeblendet.
 	\req[Zoom]{F430} Der Spieler kann die Vergrößerungs-/Verkleinerungsstufe des Bildausschnittes im Spiel ändern.
 	Dies kann sowohl über eigens dafür vorgesehene Buttons, als auch über eine Pinch-Geste erfolgen.
 	\req[Drag and Drop]{F440}
 	Der Spieler kann den Bildausschnitt des Spielfeldes durch Verschieben mit einer Touch-Geste ändern und so der Situation anpassen.
 	\req[Mehrsprachigkeit]{F450+}
-	Kompabilität mit dem Deutschen und mindesten einer weiteren Fremdsprache. Die Sprache wird vom System festgelegt, auf dem die App geöffnet wird.
+	Kompabilität mit dem Deutschen und mindesten einer weiteren Fremdsprache.
+	Die Sprache wird vom System festgelegt, auf dem die App gestartet wird.
 	\req[Kompabilität für Farbenblinde]{F460+}
-	Das fertige Endprodukt kann ohne Abstriche auch von Menschen mit Rot-Grün Schwäche genutzt werden. Dazu werden die Alligatoren nicht durch Farbe, sondern durch Muster unterschieden.
-	\req[Einstellungen] Es gibt ein Menü in dem grundlegende Spieleigenschaften zentral umestellt werden können. 
+	Das fertige Endprodukt kann ohne Abstriche auch von Menschen mit Rot-Grün-Schwäche und anderen Farbfehlsichtigkeiten genutzt werden.
+	Dazu werden die Alligatoren nicht durch Farbe, sondern durch Muster unterschieden.
+	\req[Einstellungen] Es gibt ein Menü, in dem grundlegende Spieleigenschaften zentral umestellt werden können.
 		\begin{itemize}
-			\item [+] Zoom Button
-			\item [+] Rot-Grün Modus
-			\item Lautstärke Effekte
-			\item [+] Lautstärke Musik
+			\item Anzeige eines Zoombuttons im Spiel
+			\item[+] (De-)Aktivierung des Farbenblindheitsmodus
+			\item Lautstärke der Effekte
+			\item[+] Lautstärke der Musik
 		\end{itemize}
 \end {requirements}
 
@@ -126,7 +131,7 @@ Die Anforderungen, weleche Wunsch- statt Musskriterien sind, sind mit einem "`+"
 	\begin{itemize}
 		\item[+] die Animation kann mittels Knopfdruck übersprungen werden.
 	\end{itemize}
-	\req[Spieldaten]{F440+} Das Spiel behält sich Implizit alle relevanten Interaktionen des Spielers.
+	\req[Spieldaten]{F440+} Das Spiel behält sich implizit alle relevanten Interaktionen des Spielers.
 	\begin{itemize}
 		\item Relevante Daten werden beim Verlassen von Zuständen automatisch gesichert.
 		\item Falls dies nicht möglich ist, wird dem Nutzer eine Warnung dargestellt.
