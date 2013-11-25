@@ -5,15 +5,8 @@ Simulationsmodus)
 \item Es wird nötig, das Spiel direkt zu verlassen, d.h. ohne den Umweg über jegliche Menüs.
 \item Dies kann sowohl durch Betätigung des "`Home"'-Buttons von Android als auch durch
 Ereignisse des Betriebssystems, wie z.B. einen eingehenden Anruf, passieren.
-\item Die Applikation verliert dadurch ihre Grafikkontexte.
-\item Nach einiger Zeit wird sie zudem ganz aus der Liste der laufenden Programme entfernt.
-\item Daher speichert die App sofort nach der Benachrichtigung über ihr Schließen ihren aktuellen Zustand
-\item Dazu gehören die Belegung des Spielfelds durch den Nutzer und ob der Hinweis genutzt wurde.
-\item Bei einem direkten Wiedereintritt (ohne Verdrängung aus dem Hauptspeicher) stellt die Applikation nur ihren Grafikkontext wieder her.
-\item Die Dauer dieses Vorgangs wird dem Spieler durch einen Wartebildschirm signalisiert.
-\item Im anderen Fall startet das Spiel komplett neu.
-\item Es bietet aber beim Starten des unterbrochenen Levels an, den gespeicherten Spielstand wiederherzustellen. 
-\item D.h., es gibt intern zu jedem einzelnen Level die Möglichkeit,
-einen zuletzt verwendeten Spielstand abzuspeichern, und es ist auch möglich, andere Level als das
-unterbrochene zu spielen, ohne dass dieser verloren geht.
+
+\item Die App speichert ihren momentanen Zustand, bestehend aus der Konstellation und ob der Hinweis genutzt wurde.
+\item Beim Wiederherstellen werden Systemressourcen so weit möglich weiterverwendet, um das Laden zu beschleunigen.
+\item Ist dies nicht möglich, startet die App komplett neu und bietet eine Option zum Laden des unterbrochenen Spielstandes.
 \end{itemize}
