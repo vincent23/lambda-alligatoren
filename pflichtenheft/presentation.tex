@@ -15,15 +15,8 @@
 Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  $\cdot$ Vincent Schüßler $\cdot$ Lena Winter}
 \institute[IPD]{Institut für Programmstruktutren und Datenorganisation}
 
-\TitleImage[height=\titleimageht]{Banner.png}
+\TitleImage[height=\titleimageht]{banner.png}
 
-\AtBeginSection[]
-{
-  \begin{frame}
-    	\frametitle{Übersicht}
-    	\tableofcontents[currentsection]
-  \end{frame}
-}
 
 \begin{document}
 
@@ -32,19 +25,20 @@ Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  
 \end{frame}
 
 \begin{frame}
-        \frametitle{Übersicht}
-        \addcontentsline{toc}{section}{}
-        \tableofcontents
-\end{frame}
-
-\section{Zielsetzung}
-\begin{frame}
 	\frametitle{Vorgaben}
 	Entwickeln einer Lernapplikation für Kinder:\\
 	\begin{itemize}
 		\item Zielgruppengerechte Bedienung
 		\item Anhaltende Motivation
 		\item Kontrolle des Lernfortschritts
+	\end{itemize}
+
+
+	Musskriterien:\\
+	\begin{itemize}
+		\item Erstellung und Auswertung von \(\lambda\) - Termen in kindgerechter Form
+		\item Interaktive Einführung und Erklärung der Regeln
+		\item Bedienung über ein Tablet mit Toucheingabe
 	\end{itemize}
 \end{frame}
 
@@ -54,7 +48,7 @@ Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  
      \\
 	\begin{itemize}
 		\item Alligatoren repräsentieren die Abstraktionen im \(\lambda\)-Kalkül
-		\item Eier stellen die Variablen des \(\lambda\)-Kalküls da
+		\item Eier stellen die Variablen des \(\lambda\)-Kalküls dar
 		\item Alte Alligatoren dienen zur Darstellung der Klammern
 		\item Familien bestehen aus Eiern, Alligatoren, alten Aligatoren und anderen Familien 
 		\item Beispiel: ((\(\lambda\)x.x x)(\(\lambda\)y.y))
@@ -62,82 +56,57 @@ Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  
 	\includegraphics[width=\textwidth]{Spielelemente.png}
 \end{frame}
 
-\section{Umsetzung}
 \begin{frame}
 	\frametitle{Multiple-Choice Level}
-	\includegraphics[height=\textheight]{level_choice.png}
+	\includegraphics[width=\textwidth]{level_choice.png}
 \end{frame}
 \begin{frame}
 	\frametitle{Färbelevel}
-	\includegraphics[height=\textheight]{level_white.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Endkonstellation}
-	\includegraphics[height=\textheight]{level_end_color.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Farbauswahl}
-	\includegraphics[height=\textheight]{level_color.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Färbelevel}
-	\includegraphics[height=\textheight]{level_colored_egg.png}
+	\includegraphics<1>[width=\textwidth]{level_white.png}\pause
+	
+	\includegraphics<2>[width=\textwidth]{level_end_color.png}
+
+	\includegraphics<3>[width=\textwidth]{level_color.png}
+
+	\includegraphics<4>[width=\textwidth]{level_colored_egg.png}
 \end{frame}
 \begin{frame}
 	\frametitle{Einfügelevel}
-	\includegraphics[height=\textheight]{level_start.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Endkonstellation}
-	\includegraphics[height=\textheight]{level_end.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Einfügelevel}
-	\includegraphics[height=\textheight]{level_croc.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Einfügelevel}
-	\includegraphics[height=\textheight]{level_color_purple.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Einfügelevel}
-	\includegraphics[height=\textheight]{level_colored_croc.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Einfügelevel}
-	\includegraphics[height=\textheight]{level_colored_croc0.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Einfügelevel}
-	\includegraphics[height=\textheight]{level_colored_croc01.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Einfügelevel}
-	\includegraphics[height=\textheight]{level_colored_croc1.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Einfügelevel}
-	\includegraphics[height=\textheight]{level_colored_croc2.png}
+	\includegraphics<1>[width=\textwidth]{level_start.png}
+
+	\includegraphics<2>[width=\textwidth]{level_end.png}
+
+	\includegraphics<3>[width=\textwidth]{level_croc.png}
+
+	\includegraphics<4>[width=\textwidth]{level_color_purple.png}
+
+	\includegraphics<5>[width=\textwidth]{level_colored_croc.png}
+
+	\includegraphics<6>[width=\textwidth]{level_colored_croc0.png}
+
+	\includegraphics<7>[width=\textwidth]{level_colored_croc01.png}
+
+	\includegraphics<8>[width=\textwidth]{level_colored_croc1.png}
+
+	\includegraphics<9>[width=\textwidth]{level_colored_croc2.png}
 \end{frame}
 \begin{frame}
 	\frametitle{Simulationsmodus}
-	\includegraphics[height=\textheight]{level_simulation_croc.png}
-\end{frame}
-\begin{frame}
-	\frametitle{Simulationsmodus}
-	\includegraphics[height=\textheight]{level_simulation_solved.png}
+	\includegraphics<1>[width=\textwidth]{level_simulation_croc.png}
+
+	\includegraphics<2>[width=\textwidth]{level_simulation_solved.png}
 \end{frame}
 \begin{frame}
 	\frametitle{Achievement unlocked}
-	\includegraphics[height=\textheight]{achievement_notification.png}
+	\includegraphics[width=\textwidth]{achievement_aligator.png}
 \end{frame}
 \begin{frame}
 	\frametitle{Achievementmenü}
-	\includegraphics[height=\textheight]{achievements.png}
+	\includegraphics[width=\textwidth]{achievements.png}
 \end{frame}
 \begin{frame}
 	\frametitle{Statistiken}
-	\includegraphics[height=\textheight]{stats.png}
+	\includegraphics[width=\textwidth]{stats_mod.png}
 \end{frame}
 
 \end{document}
