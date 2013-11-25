@@ -1,6 +1,6 @@
 \section{Funktionale Anforderungen}
 
-Die Anforderungen, welche Wunsch- statt Musskriterien zuzuordnen sind, sind mit einem "`+"' in der Identifikationsnummer markiert.
+Wunschkriterien sind mit einem "`+'" hinter der Indentifikationsnummer markiert.
 
 \subsection{Profile}
 
@@ -12,8 +12,7 @@ Die Anforderungen, welche Wunsch- statt Musskriterien zuzuordnen sind, sind mit 
 		\req[Spielerprofile ändern] {F112+} Man kann Namen und Avatare der einzelnen Spielerprofile ändern.
 		\req[Spielerprofile löschen] {F113+} Spielerprofile lassen sich einzeln und mit sämtlichen zugehörigen Daten löschen.
 	\end{requirements}
-	\req[Individueller Spielfortschritt für jedes Profil]{F120+}
-	Die Spielerprofile sind vollkommen separat, was ihren Spielfortschritt angeht.
+	\req[Trennung zwischen Spielerprofilen]{F120+} Der Spielfortschritt wird profilgebunden gespeichert.
 	\req[Avatarerstellung]{F130+}
 	Es besteht die Möglichkeit, eigene Avatare zu erstellen und diese zur Identifikation der verschiedenen Spielerprofile zu nutzen.
 \end{requirements}
@@ -59,17 +58,17 @@ Die Anforderungen, welche Wunsch- statt Musskriterien zuzuordnen sind, sind mit 
 	\req[Achievementsystem]{F250+}
 	Als Feedback und Motivationselement für den Spieler wird ein Achievementsystem integriert.
 	Mindestens folgende Achievements sollen möglich sein:
-		\begin{requirements}
-			\req{F251+} Feste Anzahl Level in einem Levelpaket gelöst.
-			\req{F252+} Feste Anzahl gefressener Alligatoren erreicht.
-			\req{F253+} Feste Anzahl geschlüpfter oder in das Spielfeld eingefügter Alligatoren erreicht.
-			\req{F254+} Feste Gesamtspielzeit erreicht.
-			\req{F255+} In einer Spielsitzung eine feste Anzahl an Leveln gelöst.
-			\req{F256+} Feste Anzahl an Zeilen oder Spalten verwendet.
-			\req{F257+} Feste Anzahl gefressener Alligatoren in einem Level erreicht.
-			\req{F258+} Lösen eines Levels ohne Hinweise.
-			\req{F259+} Erstellen eines nichtterminierenden Ausdrucks.
-		\end{requirements}
+		\begin{itemize}
+			\item Feste Anzahl Level in einem Levelpaket gelöst.
+			\item Feste Anzahl gefressener Alligatoren erreicht.
+			\item Feste Anzahl geschlüpfter oder in das Spielfeld eingefügter Alligatoren erreicht.
+			\item Feste Gesamtspielzeit erreicht.
+			\item In einer Spielsitzung eine feste Anzahl an Leveln gelöst.
+			\item Feste Anzahl an Zeilen oder Spalten verwendet.
+			\item Feste Anzahl gefressener Alligatoren in einem Level erreicht.
+			\item Lösen eines Levels ohne Hinweise.
+			\item Erstellen eines nichtterminierenden Ausdrucks.
+		\end{itemize}
 	\req[Import und Export von Sandbox-Leveln]{F260+}
 	Im Leveleditor ist es möglich, (u.a. fremde) Level vom Gerätespeicher zu laden, eigene Level zu erstellen und dorthin zu exportieren.
 	\req[Hinweise] {F270+} Der Spieler hat die Möglichkeit, einen Hinweis einzublenden, sollte er das Level nicht selbstständig lösen können.
