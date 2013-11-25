@@ -29,12 +29,11 @@ Animation gezeigt, die die Hintergrunderzählung vermittelt.
 \item Diese kann allerdings mit einem entsprechenden Button übersprungen werden.
 \item Das Level startet im Platziermodus.
 \item Vor diesen legt sich zunächst das Overlay, das die für den Abschluss des Levels zu erreichenden Ziele
-erklärt.
-\item[+] Bei Leveln, in denen es um bestimmte Konstellationen geht, die auf
+zeigt.
+\item Bei Leveln, in denen es um bestimmte Konstellationen geht, die auf
 dem Spielfeld erscheinen müssen, ist dies ein Bild der Formation; für Level, die eine bestimmte Anzahl an durchlaufenen Transformationen
 verlangen, ist dies ein mit Piktogrammen angereicherter Text.
-\item Der Dialog muss mittels einem Button geschlossen werden, um den
-Platziermodus bedienen zu können. 
+\item Der Dialog muss am Menüelement nach oben weggeschoben werden. 
 \end{itemize}
 
 
@@ -42,30 +41,21 @@ Platziermodus bedienen zu können.
 \begin{itemize}
 \item Der Bildschirm des Platziermodus enthält im Hintergrund die Darstellung
 des derzeitigen Zustands des Spielfelds.
-\item Davor befindet sich eine Leiste mit jeweils einem Bild von Alligator und Ei auf dem Bildschirm.
+\item Davor befindet sich eine Leiste mit jeweils einem Bild von Alligator, Ei und altem Alligator auf dem Bildschirm.
 \item Von diesen können Kopien durch Drag\&Drop auf dem Spielfeld platziert werden. 
-\item Das Ablegen an der richtigen Stelle wird durch eine zweite, 
-halbtransparente Darstellung des Objekts simuliert und sichergestellt. 
-\item Die erst einmal ungefärbten Objekte können zunächst nur in bereits 
-existierenden Spalten platziert werden.
 \item  Durch Drücken auf ein Objekt erscheint 
 ein Dialog, in dem diesem eine Farbe zugeordnet werden kann.
 \item Dort befindet sich eine Palette mit sechs vordefinierten Farben.
 \item Durch drücken einer der Farben wird diese Farbe auf das Objekt angewandt und der Dialog geschlossen.
-\item Bei Alligatoren befindet sich im Farbwahldialog außerdem ein Button, der mit einem
-Piktogramm das Teilen der Spalten unterhalb des Alligators andeutet.
-\item Ein Drücken dieser fügt den Spalten unterhalb des Alligators eine weitere hinzu.
-\item Solange sich noch ungefärbte Eier auf dem Spielfeld befinden (deren Verhalten
+\item Solange sich noch ungefärbte Eier oder Alligatoren auf dem Spielfeld befinden (deren Verhalten
 nicht definiert ist) kann nicht in den Simulationsmodus gewechselt werden.
 \item Der Simulationsmodus ist durch Drücken eines Buttons vom Platziermodus
 aus erreichbar.
-\item Soll ein einzelnes Objekt vom Spielfeld entfernt werden, muss dieses durch Drag\&Drop
+\item Soll ein Objekt vom Spielfeld entfernt werden, muss dieses durch Drag\&Drop
 in die Objektleiste zurückgelegt werden.
 \item Es ist ein Button vorhanden, der das Spielmenü öffnet.
-\item Desweiteren existiert ein Button für das Anzeigen der zu erreichenden Ziele des Levels.
-\item Für das Rückgängigmachen und Wiederholen einer Aktion sind zwei Buttons vorhanden.
-\item Das Zurücksetzen des Spielfelds kann durch einen weitere Button ausgelöst werden.
-\item Eine Zwischenabfrage verhindert das versehentliche Zurücksetzen des Spielfelds.
+\item Desweiteren können die zu erreichenden Ziele eines Level durch Ziehen an dem zugehörigen Menüelement angezeigt werden.
+\item Das Zurücksetzen des Spielfelds kann durch einen Button im Spielmenü ausgelöst werden.
 \item Falls eingestellt, gibt es Buttons für das Hinein- und Herauszoomen im Spielfeld.
 \item Ansonsten lässt sich die Zoomfunktion auch über die gängigen Pinchgesten mit zwei Fingern bedienen.
 \end{itemize}
@@ -74,15 +64,12 @@ in die Objektleiste zurückgelegt werden.
 \begin{itemize}
 \item Der Benutzer befindet sich im Simulationsmodus.
 \item Es ist zunächst das Spielfeld zu sehen, so wie der Spieler es im Platziermodus belegt hat.
-\item Die Drag\&Drop Leiste aus dem Platziermodus ist verschwunden, sowie der 
-Button zum Rückgängigmachen und Wiederholen von 
-Platzieroperationen und für das Zurücksetzen des Felds.
+\item Die Drag\&Drop Leiste aus dem Platziermodus ist verschwunden.
 \item Es gibt Buttons für das Rückgängigmachen und Ausführen 
 einzelner Simulationsschritte bzw. Transformationen.
 \item Ein kombinierter "`Start"' und "`Pause"' Knopf kontrolliert die automatische Simulation.
-\item Ein Button, der zurück in den Platziermodus führt, ersetzt den Knopf zum Übergang 
-in den Simulationsmodus.
-\item Ausgeführte Transformationen werden auf dem Bildschirm gezeigt und auf das Spielfeld angewendet.
+\item Es gibt einen Button, der zurück in den Platziermodus führt.
+\item Ausgeführte Transformationen werden auf das Spielfeld angewendet.
 \item Durch das Ausführen von Transformationen kann der Nutzer schrittweise
 überprüfen, wie sich seine Anordnung verhält.
 \item Standardmäßig zoomt das Spiel beim Starten der automatischen Simulation komplett heraus, sodass alle Objekte auf dem Spielfeld sichtbar sind.
