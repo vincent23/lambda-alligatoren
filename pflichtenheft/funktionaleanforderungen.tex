@@ -1,6 +1,6 @@
 \section{Funktionale Anforderungen}
 
-Wunschkriterien sind mit einem "`+'" hinter der Indentifikationsnummer markiert.
+Die den Wunschkriterien zugeordneten Anforderungen sind mit einem "`+'" hinter der Indentifikationsnummer markiert.
 
 \subsection{Profile}
 
@@ -20,10 +20,9 @@ Wunschkriterien sind mit einem "`+'" hinter der Indentifikationsnummer markiert.
 \subsection{Spieldesign}
 
 \begin{requirements}
-	\req[Spielstufen] {F205} Die einzelnen Aufgaben sind in einem Levelsystem organisiert, das die verschiedenen Rätsel in größere Levelpakete zusammenfasst.
-	\req [Levelpakete] {F207+} Innerhalb der Levelpakete ist der Fortschritt linear, das heißt um ein Level spielen zu können muss erst das vorherige gelöst worden sein.
-	\req[Tutoriallevel]{F210+}
-	Tutoriallevel helfen dem lernenden Kind, spielerisch neue Herausforderungen zu meistern.
+	\req[Level] {F205} Ein Rätsel, welches der Spieler zu lösen hat, stellt ein Level dar.
+	\req [Levelpakete] {F207+} Mehrere thematisch verwandte Level werden in sogenannte Levelpakete zusammengefasst.
+	\req[Tutoriallevel]{F210+} Tutoriallevel helfen dem Spieler neue Herausforderungen zu verstehen und zu meistern.
 	Bei jeder Erweiterung des Spielkonzeptes gibt es ein Tutoriallevel, das dem Spieler diese Erweiterung vermittelt.
 	\req[Platziermodus]{F220} In diesem Modus werden die Ausdrücke erstellt.
 		\begin{requirements}
@@ -107,8 +106,8 @@ Wunschkriterien sind mit einem "`+'" hinter der Indentifikationsnummer markiert.
 	Dies kann sowohl über eigens dafür vorgesehene Buttons, als auch über eine Pinch-Geste erfolgen.
 	\req[Drag\&Drop]{F440}
 	Der Spieler kann den Bildausschnitt des Spielfeldes durch Verschieben mit einer Touch-Geste ändern und so der Situation anpassen.
-	\req[Mehrsprachigkeit]{F450+}
-	Kompatibilität mit dem Deutschen und mindesten einer weiteren Fremdsprache.
+	\req[Lokalisierung]{F450+}
+	Kompatibilität mit dem Deutschen und mindesten einer weiteren Sprache.
 	Die Sprache wird vom System festgelegt, auf dem die App gestartet wird.
 	\req[Kompatibilität für Farbenblinde]{F460+}
 	Das fertige Endprodukt kann ohne Abstriche auch von Menschen mit Rot-Grün-Schwäche und anderen Farbfehlsichtigkeiten genutzt werden.
@@ -130,16 +129,16 @@ Wunschkriterien sind mit einem "`+'" hinter der Indentifikationsnummer markiert.
 	\req[Alligator-Trivia]{F430+} Beim Laden des Level können dem Spieler lustige und interessante Fakten über Krokodile und Alligatoren angezeigt werden.
 	\req[Animationen]{F435+} Beim Laden des Levels können dem Spieler Animationen gezeigt werden, z.B. um eine fortlaufende Geschichte zu erzählen.
 	\begin{itemize}
-		\item[+] die Animation kann mittels Knopfdruck übersprungen werden.
+		\item[+] Die Animation kann mittels Knopfdruck übersprungen werden.
 	\end{itemize}
-	\req[Spieldaten]{F440+} Das Spiel behält sich implizit den Spielstand von Leveln
+	\req[Spieldaten]{F440+} Das Spiel behält sich implizit den Spielstand von Leveln.
 	\begin{itemize}
 		\item Der momentane Spielstand wird beim Verlassen eines Zustands automatisch gesichert.
 		\item Falls dies nicht möglich ist, wird dem Nutzer eine Warnung dargestellt.
 		\item Beim Wiederbetreten eines zuvor verlassenen Zustands wird  der gespeicherte Spielstand wiederhergestellt.
 		\item Ein Spielstand beinhaltet:
 		\begin{itemize}
-			\item die aktuelle Konstellation der Alligatoren auf dem Spielfeld.
+			\item Die aktuelle Konstellation der Alligatoren auf dem Spielfeld.
 			\item Ob der Hinweis schon genutzt wurde.
 		\end{itemize}
 	\end{itemize}
