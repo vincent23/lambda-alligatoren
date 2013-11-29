@@ -1,9 +1,7 @@
-
-.PHONY: all dot
-
 ROOTDIR 	= $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 SRCDIR		= $(ROOTDIR)/java
 OUTDIR 		= $(ROOTDIR)/out
+ECHO		= @echo
 
 # Possible UMLGraph arguments:
 #-overview <file>          Read overview documentation from HTML file
@@ -30,9 +28,14 @@ OUTDIR 		= $(ROOTDIR)/out
 #-X                        Print a synopsis of nonstandard options
 #-output                   Where to save the generated dotfile. "-" as output will write to stdout.
 UMLGRAPH 	= @java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HOME/lib/tools.jar" \
-	org.umlgraph.doclet.UmlGraph -sourcepath $(SRCDIR) -quiet
+	org.umlgraph.doclet.UmlGraph -sourcepath $(SRCDIR) -quiet -package
 FILENAME	= uml
 DOTFILE		= $(OUTDIR)/$(FILENAME).dot
+SRCFILES	= $(shell find $(SRCDIR) -type f -name '*.java')
+
+
+.PHONY: all dot export\:%
+.PRECIOUS: $(OUTDIR)/$(FILENAME).%
 
 all: $(DOTFILE)
 
@@ -45,8 +48,17 @@ dot:
 $(OUTDIR):
 	@mkdir $@
 	
-$(DOTFILE): $(OUTDIR) $(SRCDIR)
-	$(UMLGRAPH) -package alligatorgame -output $@
+$(DOTFILE): $(OUTDIR) $(SRCDIR) $(SRCFILES)
+	$(ECHO) building diagram...
+	$(UMLGRAPH) -subpackages alligatorgame -output $@
 
-export\:%: dot $(DOTFILE)
+# map target "export:xxx" on an output file of type xxx
+export\:%: dot $(OUTDIR)/$(FILENAME).%
+	@true
+
+$(OUTDIR)/$(FILENAME).%: $(DOTFILE)
+	$(ECHO) exporting diagram as $* file...
 	@dot -T$* -o$(OUTDIR)/$(FILENAME).$* $(DOTFILE)
+
+clean:
+	@rm -rf $(ROOTDIR)/out/*
