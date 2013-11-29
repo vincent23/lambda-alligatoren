@@ -33,7 +33,6 @@ UMLGRAPH 	= @java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HOME/l
 	org.umlgraph.doclet.UmlGraph -sourcepath $(SRCDIR) -quiet
 FILENAME	= uml
 DOTFILE		= $(OUTDIR)/$(FILENAME).dot
-EXPORTTYPE	= png
 
 all: $(DOTFILE)
 
@@ -50,4 +49,4 @@ $(DOTFILE): $(OUTDIR) $(SRCDIR)
 	$(UMLGRAPH) -package alligatorgame -output $@
 
 export\:%: dot $(DOTFILE)
-	@dot -T$(EXPORTTYPE) -o$(OUTDIR)/$(FILENAME).$* $(DOTFILE)
+	@dot -T$* -o$(OUTDIR)/$(FILENAME).$* $(DOTFILE)
