@@ -1,5 +1,5 @@
 
-.PHONY = all dot
+.PHONY: all dot
 
 ROOTDIR 	= $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 SRCDIR		= $(ROOTDIR)/java
