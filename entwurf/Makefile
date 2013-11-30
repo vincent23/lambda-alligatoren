@@ -1,7 +1,13 @@
+#!/usr/bin/make -f
+
 ROOTDIR 	= $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 SRCDIR		= $(ROOTDIR)/java
 OUTDIR 		= $(ROOTDIR)/out
 ECHO		= @echo
+REQUIRE		= 	@if !(which $1 > /dev/null 2>&1);\
+					then echo You need to have $1 installed for this action to work;\
+					false;\
+				fi
 
 # Possible UMLGraph arguments:
 #-overview <file>          Read overview documentation from HTML file
@@ -29,15 +35,23 @@ ECHO		= @echo
 #-output                   Where to save the generated dotfile. "-" as output will write to stdout.
 UMLGRAPH 	= @java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HOME/lib/tools.jar" \
 	org.umlgraph.doclet.UmlGraph -sourcepath $(SRCDIR) -quiet -package
+
+# UML specific variables
+PACKAGE		= alligatorgame
 FILENAME	= uml
 DOTFILE		= $(OUTDIR)/$(FILENAME).dot
-SRCFILES	= $(shell find $(SRCDIR) -type f -name '*.java')
+JAVAFILES	= $(shell find $(SRCDIR) -type f -name '*.java')
+
+# Document specific variables
+TEXFILENAME	= entwurf
+PDFNAME		= $(TEXFILENAME)
+TEXFILES	= $(shell find $(SRCDIR) -maxdepth 1 -type f -name '*.tex')
 
 
-.PHONY: all help dot export\:%
-.PRECIOUS: gollum $(OUTDIR)/$(FILENAME).%
+.PHONY: all document export\:% help
+.PRECIOUS: gollum $(OUTDIR)/$(FILENAME).% $(OUTDIR)/$(PDFNAME).pdf
 
-all: $(DOTFILE)
+all: $(DOTFILE) document
 
 help:
 	$(ECHO) "=== UMLGraph Makefile ==="
@@ -48,27 +62,32 @@ help:
 	$(ECHO) "$$ make clean : Delete all contents of out/ folder"
 	$(ECHO) "Export needs graphviz' dot renderer installed on the system"
 	
-# Check if graphviz' dot is installed
-dot:
-	@if  !(which dot > /dev/null 2>&1); \
-		then echo "You need to have dot installed for advanced export options";\
-		false;\
-	fi
+# Alias $(OUTDIR)/$(PDFNAME).pdf as target "document"
+document: $(OUTDIR)/$(PDFNAME).pdf
+	@true
+
+# Builds pdf documents
+$(OUTDIR)/$(PDFNAME).pdf: $(TEXFILES)
+	$(call REQUIRE,pdflatex)
+	$(ECHO) Building pdf document $(notdir $@)
+	@pdflatex -jobname $(PDFNAME) -output-directory $(OUTDIR) $(TEXFILENAME).tex 1> /dev/null
 
 $(OUTDIR):
 	@mkdir $@
 	
 # Create a .dot file with umlgraph
-$(DOTFILE): $(OUTDIR) $(SRCDIR) $(SRCFILES)
+$(DOTFILE): $(OUTDIR) $(SRCDIR) $(JAVAFILES)
+	$(call REQUIRE,java)
 	$(ECHO) building diagram...
-	$(UMLGRAPH) -subpackages alligatorgame -output $@
+	$(UMLGRAPH) -subpackages $(PACKAGE) -output $@
 
 # Map target "export:xxx" on an output file of type xxx
-export\:%: dot $(OUTDIR)/$(FILENAME).%
+export\:%: $(OUTDIR)/$(FILENAME).%
 	@true
 
 # Render the .dot file with graphviz' dot
 $(OUTDIR)/$(FILENAME).%: $(DOTFILE)
+	$(call REQUIRE,dot)
 	$(ECHO) exporting diagram as $* file...
 	@dot -T$* -o$(OUTDIR)/$(FILENAME).$* $(DOTFILE)
 

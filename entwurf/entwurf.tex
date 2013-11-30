@@ -1,0 +1,93 @@
+\documentclass{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+
+% some useful packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+\newcommand{\sectionbreak}{\clearpage}
+
+\input{commands}
+
+\begin{document}
+\setlength{\parindent}{0pt}
+
+\begin{titlepage}
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+	\begin{flushleft} \large
+		\includegraphics[height=40pt]{../assets/kitlogo.pdf}
+	\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+	\begin{flushright} \large
+		\includegraphics[height=40pt]{../assets/stlogo-600dpi.pdf}
+	\end{flushright}
+\end{minipage} \\[2cm]
+\end{center}
+%Title
+\begin{center}
+	{\huge \bfseries Croggle}\\[0.1cm]
+	{\large  Lernanwendung für Grundschüler}
+\end{center}
+
+
+%Subtitle
+\begin{center}
+	{\Large Entwurf}\\[0.5cm]
+\end{center}
+%Authors
+\begin{center}
+	{Lukas Böhm, Tobias Hornberger, Jonas Mehlhaus, \\ Iris Mehrbrodt, Vincent Schüßler, Lena Winter} \\[1cm]
+\end{center}
+
+%Date
+\begin{center}
+	{\large \today}
+\end{center}
+	
+	\vfill
+	
+	\begin{center}
+	\includegraphics[width=300pt]{../assets/logo.png}
+	\end{center}
+
+
+\end{titlepage}
+
+\iffalse
+\title{Entwurf}
+\author{ 
+	Lukas Böhm\and 
+	Tobias Hornberger\and 
+	Jonas Mehlhaus\and 
+	Iris Mehrbrodt\and 
+	Vincent Schüßler \and 
+	Lena Winter
+}
+\date{\today}
+
+\maketitle
+\thispagestyle{empty}
+
+\fi
+\pagenumbering{roman}
+
+\clearpage
+\pagestyle{empty}
+\tableofcontents
+
+\clearpage
+\pagestyle{plain}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{levelspecification}
+
+\end{document}
