@@ -1,7 +1,19 @@
 #!/usr/bin/make -f
 
+########################################################################
+HELPTEXT = \
+=== UMLGraph Makefile ===~\
+Important variables:~\
+	PACKAGE: Sets the package to create the uml graph for. E.g. 'make PACKAGE=de.croggle.ui export:png'~\
+Available targets:~\
+	$$ make [all] : Builds a .dot uml file with UMLGraph to out/ folder~\
+	$$ make export:xxx : Renders the .dot UML file built with graphviz\' dot in a format specified by xxx. This can be png, svg etc.~\
+	$$ make help : Print this help text~\
+	$$ make clean : Delete all contents of out/ folder~\
+Export needs graphviz\' dot renderer installed on the system~\
+########################################################################
+
 ROOTDIR 	= $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
-SRCDIR		= $(ROOTDIR)/java
 OUTDIR 		= $(ROOTDIR)/out
 ECHO		= @echo
 REQUIRE		= 	@if !(which $1 > /dev/null 2>&1);\
@@ -38,10 +50,14 @@ endif
 #-X                        Print a synopsis of nonstandard options
 #-output                   Where to save the generated dotfile. "-" as output will write to stdout.
 UMLGRAPH 	= $(AT)java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HOME/lib/tools.jar" \
-	org.umlgraph.doclet.UmlGraph -sourcepath $(SRCDIR) -quiet -private
+	org.umlgraph.doclet.UmlGraph -quiet -private
 
 # UML specific variables
+SRCDIR		= $(ROOTDIR)/java
 PACKAGE		= de
+UNQUALIFIEDPACKAGENAME	= $(lastword $(PACKAGE:.=/))
+PACKAGEPATH	= $(SRCDIR)/$(PACKAGE:.=/)
+PARENTPPATH	= $(realpath $(dir $(PACKAGEPATH)))
 FILENAME	= uml
 DOTFILE		= $(OUTDIR)/$(FILENAME).dot
 JAVAFILES	= $(shell find $(SRCDIR) -type f -name '*.java')
@@ -52,19 +68,18 @@ PDFNAME		= $(TEXFILENAME)
 TEXFILES	= $(shell find $(SRCDIR) -maxdepth 1 -type f -name '*.tex')
 
 
-.PHONY: all document dotfile export\:% help umlgraph
+.PHONY: all debug document dotfile export\:% help umlgraph
 .PRECIOUS: gollum $(OUTDIR)/$(FILENAME).% $(OUTDIR)/$(PDFNAME).pdf $(DOTFILE)
 
 all: $(DOTFILE) document
 
+debug:
+	@echo UNQUALIFIEDPACKAGENAME: $(UNQUALIFIEDPACKAGENAME)
+	@echo PACKAGEPATH: $(PACKAGEPATH)
+	@echo PARENTPPATH: $(PARENTPPATH)
+
 help:
-	$(ECHO) "=== UMLGraph Makefile ==="
-	$(ECHO) "Available options:"
-	$(ECHO) "$$ make [all] : Builds a .dot uml file with UMLGraph to out/ folder"
-	$(ECHO) "$$ make export:xxx : Renders the .dot UML file built with graphviz' dot in a format specified by xxx. This can be png, svg etc."
-	$(ECHO) "$$ make help : Print this help text"
-	$(ECHO) "$$ make clean : Delete all contents of out/ folder"
-	$(ECHO) "Export needs graphviz' dot renderer installed on the system"
+	@printf "$(HELPTEXT:~=\\n)"
 	
 # Alias $(OUTDIR)/$(PDFNAME).pdf as target "document"
 document: $(OUTDIR)/$(PDFNAME).pdf
@@ -86,7 +101,7 @@ $(OUTDIR):
 $(DOTFILE): $(OUTDIR) $(SRCDIR) $(JAVAFILES)
 	$(call REQUIRE,java)
 	$(ECHO) building diagram...
-	$(UMLGRAPH) -subpackages $(PACKAGE) -output $@
+	$(UMLGRAPH) -sourcepath $(PARENTPPATH) -subpackages $(UNQUALIFIEDPACKAGENAME) -output $@
 
 # Map target "export:xxx" on an output file of type xxx
 export\:%: $(OUTDIR)/$(FILENAME).%
