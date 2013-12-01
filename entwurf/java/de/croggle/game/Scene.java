@@ -3,7 +3,7 @@ package de.croggle.game;
 /**
  * 
  * @opt all
- * @has 1 aggregates * Family
+ * @has 1 "" * Family
  */
 public class Scene {
 	
