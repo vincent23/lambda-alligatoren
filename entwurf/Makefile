@@ -42,7 +42,7 @@ PACKAGEPATH	= $(SRCDIR)/$(PACKAGE:.=/)
 PARENTPPATH	= $(realpath $(dir $(PACKAGEPATH)))
 FILENAME	= uml
 DOTFILE		= $(OUTDIR)/$(FILENAME).dot
-JAVAFILES	= $(shell find $(SRCDIR) -type f -name '*.java')
+JAVAFILES	= $(shell find $(PACKAGEPATH) -type f -name '*.java')
 
 # Document specific variables
 TEXFILENAME	= entwurf
