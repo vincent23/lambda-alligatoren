@@ -3,6 +3,7 @@ package de.croggle.game;
 /**
  * 
  * @opt all
+ * @composed 1 - * SceneObject
  */
 public class Family {
 	

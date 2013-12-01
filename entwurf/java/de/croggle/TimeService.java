@@ -1,4 +1,4 @@
-package de.croggle.game;
+package de.croggle;
 
 /**
  * 
