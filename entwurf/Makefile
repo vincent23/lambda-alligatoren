@@ -6,6 +6,7 @@ HELPTEXT = \
 Important variables:~\
 	PACKAGE: Sets the package to create the uml graph for. E.g. 'make PACKAGE=de.croggle.ui export:png'~\
 	JAVA_HOME: Needs to be set to your Java installation folder, where UMLGraph can find "lib/tools.jar"~\
+	VERBOSE: Setting this variable to "3" will print all relevant commands executed.~\
 Available targets:~\
 	$$ make [all] : Builds a .dot uml file with UMLGraph to out/ folder~\
 	$$ make export:xxx : Renders the .dot UML file built with graphviz\' dot in a format specified by xxx. This can be png, svg etc.~\
