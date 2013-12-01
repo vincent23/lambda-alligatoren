@@ -2,10 +2,14 @@ package de.croggle;
 
 /**
  * 
- * @opt all
  */
 public class AlligatorApp {
-	private int privateTest;
-	protected int protectedTest;
-	public int publicTest;
+	private TimeService timeService;
+	private de.croggle.game.GameController gameController;
+	private de.croggle.data.PersistenceManager persistenceManager;
+	private de.croggle.data.AchievementController achievementController;
+	private de.croggle.data.AssetManager assetManager;
+	private de.croggle.data.LevelBoxesController levelBoxesController;
+	private de.croggle.data.LevelController levelController;
+	private de.croggle.data.ProfileController profileController;
 }

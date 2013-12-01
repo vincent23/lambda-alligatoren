@@ -1,11 +1,12 @@
 package de.croggle.game;
 
 /**
- * 
- * @opt all
+ * @navassoc 1 "" 1 Scene
+ * @navassoc 1 "" 1 Simulator
+ * @navassoc 1 "" 1 ColorController
  */
 public class GameController {
-	private TimeService timeService;
 	private Scene scene;
+	private Simulator simulator;
 	private ColorController colorController;
 }

@@ -12,7 +12,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * 
- * @opt all
  */
 public class ProfileController {
 	
