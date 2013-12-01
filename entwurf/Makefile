@@ -8,6 +8,10 @@ REQUIRE		= 	@if !(which $1 > /dev/null 2>&1);\
 					then echo You need to have $1 installed for this action to work;\
 					false;\
 				fi
+AT			= @
+ifeq ($(VERBOSE),3)
+	AT		=
+endif
 
 # Possible UMLGraph arguments:
 #-overview <file>          Read overview documentation from HTML file
@@ -33,11 +37,11 @@ REQUIRE		= 	@if !(which $1 > /dev/null 2>&1);\
 #-J<flag>                  Pass <flag> directly to the runtime system
 #-X                        Print a synopsis of nonstandard options
 #-output                   Where to save the generated dotfile. "-" as output will write to stdout.
-UMLGRAPH 	= @java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HOME/lib/tools.jar" \
-	org.umlgraph.doclet.UmlGraph -sourcepath $(SRCDIR) -quiet -package
+UMLGRAPH 	= $(AT)java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HOME/lib/tools.jar" \
+	org.umlgraph.doclet.UmlGraph -sourcepath $(SRCDIR) -quiet -private
 
 # UML specific variables
-PACKAGE		= alligatorgame
+PACKAGE		= de
 FILENAME	= uml
 DOTFILE		= $(OUTDIR)/$(FILENAME).dot
 JAVAFILES	= $(shell find $(SRCDIR) -type f -name '*.java')
@@ -48,8 +52,8 @@ PDFNAME		= $(TEXFILENAME)
 TEXFILES	= $(shell find $(SRCDIR) -maxdepth 1 -type f -name '*.tex')
 
 
-.PHONY: all document export\:% help
-.PRECIOUS: gollum $(OUTDIR)/$(FILENAME).% $(OUTDIR)/$(PDFNAME).pdf
+.PHONY: all document dotfile export\:% help umlgraph
+.PRECIOUS: gollum $(OUTDIR)/$(FILENAME).% $(OUTDIR)/$(PDFNAME).pdf $(DOTFILE)
 
 all: $(DOTFILE) document
 
@@ -65,15 +69,18 @@ help:
 # Alias $(OUTDIR)/$(PDFNAME).pdf as target "document"
 document: $(OUTDIR)/$(PDFNAME).pdf
 	@true
+	
+dotfile umlgraph: $(DOTFILE)
+	@true
 
 # Builds pdf documents
 $(OUTDIR)/$(PDFNAME).pdf: $(TEXFILES)
 	$(call REQUIRE,pdflatex)
 	$(ECHO) Building pdf document $(notdir $@)
-	@pdflatex -jobname $(PDFNAME) -output-directory $(OUTDIR) $(TEXFILENAME).tex 1> /dev/null
+	$(AT)pdflatex -jobname $(PDFNAME) -output-directory $(OUTDIR) $(TEXFILENAME).tex 1> /dev/null
 
 $(OUTDIR):
-	@mkdir $@
+	$(AT)mkdir $@
 	
 # Create a .dot file with umlgraph
 $(DOTFILE): $(OUTDIR) $(SRCDIR) $(JAVAFILES)
@@ -89,8 +96,8 @@ export\:%: $(OUTDIR)/$(FILENAME).%
 $(OUTDIR)/$(FILENAME).%: $(DOTFILE)
 	$(call REQUIRE,dot)
 	$(ECHO) exporting diagram as $* file...
-	@dot -T$* -o$(OUTDIR)/$(FILENAME).$* $(DOTFILE)
+	$(AT)dot -T$* -o$(OUTDIR)/$(FILENAME).$* $(DOTFILE)
 
 
 clean:
-	@rm -rf $(ROOTDIR)/out/*
+	$(AT)rm -rf $(ROOTDIR)/out/*
