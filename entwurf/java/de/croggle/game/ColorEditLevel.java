@@ -1,7 +1,9 @@
+package de.croggle.game;
 
-class ColorEditLevel extends Level {
-    Color usableColors[];
-    Color bannedColors[];
-    
-    
+/**
+ * 
+ */
+public class ColorEditLevel implements Level {
+	private Color usableColors[];
+	private Color bannedColors[];
 }

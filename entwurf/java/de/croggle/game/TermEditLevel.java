@@ -1,4 +1,4 @@
-class TermEditLevel extends Level {
+class TermEditLevel implements Level {
     Color usableColors[];
     Color bannedColors[];
     

@@ -1,9 +1,15 @@
-class Level {
-    LevelState state;
-    int number;
-    int package;
-    LambdaTerm inputTerm;
-    LambdaTerm goalTerm;
-    LambdaTerm currentTerm;
-    boolean animation;
+package de.croggle.game;
+
+import de.croggle.data.Animation;
+/**
+ * 
+ */
+public interface Level {
+	int getPackageIndex();
+	int getLevelIndex();
+	
+	//LevelState state; //?
+	Scene getInitialTerm();
+	Scene getGoalTerm();
+	Animation getAnimation();
 }

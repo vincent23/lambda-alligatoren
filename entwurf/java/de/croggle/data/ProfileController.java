@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * 
  */
 public class ProfileController {
-	
+	/*
 	public static final String KEY_ROWID;
 	public static final String KEY_PROFIL_NAME;
 	public static final String KEY_PROFIL_PICTURE;
@@ -47,9 +47,6 @@ public class ProfileController {
 		
 	}
 	
-	/**
-	 * 
-	 */
 	public boolean modifyUser(long id, String profile_name, String profile_picture, int max_level) {
 		
 	}
@@ -69,6 +66,6 @@ public class ProfileController {
 	public void delete() {
 		
 	}
-	
+	*/
 	
 }
