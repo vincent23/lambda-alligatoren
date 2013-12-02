@@ -38,9 +38,7 @@ UMLGRAPH 	= $(AT)java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HO
 # UML specific variables
 SRCDIR		= $(ROOTDIR)/java
 PACKAGE		= de
-UNQUALIFIEDPACKAGENAME	= $(lastword $(subst ., ,$(PACKAGE)))
 PACKAGEPATH	= $(SRCDIR)/$(subst .,/,$(PACKAGE))
-PARENTPPATH	= $(realpath $(dir $(PACKAGEPATH)))
 FILENAME	= uml
 DOTFILE		= $(OUTDIR)/$(FILENAME).dot
 JAVAFILES	= $(shell find $(PACKAGEPATH) -type f -name '*.java')
@@ -57,9 +55,7 @@ TEXFILES	= $(shell find $(SRCDIR) -maxdepth 1 -type f -name '*.tex')
 all: $(DOTFILE) document
 
 debug:
-	@echo UNQUALIFIEDPACKAGENAME: $(UNQUALIFIEDPACKAGENAME)
-	@echo PACKAGEPATH: $(PACKAGEPATH)
-	@echo PARENTPPATH: $(PARENTPPATH)
+	@echo nothing to see here
 
 help:
 	@printf "$(HELPTEXT:~=\\n)"
@@ -85,7 +81,7 @@ $(DOTFILE): $(OUTDIR) $(SRCDIR) $(JAVAFILES)
 	$(call REQUIRE,java)
 	$(call REQUIREFILE,$$JAVA_HOME/lib/tools.jar,Is your JAVA_HOME variable set?)
 	$(ECHO) building diagram...
-	$(UMLGRAPH) -sourcepath $(PARENTPPATH) -subpackages $(UNQUALIFIEDPACKAGENAME) -output $@
+	$(UMLGRAPH) -sourcepath $(SRCDIR) -subpackages $(PACKAGE) -output $@
 
 # Map target "export:xxx" on an output file of type xxx
 export\:%: $(OUTDIR)/$(FILENAME).%
