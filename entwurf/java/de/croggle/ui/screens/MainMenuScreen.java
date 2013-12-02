@@ -3,6 +3,6 @@ package de.croggle.ui;
 /**
  * 
  */
-public class StatisticsActivity {
+public class MainMenuScreen {
 	
 }

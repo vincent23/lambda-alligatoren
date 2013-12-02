@@ -3,6 +3,6 @@ package de.croggle.ui;
 /**
  * 
  */
-public class PlacementModeActivity {
+public class LevelsOverviewScreen {
 	
 }
