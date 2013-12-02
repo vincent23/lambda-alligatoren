@@ -1,2 +1,3 @@
 out/
 !umlgraph/lib/UmlGraph.jar
+java/*/UMLOptions.java

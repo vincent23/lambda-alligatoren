@@ -38,7 +38,7 @@ UMLGRAPH 	= $(AT)java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HO
 
 # UML specific variables
 SRCDIR		= $(ROOTDIR)/java
-PACKAGE		= de
+PACKAGE		= de.croggle
 PACKAGEPATH	= $(SRCDIR)/$(subst .,/,$(PACKAGE))
 FILENAME	= uml
 DOTFILE		= $(OUTDIR)/$(FILENAME).dot
@@ -67,6 +67,11 @@ document: $(OUTDIR)/$(PDFNAME).pdf
 	
 dotfile umlgraph: $(DOTFILE)
 	@true
+	
+# Have UMLOptions class updated in every subpackage
+$(SRCDIR)/%/UMLOptions.java: $(SRCDIR)/UMLOptions.java
+	$(AT)cp -f $< $@
+	$(AT)sed -i '1s/.*/package $(PACKAGE);/' $@
 
 # Builds pdf documents
 $(OUTDIR)/$(PDFNAME).pdf: $(TEXFILES)
@@ -78,7 +83,7 @@ $(OUTDIR):
 	$(AT)mkdir $@
 	
 # Create a .dot file with umlgraph
-$(DOTFILE): $(OUTDIR) $(SRCDIR) $(JAVAFILES)
+$(DOTFILE): $(OUTDIR) $(SRCDIR) $(JAVAFILES) $(PACKAGEPATH)/UMLOptions.java
 	$(call REQUIRE,java)
 	$(call REQUIREFILE,$$JAVA_HOME/lib/tools.jar,Is your JAVA_HOME variable set?)
 	$(ECHO) building diagram...
