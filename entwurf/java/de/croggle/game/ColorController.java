@@ -1,12 +1,13 @@
 package de.croggle.game;
 
+
+import java.util.ArrayList;
 /**
  * 
  */
 public class ColorController {
-	Color[] usableColors; //eher array, oder eher list?
-    Color[] bannedColors; //eher array, oder eher list?
-    
+	ArrayList<Color> usableColors = new ArrayList<Color>();
+    ArrayList<Color> bannedColors = new ArrayList<Color>();
     void addUsableColor(Color color) {
         //mach color in usableColors[]
         //Abfangen falls die Color schon drin ist
