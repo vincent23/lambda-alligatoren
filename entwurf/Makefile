@@ -91,8 +91,21 @@ export\:%: $(OUTDIR)/$(FILENAME).%
 # Render the .dot file with graphviz' dot
 $(OUTDIR)/$(FILENAME).%: $(DOTFILE)
 	$(call REQUIRE,dot)
+	$(call REQUIRE,unflatten)
 	$(ECHO) exporting diagram as $* file...
-	$(AT)dot -T$* -o$(OUTDIR)/$(FILENAME).$* $(DOTFILE)
+	@# The actual command: Unflatten and dot.
+	@# -T: Set the output file type
+	@# -LC1: Set overlap expansion factor
+	@# -Gsize: Set max bounding box to DIN A0
+	@# -Gratio: Set aspect ratio to 1/sqrt(2)
+	@# -o: Output file name
+	$(AT)unflatten -c 10 $(DOTFILE) |\
+	dot \
+		-T$* \
+		-LC1 \
+		-Gsize="46.8,33.1" \
+		-Gratio=0.7071 \
+		-o$(OUTDIR)/$(FILENAME).$* \
 
 
 clean:
