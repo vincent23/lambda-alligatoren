@@ -9,4 +9,5 @@ public class GameController {
 	private Scene scene;
 	private Simulator simulator;
 	private ColorController colorController;
+    
 }
