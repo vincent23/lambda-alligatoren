@@ -1,11 +1,13 @@
 package de.croggle.game;
 
 /**
- * 
+ * @opt all
+ * @node class
  * @composed 1 - * SceneObject
  */
 public class Family {
-	
+	SceneObject[] members;
+    
 	public void addMember (SceneObject member) {
 		
 	}
