@@ -3,7 +3,8 @@ package de.croggle.game;
 
 import java.util.ArrayList;
 /**
- * 
+ * @opt all
+ * @node class
  */
 public class ColorController {
 	ArrayList<Color> usableColors = new ArrayList<Color>();
