@@ -38,8 +38,8 @@ UMLGRAPH 	= $(AT)java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HO
 # UML specific variables
 SRCDIR		= $(ROOTDIR)/java
 PACKAGE		= de
-UNQUALIFIEDPACKAGENAME	= $(lastword $(PACKAGE:.=/))
-PACKAGEPATH	= $(SRCDIR)/$(PACKAGE:.=/)
+UNQUALIFIEDPACKAGENAME	= $(lastword $(subst ., ,$(PACKAGE)))
+PACKAGEPATH	= $(SRCDIR)/$(subst .,/,$(PACKAGE))
 PARENTPPATH	= $(realpath $(dir $(PACKAGEPATH)))
 FILENAME	= uml
 DOTFILE		= $(OUTDIR)/$(FILENAME).dot
