@@ -4,6 +4,7 @@
 HELPTEXT = \
 === UMLGraph Makefile ===~\
 Important variables:~\
+	FILENAME: Sets the filename of the generated dotfile and the exported graphics file(s).~\
 	PACKAGE: Sets the package to create the uml graph for. E.g. 'make PACKAGE=de.croggle.ui export:png'~\
 	JAVA_HOME: Needs to be set to your Java installation folder, where UMLGraph can find "lib/tools.jar"~\
 	VERBOSE: Setting this variable to "3" will print all relevant commands executed.~\
