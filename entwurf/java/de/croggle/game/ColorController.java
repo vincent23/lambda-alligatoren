@@ -22,7 +22,7 @@ public class ColorController {
         //selbsterklärend.
         // Abfangen wenns nicht drin ist.
     }
-    void removeUsableColor(Color color) {
+    void removeBannedColor(Color color) {
         //selbsterklärend.
         // Abfangen wenns nicht drin ist.
     }
