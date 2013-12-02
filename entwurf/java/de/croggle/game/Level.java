@@ -5,7 +5,7 @@ import de.croggle.data.Animation;
  * @opt all
  * @node class
  */
-public class Level {
+public abstract class Level {
     int levelIndex;
     int packageIndex;
     
