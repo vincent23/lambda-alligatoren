@@ -1,14 +1,11 @@
 package de.croggle.game;
 
 /**
- * 
+ * @opt all
+ * @node class
  */
-class MultipleChoiceLevel implements Level {
+class MultipleChoiceLevel extends Level {
 	
-	public MultipleChoiceLevel (Scene[] answers, int correctAnswer) {
-		this.answers = answers;
-		this.correctAnswer = correctAnswer;
-	}
 	
 	private Scene[] answers;
 	private int correctAnswer; //TODO: wollen wir speichern was das richtige ist, oder auswerten und schauen ob der Term upmatcht?

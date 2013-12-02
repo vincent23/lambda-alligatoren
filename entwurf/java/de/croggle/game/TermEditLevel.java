@@ -1,9 +1,10 @@
 package de.croggle.game;
 
 /**
- * 
+ * @opt all
+ * @node class
  */
-public class TermEditLevel implements Level {
+public class TermEditLevel extends Level {
     Color usableColors[];
     Color bannedColors[];
     
