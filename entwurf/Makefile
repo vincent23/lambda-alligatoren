@@ -13,6 +13,7 @@ Available targets:~\
 	$$ make export:xxx : Renders the .dot UML file built with graphviz\' dot in a format specified by xxx. This can be png, svg etc.~\
 	$$ make help : Print this help text~\
 	$$ make clean : Delete all contents of out/ folder~\
+	$$ make clean-src: Delete all UMLOptions.java in the java/de/... folders~\
 Export needs graphviz\' dot renderer installed on the system~\
 ########################################################################
 
@@ -115,3 +116,6 @@ $(OUTDIR)/$(FILENAME).%: $(DOTFILE)
 
 clean:
 	$(AT)rm -rf $(ROOTDIR)/out/*
+	
+clean-src:
+	$(AT)find $(SRCDIR)/de/ -type f -name 'UMLOptions.java' -exec rm -f {} \;
