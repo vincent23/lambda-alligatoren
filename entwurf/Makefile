@@ -71,7 +71,7 @@ dotfile umlgraph: $(DOTFILE)
 # Have UMLOptions class updated in every subpackage
 $(SRCDIR)/%/UMLOptions.java: $(SRCDIR)/UMLOptions.java
 	$(AT)cp -f $< $@
-	$(AT)sed -i '1s/.*/package $(PACKAGE);/' $@
+	$(AT)perl -i -pe 's/.*/package $(PACKAGE);/ if $. == 2' $@
 
 # Builds pdf documents
 $(OUTDIR)/$(PDFNAME).pdf: $(TEXFILES)
