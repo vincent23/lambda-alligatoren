@@ -28,6 +28,7 @@ REQUIREFILE	= 	@if [ ! -f $1 ];\
 					then echo Could not find file $1. $2;\
 					false;\
 				fi
+
 AT			= @
 ifeq ($(VERBOSE),3)
 	AT		=
@@ -54,7 +55,8 @@ TEXFILES	= $(shell find $(SRCDIR) -maxdepth 1 -type f -name '*.tex')
 .PHONY: all debug document dotfile export\:% help umlgraph
 .PRECIOUS: gollum $(OUTDIR)/$(FILENAME).% $(OUTDIR)/$(PDFNAME).pdf $(DOTFILE)
 
-all: export\:png document
+# export\:png would be nicer for standard png export, but this is not supported in make 3.81
+all: $(OUTDIR)/$(FILENAME).png document
 
 debug:
 	@echo nothing to see here
