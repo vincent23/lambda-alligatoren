@@ -111,7 +111,7 @@ $(OUTDIR)/$(FILENAME).%: $(DOTFILE)
 	@# -Gsize: Set max bounding box to DIN A0
 	@# -Gratio: Set aspect ratio to 1/sqrt(2)
 	@# -o: Output file name
-	$(AT)unflatten -c 10 $(DOTFILE) |\
+	$(AT)unflatten -l 10 -f -c 10 $(DOTFILE) |\
 	dot \
 		-T$* \
 		-LC1 \
