@@ -8,6 +8,7 @@ Important variables:~\
 	PACKAGE: Sets the package to create the uml graph for. E.g. 'make PACKAGE=de.croggle.ui export:png'~\
 	JAVA_HOME: Needs to be set to your Java installation folder, where UMLGraph can find "lib/tools.jar"~\
 	VERBOSE: Setting this variable to "3" will print all relevant commands executed.~\
+	VIEWS: This is an experimental option. If defined on the command line, UMLGraph will build the graph with views support~\
 Available targets:~\
 	$$ make [all] : Builds a .dot uml file with UMLGraph to out/ folder~\
 	$$ make export:xxx : Renders the .dot UML file built with graphviz\' dot in a format specified by xxx. This can be png, svg etc.~\
@@ -39,7 +40,7 @@ endif
 
 # See http://www.umlgraph.org/doc/cd-opt.html for possible UMLGraph arguments:
 UMLGRAPH 	= $(AT)java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HOME/lib/tools.jar" \
-	org.umlgraph.doclet.UmlGraph -outputencoding UTF-8 -quiet -private -d $(OUTDIR)
+	org.umlgraph.doclet.UmlGraph -outputencoding UTF-8 -quiet -private -d $(OUTDIR) $(VIEWS)
 
 # UML specific variables
 SRCDIR		= $(ROOTDIR)/java
@@ -48,6 +49,12 @@ PACKAGEPATH	= $(SRCDIR)/$(subst .,/,$(PACKAGE))
 FILENAME	= uml
 DOTFILE		= $(OUTDIR)/$(FILENAME).dot
 JAVAFILES	= $(shell find $(PACKAGEPATH) -type f -name '*.java')
+# See http://www.umlgraph.org/doc/ceg-view-spec.html for documentation on umlgraph views
+ifdef VIEWS
+	override VIEWS	= -views
+	# TODO this is not a very nice hack to get main view building :/
+	DOTFILE			= $(OUTDIR)/PackageUML.dot
+endif
 
 # Document specific variables
 TEXFILENAME	= entwurf
@@ -63,6 +70,7 @@ all: $(OUTDIR)/$(FILENAME).png document
 
 debug:
 	@echo nothing to see here
+	@echo $(VIEWS)
 
 help:
 	@printf "$(HELPTEXT:~=\\n)"
