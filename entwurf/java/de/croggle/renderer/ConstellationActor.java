@@ -1,16 +1,23 @@
 package de.croggle.renderer;
 
-import com.badlogic.gdx.scenes.scene2d;
+import com.badlogic.gdx.scenes.scene2d.Batch;
+import de.croggle.game.Constellation;
 
 /**
+ * An actor used for representing an alligator constellation.
  * 
+ * @opt all
+ * @node class
  */
 class ConstellationActor extends Actor {
 
 	/**
+	 * Creates a new actor.
 	 * 
+	 * @param constellation
+	 *            Starting constellation to draw.
 	 */
-	public ConstellationActor() {
+	public ConstellationActor(Constellation constellation) {
 
 	}
 
