@@ -6,7 +6,7 @@ package de.croggle.game;
  * @composed 1 - * BoardObject
  */
 public class Family {
-	SceneObject[] members;
+	BoardObject[] members;
     
 	public void addMember (BoardObject member) {
 		
