@@ -8,7 +8,7 @@ public class Color {
 	private int red; //between 0 and 255.
     private int green; //between 0 and 255.
     private int blue; //between 0 and 255.
-    String name; 
+    private String name; 
     
     public Color(int pRed, int pGreen, int pBlue) {
         this.red = pRed;
