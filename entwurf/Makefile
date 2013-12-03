@@ -12,8 +12,11 @@ Available targets:~\
 	$$ make [all] : Builds a .dot uml file with UMLGraph to out/ folder~\
 	$$ make export:xxx : Renders the .dot UML file built with graphviz\' dot in a format specified by xxx. This can be png, svg etc.~\
 	$$ make help : Print this help text~\
-	$$ make clean : Delete all contents of out/ folder~\
+	$$ make clean : Delete all contents of out/ folder and generated java files in source tree~\
 	$$ make clean-src: Delete all UMLOptions.java in the java/de/... folders~\
+	$$ make clean-out: Delete all files in out/~\
+	$$ make clean-uml: Delete all uml diagram related files in out/~\
+	$$ make clean-doc: Delete all latex related files in out/~\
 Export needs graphviz\' dot renderer installed on the system~\
 ########################################################################
 
@@ -36,7 +39,7 @@ endif
 
 # See http://www.umlgraph.org/doc/cd-opt.html for possible UMLGraph arguments:
 UMLGRAPH 	= $(AT)java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HOME/lib/tools.jar" \
-	org.umlgraph.doclet.UmlGraph -outputencoding UTF-8 -quiet -private
+	org.umlgraph.doclet.UmlGraph -outputencoding UTF-8 -quiet -private -d $(OUTDIR)
 
 # UML specific variables
 SRCDIR		= $(ROOTDIR)/java
@@ -73,6 +76,7 @@ dotfile umlgraph: $(DOTFILE)
 	
 # Have UMLOptions class updated in every subpackage
 $(SRCDIR)/%/UMLOptions.java: $(SRCDIR)/UMLOptions.java
+	$(ECHO) Updating UMLOptions for package $(PACKAGE)...
 	$(AT)cp -f $< $@
 	$(AT)perl -i -pe 's/.*/package $(PACKAGE);/ if $$. == 1' $@
 
@@ -90,7 +94,7 @@ $(DOTFILE): $(OUTDIR) $(SRCDIR) $(JAVAFILES) $(PACKAGEPATH)/UMLOptions.java
 	$(call REQUIRE,java)
 	$(call REQUIREFILE,$$JAVA_HOME/lib/tools.jar,Is your JAVA_HOME variable set?)
 	$(ECHO) building diagram...
-	$(UMLGRAPH) -sourcepath $(SRCDIR) -subpackages $(PACKAGE) -output $@
+	$(UMLGRAPH) -sourcepath $(SRCDIR) -subpackages $(PACKAGE) -output $(notdir $@)
 
 # Map target "export:xxx" on an output file of type xxx
 export\:%: $(OUTDIR)/$(FILENAME).%
@@ -115,9 +119,23 @@ $(OUTDIR)/$(FILENAME).%: $(DOTFILE)
 		-Gratio=0.7071 \
 		-o$(OUTDIR)/$(FILENAME).$* \
 
+clean: clean-out clean-src
+	@true
 
-clean:
-	$(AT)rm -rf $(ROOTDIR)/out/*
+clean-out:
+	$(AT)rm -rf $(OUTDIR)/*
+
+clean-uml:
+	$(AT)find $(OUTDIR)/ -type f \( -name '*.png' -o -name '*.svg' -o -name '*.dot' \) -exec rm {} \;
+	
+clean-doc: clean-doc-pdf clean-doc-tmp
+	@true
+	
+clean-doc-pdf:
+	$(AT)find $(OUTDIR)/ -type f -name '*.pdf' -exec rm -f {} \;
+
+clean-doc-tmp:
+	$(AT)find $(OUTDIR)/ -type f \( -name '*.aux' -o -name '*.log' -o -name '*.out' -o -name '*.toc' \) -exec rm {} \;
 	
 clean-src:
 	$(AT)find $(SRCDIR)/de/ -type f -name 'UMLOptions.java' -exec rm -f {} \;
