@@ -54,7 +54,7 @@ TEXFILES	= $(shell find $(SRCDIR) -maxdepth 1 -type f -name '*.tex')
 .PHONY: all debug document dotfile export\:% help umlgraph
 .PRECIOUS: gollum $(OUTDIR)/$(FILENAME).% $(OUTDIR)/$(PDFNAME).pdf $(DOTFILE)
 
-all: $(DOTFILE) document
+all: export\:png document
 
 debug:
 	@echo nothing to see here
