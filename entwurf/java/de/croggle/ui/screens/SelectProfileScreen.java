@@ -1,8 +1,8 @@
-package de.croggle.ui;
+package de.croggle.ui.screens;
 
 /**
  * 
  */
-public class SelectProfileScreen {
+public class SelectProfileScreen implements Screen{
 	
 }

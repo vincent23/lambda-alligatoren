@@ -1,8 +1,8 @@
-package de.croggle.ui;
+package de.croggle.ui.screens;
 
 /**
  * 
  */
-public class SimulationModeScreen {
+public class SimulationModeScreen implements Screen{
 	
 }
