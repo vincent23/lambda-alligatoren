@@ -5,10 +5,10 @@ package de.croggle.game;
  * @node class
  */
 public class Color {
-	int red; //zwischen 0 und 255.
-    int green; //zwischen 0 und 255.
-    int blue; //zwischen 0 und 255.
-    String name; // sollte was mit dem RGB wert zutun haben.
+	private int red; //between 0 and 255.
+    private int green; //between 0 and 255.
+    private int blue; //between 0 and 255.
+    String name; 
     
     public Color(int pRed, int pGreen, int pBlue) {
         this.red = pRed;
