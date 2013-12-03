@@ -7,10 +7,10 @@ package de.croggle.game;
 public class Simulator {
     Constellation entranceConstellation;
     
-    void startSimulation() {
-        //currentConstellation is saved in entranceConstellation. After this the simulation is started. Either the simulation terminates or the user pushes the button "zurück" to get back to the "Plaziermodus".
+    public void startSimulation() {
+        //currentConstellation is saved in entranceConstellation. After this the simulation is started. Either the simulation terminates or the user pushes a button to get back to the "Plaziermodus".
     }
-    void stopSimulation() {
+    public void stopSimulation() {
         //currentConstellation is restored.
     }
 }

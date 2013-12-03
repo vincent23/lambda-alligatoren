@@ -14,7 +14,7 @@ public class ColorController {
 	* Add color to usableColors[].
 	*
 	**/
-    void addUsableColor(Color color) {
+    public void addUsableColor(Color color) {
         //Check first if color is already in usableColors[].
     }
 
@@ -22,7 +22,7 @@ public class ColorController {
 	* Add color to bannedColors[].
 	*
 	**/
-    void addBannedColor(Color color) {
+    public void addBannedColor(Color color) {
         //Check first if color is already in bannedColors[].
     }
 
@@ -30,7 +30,7 @@ public class ColorController {
 	* Remove color from usableColors[].
 	*
 	**/
-    void removeUsableColor(Color color) {
+    public void removeUsableColor(Color color) {
         //Check first if color is not in UsableColors[].
     }
 
@@ -38,7 +38,7 @@ public class ColorController {
 	* Remove color from bannedColors[].
 	*
 	**/
-    void removeBannedColor(Color color) {
+    public void removeBannedColor(Color color) {
          //Check first if color is not in BannedColors[].
     }
     
