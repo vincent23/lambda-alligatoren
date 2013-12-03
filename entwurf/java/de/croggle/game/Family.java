@@ -3,20 +3,20 @@ package de.croggle.game;
 /**
  * @opt all
  * @node class
- * @composed 1 - * SceneObject
+ * @composed 1 - * BoardObject
  */
 public class Family {
 	SceneObject[] members;
     
-	public void addMember (SceneObject member) {
+	public void addMember (BoardObject member) {
 		
 	}
 	
-	public void addMember (SceneObject member, int index) {
+	public void addMember (BoardObject member, int index) {
 		
 	}
 	
-	public SceneObject getMember (int index) {
+	public BoardObject getMember (int index) {
 		
 	}
 	
@@ -24,7 +24,7 @@ public class Family {
 		
 	}
 	
-	public boolean removeMember (SceneObject index) {
+	public boolean removeMember (BoardObject index) {
 		
 	}
 }

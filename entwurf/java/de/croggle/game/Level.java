@@ -6,19 +6,19 @@ import de.croggle.data.Animation;
  * @node class
  */
 public abstract class Level {
-    int levelIndex;
-    int packageIndex;
+    private int levelIndex;
+    private int packageIndex;
     
-    LambdaConstellation inputConstellation;
-    LambdaConstellation goalConstellation;
-    LambdaConstellation currentConstellation;
-    boolean animation; //TODO: ein boolean ob da eine Animation ist, und wenn ja, dann das handeln OR einfach eine Animation und wenn keine da ist NULL oder so
+    private LambdaConstellation inputConstellation;
+    private LambdaConstellation goalConstellation;
+    private LambdaConstellation currentConstellation;
+    private boolean animation; //TODO: ein boolean ob da eine Animation ist, und wenn ja, dann das handeln OR einfach eine Animation und wenn keine da ist NULL oder so
     
-	int getPackageIndex();
-	int getLevelIndex();
+	public int getPackageIndex();
+	public int getLevelIndex();
 	
 	//LevelState state; //?
-	Scene getInputConstellation();
-	Scene getGoalConstellation();
-	Animation getAnimation();
+	public Scene getInputConstellation();
+	public Scene getGoalConstellation();
+	public Animation getAnimation();
 }

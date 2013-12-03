@@ -7,8 +7,8 @@ import java.util.ArrayList;
  * @node class
  */
 public class ColorController {
-	ArrayList<Color> usableColors = new ArrayList<Color>();
-    ArrayList<Color> bannedColors = new ArrayList<Color>();
+	private ArrayList<Color> usableColors = new ArrayList<Color>();
+    private ArrayList<Color> bannedColors = new ArrayList<Color>();
 
 	/**
 	* Add color to usableColors[].
