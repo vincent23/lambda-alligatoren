@@ -2,7 +2,9 @@ package de.croggle;
 // package must ALWAYS remain first line for makefile sed to work
 
 /**
- * @opt views
+ * Enable views option if you want to have view based graph generation (not
+ * supported by makefile yet) for better styling ability
+ * opt views
  * 
  * @opt all
  * 
