@@ -1,8 +1,8 @@
-package de.croggle.ui;
+package de.croggle.ui.screens;
 
 /**
  * 
  */
-public class SettingsScreen {
+public class SettingsScreen implements Screen{
 	
 }

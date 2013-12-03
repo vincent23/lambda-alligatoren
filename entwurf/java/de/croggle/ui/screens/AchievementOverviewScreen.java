@@ -1,8 +1,8 @@
-package de.croggle.ui;
+package de.croggle.ui.screens;
 
 /**
  * 
  */
-public class AchievementOverviewScreen {
+public class AchievementOverviewScreen implements Screen{
 	
 }

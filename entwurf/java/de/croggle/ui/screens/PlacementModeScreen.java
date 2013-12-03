@@ -1,8 +1,8 @@
-package de.croggle.ui;
+package de.croggle.ui.screens;
 
 /**
  * 
  */
-public class PlacementModeScreen {
+public class PlacementModeScreen implements Screen{
 	
 }
