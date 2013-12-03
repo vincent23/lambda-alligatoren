@@ -9,22 +9,37 @@ import java.util.ArrayList;
 public class ColorController {
 	ArrayList<Color> usableColors = new ArrayList<Color>();
     ArrayList<Color> bannedColors = new ArrayList<Color>();
+
+	/**
+	* Add color to usableColors[].
+	*
+	**/
     void addUsableColor(Color color) {
-        //mach color in usableColors[]
-        //Abfangen falls die Color schon drin ist
+        //Check first if color is already in usableColors[].
     }
-    
+
+    /**
+	* Add color to bannedColors[].
+	*
+	**/
     void addBannedColor(Color color) {
-        //mach color in die bannedColors[]
-        //Abfangen falls die Farbe schon drin ist.
+        //Check first if color is already in bannedColors[].
     }
+
+	/**
+	* Remove color from usableColors[].
+	*
+	**/
     void removeUsableColor(Color color) {
-        //selbsterklärend.
-        // Abfangen wenns nicht drin ist.
+        //Check first if color is not in UsableColors[].
     }
+
+	/**
+	* Remove color from bannedColors[].
+	*
+	**/
     void removeBannedColor(Color color) {
-        //selbsterklärend.
-        // Abfangen wenns nicht drin ist.
+         //Check first if color is not in BannedColors[].
     }
     
     

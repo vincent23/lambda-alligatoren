@@ -8,9 +8,9 @@ public class Simulator {
     Constellation entranceConstellation;
     
     void startSimulation() {
-        //currentConstellation (aus Level) im entranceConstellation zwischengespeichert. Dann wird die Simulation angeworfen. Entweder wird dann die Simulation terminiert oder der Nutzer drück auf *zurück zum Plaziermodus.
+        //currentConstellation is saved in entranceConstellation. After this the simulation is started. Either the simulation terminates or the user pushes the button "zurück" to get back to the "Plaziermodus".
     }
     void stopSimulation() {
-        //die currentConstellation wird wieder hergestellt.
+        //currentConstellation is restored.
     }
 }
