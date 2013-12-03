@@ -1,3 +1,4 @@
+package de.croggle.game;
 /**
  *
  * @opt all
