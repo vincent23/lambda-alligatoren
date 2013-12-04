@@ -66,7 +66,7 @@ TEXFILES	= $(shell find $(SRCDIR) -maxdepth 1 -type f -name '*.tex')
 .PRECIOUS: gollum $(OUTDIR)/$(FILENAME).% $(OUTDIR)/$(PDFNAME).pdf $(DOTFILE)
 
 # export\:png would be nicer for standard png export, but this is not supported in make 3.81
-all: $(OUTDIR)/$(FILENAME).png document
+all: $(OUTDIR)/$(FILENAME).svg document
 
 debug:
 	@echo nothing to see here
