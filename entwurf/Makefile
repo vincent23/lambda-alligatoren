@@ -123,7 +123,7 @@ $(UMLDEPS:%.dot=%.$(EXPORTFORMAT)): %.$(EXPORTFORMAT): $(OUTDIR)/ %.dot
 	@# -Gsize: Set max bounding box to DIN A0
 	@# -Gratio: Set aspect ratio to 1/sqrt(2)
 	@# -o: Output file name
-	$(AT)unflatten -l 10 -f -c 10 $*.dot |\
+	$(AT)unflatten -l 4 -f -c 10 $*.dot |\
 	dot \
 		-T$(EXPORTFORMAT) \
 		-LC1 \
