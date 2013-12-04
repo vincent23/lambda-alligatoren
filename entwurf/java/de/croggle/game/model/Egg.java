@@ -1,12 +1,8 @@
-package de.croggle.game;
+package de.croggle.game.model;
 
 /**
- * @opt all
- * @node class
  * @composed 1 - 1-0 Color
  */
 public class Egg implements BoardObject {
 	Color color;
-    
-    
 }

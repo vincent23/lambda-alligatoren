@@ -1,8 +1,7 @@
-package de.croggle.game;
+package de.croggle.game.model;
 
 /**
- * @opt all
- * @node class
+ * 
  */
 public class ColorEditLevel extends Level {
 	ColorController colorController;
