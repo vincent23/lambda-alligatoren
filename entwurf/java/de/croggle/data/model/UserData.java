@@ -1,7 +1,10 @@
-package de.croggle.data;
+package de.croggle.data.model;
 
 import java.io.Serializable;
 
+/**
+ * 
+ */
 public class UserData implements Serializable {
 
 	

@@ -9,6 +9,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
+/**
+ * @navassoc 1 - * de.croggle.data.model.Profile
+ */
 public class ProfileController {
 	
 	public static final String KEY_ROWID = "id";

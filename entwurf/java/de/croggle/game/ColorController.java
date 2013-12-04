@@ -2,9 +2,10 @@ package de.croggle.game;
 
 
 import java.util.ArrayList;
+import de.croggle.game.model.Color;
+
 /**
- * @opt all
- * @node class
+ * @navassoc 1 - * Color
  */
 public class ColorController {
 	private ArrayList<Color> usableColors = new ArrayList<Color>();

@@ -1,4 +1,4 @@
-package de.croggle.data;
+package de.croggle.data.model;
 
 public class Profile {
 

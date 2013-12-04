@@ -5,9 +5,6 @@ import de.croggle.game.BoardObject;
 
 /**
  * An actor used for representing an alligator constellation.
- * 
- * @opt all
- * @node class
  */
 class ConstellationActor extends Actor {
 
