@@ -74,7 +74,7 @@ TEXDOCFILE		= $(OUTDIR)/docs.tex
 .PHONY: all debug help clean clean-% export\:% export texdoclet document
 .PRECIOUS: $(subst dot,$(EXPORTFORMAT),$(UMLDEPS))
 
-all: export
+all: export document
 	$(ECHO) finished.
 	
 help:
@@ -145,7 +145,7 @@ document: $(OUTDIR)/$(PDFNAME).pdf
 	@true
 
 # Builds pdf documents
-$(OUTDIR)/$(PDFNAME).pdf: $(OUTDIR) texdoclet $(TEXFILES)
+$(OUTDIR)/$(PDFNAME).pdf: $(OUTDIR) $(TEXDOCFILE) $(TEXFILES)
 	$(call REQUIRE,pdflatex)
 	$(ECHO) Building pdf document $(notdir $@)
 	$(AT)pdflatex -jobname $(PDFNAME) -output-directory $(OUTDIR) $(TEXFILENAME).tex 1> /dev/null
