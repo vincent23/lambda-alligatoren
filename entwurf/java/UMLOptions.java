@@ -1,4 +1,4 @@
-package de.croggle;
+package ;
 // package must ALWAYS remain first line for makefile sed to work
 
 /**
@@ -20,5 +20,5 @@ package de.croggle;
  * @hidden
  */
 public class UMLOptions {
-	
+        
 }

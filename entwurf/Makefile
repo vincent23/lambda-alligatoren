@@ -4,83 +4,92 @@
 HELPTEXT = \
 === UMLGraph Makefile ===~\
 Important variables:~\
-	FILENAME: Sets the filename of the generated dotfile and the exported graphics file(s).~\
 	PACKAGE: Sets the package to create the uml graph for. E.g. 'make PACKAGE=de.croggle.ui export:png'~\
-	JAVA_HOME: Needs to be set to your Java installation folder, where UMLGraph can find "lib/tools.jar"~\
+	EXPORTFORMAT: The format used for exporting ~\
 	VERBOSE: Setting this variable to "3" will print all relevant commands executed.~\
-	VIEWS: This is an experimental option. If defined on the command line, UMLGraph will build the graph with views support~\
+	VIEWS: If set to "yes" on the command line, UMLGraph will build the graph with views support~\
 Available targets:~\
 	$$ make [all] : Builds a .dot uml file with UMLGraph to out/ folder~\
-	$$ make export:xxx : Renders the .dot UML file built with graphviz\' dot in a format specified by xxx. This can be png, svg etc.~\
+	$$ make export : Renders the .dot UML file built with graphviz\' dot in a format specified by variable EXPORTFORMAT.~\
 	$$ make help : Print this help text~\
+	$$ make texdoclet : Builds a .tex file from the java sources~\
+	$$ make document ~\
 	$$ make clean : Delete all contents of out/ folder and generated java files in source tree~\
-	$$ make clean-src: Delete all UMLOptions.java in the java/de/... folders~\
-	$$ make clean-out: Delete all files in out/~\
-	$$ make clean-uml: Delete all uml diagram related files in out/~\
-	$$ make clean-doc: Delete all latex related files in out/~\
+	$$ make clean-src : Delete all UMLOptions.java in the java/de/... folders~\
+	$$ make clean-out : Delete all files in out/~\
+	$$ make clean-uml : Delete all uml diagram related files in out/~\
+	$$ make clean-doc : Delete all latex related files in out/~\
 Export needs graphviz\' dot renderer installed on the system~\
 ########################################################################
 
-ROOTDIR 	= $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
-OUTDIR 		= $(ROOTDIR)/out
-ECHO		= @echo
-REQUIRE		= 	@if !(which $1 > /dev/null 2>&1);\
-					then echo You need to have $1 installed for this action to work;\
-					false;\
-				fi
-REQUIREFILE	= 	@if [ ! -f $1 ];\
-					then echo Could not find file $1. $2;\
-					false;\
-				fi
+# Make life easier
+ROOTDIR 		= $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+OUTDIR 			= $(ROOTDIR)/out
+ECHO			= @echo
+REQUIRE			= 	@if !(which $1 > /dev/null 2>&1);\
+						then echo You need to have $1 installed for this action to work;\
+						false;\
+					fi
+REQUIREFILE		= 	@if [ ! -f $1 ];\
+						then echo Could not find file $1. $2;\
+						false;\
+					fi
 
-AT			= @
+AT				= @
 ifeq ($(VERBOSE),3)
-	AT		=
+	AT			=
 endif
 
-# See http://www.umlgraph.org/doc/cd-opt.html for possible UMLGraph arguments:
-UMLGRAPH 	= $(AT)java -classpath "$(ROOTDIR)/umlgraph/lib/UmlGraph.jar:$$JAVA_HOME/lib/tools.jar" \
-	org.umlgraph.doclet.UmlGraph -outputencoding UTF-8 -quiet -private -d $(OUTDIR) $(VIEWS)
-
-# UML specific variables
-SRCDIR		= $(ROOTDIR)/java
-PACKAGE		= de.croggle
-PACKAGEPATH	= $(SRCDIR)/$(subst .,/,$(PACKAGE))
-FILENAME	= uml
-DOTFILE		= $(OUTDIR)/$(FILENAME).dot
-JAVAFILES	= $(shell find $(PACKAGEPATH) -type f -name '*.java')
-# See http://www.umlgraph.org/doc/ceg-view-spec.html for documentation on umlgraph views
-ifdef VIEWS
-	override VIEWS	= -views
-	# TODO this is not a very nice hack to get main view building :/
-	DOTFILE			= $(OUTDIR)/PackageUML.dot
+# Javadoc
+SRCDIR			= $(ROOTDIR)/java
+DOCLETPATH		= $(ROOTDIR)/doclets
+PACKAGE			= de.croggle
+PACKAGEPATH		= $(SRCDIR)/$(subst .,/,$(PACKAGE))
+JAVAFILES		= $(shell find $(PACKAGEPATH) -type f -name '*.java')
+JAVADOC			= javadoc -classpath "$(CLASSPATH)" -quiet \
+					-sourcepath $(SRCDIR) -subpackages $(PACKAGE)
+# UMLGraph
+UMLGRAPHDOCLET	= -docletpath $(DOCLETPATH)/UmlGraph.jar -doclet org.umlgraph.doclet.UmlGraph -private $(VIEWSOPT) \
+					-d "$(OUTDIR)" -outputencoding UTF-8
+UMLFILE			= $(OUTDIR)/uml.dot
+UMLDEPS			= $(UMLFILE)
+ifeq ($(VIEWS),yes)
+	VIEWSOPT	= -views
+	VIEWFILES	= $(shell find $(PACKAGEPATH) -type f -name '*UMLView.java')
+	UMLFILES	= $(addprefix $(OUTDIR)/,$(notdir $(subst .java,.dot,$(VIEWFILES))))
+	UMLDEPS		= $(UMLFILES)
 endif
+EXPORTFORMAT	= svg
 
 # Document specific variables
 TEXFILENAME	= entwurf
 PDFNAME		= $(TEXFILENAME)
-TEXFILES	= $(shell find $(SRCDIR) -maxdepth 1 -type f -name '*.tex')
+TEXFILES	= $(shell find $(ROOTDIR) -maxdepth 1 -type f -name '*.tex') $(TEXDOCFILE)
 
+# TexDoclet
+TEXDOCLET		= -docletpath $(DOCLETPATH)/TexDoclet.jar -doclet org.wonderly.doclets.TexDoclet
+TEXDOCFILE		= $(OUTDIR)/docs.tex
 
-.PHONY: all debug document dotfile export\:% help umlgraph
-.PRECIOUS: gollum $(OUTDIR)/$(FILENAME).% $(OUTDIR)/$(PDFNAME).pdf $(DOTFILE)
+.PHONY: all debug help clean clean-% export\:% export texdoclet document
+.PRECIOUS: $(subst dot,$(EXPORTFORMAT),$(UMLDEPS))
 
-# export\:png would be nicer for standard png export, but this is not supported in make 3.81
-all: $(OUTDIR)/$(FILENAME).svg document
-
-debug:
-	@echo nothing to see here
-	@echo $(VIEWS)
-
+all: export
+	$(ECHO) finished.
+	
 help:
 	@printf "$(HELPTEXT:~=\\n)"
-	
-# Alias $(OUTDIR)/$(PDFNAME).pdf as target "document"
-document: $(OUTDIR)/$(PDFNAME).pdf
+
+debug:
+	$(ECHO) nothing to see here...
+
+umlgraph: $(UMLDEPS)
 	@true
-	
-dotfile umlgraph: $(DOTFILE)
-	@true
+
+# Make uml graphs based on package
+$(UMLFILE): $(OUTDIR)/ $(PACKAGEPATH)/UMLOptions.java $(JAVAFILES)
+	$(call REQUIRE,javadoc)
+	$(ECHO) building diagram...
+	$(AT)$(JAVADOC) $(UMLGRAPHDOCLET) -output $(notdir $@)
 	
 # Have UMLOptions class updated in every subpackage
 $(SRCDIR)/%/UMLOptions.java: $(SRCDIR)/UMLOptions.java
@@ -88,51 +97,71 @@ $(SRCDIR)/%/UMLOptions.java: $(SRCDIR)/UMLOptions.java
 	$(AT)cp -f $< $@
 	$(AT)perl -i -pe 's/.*/package $(PACKAGE);/ if $$. == 1' $@
 
-# Builds pdf documents
-$(OUTDIR)/$(PDFNAME).pdf: $(TEXFILES)
-	$(call REQUIRE,pdflatex)
-	$(ECHO) Building pdf document $(notdir $@)
-	$(AT)pdflatex -jobname $(PDFNAME) -output-directory $(OUTDIR) $(TEXFILENAME).tex 1> /dev/null
-
-$(OUTDIR):
-	$(AT)mkdir $@
-	
-# Create a .dot file with umlgraph
-$(DOTFILE): $(OUTDIR) $(SRCDIR) $(JAVAFILES) $(PACKAGEPATH)/UMLOptions.java
-	$(call REQUIRE,java)
-	$(call REQUIREFILE,$$JAVA_HOME/lib/tools.jar,Is your JAVA_HOME variable set?)
+# Make uml graphs based on views
+$(UMLFILES): $(OUTDIR)/ $(JAVAFILES)
+	$(call REQUIRE,javadoc)
 	$(ECHO) building diagram...
-	$(UMLGRAPH) -sourcepath $(SRCDIR) -subpackages $(PACKAGE) -output $(notdir $@)
+	$(AT)$(JAVADOC) $(UMLGRAPHDOCLET)
 
-# Map target "export:xxx" on an output file of type xxx
-export\:%: $(OUTDIR)/$(FILENAME).%
+# Legacy: Delegate export:xxx commands to export
+export\:%: export
 	@true
+	
+# Alias for exported files
+export: $(UMLDEPS:%.dot=%.$(EXPORTFORMAT))
+	$(ECHO) done exporting.
 
-# Render the .dot file with graphviz' dot
-$(OUTDIR)/$(FILENAME).%: $(DOTFILE)
+# Export with dot
+$(UMLDEPS:%.dot=%.$(EXPORTFORMAT)): %.$(EXPORTFORMAT): $(OUTDIR)/ %.dot
 	$(call REQUIRE,dot)
 	$(call REQUIRE,unflatten)
-	$(ECHO) exporting diagram as $* file...
+	$(ECHO) exporting diagram as $(EXPORTFORMAT) file...
 	@# The actual command: Unflatten and dot.
 	@# -T: Set the output file type
 	@# -LC1: Set overlap expansion factor
 	@# -Gsize: Set max bounding box to DIN A0
 	@# -Gratio: Set aspect ratio to 1/sqrt(2)
 	@# -o: Output file name
-	$(AT)unflatten -l 10 -f -c 10 $(DOTFILE) |\
+	$(AT)unflatten -l 10 -f -c 10 $*.dot |\
 	dot \
-		-T$* \
+		-T$(EXPORTFORMAT) \
 		-LC1 \
 		-Gdpi=300\
 		-Gsize="46.8,33.1" \
 		-Gratio=0.7071 \
-		-o$(OUTDIR)/$(FILENAME).$* \
+		-o$@
+	
+# Alias to build tex docs
+texdoclet: $(TEXDOCFILE)
+	@true;
+	
+# Builds tex docs with TexDoclet
+$(TEXDOCFILE): $(OUTDIR)
+	$(AT)cd $(OUTDIR); $(JAVADOC) $(TEXDOCLET)
+	
+# Alias $(OUTDIR)/$(PDFNAME).pdf as target "document"
+document: $(OUTDIR)/$(PDFNAME).pdf
+	@true
 
+# Builds pdf documents
+$(OUTDIR)/$(PDFNAME).pdf: $(OUTDIR) texdoclet $(TEXFILES)
+	$(call REQUIRE,pdflatex)
+	$(ECHO) Building pdf document $(notdir $@)
+	$(AT)pdflatex -jobname $(PDFNAME) -output-directory $(OUTDIR) $(TEXFILENAME).tex 1> /dev/null
+
+# Make sure, $(OUTDIR) exists
+$(OUTDIR)/:
+	$(AT)mkdir $@
+	
+# Clean
 clean: clean-out clean-src
 	@true
 
 clean-out:
 	$(AT)rm -rf $(OUTDIR)/*
+
+clean-texdoclet:
+	$(AT)rm -f $(TEXDOCFILE)
 
 clean-uml:
 	$(AT)find $(OUTDIR)/ -type f \( -name '*.png' -o -name '*.svg' -o -name '*.dot' \) -exec rm {} \;
@@ -146,5 +175,7 @@ clean-doc-pdf:
 clean-doc-tmp:
 	$(AT)find $(OUTDIR)/ -type f \( -name '*.aux' -o -name '*.log' -o -name '*.out' -o -name '*.toc' \) -exec rm {} \;
 	
+# Used later to clean all UMLGraph specific files in source tree
 clean-src:
 	$(AT)find $(SRCDIR)/de/ -type f -name 'UMLOptions.java' -exec rm -f {} \;
+#	$(AT)find $(SRCDIR)/de/ -type f -name '*UMLView.java' -exec rm -f {} \;
