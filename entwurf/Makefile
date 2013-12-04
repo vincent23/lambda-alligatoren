@@ -123,6 +123,7 @@ $(OUTDIR)/$(FILENAME).%: $(DOTFILE)
 	dot \
 		-T$* \
 		-LC1 \
+		-Gdpi=300\
 		-Gsize="46.8,33.1" \
 		-Gratio=0.7071 \
 		-o$(OUTDIR)/$(FILENAME).$* \
