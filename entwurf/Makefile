@@ -60,6 +60,7 @@ ifeq ($(VIEWS),yes)
 	UMLDEPS		= $(UMLFILES)
 endif
 EXPORTFORMAT	= svg
+DPI				= 72
 
 # Document specific variables
 TEXFILENAME	= entwurf
@@ -126,7 +127,7 @@ $(UMLDEPS:%.dot=%.$(EXPORTFORMAT)): %.$(EXPORTFORMAT): $(OUTDIR)/ %.dot
 	dot \
 		-T$(EXPORTFORMAT) \
 		-LC1 \
-		-Gdpi=300\
+		-Gdpi=$(DPI)\
 		-Gsize="46.8,33.1" \
 		-Gratio=0.7071 \
 		-o$@
