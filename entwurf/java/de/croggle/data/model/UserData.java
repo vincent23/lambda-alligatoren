@@ -1,10 +1,9 @@
 package de.croggle.data.model;
 
-import java.io.Serializable;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.Json.Serializable;
+import com.badlogic.gdx.utils.JsonValue;
 
-/**
- * 
- */
 public class UserData implements Serializable {
 
 	
@@ -12,10 +11,12 @@ public class UserData implements Serializable {
 	private int time_played;
 	private int hints_used;
 	private int first_tries;
+	private int max_level;
+
 	
 	// ...
 	
-	public UserData(int time_played, int hints_used, int first_tries) {
+	public UserData(int time_played, int hints_used, int first_tries, int max_level) {
 		
 	}
 
@@ -45,6 +46,26 @@ public class UserData implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public int getMax_level() {
+		return max_level;
+	}
+
+	public void setMax_level(int max_level) {
+		this.max_level = max_level;
+	}
+
+	@Override
+	public void write(Json json) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void read(Json json, JsonValue jsonData) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

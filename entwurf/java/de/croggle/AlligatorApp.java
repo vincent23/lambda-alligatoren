@@ -8,7 +8,7 @@ package de.croggle;
  * @navassoc 1 - 1 de.croggle.data.AchievementController
  * @navassoc 1 - 1 de.croggle.data.AssetManager
  * @navassoc 1 - 1 de.croggle.game.LevelBoxesController
- * @navassoc 1 - 1 de.croggle.data.ProfileController
+ * @navassoc 1 - 1 de.croggle.data.DataManager
  */
 public class AlligatorApp {
 	private TimeService timeService;

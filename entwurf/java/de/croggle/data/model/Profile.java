@@ -1,14 +1,22 @@
 package de.croggle.data.model;
 
-public class Profile {
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.Json.Serializable;
+import com.badlogic.gdx.utils.JsonValue;
 
-	private String name;
-	private String picture_path;
-	private int max_level;
-	private long profile_id;
+/**
+ * @navassoc 1 Has 1 de.croggle.data.model.UserData
+ * @navassoc 1 Has 1 de.croggle.data.model.Settings
+ */
 
-	public Profile(String name, String picture_path, int max_level, long id) {
-
+public class Profile implements Serializable {
+	
+	private String 	name;
+	private String 	picture_path;
+	private long 	profile_id;
+	
+	public Profile(String name, String picture_path, long id) {
+		
 	}
 
 	public String getName() {
@@ -27,13 +35,7 @@ public class Profile {
 		this.picture_path = picture_path;
 	}
 
-	public int getMax_level() {
-		return max_level;
-	}
-
-	public void setMax_level(int max_level) {
-		this.max_level = max_level;
-	}
+	
 
 	public long getProfile_id() {
 		return profile_id;
@@ -43,4 +45,21 @@ public class Profile {
 		this.profile_id = profile_id;
 	}
 
+	@Override
+	public void write(Json json) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void read(Json json, JsonValue jsonData) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
+	
+
 }
+

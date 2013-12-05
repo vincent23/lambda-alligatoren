@@ -1,41 +1,60 @@
 package de.croggle.data;
 
+import de.croggle.data.model.Profile;
+import de.croggle.data.model.UserData;
+import de.croggle.data.model.Settings;
+
+import java.util.List;
+
+
+import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.sql.Database;
+import com.badlogic.gdx.sql.DatabaseCursor;
+import com.badlogic.gdx.sql.DatabaseFactory;
+import com.badlogic.gdx.sql.SQLiteGdxException;
+
+
+import com.badlogic.gdx.Preferences;
+
+/**
+ * 
+ * @navassoc 1 Manages * de.croggle.data.model.Profile
+ * @navassoc 1 Manages * de.croggle.data.model.UserData
+ * @navassoc 1 Manages * de.croggle.data.model.Settings
+ * 
+ * 
+ *
+ */
 public class DataManager {
 
-	/**
-	 * Used to manage profiles.
-	 */
-	private ProfileController pc;
+	public static final String KEY_ROWID = "id";
+	public static final String KEY_PROFILE= "profile";
+	public static final String KEY_SETTINGS = "settings";
+	public static final String KEY_USERDATA = "userdata";
+	public static final String CREATE_DATABASE = "null";
+	
+	public static final String DATABASE_NAME = "profiles.db";
+	public static final int DATABASE_VERSION = 1;
+	
+	private Database dbHandler;
 	
 	/**
-	 * The currently logged in profile.
+	 * Used to store settings
 	 */
-	private Profile currentProfile;
+	private Preferences preferences;
 	
-	/**
-	 * The settings of the currently logged in profile.
-	 */
-	private Settings settings;
 	
-	/**
-	 * The user data of the currently logged in profile.
-	 */
-	private UserData userData;
+	public DataManager() {
+		
+	}
 	
-	/**
-	 * Changes the current profile to the param profile. Setting and user data of the new profile will
-	 * be stored in the corresponding attributes.
-	 * @param profile
-	 * @return
-	 */
-	
-	public boolean changeCurrentProfile(Profile profile) {
+	public boolean changeCurrentProfile(int user_id) {
 		return false;
 	}
 	
 	
 	public Profile getCurrentProfile() {
-		return currentProfile;
+		return null;
 	}
 	
 	public void modifyCurrentProfile() {
@@ -43,6 +62,10 @@ public class DataManager {
 	}
 	
 	public void deleteCurrentProfile() {
+		
+	}
+	
+	public List<Profile> getAllProfiles() {
 		
 	}
 	
@@ -56,31 +79,29 @@ public class DataManager {
 	
 	
 	
-	public Settings getSettings() {
+	public Settings getCurrentSettings() {
 		return null;
 	}
 	
-	public void changeSettings(Settings settings) {
+	public void changeCurrentSettings(Settings settings) {
 		
 	}
 	
-	public void saveSettings() {
+	public void saveCurrentSettings() {
 		
 	}
 	
-	public void deleteSettings() {
 		
-	}
-	
-	public Settings getUserData() {
+	public UserData getCurrentUserData() {
 		return null;
 	}
 	
-	public Settings getUserData(Profile profile) {
+	public UserData getUserData(int user_id) {
 		return null;
 	}
 	
-	public void changeUserData(Settings settings) {
+	
+	public void changeCurrentUserData(UserData data) {
 		
 	}
 	
@@ -88,7 +109,5 @@ public class DataManager {
 		
 	}
 	
-	public void deleteUserData() {
-		
-	}
 }
+
