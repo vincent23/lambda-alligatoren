@@ -5,7 +5,8 @@ package de.croggle;
  *
  * @match class .*
  * @opt all
- * @opt nodefillcolor LightGray
+ * See http://www.graphviz.org/doc/info/colors.html#brewer for colorscheme set312
+ * @opt nodefillcolor 1
  * @opt nodefontname Verdana
  * @opt edgefontname Verdana
  * @opt edgecolor #565656
@@ -15,11 +16,20 @@ package de.croggle;
  * opt qualify
  * opt postfixpackage
  * 
+ * @match class de.croggle.*
+ * @opt nodefillcolor 2
+ * 
  * @match class de.croggle.ui.*
- * @opt nodefillcolor PaleGreen
+ * @opt nodefillcolor 3
  *
  * @match class de.croggle.game.*
- * @opt nodefillcolor LemonChiffon
+ * @opt nodefillcolor 4
+ * 
+ * @match class de.croggle.data.*
+ * @opt nodefillcolor 5
+ * 
+ * @match class de.croggle.renderer.*
+ * @opt nodefillcolor 6
  *
  * @match class java.*|android.*
  * @opt hide

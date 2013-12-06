@@ -130,6 +130,7 @@ $(UMLDEPS:%.dot=%.$(EXPORTFORMAT)): %.$(EXPORTFORMAT): $(OUTDIR)/ %.dot
 		-Gdpi=$(DPI)\
 		-Gsize="46.8,33.1" \
 		-Gratio=0.7071 \
+		-Ncolorscheme=set312 \
 		-o$@
 	
 # Alias to build tex docs
