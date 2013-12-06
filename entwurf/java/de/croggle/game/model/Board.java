@@ -3,6 +3,6 @@ package de.croggle.game.model;
 /**
  * @navassoc 1 - * BoardObject
  */
-public class Board {
-	private AgedAlligator topLevelFamilies;
+public class Board extends Family implements BoardObject {
+	
 }
