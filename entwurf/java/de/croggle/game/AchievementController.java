@@ -1,4 +1,4 @@
-package de.croggle.data;
+package de.croggle.game;
 
 /**
  * @navassoc 1 - * de.croggle.data.model.Achievement
