@@ -20,7 +20,7 @@ public class Profile {
 	public Profile(String name, String picturePath, float volumeMusic, float volumeEffects, boolean zoomEnabled, boolean colorblindEnabled) {
 	}
 
-	protected Profile(Cursor cursor) {
+	protected Profile(android.database.Cursor cursor) {
 	}
 
 	public long getId() {
