@@ -2,8 +2,6 @@ package de.croggle.data.model;
 
 import android.database.Cursor;
 
-import de.croggle.game.model.Board;
-
 public class LevelProgress {
 
 	private long id;
@@ -13,8 +11,9 @@ public class LevelProgress {
 	private String currentBoard;
 	private int usedResets;
 	private int usedHints;
+	private int usedTime;
 
-	public LevelProgress(long profileId, long levelId, boolean solved, String currentBoard, int usedResets, usedHints) {
+	public LevelProgress(long profileId, long levelId, boolean solved, String currentBoard, int usedResets, int usedHints, int usedTime) {
 	}
 
 	public LevelProgress(android.database.Cursor cursor) {
@@ -70,5 +69,13 @@ public class LevelProgress {
 
 	public void setUsedHints(int usedHints) {
 		this.usedHints = usedHints;
+	}
+
+	public int getUsedTime() {
+		return usedTime;
+	}
+
+	public void setUsedTime(int usedTime) {
+		this.usedTime = usedTime;
 	}
 }
