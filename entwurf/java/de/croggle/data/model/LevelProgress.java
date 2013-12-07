@@ -11,8 +11,10 @@ public class LevelProgress {
 	private long levelId;
 	private boolean solved;
 	private String currentBoard;
+	private int usedResets;
+	private int usedHints;
 
-	public LevelProgress(long profileId, long levelId, boolean solved, Board currentBoard) {
+	public LevelProgress(long profileId, long levelId, boolean solved, String currentBoard, int usedResets, usedHints) {
 	}
 
 	public LevelProgress(android.database.Cursor cursor) {
@@ -46,9 +48,27 @@ public class LevelProgress {
 		this.solved = solved;
 	}
 
-	public Board getCurrentBoard() {
+	public String getCurrentBoard() {
+		return currentBoard;
 	}
 
-	public void setCurrentBoard(Board board) {
+	public void setCurrentBoard(String currentBoard) {
+		this.currentBoard = currentBoard;
+	}
+
+	public int getUsedResets() {
+		return usedResets;
+	}
+
+	public void setUsedResets(int usedResets) {
+		this.usedResets = usedResets;
+	}
+
+	public int getUsedHints() {
+		return usedHints;
+	}
+
+	public void setUsedHints(int usedHints) {
+		this.usedHints = usedHints;
 	}
 }
