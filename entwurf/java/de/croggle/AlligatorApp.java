@@ -11,7 +11,7 @@ package de.croggle;
  * @navassoc 1 - 1 de.croggle.data.DataManager
  * @navassoc 1 - 1 de.croggle.data.LocalizationManager
  */
-public class AlligatorApp {
+public class AlligatorApp implements com.badlogic.gdx.ApplicationListener {
 	private TimeService timeService;
 	private de.croggle.game.GameController gameController;
 	private de.croggle.game.AchievementController achievementController;
@@ -56,5 +56,29 @@ public class AlligatorApp {
 	
 	public de.croggle.data.LocalizationManager getLocalizationManager() {
 		return null;
+	}
+	
+	@Override
+	public void create () {
+	}
+
+	@Override
+	public void render () {
+	}
+
+	@Override
+	public void resize (int width, int height) {
+	}
+
+	@Override
+	public void pause () {
+	}
+
+	@Override
+	public void resume () {
+	}
+
+	@Override
+	public void dispose () {
 	}
 }
