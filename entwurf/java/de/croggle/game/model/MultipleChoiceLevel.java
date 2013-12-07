@@ -1,8 +1,7 @@
 package de.croggle.game.model;
 
 /**
- * @opt all
- * @node class
+ * 
  */
 class MultipleChoiceLevel extends Level {
 	

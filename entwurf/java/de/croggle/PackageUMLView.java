@@ -5,6 +5,7 @@ package de.croggle;
  *
  * @match class .*
  * @opt all
+ * 
  * See http://www.graphviz.org/doc/info/colors.html#brewer for colorscheme set312
  * @opt nodefillcolor 1
  * @opt nodefontname Verdana
