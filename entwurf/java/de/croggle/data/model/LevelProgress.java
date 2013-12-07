@@ -2,7 +2,7 @@ package de.croggle.data.model;
 
 import android.database.Cursor;
 
-import de.croggle.game.model;
+import de.croggle.game.model.Board;
 
 public class LevelProgress {
 
