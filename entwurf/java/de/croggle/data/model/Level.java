@@ -14,6 +14,10 @@ public class Level {
 	protected Level(android.database.Cursor cursor) {
 	}
 
+	public long getId() {
+		return id;
+	}
+
 	public long getPackageId() {
 		return packageId;
 	}

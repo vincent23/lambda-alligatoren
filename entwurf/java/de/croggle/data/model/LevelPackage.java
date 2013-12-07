@@ -13,6 +13,10 @@ class LevelPackage {
 	protected LevelPackage(android.database.Cursor cursor) {
 	}
 
+	public long getId() {
+		return id;
+	}
+
 	public String getPath() {
 		return path;
 	}
