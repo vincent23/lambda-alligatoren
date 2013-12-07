@@ -36,8 +36,10 @@ REQUIREFILE		= 	@if [ ! -f $1 ];\
 					fi
 
 AT				= @
+MUTE			= 1> /dev/null
 ifeq ($(VERBOSE),3)
 	AT			=
+	MUTE		= 
 endif
 
 # Javadoc
@@ -49,7 +51,7 @@ JAVAFILES		= $(shell find $(PACKAGEPATH) -type f -name '*.java')
 JAVADOC			= javadoc -classpath "$(CLASSPATH)" -quiet \
 					-sourcepath $(SRCDIR) -subpackages $(PACKAGE)
 # UMLGraph
-UMLGRAPHDOCLET	= -docletpath $(DOCLETPATH)/UmlGraph.jar -doclet org.umlgraph.doclet.UmlGraph -private $(VIEWSOPT) \
+UMLGRAPHDOCLET	= -docletpath $(DOCLETPATH)/UmlGraph.jar -doclet org.umlgraph.doclet.UmlGraph $(VIEWSOPT) \
 					-d "$(OUTDIR)" -outputencoding UTF-8
 UMLFILE			= $(OUTDIR)/uml.dot
 UMLDEPS			= $(UMLFILE)
@@ -90,7 +92,7 @@ umlgraph: $(UMLDEPS)
 $(UMLFILE): $(OUTDIR)/ $(PACKAGEPATH)/UMLOptions.java $(JAVAFILES)
 	$(call REQUIRE,javadoc)
 	$(ECHO) building diagram...
-	$(AT)$(JAVADOC) $(UMLGRAPHDOCLET) -output $(notdir $@)
+	$(AT)$(JAVADOC) $(UMLGRAPHDOCLET) -output $(notdir $@) $(MUTE)
 	
 # Have UMLOptions class updated in every subpackage
 $(SRCDIR)/%/UMLOptions.java: $(SRCDIR)/UMLOptions.java
@@ -99,10 +101,10 @@ $(SRCDIR)/%/UMLOptions.java: $(SRCDIR)/UMLOptions.java
 	$(AT)perl -i -pe 's/.*/package $(PACKAGE);/ if $$. == 1' $@
 
 # Make uml graphs based on views
-$(UMLFILES): $(OUTDIR)/ $(JAVAFILES)
+$(UMLFILES): $(OUTDIR)/ $(PACKAGEPATH)/UMLOptions.java $(JAVAFILES)
 	$(call REQUIRE,javadoc)
 	$(ECHO) building diagram...
-	$(AT)$(JAVADOC) $(UMLGRAPHDOCLET)
+	$(AT)$(JAVADOC) $(UMLGRAPHDOCLET) $(MUTE)
 
 # Legacy: Delegate export:xxx commands to export
 export\:%: export
@@ -138,7 +140,7 @@ texdoclet: $(TEXDOCFILE)
 	@true;
 	
 # Builds tex docs with TexDoclet
-$(TEXDOCFILE): $(OUTDIR)
+$(TEXDOCFILE): $(OUTDIR) $(JAVAFILES)
 	$(AT)cd $(OUTDIR); $(JAVADOC) $(TEXDOCLET)
 	
 # Alias $(OUTDIR)/$(PDFNAME).pdf as target "document"
@@ -149,7 +151,7 @@ document: $(OUTDIR)/$(PDFNAME).pdf
 $(OUTDIR)/$(PDFNAME).pdf: $(OUTDIR) $(TEXDOCFILE) $(TEXFILES)
 	$(call REQUIRE,pdflatex)
 	$(ECHO) Building pdf document $(notdir $@)
-	$(AT)pdflatex -jobname $(PDFNAME) -output-directory $(OUTDIR) $(TEXFILENAME).tex 1> /dev/null
+	$(AT)pdflatex -interaction batchmode -jobname $(PDFNAME) -output-directory $(OUTDIR) $(ROOTDIR)/$(TEXFILENAME).tex $(MUTE)
 
 # Make sure, $(OUTDIR) exists
 $(OUTDIR)/:
