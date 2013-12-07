@@ -1,5 +1,7 @@
 package de.croggle.game;
 
+import de.croggle.game.model.Board;
+
 /**
  * @opt all
  * @node class

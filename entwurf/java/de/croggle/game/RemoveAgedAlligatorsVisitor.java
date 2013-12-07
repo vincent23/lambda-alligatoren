@@ -1,5 +1,5 @@
 package de.croggle.game;
 
-public class RemoveOldAlligatorsVisitor implements BoardObjectVisitor {
+public class RemoveAgedAlligatorsVisitor implements BoardObjectVisitor {
 	
 }

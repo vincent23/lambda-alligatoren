@@ -1,6 +1,6 @@
 package de.croggle.game.model;
 
-import de.croggle.data.Animation;
+import de.croggle.data.model.Animation;
 /**
  * @composed 1 - 3 Board
  */

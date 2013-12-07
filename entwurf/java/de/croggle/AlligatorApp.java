@@ -1,60 +1,71 @@
 package de.croggle;
 
+import de.croggle.game.GameController;
+import de.croggle.game.LevelController;
+import de.croggle.game.LevelBoxesController;
+import de.croggle.game.AchievementController;
+import de.croggle.data.PersistenceManager;
+import de.croggle.data.ProfileController;
+import de.croggle.data.AssetManager;
+import de.croggle.data.DataManager;
+import de.croggle.data.LocalizationManager;
+
 /**
  * @navassoc 1 - 1 TimeService
  * @navassoc 1 - 1 de.croggle.game.GameController
  * @navassoc 1 - 1 de.croggle.game.LevelController
- * @navassoc 1 - 1 de.croggle.data.PersistenceManager
- * @navassoc 1 - 1 de.croggle.data.AchievementController
- * @navassoc 1 - 1 de.croggle.data.AssetManager
  * @navassoc 1 - 1 de.croggle.game.LevelBoxesController
+ * @navassoc 1 - 1 de.croggle.game.AchievementController
+ * @navassoc 1 - 1 de.croggle.data.PersistenceManager
+ * @navassoc 1 - 1 de.croggle.data.ProfileController
+ * @navassoc 1 - 1 de.croggle.data.AssetManager
  * @navassoc 1 - 1 de.croggle.data.DataManager
  * @navassoc 1 - 1 de.croggle.data.LocalizationManager
  */
 public class AlligatorApp implements com.badlogic.gdx.ApplicationListener {
 	private TimeService timeService;
-	private de.croggle.game.GameController gameController;
-	private de.croggle.game.AchievementController achievementController;
-	private de.croggle.game.LevelBoxesController levelBoxesController;
-	private de.croggle.game.LevelController levelController;
-	private de.croggle.data.PersistenceManager persistenceManager;
-	private de.croggle.data.AssetManager assetManager;
-	private de.croggle.data.ProfileController profileController;
-	private de.croggle.data.LocalizationManager localizationMAnager;
+	private GameController gameController;
+	private AchievementController achievementController;
+	private dLevelBoxesController levelBoxesController;
+	private LevelController levelController;
+	private PersistenceManager persistenceManager;
+	private AssetManager assetManager;
+	private ProfileController profileController;
+	private LocalizationManager localizationMAnager;
 	
 	public TimeService getTimeService () {
 		return null;
 	}
 	
-	public de.croggle.game.GameController getGameController() {
+	public GameController getGameController() {
 		return null;
 	}
 	
-	public de.croggle.game.LevelBoxesController getLevelBoxesController() {
+	public LevelBoxesController getLevelBoxesController() {
 		return null;
 	}
 	
-	public de.croggle.game.LevelController getLevelController() {
+	public LevelController getLevelController() {
 		return null;
 	}
 	
-	public de.croggle.game.AchievementController getAchievementController() {
+	public AchievementController getAchievementController() {
 		return null;
 	}
 	
-	public de.croggle.data.PersistenceManager getPersistenceManager() {
+	public PersistenceManager getPersistenceManager() {
 		return null;
 	}
 	
-	public de.croggle.data.AssetManager getAssetManager() {
+	public AssetManager getAssetManager() {
 		return null;
 	}
 	
-	public de.croggle.data.ProfileController getProfileController() {
+	public ProfileController getProfileController() {
 		return null;
 	}
 	
-	public de.croggle.data.LocalizationManager getLocalizationManager() {
+	public LocalizationManager getLocalizationManager() {
 		return null;
 	}
 	

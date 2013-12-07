@@ -1,5 +1,7 @@
 package de.croggle.game.model;
 
+import de.croggle.game.BoardObjectVisitor;
+
 /**
  * 
  */

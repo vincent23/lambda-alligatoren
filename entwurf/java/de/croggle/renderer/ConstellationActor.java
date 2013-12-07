@@ -1,12 +1,11 @@
 package de.croggle.renderer;
 
-import com.badlogic.gdx.scenes.scene2d.Batch;
-import de.croggle.game.BoardObject;
+import de.croggle.game.model.Board;
 
 /**
  * An actor used for representing an alligator constellation.
  */
-class ConstellationActor extends Actor {
+class ConstellationActor extends com.badlogic.gdx.scenes.scene2d.Actor {
 
 	/**
 	 * Creates a new actor.
@@ -14,7 +13,7 @@ class ConstellationActor extends Actor {
 	 * @param constellation
 	 *            Starting constellation to draw.
 	 */
-	public ConstellationActor(BoardObject constellation) {
+	public ConstellationActor(Board constellation) {
 
 	}
 
@@ -28,7 +27,7 @@ class ConstellationActor extends Actor {
 	 *            parent's alpha to affect all children.
 	 */
 	@Override
-	public void draw(Batch batch, float parentAlpha) {
+	public void draw(com.badlogic.gdx.scenes.scene2d.Batch batch, float parentAlpha) {
 
 	}
 

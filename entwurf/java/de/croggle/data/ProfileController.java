@@ -57,7 +57,7 @@ public class ProfileController {
 		
 	}
 	
-	public long insertProfile(Profile profile) {
+	public long insertProfile(de.croggle.data.model.Profile profile) {
 		/*TODO*/
 		return 0;
 	}
@@ -65,17 +65,17 @@ public class ProfileController {
 	/**
 	 * 
 	 */
-	public boolean modifyProfile(Profile profile) {
+	public boolean modifyProfile(de.croggle.data.model.Profile profile) {
 		/*TODO*/
 		return false;
 	}
 	
-	public boolean deleteProfile(Profile profile) {
+	public boolean deleteProfile(de.croggle.data.model.Profile profile) {
 		/*TODO*/
 		return false;
 	}
 	
-	public List<Profile> getAllProfiles() {
+	public List<de.croggle.data.model.Profile> getAllProfiles() {
 		/*TODO*/
 		return null;
 	}
