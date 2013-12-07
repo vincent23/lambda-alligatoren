@@ -1,22 +1,26 @@
 package de.croggle.data.model;
 
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.Json.Serializable;
-import com.badlogic.gdx.utils.JsonValue;
+import android.database.Cursor;
 
 /**
  * @navassoc 1 Has 1 de.croggle.data.model.UserData
  * @navassoc 1 Has 1 de.croggle.data.model.Settings
  */
 
-public class Profile implements Serializable {
-	
-	private String 	name;
-	private String 	picture_path;
-	private long 	profile_id;
-	
-	public Profile(String name, String picture_path, long id) {
-		
+public class Profile {
+
+	private long id;
+	private String name;
+	private String picturePath;
+
+	public Profile(String name, String picturePath) {
+	}
+
+	protected Profile(Cursor cursor) {
+	}
+
+	public long getId() {
+		return id;
 	}
 
 	public String getName() {
@@ -27,39 +31,11 @@ public class Profile implements Serializable {
 		this.name = name;
 	}
 
-	public String getPicture_path() {
-		return picture_path;
+	public String getPicturePath() {
+		return picturePath;
 	}
 
-	public void setPicture_path(String picture_path) {
-		this.picture_path = picture_path;
+	public void setPicturePath(String picturePath) {
+		this.picturePath = picturePath;
 	}
-
-	
-
-	public long getProfile_id() {
-		return profile_id;
-	}
-
-	public void setProfile_id(long profile_id) {
-		this.profile_id = profile_id;
-	}
-
-	@Override
-	public void write(Json json) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void read(Json json, JsonValue jsonData) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	
-	
-
 }
-
