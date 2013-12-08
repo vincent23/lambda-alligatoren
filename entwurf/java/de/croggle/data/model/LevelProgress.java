@@ -1,8 +1,9 @@
 package de.croggle.data.model;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
-public class LevelProgress {
+public class LevelProgress implements Persistable {
 
 	private long id;
 	private long profileId;
@@ -77,5 +78,8 @@ public class LevelProgress {
 
 	public void setUsedTime(int usedTime) {
 		this.usedTime = usedTime;
+	}
+
+	public boolean persist(android.database.sqlite.SQLiteDatabase database) {
 	}
 }

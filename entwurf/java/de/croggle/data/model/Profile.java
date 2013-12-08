@@ -1,13 +1,14 @@
 package de.croggle.data.model;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 /**
  * @navassoc 1 Has 1 de.croggle.data.model.UserData
  * @navassoc 1 Has 1 de.croggle.data.model.Settings
  */
 
-public class Profile {
+public class Profile implements Persistable {
 
 	private long id;
 	private String name;
@@ -73,5 +74,8 @@ public class Profile {
 
 	public void setColorblindEnabled(boolean colorblindEnabled) {
 		this.colorblindEnabled = colorblindEnabled;
+	}
+
+	public boolean persist(android.database.sqlite.SQLiteDatabase database) {
 	}
 }

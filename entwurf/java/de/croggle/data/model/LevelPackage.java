@@ -1,8 +1,9 @@
 package de.croggle.data.model;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
-class LevelPackage {
+public class LevelPackage implements Persistable {
 
 	private long id;
 	private String path;
@@ -23,5 +24,8 @@ class LevelPackage {
 
 	public void setPath() {
 		this.path = path;
+	}
+
+	public boolean persist(android.database.sqlite.SQLiteDatabase database) {
 	}
 }
