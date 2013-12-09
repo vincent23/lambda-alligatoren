@@ -5,7 +5,8 @@ package de.croggle.ui.screens;
  */
 public abstract class AbstractScreen implements Screen{
 
-	private com.badlogic.gdx.scenes.scene2d.Stage stage;
+	private	AlligatorApp game;
+	private Stage stage;
 	private Table table;
 	
 	void dispose();

@@ -23,6 +23,7 @@ import de.croggle.data.LocalizationManager;
  * @navassoc 1 - 1 de.croggle.data.AssetManager
  * @navassoc 1 - 1 de.croggle.data.DataManager
  * @navassoc 1 - 1 de.croggle.data.LocalizationManager
+ * @assoc 1 - * de.croggle.ui.screens.AbstractScreen
  */
 public class AlligatorApp extends com.badlogic.gdx.ApplicationListener {
 	private TimeService timeService;
