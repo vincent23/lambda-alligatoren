@@ -44,10 +44,12 @@ endif
 
 # Javadoc
 SRCDIR			= $(ROOTDIR)/java
-DOCLETPATH		= $(ROOTDIR)/lib
+LIBPATH			= $(ROOTDIR)/lib
+DOCLETPATH		= $(LIBPATH)
 PACKAGE			= de.croggle
 PACKAGEPATH		= $(SRCDIR)/$(subst .,/,$(PACKAGE))
 JAVAFILES		= $(shell find $(PACKAGEPATH) -type f -name '*.java')
+CLASSPATH		= $(LIBPATH)/gdx.jar $(LIBPATH)/android.jar 
 JAVADOC			= javadoc -classpath "$(CLASSPATH)" -quiet \
 					-sourcepath $(SRCDIR) -subpackages $(PACKAGE)
 
