@@ -30,8 +30,11 @@ package de.croggle;
  * 
  * @match class de.croggle.renderer.*
  * @opt nodefillcolor 6
+ * 
+ * match class android.*|com.badlogic.*
+ * @opt !all
  *
- * @match class java.*|android.*
+ * @match class java.*
  * @opt hide
  * 
  * @excludeFromTex

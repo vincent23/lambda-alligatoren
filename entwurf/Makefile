@@ -36,6 +36,8 @@ REQUIREFILE		= 	@if [ ! -f $1 ];\
 					fi
 
 AT				= @
+SPACE 			:=
+SPACE 			+=
 MUTE			= 1> /dev/null
 ifeq ($(VERBOSE),3)
 	AT			=
@@ -49,7 +51,10 @@ DOCLETPATH		= $(LIBPATH)
 PACKAGE			= de.croggle
 PACKAGEPATH		= $(SRCDIR)/$(subst .,/,$(PACKAGE))
 JAVAFILES		= $(shell find $(PACKAGEPATH) -type f -name '*.java')
-CLASSPATH		= $(LIBPATH)/gdx.jar $(LIBPATH)/android.jar 
+CP				=
+CP				+= $(LIBPATH)/gdx.jar
+CP				+= $(LIBPATH)/android.jar
+CLASSPATH		= $(subst $(SPACE),:,$(strip $(CP)))
 JAVADOC			= javadoc -classpath "$(CLASSPATH)" -quiet \
 					-sourcepath $(SRCDIR) -subpackages $(PACKAGE)
 

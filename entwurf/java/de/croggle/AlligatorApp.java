@@ -23,7 +23,6 @@ import de.croggle.data.LocalizationManager;
  * @assoc 1 - * de.croggle.ui.screens.AbstractScreen
  */
 public class AlligatorApp extends com.badlogic.gdx.Game {
-	private TimeService timeService;
 	private GameController gameController;
 	private AchievementController achievementController;
 	private LevelPackagesController levelPackagesController;
