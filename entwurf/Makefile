@@ -44,12 +44,13 @@ endif
 
 # Javadoc
 SRCDIR			= $(ROOTDIR)/java
-DOCLETPATH		= $(ROOTDIR)/doclets
+DOCLETPATH		= $(ROOTDIR)/lib
 PACKAGE			= de.croggle
 PACKAGEPATH		= $(SRCDIR)/$(subst .,/,$(PACKAGE))
 JAVAFILES		= $(shell find $(PACKAGEPATH) -type f -name '*.java')
 JAVADOC			= javadoc -classpath "$(CLASSPATH)" -quiet \
 					-sourcepath $(SRCDIR) -subpackages $(PACKAGE)
+
 # UMLGraph
 UMLGRAPHDOCLET	= -docletpath $(DOCLETPATH)/UmlGraph.jar -doclet org.umlgraph.doclet.UmlGraph $(VIEWSOPT) \
 					-d "$(OUTDIR)" -outputencoding UTF-8

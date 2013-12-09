@@ -7,18 +7,16 @@ package ;
  * opt views
  * 
  * @opt all
- * 
+ * @opt attributes
+ * @opt visibility
+ * @opt types
  * @opt nodefontname Verdana
  * @opt edgefontname Verdana
  * @opt edgecolor #565656
  * @opt edgefontsize 12
  * @opt nodesep 0.1
- * 
- * I tried the qualified names option, but it generated java.lang.String
- * opt qualify
- * opt postfixpackage
- * 
  * @hidden
+ * @excludeFromTex
  */
 public class UMLOptions {
         

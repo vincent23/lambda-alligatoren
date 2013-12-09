@@ -3,19 +3,18 @@ package de.croggle;
 /**
  * @view
  *
- * @match class .*
- * @opt all
+ * I tried the qualified names option, but it generated java.lang.String
+ * opt qualify
+ * opt postfixpackage
  * 
  * See http://www.graphviz.org/doc/info/colors.html#brewer for colorscheme set312
+ * @match class .*
+ * @opt all
  * @opt nodefillcolor 1
  * @opt nodefontname Verdana
  * @opt edgefontname Verdana
  * @opt edgecolor #565656
  * @opt edgefontsize 12 
- * 
- * I tried the qualified names option, but it generated java.lang.String
- * opt qualify
- * opt postfixpackage
  * 
  * @match class de.croggle.*
  * @opt nodefillcolor 2
@@ -34,6 +33,8 @@ package de.croggle;
  *
  * @match class java.*|android.*
  * @opt hide
+ * 
+ * @excludeFromTex
  */
 public class PackageUMLView {
 }

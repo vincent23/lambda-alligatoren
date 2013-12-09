@@ -1,3 +1,2 @@
 out/
-!doclets/*.jar
 java/de/**/UMLOptions.java
