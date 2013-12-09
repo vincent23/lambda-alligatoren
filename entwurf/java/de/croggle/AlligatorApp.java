@@ -11,8 +11,6 @@ import de.croggle.data.DataManager;
 import de.croggle.data.LocalizationManager;
 
 /**
- * 
- * @navassoc 1 - 1 TimeService
  * @navassoc 1 - 1 de.croggle.game.GameController
  * @navassoc 1 - 1 de.croggle.game.LevelController
  * @navassoc 1 - 1 de.croggle.game.LevelPackagesController
@@ -34,10 +32,6 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	private AssetManager assetManager;
 	private ProfileController profileController;
 	private LocalizationManager localizationMAnager;
-	
-	public TimeService getTimeService () {
-		return null;
-	}
 	
 	public GameController getGameController() {
 		return null;
