@@ -3,7 +3,7 @@ package de.croggle.game.model;
 /**
  * a special type of level in which the player has to choose from several options, one of which is the correct one.
  */
-class MultipleChoiceLevel extends Level {
+public class MultipleChoiceLevel extends Level {
 	
 	
 	private Board[] answers;
