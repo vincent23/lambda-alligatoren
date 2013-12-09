@@ -3,6 +3,6 @@ package de.croggle.ui.screens;
 /**
  * 
  */
-public class LevelsOverviewScreen implements Screen{
+public class LevelsOverviewScreen extends AbstractScreen{
 	
 }

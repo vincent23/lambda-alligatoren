@@ -3,6 +3,6 @@ package de.croggle.ui.screens;
 /**
  * 
  */
-public class ProfileChangeNameScreen implements Screen{
+public class ProfileChangeNameScreen extends AbstractScreen{
 	
 }
