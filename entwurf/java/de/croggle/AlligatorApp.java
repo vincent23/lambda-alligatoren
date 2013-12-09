@@ -11,7 +11,6 @@ import de.croggle.data.DataManager;
 import de.croggle.data.LocalizationManager;
 
 /**
- * TODO: extends should be implements since com.badlogic.gdx.ApplicationListener is an interface
  * 
  * @navassoc 1 - 1 TimeService
  * @navassoc 1 - 1 de.croggle.game.GameController
@@ -25,7 +24,7 @@ import de.croggle.data.LocalizationManager;
  * @navassoc 1 - 1 de.croggle.data.LocalizationManager
  * @assoc 1 - * de.croggle.ui.screens.AbstractScreen
  */
-public class AlligatorApp extends com.badlogic.gdx.ApplicationListener {
+public class AlligatorApp extends com.badlogic.gdx.Game {
 	private TimeService timeService;
 	private GameController gameController;
 	private AchievementController achievementController;
