@@ -1,4 +1,4 @@
-package de.croggle.data.model;
+package de.croggle.game.model;
 
 /**
  * 
