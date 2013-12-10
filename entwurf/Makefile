@@ -182,3 +182,5 @@ clean-doc-tmp:
 # Used later to clean all UMLGraph specific files in source tree
 clean-src:
 	$(AT)find $(SRCDIR)/de/ -type f -name 'uml.java' -exec rm -f {} \;
+	$(AT)find $(SRCDIR)/de/ -type f -name 'UMLOptions.java' -exec rm -f {} \;
+	$(AT)find $(SRCDIR)/de/ -type f -name 'PackageUMLView.java' -exec rm -f {} \;
