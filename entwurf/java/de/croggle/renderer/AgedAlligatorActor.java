@@ -2,19 +2,19 @@ package de.croggle.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import de.croggle.game.model.Board;
+import de.croggle.game.model.AgedAlligator;
 
 /**
- * An actor used for representing an alligator constellation.
+ * An actor used for representing an aged alligator.
  */
-class BoardActor extends ParentActor {
+class AgedAlligatorActor extends ParentActor {
 
 	/**
 	 * Creates a new actor.
 	 *
-	 * @param board Starting board to draw.
+	 * @param agedAlligator AgedAlligator to draw.
 	 */
-	public BoardActor(Board board) {
+	public AgedAlligatorActor(AgedAlligator agedAlligator) {
 	}
 
 	@Override

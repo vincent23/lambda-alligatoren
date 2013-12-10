@@ -2,19 +2,19 @@ package de.croggle.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import de.croggle.game.model.Board;
+import de.croggle.game.model.Egg;
 
 /**
- * An actor used for representing an alligator constellation.
+ * An actor used for representing an egg.
  */
-class BoardActor extends ParentActor {
+class EggActor extends com.badlogic.gdx.scenes.scene2d.Actor {
 
 	/**
 	 * Creates a new actor.
 	 *
-	 * @param board Starting board to draw.
+	 * @param egg Egg to draw.
 	 */
-	public BoardActor(Board board) {
+	public EggActor(Egg egg) {
 	}
 
 	@Override
