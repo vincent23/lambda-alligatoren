@@ -7,7 +7,7 @@ import de.croggle.game.model.Board;
  */
 public class Simulator {
     private Board entranceBoard;
-    private Family[30] history;
+    private Family[] history; // 30 elements needed.
     
     /**
      * Method that evaluates one step in the Lambda Calculus
