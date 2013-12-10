@@ -7,7 +7,6 @@ import de.croggle.game.AchievementController;
 import de.croggle.data.PersistenceManager;
 import de.croggle.data.ProfileController;
 import de.croggle.data.AssetManager;
-import de.croggle.data.DataManager;
 import de.croggle.data.LocalizationManager;
 
 /**
