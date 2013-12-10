@@ -62,7 +62,8 @@ JAVADOC			= javadoc -classpath "$(CLASSPATH)" -quiet \
 UMLGRAPHDOCLET	= -docletpath $(DOCLETPATH)/UmlGraph.jar -doclet org.umlgraph.doclet.UmlGraph $(VIEWSOPT) \
 					-private -d "$(OUTDIR)" -outputencoding UTF-8
 VIEWSOPT		= -views
-VIEWFILES		= $(PACKAGEPATH)/uml.java $(shell find $(PACKAGEPATH) -type f -name 'uml.java')
+VIEWFILES		= $(PACKAGEPATH)/uml.java 
+#$(shell find $(PACKAGEPATH) -type f -name 'uml.java')
 UMLFILES		= $(addprefix $(OUTDIR)/,$(notdir $(subst .java,.dot,$(VIEWFILES))))
 UMLDEPS			= $(UMLFILES)
 EXPORTFORMAT	= svg
