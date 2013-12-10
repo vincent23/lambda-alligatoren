@@ -12,13 +12,17 @@ class UMLOptions {
 /**
  * @view
  * 
- * @match .*
+ * @match class .*
  * @opt !all
  * @opt nodefillcolor 1
  * @opt nodefontname Verdana
  * @opt edgefontname Verdana
  * @opt edgecolor #565656
  * @opt edgefontsize 10
+ * 
+ * @match class com.badlogic.gdx.*
+ * @opt qualify
+ * @opt postfixpackage
  *
  * @match class de.croggle.*
  * @opt all
@@ -35,6 +39,9 @@ class UMLOptions {
  * 
  * @match class de.croggle.renderer.*
  * @opt nodefillcolor 6
+ * 
+ * @match class de.croggle.util.*
+ * @opt nodefillcolor 7
  * 
  * @match class java.*
  * @opt hide

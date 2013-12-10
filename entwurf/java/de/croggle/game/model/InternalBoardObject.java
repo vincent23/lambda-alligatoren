@@ -19,5 +19,5 @@ public interface InternalBoardObject extends BoardObject {
 	 * </ol>
 	 * 
 	 */
-	public Family getParent();
+	public Parent getParent();
 }

@@ -1,6 +1,7 @@
 package de.croggle.game.model;
 
-import de.croggle.data.model.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation;
+
 /**
  * @composed 1 - 3 Board
  */

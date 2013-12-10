@@ -1,10 +1,10 @@
 package de.croggle.data;
 
-import de.croggle.data.media.Animation;
-import de.croggle.data.media.BitmapFont;
-import de.croggle.data.media.Texture;
-import de.croggle.data.media.Sound;
-import de.croggle.data.media.Music;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 
 /**
  * 
@@ -18,41 +18,43 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	
 	/**
 	 * 
-	 * @return
+	 * 
+	 * @param identifier A path resolvable by the assetmanager to the requested Animation
+	 * @return The Animation denoted by the given identifier
 	 */
-	public Animation getAnimation() {
+	public Animation getAnimation(String identifier) {
 		return null;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * @param identifier A path resolvable by the assetmanager to the requested Texture
+	 * @return The Texture denoted by the given identifier
 	 */
-	public Image getTexture() {
+	public Texture getTexture(String identifier) {
 		return null;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * @param identifier A path resolvable by the assetmanager to the requested BitmapFont
+	 * @return The BitmapFont denoted by the given identifier
 	 */
-	public BitmapFont getFont() {
+	public BitmapFont getFont(String identifier) {
 		return null;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * @param identifier A path resolvable by the assetmanager to the requested Sound
+	 * @return The Sound denoted by the given identifier
 	 */
-	public Sound getSound() {
+	public Sound getSound(String identifier) {
 		return null;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * @param identifier A path resolvable by the assetmanager to the requested Music
+	 * @return The Music denoted by the given identifier
 	 */
-	public Music getMusic() {
+	public Music getMusic(String identifier) {
 		return null;
 	}
 	
