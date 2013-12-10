@@ -5,15 +5,14 @@ import de.croggle.game.model.Board;
 /**
  * An actor used for representing an alligator constellation.
  */
-class ConstellationActor extends com.badlogic.gdx.scenes.scene2d.Actor {
+class BoardActor extends com.badlogic.gdx.scenes.scene2d.Actor {
 
 	/**
 	 * Creates a new actor.
 	 * 
-	 * @param constellation
-	 *            Starting constellation to draw.
+	 * @param board Starting board to draw.
 	 */
-	public ConstellationActor(Board constellation) {
+	public BoardActor(Board board) {
 
 	}
 
