@@ -13,7 +13,7 @@ public class Level implements Persistable {
 	private String path;
 
 	/**
-	 * Construct a new Level using it's properties.
+	 * Construct a new Level based on it's properties.
 	 *
 	 * @param packageId The id of the package the level belongs to.
 	 * @param path The path to the level file.
