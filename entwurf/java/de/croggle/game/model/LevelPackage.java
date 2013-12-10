@@ -1,7 +1,7 @@
 package de.croggle.game.model;
 
 /**
- * compilation of several, thematicly linked, levels.
+ * Sompilation of several, thematically linked, levels.
  */
 public class LevelPackage {
 	
