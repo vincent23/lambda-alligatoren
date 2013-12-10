@@ -15,7 +15,7 @@ Available targets:~\
 	$$ make texdoclet : Builds a .tex file from the java sources~\
 	$$ make document ~\
 	$$ make clean : Delete all contents of out/ folder and generated java files in source tree~\
-	$$ make clean-src : Delete all UMLOptions.java in the java/de/... folders~\
+	$$ make clean-src : Delete all uml.java in the java/de/... folders~\
 	$$ make clean-out : Delete all files in out/~\
 	$$ make clean-uml : Delete all uml diagram related files in out/~\
 	$$ make clean-doc : Delete all latex related files in out/~\
@@ -60,15 +60,11 @@ JAVADOC			= javadoc -classpath "$(CLASSPATH)" -quiet \
 
 # UMLGraph
 UMLGRAPHDOCLET	= -docletpath $(DOCLETPATH)/UmlGraph.jar -doclet org.umlgraph.doclet.UmlGraph $(VIEWSOPT) \
-					-d "$(OUTDIR)" -outputencoding UTF-8
-UMLFILE			= $(OUTDIR)/uml.dot
-UMLDEPS			= $(UMLFILE)
-ifeq ($(VIEWS),yes)
-	VIEWSOPT	= -views
-	VIEWFILES	= $(shell find $(PACKAGEPATH) -type f -name '*UMLView.java')
-	UMLFILES	= $(addprefix $(OUTDIR)/,$(notdir $(subst .java,.dot,$(VIEWFILES))))
-	UMLDEPS		= $(UMLFILES)
-endif
+					-private -d "$(OUTDIR)" -outputencoding UTF-8
+VIEWSOPT		= -views
+VIEWFILES		= $(PACKAGEPATH)/uml.java $(shell find $(PACKAGEPATH) -type f -name 'uml.java')
+UMLFILES		= $(addprefix $(OUTDIR)/,$(notdir $(subst .java,.dot,$(VIEWFILES))))
+UMLDEPS			= $(UMLFILES)
 EXPORTFORMAT	= svg
 DPI				= 72
 
@@ -92,27 +88,22 @@ help:
 
 debug:
 	$(ECHO) nothing to see here...
+	$(ECHO) $(VIEWFILES)
 
 umlgraph: $(UMLDEPS)
 	@true
 
-# Make uml graphs based on package
-$(UMLFILE): $(OUTDIR)/ $(PACKAGEPATH)/UMLOptions.java $(JAVAFILES)
-	$(call REQUIRE,javadoc)
-	$(ECHO) building diagram...
-	$(AT)$(JAVADOC) $(UMLGRAPHDOCLET) -output $(notdir $@) $(MUTE)
-	
-# Have UMLOptions class updated in every subpackage
-$(SRCDIR)/%/UMLOptions.java: $(SRCDIR)/UMLOptions.java
-	$(ECHO) Updating UMLOptions for package $(PACKAGE)...
-	$(AT)cp -f $< $@
-	$(AT)perl -i -pe 's/.*/package $(PACKAGE);/ if $$. == 1' $@
-
 # Make uml graphs based on views
-$(UMLFILES): $(OUTDIR)/ $(PACKAGEPATH)/UMLOptions.java $(JAVAFILES)
+$(UMLFILES): $(OUTDIR)/ $(PACKAGEPATH)/uml.java $(JAVAFILES)
 	$(call REQUIRE,javadoc)
 	$(ECHO) building diagram...
 	$(AT)$(JAVADOC) $(UMLGRAPHDOCLET) $(MUTE)
+	
+# Have uml class updated in every subpackage
+$(SRCDIR)/%/uml.java: $(SRCDIR)/uml.java
+	$(ECHO) Updating uml.java for package $(PACKAGE)...
+	$(AT)cp -f $< $@
+	$(AT)perl -i -pe 's/.*/package $(PACKAGE);/ if $$. == 1' $@
 
 # Legacy: Delegate export:xxx commands to export
 export\:%: export
@@ -189,5 +180,4 @@ clean-doc-tmp:
 	
 # Used later to clean all UMLGraph specific files in source tree
 clean-src:
-	$(AT)find $(SRCDIR)/de/ -type f -name 'UMLOptions.java' -exec rm -f {} \;
-#	$(AT)find $(SRCDIR)/de/ -type f -name '*UMLView.java' -exec rm -f {} \;
+	$(AT)find $(SRCDIR)/de/ -type f -name 'uml.java' -exec rm -f {} \;
