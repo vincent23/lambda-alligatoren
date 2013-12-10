@@ -6,6 +6,8 @@ import de.croggle.game.model.AgedAlligator;
 
 /**
  * An actor used for representing an aged alligator.
+ *
+ * @navassoc 1 - 1 AgedAlligator
  */
 class AgedAlligatorActor extends ParentActor {
 

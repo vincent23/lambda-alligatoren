@@ -6,6 +6,8 @@ import de.croggle.game.model.ColoredAlligator;
 
 /**
  * An actor used for representing a colored alligator.
+ *
+ * @navassoc 1 - 1 ColoredAlligator
  */
 class ColoredAlligatorActor extends ParentActor {
 

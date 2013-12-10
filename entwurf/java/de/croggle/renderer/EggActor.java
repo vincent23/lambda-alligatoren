@@ -6,6 +6,8 @@ import de.croggle.game.model.Egg;
 
 /**
  * An actor used for representing an egg.
+ *
+ * @navassoc 1 - 1 Egg
  */
 class EggActor extends com.badlogic.gdx.scenes.scene2d.Actor {
 

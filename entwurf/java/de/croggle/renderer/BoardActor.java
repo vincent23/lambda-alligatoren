@@ -6,6 +6,8 @@ import de.croggle.game.model.Board;
 
 /**
  * An actor used for representing an alligator constellation.
+ *
+ * @navassoc 1 - 1 Board
  */
 class BoardActor extends ParentActor {
 
