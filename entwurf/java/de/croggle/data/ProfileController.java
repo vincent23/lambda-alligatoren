@@ -2,86 +2,71 @@ package de.croggle.data;
 
 import java.util.List;
 
-import de.croggle.trash.DBController;
-
 import android.content.Context;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract.Profile;
 
 
 /**
  * @navassoc 1 - * de.croggle.data.model.Profile
  */
-public class ProfileController {
+public class ProfileController extends SQLiteOpenHelper{
 	
-	public static final String KEY_ROWID = "id";
-	public static final String KEY_PROFILE_ID = "profile_id";
-	public static final String KEY_PROFILE_NAME = "profile_name";
-	public static final String KEY_PROFILE_PICTURE = "profile_picture";
-	public static final String KEY_MAX_LEVEL = "max_level";
+	public static final String KEY_ID = "id";
+	public static final String KEY_NAME = "name";
+	public static final String KEY_PICTUREPATH = "picturepath";
 	
-	private Context context;
-	private SQLiteDatabase db;
-	private DatabaseHelper DBHelper;
+	public static final String DATABASE_NAME = "profileDB";
+	public static final int DATABASE_VERSION = 1;
+	
+	private static final String CREATE_DATABASE = "null";
 	
 	public ProfileController(Context context) {
 		
+		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 	
-	private static class DatabaseHelper extends SQLiteOpenHelper 
-    {
-        DatabaseHelper(Context context) 
-        {
-            super(context, DBController.DATABASE_NAME, null, DBController.DATABASE_VERSION);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) 
-        {        
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, 
-        int newVersion) 
-        {               
-        }
-    }
-	
-	public ProfileController open() throws SQLException {
-		/*TODO*/
-		return null;
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+		
+		
 	}
-	
-	public void close() {
+
+
+
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		
 		
 	}
 	
-	public long insertProfile(de.croggle.data.model.Profile profile) {
+	public boolean addProfile(Profile profile) {
+		/*TODO*/
+		return false;
+	}
+	
+	public long getProfile(long id) {
 		/*TODO*/
 		return 0;
 	}
 	
-	/**
-	 * 
-	 */
-	public boolean modifyProfile(de.croggle.data.model.Profile profile) {
+	
+	public boolean updateProfile(Profile profile) {
 		/*TODO*/
 		return false;
 	}
 	
-	public boolean deleteProfile(de.croggle.data.model.Profile profile) {
+	public boolean deleteProfile(long id) {
 		/*TODO*/
 		return false;
 	}
 	
-	public List<de.croggle.data.model.Profile> getAllProfiles() {
+	public List<Profile> getAllProfiles() {
 		/*TODO*/
 		return null;
 	}
 	
-	public void delete() {
-		
-	}
+	
 
 }
