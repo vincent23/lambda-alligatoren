@@ -151,7 +151,7 @@ document: $(OUTDIR)/$(PDFNAME).pdf
 $(OUTDIR)/$(PDFNAME).pdf: $(OUTDIR) $(TEXDOCFILE) $(TEXFILES)
 	$(call REQUIRE,pdflatex)
 	$(ECHO) Building pdf document $(notdir $@)
-	$(AT)pdflatex -interaction batchmode -jobname $(PDFNAME) -output-directory $(OUTDIR) $(ROOTDIR)/$(TEXFILENAME).tex $(MUTE)
+	$(AT)pdflatex -interaction nonstopmode -jobname $(PDFNAME) -output-directory $(OUTDIR) $(ROOTDIR)/$(TEXFILENAME).tex $(MUTE)
 
 # Make sure, $(OUTDIR) exists
 $(OUTDIR)/:
