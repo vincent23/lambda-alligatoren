@@ -3,7 +3,7 @@ package de.croggle.game;
 import de.croggle.game.model.Board;
 
 /**
- * 
+ * @has 1 - 0-30 de.croggle.game.model.Board
  */
 public class Simulator {
     private Board entranceBoard;
