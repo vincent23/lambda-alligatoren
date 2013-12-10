@@ -9,7 +9,7 @@ import de.croggle.game.model.Egg;
  *
  * @navassoc 1 - 1 Egg
  */
-class EggActor extends com.badlogic.gdx.scenes.scene2d.Actor {
+public class EggActor extends com.badlogic.gdx.scenes.scene2d.Actor {
 
 	/**
 	 * Creates a new actor.

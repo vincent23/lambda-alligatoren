@@ -9,7 +9,7 @@ import de.croggle.game.model.AgedAlligator;
  *
  * @navassoc 1 - 1 AgedAlligator
  */
-class AgedAlligatorActor extends ParentActor {
+public class AgedAlligatorActor extends ParentActor {
 
 	/**
 	 * Creates a new actor.

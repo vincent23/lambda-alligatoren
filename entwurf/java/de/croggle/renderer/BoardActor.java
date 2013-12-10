@@ -9,7 +9,7 @@ import de.croggle.game.model.Board;
  *
  * @navassoc 1 - 1 Board
  */
-class BoardActor extends ParentActor {
+public class BoardActor extends ParentActor {
 
 	/**
 	 * Creates a new actor.
