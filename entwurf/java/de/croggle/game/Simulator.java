@@ -7,11 +7,21 @@ import de.croggle.game.model.Board;
  */
 public class Simulator {
     private Board entranceBoard;
+    private Family[30] history;
     
-    public void startSimulation() {
-        //currentConstellation is saved in entranceConstellation. After this the simulation is started. Either the simulation terminates or the user pushes a button to get back to the "Plaziermodus".
+    /**
+     * Method that evaluates one step in the Lambda Calculus
+     */
+    public Board evaluate(Board entranceBoard) {
+        // gotta safe the old board to history[*rightplace*]
     }
-    public void stopSimulation() {
-        //currentConstellation is restored.
+    
+    /**
+     * Method that reverses the last evaluation step.
+     */
+    public Board undo() {
+        
     }
+    
+    
 }
