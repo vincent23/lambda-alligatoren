@@ -2,10 +2,12 @@ package de.croggle.data;
 
 import java.util.List;
 
+import de.croggle.data.model.Profile;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract.Profile;
+
 
 
 /**
