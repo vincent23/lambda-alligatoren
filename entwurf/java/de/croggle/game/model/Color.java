@@ -7,7 +7,7 @@ public class Color {
 	private int id;
 
 	/**
-     * Get the color id.
+     * Get the globally unique color id.
      */
 	public int getId() {
 	}
