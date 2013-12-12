@@ -8,7 +8,7 @@ import de.croggle.game.model.ColoredAlligator;
 /**
  * An actor used for representing a parent object.
  *
- * @navassoc 1 - 1 Parent
+ * @navassoc 1 - 1 de.croggle.game.model.Parent
  */
 public class ParentActor extends Actor {
 	private ParentActor() {
