@@ -5,7 +5,6 @@ import de.croggle.game.LevelController;
 import de.croggle.game.LevelPackagesController;
 import de.croggle.game.AchievementController;
 import de.croggle.data.PersistenceManager;
-import de.croggle.data.ProfileController;
 import de.croggle.data.AssetManager;
 import de.croggle.data.LocalizationManager;
 
@@ -15,9 +14,6 @@ import de.croggle.data.LocalizationManager;
  * @navassoc 1 - 1 de.croggle.game.LevelPackagesController
  * @navassoc 1 - 1 de.croggle.game.AchievementController
  * @navassoc 1 - 1 de.croggle.data.PersistenceManager
- * @navassoc 1 - 1 de.croggle.data.ProfileController
- * @navassoc 1 - 1 de.croggle.data.SettingController
- * @navassoc 1 - 1 de.croggle.data.StatisticController
  * @navassoc 1 - 1 de.croggle.data.AssetManager
  * @navassoc 1 - 1 de.croggle.data.LocalizationManager
  * @assoc 1 - * de.croggle.ui.screens.AbstractScreen
@@ -29,7 +25,6 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	private LevelController levelController;
 	private PersistenceManager persistenceManager;
 	private AssetManager assetManager;
-	private ProfileController profileController;
 	private LocalizationManager localizationMAnager;
 	
 		
@@ -54,10 +49,6 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	}
 	
 	public AssetManager getAssetManager() {
-		return null;
-	}
-	
-	public ProfileController getProfileController() {
 		return null;
 	}
 	

@@ -1,15 +1,12 @@
 package de.croggle.data.model;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+
 
 /**
  * Represents the saved progress of a user in one level in the database.
  */
-public class LevelProgress implements Persistable {
+public class LevelProgress {
 
-	private long id;
-	private long profileId;
 	private long levelId;
 	private boolean solved;
 	private String currentBoard;
@@ -28,7 +25,7 @@ public class LevelProgress implements Persistable {
 	 * @param usedHints The number of hints used by the user.
 	 * @param usedTime The time spent in the level by the user.
 	 */
-	public LevelProgress(long profileId, long levelId, boolean solved, String currentBoard, int usedResets, int usedHints, int usedTime) {
+	public LevelProgress (long levelId, boolean solved, String currentBoard, int usedResets, int usedHints, int usedTime) {
 	}
 
 	/**
@@ -37,33 +34,6 @@ public class LevelProgress implements Persistable {
 	 * @param cursor The cursor.
 	 */
 	public LevelProgress(android.database.Cursor cursor) {
-	}
-
-	/**
-	 * Get the id of the level progress in the database.
-	 *
-	 * @return The id.
-	 */
-	public long getId() {
-		return id;
-	}
-
-	/**
-	 * Get the id of the user's profile.
-	 *
-	 * @return The profile id.
-	 */
-	public long getProfiledId() {
-		return profileId;
-	}
-
-	/**
-	 * Set the id of the user's profile.
-	 *
-	 * @param profileId The profile id.
-	 */
-	public void setProfileId(long profileId) {
-		this.profileId = profileId;
 	}
 
 	/**
@@ -174,7 +144,4 @@ public class LevelProgress implements Persistable {
 		this.usedTime = usedTime;
 	}
 
-	@Override
-	public boolean persist(android.database.sqlite.SQLiteDatabase database) {
-	}
 }

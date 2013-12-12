@@ -11,9 +11,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 * @navassoc 1 - * de.croggle.data.model.Setting
 */
 
-public class SettingController extends SQLiteOpenHelper {
+public class SettingManager extends SQLiteOpenHelper {
 	
-		public static final String KEY_ID = "id";
+		public static final String KEY_PROFILE_NAME = "profileName";
 		public static final String KEY_VOLUME_MUSIC = "volumeMusic";
 		public static final String KEY_VOLUME_EFFECTS = "volumeEffects";
 		public static final String KEY_ZOOM_ENABLED = "zoomEnabled";
@@ -24,7 +24,7 @@ public class SettingController extends SQLiteOpenHelper {
 		
 		private static final String CREATE_DATABASE = "null";
 		
-		public SettingController(Context context) {
+		public SettingManager(Context context) {
 			
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		}
@@ -43,12 +43,12 @@ public class SettingController extends SQLiteOpenHelper {
 			
 		}
 		
-		public boolean addSetting(Setting setting) {
+		public boolean addSetting(String profileName, Setting setting) {
 			/*TODO*/
 			return false;
 		}
 		
-		public long getSetting(long id) {
+		public long getSetting(String profileName) {
 			/*TODO*/
 			return 0;
 		}
@@ -56,21 +56,17 @@ public class SettingController extends SQLiteOpenHelper {
 		/**
 		 * 
 		 */
-		public boolean updateSetting(long id, Setting setting) {
+		public boolean updateSetting(String profileName, Setting setting) {
 			/*TODO*/
 			return false;
 		}
 		
-		public boolean deleteSetting(long id) {
+		public boolean deleteSetting(String profileName) {
 			/*TODO*/
 			return false;
 		}
 		
-		public List<Setting> getAllSettings() {
-			/*TODO*/
-			return null;
-		}
-		
+			
 		
 
 }

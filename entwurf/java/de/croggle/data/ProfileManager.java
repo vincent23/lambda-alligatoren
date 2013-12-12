@@ -13,10 +13,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * @navassoc 1 - * de.croggle.data.model.Profile
  */
-public class ProfileController extends SQLiteOpenHelper{
+public class ProfileManager extends SQLiteOpenHelper{
 	
-	public static final String KEY_ID = "id";
-	public static final String KEY_NAME = "name";
+
+	public static final String KEY_PROFILE_NAME = "profileName";
 	public static final String KEY_PICTUREPATH = "picturepath";
 	
 	public static final String DATABASE_NAME = "profileDB";
@@ -24,7 +24,7 @@ public class ProfileController extends SQLiteOpenHelper{
 	
 	private static final String CREATE_DATABASE = "null";
 	
-	public ProfileController(Context context) {
+	public ProfileManager(Context context) {
 		
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -48,7 +48,7 @@ public class ProfileController extends SQLiteOpenHelper{
 		return false;
 	}
 	
-	public long getProfile(long id) {
+	public long getProfile(String profileName) {
 		/*TODO*/
 		return 0;
 	}
@@ -59,7 +59,7 @@ public class ProfileController extends SQLiteOpenHelper{
 		return false;
 	}
 	
-	public boolean deleteProfile(long id) {
+	public boolean deleteProfile(String profileName) {
 		/*TODO*/
 		return false;
 	}

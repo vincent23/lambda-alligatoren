@@ -6,4 +6,8 @@ package de.croggle.game.model;
  */
 public class Achievement {
 	
+	private String achievementText;
+	private String picturePath;
+	private int unlockValue;
+	
 }

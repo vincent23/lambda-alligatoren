@@ -11,9 +11,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 * @navassoc 1 - * de.croggle.data.model.Statistic
 */
 
-public class StatisticController extends SQLiteOpenHelper {
+public class StatisticManager extends SQLiteOpenHelper {
 	
-		public static final String KEY_ID = "id";
+		public static final String KEY_PROFILE_NAME = "profileName";
 		public static final String KEY_PLAYTIME = "playtime";
 		public static final String KEY_HINTS = "hints";
 		public static final String KEY_LEVELS_COMPLETE = "levelsComplete";
@@ -24,7 +24,7 @@ public class StatisticController extends SQLiteOpenHelper {
 		
 		private static final String CREATE_DATABASE = "null";
 
-		public StatisticController(Context context) {
+		public StatisticManager(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		}
 		
@@ -43,32 +43,28 @@ public class StatisticController extends SQLiteOpenHelper {
 			
 		}
 		
-		public boolean addStatistic(Statistic statistic) {
+		public boolean addStatistic(String profileName, Statistic statistic) {
 			/*TODO*/
 			return false;
 		}
 		
-		public long getStatistic(long id) {
+		public long getStatistic(String profileName) {
 			/*TODO*/
 			return 0;
 		}
 				
 
-		public boolean updateStatistic(long id, Statistic statistic) {
+		public boolean updateStatistic(String profileName,  Statistic statistic) {
 			/*TODO*/
 			return false;
 		}
 		
-		public boolean deleteStatistic(long id) {
+		public boolean deleteStatistic(String profileName) {
 			/*TODO*/
 			return false;
 		}
 		
-		public List<Statistic> getAllStatistics() {
-			/*TODO*/
-			return null;
-		}
-		
+				
 		
 
 }
