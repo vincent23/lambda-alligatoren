@@ -1,6 +1,6 @@
 package de.croggle.game.model;
 
-import de.croggle.game.BoardObjectVisitor;
+import de.croggle.game.visitors.BoardObjectVisitor;
 
 /**
  * An interface for any object, which resides on the board.
