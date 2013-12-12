@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * @has 1 - 0-30 de.croggle.game.model.Board
+ * @navassoc 1 - 1 de.croggle.util.RingBuffer
  */
 public class Simulator {
     private Board entranceBoard;

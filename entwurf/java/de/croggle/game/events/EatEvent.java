@@ -4,9 +4,9 @@ import de.croggle.game.model.InternalBoardObject;
 import de.croggle.game.model.ColoredAlligator;
 
 /**
- * The board event that is produced when a simulator applies the begin of
+ * This board event is produced when a simulator applies the begin of
  * the eating rule. That is, when a subtree (an alligator with its family
- * or alternativleys just an egg) is "eaten" by another alligator.
+ * or alternatively just an egg) is "eaten" by another alligator.
  */
 public class EatEvent implements BoardEvent {
 	
