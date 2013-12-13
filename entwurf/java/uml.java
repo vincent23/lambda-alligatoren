@@ -31,10 +31,10 @@ class UMLOptions {
  * @match class de.croggle.ui.*
  * @opt nodefillcolor 3
  *
- * @match class de.croggle.game.*
+ * @match class de.croggle.controller.*
  * @opt nodefillcolor 4
  * 
- * @match class de.croggle.data.*
+ * @match class de.croggle.data.manager.*
  * @opt nodefillcolor 5
  * 
  * @match class de.croggle.renderer.*

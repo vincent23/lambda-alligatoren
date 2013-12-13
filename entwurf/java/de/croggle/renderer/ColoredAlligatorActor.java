@@ -2,7 +2,7 @@ package de.croggle.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import de.croggle.game.model.ColoredAlligator;
+import de.croggle.model.ColoredAlligator;
 
 /**
  * An actor used for representing a colored alligator.

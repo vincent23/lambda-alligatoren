@@ -1,21 +1,21 @@
 package de.croggle;
 
-import de.croggle.game.GameController;
-import de.croggle.game.LevelController;
-import de.croggle.game.LevelPackagesController;
-import de.croggle.game.AchievementController;
-import de.croggle.data.PersistenceManager;
-import de.croggle.data.AssetManager;
-import de.croggle.data.LocalizationManager;
+import de.croggle.controller.AchievementController;
+import de.croggle.controller.GameController;
+import de.croggle.controller.LevelController;
+import de.croggle.controller.LevelPackagesController;
+import de.croggle.data.manager.AssetManager;
+import de.croggle.data.manager.LocalizationManager;
+import de.croggle.data.manager.PersistenceManager;
 
 /**
- * @navassoc 1 - 1 de.croggle.game.GameController
- * @navassoc 1 - 1 de.croggle.game.LevelController
- * @navassoc 1 - 1 de.croggle.game.LevelPackagesController
- * @navassoc 1 - 1 de.croggle.game.AchievementController
- * @navassoc 1 - 1 de.croggle.data.PersistenceManager
- * @navassoc 1 - 1 de.croggle.data.AssetManager
- * @navassoc 1 - 1 de.croggle.data.LocalizationManager
+ * @navassoc 1 - 1 de.croggle.controller.GameController
+ * @navassoc 1 - 1 de.croggle.controller.LevelController
+ * @navassoc 1 - 1 de.croggle.controller.LevelPackagesController
+ * @navassoc 1 - 1 de.croggle.controller.AchievementController
+ * @navassoc 1 - 1 de.croggle.data.manager.PersistenceManager
+ * @navassoc 1 - 1 de.croggle.data.manager.AssetManager
+ * @navassoc 1 - 1 de.croggle.data.manager.LocalizationManager
  * @assoc 1 - * de.croggle.ui.screens.AbstractScreen
  */
 public class AlligatorApp extends com.badlogic.gdx.Game {

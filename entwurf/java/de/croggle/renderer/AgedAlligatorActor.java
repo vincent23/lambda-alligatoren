@@ -2,7 +2,7 @@ package de.croggle.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import de.croggle.game.model.AgedAlligator;
+import de.croggle.model.AgedAlligator;
 
 /**
  * An actor used for representing an aged alligator.

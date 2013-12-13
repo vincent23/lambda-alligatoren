@@ -2,7 +2,7 @@ package de.croggle.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import de.croggle.game.model.Egg;
+import de.croggle.model.Egg;
 
 /**
  * An actor used for representing an egg.

@@ -2,7 +2,7 @@ package de.croggle.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import de.croggle.game.model.Board;
+import de.croggle.model.Board;
 
 /**
  * An actor used for representing an alligator constellation.

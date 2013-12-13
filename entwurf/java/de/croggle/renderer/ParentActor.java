@@ -1,18 +1,17 @@
 package de.croggle.renderer;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-import de.croggle.game.model.ColoredAlligator;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
  * An actor used for representing a parent object.
- *
- * @navassoc 1 - 1 de.croggle.game.model.Parent
+ * 
+ * @navassoc 1 - 1 de.croggle.model.Parent
  */
 public class ParentActor extends Actor {
-	private ParentActor() {
-	}
+	// causes error, wtf?
+	// private ParentActor() {
+	// }
 
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
