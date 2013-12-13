@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import de.croggle.data.Profile;
 
 /**
- * @navassoc 1 - * de.croggle.data.manager.Profile
+ * @navassoc 1 - * de.croggle.data.Profile
  */
 public class ProfileManager extends SQLiteOpenHelper {
 

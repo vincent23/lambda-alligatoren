@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import de.croggle.data.Setting;
 
 /**
- * @navassoc 1 - * de.croggle.data.manager.Setting
+ * @navassoc 1 - * de.croggle.data.Setting
  */
 
 public class SettingManager extends SQLiteOpenHelper {

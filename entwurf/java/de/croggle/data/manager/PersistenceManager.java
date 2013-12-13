@@ -9,7 +9,6 @@ import de.croggle.data.Statistic;
 
 /**
  * @navassoc 1 - 1 de.croggle.data.manager.ProfileManager
- * @navassoc 1 - 1 de.croggle.data.manager.LevelProgressManager
  * @navassoc 1 - 1 de.croggle.data.manager.SettingManager
  * @navassoc 1 - 1 de.croggle.data.manager.StatisticManager
  */

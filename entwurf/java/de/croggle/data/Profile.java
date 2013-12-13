@@ -1,8 +1,8 @@
 package de.croggle.data;
 
 /**
- * @navassoc 1 Has 1 de.croggle.data.manager.Statistic
- * @navassoc 1 Has 1 de.croggle.data.manager.Setting
+ * @navassoc 1 Has 1 de.croggle.data.Statistic
+ * @navassoc 1 Has 1 de.croggle.data.Setting
  */
 
 public class Profile {

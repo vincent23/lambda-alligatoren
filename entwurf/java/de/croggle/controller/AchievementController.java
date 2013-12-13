@@ -5,7 +5,7 @@ import java.util.List;
 import de.croggle.model.Achievement;
 
 /**
- * @navassoc 1 - * de.croggle.data.manager.Achievement
+ * @navassoc 1 - * de.croggle.model.Achievement
  */
 public class AchievementController {
 

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import de.croggle.data.Statistic;
 
 /**
- * @navassoc 1 - * de.croggle.data.manager.Statistic
+ * @navassoc 1 - * de.croggle.data.Statistic
  */
 
 public class StatisticManager extends SQLiteOpenHelper {
