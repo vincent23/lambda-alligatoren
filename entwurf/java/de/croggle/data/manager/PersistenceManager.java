@@ -11,12 +11,14 @@ import de.croggle.data.Statistic;
  * @navassoc 1 - 1 de.croggle.data.manager.ProfileManager
  * @navassoc 1 - 1 de.croggle.data.manager.SettingManager
  * @navassoc 1 - 1 de.croggle.data.manager.StatisticManager
+ * @navassoc 1 - 1 de.croggle.data.manager.LevelProgressManager
  */
 public class PersistenceManager {
 
 	private ProfileManager profileManager;
 	private SettingManager settingManager;
 	private StatisticManager statisticManager;
+	private LevelProgressManager levelProgressManager;
 
 	String currentProfileName;
 
