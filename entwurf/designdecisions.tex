@@ -1,14 +1,13 @@
 \section{Model View Controller}
-Wir benutzen das Architekturmuster "`Model View Controller"' um einen flexiblen Programmentwurf zu bieten.
+Um einen flexiblen Programmentwurf zu gewährleisten benutzen wir das Architekturmuster "`Model View Controller"'.
 Dieser soll spätere Änderungen und Erweiterungen erleichtern und eine Wiederverwendung der einzelnen 
 Programmkomponenten ermöglichen.
-Die Realisierung des Musters erfolg bei uns über eine Unterteilung der verschiedenen Bereiche in verschiedene Packages. Das Package "`ui"' den Bereich des "`Views"' repräsentiert, das Package
+Die Realisierung des Musters erfolg bei uns über eine Unterteilung der verschiedenen Bereiche in verschiedene Packages. Das Package "`ui"' repräsentiert den Bereich des "`Views"', das Package
  "`model"' das "`Model"' und das Package "`controller"' den "`Controller"'.
 
 \section{libgdx}
-Als Framework benutzen wir libgdx. Libgdx ist speziell auf die Anforderungen der Spielentwicklung angepasst
-und bietet so zur Entwicklung von "`Croggle"' an. Desweiteren bietet libgdx einen einfachen Aufbau des UIs sowie die Möglichkeit vereinfachtes Rendering zu nutzen. Die umfangreiche Dokumentation erleichtert die
-Einarbeitung in das Framework. Auch durch die Tatsache, dass libgdx ein open source Projekt und freeware ist, bietet sich libgdx als Framework an. Nach kurzer Abwägung haben wir uns dahr gegen die verwendung des Android Frameworks und für die Verwendung von libgdx entschieden.
+Für die Entwickelung unserer App haben wir uns entschieden libgdx zu benutzen. Dieses Framework ist speziell auf die Anforderungen der Spielentwicklung angepasst und erfüllt damit unsere Anforderungen besser als das Standart Android Framework. Libgdx bietet dem Benutzer die Möglichkeit einfach ästetisch ansprechende UIs aufzubauen und liefert von Haus aus vereinfachtes Rendering. Die umfangreiche Dokumentation erleichtert die
+Einarbeitung in das Framework. Auch die Tatsache, dass libgdx ein open source Projekt und freeware ist, spricht für die Nutzung. Nach kurzer Abwägung haben wir uns daher gegen die Verwendung des Android Frameworks und für die Verwendung von libgdx entschieden.
 
 \section{Aufbau des "`Model"'}
 Im "`Model"' haben wir uns dafür entschieden, die Repräsentation der Alligatoren Konstellationen in einer 
@@ -16,8 +15,8 @@ veränderbaren (mutable) Baumstruktur zu speichern. Im Gegensatz zur Variante di
 Einen weiteren Grund für die Entscheidung mit veränderbaren Objekten zu arbeiten ist, dass diese ein vertrautes Konzept darstellen, wohingegen für die Arbeit mit nicht veränderbaren Objekten eine längere einarbeitungs Zeit in den Umgang und den Konzepte der funktionalen Programmierung nötig wäre. 
 
 \section{Visitor Pattern}
-Durch die Darstellung der Alligatoren Konstellation in einer Baumstruktur liegt die Verwendung des Visitor
- Patterns nahe. Das Muster wird hier vorragig benutzt um einfach neue Operationen, die auf der Konstelation ausgeführt werden sollen, einfach hinzu fügen zu können. Desweiteren sollen die verwandten Operationen, 
+Durch die Darstellung der Alligatorenkonstellation in einer Baumstruktur liegt die Verwendung des Visitor
+ Patterns nahe. Das Muster wird hier vorragig benutzt um neue Operationen, die auf der Konstellation ausgeführt werden sollen, einfach hinzufügen zu können. Desweiteren sollen die verwandten Operationen, 
 die auf den verschiedenen Objekten des Baumes ausgeführt werden, zentral im Besucher gespeichert werden um
 sie so einfach und zentral verwalten und modifizieren zu können. 
 
