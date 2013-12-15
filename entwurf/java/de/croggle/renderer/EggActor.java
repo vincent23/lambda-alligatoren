@@ -9,7 +9,7 @@ import de.croggle.model.Egg;
  *
  * @navassoc 1 - 1 Egg
  */
-public class EggActor extends com.badlogic.gdx.scenes.scene2d.Actor {
+public class EggActor extends com.badlogic.gdx.scenes.scene2d.Actor implements BoardObjectChangedListener {
 
 	/**
 	 * Creates a new actor.
