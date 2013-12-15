@@ -3,7 +3,7 @@ package de.croggle.data;
 public class Statistic {
 	
 	private int playtime;
-	private int hints;
+	private int usedHints;
 	private int levelsComplete;
 	private int packagesComplete;
 	
@@ -21,12 +21,12 @@ public class Statistic {
 		this.playtime = playtime;
 	}
 
-	public int getHints() {
-		return hints;
+	public int getUsedHints() {
+		return usedHints;
 	}
 
-	public void setHints(int hints) {
-		this.hints = hints;
+	public void setUsedHints(int hints) {
+		this.usedHints = hints;
 	}
 
 	public int getLevelsComplete() {

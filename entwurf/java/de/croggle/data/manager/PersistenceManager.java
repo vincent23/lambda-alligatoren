@@ -61,7 +61,7 @@ public class PersistenceManager {
 
 	}
 
-	public void editLevelProgress(String profileName, LevelProgress levelProgress) {
+	public void getLevelProgress(String profileName, int levelID) {
 
 	}
 
