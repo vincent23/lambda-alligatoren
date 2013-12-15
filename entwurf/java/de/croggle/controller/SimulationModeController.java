@@ -3,10 +3,12 @@ package de.croggle.controller;
 import de.croggle.model.Board;
 /**
  *
- * @navassoc 1 "" 1 Simulator
+ * @navassoc 1 - 1 Simulator
+ * @navassoc 1 - 1 Colorcontroller
  */
 public class SimulationModeController {
     private Simulator simulator;
+    private ColorController colorController;
     /**
      *
      */

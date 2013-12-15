@@ -12,6 +12,8 @@ public abstract class Level {
 	private Board inputBoard;
 	private Board goalBoard;
 	private Animation animation;
+
+    private Color userColors[];
     
 	public int getPackageIndex();
 	public int getLevelIndex();

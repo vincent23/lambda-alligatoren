@@ -12,6 +12,7 @@ import de.croggle.util.RingBuffer;
  */
 public class Simulator {
 	private Board entranceBoard;
+    private Board currentBoard;
 	private RingBuffer<Board> history; // 30 elements needed.
     private ColorController colorController;
 	private List<EatEventListener> eatListeners;
@@ -19,13 +20,14 @@ public class Simulator {
 	public Simulator(Board entranceBoard, ColorController colorController) {
 		this.history = new RingBuffer(30);
         this.entranceBoard = entranceBoard;
+        this.currentBoard = entranceBoard;
         this.colorController = colorController;
 	}
 
 	/**
 	 * Method that evaluates one step in the Lambda Calculus
 	 */
-	public Board evaluate(Board entranceBoard) {
+	public Board evaluate(Board currentBoard) {
 		// gotta save the old board to history[*rightplace*]
 		return null;
 	}
