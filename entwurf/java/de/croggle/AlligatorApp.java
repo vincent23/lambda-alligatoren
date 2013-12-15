@@ -1,7 +1,7 @@
 package de.croggle;
 
 import de.croggle.controller.AchievementController;
-import de.croggle.controller.GameController;
+import de.croggle.controller.LoadLevelController;
 import de.croggle.controller.LevelController;
 import de.croggle.controller.LevelPackagesController;
 import de.croggle.data.manager.AssetManager;
@@ -9,7 +9,7 @@ import de.croggle.data.manager.LocalizationManager;
 import de.croggle.data.manager.PersistenceManager;
 
 /**
- * @navassoc 1 - 1 de.croggle.controller.GameController
+ * @navassoc 1 - 1 de.croggle.controller.LoadLevelController
  * @navassoc 1 - 1 de.croggle.controller.LevelController
  * @navassoc 1 - 1 de.croggle.controller.LevelPackagesController
  * @navassoc 1 - 1 de.croggle.controller.AchievementController
@@ -19,7 +19,7 @@ import de.croggle.data.manager.PersistenceManager;
  * @assoc 1 - * de.croggle.ui.screens.AbstractScreen
  */
 public class AlligatorApp extends com.badlogic.gdx.Game {
-	private GameController gameController;
+	private LoadLevelController loadLevelController;
 	private AchievementController achievementController;
 	private LevelPackagesController levelPackagesController;
 	private LevelController levelController;
@@ -28,7 +28,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	private LocalizationManager localizationMAnager;
 	
 		
-	public GameController getGameController() {
+	public LoadLevelController getLoadLevelController() {
 		return null;
 	}
 	
