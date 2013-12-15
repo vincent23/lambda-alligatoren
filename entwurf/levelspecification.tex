@@ -1,1 +1,54 @@
+
 \chapter{Level JSON Format Beschreibung}
+\section{Präambel}
+Die Spezifizierung von Levels des Spiels wird im verbreiteten JSON (JavaScript Object Notation) geschehen.
+Die Gründe dafür sind
+\begin{itemize}
+	\item[a)] Einfache Schreib- und Editierbarkeit
+	\item[b)] Gute Les- und Nachvollziehbarkeit
+	\item[c)] Geringerer Overhead gegenüber XML
+	\item[d)] Unterstützung von Haus aus durch LibGDX
+	\item[e)] Gute Austausch- und Erweiterbarkeit gegenüber datenbank- oder codebasierten Herangehensweisen
+\end{itemize}
+Dafür ist es zunächst jedoch erforderlich, dass die Struktur der letztendlich für den Aufbau eines Levels benötigten Daten, detailliert spezifiziert ist.
+Im folgenden werden die einzelnen Attribute eines Levels und ihre Bedeutungen, sowie ihre Repräsentation in JSON beschrieben.
+
+\section{Grundlegendes}
+Zunächst sei erwähnt, dass sich alle Elemente, die von der Anwendung benutzt werden, im Namespace "`de.croggle"' befinden.
+Das heißt, dass sich in dem Wurzelobjekt jeder JSON Datei ein Objekt mit diesem Namen befindet.
+\begin{lstlisting}[language=json,caption={Standardinhalt jeder JSON Datei der Anwendung}]
+{
+	"de.croggle" : {
+		...
+	}
+}
+\end{lstlisting}
+
+Da die Beschreibungen von Levels, ähnlich wie Quellcode, komplexe Sachverhalte im Lambda Kalkül abbilden können, deren Wirkungsweise nicht direkt ersichtlich sein kann,
+sieht die Spezifikation der JSON Repräsentation Kommentarattribute vor.
+Diese können und sollen verwendet werden, um besonders schwer nachzuvollziehende Stellen zu dokumentieren, aber auch, um einfach auf die Ideen und Zielsetzungen innerhalb eines bestimmten Levels hinzuweisen.
+Solche Kommentarattribute werden durch das Präfix "`\_comment"' markiert und eingeleitet.
+Attributsnamen, die mit diesem beginnen sind dementsprechend reserviert.
+Da die Kommentare jeweils durch eine Zeichenkette im Namen eines Attributes eingeleitet werden und JSON keine Namen von Attributen in Listen (eingeleitet durch "`["') vorsieht, sind Kommentare nur in Objekten (eingeleitet durch "`\{"') zulässig.
+Dies ist insofern keine Einschränkung, da Listen im Allgemeinen nur anonyme Instanzen von Elementen beinhalten, deren es für gewöhnlich keinerlei weitere Erklärungen bedarf.
+Der Wert eines solchen Kommentarattributes kann einerseits aus einem einfachen Stringliteral (Zeichenkette) bestehen, wenn es sich um kurze, einzeilige Kommentare handelt.
+Andererseits kann bei längeren Kommentaren auch eine Liste von Stringliteralen angegeben werden, wobei jedes Element auf eine neue Zeile geschrieben wird.
+Damit wird der Einschränkung im JSON Format Rechnung getragen, dass es keine Möglichkeit gibt, sogenannte Multiline Strings anzugeben.
+Zuletzt ermöglicht die Spezifikation auch mehrere Kommentarattribute innerhalb des gleichen Objektes.
+Dafür wird den jeweiligen "`\_comment"'-Attributnamen noch jeweils eine Ziffernfolge angehängt, welche von null beginnend aufsteigt.
+Dies ist nötig, da der JSON Standard keine gleichen Attributnamen innerhalb einunddesselben Objekts vorsieht.
+Listing 4.2 verdeutlicht die Anwendung von Kommenatren in JSON Files.
+\begin{lstlisting}[language=json,caption={Kommentare in einer JSON Datei}]
+{
+	"_comment" : "Dies ist ein kurzer Kommentar",
+	"de.croggle" : {
+		"_comment": [
+			"Längere Kommentare, die ",
+			"über mehrere Zeilen gehen, ",
+			"werden mittels einer Liste repräsentiert"
+		]
+	},
+	"_comment0" : "Mehrere Kommentare in ein und demselben Objekt...",
+	"_comment1" : "... werden mittels aufsteigender Nummern als Postfix unterschieden"
+}
+\end{lstlisting}

@@ -1,16 +1,27 @@
 {
 	"_comment": [
-		"This document's purpose is to describe the format of levels for the de.croggle game.",
-		"Commenting throughout the document is done via _comment strings/arrays like this, ",
-		"which receive numbered postfixes if there are multiple comments in one object namespace"
+		"This document's purpose is to describe the format of levels for ",
+		"the de.croggle game. Commenting throughout the document is done ",
+		"via _comment strings/arrays like this, which receive numbered ",
+		"postfixes if there are multiple comments in one object namespace"
 	],
 	"de.croggle": {
-		"_comment": "We probably want packages in an extra json file. I just added it here for the beginning.",
+		"_comment": [
+			"We probably want packages in an extra json file. I just ",
+			"added it here for the beginning."
+		],
 		"packages": [
 			{
-				"_comment": "Lowercase names with whitespaces stripped are used to find a packages' assets. In this case in folder 'box2'",
-				"name": "Box 2"
-				"_comment0": "Dependencies are referring to the prerequisites to be met for the box to be playable"
+				"_comment": [
+					"Lowercase names with whitespaces stripped are used ",
+					"to find a packages' assets. In this case in folder ",
+					"'box2'"
+				],
+				"name": "Box 2",
+				"_comment0": [
+					"Dependencies are referring to the prerequisites to ",
+					"be met for the box to be playable"
+				],
 				"dependencies": [
 					{
 						"type": "package complete",
