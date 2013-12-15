@@ -20,8 +20,7 @@ public class PersistenceManager {
 	private StatisticManager statisticManager;
 	private LevelProgressManager levelProgressManager;
 
-	String currentProfileName;
-
+	
 	public PersistenceManager() {
 
 	}
@@ -38,35 +37,31 @@ public class PersistenceManager {
 		return null;
 	}
 
-	public void deleteCurrentProfile() {
+	public void deleteProfile(String profileName) {
 
 	}
 
-	public Setting getCurrentSettings() {
+	public Setting getSettings(String profileName) {
 		return null;
 	}
 
-	public void editCurrentSetting(Setting setting) {
+	public void editSetting(String profileName, Setting setting) {
 
-	}
-
-	public Statistic getCurrentStatistic() {
-		return null;
 	}
 
 	public Statistic getStatistic(String profileName) {
 		return null;
 	}
 
-	public void editCurrentStatistic(Statistic statistic) {
+	public void editStatistic(String profileName, Statistic statistic) {
 
 	}
 
-	public void saveLevelProgress(LevelProgress levelProgress) {
+	public void saveLevelProgress(String profileName, LevelProgress levelProgress) {
 
 	}
 
-	public void editLevelProgress(LevelProgress levelProgress) {
+	public void editLevelProgress(String profileName, LevelProgress levelProgress) {
 
 	}
 
