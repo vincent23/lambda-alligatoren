@@ -13,11 +13,13 @@ import de.croggle.util.RingBuffer;
 public class Simulator {
 	private Board entranceBoard;
 	private RingBuffer<Board> history; // 30 elements needed.
-
+    private ColorController colorController;
 	private List<EatEventListener> eatListeners;
 
-	public Simulator() {
+	public Simulator(Board entranceBoard, ColorController colorController) {
 		this.history = new RingBuffer(30);
+        this.entranceBoard = entranceBoard;
+        this.colorController = colorController;
 	}
 
 	/**
