@@ -1,4 +1,4 @@
-wpackage de.croggle.data;
+package de.croggle.data;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
