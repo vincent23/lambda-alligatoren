@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
  * 
  * @navassoc 1 - 1 de.croggle.model.Parent
  */
-public class ParentActor extends Actor implements BoardObjectChangedListener {
+public class ParentActor extends Actor implements ChildChangedListener {
 	// causes error, wtf?
 	// private ParentActor() {
 	// }
