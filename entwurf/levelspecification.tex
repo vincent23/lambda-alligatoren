@@ -1,8 +1,8 @@
 
 \chapter{Level JSON Format Beschreibung}
 \section{Präambel}
-Die Spezifizierung von Levels des Spiels wird im verbreiteten JSON (JavaScript Object Notation) geschehen.
-Die Gründe dafür sind
+Die Auslieferung von Levels des Spiels wird auf Basis des verbreiteten JSON (JavaScript Object Notation) Formates und mittels Konventionen auf der Dateisystemhierarchie geschehen.
+Die Gründe für die Verwendung von JSON sind
 \begin{enumerate}[a)]
 	\item Einfache Schreib- und Editierbarkeit
 	\item Gute Les- und Nachvollziehbarkeit
@@ -14,8 +14,12 @@ Dafür ist es zunächst jedoch erforderlich, dass die Struktur der letztendlich 
 Im folgenden werden die einzelnen Attribute eines Levels und ihre Bedeutungen, sowie ihre Repräsentation in JSON beschrieben.
 
 \section{Grundlegendes}
-Zunächst sei erwähnt, dass sich alle Elemente, die von der Anwendung benutzt werden, im Namespace "`de.croggle"' befinden.
+Im Folgenden wird stets davon ausgegangen, dass sich jegliche Dateisystem Pfadangaben relativ zu /assets beziehen, wobei als Wurzelverzeichnis das Android Projektverzeichnis angesehen wird.
+Die Nutzung des asset Ordners wird hierbei von libGDX vorgegeben.
+Vergleiche hierzu https://github.com/libgdx/libgdx/wiki/File-handling\#android.
+Zudem sei erwähnt, dass sich alle in JSON angegebenen Elemente, die von der Anwendung benutzt werden, im Namespace "`de.croggle"' befinden.
 Das heißt, dass sich in dem Wurzelobjekt jeder JSON Datei ein Objekt mit diesem Namen befindet.
+Dies macht es sicherer, gegebenenfalls in Zukunft vom Nutzer angegebene Levels zu laden, auch wenn dies derzeit nicht als Funktion vorgesehen ist.
 \begin{lstlisting}[language=json,caption={Standardinhalt jeder JSON Datei der Anwendung}]
 {
 	"de.croggle" : {
@@ -29,6 +33,8 @@ sieht die Spezifikation der JSON Repräsentation Kommentarattribute vor.
 Diese können und sollen verwendet werden, um besonders schwer nachzuvollziehende Stellen zu dokumentieren, aber auch, um einfach auf die Ideen und Zielsetzungen innerhalb eines bestimmten Levels hinzuweisen.
 Solche Kommentarattribute werden durch das Präfix "`\_comment"' markiert und eingeleitet.
 Attributsnamen, die mit diesem beginnen sind dementsprechend reserviert.
+Es muss zudem davon ausgegangen werden, dass sich an einer späteren Stelle der Entwicklung ein Mechanismus im Build System befindet, der die Kommentare vor der Auslieferung aus den JSON Dateien entfernt.
+
 Da die Kommentare jeweils durch eine Zeichenkette im Namen eines Attributes eingeleitet werden und JSON keine Namen von Attributen in Listen (eingeleitet durch "`["') vorsieht, sind Kommentare nur in Objekten (eingeleitet durch "`\{"') zulässig.
 Dies ist insofern keine Einschränkung, da Listen im Allgemeinen nur anonyme Instanzen von Elementen beinhalten, deren es für gewöhnlich keinerlei weitere Erklärungen bedarf.
 Der Wert eines solchen Kommentarattributes kann einerseits aus einem einfachen Stringliteral (Zeichenkette) bestehen, wenn es sich um kurze, einzeilige Kommentare handelt.
@@ -53,6 +59,44 @@ Listing 4.2 verdeutlicht die Anwendung von Kommenatren in JSON Files.
 }
 \end{lstlisting}
 
+\section{Levels}
+Bisher sind folgende Leveltypen für das Spiel vorgesehen:
+\begin{itemize}
+	\item Multiple Choice Levels (MC)
+	\item Färben und Einfügen (FE)
+	\item Schrittanzahl (SA)
+\end{itemize}
+Um ein Level zur Laufzeit zu laden, müssen die folgenden Daten zur Verfügung stehen:
+\begin{enumerate}[a)]
+	\item Das Levelpaket, zu dem ein Level gehört
+	\item Die Position des Levels innerhalb eines Levelpakets
+	\item Eine Zeichenkette, die auf das Level einstimmt
+	\item Tipps, um das Level abzuschließen
+	\item Den Typ eines Levels
+	\item Konstellationen (Anfang, Ende, mögliche Antworten)
+\end{enumerate}
+Zur Angabe dieser Daten existiert zu jedem Level eine JSON Datei (Endung "`.json"'), deren Name der auf zwei Stellen aufgefüllten Identifikationsnummer innerhalb eines Levelpakets entspricht.
+Dies ermöglicht das schnelle Auflisten aller Levels eines Pakets, impliziert aber auch, dass ein Levelpaket höchstens 100 Level enthalten kann.
+Zur Vermeidung von Namenskollisionen zwischen Levels verschiedener Pakete, erhält jedes Paket sein eigenes Unterverzeichnis.
+Dazu jedoch später mehr.
+Innerhalb einer solchen JSON Datei existiert (im Applikationsnamensraum) eine Liste mit dem Namen "Levels".
+An dieser Stelle wäre auch ein einfaches Objekt möglich, welches direkt alle notwendigen Daten enthält.
+Der gewählte Ansatz bietet allerdings die Vorteile, dass erstens direkt auf die Levels als solche zugegriffen werden kann, da keine Typprüfung stattfinden muss ("`Levels"' darf nur Levels enthalten).
+Zweitens lassen sich gegebenenfalls alle Levels einfach in dieser einfachen Liste zusammenlegen, was nur noch eine JSON Datei notwendig machen und somit Spielraum für Leistungsverbesserungen bieten würde.
+Und drittens muss kein Name für die sonst eigentlich anonymen Levels angegeben werden.
+Listing 4.3 beschreibt das benötigte Rahmenwerk für alle Leveldateien.
+\begin{lstlisting}[language=json,caption={JSON Leveldatei, z.B. json/00/00.json}]
+{
+	"de.croggle" : {
+		"levels" : [
+			{
+				"_comment": "Hier beginnt die eigentliche Levelbeschreibung von Levelpaket 1/ Level 1"
+			}
+		]
+	}
+}
+\end{lstlisting}
+
 \section{Levelpakete}
 Levels werden durch sogenannte Pakete gruppiert.
 Diese Pakete besitzen folgende Eigenschaften, die durch die Spezifikation repräsentiert werden müssen:
@@ -66,21 +110,6 @@ Diese Pakete besitzen folgende Eigenschaften, die durch die Spezifikation reprä
 \end{enumerate}
 Hierbei muss jedoch nicht allein auf JSON zurückgegriffen werden.
 Auch Dateisysteminformationen können berücksichtigt werden.
-Allerdings muss berücksichtigt werden, dass durch Festlegung von Konventionen keine zu starke Einschränkung passiert, sodass die Erweiterbarkeit nicht eingeschränkt wird.
+Allerdings muss bedacht werden, dass durch Festlegung von Konventionen keine zu starke Einschränkung passiert, sodass die Erweiterbarkeit nicht eingeschränkt wird.
 
-\section{Levels}
-Bisher sind folgende Leveltypen für das Spiel vorgesehen:
-\begin{itemize}
-	\item Multiple Choice Levels (MC)
-	\item Färben und Einfügen (FE)
-	\item Schrittanzahl (SA)
-\end{itemize}
-Für einzelne Levels müssen die folgenden Daten bekannt sein:
-\begin{enumerate}[a)]
-	\item Das Levelpaket, zu dem ein Level gehört
-	\item Die Position des Levels innerhalb eines Levelpakets
-	\item Eine Zeichenkette, die auf das Level einstimmt
-	\item Tipps, um das Level abzuschließen
-	\item Den Typ eines Levels
-	\item Konstellationen (Anfang, Ende, mögliche Antworten)
-\end{enumerate}
+Zuerst einmal existiert zu jedem Levelpaket 
