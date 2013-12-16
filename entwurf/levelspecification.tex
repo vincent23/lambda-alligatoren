@@ -62,10 +62,25 @@ Diese Pakete besitzen folgende Eigenschaften, die durch die Spezifikation reprä
 	\item Eine Position des Pakets, um die Reihenfolge der Pakete festzulegen
 	\item Abhängigkeiten, die zum Freischalten der Box erfüllt sein müssen
 	\item Eine Verbindung zwischen dem Paket und den dazugehörigen Leveln (kann allerdings auch nur im Level angegeben sein)
+	\item Eine Angabe zu etwaigen Story Animationen, die beim ersten Spielen des Pakets gezeigt wird.
 \end{enumerate}
 Hierbei muss jedoch nicht allein auf JSON zurückgegriffen werden.
 Auch Dateisysteminformationen können berücksichtigt werden.
 Allerdings muss berücksichtigt werden, dass durch Festlegung von Konventionen keine zu starke Einschränkung passiert, sodass die Erweiterbarkeit nicht eingeschränkt wird.
 
 \section{Levels}
-Einzelne Levels 
+Bisher sind folgende Leveltypen für das Spiel vorgesehen:
+\begin{itemize}
+	\item Multiple Choice Levels (MC)
+	\item Färben und Einfügen (FE)
+	\item Schrittanzahl (SA)
+\end{itemize}
+Für einzelne Levels müssen die folgenden Daten bekannt sein:
+\begin{enumerate}[a)]
+	\item Das Levelpaket, zu dem ein Level gehört
+	\item Die Position des Levels innerhalb eines Levelpakets
+	\item Eine Zeichenkette, die auf das Level einstimmt
+	\item Tipps, um das Level abzuschließen
+	\item Den Typ eines Levels
+	\item Konstellationen (Anfang, Ende, mögliche Antworten)
+\end{enumerate}
