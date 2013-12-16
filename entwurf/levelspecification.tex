@@ -3,13 +3,13 @@
 \section{Präambel}
 Die Spezifizierung von Levels des Spiels wird im verbreiteten JSON (JavaScript Object Notation) geschehen.
 Die Gründe dafür sind
-\begin{itemize}
-	\item[a)] Einfache Schreib- und Editierbarkeit
-	\item[b)] Gute Les- und Nachvollziehbarkeit
-	\item[c)] Geringerer Overhead gegenüber XML
-	\item[d)] Unterstützung von Haus aus durch LibGDX
-	\item[e)] Gute Austausch- und Erweiterbarkeit gegenüber datenbank- oder codebasierten Herangehensweisen
-\end{itemize}
+\begin{enumerate}[a)]
+	\item Einfache Schreib- und Editierbarkeit
+	\item Gute Les- und Nachvollziehbarkeit
+	\item Geringerer Overhead gegenüber XML
+	\item Unterstützung von Haus aus durch LibGDX
+	\item Gute Austausch- und Erweiterbarkeit gegenüber datenbank- oder codebasierten Herangehensweisen
+\end{enumerate}
 Dafür ist es zunächst jedoch erforderlich, dass die Struktur der letztendlich für den Aufbau eines Levels benötigten Daten, detailliert spezifiziert ist.
 Im folgenden werden die einzelnen Attribute eines Levels und ihre Bedeutungen, sowie ihre Repräsentation in JSON beschrieben.
 
@@ -52,3 +52,20 @@ Listing 4.2 verdeutlicht die Anwendung von Kommenatren in JSON Files.
 	"_comment1" : "... werden mittels aufsteigender Nummern als Postfix unterschieden"
 }
 \end{lstlisting}
+
+\section{Levelpakete}
+Levels werden durch sogenannte Pakete gruppiert.
+Diese Pakete besitzen folgende Eigenschaften, die durch die Spezifikation repräsentiert werden müssen:
+\begin{enumerate}[a)]
+	\item Einen Namen zur Bezeichnung des Pakets
+	\item Eine Grafik, die zum Thema des Pakets passt
+	\item Eine Position des Pakets, um die Reihenfolge der Pakete festzulegen
+	\item Abhängigkeiten, die zum Freischalten der Box erfüllt sein müssen
+	\item Eine Verbindung zwischen dem Paket und den dazugehörigen Leveln (kann allerdings auch nur im Level angegeben sein)
+\end{enumerate}
+Hierbei muss jedoch nicht allein auf JSON zurückgegriffen werden.
+Auch Dateisysteminformationen können berücksichtigt werden.
+Allerdings muss berücksichtigt werden, dass durch Festlegung von Konventionen keine zu starke Einschränkung passiert, sodass die Erweiterbarkeit nicht eingeschränkt wird.
+
+\section{Levels}
+Einzelne Levels 
