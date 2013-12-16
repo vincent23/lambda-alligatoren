@@ -16,7 +16,7 @@ Im folgenden werden die einzelnen Attribute eines Levels und ihre Bedeutungen, s
 \section{Grundlegendes}
 Im Folgenden wird stets davon ausgegangen, dass sich jegliche Dateisystem Pfadangaben relativ zu /assets beziehen, wobei als Wurzelverzeichnis das Android Projektverzeichnis angesehen wird.
 Die Nutzung des asset Ordners wird hierbei von libGDX vorgegeben.
-Vergleiche hierzu https://github.com/libgdx/libgdx/wiki/File-handling\#android.
+Vergleiche hierzu den Entsprechenden Artikel der Dokumentation \footnote{\url{https://github.com/libgdx/libgdx/wiki/File-handling\#android}}.
 Zudem sei erwähnt, dass sich alle in JSON angegebenen Elemente, die von der Anwendung benutzt werden, im Namespace "`de.croggle"' befinden.
 Das heißt, dass sich in dem Wurzelobjekt jeder JSON Datei ein Objekt mit diesem Namen befindet.
 Dies macht es sicherer, gegebenenfalls in Zukunft vom Nutzer angegebene Levels zu laden, auch wenn dies derzeit nicht als Funktion vorgesehen ist.
@@ -71,6 +71,7 @@ Um ein Level zur Laufzeit zu laden, müssen die folgenden Daten zur Verfügung s
 	\item Das Levelpaket, zu dem ein Level gehört
 	\item Die Position des Levels innerhalb eines Levelpakets
 	\item Eine Zeichenkette, die auf das Level einstimmt
+	\item Der Name eines Designthemas (es kann sich auch nur um den Pfad zu einem Hintergrundbild handeln)
 	\item Tipps, um das Level abzuschließen
 	\item Den Typ eines Levels
 	\item Konstellationen (Anfang, Ende, mögliche Antworten)
@@ -84,18 +85,51 @@ An dieser Stelle wäre auch ein einfaches Objekt möglich, welches direkt alle n
 Der gewählte Ansatz bietet allerdings die Vorteile, dass erstens direkt auf die Levels als solche zugegriffen werden kann, da keine Typprüfung stattfinden muss ("`Levels"' darf nur Levels enthalten).
 Zweitens lassen sich gegebenenfalls alle Levels einfach in dieser einfachen Liste zusammenlegen, was nur noch eine JSON Datei notwendig machen und somit Spielraum für Leistungsverbesserungen bieten würde.
 Und drittens muss kein Name für die sonst eigentlich anonymen Levels angegeben werden.
-Listing 4.3 beschreibt das benötigte Rahmenwerk für alle Leveldateien.
+
+
+Innerhalb dieses Grundgerüstes werden alle weiteren, notwendigen Daten spezifiziert.
+Zuerst genannt sei hierbei die Beschreibung: Unter dem Attributsnamen "`description"' wird hierbei die auf das Level einstimmende Zeichenkette abgelegt.
+Unter dem Attribut "`design"' ist, wie erwähnt, entweder der Name eines Designthemas oder der Name/Pfad zu einem alternativen Hintergrundbild in einer Zeichenkette gespeichert.
+Bei einer leeren Zeichenkette wird das Standardthema des Levelpakets verwendet.
+Das Attribut "`hints"' bezeichnet eine Liste von Zeichenketten, die in der Reihenfolge aufgedeckt werden, wie sie in der Liste vorkommen.
+Die Liste an sich kann allerdings auch leer bleiben.
+
+Unter dem Namen "`type"' muss eine Zeichenkette existieren, die einen der folgenden Werte enthalten muss:
+\begin{itemize}
+	\item multiple choice
+	\item transform
+	\item step count
+\end{itemize}
+
+Für jeden dieser Typen unterscheidet sich der Inhalt des letzten Attributs, dem "`data"' Attribut.
+Dieses enthält die für die einzelnen Typen unterschiedlichen Daten.
+Diese werden im Folgenden spezifiziert.
+Listing 4.3 beschreibt das benötigte Rahmenwerk für alle Levels.
 \begin{lstlisting}[language=json,caption={JSON Leveldatei, z.B. json/00/00.json}]
 {
 	"de.croggle" : {
 		"levels" : [
 			{
-				"_comment": "Hier beginnt die eigentliche Levelbeschreibung von Levelpaket 1/ Level 1"
+				"type" : "...",
+				"description" : "...",
+				"design" : "...",
+				"hints" : [
+					...
+				],
+				"data" : {
+					...
+				}
 			}
 		]
 	}
 }
 \end{lstlisting}
+
+\subsection{"`Multiple Choice"' Leveldaten}
+
+\subsection{"`Färben und Einfügen"' Leveldaten}
+
+\subsection{"`Schrittanzahl"' Leveldaten}
 
 \section{Levelpakete}
 Levels werden durch sogenannte Pakete gruppiert.
