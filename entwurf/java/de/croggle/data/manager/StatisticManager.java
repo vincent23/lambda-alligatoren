@@ -12,13 +12,26 @@ import de.croggle.data.Statistic;
 public class StatisticManager extends SQLiteOpenHelper {
 
 	public static final String KEY_PROFILE_NAME = "profileName";
+	
 	public static final String KEY_PLAYTIME = "playtime";
-	public static final String KEY_HINTS = "hints";
+	
+	public static final String KEY_USED_HINTS = "usedHints";
+	public static final String KEY_USED_RESETS = "usedResets";
+	public static final String KEY_RECOLORINGS = "recolorings";
+		
 	public static final String KEY_LEVELS_COMPLETE = "levelsComplete";
 	public static final String KEY_PACKAGES_COMPLETE = "packagesComplete";
+	
+	public static final String KEY_ALLIGATORS_EATEN = "alligatorsEaten";
+	public static final String KEY_ALLIGATORS_PLACED = "alligatorsPlaced";
+	
+	public static final String KEY_EGGS_HATCHED = "eggsHatched";
+	public static final String KEY_EGGS_PLACED = "eggsPlaced";
 
 	public static final String DATABASE_NAME = "StatisticDB";
 	public static final int DATABASE_VERSION = 1;
+	
+	
 
 	private static final String CREATE_DATABASE = "null";
 
@@ -51,7 +64,7 @@ public class StatisticManager extends SQLiteOpenHelper {
 		return false;
 	}
 
-	public boolean deleteStatistic(String profileName) {
+	public boolean deleteStatistics(String profileName) {
 		/* TODO */
 		return false;
 	}

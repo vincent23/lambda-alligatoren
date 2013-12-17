@@ -7,6 +7,15 @@ public class Statistic {
 	private int levelsComplete;
 	private int packagesComplete;
 	
+	private int 	resetsUsed;
+    private int 	recolorings;
+
+	
+	private int alligatorsEaten;
+	private int alligatorsPlaced;
+	private int eggsHatched;
+	private int eggsPlaced;
+	
 	// ...
 	
 	public Statistic() {
@@ -17,33 +26,45 @@ public class Statistic {
 		return playtime;
 	}
 
-	public void setPlaytime(int playtime) {
-		this.playtime = playtime;
-	}
-
 	public int getUsedHints() {
 		return usedHints;
-	}
-
-	public void setUsedHints(int hints) {
-		this.usedHints = hints;
 	}
 
 	public int getLevelsComplete() {
 		return levelsComplete;
 	}
 
-	public void setLevelsComplete(int levelsComplete) {
-		this.levelsComplete = levelsComplete;
-	}
-
 	public int getPackagesComplete() {
 		return packagesComplete;
 	}
 
-	public void setPackagesComplete(int packagesComplete) {
-		this.packagesComplete = packagesComplete;
+	public int getResetsUsed() {
+		return resetsUsed;
 	}
+
+	public int getRecolorings() {
+		return recolorings;
+	}
+
+	public int getAlligatorsEaten() {
+		return alligatorsEaten;
+	}
+
+	public int getAlligatorsPlaced() {
+		return alligatorsPlaced;
+	}
+
+	public int getEggsHatched() {
+		return eggsHatched;
+	}
+
+	public int getEggsPlaced() {
+		return eggsPlaced;
+	}
+
+	
+
+
 	
 	
 }
