@@ -3,16 +3,20 @@ package de.croggle.controller;
 
 import de.croggle.data.Statistic;
 
+/**
+ *
+ */
 public class StatisticController {
 
 	private String currentProfileName;
 
+    /**
+     * Constructor
+     */
 	public StatisticController() {
-
 	}
 
-	public void changeCurrentStatistic(Statistic Statistic) {
-
+	public void changeCurrentStatistic(Statistic statistic) {
 	}
 
 	public Statistic getCurrentStatistic() {

@@ -1,4 +1,4 @@
-package de.croggle.data
+package de.croggle.data;
 
 /**
  * A class in which every statistic which is about the be changed after the completion of a level is collected.
