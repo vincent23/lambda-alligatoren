@@ -1,5 +1,6 @@
 package de.croggle.controller;
 
+import de.croggle.data.Statistic;
 /**
  * 
  */

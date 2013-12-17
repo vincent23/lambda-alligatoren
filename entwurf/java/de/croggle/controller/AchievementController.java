@@ -3,6 +3,7 @@ package de.croggle.controller;
 import java.util.List;
 
 import de.croggle.model.Achievement;
+import de.croggle.data.Statistic;
 
 /**
  * @navassoc 1 - * de.croggle.model.Achievement
@@ -16,9 +17,9 @@ public class AchievementController implements StatisticsDeltaProcessor{
 	}
 
     /**
-     * Recieves StatisticsDelta from the just finished Level and processes it.
+     * Recieves statisticsDelta from the just finished Level and processes it.
      */
-	public Achievement processStatisticsDelta(StatisticsDelta statisticsDelta) {
+	public Achievement processStatisticsDelta(Statistic statisticsDelta) {
 		return null;
 	}
 }
