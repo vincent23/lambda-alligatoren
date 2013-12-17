@@ -4,8 +4,8 @@ package de.croggle.model;
  * A reward given to the player for completing a special feat, e.g. playing for a certain amount of time or beaten a certain amount of levels.
  */
 public abstract class Achievement {
-    private String description;
-    private String emblemPath;
+    private String[] description;
+    private String[] emblemPath;
     private int id;
     /**
      * Array, which describes the different stages of the achievement and which time requirements have to be met in order to fulfill this achievement.
@@ -18,11 +18,11 @@ public abstract class Achievement {
     /**
      * Getter for description
      */
-    public String getDescription();
+    public String getDescription(int index);
     /**
      * Getter for description.
      */
-	public String getEmblemPath();
+	public String getEmblemPath(int index);
     /**
      * Getter for id.
      */

@@ -15,7 +15,10 @@ public class AchievementController {
 
 	}
 
-	public Achievement processEvent() {
+    /**
+     * Recieves StatisticsDelta from the just finished Level and processes it.
+     */
+	public Achievement processStatisticsDelta(StatisticsDelta statisticsDelta) {
 		return null;
 	}
 }
