@@ -262,7 +262,7 @@ In Levels, in denen die Schrittanzahl zum Gewinnen des Levels entscheidend ist, 
 Lediglich ist hier das Element "`objective"' nicht mehr vonnöten.
 Das Ziel wird stattdessen nur von dem ohnehin für jeden Leveltyp vorgesehenen Wert "`abort simulation after"' außerhalb des data Attributs spezifiziert.
 
-\begin{lstlisting}[language=json,caption={Grober Aufbau des data Attributs eines "`Färben und Einfügen"' Levels}]
+\begin{lstlisting}[language=json,caption={Grober Aufbau des data Attributs eines "`Schrittzahl"' Levels}]
 "type" : "step count",
 "data" : {
 	"initial constellation" : {
@@ -281,15 +281,58 @@ Das Ziel wird stattdessen nur von dem ohnehin für jeden Leveltyp vorgesehenen W
 Levels werden durch sogenannte Pakete gruppiert.
 Diese Pakete besitzen folgende Eigenschaften, die durch die Spezifikation repräsentiert werden müssen:
 \begin{enumerate}[a)]
-	\item Einen Namen zur Bezeichnung des Pakets
-	\item Eine Grafik, die zum Thema des Pakets passt
 	\item Eine Position des Pakets, um die Reihenfolge der Pakete festzulegen
+	\item Eine Verbindung zwischen dem Paket und den dazugehörigen Leveln
+	\item Ein Name zur Bezeichnung des Pakets
+	\item Eine kurze, optionale Beschreibung des Pakets
+	\item Eine Grafik, die zum Thema des Pakets passt
+	\item Ein Designthema, in dem das Paket und die enthaltenden Levels standardmäßig angezeigt werden.
+	\item Eine Angabe zu etwaigen Animationen, die beim ersten Spielen des Pakets gezeigt wird.
 	\item Abhängigkeiten, die zum Freischalten der Box erfüllt sein müssen
-	\item Eine Verbindung zwischen dem Paket und den dazugehörigen Leveln (kann allerdings auch nur im Level angegeben sein)
-	\item Eine Angabe zu etwaigen Story Animationen, die beim ersten Spielen des Pakets gezeigt wird.
 \end{enumerate}
 Hierbei muss jedoch nicht allein auf JSON zurückgegriffen werden.
 Auch Dateisysteminformationen können berücksichtigt werden.
-Allerdings muss bedacht werden, dass durch Festlegung von Konventionen keine zu starke Einschränkung passiert, sodass die Erweiterbarkeit nicht eingeschränkt wird.
+Es muss lediglich bedacht werden, dass durch Festlegung von Konventionen keine zu starke Einschränkung passiert, sodass die Erweiterbarkeit nicht eingeschränkt wird.
 
-Zuerst einmal existiert zu jedem Levelpaket 
+Grundsätzlich existiert zu jedem Level unter json/levels/ ein Ordner mit der Position des Pakets in der Liste der Pakete.
+Auch hier wird der Index als zweistellige Zahl mit den Ziffern 0 bis 9 dargestellt, was eine theroetische maximale Anzahl von 100 verschiedenen Levelpaketen erlaubt.
+In jedem dieser Ordner befinden sich die zu dem Paket gehörenden Levels in jeweils einer eigenen json Datei, die nach dem in Abschnitt "`Levels"' beschriebenen Schema benannt sind.
+Diese Maßnahmen decken bereits die ersten beiden Punkte, die für die Beschreibung eines Levelpakets nötig sind, ab.
+Zusätzlich existiert in dem Paketordner eine weitere json Datei mit dem Namen "`level.json"'.
+Diese dient dazu, die restlichen der eben aufgelisteten Daten anzugeben.
+Wie dies genau geschieht wird im Folgenden spezifiziert.
+\newline
+Wie bereits bei Levels geschieht die Definition eines Levels nicht über einen festen Namen im Namensbereich des Spiels.
+Stattdessen wird ein Anonymes Objekt in einer Liste verwendet.
+Diese Liste heißt "`packages"'.
+Listing 4.8 verdeutlicht die Folgen dieses Sachverhalts.
+Der Name eines Packages wird im Feld "`name"' als Zeichenkette eingetragen.
+Die Zeichenkette zur Beschreibung erfolgt wie bei Leveln im "`description"' Attribut.
+Mittels einer Zeichenkette "`banner"' wird der Pfad zu einer für das Level stehenden Grafik spezifiziert.
+Auch die Angaben von Designthema und Animation beim ersten Betreten werden durch Pfade in Zeichenketten angegeben.
+Für ersteres heißt diese "`design"', für zweiteres "`animation"'.
+Die Paketdesigns können von Levels mittels des dazu vorgesehenen "`design"' Attributes überschrieben werden.
+Da die Beschreibung von Abhängigkeiten eine größere Komplexität aufweist, ist ihr im folgenden eine Untersection gewidmet.
+Grundsätzlich werden sie in einer Liste mit dem Namen "`dependencies"' definiert.
+Das folgende Listing veranschaulicht all diese Spezifikationen.
+\begin{lstlisting}[language=json,caption={Standardinhalt der Definition eines Levels}]
+{
+	"de.croggle" : {
+		"packages" : [
+			{
+				"_comment" : "Die Definition eines Paketes erfolgt hier",
+				"name" : "...",
+				"decription" : "...",
+				"banner" : "...",
+				"design" : "...",
+				"animation" : "...",
+				"dependencies" : [
+					...
+				]
+			}
+		]
+	}
+}
+\end{lstlisting}
+
+\subsection{Abhängigkeiten}
