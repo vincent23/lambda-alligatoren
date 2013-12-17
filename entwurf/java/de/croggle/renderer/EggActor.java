@@ -2,21 +2,15 @@ package de.croggle.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import de.croggle.model.Egg;
-
 /**
  * An actor used for representing an egg.
- *
- * @navassoc 1 - 1 Egg
  */
-public class EggActor extends com.badlogic.gdx.scenes.scene2d.Actor implements BoardObjectChangedListener {
+public class EggActor extends com.badlogic.gdx.scenes.scene2d.Actor {
 
 	/**
 	 * Creates a new actor.
-	 *
-	 * @param egg Egg to draw.
 	 */
-	public EggActor(Egg egg) {
+	public EggActor() {
 	}
 
 	@Override

@@ -5,14 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
  * An actor used for representing a parent object.
- * 
- * @navassoc 1 - 1 de.croggle.model.Parent
  */
-public class ParentActor extends Actor implements ChildChangedListener {
-	// causes error, wtf?
-	// private ParentActor() {
-	// }
-
+public abstract class ParentActor extends Actor {
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 	}

@@ -2,21 +2,15 @@ package de.croggle.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import de.croggle.model.ColoredAlligator;
-
 /**
  * An actor used for representing a colored alligator.
- *
- * @navassoc 1 - 1 ColoredAlligator
  */
 public class ColoredAlligatorActor extends ParentActor {
 
 	/**
 	 * Creates a new actor.
-	 *
-	 * @param coloredAlligator Colored alligator to draw.
 	 */
-	public ColoredAlligatorActor(ColoredAlligator coloredAlligator) {
+	public ColoredAlligatorActor() {
 	}
 
 	@Override

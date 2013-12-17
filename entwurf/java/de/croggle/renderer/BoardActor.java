@@ -2,21 +2,15 @@ package de.croggle.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import de.croggle.model.Board;
-
 /**
  * An actor used for representing an alligator constellation.
- *
- * @navassoc 1 - 1 Board
  */
 public class BoardActor extends ParentActor {
 
 	/**
 	 * Creates a new actor.
-	 *
-	 * @param board Starting board to draw.
 	 */
-	public BoardActor(Board board) {
+	public BoardActor() {
 	}
 
 	@Override
