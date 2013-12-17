@@ -72,6 +72,7 @@ Um ein Level zur Laufzeit zu laden, müssen die folgenden Daten zur Verfügung s
 	\item Die Position des Levels innerhalb eines Levelpakets
 	\item Eine Zeichenkette, die auf das Level einstimmt
 	\item Eine (optionale) Animation zu Beginn eines Levels
+	\item Eine optionale Anzahl Schritte, nach der die Simulation automatisch beendet wird
 	\item Der Name eines Designthemas (es kann sich auch nur um den Pfad zu einem Hintergrundbild handeln)
 	\item Tipps, um das Level abzuschließen
 	\item Den Typ eines Levels
@@ -92,13 +93,17 @@ Innerhalb dieses Grundgerüstes werden alle weiteren, notwendigen Daten spezifiz
 Zuerst genannt sei hierbei die Beschreibung: Unter dem Attributsnamen "`description"' wird hierbei die auf das Level einstimmende Zeichenkette abgelegt.
 Unter dem Attribut "`design"' ist, wie erwähnt, entweder der Name eines Designthemas oder der Name/Pfad zu einem alternativen Hintergrundbild in einer Zeichenkette gespeichert.
 Bei einer leeren Zeichenkette wird das Standardthema des Levelpakets verwendet.
+In einem Feld "`abort simulation after"' kann optional die ganzzahlige Anzahl an Ausführungsschritten abgelegt werden, nach denen ein Level als beendet angesehen wird.
+Positive Werte implizieren, dass im Anschluss das Level als erfolgreich abgschlossen gewertet werden soll.
+Bei einem negativen Wert gilt das Level nach Ablauf der Schrittzahl als verloren.
+Der Wert null ("`0"') bedeutet hierbei, dass kein Abbruch geschieht, was dem voreingestellten Verhalten entspricht.
 Das Attribut "`hints"' bezeichnet eine Liste von Zeichenketten, die in der Reihenfolge aufgedeckt werden, wie sie in der Liste vorkommen.
 Die Liste an sich kann allerdings auch leer bleiben.
 
 Unter dem Namen "`type"' muss eine Zeichenkette existieren, die einen der folgenden Werte enthalten muss:
 \begin{itemize}
 	\item multiple choice
-	\item transform
+	\item modification
 	\item step count
 \end{itemize}
 
@@ -114,6 +119,7 @@ Listing 4.3 beschreibt das benötigte Rahmenwerk für alle Levels.
 				"type" : "...",
 				"description" : "...",
 				"design" : "...",
+				"abort simulation after": "...",
 				"hints" : [
 					...
 				],
@@ -147,13 +153,13 @@ Diese sind im Folgenden beschrieben.
 \subsubsection{Eier}
 Objekte vom Typ "`Egg"' besitzen die folgenden Eigenschaften:
 \begin{itemize}
-	\item[color:] Eine Ganzzahl, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
+	\item[color:] Eine Ganzzahl >= 0, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
 \end{itemize}
 
 \subsubsection{Farbige Alligatoren}
 Objekte vom Typ "`colored alligator"' besitzen die folgenden Eigenschaften:
 \begin{itemize}
-	\item[color:] Eine Ganzzahl, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
+	\item[color:] Eine Ganzzahl >= 0, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
 	\item[children:] Eine Liste von weiteren BoardObjects
 \end{itemize}
 
@@ -213,6 +219,7 @@ Es ist jedoch zu beachten, dass die Reihenfolge der Elemente in der Liste keinen
 Diese wird nämlich randomisiert erstellt.
 
 \begin{lstlisting}[language=json,caption={Grober Aufbau des data Attributs eines Multiple Choice Levels}]
+"type" : "multiple choice",
 "data" : {
 	"initial constellation" : {
 		...
@@ -225,6 +232,30 @@ Diese wird nämlich randomisiert erstellt.
 \end{lstlisting}
 
 \subsection{"`Färben und Einfügen"' Leveldaten}
+Bei "`Färben und Einfügen"'-Levels werden nur die Ausgangskonstellation, die zu erreichende Endkonstellation und Listen mit für den Nutzer gesperrte Farben und Objekte als Angabe benötigt.
+Die Ausgangskonstellation findet sich wie bei Mutiple Choice Leveln im Feld "`initial constellation"', und wird mittels eines Board Objektes repräsentiert.
+Die Endkonstellation kann über das Board-wertige Attribut "`objective"' ausgelesen werden.
+Gesperrte Farben werden durch eine Liste mit Ganzzahlen >= 0 dargestellt, die den Namen "`blocked colors"' trägt.
+Gesperrte Objekte können in einer Liste von Zeichenketten angegeben mit Namen "`blocked objects"' werden, wobei deren Werte den bekannten Typen aus der Dartellung von Lambda Audrücken entspricht.
+Diese Funktion ist vor allem für die Tutorial Levels vorgesehen.
+
+\begin{lstlisting}[language=json,caption={Grober Aufbau des data Attributs eines "`Färben und Einfügen"' Levels}]
+"type" : "modification",
+"data" : {
+	"initial constellation" : {
+		...
+	},
+	"objective": {
+		...
+	},
+	"blocked colors" :  [
+		...
+	],
+	"blocked objects" : [
+		...
+	]
+}
+\end{lstlisting}
 
 \subsection{"`Schrittanzahl"' Leveldaten}
 
