@@ -201,6 +201,28 @@ Objekte vom Typ "`aged alligator"' besitzen die folgenden Eigenschaften:
 \end{figure}
 
 \subsection{"`Multiple Choice"' Leveldaten}
+Multiple Choice Levels benötigen eine Spielfeldkonstellation für die Ausgangsstellung und eine Liste mit möglichen Antwortoptionen, die auch als Spielfelder modelliert werden.
+Hierbei wird bewusst keine feste Anzahl an Antworten festgelegt, auch wenn die Unterstützung durch das Programm nach der Implementierung nur bestimmte Anzahlen vorsieht.
+Außerdem wird noch ein Index für die Konstellation benötigt, welche die Richtige ist.
+Die Ausgangsstellung wird als Board in einem Feld mit Namen "`initial constellation"' angegeben.
+Die Liste mit Boards, die als mögliche Antworten dienen, heißt "`answers'".
+Diese Liste muss mindestens ein Element enthalten.
+Der Index der richtigen Antwort wird als Ganzzahl im Schlüssel "`correct answer"' gespeichert.
+Er bezieht sich auf die Position der gemeinten Konstellation in der "`answers"' Liste, wobei ab null angefangen wird zu indizieren.
+Es ist jedoch zu beachten, dass die Reihenfolge der Elemente in der Liste keinen Einfluss auf deren Position in der dem Nutzer gezeigten Liste mit Antworten hat.
+Diese wird nämlich randomisiert erstellt.
+
+\begin{lstlisting}[language=json,caption={Grober Aufbau des data Attributs eines Multiple Choice Levels}]
+"data" : {
+	"initial constellation" : {
+		...
+	},
+	"answers": [
+		...
+	],
+	"correct answer" : 0
+}
+\end{lstlisting}
 
 \subsection{"`Färben und Einfügen"' Leveldaten}
 
