@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * An actor used for representing an egg.
  */
-public class EggActor extends com.badlogic.gdx.scenes.scene2d.Actor {
+public class EggActor extends BoardObjectActor {
 
 	/**
 	 * Creates a new actor.
