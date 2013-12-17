@@ -336,3 +336,32 @@ Das folgende Listing veranschaulicht all diese Spezifikationen.
 \end{lstlisting}
 
 \subsection{Abhängigkeiten}
+Zum Freischalten eines Levelpakets können folgende Typen von Abhängigkeiten vorgegeben sein:
+\begin{itemize}
+	\item Vorhergehendes Levelpaket zu einem gewissen Grad abgeschlossen
+\end{itemize}
+
+Abhängigkeiten werden grundsätzlich durch Objekte abgebildet, die mindestens das Attribut "`type"' aufweisen, mit dem weitere Felder - je nach Typ - eingeführt werden können.
+Folgende Typen sind bisher definiert:
+\begin{itemize}
+	\item[packageprogress:] Wie weit ein bestimmtes anderes Levelpaket abgeschlossen sein muss, damit das Paket freigeschaltet ist.
+\end{itemize}
+Im Folgenden sind den jeweiligen Typen Abschnitte gewidmet, in denen weitere Attribute, die durch die Angabe eines Typseingeführt werden, erklärt sind.
+
+\subsubsection{Paketfortschritt: "`packageprogress"'}
+Für die Angabe eines mindestens benötigten Fortschritts eines Pakets werden Felder für das gemeinte Paket und für den Fortschritt benötigt.
+Für Ersteres heißt dieses "`package"' und beinhaltet eine Ganzzahl größer null und kleiner hundert.
+Zweiteres findet sich im Feld "`progress"', welches auch eine Ganzzahl enthält, die den Fortschritt in Prozent darstellt.
+Der Wert befindet sich also zwischen einschließlich 0 und 100.
+Null Prozent heißt hierbei lediglich, dass das Level freigeschaltet sein muss. 
+Das Gesperrtsein eines Pakets kann also keine Abhängigkeit sein.
+Bei hundert Prozent müssen alle Levels erfolgreich abgeschlossen worden sein, die zu dem angegebenen Paket gehören.
+Das folgende Listing fasst dies noch einmal zusammen.
+\begin{lstlisting}[language=json,caption={Besipielhafte Definition einer Abhängigkeit vom Typ "`boxprogress"'}]
+{
+	"type" : "packageprogress",
+	"_comment" : "Alle Levels des ersten Pakets müssen zum Freischalten erfolgreich abgeschlossen worden sein",
+	"package" : 0,
+	"progress" : 100
+}
+\end{lstlisting}
