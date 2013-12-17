@@ -12,7 +12,7 @@ import de.croggle.controller.event.BoardEventListener;
  * @navassoc 1 - 2 de.croggle.model.Board
  * @navassoc 1 - 1 Simulator
  * @navassoc 1 - 1 ColorController
- * @navassoc 1 - 1 de.croggle.model.Statistic
+ * @navassoc 1 - 1 de.croggle.data.Statistic
  * @depend - <transmits Statistics> - StatisticsController
  */
 public class GameController implements BoardEventListener{
