@@ -74,7 +74,7 @@ Um ein Level zur Laufzeit zu laden, müssen die folgenden Daten zur Verfügung s
 	\item Eine (optionale) Animation zu Beginn eines Levels
 	\item Eine optionale Anzahl Schritte, nach der die Simulation automatisch beendet wird
 	\item Der Name eines Designthemas (es kann sich auch nur um den Pfad zu einem Hintergrundbild handeln)
-	\item Tipps, um das Level abzuschließen
+	\item Ein Tipp, um das Level abzuschließen
 	\item Den Typ eines Levels
 	\item Konstellationen (Anfang, Ende, mögliche Antworten)
 \end{enumerate}
@@ -97,7 +97,10 @@ In einem Feld "`abort simulation after"' kann optional die ganzzahlige Anzahl an
 Positive Werte implizieren, dass im Anschluss das Level als erfolgreich abgschlossen gewertet werden soll.
 Bei einem negativen Wert gilt das Level nach Ablauf der Schrittzahl als verloren.
 Der Wert null ("`0"') bedeutet hierbei, dass kein Abbruch geschieht, was dem voreingestellten Verhalten entspricht.
-Das Attribut "`hints"' bezeichnet eine Liste von Zeichenketten, die in der Reihenfolge aufgedeckt werden, wie sie in der Liste vorkommen.
+Das Attribut "`hints"' bezeichnet eine Liste von Zeichenketten, die der Nutzer als Hilfestellung anzeigen lassen kann.
+Im derzeitigen Entwurf ist nur ein einziger Tipp pro Level vorgesenen.
+Orientiert an anderen Spielen auf dem Markt hält eine Liste allerdings die Möglichkeit offen, weitere Tipps pro Level hinzuzufügen, ohne dass die JSON Spezifikation geändert werden muss.
+In diesem Falle würden die Tipps in der Reihenfolge aufgedeckt werden, in der sie in der Liste vorkommen.
 Die Liste an sich kann allerdings auch leer bleiben.
 
 Unter dem Namen "`type"' muss eine Zeichenkette existieren, die einen der folgenden Werte enthalten muss:
