@@ -19,7 +19,7 @@ public class LoadLevelHelper {
      * @return the level denoted by the given indices/identifiers.
      */
     public static Level instantiate(int packageIndex, int levelIndex) {
-		return null
+		return null;
     }
     
     /**
