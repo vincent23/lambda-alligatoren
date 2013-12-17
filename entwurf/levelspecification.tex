@@ -81,7 +81,7 @@ Um ein Level zur Laufzeit zu laden, müssen die folgenden Daten zur Verfügung s
 Zur Angabe dieser Daten existiert zu jedem Level eine JSON Datei (Endung "`.json"'), deren Name der auf zwei Stellen aufgefüllten Identifikationsnummer innerhalb eines Levelpakets entspricht.
 Dies ermöglicht das schnelle Auflisten aller Levels eines Pakets, impliziert aber auch, dass ein Levelpaket höchstens 100 Level enthalten kann.
 Zur Vermeidung von Namenskollisionen zwischen Levels verschiedener Pakete, erhält jedes Paket sein eigenes Unterverzeichnis.
-Dazu jedoch später mehr.
+Dazu jedoch mehr in Kapitel "`Levelpakete"'.
 Innerhalb einer solchen JSON Datei existiert (im Applikationsnamensraum) eine Liste mit dem Namen "Levels".
 An dieser Stelle wäre auch ein einfaches Objekt möglich, welches direkt alle notwendigen Daten enthält.
 Der gewählte Ansatz bietet allerdings die Vorteile, dass erstens direkt auf die Levels als solche zugegriffen werden kann, da keine Typprüfung stattfinden muss ("`Levels"' darf nur Levels enthalten).
@@ -258,6 +258,24 @@ Diese Funktion ist vor allem für die Tutorial Levels vorgesehen.
 \end{lstlisting}
 
 \subsection{"`Schrittanzahl"' Leveldaten}
+In Levels, in denen die Schrittanzahl zum Gewinnen des Levels entscheidend ist, werden grundsätzlich die gleichen Daten im data Attribut bereitgestellt, wie schon für den Typ "`Färben und Einfügen"'.
+Lediglich ist hier das Element "`objective"' nicht mehr vonnöten.
+Das Ziel wird stattdessen nur von dem ohnehin für jeden Leveltyp vorgesehenen Wert "`abort simulation after"' außerhalb des data Attributs spezifiziert.
+
+\begin{lstlisting}[language=json,caption={Grober Aufbau des data Attributs eines "`Färben und Einfügen"' Levels}]
+"type" : "step count",
+"data" : {
+	"initial constellation" : {
+		...
+	},
+	"blocked colors" :  [
+		...
+	],
+	"blocked objects" : [
+		...
+	]
+}
+\end{lstlisting}
 
 \section{Levelpakete}
 Levels werden durch sogenannte Pakete gruppiert.
