@@ -3,11 +3,11 @@ package de.croggle.model;
 /**
  *
  */
-public class TimeAchievement implements Achievement{
+public class LevelAchievement implements Achievement{
     private String Description;
     private String emblemPath;
     private int id;
-    private currentLevelsCompleted; //TOBO: Muss man irgendwie aus der datenbank holen. hier zwischenspeichern. Bitte nochmal wer drübersehen.
+    private int currentLevelsCompleted; //TOBO: Muss man irgendwie aus der datenbank holen. hier zwischenspeichern. Bitte nochmal wer drübersehen.
     /**
      * Array, which describes the different stages of the achievement and which time requirements have to be met in order to fulfill this achievement.
      */
