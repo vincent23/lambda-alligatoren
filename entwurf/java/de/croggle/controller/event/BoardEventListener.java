@@ -1,5 +1,6 @@
 package de.croggle.controller.event;
 
+import de.croggle.model.Level;
 /**
  * 
  * Base interface for all board event listeners. Provides a callback function

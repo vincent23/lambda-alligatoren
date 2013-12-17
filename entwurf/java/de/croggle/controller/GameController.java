@@ -2,6 +2,9 @@ package de.croggle.controller;
 
 
 import de.croggle.model.Board;
+import de.croggle.data.Statistic;
+import de.croggle.model.Level;
+import de.croggle.controller.event.BoardEventListener;
 
 /**
  *
@@ -9,8 +12,8 @@ import de.croggle.model.Board;
  * @navassoc 1 - 2 de.croggle.model.Board
  * @navassoc 1 - 1 Simulator
  * @navassoc 1 - 1 ColorController
- * @navassoc 1 - 1 de.croggle.model.Statistic
- * @depend - <transmits Statistics> - StatisticsController
+ * @navassoc 1 - 1 de.croggle.data.Statistic
+ * @depend - <transmits_Statistics> - StatisticController
  */
 public class GameController implements BoardEventListener{
     private Board currentBoard;
