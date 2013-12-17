@@ -15,9 +15,21 @@ public abstract class Achievement {
      * Index, which specifies on which stage this achievement is;
      */
     private int index;
+    /**
+     * Getter for description
+     */
     public String getDescription();
+    /**
+     * Getter for description.
+     */
 	public String getEmblemPath();
+    /**
+     * Getter for id.
+     */
 	public int getId();
+    /**
+     * Returns true if the achievement has been achieved, otherwise false.
+     */
     public abstract boolean requirementsMet();
 	
 	// private int unlockValue; ???
