@@ -16,7 +16,7 @@ public class AchievementManager extends SQLiteOpenHelper {
 	public static final String KEY_ACHIEVEMENT_ID = "achievementID";
 	public static final String KEY_ACHIEVEMENT_State = "achievementState";
 	
-	public static final String DATABASE_NAME = "UnlockedAchievementsDB";
+	public static final String DATABASE_NAME = "AchievementDB";
 	public static final int DATABASE_VERSION = 1;
 	
 	private static final String CREATE_DATABASE = "null";

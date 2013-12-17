@@ -7,6 +7,7 @@ import de.croggle.data.Statistic;
 
 /**
  * @navassoc 1 - * de.croggle.model.Achievement
+ * @navassoc 1 - * de.croggle.data.manager.AchievementManager
  */
 public class AchievementController implements StatisticsDeltaProcessor{
 
@@ -21,5 +22,11 @@ public class AchievementController implements StatisticsDeltaProcessor{
      */
 	public Achievement processStatisticsDelta(Statistic statisticsDelta) {
 		return null;
+	}
+
+	@Override
+	public void processDelta(Statistic statisticsDelta) {
+		// TODO Auto-generated method stub
+		
 	}
 }
