@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 public class ProfileController {
 
 	private String currentProfileName;
+	private Profile currentProfile;
 	
 	public ProfileController() {
 		

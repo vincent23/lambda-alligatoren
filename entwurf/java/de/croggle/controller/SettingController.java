@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 public class SettingController {
 
 	private String currentProfileName;
+	private Setting currentSetting;
 	
 	public SettingController() {
 		
