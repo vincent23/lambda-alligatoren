@@ -7,6 +7,7 @@ public interface Achievement {
 	public String getDescription();
 	public String getEmblemPath();
 	public int getId();
+    public boolean requirementsMet();
 	
 	// private int unlockValue; ???
 
