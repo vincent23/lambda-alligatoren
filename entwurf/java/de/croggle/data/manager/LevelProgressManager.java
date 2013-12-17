@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * @navassoc 1 - 1 de.croggle.data.model.LevelProgress
+ * @navassoc 1 - 1 de.croggle.data.LevelProgress
  */
 public class LevelProgressManager extends SQLiteOpenHelper{
 		
