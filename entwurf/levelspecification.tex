@@ -71,6 +71,7 @@ Um ein Level zur Laufzeit zu laden, müssen die folgenden Daten zur Verfügung s
 	\item Das Levelpaket, zu dem ein Level gehört
 	\item Die Position des Levels innerhalb eines Levelpakets
 	\item Eine Zeichenkette, die auf das Level einstimmt
+	\item Eine (optionale) Animation zu Beginn eines Levels
 	\item Der Name eines Designthemas (es kann sich auch nur um den Pfad zu einem Hintergrundbild handeln)
 	\item Tipps, um das Level abzuschließen
 	\item Den Typ eines Levels
@@ -122,6 +123,73 @@ Listing 4.3 beschreibt das benötigte Rahmenwerk für alle Levels.
 			}
 		]
 	}
+}
+\end{lstlisting}
+
+\subsection{Darstellung von Lambda Ausdrücken}
+Alle Leveltypen haben gemein, dass sie an mindestens einer Stelle ein Spielfeld mit einem Alligatorausdruck anzeigen.
+Daher wird zunächst auf die Darstellung eines solchen Spielfelds mit der sich darauf befindlichen Konstellation (dem Lambdaterm) in der JSON Levelbeschreibung eingegangen.
+Diese Darstellung bildet das zu den Lambdatermen gehörige Klassenmodell transparent ab.
+
+
+Das heißt, dass Spielfelder (im Folgenden auch Boards genannt) eine Liste von Elementen, genauer gesagt von BoardObjects, als Attribut besitzen.
+Von diesen BoardObjects existieren drei Typen, nämlich Ei, farbiger Alligator und alter Alligator.
+Alle diese drei Objekttypen verfügen über eine Zeichenkette mit Namen "`type"', die die Werte
+\begin{itemize}
+	\item egg
+	\item colored alligator
+	\item aged alligator
+\end{itemize}
+annehmen darf.
+Aus dieser wird der genaue Typ eines BoardObjects abgeleitet, aus dem die weiteren Attribute hervorgehen.
+Diese sind im Folgenden beschrieben.
+
+\subsubsection{Eier}
+Objekte vom Typ "`Egg"' besitzen die folgenden Eigenschaften:
+\begin{itemize}
+	\item[color:] Eine Ganzzahl, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
+\end{itemize}
+
+\subsubsection{Farbige Alligatoren}
+Objekte vom Typ "`colored alligator"' besitzen die folgenden Eigenschaften:
+\begin{itemize}
+	\item[color:] Eine Ganzzahl, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
+	\item[children:] Eine Liste von weiteren BoardObjects
+\end{itemize}
+
+\subsubsection{Alte Alligatoren}
+Objekte vom Typ "`aged alligator"' besitzen die folgenden Eigenschaften:
+\begin{itemize}
+	\item[children:] Eine Liste von weiteren BoardObjects
+\end{itemize}
+
+\begin{lstlisting}[language=json,caption={Ein einfaches Board mit allen existierenden BoardObjects}]
+{
+	"families" : [
+		{
+			"type" : "colored alligator",
+			"color" : 0,
+			"children" : [
+				{
+					"type" : "aged alligator",
+					"children" : [
+						{
+							"type" : "egg",
+							"color" : 0
+						},
+						{
+							"type" : "egg",
+							"color" : 0
+						}
+					]
+				},
+				{
+					"type" : "egg",
+					"color" : 0
+				}
+			]
+		}
+	]
 }
 \end{lstlisting}
 
