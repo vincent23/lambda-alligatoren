@@ -1,7 +1,6 @@
 package de.croggle;
 
 import de.croggle.controller.AchievementController;
-import de.croggle.controller.LoadLevelController;
 import de.croggle.controller.LevelController;
 import de.croggle.controller.LevelPackagesController;
 import de.croggle.data.manager.AssetManager;

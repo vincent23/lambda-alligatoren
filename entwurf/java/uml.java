@@ -53,7 +53,7 @@ class UMLOptions {
  * @opt nodefillcolor 10
  * 
  * @match class de.croggle\..*Exception
- * @opt nodefillcolor firebrick
+ * @opt nodefillcolor #b22222
  * @opt nodefontcolor white
  * 
  * @match class java.*
