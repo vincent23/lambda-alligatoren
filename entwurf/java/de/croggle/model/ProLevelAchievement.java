@@ -3,7 +3,7 @@ package de.croggle.model;
 /**
  * Achievement for passing certain, specified goals within a level, e.g. placing more than 10 Alligators within one level or 5 eggs hatched within one level.
  */
-public class ProLevelAchievement implements Achievement{
+public class ProLevelAchievement extends Achievement{
     private String Description;
     private String emblemPath;
     private int id;

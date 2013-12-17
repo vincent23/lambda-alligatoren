@@ -3,7 +3,7 @@ package de.croggle.model;
 /**
  *
  */
-public class LevelAchievement implements Achievement{
+public class LevelAchievement extends Achievement{
     private String Description;
     private String emblemPath;
     private int id;

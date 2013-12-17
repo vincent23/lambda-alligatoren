@@ -3,34 +3,18 @@ package de.croggle.model;
 /**
   * Achievements which are awarded for reaching certain, specified amounts of time spent playing the game.
  */
-public class TimeAchievement implements Achievement{
+public class TimeAchievement extends Achievement{
     private String Description;
     private String emblemPath;
     private int id;
     private int currentTime; // Irgendwie bisherige Zeit + momentane Zeit aus dem Level //TOBO: Muss man irgendwie aus der datenbank holen. hier zwischenspeichern. Bitte nochmal wer drübersehen.
-    /**
-     * Array, which describes the different stages of the achievement and which time requirements have to be met in order to fulfill this achievement.
-     */
+
     private int[] stages;
 
-    /**
-     * Index, which specifies on which stage this achievement is;
-     */
+
     private int index;
 
-    /**
-     *
-     */
-    public String getDescription() {
-    }
-    /**
-     *
-     */
-    public String getEmblemPath() {
-    }
-    /**
-     *
-     */
+
     public int getId(){
 }
     /**

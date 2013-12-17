@@ -3,7 +3,7 @@ package de.croggle.model;
 /**
  * Achievements which are awarded for reaching certain, specified amounts of eaten Alligators.
  */
-public class AlligatorsEatenAchievement implements Achievement{
+public class AlligatorsEatenAchievement extends Achievement{
     private String Description;
     private String emblemPath;
     private int id;
