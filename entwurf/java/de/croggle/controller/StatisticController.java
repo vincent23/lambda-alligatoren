@@ -6,9 +6,10 @@ import de.croggle.data.Statistic;
 /**
  *
  */
-public class StatisticController {
+public class StatisticController implements StatisticsDeltaProcessor{
 
 	private String currentProfileName;
+    private Statistic statistic;
 
     /**
      * Constructor

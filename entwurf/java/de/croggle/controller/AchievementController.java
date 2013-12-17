@@ -7,7 +7,7 @@ import de.croggle.model.Achievement;
 /**
  * @navassoc 1 - * de.croggle.model.Achievement
  */
-public class AchievementController {
+public class AchievementController implements StatisticsDeltaProcessor{
 
 	List<Achievement> achievements;
 
