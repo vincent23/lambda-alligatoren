@@ -6,6 +6,7 @@ HELPTEXT = \
 Important variables:~\
 	PACKAGE: Sets the package to create the uml graph for. E.g. 'make PACKAGE=de.croggle.ui export:png'~\
 	EXPORTFORMAT: The format used for exporting ~\
+	UNFLATTEN: If set to anything other than \"yes\", the uml graph is rendered with a preceding unflatten command. Default is \"yes\"~\
 	VERBOSE: Setting this variable to "3" will print all relevant commands executed.~\
 	VIEWS: If set to "yes" on the command line, UMLGraph will build the graph with views support~\
 Available targets:~\
@@ -70,9 +71,14 @@ EXPORTFORMAT	= svg
 DPI				= 72
 
 # Document specific variables
-TEXFILENAME	= entwurf
-PDFNAME		= $(TEXFILENAME)
-TEXFILES	= $(shell find $(ROOTDIR) -maxdepth 1 -type f -name '*.tex') $(TEXDOCFILE)
+TEXFILENAME		= entwurf
+PDFNAME			= $(TEXFILENAME)
+TEXFILES		= $(shell find $(ROOTDIR) -maxdepth 1 -type f -name '*.tex') $(TEXDOCFILE)
+UNFLATTEN		=no
+UNFLATTENCMD	= unflatten -l 4 -f -c 10
+ifneq ($(UNFLATTEN),yes)
+	UNFLATTENCMD 	= cat
+endif
 
 # TexDoclet
 TEXDOCLET		= -docletpath $(DOCLETPATH)/TexDoclet.jar -doclet org.wonderly.doclets.TexDoclet
@@ -125,7 +131,7 @@ $(UMLDEPS:%.dot=%.$(EXPORTFORMAT)): %.$(EXPORTFORMAT): $(OUTDIR)/ %.dot
 	@# -Gsize: Set max bounding box to DIN A0
 	@# -Gratio: Set aspect ratio to 1/sqrt(2)
 	@# -o: Output file name
-	$(AT)unflatten -l 4 -f -c 10 $*.dot |\
+	$(AT) $(UNFLATTENCMD) $*.dot |\
 	dot \
 		-T$(EXPORTFORMAT) \
 		-LC1 \
