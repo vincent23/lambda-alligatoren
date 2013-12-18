@@ -6,6 +6,7 @@ import de.croggle.model.Egg;
 
 /**
  * 
+ * @depend - <visits> - de.croggle.model.BoardObject
  */
 public interface BoardObjectVisitor {
 	

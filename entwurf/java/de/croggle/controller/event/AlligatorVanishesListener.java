@@ -3,7 +3,7 @@ package de.croggle.controller.event;
 /**
  * 
  * The interface for listeners specifically listening to AlligatorVanishesEvents.
- *
+ * @depend - <listens_to> - AlligatorVanishesEvent
  */
 public interface AlligatorVanishesListener extends BoardEventListener {
 	

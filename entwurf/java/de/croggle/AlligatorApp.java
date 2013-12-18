@@ -1,14 +1,13 @@
 package de.croggle;
 
 import de.croggle.controller.AchievementController;
-import de.croggle.controller.LevelController;
+
 import de.croggle.controller.LevelPackagesController;
 import de.croggle.data.manager.AssetManager;
 import de.croggle.data.manager.LocalizationManager;
 import de.croggle.data.manager.PersistenceManager;
 
 /**
- * @navassoc 1 - 1 de.croggle.controller.LevelController
  * @navassoc 1 - 1 de.croggle.controller.LevelPackagesController
  * @navassoc 1 - 1 de.croggle.controller.AchievementController
  * @navassoc 1 - 1 de.croggle.data.manager.PersistenceManager
@@ -19,17 +18,12 @@ import de.croggle.data.manager.PersistenceManager;
 public class AlligatorApp extends com.badlogic.gdx.Game {
 	private AchievementController achievementController;
 	private LevelPackagesController levelPackagesController;
-	private LevelController levelController;
 	private PersistenceManager persistenceManager;
 	private AssetManager assetManager;
-	private LocalizationManager localizationMAnager;
+	private LocalizationManager localizationManager;
 
 	
 	public LevelPackagesController getLevelPackagesController() {
-		return null;
-	}
-	
-	public LevelController getLevelController() {
 		return null;
 	}
 	

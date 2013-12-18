@@ -3,7 +3,7 @@ package de.croggle.controller.event;
 /**
  * 
  * The interface for listeners specifically listening to ObjectRecoloredEvents.
- *
+ * @depend - <listens_to> - ObjectRecoloredEvent
  */
 public interface ObjectRecoloredListener extends BoardEventListener {
 	

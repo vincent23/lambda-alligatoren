@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 /**
  * Singleton to manage Styles.
- *
+ * @depend - <helps> - de.croggle.ui.screens.AbstractScreen
  * @navassoc 1 - 1 com.badlogic.gdx.scenes.scene2d.ui.Skin
  **/
 public class StyleHelper {

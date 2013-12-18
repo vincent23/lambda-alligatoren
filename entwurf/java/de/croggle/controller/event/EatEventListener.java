@@ -3,7 +3,7 @@ package de.croggle.controller.event;
 /**
  * 
  * The interface for listeners specifically listening to EatEvents.
- *
+ * @depend - <listens_to> - EatEvent
  */
 public interface EatEventListener extends BoardEventListener {
 

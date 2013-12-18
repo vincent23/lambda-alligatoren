@@ -3,7 +3,7 @@ package de.croggle.controller.event;
 /**
  * 
  * The interface for listeners specifically listening to ReplaceEvents.
- *
+ * @depend - <listens_to> - ReplaceEvent
  */
 public interface ReplaceEventListener extends BoardEventListener {
 	
