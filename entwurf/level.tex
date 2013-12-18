@@ -1,21 +1,67 @@
 \chapter{Level}
-In den Anfangskonstellationen werden ungefärbte Elemente durch die Variable o dargestellt.
+In den Anfangskonstellationen werden ungefärbte Elemente durch die Variable o dargestellt. 
+Besondere Level wie Tutoriallevel haben hier zusätzlich eine Beschreibung um ihr Ziel zu verdeutlichen.
+Farben werden hier als Variablen dargestellt.
 
 \section{Levelpacket 1}
 \begin{itemize}
 	\item{Level 1} 
 		\begin{itemize}
 			\item{Typ:} Färbelevel 
-			\item{Anfangskonstellation:} \(\lambda\) o.o  
-			\item{Endkonstellation:} \(\lambda\) x.x 
+			\item{Anfangskonstellation:} \(\lambda o . o\)
+			\item{Endkonstellation:} \(\lambda x . x\)
+			\item{gesperrte Farben:} -  
 			\item{Beschreibung:} Erstes Tutoriallevel in dem das Einfärben von Elementen erklärt wird.
 		\end{itemize}
+
 	\item{Level 2} 
 		\begin{itemize}
 			\item{Typ:} Färbelevel 
-			\item{Anfangskonstellation:} (\(\lambda\) o.o) o  
-			\item{Endkonstellation:} y 
+			\item{Anfangskonstellation:} \((\lambda o . o ) o\)   
+			\item{Endkonstellation:} \(y\) 
+			\item{gesperrte Farben:} - 
 			\item{Beschreibung:} Zweites Tutoriallevel in dem die \(\alpha\)-Reduktion gezeigt wird.
 								Benötigte Kenntnisse des Spieler hierfür ist das Einfärben von Elementen. 
 		\end{itemize}
+
+	\item{Level 3} 
+		\begin{itemize}
+			\item{Typ:} Einfügelevel 
+			\item{Anfangskonstellation:} \(\lambda x . x \)   
+			\item{Endkonstellation:} \(y\)
+			\item{gesperrte Farben:} -  
+			\item{Beschreibung:} Drittes Tutoriallevel in dem das Einfügen von Elementen auf das Spielfeld erklärt wird.
+								Benötigte Kenntnisse des Spieler hierfür ist das Einfärben von Elementen. 
+		\end{itemize}
+
+	\item{Level 4} 
+		\begin{itemize}
+			\item{Typ:} Einfügelevel
+			\item{Anfangskonstellation:} \(\lambda x . x \)    
+			\item{Endkonstellation:} \(y y\)
+			\item{gesperrte Farben:} - 
+		\end{itemize}
+
+	\item{Level 5} 
+		\begin{itemize}
+			\item{Typ:} Einfügelevel
+			\item{Anfangskonstellation:} \(\lambda x . x \)    
+			\item{Endkonstellation:}  \(\lambda x . x  \lambda x . x  \)
+			\item{gesperrte Farben:} x
+		\end{itemize}
+
+	\item{Level 6} 
+		\begin{itemize}
+			\item{Typ:} Multiple-Choice 
+			\item{Anfangskonstellation:} \((\lambda x . x ) y\)    
+			\item{Wahlmöglichkeiten:}  
+				\begin{itemize}
+					\item[1.] \(y\)
+					\item[2.] \(\lambda x . x \) 
+					\item[3.] \(y y\)
+				\end{itemize}
+			\item{Endkonstellation:} \(y\)
+			\item{Beschreibung:}Viertes Tutoriallevel in dem das Sytem des Multiple-Choice Levels erklärt wird.
+		\end{itemize}
+
 \end{itemize}
