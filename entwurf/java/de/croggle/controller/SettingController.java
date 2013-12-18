@@ -2,7 +2,7 @@ package de.croggle.controller;
 
 
 
-import de.croggle.data.Setting;
+import de.croggle.data.persistence.Setting;
 import android.content.SharedPreferences;
 
 public class SettingController {

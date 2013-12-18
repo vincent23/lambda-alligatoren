@@ -31,13 +31,13 @@ class UMLOptions {
  * @match class de.croggle.controller.*
  * @opt nodefillcolor 3
  * 
- * @match class de.croggle.data.*
+ * @match class de.croggle.data.persistence.*
  * @opt nodefillcolor 4
  * 
- * @match class de.croggle.model.*
+ * @match class de.croggle.game.*
  * @opt nodefillcolor 5
  * 
- * @match class de.croggle.renderer.*
+ * @match class de.croggle.ui.renderer.*
  * @opt nodefillcolor 6
  * 
  * @match class de.croggle.ui.*
@@ -46,10 +46,10 @@ class UMLOptions {
  * @match class de.croggle.util.*
  * @opt nodefillcolor 8
  * 
- * @match class de.croggle.controller.event.*
+ * @match class de.croggle.game.event.*
  * @opt nodefillcolor 9
  * 
- * @match class de.croggle.data.model.*
+ * @match class de.croggle.data.persistence.model.*
  * @opt nodefillcolor 10
  * 
  * @match class de.croggle\..*Exception

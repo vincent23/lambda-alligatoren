@@ -2,12 +2,13 @@ package de.croggle.controller;
 
 import java.util.List;
 
-import de.croggle.controller.event.EatEventListener;
-import de.croggle.model.Board;
+import de.croggle.game.ColorController;
+import de.croggle.game.board.Board;
+import de.croggle.game.event.EatEventListener;
 import de.croggle.util.RingBuffer;
 
 /**
- * @has 1 - 0-30 de.croggle.model.Board
+ * @has 1 - 0-30 de.croggle.game.board.Board
  * @navassoc 1 - 1 de.croggle.util.RingBuffer
  */
 public class Simulator {

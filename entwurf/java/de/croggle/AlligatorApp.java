@@ -1,18 +1,18 @@
 package de.croggle;
 
-import de.croggle.controller.AchievementController;
 
-import de.croggle.controller.LevelPackagesController;
-import de.croggle.data.manager.AssetManager;
-import de.croggle.data.manager.LocalizationManager;
-import de.croggle.data.manager.PersistenceManager;
+import de.croggle.data.persistence.manager.AssetManager;
+import de.croggle.data.persistence.manager.LocalizationManager;
+import de.croggle.data.persistence.manager.PersistenceManager;
+import de.croggle.game.achievement.AchievementController;
+import de.croggle.game.level.LevelPackagesController;
 
 /**
- * @navassoc 1 - 1 de.croggle.controller.LevelPackagesController
- * @navassoc 1 - 1 de.croggle.controller.AchievementController
- * @navassoc 1 - 1 de.croggle.data.manager.PersistenceManager
- * @navassoc 1 - 1 de.croggle.data.manager.AssetManager
- * @navassoc 1 - 1 de.croggle.data.manager.LocalizationManager
+ * @navassoc 1 - 1 de.croggle.game.level.LevelPackagesController
+ * @navassoc 1 - 1 de.croggle.game.achievement.AchievementController
+ * @navassoc 1 - 1 de.croggle.data.persistence.manager.PersistenceManager
+ * @navassoc 1 - 1 de.croggle.data.persistence.manager.AssetManager
+ * @navassoc 1 - 1 de.croggle.data.persistence.manager.LocalizationManager
  * @assoc 1 - * de.croggle.ui.screens.AbstractScreen
  */
 public class AlligatorApp extends com.badlogic.gdx.Game {
