@@ -149,9 +149,11 @@ document: $(OUTDIR)/$(PDFNAME).pdf
 
 # Builds pdf documents
 $(OUTDIR)/$(PDFNAME).pdf: $(OUTDIR) $(TEXDOCFILE) $(TEXFILES)
+	$(call REQUIRE,latexmk)
 	$(call REQUIRE,pdflatex)
 	$(ECHO) Building pdf document $(notdir $@)
-	$(AT)pdflatex -interaction nonstopmode -jobname $(PDFNAME) -output-directory $(OUTDIR) $(ROOTDIR)/$(TEXFILENAME).tex $(MUTE)
+	$(AT)latexmk -pdf -pdflatex="pdflatex -interaction nonstopmode -file-line-error" -jobname="$(PDFNAME)" -output-directory="$(OUTDIR)" "$(ROOTDIR)/$(TEXFILENAME).tex" $(MUTE)
+#	$(AT)pdflatex -interaction nonstopmode -jobname $(PDFNAME) -output-directory $(OUTDIR) $(ROOTDIR)/$(TEXFILENAME).tex $(MUTE)
 
 # Make sure, $(OUTDIR) exists
 $(OUTDIR)/:
