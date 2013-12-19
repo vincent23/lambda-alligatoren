@@ -34,4 +34,10 @@ public abstract class Parent {
 	public Iterator<InternalBoardObject> getIterator() {
 		return null;
 	}
+
+	/**
+	 *
+	 */
+	public boolean isLastChild(InternalBoardObject child) {
+	}
 }
