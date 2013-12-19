@@ -6,6 +6,7 @@ import java.util.List;
 import de.croggle.game.profile.Profile;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -15,7 +16,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * 
  * @navassoc 1 - * de.croggle.game.profile.Profile
  */
-public class ProfileManager extends SQLiteOpenHelper {
+public class ProfileManager  {
 
 	/**
 	 * Name for the column that stores the profile names. Those names are used as the primary key.
@@ -32,15 +33,16 @@ public class ProfileManager extends SQLiteOpenHelper {
 	 */
 	static final String TABLE_NAME = "profileTable";
 	
-	/**
-	 * The version number of the table.
-	 */
-	static final int TABLE_VERSION = 1;
-
+	
 	/**
 	 * The string used to create the profile table via a sql query.
 	 */
 	private static final String CREATE_TABLE = "null";
+	
+	/**
+	 * The DatabaseHelper is used to access the database in which the table is stored.
+	 */
+	private DatabaseHelper databaseHelper;
 
 	/**
 	 * Creates an new SettingManager and the profile table if it does not already exists.
@@ -48,17 +50,24 @@ public class ProfileManager extends SQLiteOpenHelper {
 	 */
 	public ProfileManager(Context context) {
 
-		super(context, TABLE_NAME, null, TABLE_VERSION);
+		
 	}
 
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-
+	/**
+	 * Prepares the manager to write into the table or read from it.
+	 * @throws SQLException
+	 */
+	public void open() throws SQLException {
+		
 	}
-
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+	
+	
+	/**
+	 * Closes the open table. 
+	 * @throws SQLException
+	 */
+	public void close() throws SQLException {
+		
 	}
 
 	/**

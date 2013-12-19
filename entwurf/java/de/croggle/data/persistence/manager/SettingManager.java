@@ -3,6 +3,7 @@ package de.croggle.data.persistence.manager;
 
 import de.croggle.data.persistence.Setting;
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -13,7 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * 
  * @navassoc 1 - * de.croggle.data.persistence.Setting
  */
-public class SettingManager extends SQLiteOpenHelper {
+public class SettingManager {
 
 	/**
 	 * Name for the column that stores the profile names. Those names are used as the primary key.
@@ -45,15 +46,16 @@ public class SettingManager extends SQLiteOpenHelper {
 	 */
 	private static final String TABLE_NAME = "SettingTable";
 	
-	/**
-	 * The version number of the table.
-	 */
-	private static final int TABLE_VERSION = 1;
-
+	
 	/**
 	 * The string used to create the setting table via a sql query.
 	 */
 	private static final String CREATE_TABLE = "null";
+	
+	/**
+	 * The DatabaseHelper is used to access the database in which the table is stored.
+	 */
+	private DatabaseHelper databaseHelper;
 
 	/**
 	 * Creates an new SettingManager and the settings table if it does not already exists.
@@ -61,18 +63,25 @@ public class SettingManager extends SQLiteOpenHelper {
 	 */
 	public SettingManager(Context context) {
 
-		super(context, TABLE_NAME, null, TABLE_VERSION);
+	}
+	
+	/**
+	 * Prepares the manager to write into the table or read from it.
+	 * @throws SQLException
+	 */
+	public void open() throws SQLException {
+		
+	}
+	
+	
+	/**
+	 * Closes the open table. 
+	 * @throws SQLException
+	 */
+	public void close() throws SQLException {
+		
 	}
 
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-
-	}
-
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-	}
 
 	/**
 	 * Adds a new setting to the table, the parameter profileName is used as the primary key.

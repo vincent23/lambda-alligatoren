@@ -2,6 +2,7 @@ package de.croggle.data.persistence.manager;
 
 import de.croggle.data.persistence.Statistic;
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -12,7 +13,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * 
  * @navassoc 1 - * de.croggle.data.persistence.Statistic
  */
-public class StatisticManager extends SQLiteOpenHelper {
+public class StatisticManager {
 
 	/**
 	 * Name for the column that stores the profile names. Those names are used as the primary key.
@@ -75,36 +76,42 @@ public class StatisticManager extends SQLiteOpenHelper {
 	private static final String TABLE_NAME = "StatisticTable";
 	
 	/**
-	 * The version number of the table.
+	 * The string used to create the statistic table via a sql query.
 	 */
-	private static final int TABLE_VERSION = 1;
+	private static final String CREATE_TABLE = "null";
 	
 	
 	/**
-	 * The string used to create the statistic table via a sql query.
+	 * The DatabaseHelper is used to access the database in which the table is stored.
 	 */
-	private static final String TABLE_DATABASE = "null";
+	private DatabaseHelper databaseHelper;
 
 	/**
 	 * Creates an new StatisticManager and the statistic table if it does not already exists.
 	 * @param context
 	 */
 	public StatisticManager(Context context) {
-		super(context, TABLE_NAME, null, TABLE_VERSION);
+		
+	}
+	
+	/**
+	 * Prepares the manager to write into the table or read from it.
+	 * @throws SQLException
+	 */
+	public void open() throws SQLException {
+		
+	}
+	
+	
+	/**
+	 * Closes the open table. 
+	 * @throws SQLException
+	 */
+	public void close() throws SQLException {
+		
 	}
 
 	
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-
-	}
-
-	
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-	}
-
 	/**
 	 * Adds a new statistic to the table, the parameter profileName is used as the primary key.
 	 * @param profileName This string is used as the primary key for the statistic.
