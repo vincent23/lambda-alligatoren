@@ -11,7 +11,8 @@ import de.croggle.game.event.BoardEventListener;
 import de.croggle.game.level.Level;
 
 /**
- * 
+ * Central controller, within which the actual playing of the a level is controlled. Additionally it handles the consequences of finishing a level and distributes the changes.
+ *
  * @navassoc 1 - 1 de.croggle.game.level.Level
  * @navassoc 1 - 2 de.croggle.game.board.Board
  * @navassoc 1 - 1 Simulator
@@ -33,13 +34,13 @@ public class GameController implements BoardEventListener {
 	private boolean isInPlacementMode;
 
 	/**
-     *
+     * switches the game mode to placement mode, in which the player is able to manipulate the board.
      */
 	private void switchToPlacementMode() {
 	}
 
 	/**
-     *
+     * switches the game mode to simulation mode, in which the given board can be evaluated.
      */
 	private void switchToSimulationMode() {
 	}

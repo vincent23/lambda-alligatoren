@@ -1,5 +1,9 @@
 package de.croggle.data.persistence;
 
+/**
+ * Represents everything there is to know about the things a user has done within the game in the database.
+ *
+ */
 public class Statistic {
 	
 	private int playtime;

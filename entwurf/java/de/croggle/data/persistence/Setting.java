@@ -1,5 +1,9 @@
 package de.croggle.data.persistence;
 
+/**
+ * Represents the settings of a certain profile in the database.
+ *
+ */
 public class Setting {
 	
 	private float volumeMusic;

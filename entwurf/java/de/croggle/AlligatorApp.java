@@ -24,6 +24,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	private AssetManager assetManager;
 	private LocalizationManager localizationManager;
 
+    
 	public LevelPackagesController getLevelPackagesController() {
 		return null;
 	}

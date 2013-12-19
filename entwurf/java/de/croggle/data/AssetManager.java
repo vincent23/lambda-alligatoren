@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
+ * This class is responsible for managing the different kinds of assets the apps needs to work flawless.
  * 
  * @navassoc 1 - * Animation
  * @navassoc 1 - * BitmapFont

@@ -26,20 +26,28 @@ public class Simulator {
 	}
 
 	/**
-	 * Method that evaluates one step in the Lambda Calculus
+	 * Method, that evaluates one step in the Lambda Calculus.
+     * @return the board after said step.
 	 */
 	public Board evaluate(Board currentBoard) {
-		// gotta save the old board to history[*rightplace*]
 		return null;
 	}
 
 	/**
-	 * Method that reverses the last evaluation step.
+	 * Method, that reverses the last evaluation step.
 	 * 
-	 * @return The last
+	 * @return the board, in its status before the last evaluation step.
 	 */
 	public Board undo() {
 		return null;
 	}
+
+    /**
+     * Method, that reverses the board into the position it had upon entering simulation mode.
+     * @return the board in said state.
+     */
+    public Board reset() {
+
+    }
 
 }
