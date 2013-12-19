@@ -1,4 +1,4 @@
-package de.croggle.data.persistence.manager;
+package de.croggle.data;
 
 public class LocalizationManager {
 	

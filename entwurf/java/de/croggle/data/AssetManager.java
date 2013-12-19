@@ -1,4 +1,4 @@
-package de.croggle.data.persistence.manager;
+package de.croggle.data;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
