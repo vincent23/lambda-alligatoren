@@ -5,7 +5,7 @@ package de.croggle.game.event;
  * The interface for listeners specifically listening to ObjectRecoloredEvents.
  * @depend - <listens_to> - ObjectRecoloredEvent
  */
-public interface ObjectRecoloredListener extends BoardEventListener {
+public interface ObjectRecoloredListener {
 	
 	/**
 	 * Receive an object recolored event for further processing.

@@ -5,7 +5,7 @@ package de.croggle.game.event;
  * The interface for listeners specifically listening to EatEvents.
  * @depend - <listens_to> - EatEvent
  */
-public interface EatEventListener extends BoardEventListener {
+public interface EatEventListener {
 
 	/**
 	 * Receive an eat event for further processing.

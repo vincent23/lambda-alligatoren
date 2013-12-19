@@ -5,7 +5,7 @@ package de.croggle.game.event;
  * The interface for listeners specifically listening to ReplaceEvents.
  * @depend - <listens_to> - ReplaceEvent
  */
-public interface ReplaceEventListener extends BoardEventListener {
+public interface ReplaceEventListener {
 	
 	/**
 	 * Receive an object replaced event for further processing.

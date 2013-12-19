@@ -5,7 +5,7 @@ package de.croggle.game.event;
  * The interface for listeners specifically listening to AlligatorVanishesEvents.
  * @depend - <listens_to> - AlligatorVanishesEvent
  */
-public interface AlligatorVanishesListener extends BoardEventListener {
+public interface AlligatorVanishesListener {
 	
 	/**
 	 * Receive an alligator vanishes event for further processing.
