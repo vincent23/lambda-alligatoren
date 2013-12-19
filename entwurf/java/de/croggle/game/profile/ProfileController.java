@@ -4,6 +4,8 @@ package de.croggle.controller;
 import java.util.List;
 
 import android.content.SharedPreferences;
+import de.croggle.game.profile.Profile;
+import de.croggle.game.profile.ProfileOverflowException;
 
 /**
  * A Controller made to encapsulate the management of profiles.
