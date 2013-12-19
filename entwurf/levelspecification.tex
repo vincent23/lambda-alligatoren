@@ -1,5 +1,5 @@
-
 \chapter{Level JSON Format Beschreibung}
+
 \section{Präambel}
 Die Auslieferung von Levels des Spiels wird auf Basis des verbreiteten JSON (JavaScript Object Notation) Formates und mittels Konventionen auf der Dateisystemhierarchie geschehen.
 Die Gründe für die Verwendung von JSON sind
@@ -27,6 +27,9 @@ Dies macht es sicherer, gegebenenfalls in Zukunft vom Nutzer angegebene Levels z
 	}
 }
 \end{lstlisting}
+Die Spezifikation beschreibt lediglich die Elemente, die in Objekten verpflichtend vorhanden sein müssen.
+Darüber hinausgehende Attribute werden von der Applikation ignoriert.
+Sollten einzelne Elemente oder auch nur deren Inhalt als optional angesehen werden, ist dies entsprechend im Text ausgewiesen.
 
 Da die Beschreibungen von Levels, ähnlich wie Quellcode, komplexe Sachverhalte im Lambda Kalkül abbilden können, deren Wirkungsweise nicht direkt ersichtlich sein kann,
 sieht die Spezifikation der JSON Repräsentation Kommentarattribute vor.
