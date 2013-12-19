@@ -2,7 +2,11 @@ package de.croggle.controller;
 
 import de.croggle.data.persistence.Statistic;
 import de.croggle.game.ColorController;
+import de.croggle.game.board.Alligator;
 import de.croggle.game.board.Board;
+import de.croggle.game.board.ColoredAlligator;
+import de.croggle.game.board.Egg;
+import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.event.BoardEventListener;
 import de.croggle.game.level.Level;
 
@@ -47,5 +51,25 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	public void onCompletedLevel() {
+	}
+
+	@Override
+	public void onAlligatorVanishes(Alligator alligator) {
+	}
+
+	@Override
+	public void onBoardRebuilt(Board board) {
+	}
+
+	@Override
+	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
+	}
+
+	@Override
+	public void onObjectRecolored(InternalBoardObject recoloredObject) {
+	}
+
+	@Override
+	public void onEat(ColoredAlligator eater, InternalBoardObject eatenFamily) {
 	}
 }
