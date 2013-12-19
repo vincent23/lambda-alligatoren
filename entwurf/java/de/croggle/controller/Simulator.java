@@ -8,7 +8,7 @@ import de.croggle.game.event.EatEventListener;
 import de.croggle.util.RingBuffer;
 
 /**
- * @has 1 - 0-30 de.croggle.game.board.Board
+ * @has 1 - 2-32 de.croggle.game.board.Board
  * @navassoc 1 - 1 de.croggle.util.RingBuffer
  */
 public class Simulator {
