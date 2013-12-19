@@ -81,7 +81,7 @@ ifneq ($(UNFLATTEN),yes)
 endif
 
 # TexDoclet
-TEXDOCLET		= -docletpath $(DOCLETPATH)/TexDoclet.jar -doclet org.wonderly.doclets.TexDoclet
+TEXDOCLET		= -docletpath $(DOCLETPATH)/TexDoclet.jar -doclet org.wonderly.doclets.TexDoclet -output "$(OUTDIR)/docs.tex" -silent
 TEXDOCFILE		= $(OUTDIR)/docs.tex
 
 .PHONY: all debug help clean clean-% export\:% export texdoclet document
@@ -147,7 +147,8 @@ texdoclet: $(TEXDOCFILE)
 	
 # Builds tex docs with TexDoclet
 $(TEXDOCFILE): $(OUTDIR) $(JAVAFILES)
-	$(AT)cd $(OUTDIR); $(JAVADOC) $(TEXDOCLET)
+#	$(AT)cd $(OUTDIR); 
+	$(AT)$(JAVADOC) $(TEXDOCLET)
 	
 # Alias $(OUTDIR)/$(PDFNAME).pdf as target "document"
 document: $(OUTDIR)/$(PDFNAME).pdf

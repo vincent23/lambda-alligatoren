@@ -1,3 +1,7 @@
+%\usepackage{pgfkeys}
+%~ %\usepackage{xstring}
+%\usepackage{ifthen}
+
 \pagestyle{myheadings}
 % Initially we're not in a package or class
 \def\packagename{}
@@ -10,6 +14,24 @@
 % own document and adapted to your style/language if needed
 % ---------------------------------------------------------------------------
 
+\pgfkeys{
+	/texdocclass/.is family, /texdocclass,
+	classtype/.value required,
+	%~ classtype/.get=\classtype,
+	classtype/.estore in=\classtype,
+	classname/.value required,
+	%~ classname/.get=\name,
+	classname/.estore in=\name,
+	%~ extends/.default=,
+	%~ extends/.get=\extends,
+	extends/.estore in=\extends,
+	%~ implements/.default=,
+	%~ implements/.get=\implements,
+	implements/.estore in=\implements,
+	%~ implements/.style=\StrSubstitute{#1}{;}{,},%Causes capacity exceeding. Don't know how to fix.
+	default/.style = {extends =, implements =}
+}
+
 % Environment used to simulate html <p> </p>
 \newenvironment{texdocp}{}{
 
@@ -21,13 +43,28 @@
 }{\newpage{}}
 
 % Environment for classes, interfaces
-% Argument 1: "class" or "interface"
-% Argument 2: the name of the class/interface
-\newenvironment{texdocclass}[2]{%
-        \gdef\classname{#2}
-        \subsection{\texttt{#1 \textbf{#2}}}
+% Argument classtype: "class" or "interface"
+% Argument classname: the name of the class/interface
+% Argument extends [opt.]: the name of the superclass
+% Argument implements [opt.]: the name of the realized interfaces
+% TODO: Probably easier implementation with xparse instead of pgfkeys. Would make substitution ; <-> , unnecessary
+\newenvironment{texdocclass}[1]{%
+		\pgfkeys{/texdocclass, default, #1}
+		\gdef\classname{\name}
+		\subsection{\texttt{\classtype{} \textbf{\name{}}
+		\if\extends\relax
+		\else
+			 extends \extends
+		\fi
+		\if\implements\relax
+		\else
+			 implements \implements
+		\fi
+		}}
+		% Anyone knows the problem with this?
+        %~ \subsection{\texttt{\classtype{}\textbf{\name{}} \ifthenelse{\equal{\extends{}}{}}{}{ extends \extends{}}\ifthenelse{\equal{\implements{}}{}}{}{implements \implements{}}}}
 % }{\newpage{}}
-}{} % removed \newpage
+}{}% removed \newpage
 
 % Environment for class description
 \newenvironment{texdocclassintro}{

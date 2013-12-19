@@ -59,7 +59,7 @@ class UMLOptions {
  * @match class java.*
  * @opt hide
  * 
- * @excludeFromTex
+ * @texexclude
  */
 public class uml {
 }
