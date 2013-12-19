@@ -56,7 +56,7 @@ public class SettingManager extends TableManager {
 	 * Creates a new SettingManager used to manage the setting table.
 	 * @param context
 	 */
-	public SettingManager(Context context) {
+	SettingManager(Context context) {
 		super(context);
 	
 	}
@@ -66,7 +66,7 @@ public class SettingManager extends TableManager {
 	 * @param profileName This string is used as the primary key for the setting.
 	 * @param setting Contains the values to be stored in the table.
 	 */
-	public void addSetting(String profileName, Setting setting) {
+	void addSetting(String profileName, Setting setting) {
 		
 	}
 
@@ -75,7 +75,7 @@ public class SettingManager extends TableManager {
 	 * @param profileName The key for the sought setting.
 	 * @return Returns the found setting, if no setting is found, null is returned.
 	 */
-	public Setting getSetting(String profileName) {
+	Setting getSetting(String profileName) {
 		/* TODO */
 		return null;
 	}

@@ -85,7 +85,7 @@ public class StatisticManager extends TableManager {
 	 * Creates a new StatisticManager used to manage the statistic table.
 	 * @param context
 	 */
-	public StatisticManager(Context context) {
+	StatisticManager(Context context) {
 		super(context);
 		
 	}
@@ -95,7 +95,7 @@ public class StatisticManager extends TableManager {
 	 * @param profileName This string is used as the primary key for the statistic.
 	 * @param statistic Contains the values to be stored in the table.
 	 */
-	public void addStatistic(String profileName, Statistic statistic) {
+	void addStatistic(String profileName, Statistic statistic) {
 		/* TODO */
 		
 	}
@@ -105,7 +105,7 @@ public class StatisticManager extends TableManager {
 	 * @param profileName The key for the sought statistic.
 	 * @return Returns the found statistic, if no statistic is found, null is returned.
 	 */
-	public Statistic getStatistic(String profileName) {
+	Statistic getStatistic(String profileName) {
 		/* TODO */
 		return null;
 	}
@@ -115,7 +115,7 @@ public class StatisticManager extends TableManager {
 	 * @param profileName The key for the sought statistic.
 	 * @param statistic The statistic which values are used to overwrite the old statistic.
 	 */
-	public void updateStatistic(String profileName, Statistic statistic) {
+	void updateStatistic(String profileName, Statistic statistic) {
 		
 	}
 
@@ -123,7 +123,7 @@ public class StatisticManager extends TableManager {
 	 * Deletes the table entry which key matches profileName.
 	 * @param profileName The key of the entry which is to be deleted.
 	 */
-	public void deleteStatistics(String profileName) {
+	void deleteStatistics(String profileName) {
 		/* TODO */
 	}
 

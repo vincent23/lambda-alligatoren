@@ -10,15 +10,15 @@ public abstract class TableManager {
 	 */
 	DatabaseHelper databaseHelper;
 	
-	public TableManager(Context context) {
+	TableManager(Context context) {
 		
 	}
 	
-	public void open() throws SQLException {
+	void open() throws SQLException {
 		
 	}
 	
-	public void close() throws SQLException {
+	void close() throws SQLException {
 		
 	}
 }

@@ -68,7 +68,7 @@ public class LevelProgressManager extends TableManager {
 	 * Creates a new LevelProgressManager used to manage the level progress table.
 	 * @param context
 	 */
-	public LevelProgressManager(Context context) {
+	LevelProgressManager(Context context) {
 		super(context);
 	}
 	
@@ -77,7 +77,7 @@ public class LevelProgressManager extends TableManager {
 	 * @param profileName This string is used as the primary key for the level progress.
 	 * @param levelProgress Contains the values to be stored in the table.
 	 */
-	public void addLevelProgress(String profileName, LevelProgress levelProgress) {
+	void addLevelProgress(String profileName, LevelProgress levelProgress) {
 				
 	}
 	
@@ -87,7 +87,7 @@ public class LevelProgressManager extends TableManager {
 	 * @param levelId The secondary key for the sought level progress.
 	 * @return Returns the found level progress, if no level progress is found, null is returned.
 	 */
-	public LevelProgress getLevelProgress(String profileName, long levelId)  {
+	LevelProgress getLevelProgress(String profileName, long levelId)  {
 		/*TODO*/
 		return null;
 	}
@@ -99,7 +99,7 @@ public class LevelProgressManager extends TableManager {
 	 * @param profileName The primary key for the sought level progress.
 	 * @param levelProgress The level progress which values are used to overwrite the old level progress.
 	 */
-	public void updateLevelProgress(String profileName, LevelProgress levelProgress) {
+	void updateLevelProgress(String profileName, LevelProgress levelProgress) {
 		/*TODO*/
 
 	}
@@ -108,7 +108,7 @@ public class LevelProgressManager extends TableManager {
 	 * Deletes the table entry which primary and secondary key match profileName and levelID.
 	 * @param profileName The key of the entry which is to be deleted.
 	 */
-	public void deleteLevelProgress(String profileName, long levelId) {
+	void deleteLevelProgress(String profileName, long levelId) {
 		/*TODO*/
 	
 	}

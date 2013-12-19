@@ -53,7 +53,7 @@ public class ProfileManager extends TableManager {
 	 * Adds a new statistic to the table, the profile name contained in profile is used as the primary key.
 	 * @param profile Contains the values to be stored in the table.
 	 */
-	public void addProfile(Profile profile) {
+	void addProfile(Profile profile) {
 	
 	}
 
@@ -62,7 +62,7 @@ public class ProfileManager extends TableManager {
 	 * @param profileName The key for the sought profile.
 	 * @return Returns the found profile, if no profile is found, null is returned.
 	 */
-	public Profile getProfile(String profileName) {
+	Profile getProfile(String profileName) {
 		/* TODO */
 		return null;
 	}
@@ -71,7 +71,7 @@ public class ProfileManager extends TableManager {
 	 * Searches the table for a profile which key matches the profile name stored in profile and overwrites its values with the values stored in the parameter profile.
 	 * @param profile Contains the values used to overwrite the old entry.
 	 */
-	public void updateProfile(Profile profile) {
+	void updateProfile(Profile profile) {
 		
 	}
 
@@ -79,14 +79,14 @@ public class ProfileManager extends TableManager {
 	 * Deletes the table entry which key matches profileName.
 	 * @param profileName The key of the entry which is to be deleted.
 	 */
-	public void deleteProfile(String profileName) {
+	void deleteProfile(String profileName) {
 		
 	}
 
 	/**
 	 * Returns all Profiles stored in the table.
 	 */
-	public List<Profile> getAllProfiles() {
+	List<Profile> getAllProfiles() {
 		/* TODO */
 		return null;
 	}
