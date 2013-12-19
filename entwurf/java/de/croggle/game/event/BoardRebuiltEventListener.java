@@ -1,15 +1,16 @@
 package de.croggle.game.event;
 
+import de.croggle.game.board.Board;
+
 /**
  *
- * @depend - <listens_to> - BoardRebuiltEvent
  */
 public interface BoardRebuiltEventListener {
 
     /**
      *
      */
-    public void callback(BoardRebuiltEvent event) {
+    public void onBoardRebuilt(Board board) {
 
     }
 }

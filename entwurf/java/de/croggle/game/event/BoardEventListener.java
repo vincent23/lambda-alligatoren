@@ -1,6 +1,5 @@
 package de.croggle.game.event;
 
-import de.croggle.game.level.Level;
 /**
  * 
  * Base interface for all board event listeners. Provides a callback function
