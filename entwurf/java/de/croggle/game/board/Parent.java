@@ -40,4 +40,10 @@ public abstract class Parent {
 	 */
 	public boolean isLastChild(InternalBoardObject child) {
 	}
+
+	/**
+	 *
+	 */
+	public InternalBoardObject getNextChild(InternalBoardObject child) {
+	}
 }
