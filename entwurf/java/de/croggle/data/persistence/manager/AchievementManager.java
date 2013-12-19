@@ -16,7 +16,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * 
  * @navassoc 1 - * de.croggle.game.achievement.Achievement
  */
-public class AchievementManager {
+public class AchievementManager extends TableManager {
 	
 	/**
 	 * Name for the column that stores the profile names. Those names are used as the primary key.
@@ -43,39 +43,17 @@ public class AchievementManager {
 	 * The string used to create the achievement table via a sql query.
 	 */
 	static final String CREATE_TABLE = "null";
-
-	/**
-	 * The DatabaseHelper is used to access the database in which the table is stored.
-	 */
-	private DatabaseHelper databaseHelper;
 	
 	/**
-	 * Creates an new AchievementManager and the achievement table if it does not already exists.
+	 * Creates a new AchievementManager used to manage the achievement table.
 	 * @param context
 	 */
 	public AchievementManager(Context context) {
-	
+		super(context);
+		
 	}
 
-	/**
-	 * Prepares the manager to write into the table or read from it.
-	 * @throws SQLException
-	 */
-	public void open() throws SQLException {
 		
-	}
-	
-	
-	/**
-	 * Closes the open table. 
-	 * @throws SQLException
-	 */
-	public void close() throws SQLException {
-		
-	}
-		
-	
-	
 	/**
 	 * Adds a new unlocked achievement to the table, the parameter profileName is used as the primary key.
 	 * @param profileName This string is used as the primary key for the achievement.

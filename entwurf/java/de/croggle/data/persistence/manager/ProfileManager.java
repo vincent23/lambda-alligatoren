@@ -16,7 +16,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * 
  * @navassoc 1 - * de.croggle.game.profile.Profile
  */
-public class ProfileManager  {
+public class ProfileManager extends TableManager {
 
 	/**
 	 * Name for the column that stores the profile names. Those names are used as the primary key.
@@ -40,36 +40,15 @@ public class ProfileManager  {
 	private static final String CREATE_TABLE = "null";
 	
 	/**
-	 * The DatabaseHelper is used to access the database in which the table is stored.
-	 */
-	private DatabaseHelper databaseHelper;
-
-	/**
-	 * Creates an new SettingManager and the profile table if it does not already exists.
+	 * Creates a new ProfileManager used to manage the profile table.
 	 * @param context
 	 */
 	public ProfileManager(Context context) {
-
-		
-	}
-
-	/**
-	 * Prepares the manager to write into the table or read from it.
-	 * @throws SQLException
-	 */
-	public void open() throws SQLException {
+		super(context);
 		
 	}
 	
 	
-	/**
-	 * Closes the open table. 
-	 * @throws SQLException
-	 */
-	public void close() throws SQLException {
-		
-	}
-
 	/**
 	 * Adds a new statistic to the table, the profile name contained in profile is used as the primary key.
 	 * @param profile Contains the values to be stored in the table.

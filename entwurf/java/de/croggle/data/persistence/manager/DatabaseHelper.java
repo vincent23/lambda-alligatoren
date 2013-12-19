@@ -8,11 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * This class is responsible for creating and managing the database with its different tables.
  * 
- * @navassoc 1 - 1 de.croggle.data.persistence.manager.ProfileManager
- * @navassoc 1 - 1 de.croggle.data.persistence.manager.SettingManager
- * @navassoc 1 - 1 de.croggle.data.persistence.manager.StatisticManager
- * @navassoc 1 - 1 de.croggle.data.persistence.manager.LevelProgressManager
- * @navassoc 1 - 1 de.croggle.data.persistence.manager.AchievementManager
+ * @navassoc 1 - 1 de.croggle.data.persistence.manager.TableManager
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 

@@ -13,7 +13,8 @@ import android.database.sqlite.SQLiteOpenHelper;
  * 
  * @navassoc 1 - * de.croggle.data.persistence.Statistic
  */
-public class StatisticManager {
+public class StatisticManager extends TableManager {
+
 
 	/**
 	 * Name for the column that stores the profile names. Those names are used as the primary key.
@@ -80,37 +81,14 @@ public class StatisticManager {
 	 */
 	private static final String CREATE_TABLE = "null";
 	
-	
 	/**
-	 * The DatabaseHelper is used to access the database in which the table is stored.
-	 */
-	private DatabaseHelper databaseHelper;
-
-	/**
-	 * Creates an new StatisticManager and the statistic table if it does not already exists.
+	 * Creates a new StatisticManager used to manage the statistic table.
 	 * @param context
 	 */
 	public StatisticManager(Context context) {
+		super(context);
 		
 	}
-	
-	/**
-	 * Prepares the manager to write into the table or read from it.
-	 * @throws SQLException
-	 */
-	public void open() throws SQLException {
-		
-	}
-	
-	
-	/**
-	 * Closes the open table. 
-	 * @throws SQLException
-	 */
-	public void close() throws SQLException {
-		
-	}
-
 	
 	/**
 	 * Adds a new statistic to the table, the parameter profileName is used as the primary key.
