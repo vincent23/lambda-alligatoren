@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.SequenceDiagram</type>
+    <coordinates>
+      <x>0</x>
+      <y>60</y>
+      <w>1560</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>title: Rendering
+_:GameController~id1_|_:Simulator~id2_|_eater:ColoredAlligator_|_eaten:InternalBoardObject_|_event:EatEvent~id3_|_:BoardActor~id4_
+id1-&gt;&gt;id2:id1,id2:evaluate()
+id2-&gt;&gt;id2:id2:eat() : eater, eaten
+id2.&gt;&gt;id3:id2,id3:construct(eater, eaten)
+id3.&gt;&gt;id2:id3,id2
+id2-&gt;&gt;id4:id2,id4:callback(event)
+id4.&gt;&gt;id2:id4,id2
+
+
+id2.&gt;&gt;id1:id2,id1</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
