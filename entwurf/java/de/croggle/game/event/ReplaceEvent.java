@@ -10,7 +10,7 @@ import de.croggle.game.board.InternalBoardObject;
  * Event listeners can assume, that the replacement has already completely taken place.
  * That means, that bornFamily has its new parent set and the replacedEgg is not in the list of childs of its parent any more.
  */
-public class ReplaceEvent implements BoardEvent {
+public class ReplaceEvent {
 	
 	/**
 	 * Returns the subtree that was added. It will become a child to the original 

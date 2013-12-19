@@ -8,7 +8,7 @@ import de.croggle.game.board.InternalBoardObject;
  * the eating rule. That is, when a subtree (an alligator with its family
  * or alternatively just an egg) is "eaten" by another alligator.
  */
-public class EatEvent implements BoardEvent {
+public class EatEvent {
 
 	public EatEvent(ColoredAlligator eater, InternalBoardObject eatenFamily) {
 	}

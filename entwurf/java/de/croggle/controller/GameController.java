@@ -3,7 +3,6 @@ package de.croggle.controller;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.game.ColorController;
 import de.croggle.game.board.Board;
-import de.croggle.game.event.BoardEvent;
 import de.croggle.game.event.BoardEventListener;
 import de.croggle.game.level.Level;
 
@@ -48,11 +47,5 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	public void onCompletedLevel() {
-	}
-
-	@Override
-	public void callback(BoardEvent event) {
-		// TODO Auto-generated method stub
-
 	}
 }

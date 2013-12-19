@@ -7,7 +7,7 @@ import de.croggle.game.board.InternalBoardObject;
  * an internal board object on the board. E.g. this can be caused by the
  * player or alternatively when an alpha conversion occurs.
  */
-public class ObjectRecoloredEvent implements BoardEvent {
+public class ObjectRecoloredEvent {
 	
 	/**
 	 * Returns the board object whose color was altered by the simulator.

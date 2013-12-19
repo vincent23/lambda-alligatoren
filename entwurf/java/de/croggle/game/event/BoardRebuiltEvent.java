@@ -1,9 +1,11 @@
 package de.croggle.game.event;
 
+import de.croggle.game.board.Board;
+
 /**
  *
  */
-public class BoardRebuiltEvent implements BoardEvent {
+public class BoardRebuiltEvent {
 
     /**
      *

@@ -8,7 +8,7 @@ import de.croggle.game.board.Alligator;
  * general for both the rendered animation and the vanished alligator statistics
  * are either similar or behave the same for both types of alligators.
  */
-public class AlligatorVanishesEvent implements BoardEvent {
+public class AlligatorVanishesEvent {
 	
 	/**
 	 * Returns the alligator that is removed/ vanishes from the board
