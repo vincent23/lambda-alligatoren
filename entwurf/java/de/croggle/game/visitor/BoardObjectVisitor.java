@@ -13,4 +13,5 @@ public interface BoardObjectVisitor {
 	void visitEgg(Egg egg);
 	void visitColoredAlligator(ColoredAlligator alligator);
 	void visitAgedAlligator(AgedAlligator alligator);
+	void visitBoard(Board board);
 }
