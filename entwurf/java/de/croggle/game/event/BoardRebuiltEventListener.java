@@ -2,6 +2,7 @@ package de.croggle.game.event;
 
 /**
  *
+ * @depend - <listens_to> - BoardRebuiltEvent
  */
 public interface BoardRebuiltEventListener extends BoardEventListener {
 
