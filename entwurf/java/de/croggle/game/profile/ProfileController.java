@@ -1,4 +1,4 @@
-package de.croggle.controller;
+package de.croggle.game.profile;
 
 
 import java.util.List;
@@ -77,4 +77,11 @@ public class ProfileController {
 	public boolean isValidUserName(String newUserName){
 		return false;
 	} 
+	
+	/**
+	 * Stores the name of the currently active user in shared preferences.
+	 */
+	private void saveProfileName() {
+		
+	}
 }
