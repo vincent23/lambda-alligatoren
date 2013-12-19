@@ -6,9 +6,6 @@ import java.util.List;
 import de.croggle.game.achievement.Achievement;
 
 import android.content.Context;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 
 /**

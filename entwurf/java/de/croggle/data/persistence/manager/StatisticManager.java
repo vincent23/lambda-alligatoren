@@ -2,9 +2,7 @@ package de.croggle.data.persistence.manager;
 
 import de.croggle.data.persistence.Statistic;
 import android.content.Context;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+
 
 
 
@@ -74,12 +72,12 @@ public class StatisticManager extends TableManager {
 	/**
 	 * The name of the table.
 	 */
-	private static final String TABLE_NAME = "StatisticTable";
+	static final String TABLE_NAME = "StatisticTable";
 	
 	/**
 	 * The string used to create the statistic table via a sql query.
 	 */
-	private static final String CREATE_TABLE = "null";
+	static final String CREATE_TABLE = "null";
 	
 	/**
 	 * Creates a new StatisticManager used to manage the statistic table.

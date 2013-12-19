@@ -4,9 +4,7 @@ package de.croggle.data.persistence.manager;
 import de.croggle.data.persistence.LevelProgress;
 
 import android.content.Context;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+
 
 /**
  * This class is responsible for managing the sqlite-table that stores the level progresses of the different profiles.
@@ -19,48 +17,48 @@ public class LevelProgressManager extends TableManager {
 	/**
 	 * Name for the column that stores the profile names. Those names are used as the primary key.
 	 */
-	public static final String KEY_PROFILE_NAME = "profileName";
+	static final String KEY_PROFILE_NAME = "profileName";
 	
 	/**
 	 * Name for the column that stores the levelId. The IDs are used as the secondary key.
 	 */
-	public static final String KEY_LEVEL_ID = "levelId";
+	static final String KEY_LEVEL_ID = "levelId";
 	
 	/**
 	 * Name for the column that stores the information whether the level is solved or not.
 	 */
-	public static final String KEY_SOLVED = "solved";
+	static final String KEY_SOLVED = "solved";
 	
 	/**
 	 * Name for the column that stores the current board.
 	 */
-	public static final String KEY_CURRENT_BOARD = "currentBoard";
+	static final String KEY_CURRENT_BOARD = "currentBoard";
 	
 	/**
 	 * Name for the column that stores the number of used resets.
 	 */
-	public static final String KEY_USED_RESETS = "usedResets";
+	static final String KEY_USED_RESETS = "usedResets";
 	
 	/**
 	 * Name for the column that stores the number of used hints.
 	 */
-	public static final String KEY_USED_HINTS = "usedHints";
+	static final String KEY_USED_HINTS = "usedHints";
 	
 	/**
 	 * Name for the column that stores the amount of used time.
 	 */
-	public static final String KEY_USED_TIME = "usedTime";
+	static final String KEY_USED_TIME = "usedTime";
 		
 	/**
 	 * The name of the table.
 	 */
-	public static final String TABLE_NAME = "levelProgressTable";
+	static final String TABLE_NAME = "levelProgressTable";
 	
 
 	/**
 	 * The string used to create the level progress table via a sql query.
 	 */
-	private static final String CREATE_TABLE = "null";
+	static final String CREATE_TABLE = "null";
 	
 
 	

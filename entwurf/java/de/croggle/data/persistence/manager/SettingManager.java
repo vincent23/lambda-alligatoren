@@ -3,10 +3,6 @@ package de.croggle.data.persistence.manager;
 
 import de.croggle.data.persistence.Setting;
 import android.content.Context;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
 
 
 /**
@@ -44,13 +40,13 @@ public class SettingManager extends TableManager {
 	/**
 	 * The name of the table.
 	 */
-	private static final String TABLE_NAME = "SettingTable";
+	static final String TABLE_NAME = "SettingTable";
 	
 	
 	/**
 	 * The string used to create the setting table via a sql query.
 	 */
-	private static final String CREATE_TABLE = "null";
+	static final String CREATE_TABLE = "null";
 	
 	/**
 	 * Creates a new SettingManager used to manage the setting table.
@@ -85,7 +81,7 @@ public class SettingManager extends TableManager {
 	 * @param profileName The key for the sought setting.
 	 * @param setting The setting which values are used to overwrite the old setting.
 	 */
-	public void updateSetting(String profileName, Setting setting) {
+	void updateSetting(String profileName, Setting setting) {
 		
 	}
 
@@ -93,7 +89,7 @@ public class SettingManager extends TableManager {
 	 * Deletes the table entry which key matches profileName.
 	 * @param profileName The key of the entry which is to be deleted.
 	 */
-	public void deleteSetting(String profileName) {
+	void deleteSetting(String profileName) {
 		
 	}
 

@@ -6,9 +6,6 @@ import java.util.List;
 import de.croggle.game.profile.Profile;
 
 import android.content.Context;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 
 /**
@@ -37,13 +34,13 @@ public class ProfileManager extends TableManager {
 	/**
 	 * The string used to create the profile table via a sql query.
 	 */
-	private static final String CREATE_TABLE = "null";
+	static final String CREATE_TABLE = "null";
 	
 	/**
 	 * Creates a new ProfileManager used to manage the profile table.
 	 * @param context
 	 */
-	public ProfileManager(Context context) {
+	ProfileManager(Context context) {
 		super(context);
 		
 	}
