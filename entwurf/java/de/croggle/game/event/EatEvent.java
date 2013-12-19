@@ -9,7 +9,10 @@ import de.croggle.game.board.InternalBoardObject;
  * or alternatively just an egg) is "eaten" by another alligator.
  */
 public class EatEvent implements BoardEvent {
-	
+
+	public EatEvent(ColoredAlligator eater, InternalBoardObject eatenFamily) {
+	}
+
 	/**
 	 * Returns the subtree that is to be removed from the tree of alligator families.
 	 * 
