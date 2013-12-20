@@ -1,7 +1,9 @@
 package de.croggle.game;
 
+import java.util.List;
+
 import de.croggle.data.persistence.Statistic;
-import de.croggle.game.ColorController;
+import de.croggle.data.persistence.StatisticsDeltaProcessor;
 import de.croggle.game.board.Alligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
@@ -12,15 +14,18 @@ import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.game.level.Level;
 
 /**
- * Central controller, within which the actual playing of the a level is controlled. Additionally it handles the consequences of finishing a level and distributes the changes.
- *
+ * Central controller, within which the actual playing of the a level is
+ * controlled. Additionally it handles the consequences of finishing a level and
+ * distributes the changes.
+ * 
  * @navassoc 1 - 1 de.croggle.game.level.Level
  * @navassoc 1 - 2 de.croggle.game.board.Board
  * @navassoc 1 - 1 Simulator
  * @navassoc 1 - 1 ColorController
  * @navassoc 1 - 1 de.croggle.data.persistence.Statistic
  * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
- * @depend - <transmits_Statistics> - de.croggle.data.persistence.StatisticController
+ * @depend - <transmits_Statistics> -
+ *         de.croggle.data.persistence.StatisticController
  */
 public class GameController implements BoardEventListener {
 	/**
@@ -29,8 +34,8 @@ public class GameController implements BoardEventListener {
 	 */
 	private Board shownBoard;
 	/**
-	 * The state of the board edited by the user before any simulations are applied to it.
-	 * Used to return from simulation to placement mode.
+	 * The state of the board edited by the user before any simulations are
+	 * applied to it. Used to return from simulation to placement mode.
 	 */
 	private Board userBoard;
 	private Simulator simulator;
@@ -38,15 +43,19 @@ public class GameController implements BoardEventListener {
 	private Level level;
 	private Statistic statisticsDelta; // changes during the current Level.
 	private BoardEventMessenger boardEventMessenger;
+	// listeners of the statisticsDelta
+	private List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
 
 	/**
-	 * prepare to switch game mode to placement, in which the player is able to manipulate the board.
+	 * prepare to switch game mode to placement, in which the player is able to
+	 * manipulate the board.
 	 */
 	private void enterPlacement() {
 	}
 
 	/**
-	 * prepare to switch game mode to simulation, in which the given board can be evaluated.
+	 * prepare to switch game mode to simulation, in which the given board can
+	 * be evaluated.
 	 */
 	private void enterSimulation() {
 	}
@@ -54,14 +63,34 @@ public class GameController implements BoardEventListener {
 	/**
 	 * Called when the level is completed. Writes the important results into the
 	 * database and eventually tells the achievement controller which
-	 * achievements were achieved.
+	 * achievements were achieved. Passes the statisticsDelta to all of its
+	 * listeners.
 	 * 
 	 */
 	public void onCompletedLevel() {
 	}
 
 	/**
-	 *
+	 * Registers a listener to whom the statisticsDelta should be passed after
+	 * level completion.
+	 * 
+	 * @param listener
+	 *            the listener
+	 */
+	public void register(StatisticsDeltaProcessor listener) {
+	}
+
+	/**
+	 * Unregisters the statistic listener.
+	 * 
+	 * @param listener
+	 */
+	public void unregister(StatisticsDeltaProcessor listener) {
+
+	}
+
+	/**
+	 * 
 	 */
 	public void registerBoardEventListener(BoardEventListener listener) {
 	}
