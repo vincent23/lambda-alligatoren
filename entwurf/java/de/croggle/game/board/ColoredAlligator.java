@@ -27,7 +27,7 @@ public class ColoredAlligator extends Alligator {
 
 	@Override
 	public ColoredAlligator copy() {
-	
+	}
 	/**
 	 * Gets the color of the Alligator.
 	 * @return the color.

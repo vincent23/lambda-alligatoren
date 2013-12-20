@@ -25,6 +25,7 @@ public class Egg implements InternalBoardObject {
 
 	@Override
 	public Egg copy() {
+	}
 
 	/**
 	 * Gets the color oft the egg.
