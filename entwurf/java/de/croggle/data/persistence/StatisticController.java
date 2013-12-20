@@ -8,14 +8,23 @@ import de.croggle.AlligatorApp;
  */
 public class StatisticController implements StatisticsDeltaProcessor {
 
-	private Statistic statistic;
+	/**
+	 * The currently active statistic.
+	 */
+	private Statistic currentStatistic;
+	
+	/**
+	 * Backreference to the game.
+	 */
 	private AlligatorApp game;
 
 	/**
-	 * Creates a controller, whose statistic is set as null.
+	 * Creates a new controller. If a profile name is stored in the
+	 * shared preferences the corresponding statistic is loaded and stored in
+	 * current Statistic.
 	 * 
 	 * @param game
-	 *            the backreference to the central game object
+	 *            The backreference to the central game object
 	 */
 	public StatisticController(AlligatorApp game) {
 	}
@@ -25,22 +34,36 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * statistic.
 	 * 
 	 * @param statistic
-	 *            the statistic to set as active
+	 *            The statistic to set as active
 	 * @param game
-	 *            the backreference to the central game object
+	 *            The backreference to the central game object
 	 */
 	public StatisticController(Statistic statistic, AlligatorApp game) {
 
 	}
 
 	/**
-	 * Replaces the active statistic by the given one and connects it to the
-	 * active profile. The avtive profile and statistic should not be null.
+	 * Replaces the current statistic with newStatistic. newStatistic gets stored in
+	 * the database.
 	 * 
-	 * @param statistic
-	 *            the statistic to replace the current one
+	 * @param newStatistic 
+	 * 				The statistic used to replace the currently active statistic.
 	 */
-	public void changeCurrentStatistic(Statistic statistic) {
+	public Statistic editCurrentStatistic(Statistic newStatistic) {
+		return null;
+	}
+
+	/**
+	 * Loads the statistic which belongs to the user identified by profile name
+	 * and sets it as the currently active statistic.
+	 * 
+	 * @param profileName
+	 * 			  The name of the user whose statistic is loaded.
+	 * @throws IllegalArgumentException
+	 *            When the string does not represent a profile in the database
+	 */
+	public void changeCurrentStatistic(String profileName) throws IllegalArgumentException{
+		
 	}
 
 	/**
@@ -57,12 +80,12 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * string.
 	 * 
 	 * @param profileName
-	 *            the identifier of the profile whose statistic should be loaded
+	 *            The identifier of the profile whose statistic should be loaded
 	 * @return the statistic of the specified profile
 	 * @throws IllegalArgumentException
-	 *             when the string does not represent a profile in the database
+	 *             When the string does not represent a profile in the database
 	 */
-	public Statistic getStatistic(String profileName) {
+	public Statistic getStatistic(String profileName) throws IllegalArgumentException {
 		return null;
 	}
 
