@@ -10,7 +10,7 @@ import de.croggle.game.board.Alligator;
  * general for both the rendered animation and the vanished alligator statistics
  * are either similar or behave the same for both types of alligators.
  */
-public interface AlligatorVanishesListener {
+public interface AgedAlligatorVanishesListener {
 	
 	/**
 	 * Receive an alligator vanishes event for further processing.
@@ -19,6 +19,6 @@ public interface AlligatorVanishesListener {
 	 * 
 	 * @param alligator The vanishing alligator.
 	 */
-	public void onAlligatorVanishes(Alligator alligator);
+	public void onAgedAlligatorVanishes(Alligator alligator);
 	
 }

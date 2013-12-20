@@ -119,7 +119,7 @@ public class GameController implements BoardEventListener {
 	 *
 	 */
 	@Override
-	public void onAlligatorVanishes(Alligator alligator) {
+	public void onAgedAlligatorVanishes(Alligator alligator) {
 	}
 
 	/**
