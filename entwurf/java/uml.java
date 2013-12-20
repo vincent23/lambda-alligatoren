@@ -36,7 +36,19 @@ class UMLOptions {
  * 
  * @match class de.croggle.game.*
  * @opt nodefillcolor 5
+ *
+ * @match class de.croggle.game.achievement.*
+ * @opt nodefillcolor 11
+ *
+ * @match class de.croggle.game.level.*
+ * @opt nodefillcolor 12
  * 
+ * @match class de.croggle.game.visitor.*
+ * @opt nodefillcolor #ee7600
+ *
+ * @match class de.croggle.game.profile.*
+ * @opt nodefillcolor #458b74
+ *
  * @match class de.croggle.ui.renderer.*
  * @opt nodefillcolor 6
  * 
