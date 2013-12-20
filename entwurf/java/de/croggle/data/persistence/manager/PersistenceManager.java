@@ -7,6 +7,7 @@ import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.game.achievement.Achievement;
 import de.croggle.game.profile.Profile;
+import de.croggle.AlligatorApp;
 
 /**
  * 
@@ -45,12 +46,15 @@ public class PersistenceManager {
 	 * The AchievementManager is used to save and load unlocked Achievements.
 	 */	
 	private AchievementManager achievementManager;
+	
+	private AlligatorApp game;
 
 
 	/**
 	 * Creates a new PersistanceManager and initializes the different managers.
+	 * @param game the backreference to the central game object
 	 */
-	public PersistenceManager() {
+	public PersistenceManager(AlligatorApp game) {
 
 	}
 

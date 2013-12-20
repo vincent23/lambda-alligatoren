@@ -4,6 +4,7 @@ import java.util.List;
 
 import de.croggle.controller.StatisticsDeltaProcessor;
 import de.croggle.data.persistence.Statistic;
+import de.croggle.AlligatorApp;
 
 /**
  * 
@@ -12,9 +13,14 @@ import de.croggle.data.persistence.Statistic;
  */
 public class AchievementController implements StatisticsDeltaProcessor{
 
-	List<Achievement> achievements;
+	private List<Achievement> achievements;
+	private AlligatorApp game;
 
-	public AchievementController() {
+	/**
+	*
+	* @param game the backreference to the central game object
+	*/
+	public AchievementController(AlligatorApp game) {
 
 	}
 

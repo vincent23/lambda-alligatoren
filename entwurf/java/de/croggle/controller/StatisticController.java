@@ -1,6 +1,7 @@
 package de.croggle.controller;
 
 import de.croggle.data.persistence.Statistic;
+import de.croggle.AlligatorApp;
 
 /**
  *
@@ -9,11 +10,13 @@ public class StatisticController implements StatisticsDeltaProcessor {
 
 	private String currentProfileName;
 	private Statistic statistic;
+	private AlligatorApp game;
 
 	/**
-	 * Constructor
+	 * 
+	 * @param game the backreference to the central game object
 	 */
-	public StatisticController() {
+	public StatisticController(AlligatorApp game) {
 	}
 
 	public void changeCurrentStatistic(Statistic statistic) {

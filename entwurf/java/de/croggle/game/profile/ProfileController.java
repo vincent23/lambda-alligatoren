@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.SharedPreferences;
 import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileOverflowException;
+import de.croggle.AlligatorApp;
 
 /**
  * A Controller made to encapsulate the management of profiles.
@@ -17,11 +18,13 @@ public class ProfileController {
 	* The currently active profile.
 	*/
 	private Profile currentProfile;
+	private AlligatorApp game;
 	
 	/**
 	* Creates a new ProfileController. On initialization the active profile is set to null.
+	* @param game the backreference to the central game object
 	*/
-	public ProfileController() {
+	public ProfileController(AlligatorApp game) {
 		
 	}
 	
