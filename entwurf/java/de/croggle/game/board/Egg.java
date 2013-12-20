@@ -22,10 +22,16 @@ public class Egg implements InternalBoardObject {
 		return null;
 	}
 
-	/**
-	 *
-	 */
+
 	@Override
 	public Egg copy() {
+
+	/**
+	 * Gets the color oft the egg.
+	 * @return the color.
+	 */
+	public Color getColor(){
+		return null;
+
 	}
 }
