@@ -57,7 +57,7 @@ CP				+= $(LIBPATH)/gdx.jar
 CP				+= $(LIBPATH)/android.jar
 CLASSPATH		= $(subst $(SPACE),:,$(strip $(CP)))
 JAVADOC			= javadoc -classpath "$(CLASSPATH)" -quiet \
-					-sourcepath $(SRCDIR) -subpackages $(PACKAGE)
+					-sourcepath "$(SRCDIR)" -subpackages $(PACKAGE)
 
 # UMLGraph
 UMLGRAPHDOCLET	= -docletpath $(DOCLETPATH)/UmlGraph.jar -doclet org.umlgraph.doclet.UmlGraph $(VIEWSOPT) \

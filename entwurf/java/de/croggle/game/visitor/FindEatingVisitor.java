@@ -5,8 +5,6 @@ import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.Board;
 
-import de.croggle.game.board.ColoredAlligator;
-
 /**
  *
  */
@@ -42,24 +40,32 @@ public class FindEatingVisitor implements BoardObjectVisitor {
 	 *
 	 */
 	@Override
-	void visitEgg(Egg egg);
+	public void visitEgg(Egg egg) {
+		
+	}
 
 	/**
 	 *
 	 */
 	@Override
-	void visitColoredAlligator(ColoredAlligator alligator);
+	public void visitColoredAlligator(ColoredAlligator alligator) {
+		
+	}
 
 	/**
 	 *
 	 */
 	@Override
-	void visitAgedAlligator(AgedAlligator alligator);
+	public void visitAgedAlligator(AgedAlligator alligator) {
+		
+	}
 
 	/**
 	 *
 	 */
 	@Override
-	void visitBoard(Board board);
+	public void visitBoard(Board board) {
+		
+	}
 
 }
