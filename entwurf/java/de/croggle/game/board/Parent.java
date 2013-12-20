@@ -30,6 +30,12 @@ public abstract class Parent {
 	}
 
 	/**
+	 *
+	 */
+	public boolean replaceChildWith(InternalBoardObject child, InternalBoardObject replaceChild) {
+	}
+
+	/**
 	 * Returns an Iterator on the children list.
 	 * @return the Iterator.
 	 */
