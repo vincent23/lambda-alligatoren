@@ -10,7 +10,11 @@ import de.croggle.AlligatorApp;
  * @depend - <uses> - de.croggle.game.profile.ProfileController
  */
 public class MainMenuScreen extends AbstractScreen{
-	public MainMenuScreen(AlligatorApp app) {
+    /**
+     * Creates the main menu screen from whom the player can navigate into the different parts of the app.
+     * @param app the instance of alligator app, from which everything is connected.
+     */
+    public MainMenuScreen(AlligatorApp app) {
 		
 	}
 }

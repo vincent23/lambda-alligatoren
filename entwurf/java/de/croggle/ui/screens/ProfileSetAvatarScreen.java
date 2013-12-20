@@ -9,7 +9,11 @@ import de.croggle.game.profile.ProfileController;
  * @depend - <uses> - de.croggle.game.profile.ProfileController
  */
 public class ProfileSetAvatarScreen extends AbstractScreen{
-	public ProfileSetAvatarScreen(ProfileController controller) {
+	/**
+     * Creates the screen that is shown to the player while changing his player avatar.
+     * @param controller the profile controller, which is responsible for the currently selected profile.
+     */
+    public ProfileSetAvatarScreen(ProfileController controller) {
 		
 	}
 }

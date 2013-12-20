@@ -8,7 +8,11 @@ import de.croggle.game.profile.ProfileController;
  * @depend - <uses> - de.croggle.game.profile.ProfileController
  */
 public class ProfileSetNameScreen extends AbstractScreen{
-	public ProfileSetNameScreen(ProfileController controller) {
+    /**
+     * Creates the screen that is shown to the player while changing his player name.
+     * @param controller the profile controller, which is responsible for the currently selected profile.
+     */
+    public ProfileSetNameScreen(ProfileController controller) {
 		
 	}
 }
