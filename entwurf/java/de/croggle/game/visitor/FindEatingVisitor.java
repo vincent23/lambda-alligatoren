@@ -1,6 +1,5 @@
 package de.croggle.game.visitor;
 
-import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.game.board.ColoredAlligator;
 
 /**

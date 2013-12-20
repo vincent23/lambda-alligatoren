@@ -7,7 +7,6 @@ import de.croggle.game.board.Board;
 
 /**
  * 
- * @depend - <visits> - de.croggle.game.board.BoardObject
  */
 public interface BoardObjectVisitor {
 	
