@@ -22,7 +22,7 @@ public class ProfileController {
 	
 	/**
 	* Creates a new ProfileController. On initialization the active profile is set to null.
-	* @param game the backreference to the central game object
+	* @param game The backreference to the central game object
 	*/
 	public ProfileController(AlligatorApp game) {
 		
@@ -30,7 +30,7 @@ public class ProfileController {
 	
 	/**
 	* Sets the profile identified by the given profileName as the active profile. 
-	* @param newProfileName the string identifying the new profile
+	* @param newProfileName The string identifying the new profile
 	* @throws IllegalArgumentException When there is no saved profile identified by the given profileName.
 	*/
 	public void changeCurrentProfile(String newProfileName) throws IllegalArgumentException {
@@ -40,7 +40,7 @@ public class ProfileController {
 	/**
 	* Creates a new profile with the given attributes and sets it as the active profile. Also writes it to the database (???).
 	* @param name the name of the owner of the new profile. Is identifier and must be unique.
-	* @param the path to the picture associated with the new profile
+	* @param picturePath the picture path to the picture associated with the new profile
 	* @throws IllegalArgumentException If there is already a profile identified by the given name.
 	* @throws ProfileOverflowException If there are already six profiles registered.
 	*/
@@ -51,7 +51,7 @@ public class ProfileController {
 	/**
 	* Replaces the active profile entirely by the given new one.
 	* There must be an active profile set (not null)
-	* @param profile the profile which should replace the active profile
+	* @param profile The profile which should replace the active profile
 	* @throws IllegalArgumentException When the given profile is null or its name already identifies another profile.
 	*/
 	public void editCurrentProfile(Profile profile) throws IllegalArgumentException {
@@ -66,7 +66,7 @@ public class ProfileController {
 	}
 	
 	/**
-	* @return the list of all saved profiles
+	* @return The list of all saved profiles
 	*/
 	public List<Profile> getAllProfiles() {
 		return null;
@@ -74,7 +74,7 @@ public class ProfileController {
 	
 	/**
 	* Tests and returns if a string supposed to be a new profile's identifier is valid, means if it contains at least one character and is not already identifier of another profile.
-	* @param newUserName the string to be tested
+	* @param newUserName The string to be tested
 	* @return true, if newUserName would be a valid profile name, false else 
 	*/
 	public boolean isValidUserName(String newUserName){
