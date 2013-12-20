@@ -1,7 +1,5 @@
 package de.croggle.game;
 
-import java.util.List;
-
 import de.croggle.data.persistence.Statistic;
 import de.croggle.game.ColorController;
 import de.croggle.game.board.Alligator;
@@ -20,8 +18,8 @@ import de.croggle.game.level.Level;
  * @navassoc 1 - 1 Simulator
  * @navassoc 1 - 1 ColorController
  * @navassoc 1 - 1 de.croggle.data.persistence.Statistic
- * @depend - <transmits_Statistics> - StatisticController
- * @has 1 - * de.croggle.game.event.BoardEventListener
+ * @navassoc 1 - 1 de.croggle.game.BoardEventMessenger
+ * @depend - <transmits_Statistics> - de.croggle.data.persistence.StatisticController
  */
 public class GameController implements BoardEventListener {
 	/**
@@ -38,7 +36,7 @@ public class GameController implements BoardEventListener {
 	private ColorController colorController;
 	private Level level;
 	private Statistic statisticsDelta; // changes during the current Level.
-	private List<BoardEventListener> boardListeners;
+	private BoardEventMessenger boardEventMessenger;
 
 	/**
 	 * prepare to switch game mode to placement, in which the player is able to manipulate the board.

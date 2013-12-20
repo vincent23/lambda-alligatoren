@@ -10,21 +10,21 @@ import de.croggle.game.event.BoardEventListener;
 /**
  * @has 1 - 2-32 de.croggle.game.board.Board
  * @navassoc 1 - 1 de.croggle.util.RingBuffer
- * @has 1 - * de.croggle.game.event.BoardEventListener
+ * @navassoc 1 - 1 de.croggle.game.BoardEventMessenger
  */
 public class Simulator {
 	private Board entranceBoard;
 	private Board currentBoard;
 	private RingBuffer<Board> history; // 30 elements needed.
 	private ColorController colorController;
-	private List<BoardEventListener> boardListeners;
+	private BoardEventMessenger boardMessenger;
 
-	public Simulator(Board entranceBoard, ColorController colorController, List<BoardEventListener> boardListeners) {
+	public Simulator(Board entranceBoard, ColorController colorController, BoardEventMessenger boardMessenger) {
 		this.history = new RingBuffer(30);
 		this.entranceBoard = entranceBoard;
 		this.currentBoard = entranceBoard;
 		this.colorController = colorController;
-		this.boardListeners = boardListeners;
+		this.boardMessenger = boardMessenger;
 	}
 
 	/**
