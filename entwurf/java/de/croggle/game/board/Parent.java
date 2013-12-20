@@ -30,20 +30,25 @@ public abstract class Parent {
 	}
 
 	/**
-	 * 
+	 * Returns an Iterator on the children list.
+	 * @return the Iterator.
 	 */
 	public Iterator<InternalBoardObject> getIterator() {
 		return null;
 	}
 
 	/**
-	 *
+	 * Checks whether the given InternalBoardObject is the last child in the list of the parent.
+	 * @param child InternalChildObject which should be checked on.
+	 * @return returns true if the given child is the last child in the list false otherwise.
 	 */
 	public boolean isLastChild(InternalBoardObject child) {
 	}
 
 	/**
-	 *
+	 * Returns the following child after the one given as parameter.
+	 * @param child in the children list.
+	 * @return the child which is the next after the child in the list.
 	 */
 	public InternalBoardObject getNextChild(InternalBoardObject child) {
 	}
