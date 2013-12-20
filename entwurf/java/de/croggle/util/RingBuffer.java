@@ -1,7 +1,7 @@
 package de.croggle.util;
 
 /**
- * utility construct, which simplifies saving the last 30 steps immensely.
+ * Utility construct, which simplifies saving the last 30 steps immensely.
  */
 public class RingBuffer<T> {
 	

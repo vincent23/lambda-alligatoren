@@ -13,7 +13,7 @@ public class PlacementModeScreen extends AbstractScreen{
 
     /**
      * Creates the screen of a level within the placement mode. This is the screen which is presented to the user upon entering a recoloring or termedit level.
-     * @param controller the game controller, which is responsible for the played level.
+     * @param controller The game controller, which is responsible for the played level.
      */
 	public PlacementModeScreen(GameController controller) {
 		

@@ -9,7 +9,11 @@ import de.croggle.data.persistence.StatisticController;
  * @depend - <uses> - de.croggle.data.persistence.StatisticController
  */
 public class StatisticScreen extends AbstractScreen {
-	public StatisticScreen(StatisticController controller) {
+    /**
+     * Creates the screen within which a parent or teacher can control the player's progress and statistics.
+     * @param controller the statistic controller, which is responsible for the statistics.
+     */
+    public StatisticScreen(StatisticController controller) {
 
 	}
 }

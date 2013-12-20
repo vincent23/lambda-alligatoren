@@ -11,7 +11,7 @@ import de.croggle.data.persistence.SettingController;
 public class SettingsScreen extends AbstractScreen {
     /**
      * Creates the screen that is shown to the player while changing his profile's settings.
-     * @param controller the settings controller, which is responsible for the currently selected profile.
+     * @param controller The settings controller, which is responsible for the currently selected profile.
      */
     public SettingsScreen(SettingController controller) {
 

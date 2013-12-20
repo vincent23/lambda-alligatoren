@@ -11,7 +11,7 @@ import de.croggle.game.GameController;
 public class LevelTerminatedScreen extends AbstractScreen{
     /**
      * Creates the level terminated screen that is shown to the player after the completion of a level.
-     * @param controller the game controller, who is responsible for the completed level.
+     * @param controller The game controller, who is responsible for the completed level.
      */
     public LevelTerminatedScreen(GameController controller) {
 		
