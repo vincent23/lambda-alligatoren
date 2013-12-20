@@ -10,7 +10,7 @@ public abstract class Achievement {
 	private int id;
 	/**
 	 * Array, which describes the different stages of the achievement and which
-	 * time requirements have to be met in order to fulfill this achievement.
+	 * requirements have to be met in order to fulfill this achievement.
 	 */
 	private int[] stages;
 	/**
@@ -19,14 +19,16 @@ public abstract class Achievement {
 	private int index;
 
 	/**
-	 * Getter for description
+	 * Getter for description.
+     * @return the text which is shown in order to describe the achievement.
 	 */
 	public String getDescription(int index) {
 		return null;
 	}
 
 	/**
-	 * Getter for description.
+	 * Getter for the emblem path.
+     * @return the path leading to the location of the picture, which is used as the achievement's emblem.
 	 */
 	public String getEmblemPath(int index) {
 		return null;
@@ -34,6 +36,7 @@ public abstract class Achievement {
 
 	/**
 	 * Getter for id.
+     * @return the achievement id.
 	 */
 	public int getId() {
 		return 0;
