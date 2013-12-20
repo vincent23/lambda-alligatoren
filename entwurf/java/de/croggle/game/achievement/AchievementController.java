@@ -7,7 +7,7 @@ import de.croggle.data.persistence.Statistic;
 import de.croggle.AlligatorApp;
 
 /**
- * 
+ * Controller, responsible for the achievements and checking whether achievements have been achieved.
  * @navassoc 1 - * de.croggle.game.achievement.Achievement
  * @navassoc 1 - * de.croggle.data.persistence.manager.AchievementManager
  */
@@ -32,6 +32,12 @@ public class AchievementController implements StatisticsDeltaProcessor{
 	public List<Achievement> processStatisticsDelta(Statistic statisticsDelta) {
 		return null;
 	}
+
+    /**
+     * initiates the achievements, thus the controller is aware, which achievements have been achieved and which achievements are still uncompleted.
+     */
+    public void initiateAchievements() {
+    }
 
 	@Override
 	public void processDelta(Statistic statisticsDelta) {
