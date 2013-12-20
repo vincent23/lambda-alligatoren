@@ -7,7 +7,7 @@ import android.content.Context;
 
 
 /**
- * This class is responsible for managing the sqlite-table that stores the level progresses of the different profiles.
+ * A concrete table manager which is responsible for managing the sqlite-table that stores the level progresses of the different profiles.
  * 
  * @navassoc 1 - * de.croggle.data.persistence.LevelProgress
  */
@@ -15,7 +15,7 @@ import android.content.Context;
 public class LevelProgressManager extends TableManager {
 	
 	/**
-	 * Name for the column that stores the profile names. Those names are used as the primary key.
+	 * Name for the column that stores the profile names. The names are used as the primary key.
 	 */
 	static final String KEY_PROFILE_NAME = "profileName";
 	
@@ -63,16 +63,16 @@ public class LevelProgressManager extends TableManager {
 
 	
 	/**
-	 * Creates a new LevelProgressManager used to manage the level progress table.
-	 * @param context
+	 * Creates a new LevelProgressManager which manages the level progress table.
+	 * @param context Used to access the database.
 	 */
 	LevelProgressManager(Context context) {
 		super(context);
 	}
 	
 	/**
-	 * Adds a new level progress to the table, the parameter profileName is used as the primary key.
-	 * @param profileName This string is used as the primary key for the level progress.
+	 * Adds a new level progress to the table, the parameter profileName identifies the profile to which the level progress belongs.
+	 * @param profileName The name of the profile to which the level progress belongs.
 	 * @param levelProgress Contains the values to be stored in the table.
 	 */
 	void addLevelProgress(String profileName, LevelProgress levelProgress) {
@@ -80,21 +80,20 @@ public class LevelProgressManager extends TableManager {
 	}
 	
 	/**
-	 * Searches the table for a level progress which primary key matches profileName and secondary key matches levelID.
-	 * @param profileName The primary key for the sought level progress.
-	 * @param levelId The secondary key for the sought level progress.
+	 * Searches the table for a level progress that belongs to the profile identified by profileName and which level ID matches the level ID stored in levelProgress. 
+	 * @param profileName The name of the profile to which the level progresses belongs.
+	 * @param levelId The level ID of the searched-for level progress.
 	 * @return Returns the found level progress, if no level progress is found, null is returned.
 	 */
 	LevelProgress getLevelProgress(String profileName, long levelId)  {
-		/*TODO*/
 		return null;
 	}
 	
 	
 	/**
-	 * Searches the table for a levelProgress which primary key matches profileName and secondary key matches the level ID stored in levelProgress. 
+	 * Searches the table for a levelProgress that belongs to the profile identified by profileName and which level ID matches the level ID stored in levelProgress. 
 	 * The values of the found levelProgress are overwritten by the values stored in the parameter levelProgress.
-	 * @param profileName The primary key for the sought level progress.
+	 * @param profileName The name of the profile to which the level progresses belongs.
 	 * @param levelProgress The level progress which values are used to overwrite the old level progress.
 	 */
 	void updateLevelProgress(String profileName, LevelProgress levelProgress) {
@@ -103,11 +102,11 @@ public class LevelProgressManager extends TableManager {
 	}
 	
 	/**
-	 * Deletes the table entry which primary and secondary key match profileName and levelID.
-	 * @param profileName The key of the entry which is to be deleted.
+	 * Deletes all level progresses which belong to the profile identified by profile name from the table.
+	 * @param profileName The name of the profile to which the level progresses belongs.
 	 */
-	void deleteLevelProgress(String profileName, long levelId) {
-		/*TODO*/
+	void deleteLevelProgresses(String profileName) {
+		
 	
 	}
 	

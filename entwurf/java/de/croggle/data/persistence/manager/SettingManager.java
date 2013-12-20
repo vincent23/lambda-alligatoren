@@ -6,14 +6,14 @@ import android.content.Context;
 
 
 /**
- * This class is responsible for managing the sqlite-table that stores the settings of the different profiles.
+ * A concrete table manager which is responsible for managing the sqlite-table that stores the settings of the different profiles.
  * 
  * @navassoc 1 - * de.croggle.data.persistence.Setting
  */
 public class SettingManager extends TableManager {
 
 	/**
-	 * Name for the column that stores the profile names. Those names are used as the primary key.
+	 * Name for the column that stores the profile names. The names are used as the primary key.
 	 */
 	static final String KEY_PROFILE_NAME = "profileName";
 	
@@ -49,8 +49,8 @@ public class SettingManager extends TableManager {
 	static final String CREATE_TABLE = "null";
 	
 	/**
-	 * Creates a new SettingManager used to manage the setting table.
-	 * @param context
+	 * Creates a new SettingManager which manages the setting table.
+	 * @param context Used to access the database.
 	 */
 	SettingManager(Context context) {
 		super(context);
@@ -58,8 +58,8 @@ public class SettingManager extends TableManager {
 	}
 	
 	/**
-	 * Adds a new setting to the table, the parameter profileName is used as the primary key.
-	 * @param profileName This string is used as the primary key for the setting.
+	 * Adds a new setting to the table, the parameter profileName identifies the profile to which the setting belongs.
+	 * @param profileName The name of the profile which setting is added to the table.
 	 * @param setting Contains the values to be stored in the table.
 	 */
 	void addSetting(String profileName, Setting setting) {
@@ -67,18 +67,18 @@ public class SettingManager extends TableManager {
 	}
 
 	/**
-	 * Searches the table for a setting which key matches profileName.
-	 * @param profileName The key for the sought setting.
+	 * Searches the table for a setting which belongs to the profile identified by profileName .
+	 * @param profileName The name of the profile which setting is searched for.
 	 * @return Returns the found setting, if no setting is found, null is returned.
 	 */
 	Setting getSetting(String profileName) {
-		/* TODO */
+		
 		return null;
 	}
 
 	/**
-	 * Searches the table for a setting which key matches profileName and overwrites its values with the values stored in the parameter setting.
-	 * @param profileName The key for the sought setting.
+	 * Searches the table for a setting which belongs to the profile identified by profileName and overwrites its values with the values stored in the parameter setting.
+	 * @param profileName The name of the profile which setting is updated.
 	 * @param setting The setting which values are used to overwrite the old setting.
 	 */
 	void updateSetting(String profileName, Setting setting) {
@@ -86,8 +86,8 @@ public class SettingManager extends TableManager {
 	}
 
 	/**
-	 * Deletes the table entry which key matches profileName.
-	 * @param profileName The key of the entry which is to be deleted.
+	 * Deletes the setting which belongs to the profile identified by profileName from the table.
+	 * @param profileName The name of the profile which setting is deleted.
 	 */
 	void deleteSetting(String profileName) {
 		

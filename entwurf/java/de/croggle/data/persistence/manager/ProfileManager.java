@@ -9,14 +9,14 @@ import android.content.Context;
 
 
 /**
- * This class is responsible for managing the sqlite-table that stores the different profiles.
+ * A concrete table manager which is responsible for managing the sqlite-table that stores the different profiles.
  * 
  * @navassoc 1 - * de.croggle.game.profile.Profile
  */
 public class ProfileManager extends TableManager {
 
 	/**
-	 * Name for the column that stores the profile names. Those names are used as the primary key.
+	 * Name for the column that stores the profile names. The names are used as the primary key.
 	 */
 	static final String KEY_PROFILE_NAME = "profileName";
 	
@@ -37,8 +37,8 @@ public class ProfileManager extends TableManager {
 	static final String CREATE_TABLE = "null";
 	
 	/**
-	 * Creates a new ProfileManager used to manage the profile table.
-	 * @param context
+	 * Creates a new ProfileManager which manages the profile table.
+	 * @param context Used to access the database.
 	 */
 	ProfileManager(Context context) {
 		super(context);
@@ -47,7 +47,7 @@ public class ProfileManager extends TableManager {
 	
 	
 	/**
-	 * Adds a new statistic to the table, the profile name contained in profile is used as the primary key.
+	 * Adds a new profile to the table.
 	 * @param profile Contains the values to be stored in the table.
 	 */
 	void addProfile(Profile profile) {
@@ -55,17 +55,16 @@ public class ProfileManager extends TableManager {
 	}
 
 	/**
-	 * Searches the table for a profile which key matches profileName.
-	 * @param profileName The key for the sought profile.
+	 * Searches the table for a profile which name matches profileName.
+	 * @param profileName The name of the searched-for profile.
 	 * @return Returns the found profile, if no profile is found, null is returned.
 	 */
 	Profile getProfile(String profileName) {
-		/* TODO */
 		return null;
 	}
 
 	/**
-	 * Searches the table for a profile which key matches the profile name stored in profile and overwrites its values with the values stored in the parameter profile.
+	 * Searches the table for a profile which name matches the profile name stored in profile and overwrites its values with the values stored profile.
 	 * @param profile Contains the values used to overwrite the old entry.
 	 */
 	void updateProfile(Profile profile) {
@@ -73,8 +72,8 @@ public class ProfileManager extends TableManager {
 	}
 
 	/**
-	 * Deletes the table entry which key matches profileName.
-	 * @param profileName The key of the entry which is to be deleted.
+	 * Deletes the profile which name matches profileName from the table.
+	 * @param profileName The name of the user whose profile is to be deleted.
 	 */
 	void deleteProfile(String profileName) {
 		
@@ -84,7 +83,6 @@ public class ProfileManager extends TableManager {
 	 * Returns all Profiles stored in the table.
 	 */
 	List<Profile> getAllProfiles() {
-		/* TODO */
 		return null;
 	}
 
