@@ -1,5 +1,7 @@
 package de.croggle.game.visitor;
 
+import de.croggle.game.event.BoardEventMessenger;
+
 /**
  * A visitor looking for aged alligators, which are not nessesary 
  * because their presence does not change the order of evaluation within the term.

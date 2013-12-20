@@ -1,5 +1,7 @@
 package de.croggle.game.visitor;
 
+import de.croggle.game.event.BoardEventMessenger;
+
 /**
  * A visitor replacing eggs of a certain color with copies of a given 
  * family (subtree).
