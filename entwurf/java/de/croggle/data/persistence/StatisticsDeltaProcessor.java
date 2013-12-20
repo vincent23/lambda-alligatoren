@@ -1,6 +1,5 @@
-package de.croggle.controller;
+package de.croggle.data.persistence;
 
-import de.croggle.data.persistence.Statistic;
 
 /**
  * 

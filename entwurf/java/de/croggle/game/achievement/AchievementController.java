@@ -2,8 +2,8 @@ package de.croggle.game.achievement;
 
 import java.util.List;
 
-import de.croggle.controller.StatisticsDeltaProcessor;
 import de.croggle.data.persistence.Statistic;
+import de.croggle.data.persistence.StatisticsDeltaProcessor;
 import de.croggle.AlligatorApp;
 
 /**

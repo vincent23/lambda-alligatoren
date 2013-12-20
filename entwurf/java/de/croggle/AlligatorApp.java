@@ -1,20 +1,21 @@
 package de.croggle;
 
-import de.croggle.controller.SettingController;
-import de.croggle.controller.StatisticController;
+import android.content.Context;
 import de.croggle.data.AssetManager;
 import de.croggle.data.LocalizationManager;
+import de.croggle.data.persistence.SettingController;
+import de.croggle.data.persistence.StatisticController;
 import de.croggle.data.persistence.manager.PersistenceManager;
 import de.croggle.game.achievement.AchievementController;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.profile.ProfileController;
-import android.content.Context;
 
 /**
  * @assoc 1 - 1 de.croggle.game.profile.ProfileController
  * @assoc 1 - 1 de.croggle.game.level.LevelPackagesController
  * @assoc 1 - 1 de.croggle.game.achievement.AchievementController
- * @assoc 1 - 1 de.croggle.controller.StatisticController
+ * @assoc 1 - 1 de.croggle.data.persistence.StatisticController
+ * @assoc 1 - 1 de.croggle.data.persistence.SettingController
  * @assoc 1 - 1 de.croggle.data.persistence.manager.PersistenceManager
  * @navassoc 1 - 1 de.croggle.data.AssetManager
  * @navassoc 1 - 1 de.croggle.data.LocalizationManager
@@ -22,7 +23,7 @@ import android.content.Context;
  */
 public class AlligatorApp extends com.badlogic.gdx.Game {
 
-	//the android context
+	// the android context
 	private Context context;
 
 	private ProfileController profileController;
@@ -34,15 +35,14 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	private AssetManager assetManager;
 	private LocalizationManager localizationManager;
 
-	
-	public Context getContext(){
+	public Context getContext() {
 		return null;
 	}
-	
-	public ProfileController getProfileController(){
+
+	public ProfileController getProfileController() {
 		return null;
 	}
-    
+
 	public LevelPackagesController getLevelPackagesController() {
 		return null;
 	}
@@ -66,7 +66,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	public LocalizationManager getLocalizationManager() {
 		return null;
 	}
-	
+
 	public SettingController getSettingController() {
 		return null;
 	}
