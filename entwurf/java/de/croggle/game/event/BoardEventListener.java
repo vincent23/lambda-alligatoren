@@ -6,5 +6,5 @@ package de.croggle.game.event;
  * which is executed by the event source with a board event as parameter,
  * describing the properties of the event in detail.
  */
-public interface BoardEventListener extends ReplaceEventListener, ObjectRecoloredListener, EatEventListener, BoardRebuiltEventListener, AlligatorVanishesListener{
+public interface BoardEventListener extends ReplaceEventListener, ObjectRecoloredListener, EatEventListener, BoardRebuiltEventListener, AgedAlligatorVanishesListener{
 }

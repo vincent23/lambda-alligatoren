@@ -39,7 +39,7 @@ public class BoardEventMessenger {
 	 *
 	 */
 	@Override
-	public void alligatorVanishes(Alligator alligator) {
+	public void agedAlligatorVanishes(Alligator alligator) {
 	}
 
 	/**
