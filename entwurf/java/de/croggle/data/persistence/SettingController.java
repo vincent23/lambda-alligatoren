@@ -1,5 +1,7 @@
 package de.croggle.data.persistence;
 
+import de.croggle.AlligatorApp;
+
 
 /**
  * Controller, which handles the different settings are currently applied onto
@@ -13,13 +15,20 @@ public class SettingController {
 	 * The currently active setting.
 	 */
 	private Setting currentSetting;
+	
+	/**
+	 * Backreference to the game.
+	 */
+	private AlligatorApp game;
 
 	/**
 	 * Creates a new SettingController. If a profile name is stored in the
 	 * shared preferences the corresponding setting is loaded and stored in
 	 * currentSetting.
+	 *
+	 * @param game The backreference to the central game object
 	 */
-	public SettingController() {
+	public SettingController(AlligatorApp game) {
 
 	}
 
@@ -27,8 +36,7 @@ public class SettingController {
 	 * Replaces the current setting with newSetting. newSetting gets stored in
 	 * the database.
 	 * 
-	 * @param newSetting
-	 *            The setting used to replace the currently active setting.
+	 * @param newSetting The setting used to replace the currently active setting.
 	 */
 	public void editCurrentSetting(Setting newSetting) {
 
@@ -38,8 +46,7 @@ public class SettingController {
 	 * Loads the setting, which belongs to the user identified with profile name
 	 * and sets it as the current profile.
 	 * 
-	 * @param profileName
-	 *            The name of the user, whose settings are loaded.
+	 * @param profileName The name of the user, whose settings are loaded.
 	 */
 	public void changeCurrentSetting(String profileName) {
 
@@ -52,13 +59,6 @@ public class SettingController {
 		return null;
 	}
 
-	/**
-	 * Applies the current setting. For example the music volume is set to the
-	 * value stored in currentSetting. This method gets called after a new
-	 * setting is loaded.
-	 */
-	private void applySetting() {
 
-	}
 
 }
