@@ -9,9 +9,7 @@ import de.croggle.game.board.Board;
 public class MultipleChoiceLevel extends Level {
 
 	private Board[] answers;
-	private int correctAnswer; // TODO: wollen wir speichern was das richtige
-								// ist, oder auswerten und schauen ob der Term
-								// upmatcht?
+	private int correctAnswer; 
 
 	/**
 	 * Method to check whether the given answer was the correct one.
@@ -22,7 +20,6 @@ public class MultipleChoiceLevel extends Level {
 
 	@Override
 	public boolean hasAnimation() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

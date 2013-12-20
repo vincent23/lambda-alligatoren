@@ -12,7 +12,6 @@ public class TermEditLevel extends Level {
 
 	@Override
 	public boolean hasAnimation() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }
