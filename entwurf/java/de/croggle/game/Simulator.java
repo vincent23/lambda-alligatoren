@@ -1,4 +1,4 @@
-package de.croggle.controller;
+package de.croggle.game;
 
 import java.util.List;
 

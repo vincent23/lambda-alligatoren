@@ -1,4 +1,4 @@
-package de.croggle.controller;
+package de.croggle.game;
 
 import de.croggle.data.persistence.Statistic;
 import de.croggle.game.ColorController;
@@ -20,29 +20,32 @@ import de.croggle.game.level.Level;
  * @navassoc 1 - 1 de.croggle.data.persistence.Statistic
  * @depend - <transmits_Statistics> - StatisticController
  */
-public class GameController implements BoardEventListener {
-	private Board currentBoard;
+public class GameController {
+	/**
+	 * The board that is used by the BoardActor to display the current state,
+	 * both in simulation mode and placement mode.
+	 */
+	private Board shownBoard;
+	/**
+	 * The state of the board edited by the user before any simulations are applied to it.
+	 * Used to return from simulation to placement mode.
+	 */
+	private Board userBoard;
 	private Simulator simulator;
 	private ColorController colorController;
 	private Level level;
-	private Board simulationModeEntranceBoard;
 	private Statistic statisticsDelta; // changes during the current Level.
 
 	/**
-	 * If 1, in PlacementMode. If 0, in SimulationMode.
-	 */
-	private boolean isInPlacementMode;
-
-	/**
-     * switches the game mode to placement mode, in which the player is able to manipulate the board.
+     * prepare to switch game mode to placement, in which the player is able to manipulate the board.
      */
-	private void switchToPlacementMode() {
+	private void enterPlacement() {
 	}
 
 	/**
-     * switches the game mode to simulation mode, in which the given board can be evaluated.
+     * prepare to switch game mode to simulation, in which the given board can be evaluated.
      */
-	private void switchToSimulationMode() {
+	private void enterSimulation() {
 	}
 
 	/**
@@ -52,25 +55,5 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	public void onCompletedLevel() {
-	}
-
-	@Override
-	public void onAlligatorVanishes(Alligator alligator) {
-	}
-
-	@Override
-	public void onBoardRebuilt(Board board) {
-	}
-
-	@Override
-	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
-	}
-
-	@Override
-	public void onObjectRecolored(InternalBoardObject recoloredObject) {
-	}
-
-	@Override
-	public void onEat(ColoredAlligator eater, InternalBoardObject eatenFamily) {
 	}
 }

@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import de.croggle.game.GameController;
+
 /**
  *
  * For reference see "Pflichtenheft 10.5.4 / Abbildungen 12 und 13"
@@ -9,4 +11,7 @@ package de.croggle.ui.screens;
  */
 public class PlacementModeScreen extends AbstractScreen{
 	
+	public PlacementModeScreen(GameController controller) {
+		
+	}
 }
