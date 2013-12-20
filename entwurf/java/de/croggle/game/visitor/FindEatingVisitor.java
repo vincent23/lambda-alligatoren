@@ -1,22 +1,36 @@
 package de.croggle.game.visitor;
 
 import de.croggle.game.event.BoardEventMessenger;
+import de.croggle.game.board.ColoredAlligator;
 
 /**
  *
- * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
  */
 public class FindEatingVisitor implements BoardObjectVisitor {
-	private boolean found;
-	private BoardEventMessenger boardMessenger;
+	private ColoredAlligator eater;
 
-	public FindEatingVisitor(BoardEventMessenger boardMessenger){
+	public FindEatingVisitor() {
+		this.eater = null;
 	}
 
 	/**
 	 *
 	 */
-	private void found() {
-		found = true;
+	private void foundEater(ColoredAlligator eater) {
+		this.eater = eater;
+	}
+
+	/**
+	 *
+	 */
+	private boolean hasFoundEater() {
+		return eater != null;
+	}
+
+	/**
+	 *
+	 */
+	public ColoredAlligator getEater() {
+		return eater;
 	}
 }
