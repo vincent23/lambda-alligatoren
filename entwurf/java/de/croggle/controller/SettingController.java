@@ -5,6 +5,9 @@ package de.croggle.controller;
 import de.croggle.data.persistence.Setting;
 import android.content.SharedPreferences;
 
+/**
+ * Controller, which handles the different settings are currently applied onto the app.
+ */
 public class SettingController {
 
 	/**
@@ -29,8 +32,8 @@ public class SettingController {
 	}
 	
 	/**
-	 * Loads the setting which belongs to the user identified with profile name and sets it as the current profile.
-	 * @param profileName The name of the user which settings are loaded.
+	 * Loads the setting, which belongs to the user identified with profile name and sets it as the current profile.
+	 * @param profileName The name of the user, whose settings are loaded.
 	 */
 	public void changeCurrentSetting(String profileName) {
 		

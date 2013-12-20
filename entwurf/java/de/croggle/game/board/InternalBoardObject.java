@@ -2,7 +2,7 @@ package de.croggle.game.board;
 
 
 /**
- * Special type of BoardObject, which specific attribute is, that its not the uppermost BoardObject.
+ * Special type of BoardObject, whose specific attribute is, that its not the uppermost BoardObject.
  */
 public interface InternalBoardObject extends BoardObject {
 	
