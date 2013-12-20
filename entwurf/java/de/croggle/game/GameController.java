@@ -19,7 +19,7 @@ import de.croggle.game.level.Level;
  * @navassoc 1 - 1 Simulator
  * @navassoc 1 - 1 ColorController
  * @navassoc 1 - 1 de.croggle.data.persistence.Statistic
- * @navassoc 1 - 1 de.croggle.game.BoardEventMessenger
+ * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
  * @depend - <transmits_Statistics> - de.croggle.data.persistence.StatisticController
  */
 public class GameController implements BoardEventListener {

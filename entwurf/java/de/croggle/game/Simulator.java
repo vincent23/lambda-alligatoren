@@ -11,7 +11,7 @@ import de.croggle.game.event.BoardEventMessenger;
 /**
  * @has 1 - 2-32 de.croggle.game.board.Board
  * @navassoc 1 - 1 de.croggle.util.RingBuffer
- * @navassoc 1 - 1 de.croggle.game.BoardEventMessenger
+ * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
  */
 public class Simulator {
 	private Board entranceBoard;
