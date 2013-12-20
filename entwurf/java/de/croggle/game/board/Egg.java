@@ -21,4 +21,11 @@ public class Egg implements InternalBoardObject {
 	public Parent getParent() {
 		return null;
 	}
+
+	/**
+	 *
+	 */
+	@Override
+	public Egg copy() {
+	}
 }

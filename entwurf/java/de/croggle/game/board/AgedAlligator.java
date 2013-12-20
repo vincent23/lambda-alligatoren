@@ -17,8 +17,12 @@ public class AgedAlligator extends Alligator {
 	}
 
 	public void accept(BoardObjectVisitor visitor) {
-		
-
 	}
 
+	/**
+	 *
+	 */
+	@Override
+	public AgedAlligator copy() {
+	}
 }

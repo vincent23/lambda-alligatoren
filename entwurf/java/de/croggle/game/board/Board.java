@@ -12,4 +12,10 @@ public class Board extends Parent implements BoardObject {
 
 	}
 
+	/**
+	 *
+	 */
+	@Override
+	public Board copy() {
+	}
 }

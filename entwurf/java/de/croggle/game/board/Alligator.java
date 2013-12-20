@@ -12,13 +12,13 @@ import de.croggle.game.visitor.BoardObjectVisitor;
  **/
 public abstract class Alligator extends Parent implements InternalBoardObject {
 
-    @Override
-    public abstract void accept(BoardObjectVisitor visitor){
+	@Override
+	public abstract void accept(BoardObjectVisitor visitor){
 
-    }
+	}
 
-    @Override
-    public abstract Parent getParent() {
+	@Override
+	public abstract Parent getParent() {
 
-    }
+	}
 }
