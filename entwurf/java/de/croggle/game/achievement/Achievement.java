@@ -13,40 +13,54 @@ public abstract class Achievement {
 	 * requirements have to be met in order to fulfill this achievement.
 	 */
 	private int[] stages;
-	/**
-	 * Index, which specifies on which stage this achievement is;
-	 */
 	private int index;
 
 	/**
-	 * Getter for description.
-     * @return the text which is shown in order to describe the achievement.
+	 * Returns a description that describes how to reach the achievement.
+	 * @param index the stage which the description should describe 
+     	 * @return the text which is shown in order to describe the achievement
 	 */
 	public String getDescription(int index) {
 		return null;
 	}
 
 	/**
-	 * Getter for the emblem path.
-     * @return the path leading to the location of the picture, which is used as the achievement's emblem.
+	 * Returns the path to the picture that represents the achievement.
+	 * @param index the stage index for which the emblem path shoule be returned
+	 * @return the path leading to the achievement's emblem
 	 */
 	public String getEmblemPath(int index) {
 		return null;
 	}
 
 	/**
-	 * Getter for id.
-     * @return the achievement id.
+	 * Returns the achievement's id that identifies it.
+     	 * @return the achievement id
 	 */
 	public int getId() {
 		return 0;
 	}
+	
+	/**
+	 * Returns the index of the stage the achievement has reached.
+	 * @return the stage index
+	 */
+	public int getIndex(){
+		return 0;
+	}
+	
+	/**
+	 * Set the index of the stage the achievement has reached.
+	 * @param index the index to set
+	 */
+	public void setIndex(int index){
+	
+	}
 
 	/**
-	 * Returns true if the achievement has been achieved, otherwise false.
+	 * Calculates the index of the stage the achievement has reached according to the currect statistics.
+	 * @return the updated index
 	 */
-	public abstract boolean requirementsMet();
-
-	// private int unlockValue; ???
+	public abstract int requirementsMet();
 
 }
