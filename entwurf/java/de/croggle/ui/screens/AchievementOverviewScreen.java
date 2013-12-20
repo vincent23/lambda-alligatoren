@@ -7,5 +7,10 @@ package de.croggle.ui.screens;
  * @depend - <uses> - de.croggle.game.achievement.AchievementController
  */
 public class AchievementOverviewScreen extends AbstractScreen{
-	
+    /**
+     * 
+     */
+	public AchievementOverviewScreen(AchievementController achievement) {
+
+    }
 }
