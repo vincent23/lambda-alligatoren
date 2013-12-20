@@ -1,5 +1,6 @@
 package de.croggle.ui.screens;
 
+import de.croggle.game.achievement.AchievementController
 /**
  * Screen listing the achievements, both achieved and unachieved, in a sorted way. 
  * For reference see "Pflichtenheft 10.5.8 / Abbildung 17".
@@ -8,7 +9,8 @@ package de.croggle.ui.screens;
  */
 public class AchievementOverviewScreen extends AbstractScreen{
     /**
-     * 
+     * Creates the achievement overview screen that uses the given achievement controller to display the current achievement progress.
+     * @param achievment the achievement controller.
      */
 	public AchievementOverviewScreen(AchievementController achievement) {
 
