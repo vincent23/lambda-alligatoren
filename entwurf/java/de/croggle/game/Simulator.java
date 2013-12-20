@@ -6,6 +6,7 @@ import de.croggle.game.ColorController;
 import de.croggle.game.board.Board;
 import de.croggle.util.RingBuffer;
 import de.croggle.game.event.BoardEventListener;
+import de.croggle.game.event.BoardEventMessenger;
 
 /**
  * @has 1 - 2-32 de.croggle.game.board.Board

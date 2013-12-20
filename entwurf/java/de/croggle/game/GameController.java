@@ -8,6 +8,7 @@ import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.event.BoardEventListener;
+import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.game.level.Level;
 
 /**
