@@ -23,10 +23,10 @@
 }{\newpage{}}
 
 % Environment for classes, interfaces
-% Argument classtype: "class" or "interface"
-% Argument classname: the name of the class/interface
-% Argument extends [opt.]: the name of the superclass
-% Argument implements [opt.]: the name of the realized interfaces
+% Argument 1: "class" or "interface"
+% Argument 2: the name of the class/interface
+% Argument 3 [opt.]: the name of the superclass
+% Argument 4 [opt.]: the name of the realized interfaces
 % TODO: Probably easier implementation with xparse instead of pgfkeys. Would make substitution ; <-> , unnecessary
 \NewDocumentEnvironment{texdocclass}{ m m o o }{%
 		\gdef\classname{#2}
