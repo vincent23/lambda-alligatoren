@@ -11,15 +11,13 @@ import de.croggle.game.visitor.BoardObjectVisitor;
  */
 public class AgedAlligator extends Alligator {
 
-	@Override
 	public Parent getParent() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
-	@Override
 	public void accept(BoardObjectVisitor visitor) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

@@ -1,6 +1,6 @@
 package de.croggle.game.board;
 
-
+import de.croggle.game.visitor.BoardObjectVisitor;
 /**
  * Alligator is the abstract super class of aged and colored alligators.
  * Both have their similar rendering in common (which implies a similar
@@ -11,4 +11,14 @@ package de.croggle.game.board;
  * assignable to one class of references.
  **/
 public abstract class Alligator extends Parent implements InternalBoardObject {
+
+    @Override
+    public abstract void accept(BoardObjectVisitor visitor){
+
+    }
+
+    @Override
+    public abstract Parent getParent() {
+
+    }
 }

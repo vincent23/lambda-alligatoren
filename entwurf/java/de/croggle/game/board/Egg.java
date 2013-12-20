@@ -14,13 +14,11 @@ public class Egg implements InternalBoardObject {
 
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Parent getParent() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
