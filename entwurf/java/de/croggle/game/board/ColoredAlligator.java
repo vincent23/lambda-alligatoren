@@ -26,6 +26,6 @@ public class ColoredAlligator extends Alligator {
 	 *
 	 */
 	@Override
-	public ColoredAlligatorAlligator copy() {
+	public ColoredAlligator copy() {
 	}
 }
