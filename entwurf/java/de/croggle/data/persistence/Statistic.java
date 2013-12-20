@@ -71,6 +71,10 @@ public class Statistic {
 		return playtime;
 	}
 
+	/**
+	 * Get the number of hints used.
+	 * @return The number of hints used.
+	 */
 	public int getUsedHints() {
 		return usedHints;
 	}
