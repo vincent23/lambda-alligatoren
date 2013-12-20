@@ -15,30 +15,57 @@ public class StyleHelper {
 
 	private Skin skin;
 
+    /**
+     * gets the current instance.
+     * @return the current instance.
+     */
 	public StyleHelper getInstance(){
 		return null;
 	}
 
+    /**
+     * gets the used skin.
+     * @return the skin.
+     */
 	public Skin getSkin(){
 		return null;
 	}
-	
+
+    /**
+     * gets the style of the text button.
+     * @return the text button's style.
+     */
 	TextButtonStyle getTextButtonStyle(){
 		return null;
 	}
 
+    /**
+     * get the style of the image button.
+     * @return the image button's style.
+     */
 	ImageButtonStyle getImageButtonStyle(){
 		return null;
 	}
 
+    /**
+     * get the style of the image text button.
+     * @return the image text button's style.
+     */
 	ImageTextButtonStyle getImageTextButtonStyle(){
 		return null;
 	}
 
+    /**
+     * get the style of the label.
+     * @return the label's style.
+     */
 	LabelStyle getLabelStyle(){
 		return null;
 	}
 
+    /**
+     * inizializes the style helper, so it can be used by the screens.
+     */
 	private void initialize(){
 
 	}
