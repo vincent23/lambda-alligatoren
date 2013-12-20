@@ -9,12 +9,12 @@ import de.croggle.game.level.LevelPackagesController;
  *
  * @depend - <uses> - de.croggle.game.level.LevelPackagesController
  */
-public class LevelPackagesOverviewScreen extends AbstractScreen{
+public class LevelPackagesScreen extends AbstractScreen{
     /**
      * Creates the level package overview screem that uses the level package controller to display the different level packages.
      * @param controller the level package controller.
      */
-    public LevelPackagesOverviewScreen(LevelPackagesController controller) {
+    public LevelPackagesScreen(LevelPackagesController controller) {
 		
 	}
 }

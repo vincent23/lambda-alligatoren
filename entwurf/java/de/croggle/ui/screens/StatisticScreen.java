@@ -8,8 +8,8 @@ import de.croggle.data.persistence.StatisticController;
  * 
  * @depend - <uses> - de.croggle.data.persistence.StatisticController
  */
-public class StatisticsScreen extends AbstractScreen {
-	public StatisticsScreen(StatisticController controller) {
+public class StatisticScreen extends AbstractScreen {
+	public StatisticScreen(StatisticController controller) {
 
 	}
 }
