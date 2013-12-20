@@ -12,20 +12,28 @@ import de.croggle.game.visitor.BoardObjectVisitor;
 public class ColoredAlligator extends Alligator {
 	private Color color;
 
+	@Override
 	public Parent getParent() {
 
 		return null;
 	}
 
+	@Override
 	public void accept(BoardObjectVisitor visitor) {
 
 
 	}
 
-	/**
-	 *
-	 */
+
 	@Override
 	public ColoredAlligator copy() {
+	
+	/**
+	 * Gets the color of the Alligator.
+	 * @return the color.
+	 */
+	public Color getColor(){
+		return null;
+
 	}
 }
