@@ -2,7 +2,14 @@ package de.croggle.ui.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import de.croggle.game.event.BoardEventListener;
+
+import de.croggle.game.board.Alligator;
+import de.croggle.game.board.Board;
 import de.croggle.game.board.BoardObject;
+import de.croggle.game.board.ColoredAlligator;
+import de.croggle.game.board.Egg;
+import de.croggle.game.board.InternalBoardObject;
 
 import java.util.HashMap;
 
@@ -11,7 +18,7 @@ import java.util.HashMap;
  *
  * @has 1 - * BoardObjectActor
  */
-public class BoardActor extends ParentActor {
+public class BoardActor extends ParentActor implements BoardEventListener {
 
 	private HashMap<BoardObject, BoardObjectActor> actors;
 
@@ -27,5 +34,40 @@ public class BoardActor extends ParentActor {
 
 	@Override
 	public void act(float delta) {
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void onObjectRecolored(InternalBoardObject recoloredObject) {
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void onEat(ColoredAlligator eater, InternalBoardObject eatenFamily) {
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void onAlligatorVanishes(Alligator alligator) {
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void onBoardRebuilt(Board board) {
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
 	}
 }

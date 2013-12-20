@@ -1,5 +1,7 @@
 package de.croggle.game;
 
+import java.util.List;
+
 import de.croggle.data.persistence.Statistic;
 import de.croggle.game.ColorController;
 import de.croggle.game.board.Alligator;
@@ -19,8 +21,9 @@ import de.croggle.game.level.Level;
  * @navassoc 1 - 1 ColorController
  * @navassoc 1 - 1 de.croggle.data.persistence.Statistic
  * @depend - <transmits_Statistics> - StatisticController
+ * @has 1 - * de.croggle.game.event.BoardEventListener
  */
-public class GameController {
+public class GameController implements BoardEventListener {
 	/**
 	 * The board that is used by the BoardActor to display the current state,
 	 * both in simulation mode and placement mode.
@@ -35,16 +38,17 @@ public class GameController {
 	private ColorController colorController;
 	private Level level;
 	private Statistic statisticsDelta; // changes during the current Level.
+	private List<BoardEventListener> boardListeners;
 
 	/**
-     * prepare to switch game mode to placement, in which the player is able to manipulate the board.
-     */
+	 * prepare to switch game mode to placement, in which the player is able to manipulate the board.
+	 */
 	private void enterPlacement() {
 	}
 
 	/**
-     * prepare to switch game mode to simulation, in which the given board can be evaluated.
-     */
+	 * prepare to switch game mode to simulation, in which the given board can be evaluated.
+	 */
 	private void enterSimulation() {
 	}
 
@@ -55,5 +59,52 @@ public class GameController {
 	 * 
 	 */
 	public void onCompletedLevel() {
+	}
+
+	/**
+	 *
+	 */
+	public void registerBoardEventListener(BoardEventListener listener) {
+	}
+
+	/**
+	 *
+	 */
+	public void unregisterBoardEventListener(BoardEventListener listener) {
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void onObjectRecolored(InternalBoardObject recoloredObject) {
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void onEat(ColoredAlligator eater, InternalBoardObject eatenFamily) {
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void onAlligatorVanishes(Alligator alligator) {
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void onBoardRebuilt(Board board) {
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
 	}
 }

@@ -4,25 +4,27 @@ import java.util.List;
 
 import de.croggle.game.ColorController;
 import de.croggle.game.board.Board;
-import de.croggle.game.event.EatEventListener;
 import de.croggle.util.RingBuffer;
+import de.croggle.game.event.BoardEventListener;
 
 /**
  * @has 1 - 2-32 de.croggle.game.board.Board
  * @navassoc 1 - 1 de.croggle.util.RingBuffer
+ * @has 1 - * de.croggle.game.event.BoardEventListener
  */
 public class Simulator {
 	private Board entranceBoard;
 	private Board currentBoard;
 	private RingBuffer<Board> history; // 30 elements needed.
 	private ColorController colorController;
-	private List<EatEventListener> eatListeners;
+	private List<BoardEventListener> boardListeners;
 
-	public Simulator(Board entranceBoard, ColorController colorController) {
+	public Simulator(Board entranceBoard, ColorController colorController, List<BoardEventListener> boardListeners) {
 		this.history = new RingBuffer(30);
 		this.entranceBoard = entranceBoard;
 		this.currentBoard = entranceBoard;
 		this.colorController = colorController;
+		this.boardListeners = boardListeners;
 	}
 
 	/**
