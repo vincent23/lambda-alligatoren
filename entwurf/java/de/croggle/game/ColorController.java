@@ -112,6 +112,7 @@ public class ColorController {
 	 * 
 	 * 
 	 * @param color
+	 *            the color whose usability should be tested
 	 * @return Whether the given color is usable or not
 	 */
 	public boolean isUsable(de.croggle.game.Color color) {

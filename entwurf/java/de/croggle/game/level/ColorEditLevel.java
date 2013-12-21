@@ -9,9 +9,4 @@ import de.croggle.game.ColorController;
 public class ColorEditLevel extends Level {
 	ColorController colorController;
 
-	@Override
-	public boolean hasAnimation() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

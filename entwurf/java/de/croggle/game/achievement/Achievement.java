@@ -17,8 +17,10 @@ public abstract class Achievement {
 
 	/**
 	 * Returns a description that describes how to reach the achievement.
-	 * @param index the stage which the description should describe 
-     	 * @return the text which is shown in order to describe the achievement
+	 * 
+	 * @param index
+	 *            the stage which the description should describe
+	 * @return the text which is shown in order to describe the achievement
 	 */
 	public String getDescription(int index) {
 		return null;
@@ -26,7 +28,9 @@ public abstract class Achievement {
 
 	/**
 	 * Returns the path to the picture that represents the achievement.
-	 * @param index the stage index for which the emblem path shoule be returned
+	 * 
+	 * @param index
+	 *            the stage index for which the emblem path shoule be returned
 	 * @return the path leading to the achievement's emblem
 	 */
 	public String getEmblemPath(int index) {
@@ -35,30 +39,36 @@ public abstract class Achievement {
 
 	/**
 	 * Returns the achievement's id that identifies it.
-     	 * @return the achievement id
+	 * 
+	 * @return the achievement id
 	 */
 	public int getId() {
 		return 0;
 	}
-	
+
 	/**
 	 * Returns the index of the stage the achievement has reached.
+	 * 
 	 * @return the stage index
 	 */
-	public int getIndex(){
+	public int getIndex() {
 		return 0;
-	}
-	
-	/**
-	 * Set the index of the stage the achievement has reached.
-	 * @param index the index to set
-	 */
-	public void setIndex(int index){
-	
 	}
 
 	/**
-	 * Calculates the index of the stage the achievement has reached according to the currect statistics.
+	 * Set the index of the stage the achievement has reached.
+	 * 
+	 * @param index
+	 *            the index to set
+	 */
+	public void setIndex(int index) {
+
+	}
+
+	/**
+	 * Calculates the index of the stage the achievement has reached according
+	 * to the current statistics.
+	 * 
 	 * @return the updated index
 	 */
 	public abstract int requirementsMet();

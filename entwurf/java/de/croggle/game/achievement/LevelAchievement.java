@@ -1,19 +1,19 @@
 package de.croggle.game.achievement;
 
-
 /**
- *
+ * An achievement that rewards completing given amounts of levels.
  */
-public class LevelAchievement extends Achievement{
-    private int currentLevelsCompleted; //TOBO: Muss man irgendwie aus der datenbank holen. hier zwischenspeichern. Bitte nochmal wer drübersehen.
+public class LevelAchievement extends Achievement {
 
-    /**
-     * Returns true if the achievement with the given index has been achieved, otherwise false.
-     * @param index specifies which achievment out of this type of achievement should be checked.
-     */
-    @Override
-    public boolean requirementsMet( int index){
-    }
-    
-    
+	/**
+	 * Calculates the index of the stage the achievement has reached according
+	 * to the current statistics.
+	 * 
+	 * @return the update index
+	 */
+	@Override
+	public int requirementsMet() {
+		return 0;
+	}
+
 }

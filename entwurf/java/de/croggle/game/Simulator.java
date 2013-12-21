@@ -1,12 +1,8 @@
 package de.croggle.game;
 
-import java.util.List;
-
-import de.croggle.game.ColorController;
 import de.croggle.game.board.Board;
-import de.croggle.util.RingBuffer;
-import de.croggle.game.event.BoardEventListener;
 import de.croggle.game.event.BoardEventMessenger;
+import de.croggle.util.RingBuffer;
 
 /**
  * @has 1 - 2-32 de.croggle.game.board.Board
@@ -20,7 +16,8 @@ public class Simulator {
 	private ColorController colorController;
 	private BoardEventMessenger boardMessenger;
 
-	public Simulator(Board entranceBoard, ColorController colorController, BoardEventMessenger boardMessenger) {
+	public Simulator(Board entranceBoard, ColorController colorController,
+			BoardEventMessenger boardMessenger) {
 		this.history = new RingBuffer(30);
 		this.entranceBoard = entranceBoard;
 		this.currentBoard = entranceBoard;
@@ -30,6 +27,7 @@ public class Simulator {
 
 	/**
 	 * Method, that evaluates one step in the Lambda Calculus.
+	 * 
 	 * @return the board after said step.
 	 */
 	public Board evaluate(Board currentBoard) {
@@ -46,11 +44,13 @@ public class Simulator {
 	}
 
 	/**
-	 * Method, that reverses the board into the position it had upon entering simulation mode.
+	 * Method, that reverses the board into the position it had upon entering
+	 * simulation mode.
+	 * 
 	 * @return the board in said state.
 	 */
 	public Board reset() {
-
+		return null;
 	}
 
 }
