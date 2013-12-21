@@ -4,17 +4,15 @@ package de.croggle.game.achievement;
  * Achievement for passing certain, specified goals within a level, e.g. placing
  * more than 10 Alligators within one level or 5 eggs hatched within one level.
  */
-public class PerLevelAchievement extends Achievement {
+public abstract class PerLevelAchievement extends Achievement {
 
 	/**
 	 * Calculates the index of the stage the achievement has reached according
-	 * to the current statistics.
+	 * to the statistics of a completed level.
 	 * 
 	 * @return the update index
 	 */
 	@Override
-	public int requirementsMet() {
-		return 0;
-	}
+	public abstract int requirementsMet();
 
 }
