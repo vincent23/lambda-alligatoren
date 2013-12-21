@@ -7,8 +7,6 @@ import com.badlogic.gdx.utils.JsonValue;
  * instantiate a level/game from the respective json file. Therefore it moves a
  * larger portion of program logic from the LevelController, which in turn
  * delegates requests for level instantiation to this class' instantiate method.
- * 
- * @navassoc 1 - 1 Level
  */
 public class LoadLevelHelper {
 	/**
