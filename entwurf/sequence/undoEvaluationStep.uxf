@@ -4,8 +4,8 @@
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>390</x>
-      <y>0</y>
+      <x>160</x>
+      <y>160</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
@@ -16,8 +16,8 @@ in the simulation mode.</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>610</x>
-      <y>10</y>
+      <x>380</x>
+      <y>170</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
@@ -27,8 +27,8 @@ in the simulation mode.</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>660</x>
-      <y>10</y>
+      <x>430</x>
+      <y>170</y>
       <w>50</w>
       <h>90</h>
     </coordinates>
@@ -38,8 +38,8 @@ in the simulation mode.</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>550</x>
-      <y>0</y>
+      <x>320</x>
+      <y>160</y>
       <w>80</w>
       <h>50</h>
     </coordinates>
@@ -49,10 +49,10 @@ in the simulation mode.</panel_attributes>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>680</x>
-      <y>80</y>
+      <x>450</x>
+      <y>240</y>
       <w>20</w>
-      <h>240</h>
+      <h>450</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -60,8 +60,8 @@ in the simulation mode.</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>840</x>
-      <y>10</y>
+      <x>610</x>
+      <y>170</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -71,8 +71,8 @@ in the simulation mode.</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>860</x>
-      <y>10</y>
+      <x>630</x>
+      <y>170</y>
       <w>50</w>
       <h>90</h>
     </coordinates>
@@ -82,10 +82,10 @@ in the simulation mode.</panel_attributes>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>880</x>
-      <y>80</y>
+      <x>650</x>
+      <y>240</y>
       <w>20</w>
-      <h>140</h>
+      <h>430</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -93,8 +93,8 @@ in the simulation mode.</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>670</x>
-      <y>40</y>
+      <x>440</x>
+      <y>200</y>
       <w>230</w>
       <h>70</h>
     </coordinates>
@@ -106,78 +106,44 @@ undo()
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>670</x>
-      <y>160</y>
-      <w>230</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;
-Board</panel_attributes>
-    <additional_attributes>30;50;210;50</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>870</x>
-      <y>130</y>
-      <w>280</w>
+      <x>640</x>
+      <y>300</y>
+      <w>370</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-RebuiltBoardEvent()
+notifyBoardRebuilt(previousBoard)
 
 </panel_attributes>
-    <additional_attributes>260;50;30;50</additional_attributes>
+    <additional_attributes>350;50;30;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1130</x>
+      <x>830</x>
       <y>170</y>
-      <w>180</w>
+      <w>330</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>_:BoardRebuiltEvent_</panel_attributes>
+    <panel_attributes>_boardEventMessenger:BoardEventMessenger_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1190</x>
+      <x>970</x>
       <y>170</y>
       <w>50</w>
-      <h>110</h>
+      <h>190</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;90</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>860</x>
-      <y>190</y>
-      <w>50</w>
-      <h>170</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;150;30;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>660</x>
-      <y>290</y>
-      <w>50</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;70</additional_attributes>
+    <additional_attributes>30;30;30;170</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1320</x>
-      <y>10</y>
+      <x>1180</x>
+      <y>170</y>
       <w>170</w>
       <h>30</h>
     </coordinates>
@@ -187,19 +153,19 @@ RebuiltBoardEvent()
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1370</x>
-      <y>10</y>
+      <x>1230</x>
+      <y>170</y>
       <w>50</w>
-      <h>90</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;70</additional_attributes>
+    <additional_attributes>30;30;30;80</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>1390</x>
-      <y>80</y>
+      <x>1250</x>
+      <y>250</y>
       <w>20</w>
       <h>70</h>
     </coordinates>
@@ -209,37 +175,139 @@ RebuiltBoardEvent()
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>870</x>
-      <y>50</y>
-      <w>540</w>
+      <x>640</x>
+      <y>210</y>
+      <w>630</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 pop()
 </panel_attributes>
-    <additional_attributes>520;50;30;50</additional_attributes>
+    <additional_attributes>610;50;30;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>870</x>
-      <y>90</y>
-      <w>540</w>
+      <x>640</x>
+      <y>250</y>
+      <w>630</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;
-Board</panel_attributes>
-    <additional_attributes>30;50;520;50</additional_attributes>
+previousBoard</panel_attributes>
+    <additional_attributes>30;50;610;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1370</x>
-      <y>120</y>
+      <x>1230</x>
+      <y>290</y>
       <w>50</w>
-      <h>150</h>
+      <h>430</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;130</additional_attributes>
+    <additional_attributes>30;30;30;410</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.SeqObjectActive</type>
+    <coordinates>
+      <x>990</x>
+      <y>340</y>
+      <w>20</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>450</x>
+      <y>330</y>
+      <w>560</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+onBoardRebuilt(previousBoard)
+</panel_attributes>
+    <additional_attributes>30;50;540;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.SeqObjectActive</type>
+    <coordinates>
+      <x>460</x>
+      <y>370</y>
+      <w>20</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>450</x>
+      <y>390</y>
+      <w>560</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;</panel_attributes>
+    <additional_attributes>540;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>640</x>
+      <y>430</y>
+      <w>370</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;</panel_attributes>
+    <additional_attributes>30;30;350;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>970</x>
+      <y>440</y>
+      <w>50</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>30;30;30;270</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>440</x>
+      <y>610</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;
+previousBoard</panel_attributes>
+    <additional_attributes>30;50;210;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>630</x>
+      <y>640</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>30;30;30;80</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>430</x>
+      <y>660</y>
+      <w>50</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>30;30;30;70</additional_attributes>
   </element>
 </diagram>
