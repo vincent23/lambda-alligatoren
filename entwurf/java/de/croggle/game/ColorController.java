@@ -11,7 +11,7 @@ import java.util.Map;
  * Additionally it provides functionality to generate new colors used on boards
  * if needed by the simulator after applying recolor rules.
  * 
- * The terms "blocked" and "usable" for colors refer to which colors are blocked
+ * The terms ``blocked'' and ``usable'' for colors refer to which colors are blocked
  * by the level specification (blocked) and which are used by the game to let
  * the user recolor elements (usable).
  * 
