@@ -79,6 +79,12 @@ UNFLATTENCMD	= unflatten -l 4 -f -c 10
 ifneq ($(UNFLATTEN),yes)
 	UNFLATTENCMD 	= cat
 endif
+LATEXMK			= latexmk -pdf -pdflatex="pdflatex -interaction nonstopmode -file-line-error" -jobname="$(PDFNAME)" -output-directory="$(OUTDIR)" -auxdir="$(OUTDIR)" "$(ROOTDIR)/$(TEXFILENAME).tex"
+ifdef LEGACY
+	LATEXMK		= pdflatex -interaction nonstopmode -file-line-error -jobname "$(PDFNAME)" -output-directory "$(OUTDIR)" "$(ROOTDIR)/$(TEXFILENAME).tex";\
+					pdflatex -interaction nonstopmode -file-line-error -jobname "$(PDFNAME)" -output-directory "$(OUTDIR)" "$(ROOTDIR)/$(TEXFILENAME).tex";\
+					pdflatex -interaction nonstopmode -file-line-error -jobname "$(PDFNAME)" -output-directory "$(OUTDIR)" "$(ROOTDIR)/$(TEXFILENAME).tex";
+endif
 
 # TexDoclet
 TEXDOCLET		= -docletpath $(DOCLETPATH)/TexDoclet.jar -doclet org.wonderly.doclets.TexDoclet -output "$(OUTDIR)/docs.tex" -silent
@@ -159,7 +165,7 @@ $(OUTDIR)/$(PDFNAME).pdf: $(OUTDIR) $(TEXDOCFILE) $(TEXFILES)
 	$(call REQUIRE,latexmk)
 	$(call REQUIRE,pdflatex)
 	$(ECHO) Building pdf document $(notdir $@)
-	$(AT)latexmk -pdf -pdflatex="pdflatex -interaction nonstopmode -file-line-error" -jobname="$(PDFNAME)" -output-directory="$(OUTDIR)" -auxdir="$(OUTDIR)" "$(ROOTDIR)/$(TEXFILENAME).tex" $(MUTE)
+	$(AT) $(LATEXMK) $(MUTE)
 #	$(AT)pdflatex -interaction nonstopmode -jobname $(PDFNAME) -output-directory $(OUTDIR) $(ROOTDIR)/$(TEXFILENAME).tex $(MUTE)
 
 # Make sure, $(OUTDIR) exists
