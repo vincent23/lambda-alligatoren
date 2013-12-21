@@ -34,7 +34,7 @@ Sollten einzelne Elemente oder auch nur deren Inhalt als optional angesehen werd
 Da die Beschreibungen von Levels, ähnlich wie Quellcode, komplexe Sachverhalte im Lambda-Kalkül abbilden können, deren Wirkungsweise nicht direkt ersichtlich sein kann,
 sieht die Spezifikation der JSON Repräsentation Kommentarattribute vor.
 Diese können und sollen verwendet werden, um besonders schwer nachzuvollziehende Stellen zu dokumentieren, aber auch, um einfach auf die Ideen und Zielsetzungen innerhalb eines bestimmten Levels hinzuweisen.
-Solche Kommentarattribute werden durch das Präfix "'\_comment"' markiert und eingeleitet.
+Solche Kommentarattribute werden durch das Präfix \strong{"'\_comment"'} markiert und eingeleitet.
 Attributsnamen, die mit diesem beginnen sind dementsprechend reserviert.
 Es muss zudem davon ausgegangen werden, dass sich an einer späteren Stelle der Entwicklung ein Mechanismus im Build System befindet, der die Kommentare vor der Auslieferung aus den JSON Dateien entfernt.
 
@@ -44,7 +44,7 @@ Der Wert eines solchen Kommentarattributes kann einerseits aus einem einfachen S
 Andererseits kann bei längeren Kommentaren auch eine Liste von Stringliteralen angegeben werden, wobei jedes Element auf eine neue Zeile geschrieben wird.
 Damit wird der Einschränkung im JSON Format Rechnung getragen, dass es keine Möglichkeit gibt, sogenannte Multiline Strings anzugeben.
 Zuletzt ermöglicht die Spezifikation auch mehrere Kommentarattribute innerhalb des gleichen Objektes.
-Dafür wird den jeweiligen "'\_comment"'-Attributnamen noch jeweils eine Ziffernfolge angehängt, welche von Null beginnend aufsteigt.
+Dafür wird den jeweiligen \strong{"'\_comment"'}-Attributnamen noch jeweils eine Ziffernfolge angehängt, welche von Null beginnend aufsteigt.
 Dies ist nötig, da der JSON Standard keine gleichen Attributnamen innerhalb einunddesselben Objekts vorsieht.
 Listing 4.2 verdeutlicht die Anwendung von Kommenatren in JSON Files.
 \begin{lstlisting}[language=json,caption={Kommentare in einer JSON Datei}]
@@ -81,22 +81,22 @@ Um ein Level zur Laufzeit zu laden, müssen die folgenden Daten zur Verfügung s
 	\item Den Typ eines Levels
 	\item Konstellationen (Anfang, Ende, mögliche Antworten)
 \end{enumerate}
-Zur Angabe dieser Daten existiert zu jedem Level eine JSON Datei (Endung "'.json"'), deren Name der auf zwei Stellen aufgefüllten Identifikationsnummer innerhalb eines Levelpakets entspricht.
+Zur Angabe dieser Daten existiert zu jedem Level eine JSON Datei (Endung \strong{"'.json"'}), deren Name der auf zwei Stellen aufgefüllten Identifikationsnummer innerhalb eines Levelpakets entspricht.
 Dies ermöglicht das schnelle Auflisten aller Levels eines Pakets, impliziert aber auch, dass ein Levelpaket höchstens 100 Level enthalten kann.
 Zur Vermeidung von Namenskollisionen zwischen Levels verschiedener Pakete, erhält jedes Paket sein eigenes Unterverzeichnis.
 Dazu jedoch mehr in Kapitel "'Levelpakete"'.
-Innerhalb einer solchen JSON Datei existiert (im Applikationsnamensraum) eine Liste mit dem Namen "Levels".
+Innerhalb einer solchen JSON Datei existiert (im Applikationsnamensraum) eine Liste mit dem Namen \strong{"'levels"'}.
 An dieser Stelle wäre auch ein einfaches Objekt möglich, welches direkt alle notwendigen Daten enthält.
-Der gewählte Ansatz bietet allerdings die Vorteile, dass erstens direkt auf die Levels als solche zugegriffen werden kann, da keine Typprüfung stattfinden muss ("'Levels"' darf nur Levels enthalten).
+Der gewählte Ansatz bietet allerdings die Vorteile, dass erstens direkt auf die Levels als solche zugegriffen werden kann, da keine Typprüfung stattfinden muss (\strong{"'levels"'} darf nur Levels enthalten).
 Zweitens lassen sich gegebenenfalls alle Levels in dieser Liste zusammenlegen, was nur noch eine JSON Datei notwendig machen und somit Spielraum für Leistungsverbesserungen bieten würde.
 Und drittens muss kein Name für die sonst eigentlich anonymen Levels angegeben werden.
 
 
 Innerhalb dieses Grundgerüstes werden alle weiteren, notwendigen Daten spezifiziert.
-Zuerst genannt sei hierbei die Beschreibung: Unter dem Attributsnamen "'description"' wird hierbei die auf das Level einstimmende Zeichenkette abgelegt.
-Unter dem Attribut "'design"' ist, wie erwähnt, entweder der Name eines Designthemas oder der Name/Pfad zu einem alternativen Hintergrundbild in einer Zeichenkette gespeichert.
+Zuerst genannt sei hierbei die Beschreibung: Unter dem Attributsnamen \strong{"'description"'} wird hierbei die auf das Level einstimmende Zeichenkette abgelegt.
+Unter dem Attribut \strong{"'design"'} ist, wie erwähnt, entweder der Name eines Designthemas oder der Name/Pfad zu einem alternativen Hintergrundbild in einer Zeichenkette gespeichert.
 Bei einer leeren Zeichenkette wird das Standardthema des Levelpakets verwendet.
-In einem Feld "'abort simulation after"' kann optional die ganzzahlige Anzahl an Ausführungsschritten abgelegt werden, nach denen ein Level als beendet angesehen wird.
+In einem Feld \strong{"'abort simulation after"'} kann optional die ganzzahlige Anzahl an Ausführungsschritten abgelegt werden, nach denen ein Level als beendet angesehen wird.
 Positive Werte implizieren, dass im Anschluss das Level als erfolgreich abgschlossen gewertet werden soll.
 Bei einem negativen Wert gilt das Level nach Ablauf der Schrittzahl als verloren.
 Der Wert Null ("'0"') bedeutet hierbei, dass kein Abbruch geschieht, was dem voreingestellten Verhalten entspricht.
@@ -106,14 +106,14 @@ Orientiert an anderen Spielen auf dem Markt hält eine Liste allerdings die Mög
 In diesem Falle würden die Tipps in der Reihenfolge aufgedeckt werden, in der sie in der Liste vorkommen.
 Die Liste an sich kann allerdings auch leer bleiben.
 
-Unter dem Namen "'type"' muss eine Zeichenkette existieren, die einen der folgenden Werte enthalten muss:
+Unter dem Namen \strong{"'type"'} muss eine Zeichenkette existieren, die einen der folgenden Werte enthalten muss:
 \begin{itemize}
 	\item multiple choice
 	\item modification
 	\item step count
 \end{itemize}
 
-Für jeden dieser Typen unterscheidet sich der Inhalt des letzten Attributs, dem "'data"' Attribut.
+Für jeden dieser Typen unterscheidet sich der Inhalt des letzten Attributs, dem \strong{"'data"'} Attribut.
 Dieses enthält die für die einzelnen Typen unterschiedlichen Daten.
 Diese werden im Folgenden spezifiziert.
 Listing 4.3 beschreibt das benötigte Rahmenwerk für alle Levels.
@@ -146,7 +146,7 @@ Diese Darstellung bildet das zu den Lambdatermen gehörige Klassenmodell transpa
 
 Das heißt, dass Spielfelder (im Folgenden auch Boards genannt) eine Liste von Elementen, genauer gesagt von BoardObjects, als Attribut besitzen.
 Von diesen BoardObjects existieren drei Typen, nämlich Ei, farbiger Alligator und alter Alligator.
-Alle diese drei Objekttypen verfügen über eine Zeichenkette mit Namen "'type"', die die Werte
+Alle diese drei Objekttypen verfügen über eine Zeichenkette mit Namen \strong{"'type"'}, die die Werte
 \begin{itemize}
 	\item egg
 	\item colored alligator
@@ -157,20 +157,20 @@ Aus dieser wird der genaue Typ eines BoardObjects abgeleitet, aus dem die weiter
 Diese sind im Folgenden beschrieben.
 
 \subsubsection{Eier}
-Objekte vom Typ "'Egg"' besitzen die folgenden Eigenschaften:
+Objekte vom Typ \strong{"'egg"'} besitzen die folgenden Eigenschaften:
 \begin{itemize}
 	\item[color:] Eine Ganzzahl >= 0, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
 \end{itemize}
 
 \subsubsection{Farbige Alligatoren}
-Objekte vom Typ "'colored alligator"' besitzen die folgenden Eigenschaften:
+Objekte vom Typ \strong{"'colored alligator"'} besitzen die folgenden Eigenschaften:
 \begin{itemize}
 	\item[color:] Eine Ganzzahl >= 0, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
 	\item[children:] Eine Liste von weiteren BoardObjects
 \end{itemize}
 
 \subsubsection{Alte Alligatoren}
-Objekte vom Typ "'aged alligator"' besitzen die folgenden Eigenschaften:
+Objekte vom Typ \strong{"'aged alligator"'} besitzen die folgenden Eigenschaften:
 \begin{itemize}
 	\item[children:] Eine Liste von weiteren BoardObjects
 \end{itemize}
@@ -216,11 +216,11 @@ Objekte vom Typ "'aged alligator"' besitzen die folgenden Eigenschaften:
 Multiple Choice Levels benötigen eine Spielfeldkonstellation für die Ausgangsstellung und eine Liste mit möglichen Antwortoptionen, die auch als Spielfelder modelliert werden.
 Hierbei wird bewusst keine feste Anzahl an Antworten festgelegt, auch wenn die Unterstützung durch das Programm nach der Implementierung nur bestimmte Anzahlen vorsieht.
 Außerdem wird noch ein Index für die Konstellation benötigt, welche die Richtige ist.
-Die Ausgangsstellung wird als Board in einem Feld mit Namen "'initial constellation"' angegeben.
-Die Liste mit Boards, die als mögliche Antworten dienen, heißt "'answers'".
+Die Ausgangsstellung wird als Board in einem Feld mit Namen \strong{"'initial constellation"'} angegeben.
+Die Liste mit Boards, die als mögliche Antworten dienen, heißt \strong{"'answers'"}.
 Diese Liste muss mindestens ein Element enthalten.
-Der Index der richtigen Antwort wird als Ganzzahl im Schlüssel "'correct answer"' gespeichert.
-Er bezieht sich auf die Position der gemeinten Konstellation in der "'answers"' Liste, wobei ab Null angefangen wird zu indizieren.
+Der Index der richtigen Antwort wird als Ganzzahl im Schlüssel \strong{"'correct answer"'} gespeichert.
+Er bezieht sich auf die Position der gemeinten Konstellation in der \strong{"'answers"'} Liste, wobei ab Null angefangen wird zu indizieren.
 Es ist jedoch zu beachten, dass die Reihenfolge der Elemente in der Liste keinen Einfluss auf deren Position in der dem Nutzer gezeigten Liste mit Antworten hat.
 Diese wird nämlich randomisiert erstellt.
 
@@ -239,10 +239,10 @@ Diese wird nämlich randomisiert erstellt.
 
 \subsection{"'Färben und Einfügen"' Leveldaten}
 Bei "'Färben und Einfügen"'-Levels werden nur die Ausgangskonstellation, die zu erreichende Endkonstellation und Listen mit für den Nutzer gesperrte Farben und Objekttypen als Angabe benötigt.
-Die Ausgangskonstellation findet sich wie bei Mutiple Choice Leveln im Feld "'initial constellation"', und wird mittels eines Board Objektes repräsentiert.
-Die Endkonstellation kann über das Board-wertige Attribut "'objective"' ausgelesen werden.
-Gesperrte Farben werden durch eine Liste mit Ganzzahlen >= 0 dargestellt, die den Namen "'blocked colors"' trägt.
-Gesperrte Objekttypen können in einer Liste von Zeichenketten mit Namen "'blocked types"' angegeben werden, wobei deren Werte den bekannten Typen aus der Dartellung von Lambda Ausdrücken entspricht.
+Die Ausgangskonstellation findet sich wie bei Mutiple Choice Leveln im Feld \strong{"'initial constellation"'}, und wird mittels eines Board Objektes repräsentiert.
+Die Endkonstellation kann über das Board-wertige Attribut \strong{"'objective"'} ausgelesen werden.
+Gesperrte Farben werden durch eine Liste mit Ganzzahlen >= 0 dargestellt, die den Namen \strong{"'blocked colors"'} trägt.
+Gesperrte Objekttypen können in einer Liste von Zeichenketten mit Namen \strong{"'blocked types"'} angegeben werden, wobei deren Werte den bekannten Typen aus der Dartellung von Lambda Ausdrücken entspricht.
 Diese Funktion ist vor allem für die Tutorial Levels vorgesehen, wenn das Platzieren von Eiern etc. verhindert werden soll.
 
 \begin{lstlisting}[language=json,caption={Grober Aufbau des data Attributs eines "'Färben und Einfügen"' Levels}]
@@ -265,8 +265,8 @@ Diese Funktion ist vor allem für die Tutorial Levels vorgesehen, wenn das Platz
 
 \subsection{"'Schrittanzahl"' Leveldaten}
 In Levels, in denen die Schrittanzahl zum Gewinnen des Levels entscheidend ist, werden grundsätzlich die gleichen Daten im data Attribut bereitgestellt, wie schon für den Typ "'Färben und Einfügen"'.
-Lediglich ist hier das Element "'objective"' nicht mehr vonnöten.
-Das Ziel wird stattdessen nur von dem ohnehin für jeden Leveltyp vorgesehenen Wert "'abort simulation after"' außerhalb des data Attributs spezifiziert.
+Lediglich ist hier das Element \strong{"'objective"'} nicht mehr vonnöten.
+Das Ziel wird stattdessen nur von dem ohnehin für jeden Leveltyp vorgesehenen Wert \strong{"'abort simulation after"'} außerhalb des data Attributs spezifiziert.
 
 \begin{lstlisting}[language=json,caption={Grober Aufbau des data Attributs eines "'Schrittzahl"' Levels}]
 "type" : "step count",
@@ -304,22 +304,22 @@ Grundsätzlich existiert zu jedem Level unter json/levels/ ein Ordner mit der Po
 Auch hier wird der Index als zweistellige Zahl mit den Ziffern 0 bis 9 dargestellt, was eine theroetische maximale Anzahl von 100 verschiedenen Levelpaketen erlaubt.
 In jedem dieser Ordner befinden sich die zu dem Paket gehörenden Levels in jeweils einer eigenen JSON Datei, die nach dem in Abschnitt "'Levels"' beschriebenen Schema benannt sind.
 Diese Maßnahmen decken bereits die ersten beiden Punkte, die für die Beschreibung eines Levelpakets nötig sind, ab.
-Zusätzlich existiert in dem Paketordner eine weitere JSON Datei mit dem Namen "'package.json"'.
+Zusätzlich existiert in dem Paketordner eine weitere JSON Datei mit dem Namen \strong{"'package.json"'}.
 Diese dient dazu, die restlichen der eben aufgelisteten Daten anzugeben.
 Wie dies genau geschieht wird im Folgenden spezifiziert.
 \newline
 Wie bereits bei Levels geschieht die Definition eines Levels nicht über einen festen Namen im Namensbereich des Spiels.
 Stattdessen wird ein anonymes Objekt in einer Liste verwendet.
-Diese Liste heißt "'packages"'.
+Diese Liste heißt \strong{"'packages"'}.
 Listing 4.8 verdeutlicht die Folgen dieses Sachverhalts.
-Der Name eines Packages wird im Feld "'name"' als Zeichenkette eingetragen.
-Die Zeichenkette zur Beschreibung erfolgt wie bei Leveln im "'description"' Attribut.
-Mittels einer Zeichenkette "'banner"' wird der Pfad zu einer für das Level stehenden Grafik spezifiziert.
+Der Name eines Packages wird im Feld \strong{"'name"'} als Zeichenkette eingetragen.
+Die Zeichenkette zur Beschreibung erfolgt wie bei Leveln im \strong{"'description"'} Attribut.
+Mittels einer Zeichenkette \strong{"'banner"'} wird der Pfad zu einer für das Level stehenden Grafik spezifiziert.
 Auch die Angaben von Designthema und Animation beim ersten Betreten werden durch Pfade in Zeichenketten angegeben.
-Für ersteres heißt diese "'design"', für zweiteres "'animation"'.
-Die Paketdesigns können von Levels mittels des dazu vorgesehenen "'design"' Attributes überschrieben werden.
+Für ersteres heißt diese \strong{"'design"'}, für zweiteres \strong{"'animation"'}.
+Die Paketdesigns können von Levels mittels des dazu vorgesehenen \strong{"'design"'} Attributes überschrieben werden.
 Da die Beschreibung von Abhängigkeiten eine größere Komplexität aufweist, ist ihr im folgenden eine Untersection gewidmet.
-Grundsätzlich werden sie in einer Liste mit dem Namen "'dependencies"' definiert.
+Grundsätzlich werden sie in einer Liste mit dem Namen \strong{"'dependencies"'} definiert.
 Das folgende Listing veranschaulicht all diese Spezifikationen.
 \begin{lstlisting}[language=json,caption={Standardinhalt der Definition eines Levels}]
 {
@@ -347,7 +347,7 @@ Zum Freischalten eines Levelpakets können folgende Typen von Abhängigkeiten vo
 	\item Vorhergehendes Levelpaket zu einem gewissen Grad abgeschlossen
 \end{itemize}
 
-Abhängigkeiten werden grundsätzlich durch Objekte abgebildet, die mindestens das Attribut "'type"' aufweisen, mit dem weitere Felder - je nach Typ - eingeführt werden können.
+Abhängigkeiten werden grundsätzlich durch Objekte abgebildet, die mindestens das Attribut \strong{"'type"'} aufweisen, mit dem weitere Felder - je nach Typ - eingeführt werden können.
 Folgende Typen sind bisher definiert:
 \begin{description}
 	\item[packageprogress:] Wie weit ein bestimmtes anderes Levelpaket abgeschlossen sein muss, damit das Paket freigeschaltet ist.
@@ -356,14 +356,14 @@ Im Folgenden sind den jeweiligen Typen Abschnitte gewidmet, in denen weitere Att
 
 \subsubsection{Paketfortschritt: "'packageprogress"'}
 Für die Angabe eines mindestens benötigten Fortschritts eines Pakets werden Felder für das gemeinte Paket und für den Fortschritt benötigt.
-Für Ersteres heißt dieses "'package"' und beinhaltet eine Ganzzahl größer Null und kleiner hundert.
-Zweiteres findet sich im Feld "'progress"', welches auch eine Ganzzahl enthält, die den Fortschritt in Prozent darstellt.
+Für Ersteres heißt dieses \strong{"'package"'} und beinhaltet eine Ganzzahl größer Null und kleiner hundert.
+Zweiteres findet sich im Feld \strong{"'progress"'}, welches auch eine Ganzzahl enthält, die den Fortschritt in Prozent darstellt.
 Der Wert befindet sich also zwischen einschließlich 0 und 100.
 Null Prozent heißt hierbei lediglich, dass das Level freigeschaltet sein muss. 
 Das Gesperrtsein eines Pakets kann also keine Abhängigkeit sein.
 Bei hundert Prozent müssen alle Levels erfolgreich abgeschlossen worden sein, die zu dem angegebenen Paket gehören.
 Das folgende Listing fasst dies noch einmal zusammen.
-\begin{lstlisting}[language=json,caption={Besipielhafte Definition einer Abhängigkeit vom Typ "'boxprogress"'}]
+\begin{lstlisting}[language=json,caption={Beispielhafte Definition einer Abhängigkeit vom Typ "'boxprogress"'}]
 {
 	"type" : "packageprogress",
 	"_comment" : "Alle Levels des ersten Pakets müssen zum Freischalten erfolgreich abgeschlossen worden sein",
