@@ -16,7 +16,7 @@ Im folgenden werden die einzelnen Attribute eines Levels und ihre Bedeutungen, s
 \section{Grundlegendes}
 Im Folgenden wird stets davon ausgegangen, dass sich jegliche Dateisystem Pfadangaben relativ zu "`/assets"' beziehen, wobei als Wurzelverzeichnis das Android Projektverzeichnis angesehen wird.
 Die Nutzung des "`asset"'-Ordners wird hierbei von libGDX vorgegeben.
-Vergleiche hierzu den Entsprechenden Artikel der Dokumentation \footnote{\url{https://github.com/libgdx/libgdx/wiki/File-handling\#android}}.
+Vergleiche hierzu den entsprechenden Artikel der Dokumentation \footnote{\url{https://github.com/libgdx/libgdx/wiki/File-handling\#android}}.
 Zudem sei erwähnt, dass sich alle in JSON angegebenen Elemente, die von der Anwendung benutzt werden, im Namespace "'de.croggle"' befinden.
 Das heißt, dass sich in dem Wurzelobjekt jeder JSON Datei ein Objekt mit diesem Namen befindet.
 Dies macht es sicherer, gegebenenfalls in Zukunft vom Nutzer angegebene Levels zu laden, auch wenn dies derzeit nicht als Funktion vorgesehen ist.
@@ -88,7 +88,7 @@ Dazu jedoch mehr in Kapitel "'Levelpakete"'.
 Innerhalb einer solchen JSON Datei existiert (im Applikationsnamensraum) eine Liste mit dem Namen "Levels".
 An dieser Stelle wäre auch ein einfaches Objekt möglich, welches direkt alle notwendigen Daten enthält.
 Der gewählte Ansatz bietet allerdings die Vorteile, dass erstens direkt auf die Levels als solche zugegriffen werden kann, da keine Typprüfung stattfinden muss ("'Levels"' darf nur Levels enthalten).
-Zweitens lassen sich gegebenenfalls alle Levels einfach in dieser einfachen Liste zusammenlegen, was nur noch eine JSON Datei notwendig machen und somit Spielraum für Leistungsverbesserungen bieten würde.
+Zweitens lassen sich gegebenenfalls alle Levels in dieser Liste zusammenlegen, was nur noch eine JSON Datei notwendig machen und somit Spielraum für Leistungsverbesserungen bieten würde.
 Und drittens muss kein Name für die sonst eigentlich anonymen Levels angegeben werden.
 
 
@@ -302,14 +302,14 @@ Es muss lediglich bedacht werden, dass durch Festlegung von Konventionen keine z
 
 Grundsätzlich existiert zu jedem Level unter json/levels/ ein Ordner mit der Position des Pakets in der Liste der Pakete.
 Auch hier wird der Index als zweistellige Zahl mit den Ziffern 0 bis 9 dargestellt, was eine theroetische maximale Anzahl von 100 verschiedenen Levelpaketen erlaubt.
-In jedem dieser Ordner befinden sich die zu dem Paket gehörenden Levels in jeweils einer eigenen json Datei, die nach dem in Abschnitt "'Levels"' beschriebenen Schema benannt sind.
+In jedem dieser Ordner befinden sich die zu dem Paket gehörenden Levels in jeweils einer eigenen JSON Datei, die nach dem in Abschnitt "'Levels"' beschriebenen Schema benannt sind.
 Diese Maßnahmen decken bereits die ersten beiden Punkte, die für die Beschreibung eines Levelpakets nötig sind, ab.
-Zusätzlich existiert in dem Paketordner eine weitere json Datei mit dem Namen "'package.json"'.
+Zusätzlich existiert in dem Paketordner eine weitere JSON Datei mit dem Namen "'package.json"'.
 Diese dient dazu, die restlichen der eben aufgelisteten Daten anzugeben.
 Wie dies genau geschieht wird im Folgenden spezifiziert.
 \newline
 Wie bereits bei Levels geschieht die Definition eines Levels nicht über einen festen Namen im Namensbereich des Spiels.
-Stattdessen wird ein Anonymes Objekt in einer Liste verwendet.
+Stattdessen wird ein anonymes Objekt in einer Liste verwendet.
 Diese Liste heißt "'packages"'.
 Listing 4.8 verdeutlicht die Folgen dieses Sachverhalts.
 Der Name eines Packages wird im Feld "'name"' als Zeichenkette eingetragen.
@@ -388,7 +388,7 @@ Ordnerübersicht zur Levelspezifikation
 				.5 \ldots{}.
 }
 
-\subsection{Inhalte einer package.json Datei}
+\subsection{Inhalte einer "`package.json"' Datei}
 \dirtree{%
 .1 "'de{.}croggle"' : Object - Namensraum.
 	.2 "'packages"' : Liste - Liste mit Repräsentationen von Paketen{.} Gewöhnlich nur ein Paket.
