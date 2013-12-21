@@ -16,7 +16,7 @@ import de.croggle.game.board.BoardObject;
  * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
  *
  */
-public class ReplaceEggVisitor implements BoardObjectVisitor {
+public class ReplaceEggsVisitor implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;
 
 	/**
@@ -26,7 +26,7 @@ public class ReplaceEggVisitor implements BoardObjectVisitor {
 	 * @param bornFamily the family with which eggs are replaced
 	 * @param boardMessenger the messenger used for sending events when eggs are replaced
 	 */
-	private ReplaceEggVisitor(Color eggColor, InternalBoardObject bornFamily, BoardEventMessenger boardMessenger){
+	private ReplaceEggsVisitor(Color eggColor, InternalBoardObject bornFamily, BoardEventMessenger boardMessenger){
 	}
 
 	/**
