@@ -13,6 +13,9 @@ import de.croggle.game.board.Board;
  * A visitor replacing eggs of a certain color with copies of a given
  * family (subtree).
  * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
+ * @depend - <uses> - de.croggle.game.visitor.RecolorVisitor
+ * @depend - <uses> - de.croggle.game.visitor.CollectFreeColorsVisitor
+ * @depend - <uses> - de.croggle.game.visitor.CollectBoundColorsVisitor
  *
  */
 public class ReplaceEggsVisitor implements BoardObjectVisitor {
