@@ -57,4 +57,13 @@ public class ReplaceEggsVisitor implements BoardObjectVisitor {
 	@Override
 	public void visitBoard(Board board);
 
+	/**
+	 * Returns all colors of colored alligators above <code>egg</code> but below <code>parent</code>.
+	 * This is equivalent to the colors which are bound in the current subterm for the location of the egg.
+	 *
+	 * @param egg the egg for which the bound colors should be returned
+	 * @return the set of bound colors
+	 */
+	private Color[] findLocallyBoundColors(Egg egg) {
+	}
 }
