@@ -29,8 +29,8 @@ public class ColoredAlligator extends Alligator {
 	public ColoredAlligator copy() {
 	}
 	/**
-	 * Gets the color of the Alligator.
-	 * @return the color.
+	 * Gets the color of the alligator.
+	 * @return The alligator's color.
 	 */
 	public Color getColor(){
 		return null;

@@ -28,8 +28,8 @@ public class Egg implements InternalBoardObject {
 	}
 
 	/**
-	 * Gets the color oft the egg.
-	 * @return the color.
+	 * Gets the color of the egg.
+	 * @return The egg's color.
 	 */
 	public Color getColor(){
 		return null;
