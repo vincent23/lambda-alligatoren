@@ -18,7 +18,7 @@ simulator:[eater, eaten]=simulator.eat()
 simulator:eater.retrieve
 simulator:eaten.retrieve
 simulator[1]:
-simulator:boardMessenger.eat(eater, eaten)
+simulator:boardMessenger.notifyEat(eater, eaten)
 boardMessenger:renderer.onEat(eater, eaten)
 renderer:eaterActor=actors.get(eater)
 renderer:eaterActor.enterEatingState()
@@ -42,8 +42,8 @@ renderer:flattenVisitor.destroy]]></source>
 <property name="explicitReturns" value="false"/>
 <property family="Dialog" name="font" size="12" style="0"/>
 <property name="fragmentBorderThickness" value="2"/>
-<property name="fragmentEdgeColor" value="-16751616"/>
-<property name="fragmentLabelBgColor" value="-36"/>
+<property name="fragmentEdgeColor" value="-16777216"/>
+<property name="fragmentLabelBgColor" value="-1"/>
 <property name="fragmentMargin" value="8"/>
 <property name="fragmentPadding" value="10"/>
 <property name="fragmentTextPadding" value="3"/>
