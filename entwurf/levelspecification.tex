@@ -31,7 +31,7 @@ Die Spezifikation beschreibt lediglich die Elemente, die in Objekten verpflichte
 Darüber hinausgehende Attribute werden von der Applikation ignoriert.
 Sollten einzelne Elemente oder auch nur deren Inhalt als optional angesehen werden, ist dies entsprechend im Text ausgewiesen.
 
-Da die Beschreibungen von Levels, ähnlich wie Quellcode, komplexe Sachverhalte im Lambda Kalkül abbilden können, deren Wirkungsweise nicht direkt ersichtlich sein kann,
+Da die Beschreibungen von Levels, ähnlich wie Quellcode, komplexe Sachverhalte im Lambda-Kalkül abbilden können, deren Wirkungsweise nicht direkt ersichtlich sein kann,
 sieht die Spezifikation der JSON Repräsentation Kommentarattribute vor.
 Diese können und sollen verwendet werden, um besonders schwer nachzuvollziehende Stellen zu dokumentieren, aber auch, um einfach auf die Ideen und Zielsetzungen innerhalb eines bestimmten Levels hinzuweisen.
 Solche Kommentarattribute werden durch das Präfix "'\_comment"' markiert und eingeleitet.
@@ -351,7 +351,7 @@ Abhängigkeiten werden grundsätzlich durch Objekte abgebildet, die mindestens d
 Folgende Typen sind bisher definiert:
 \begin{description}
 	\item[packageprogress:] Wie weit ein bestimmtes anderes Levelpaket abgeschlossen sein muss, damit das Paket freigeschaltet ist.
-\end{itemize}
+\end{description}
 Im Folgenden sind den jeweiligen Typen Abschnitte gewidmet, in denen weitere Attribute, die durch die Angabe eines Typseingeführt werden, erklärt sind.
 
 \subsubsection{Paketfortschritt: "'packageprogress"'}
@@ -432,4 +432,5 @@ Ordnerübersicht zur Levelspezifikation
 					.6 "'blocked types": Liste - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
 }
 
-\subsubsection{Verschachtelte
+\subsubsection{Verschachtelte Alligatorbaumstruktur}
+
