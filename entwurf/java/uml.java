@@ -3,7 +3,7 @@ package de.croggle;
 /**
  * @opt views
  * @hidden
- * @excludeFromTex
+ * @texignore
  */
 class UMLOptions {
         
@@ -71,7 +71,7 @@ class UMLOptions {
  * @match class java.*
  * @opt hide
  * 
- * @texexclude
+ * @texignore
  */
 public class uml {
 }
