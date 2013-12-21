@@ -19,7 +19,7 @@ public class ReplaceEggVisitor implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;
 
 	/**
-	 * Creates a new visitor, which replaces eggs of the color {eggColor} with copies of {bornFamily}.
+	 * Creates a new visitor, which replaces eggs of the color <code>eggColor</code> with copies of <code>bornFamily</code>.
 	 *
 	 * @param eggColor the color of the eggs to replace
 	 * @param bornFamily the family with which eggs are replaced
