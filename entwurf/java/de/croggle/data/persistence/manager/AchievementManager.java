@@ -65,7 +65,7 @@ public class AchievementManager extends TableManager {
 	 * @param profileName The name of the user which unlocked achievements are searched-for.
 	 * @return Returns A list of all achievements unlocked by the user with the name profileName. 
 	 */
-	List<Achievement> getAllUnlockedAchievements(String profileName) {
+	List<Achievement> getUnlockedAchievements(String profileName) {
 		/* TODO */
 		return null;
 	}
@@ -74,7 +74,7 @@ public class AchievementManager extends TableManager {
 	 * Deletes all achievements that were unlocked by the user with the profile name profileName from the table.
 	 * @param profileName The name of the profile which unlocked achievements are deleted.
 	 */
-	void deleteAllUnlockedAchievements(String profileName) {
+	void deleteUnlockedAchievements(String profileName) {
 		
 	}
 
