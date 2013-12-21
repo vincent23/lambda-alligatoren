@@ -29,8 +29,14 @@ public interface InternalBoardObject extends BoardObject {
     public boolean isRecolorable();
 
     /**
-     * Gets whether the object is protected from user interactions like moving or removing it or not.
-     * @return true if the object can be moved and removed, otherwise false
+     * Gets whether the object is protected from the user moving it or not.
+     * @return true if the object can be moved, otherwise false
      */
     public boolean isMovable();
+
+    /**
+     * Gets whether the object is protected being removed from the board or not.
+     * @return true if the object can be removed, otherwise false
+     */
+    public boolean isRemovable();
 }
