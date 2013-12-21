@@ -3,7 +3,7 @@ package de.croggle.game.level;
 import java.util.List;
 
 /**
- * Careful! this controller does not actually controll a level, but rather the
+ * Careful! This controller does not actually controll a level, but rather the
  * content of a levelpackage!!!
  * 
  * @navassoc 1 - * de.croggle.game.level.Level
