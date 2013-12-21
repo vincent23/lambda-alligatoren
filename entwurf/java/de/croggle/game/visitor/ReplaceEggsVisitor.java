@@ -21,7 +21,7 @@ import de.croggle.game.board.Board;
 public class ReplaceEggsVisitor implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;
 
-	private ReplaceEggsVisitor(ColoredAlligator parent, InternalBoardObject bornFamily, BoardEventMessenger boardMessenger){
+	private ReplaceEggsVisitor(ColoredAlligator parent, InternalBoardObject bornFamily, BoardEventMessenger boardMessenger, ColorController colorController) {
 	}
 
 	/**
@@ -32,8 +32,9 @@ public class ReplaceEggsVisitor implements BoardObjectVisitor {
 	 * @param parent the colored alligator whose child eggs should be replaced
 	 * @param bornFamily the family with which eggs are replaced
 	 * @param boardMessenger the messenger used for sending events when eggs are replaced
+	 * @param colorController the color controller used for recoloring
 	 */
-	public static void replace(ColoredAlligator parent, InternalBoardObject bornFamily, BoardEventMessenger boardMessenger) {
+	public static void replace(ColoredAlligator parent, InternalBoardObject bornFamily, BoardEventMessenger boardMessenger, ColorController colorController) {
 	}
 
 	/**
