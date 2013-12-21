@@ -2,7 +2,7 @@
 
 \section{Model View Controller}
 Um einen flexiblen Programmentwurf zu gewährleisten, wird das Architekturmuster "`Model View Controller"' verwendet.
-Dieses soll spätere Änderungen und Erweiterungen erleichtern, sowie eine Wiederverwendung der einzelnen Programmkomponenten ermöglichen.
+Dieses soll spätere Änderungen und Erweiterungen erleichtern sowie eine Wiederverwendung der einzelnen Programmkomponenten ermöglichen.
 Die Realisierung des Musters erfolgt über eine Unterteilung der verschiedenen Bereiche in Packages.
  Das Package "`ui"' repräsentiert den Bereich des "`Views"', das Package "`model"' das "`Model"' und das Package "`controller"' den "`Controller"'.
 
@@ -10,15 +10,15 @@ Die Realisierung des Musters erfolgt über eine Unterteilung der verschiedenen B
 \section{libGDX}
 Für die Entwicklung der App wird das Framework libGDX verwendet.
 Es ist speziell für Spielentwicklung ausgelegt, und erfüllt damit die Anforderungen besser als das Android Application Framework.
- LibGDX bietet dem Benutzer die Möglichkeit einfach ästhetisch ansprechende UIs aufzubauen und liefert von Haus aus vereinfachtes Rendering.
+ LibGDX bietet dem Benutzer die Möglichkeit, einfach ästhetisch ansprechende UIs aufzubauen und liefert von Haus aus vereinfachtes Rendering.
 Die umfangreiche Dokumentation erleichtert die Einarbeitung in das Framework.
-Auch die Tatsache, dass libGDX ein freie Software ist, spricht für die Nutzung.
+Auch die Tatsache, dass libGDX eine freie Software ist, spricht für die Nutzung.
 
 \section{Aufbau des "`Model"'}
 Im "`Model"' werden die Alligatorenkonstellationen durch eine veränderbare (mutable) Baumstruktur repräsentiert.
- Im Gegensatz zur Variante die Konstellation in einer unveränderbaren (immutable) Form zu speichern, bietet diese Form den Vorteil, dass Referenzen auf Objekte eindeutig sind und in der Baumstruktur auch auf den Vorgänger (parent) eines Baumelements zugegriffen werden kann (getParent()).
+ Im Gegensatz zur Variante, die Konstellationen in einer unveränderbaren (immutable) Form zu speichern, bietet diese Form den Vorteil, dass Referenzen auf Objekte eindeutig sind und in der Baumstruktur auch auf den Vorgänger (parent) eines Baumelements zugegriffen werden kann (getParent()).
 Muss die Konstellation im Laufe des Spiels geändert werden, können einzelne Teilbäume der Konstellation geändert werden.
-Allerdings ergibt sich hier das Problem, das beim Einfügen von Teilbäumen an mehreren Stellen immer vollständige Kopien (deep copy) dieses Teilbaumes eingefügt werden müssen, damit keine Probleme mit Referenzen auftreten.
+Allerdings ergibt sich hier das Problem, dass beim Einfügen von Teilbäumen an mehreren Stellen immer vollständige Kopien (deep copy) dieses Teilbaumes eingefügt werden müssen, damit keine Probleme mit Referenzen auftreten.
 
 Einen weiteren Grund für die Entscheidung mit veränderbaren Objekten zu arbeiten ist, dass diese ein vertrautes Konzept darstellen, wohingegen für die Arbeit mit nicht veränderbaren Objekten eine längere Einarbeitungszeit in den Umgang und den Konzepte der funktionalen Programmierung nötig wäre.
 
