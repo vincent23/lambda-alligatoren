@@ -9,20 +9,19 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage[space]{grffile} %for spaces in filenames
 \usepackage{hyperref}
 \usepackage{titlesec}
-\usepackage{enumerate}
-\usepackage{xparse}
+\usepackage[space]{grffile}% for spaces in filenames
 
-% for source code listings
-\usepackage{listings}
+\usepackage{enumerate}% for specifying enumeration symbols (a,b,c... 1,2,3... etc)
+\usepackage{xparse}% used for texdoclet
+\usepackage{dirtree}% directory trees
+\usepackage{listings}% for source code listings
 %\usepackage{bera} % for nicer font (decide later within the group)
-% for the json formatting to work without modification
-\usepackage{xcolor}
+\usepackage{xcolor}% for the json formatting to work without modification
 
-\input{commands}
-\input{docletcommands}
+\input{commands}% custom command definitions go here
+\input{docletcommands}% texdoclet specific commands
 
 \begin{document}
 
