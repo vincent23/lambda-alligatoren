@@ -8,16 +8,19 @@ import de.croggle.game.board.Board;
 import de.croggle.game.event.BoardEventMessenger;
 
 /**
- * A visitor looking for aged alligators, which are not nessesary 
+ * A visitor looking for aged alligators, which are not nessesary,
  * because their presence does not change the order of evaluation within the term.
  * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
  *
  */
 public class RemoveAgedAlligatorsVisitor implements BoardObjectVisitor {
-private BoardEventMessenger boardMessenger;
+	private BoardEventMessenger boardMessenger;
 
-public RemoveAgedAlligatorsVisitor(BoardEventMessenger boardMessenger){
-}
+	/**
+	 *
+	 */
+	public RemoveAgedAlligatorsVisitor(BoardEventMessenger boardMessenger){
+	}
 	/**
 	 * {@inheritDoc}
 	 */
