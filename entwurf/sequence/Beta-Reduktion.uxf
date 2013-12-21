@@ -4,8 +4,8 @@
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>730</x>
-      <y>10</y>
+      <x>720</x>
+      <y>70</y>
       <w>200</w>
       <h>50</h>
     </coordinates>
@@ -18,7 +18,7 @@
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>230</x>
-      <y>90</y>
+      <y>180</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -29,7 +29,7 @@
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>0</x>
-      <y>90</y>
+      <y>180</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
@@ -40,20 +40,20 @@
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>250</x>
-      <y>90</y>
+      <y>180</y>
       <w>50</w>
-      <h>100</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;80</additional_attributes>
+    <additional_attributes>30;30;30;70</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>50</x>
-      <y>160</y>
+      <y>240</y>
       <w>20</w>
-      <h>1420</h>
+      <h>1580</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -62,18 +62,18 @@
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>30</x>
-      <y>90</y>
+      <y>180</y>
       <w>50</w>
-      <h>90</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;70</additional_attributes>
+    <additional_attributes>30;30;30;60</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>40</x>
-      <y>130</y>
+      <y>210</y>
       <w>250</w>
       <h>70</h>
     </coordinates>
@@ -86,9 +86,9 @@ evaluate(currentBoard)
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>270</x>
-      <y>170</y>
+      <y>250</y>
       <w>20</w>
-      <h>1360</h>
+      <h>1550</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -97,7 +97,7 @@ evaluate(currentBoard)
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>910</x>
-      <y>80</y>
+      <y>180</y>
       <w>160</w>
       <h>30</h>
     </coordinates>
@@ -107,33 +107,33 @@ evaluate(currentBoard)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>260</x>
-      <y>160</y>
-      <w>740</w>
+      <x>690</x>
+      <y>290</y>
+      <w>310</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-accept(visitor)</panel_attributes>
-    <additional_attributes>720;50;30;50</additional_attributes>
+accept(findEatingVisitor)</panel_attributes>
+    <additional_attributes>290;50;30;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>960</x>
-      <y>80</y>
+      <y>180</y>
       <w>50</w>
-      <h>140</h>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;120</additional_attributes>
+    <additional_attributes>30;30;30;150</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>980</x>
-      <y>200</y>
+      <y>330</y>
       <w>20</w>
-      <h>540</h>
+      <h>610</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -142,7 +142,7 @@ accept(visitor)</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>570</x>
-      <y>160</y>
+      <y>250</y>
       <w>260</w>
       <h>30</h>
     </coordinates>
@@ -153,32 +153,21 @@ accept(visitor)</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>130</y>
+      <y>220</y>
       <w>330</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-FindEatingVisitor()</panel_attributes>
+findEater(currentBoard)</panel_attributes>
     <additional_attributes>310;50;30;50</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>680</x>
-      <y>160</y>
-      <w>50</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;60</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>700</x>
-      <y>220</y>
+      <y>320</y>
       <w>20</w>
-      <h>490</h>
+      <h>630</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -187,7 +176,7 @@ FindEatingVisitor()</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>690</x>
-      <y>190</y>
+      <y>330</y>
       <w>310</w>
       <h>70</h>
     </coordinates>
@@ -199,7 +188,7 @@ visitBoard(currentBoard)</panel_attributes>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>1080</x>
-      <y>80</y>
+      <y>180</y>
       <w>170</w>
       <h>30</h>
     </coordinates>
@@ -210,31 +199,20 @@ visitBoard(currentBoard)</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1140</x>
-      <y>80</y>
+      <y>180</y>
       <w>50</w>
-      <h>190</h>
+      <h>240</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;170</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>1310</x>
-      <y>600</y>
-      <w>50</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;50</additional_attributes>
+    <additional_attributes>30;30;30;220</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>1160</x>
-      <y>250</y>
+      <y>400</y>
       <w>20</w>
-      <h>440</h>
+      <h>490</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -243,7 +221,7 @@ visitBoard(currentBoard)</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>690</x>
-      <y>210</y>
+      <y>370</y>
       <w>490</w>
       <h>70</h>
     </coordinates>
@@ -255,7 +233,7 @@ accept(visitor)</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>700</x>
-      <y>240</y>
+      <y>410</y>
       <w>480</w>
       <h>70</h>
     </coordinates>
@@ -267,7 +245,7 @@ visitColoredAlligator(λx)</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>700</x>
-      <y>290</y>
+      <y>450</y>
       <w>470</w>
       <h>70</h>
     </coordinates>
@@ -279,19 +257,19 @@ getParent()</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>700</x>
-      <y>320</y>
+      <y>480</y>
       <w>470</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 currentBoard</panel_attributes>
-    <additional_attributes>30;50;110;50;450;50</additional_attributes>
+    <additional_attributes>30;50;450;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>700</x>
-      <y>350</y>
+      <y>530</y>
       <w>290</w>
       <h>70</h>
     </coordinates>
@@ -304,7 +282,7 @@ isLastChild(λx)
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>700</x>
-      <y>370</y>
+      <y>560</y>
       <w>290</w>
       <h>70</h>
     </coordinates>
@@ -316,7 +294,7 @@ false</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>700</x>
-      <y>410</y>
+      <y>610</y>
       <w>162</w>
       <h>80</h>
     </coordinates>
@@ -329,7 +307,7 @@ foundEater(λx)
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>700</x>
-      <y>490</y>
+      <y>690</y>
       <w>110</w>
       <h>80</h>
     </coordinates>
@@ -341,7 +319,7 @@ foundEater(λx)
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>720</x>
-      <y>460</y>
+      <y>660</y>
       <w>20</w>
       <h>70</h>
     </coordinates>
@@ -352,7 +330,7 @@ foundEater(λx)
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1140</x>
-      <y>660</y>
+      <y>860</y>
       <w>50</w>
       <h>170</h>
     </coordinates>
@@ -363,7 +341,7 @@ foundEater(λx)
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>960</x>
-      <y>710</y>
+      <y>910</y>
       <w>50</w>
       <h>170</h>
     </coordinates>
@@ -373,19 +351,19 @@ foundEater(λx)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>900</x>
-      <y>0</y>
-      <w>100</w>
-      <h>100</h>
+      <x>890</x>
+      <y>60</y>
+      <w>110</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;80;30;80;80</additional_attributes>
+    <additional_attributes>30;30;90;30;90;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>690</x>
-      <y>660</y>
+      <y>860</y>
       <w>310</w>
       <h>50</h>
     </coordinates>
@@ -395,30 +373,8 @@ foundEater(λx)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>260</x>
-      <y>690</y>
-      <w>740</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;720;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>680</x>
-      <y>680</y>
-      <w>50</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;50</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
       <x>690</x>
-      <y>640</y>
+      <y>820</y>
       <w>490</w>
       <h>50</h>
     </coordinates>
@@ -429,7 +385,7 @@ foundEater(λx)
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>700</x>
-      <y>540</y>
+      <y>740</y>
       <w>480</w>
       <h>50</h>
     </coordinates>
@@ -440,7 +396,7 @@ foundEater(λx)
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>1150</x>
-      <y>330</y>
+      <y>490</y>
       <w>20</w>
       <h>50</h>
     </coordinates>
@@ -451,9 +407,9 @@ foundEater(λx)
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>970</x>
-      <y>390</y>
+      <y>570</y>
       <w>20</w>
-      <h>40</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -462,9 +418,9 @@ foundEater(λx)
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>710</x>
-      <y>280</y>
+      <y>450</y>
       <w>20</w>
-      <h>310</h>
+      <h>340</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -473,7 +429,7 @@ foundEater(λx)
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>350</x>
-      <y>90</y>
+      <y>180</y>
       <w>300</w>
       <h>30</h>
     </coordinates>
@@ -484,18 +440,18 @@ foundEater(λx)
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>470</x>
-      <y>90</y>
+      <y>180</y>
       <w>50</w>
-      <h>1280</h>
+      <h>1490</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;1260</additional_attributes>
+    <additional_attributes>30;30;30;1470</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>490</x>
-      <y>1350</y>
+      <y>1650</y>
       <w>20</w>
       <h>90</h>
     </coordinates>
@@ -503,34 +459,10 @@ foundEater(λx)
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.custom.SeqObjectActive</type>
-    <coordinates>
-      <x>700</x>
-      <y>730</y>
-      <w>20</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>690</y>
-      <w>460</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-
-getEater()
-</panel_attributes>
-    <additional_attributes>440;50;30;50</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>260</x>
-      <y>710</y>
+      <y>890</y>
       <w>460</w>
       <h>70</h>
     </coordinates>
@@ -543,7 +475,7 @@ getEater()
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>1160</x>
-      <y>810</y>
+      <y>1010</y>
       <w>20</w>
       <h>50</h>
     </coordinates>
@@ -554,7 +486,7 @@ getEater()
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>800</y>
+      <y>1000</y>
       <w>920</w>
       <h>70</h>
     </coordinates>
@@ -566,7 +498,7 @@ currentBoard</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>770</y>
+      <y>970</y>
       <w>920</w>
       <h>70</h>
     </coordinates>
@@ -579,7 +511,7 @@ getParent()
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>980</x>
-      <y>860</y>
+      <y>1060</y>
       <w>20</w>
       <h>40</h>
     </coordinates>
@@ -590,7 +522,7 @@ getParent()
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>820</y>
+      <y>1020</y>
       <w>740</w>
       <h>70</h>
     </coordinates>
@@ -603,7 +535,7 @@ getNextChild()
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>840</y>
+      <y>1040</y>
       <w>740</w>
       <h>70</h>
     </coordinates>
@@ -615,18 +547,18 @@ y</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1140</x>
-      <y>990</y>
+      <y>1190</y>
       <w>50</w>
-      <h>130</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;110</additional_attributes>
+    <additional_attributes>30;30;30;180</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>960</x>
-      <y>870</y>
+      <y>1070</y>
       <w>50</w>
       <h>70</h>
     </coordinates>
@@ -637,7 +569,7 @@ y</panel_attributes>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>980</x>
-      <y>920</y>
+      <y>1120</y>
       <w>20</w>
       <h>40</h>
     </coordinates>
@@ -648,7 +580,7 @@ y</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>880</y>
+      <y>1080</y>
       <w>740</w>
       <h>70</h>
     </coordinates>
@@ -661,7 +593,7 @@ removeChild(y)
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>900</y>
+      <y>1100</y>
       <w>740</w>
       <h>70</h>
     </coordinates>
@@ -672,8 +604,8 @@ true</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>630</x>
-      <y>1050</y>
+      <x>1340</x>
+      <y>1270</y>
       <w>270</w>
       <h>30</h>
     </coordinates>
@@ -684,18 +616,18 @@ true</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>680</x>
-      <y>740</y>
+      <y>920</y>
       <w>50</w>
-      <h>70</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;50</additional_attributes>
+    <additional_attributes>30;30;30;60</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqDestroyMark</type>
     <coordinates>
       <x>700</x>
-      <y>780</y>
+      <y>970</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -706,31 +638,31 @@ true</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>1010</y>
-      <w>390</w>
+      <y>1230</y>
+      <w>1100</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-ReplaceEggVisitor(colorx, y, boardMessenger)
+replace(colorx, y, boardMessenger)
 </panel_attributes>
-    <additional_attributes>370;50;30;50</additional_attributes>
+    <additional_attributes>1080;50;30;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>730</x>
-      <y>1050</y>
+      <x>1440</x>
+      <y>1270</y>
       <w>50</w>
-      <h>110</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;90</additional_attributes>
+    <additional_attributes>30;30;30;70</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>1160</x>
-      <y>1100</y>
+      <y>1370</y>
       <w>20</w>
       <h>400</h>
     </coordinates>
@@ -740,20 +672,20 @@ ReplaceEggVisitor(colorx, y, boardMessenger)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>260</x>
-      <y>1060</y>
-      <w>920</w>
+      <x>1150</x>
+      <y>1330</y>
+      <w>330</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 accept(replaceEggVisitor) </panel_attributes>
-    <additional_attributes>900;50;30;50</additional_attributes>
+    <additional_attributes>30;50;310;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
       <x>1160</x>
-      <y>970</y>
+      <y>1170</y>
       <w>20</w>
       <h>50</h>
     </coordinates>
@@ -764,7 +696,7 @@ accept(replaceEggVisitor) </panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1140</x>
-      <y>830</y>
+      <y>1030</y>
       <w>50</w>
       <h>160</h>
     </coordinates>
@@ -775,7 +707,7 @@ accept(replaceEggVisitor) </panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>930</y>
+      <y>1130</y>
       <w>920</w>
       <h>70</h>
     </coordinates>
@@ -787,7 +719,7 @@ getColor()</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>960</y>
+      <y>1160</y>
       <w>920</w>
       <h>70</h>
     </coordinates>
@@ -799,10 +731,10 @@ colorx
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>750</x>
-      <y>1140</y>
+      <x>1460</x>
+      <y>1340</y>
       <w>20</w>
-      <h>60</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -810,21 +742,21 @@ colorx
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>740</x>
-      <y>1100</y>
-      <w>440</w>
+      <x>1150</x>
+      <y>1370</y>
+      <w>330</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 visitColoredAlligator(λx)
 </panel_attributes>
-    <additional_attributes>30;50;420;50</additional_attributes>
+    <additional_attributes>310;50;30;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1420</x>
-      <y>80</y>
+      <x>1670</x>
+      <y>180</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -834,30 +766,30 @@ visitColoredAlligator(λx)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1440</x>
-      <y>80</y>
+      <x>1690</x>
+      <y>180</y>
       <w>50</w>
-      <h>1130</h>
+      <h>1300</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;1110</additional_attributes>
+    <additional_attributes>30;30;30;1280</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>740</x>
-      <y>1150</y>
-      <w>440</w>
+      <x>1150</x>
+      <y>1420</y>
+      <w>330</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>420;30;30;30</additional_attributes>
+    <additional_attributes>30;30;310;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>1460</x>
-      <y>1190</y>
+      <x>1710</x>
+      <y>1460</y>
       <w>20</w>
       <h>300</h>
     </coordinates>
@@ -868,43 +800,43 @@ visitColoredAlligator(λx)
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1150</x>
-      <y>1150</y>
-      <w>330</w>
+      <y>1440</y>
+      <w>580</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 accept(replaceEggBoardVisitor)
 </panel_attributes>
-    <additional_attributes>310;50;30;50</additional_attributes>
+    <additional_attributes>560;50;30;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>740</x>
-      <y>1170</y>
-      <w>740</w>
+      <x>1450</x>
+      <y>1470</y>
+      <w>280</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 visitEgg(x)</panel_attributes>
-    <additional_attributes>30;50;720;50</additional_attributes>
+    <additional_attributes>30;50;260;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>730</x>
-      <y>1170</y>
+      <x>1440</x>
+      <y>1440</y>
       <w>50</w>
-      <h>60</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;40</additional_attributes>
+    <additional_attributes>30;30;30;70</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>750</x>
-      <y>1210</y>
+      <x>1460</x>
+      <y>1510</y>
       <w>20</w>
       <h>260</h>
     </coordinates>
@@ -914,10 +846,10 @@ visitEgg(x)</panel_attributes>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>1450</x>
-      <y>1230</y>
+      <x>1700</x>
+      <y>1540</y>
       <w>20</w>
-      <h>60</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -925,47 +857,47 @@ visitEgg(x)</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>740</x>
-      <y>1200</y>
-      <w>730</w>
+      <x>1450</x>
+      <y>1500</y>
+      <w>270</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getParent()
 </panel_attributes>
-    <additional_attributes>710;50;30;50</additional_attributes>
+    <additional_attributes>250;50;30;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>740</x>
-      <y>1220</y>
-      <w>730</w>
+      <x>1450</x>
+      <y>1530</y>
+      <w>270</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 λx
 </panel_attributes>
-    <additional_attributes>30;50;710;50</additional_attributes>
+    <additional_attributes>30;50;250;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>740</x>
-      <y>1260</y>
-      <w>430</w>
+      <x>1160</x>
+      <y>1550</y>
+      <w>320</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 replaceChildwith(x, y)
 </panel_attributes>
-    <additional_attributes>410;50;30;50</additional_attributes>
+    <additional_attributes>30;50;300;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>1150</x>
-      <y>1300</y>
+      <x>1170</x>
+      <y>1590</y>
       <w>20</w>
       <h>60</h>
     </coordinates>
@@ -975,44 +907,44 @@ replaceChildwith(x, y)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>740</x>
-      <y>1290</y>
-      <w>430</w>
+      <x>1160</x>
+      <y>1590</y>
+      <w>320</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 true</panel_attributes>
-    <additional_attributes>30;50;410;50</additional_attributes>
+    <additional_attributes>300;50;30;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>480</x>
-      <y>1310</y>
-      <w>290</w>
+      <y>1610</y>
+      <w>1000</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 notifyReplace(x, y)
 </panel_attributes>
-    <additional_attributes>30;50;270;50</additional_attributes>
+    <additional_attributes>30;50;980;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>480</x>
-      <y>1400</y>
-      <w>290</w>
+      <y>1700</y>
+      <w>1000</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>270;30;30;30</additional_attributes>
+    <additional_attributes>980;30;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>310</x>
-      <y>1240</y>
+      <x>320</x>
+      <y>1520</y>
       <w>170</w>
       <h>90</h>
     </coordinates>
@@ -1027,40 +959,40 @@ diagram. </panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>360</x>
-      <y>1300</y>
+      <y>1580</y>
       <w>150</w>
-      <h>120</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;100;130;100</additional_attributes>
+    <additional_attributes>30;30;30;120;130;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>740</x>
-      <y>1410</y>
-      <w>740</w>
+      <x>1450</x>
+      <y>1710</y>
+      <w>280</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>720;30;30;30</additional_attributes>
+    <additional_attributes>260;30;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1150</x>
-      <y>1430</y>
-      <w>330</w>
+      <y>1670</y>
+      <w>580</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;310;30</additional_attributes>
+    <additional_attributes>30;30;560;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>260</x>
-      <y>1450</y>
+      <y>1730</y>
       <w>920</w>
       <h>50</h>
     </coordinates>
@@ -1070,19 +1002,19 @@ diagram. </panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>730</x>
-      <y>1440</y>
+      <x>1440</x>
+      <y>1740</y>
       <w>50</w>
-      <h>90</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;70</additional_attributes>
+    <additional_attributes>30;30;30;80</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqDestroyMark</type>
     <coordinates>
-      <x>750</x>
-      <y>1500</y>
+      <x>1460</x>
+      <y>1810</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -1092,8 +1024,8 @@ diagram. </panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1440</x>
-      <y>1460</y>
+      <x>1690</x>
+      <y>1730</y>
       <w>50</w>
       <h>90</h>
     </coordinates>
@@ -1103,8 +1035,8 @@ diagram. </panel_attributes>
   <element>
     <type>com.umlet.element.custom.SeqDestroyMark</type>
     <coordinates>
-      <x>1460</x>
-      <y>1520</y>
+      <x>1710</x>
+      <y>1790</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -1115,51 +1047,51 @@ diagram. </panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1140</x>
-      <y>1470</y>
+      <y>1740</y>
       <w>50</w>
-      <h>90</h>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;70</additional_attributes>
+    <additional_attributes>30;140;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>470</x>
-      <y>1410</y>
+      <y>1710</y>
       <w>50</w>
-      <h>180</h>
+      <h>240</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;160</additional_attributes>
+    <additional_attributes>30;30;30;220</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>250</x>
-      <y>1500</y>
+      <y>1770</y>
       <w>50</w>
-      <h>90</h>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;70</additional_attributes>
+    <additional_attributes>30;150;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>960</x>
-      <y>930</y>
+      <y>1130</y>
       <w>50</w>
-      <h>620</h>
+      <h>760</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;600</additional_attributes>
+    <additional_attributes>30;30;30;740</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>40</x>
-      <y>1460</y>
+      <y>1740</y>
       <w>250</w>
       <h>70</h>
     </coordinates>
@@ -1171,11 +1103,59 @@ currentBoard</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>30</x>
-      <y>1550</y>
+      <y>1790</y>
+      <w>50</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>30;30;30;130</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>230</x>
+      <y>0</y>
+      <w>300</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>FindEater(Board board) ist a static 
+method which creates a new 
+FindEatingVisitor and calls 
+accept(visitor Visitor) on the 
+given parent. It returns the found Eater.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>310</x>
+      <y>70</y>
+      <w>130</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>30;30;30;180;110;180;110;190</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>680</x>
+      <y>250</y>
       <w>50</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>30;30;30;70</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>690</x>
+      <y>890</y>
+      <w>310</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;</panel_attributes>
+    <additional_attributes>30;30;290;30</additional_attributes>
   </element>
 </diagram>
