@@ -14,7 +14,9 @@ import de.croggle.game.board.Board;
  * objects in the tree is needed to be achieved.
  */
 public class FlattenVisitor implements BoardObjectVisitor {
-	
+	private FlattenVisitor() {
+	}
+
 	/**
 	 * Systematically travels the tree and adds each element part of it
 	 * <b>one single time</b> to the array that is returned.

@@ -4,6 +4,7 @@ import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.Board;
+import de.croggle.game.board.Parent;
 
 /**
  * A visitor for finding a colored alligator which can eat a family next to it.
@@ -14,7 +15,7 @@ public class FindEatingVisitor implements BoardObjectVisitor {
 	/**
 	 * Creates a new visitor with no found alligator.
 	 */
-	public FindEatingVisitor() {
+	private FindEatingVisitor() {
 		this.eater = null;
 	}
 
@@ -37,11 +38,12 @@ public class FindEatingVisitor implements BoardObjectVisitor {
 	}
 
 	/**
-	 * Gets the eating alligator that was found by the visitor.
+	 * Search a colored alligator which can eat a family next to it.
 	 *
-	 * @return the eating alligator if it was found already, otherwise null
+	 * @param parent the topmost parent in which colored alligators should be searched
+	 * @return the eating alligator if one was found, otherwise null
 	 */
-	public ColoredAlligator getEater() {
+	public static ColoredAlligator findEater(Parent parent) {
 		return eater;
 	}
 

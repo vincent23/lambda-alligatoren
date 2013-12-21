@@ -19,8 +19,9 @@ public class RemoveAgedAlligatorsVisitor implements BoardObjectVisitor {
 	/**
 	 *
 	 */
-	public RemoveAgedAlligatorsVisitor(BoardEventMessenger boardMessenger){
+	private RemoveAgedAlligatorsVisitor(BoardEventMessenger boardMessenger){
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */

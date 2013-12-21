@@ -7,6 +7,12 @@ import de.croggle.game.board.Board;
 
 public class CountBoardObjectsVisitor implements BoardObjectVisitor {
 	/**
+	 *
+	 */
+	private CountBoardObjectsVisitor() {
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override

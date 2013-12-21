@@ -12,10 +12,13 @@ import de.croggle.game.event.BoardEventMessenger;
  * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
  */
 public class RecolorVisitor implements BoardObjectVisitor {
-private BoardEventMessenger boardMessenger;
+	private BoardEventMessenger boardMessenger;
 
-public RecolorVisitor(BoardEventMessenger boardMessenger){
-}
+	/**
+	 *
+	 */
+	private RecolorVisitor(BoardEventMessenger boardMessenger){
+	}
 	/**
 	 * {@inheritDoc}
 	 */

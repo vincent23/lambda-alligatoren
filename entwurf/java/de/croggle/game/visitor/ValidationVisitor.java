@@ -10,6 +10,12 @@ import de.croggle.game.board.Board;
  */
 public class ValidationVisitor implements BoardObjectVisitor {
 	/**
+	 *
+	 */
+	private ValidationVisitor() {
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
