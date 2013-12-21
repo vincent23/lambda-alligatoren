@@ -78,10 +78,10 @@ public class SettingManager extends TableManager {
 
 	/**
 	 * Searches the table for a setting which belongs to the profile identified by profileName and overwrites its values with the values stored in the parameter setting.
-	 * @param profileName the name of the profile which setting is updated
+	 * @param profileName the name of the profile which setting is edited
 	 * @param setting the setting which values are used to overwrite the old setting
 	 */
-	void updateSetting(String profileName, Setting setting) {
+	void editSetting(String profileName, Setting setting) {
 		
 	}
 

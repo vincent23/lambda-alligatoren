@@ -110,10 +110,10 @@ public class StatisticManager extends TableManager {
 
 	/**
 	 * Searches the table for a statistic which belongs to the profile identified by profileName and overwrites its values with the values stored in the parameter statistic.
-	 * @param profileName the name of the profile which statistic is updated
+	 * @param profileName the name of the profile which statistic is edited
 	 * @param statistic the statistic which values are used to overwrite the old statistic
 	 */
-	void updateStatistic(String profileName, Statistic statistic) {
+	void editStatistic(String profileName, Statistic statistic) {
 		
 	}
 

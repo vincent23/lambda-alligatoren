@@ -31,7 +31,7 @@ public abstract class TableManager {
 	
 	/**
 	 * Prepares the table for read and write operations. Must be called before every access to the table.
-	 * @throws SQLException
+	 * @throws SQLException the exception is thrown if the database could not be accessed
 	 */
 	void open() throws SQLException {
 		
@@ -39,7 +39,7 @@ public abstract class TableManager {
 	
 	/**
 	 * Closes the open table. Must be called at the end of reading and writing operations.
-	 * @throws SQLException
+	 * @throws SQLException the exception is thrown if the database could not be accessed
 	 */
 	void close() throws SQLException {
 		

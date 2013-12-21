@@ -64,10 +64,11 @@ public class ProfileManager extends TableManager {
 	}
 
 	/**
-	 * Searches the table for a profile which name matches the profile name stored in profile and overwrites its values with the values stored profile.
+	 * Searches the table for a profile which name matches profileName and overwrites its values with the values stored in profile.
+	 * @param profileName the name of the profile which is edited.
 	 * @param profile contains the values used to overwrite the old entry
 	 */
-	void updateProfile(Profile profile) {
+	void editProfile(String profileName, Profile profile) {
 		
 	}
 

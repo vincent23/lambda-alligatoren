@@ -24,14 +24,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	/**
 	 * Creates a new DatabaseHelper which is used manages the database.
-	 * @param context
+	 * @param context the context used to create the database
 	 */
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_Version);
 	}
 
 	/**
-	 * Creates all tables if the dont already exist.
+	 * Creates all tables if the don't already exist.
 	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {

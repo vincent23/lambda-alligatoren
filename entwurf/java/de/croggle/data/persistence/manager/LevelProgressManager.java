@@ -72,7 +72,7 @@ public class LevelProgressManager extends TableManager {
 	
 	/**
 	 * Adds a new level progress to the table, the parameter profileName identifies the profile to which the level progress belongs.
-	 * @param profileName The name of the profile to which the level progress belongs
+	 * @param profileName the name of the profile to which the level progress belongs
 	 * @param levelProgress the level progress contains the values to be stored in the table
 	 */
 	void addLevelProgress(String profileName, LevelProgress levelProgress) {

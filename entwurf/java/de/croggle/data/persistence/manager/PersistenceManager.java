@@ -47,6 +47,9 @@ public class PersistenceManager {
 	 */	
 	private AchievementManager achievementManager;
 	
+	/**
+	 * The reference to the central game object.
+	 */
 	private AlligatorApp game;
 
 
@@ -68,7 +71,7 @@ public class PersistenceManager {
 
 	/**
 	 * Returns the profile with the name profileName.
-	 * @param profileName The name of the profile which is to be loaded.
+	 * @param profileName the name of the profile which is to be loaded
 	 * @return the profile which was loaded
 	 */
 	public Profile loadProfile(String profileName) {
@@ -78,7 +81,7 @@ public class PersistenceManager {
 	/**
 	 * Overwrites the profile indexed by profileName with the values stored in profile. Every reference to the profile name gets updated.
 	 * @param profileName the string to identify the profile which is to be edited
-	 * @param profile contains the new values for the profile
+	 * @param profile contains the the values used to overwrite the old profile
 	 */
 	public void editProfile(String profileName, Profile profile) {
 		
@@ -102,7 +105,7 @@ public class PersistenceManager {
 
 	/**
 	 * Returns the setting of the profile with the name profileName.
-	 * @param profileName The name of the profile to which the setting belongs.
+	 * @param profileName the name of the profile to which the setting belongs.
 	 * @return the found setting, if no setting is found null is returned
 	 */
 	public Setting getSetting(String profileName) {
@@ -148,9 +151,9 @@ public class PersistenceManager {
 
 	/**
 	 * Returns the levelProgress which level ID matches levelID and which belongs to the profile with the name profileName. 
-	 * @param profileName The name of the profile to which the levelProgress belongs.
+	 * @param profileName the name of the profile to which the levelProgress belongs.
 	 * @param levelID the level ID of the levelProgress
-	 * @return he found level progress , if no setting is found null is returned
+	 * @return he found level progress, if no level progress is found null is returned
 	 */
 	public LevelProgress getLevelProgress(String profileName, int levelID) {
 		return null;
@@ -167,7 +170,7 @@ public class PersistenceManager {
 	
 	/**
 	 * Returns all achievements unlocked by the user identified with profileName.
-	 * @param profileName the name of the user which unlocked achievements are sought after
+	 * @param profileName the name of the profile whose unlocked achievements are searched for
 	 * @return a list containing all achievements unlocked by the user with the name profileName is returned
 	 */
 	public List<Achievement> getAllUnlockedAchievements(String profileName) {

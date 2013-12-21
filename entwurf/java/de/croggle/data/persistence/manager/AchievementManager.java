@@ -43,7 +43,7 @@ public class AchievementManager extends TableManager {
 	
 	/**
 	 * Creates a new AchievementManager used to manage the achievement table.
-	 * @param context used to access the database
+	 * @param context the context used to access the database
 	 */
 	AchievementManager(Context context) {
 		super(context);
@@ -53,7 +53,7 @@ public class AchievementManager extends TableManager {
 		
 	/**
 	 * Adds a new unlocked achievement to the table, the parameter profileName identifies the profile to which the unlocked achievement belongs.
-	 * @param profileName The name of the profile to which the unlocked achievement belongs.
+	 * @param profileName the name of the profile to which the unlocked achievement belongs.
 	 * @param achievement contains the values to be stored in the table
 	 */
 	void addUnlockedAchievement(String profileName, Achievement achievement) {
