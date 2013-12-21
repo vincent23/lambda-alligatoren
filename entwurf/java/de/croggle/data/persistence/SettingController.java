@@ -34,7 +34,7 @@ public class SettingController {
 
 	/**
 	 * Replaces the current setting with newSetting. newSetting gets stored in
-	 * the database.
+	 * the database and overwrites the values of the old setting.
 	 * 
 	 * @param newSetting The setting used to replace the currently active setting.
 	 */
@@ -44,7 +44,7 @@ public class SettingController {
 
 	/**
 	 * Loads the setting, which belongs to the user identified with profile name
-	 * and sets it as the current profile.
+	 * and sets it as the current setting.
 	 * 
 	 * @param profileName The name of the user, whose settings are loaded.
 	 */
