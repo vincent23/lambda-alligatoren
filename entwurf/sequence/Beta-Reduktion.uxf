@@ -993,7 +993,7 @@ true</panel_attributes>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-replace(x, y)
+notifyReplace(x, y)
 </panel_attributes>
     <additional_attributes>30;50;270;50</additional_attributes>
   </element>

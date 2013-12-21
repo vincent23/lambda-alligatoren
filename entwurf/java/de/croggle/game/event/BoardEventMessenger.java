@@ -25,34 +25,34 @@ public class BoardEventMessenger {
 	 *
 	 */
 	@Override
-	public void objectRecolored(InternalBoardObject recoloredObject) {
+	public void notifyObjectRecolored(InternalBoardObject recoloredObject) {
 	}
 
 	/**
 	 *
 	 */
 	@Override
-	public void eat(ColoredAlligator eater, InternalBoardObject eatenFamily) {
+	public void notifyEat(ColoredAlligator eater, InternalBoardObject eatenFamily) {
 	}
 
 	/**
 	 *
 	 */
 	@Override
-	public void agedAlligatorVanishes(Alligator alligator) {
+	public void notifyAgedAlligatorVanishes(Alligator alligator) {
 	}
 
 	/**
 	 *
 	 */
 	@Override
-	public void boardRebuilt(Board board) {
+	public void notifyBoardRebuilt(Board board) {
 	}
 
 	/**
 	 *
 	 */
 	@Override
-	public void replace(Egg replacedEgg, InternalBoardObject bornFamily) {
+	public void notifyReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
 	}
 }
