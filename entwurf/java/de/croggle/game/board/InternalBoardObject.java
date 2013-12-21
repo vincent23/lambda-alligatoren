@@ -23,8 +23,14 @@ public interface InternalBoardObject extends BoardObject {
 	public Parent getParent();
 
     /**
-     * Gets whether the object is given at the start of the level and thus protected from several user interactions or not.
-     * @return true if the object is given, otherwise false
+     * Gets whether the object is protected from user interactions involving colors or not.
+     * @return true if the object can be recolored, otherwise false
      */
-    public boolean isGiven();
+    public boolean isRecolorable();
+
+    /**
+     * Gets whether the object is protected from user interactions like moving or removing it or not.
+     * @return true if the object can be moved and removed, otherwise false
+     */
+    public boolean isMovable();
 }
