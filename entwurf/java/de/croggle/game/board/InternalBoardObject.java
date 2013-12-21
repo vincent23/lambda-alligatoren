@@ -21,4 +21,10 @@ public interface InternalBoardObject extends BoardObject {
 	 * 
 	 */
 	public Parent getParent();
+
+    /**
+     * Gets whether the object is given at the start of the level and thus protected from several user interactions or not.
+     * @return true if the object is given, otherwise false
+     */
+    public boolean isGiven();
 }
