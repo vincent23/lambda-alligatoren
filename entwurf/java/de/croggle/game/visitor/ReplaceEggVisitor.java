@@ -10,7 +10,7 @@ import de.croggle.game.board.Egg;
 import de.croggle.game.board.Board;
 
 /**
- * A visitor replacing eggs of a certain color with copies of a given 
+ * A visitor replacing eggs of a certain color with copies of a given
  * family (subtree).
  * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
  *
@@ -18,31 +18,38 @@ import de.croggle.game.board.Board;
 public class ReplaceEggVisitor implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;
 
+	/**
+	 * Creates a new visitor, which replaces eggs of the color {eggColor} with copies of {bornFamily}.
+	 *
+	 * @param eggColor the color of the eggs to replace
+	 * @param bornFamily the family with which eggs are replaced
+	 * @param boardMessenger the messenger used for sending events when eggs are replaced
+	 */
 	public ReplaceEggVisitor(Color eggColor, InternalBoardObject bornFamily, BoardEventMessenger boardMessenger){
 	}
 
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
-	void visitEgg(Egg egg);
+	public void visitEgg(Egg egg);
 
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
-	void visitColoredAlligator(ColoredAlligator alligator);
+	public void visitColoredAlligator(ColoredAlligator alligator);
 
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
-	void visitAgedAlligator(AgedAlligator alligator);
+	public void visitAgedAlligator(AgedAlligator alligator);
 
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
-	void visitBoard(Board board);
+	public void visitBoard(Board board);
 
 }

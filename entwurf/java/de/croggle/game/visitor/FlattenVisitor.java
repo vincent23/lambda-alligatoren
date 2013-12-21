@@ -29,7 +29,7 @@ public class FlattenVisitor implements BoardObjectVisitor {
 	}
 	
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void visitEgg(Egg egg) {
@@ -37,7 +37,7 @@ public class FlattenVisitor implements BoardObjectVisitor {
 	}
 
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
@@ -45,7 +45,7 @@ public class FlattenVisitor implements BoardObjectVisitor {
 	}
 
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
@@ -53,7 +53,7 @@ public class FlattenVisitor implements BoardObjectVisitor {
 	}
 
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void visitBoard(Board board) {

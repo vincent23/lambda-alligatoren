@@ -19,27 +19,27 @@ private BoardEventMessenger boardMessenger;
 public RemoveAgedAlligatorsVisitor(BoardEventMessenger boardMessenger){
 }
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
-	void visitEgg(Egg egg);
+	public void visitEgg(Egg egg);
 
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
-	void visitColoredAlligator(ColoredAlligator alligator);
+	public void visitColoredAlligator(ColoredAlligator alligator);
 
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
-	void visitAgedAlligator(AgedAlligator alligator);
+	public void visitAgedAlligator(AgedAlligator alligator);
 
 	/**
-	 *
+	 * {@inheritDoc}
 	 */
 	@Override
-	void visitBoard(Board board);
+	public void visitBoard(Board board);
 
 }
