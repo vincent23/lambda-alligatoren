@@ -38,7 +38,7 @@ public class ProfileManager extends TableManager {
 	
 	/**
 	 * Creates a new ProfileManager which manages the profile table.
-	 * @param context Used to access the database.
+	 * @param context the context used to access the database
 	 */
 	ProfileManager(Context context) {
 		super(context);
@@ -48,7 +48,7 @@ public class ProfileManager extends TableManager {
 	
 	/**
 	 * Adds a new profile to the table.
-	 * @param profile Contains the values to be stored in the table.
+	 * @param profile contains the values to be stored in the table
 	 */
 	void addProfile(Profile profile) {
 	
@@ -56,8 +56,8 @@ public class ProfileManager extends TableManager {
 
 	/**
 	 * Searches the table for a profile which name matches profileName.
-	 * @param profileName The name of the searched-for profile.
-	 * @return Returns the found profile, if no profile is found, null is returned.
+	 * @param profileName the name of the searched-for profile
+	 * @return the found profile, if no profile is found, null is returned
 	 */
 	Profile getProfile(String profileName) {
 		return null;
@@ -65,7 +65,7 @@ public class ProfileManager extends TableManager {
 
 	/**
 	 * Searches the table for a profile which name matches the profile name stored in profile and overwrites its values with the values stored profile.
-	 * @param profile Contains the values used to overwrite the old entry.
+	 * @param profile contains the values used to overwrite the old entry
 	 */
 	void updateProfile(Profile profile) {
 		
@@ -73,14 +73,14 @@ public class ProfileManager extends TableManager {
 
 	/**
 	 * Deletes the profile which name matches profileName from the table.
-	 * @param profileName The name of the user whose profile is to be deleted.
+	 * @param profileName the name of the user whose profile is to be deleted
 	 */
 	void deleteProfile(String profileName) {
 		
 	}
 
 	/**
-	 * Returns all Profiles stored in the table.
+	 * Returns all profiles stored in the table.
 	 */
 	List<Profile> getAllProfiles() {
 		return null;

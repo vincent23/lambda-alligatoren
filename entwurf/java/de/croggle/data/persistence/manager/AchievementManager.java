@@ -43,7 +43,7 @@ public class AchievementManager extends TableManager {
 	
 	/**
 	 * Creates a new AchievementManager used to manage the achievement table.
-	 * @param context Used to access the database.
+	 * @param context used to access the database
 	 */
 	AchievementManager(Context context) {
 		super(context);
@@ -54,7 +54,7 @@ public class AchievementManager extends TableManager {
 	/**
 	 * Adds a new unlocked achievement to the table, the parameter profileName identifies the profile to which the unlocked achievement belongs.
 	 * @param profileName The name of the profile to which the unlocked achievement belongs.
-	 * @param achievement Contains the values to be stored in the table.
+	 * @param achievement contains the values to be stored in the table
 	 */
 	void addUnlockedAchievement(String profileName, Achievement achievement) {
 		
@@ -62,17 +62,16 @@ public class AchievementManager extends TableManager {
 
 	/**
 	 * Returns all achievements stored in the table that were unlocked by the user with the profile name profileName.
-	 * @param profileName The name of the user which unlocked achievements are searched-for.
-	 * @return Returns A list of all achievements unlocked by the user with the name profileName. 
+	 * @param profileName the name of the user which unlocked achievements are searched-for
+	 * @return a list of all achievements unlocked by the user with the name profileName
 	 */
 	List<Achievement> getUnlockedAchievements(String profileName) {
-		/* TODO */
 		return null;
 	}
 
 	/**
 	 * Deletes all achievements that were unlocked by the user with the profile name profileName from the table.
-	 * @param profileName The name of the profile which unlocked achievements are deleted.
+	 * @param profileName the name of the profile which unlocked achievements are deleted
 	 */
 	void deleteUnlockedAchievements(String profileName) {
 		

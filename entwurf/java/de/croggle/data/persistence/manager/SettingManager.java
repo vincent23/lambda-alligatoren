@@ -59,17 +59,17 @@ public class SettingManager extends TableManager {
 	
 	/**
 	 * Adds a new setting to the table, the parameter profileName identifies the profile to which the setting belongs.
-	 * @param profileName The name of the profile which setting is added to the table.
-	 * @param setting Contains the values to be stored in the table.
+	 * @param profileName the name of the profile which setting is added to the table
+	 * @param setting contains the values to be stored in the table
 	 */
 	void addSetting(String profileName, Setting setting) {
 		
 	}
 
 	/**
-	 * Searches the table for a setting which belongs to the profile identified by profileName .
-	 * @param profileName The name of the profile which setting is searched for.
-	 * @return Returns the found setting, if no setting is found, null is returned.
+	 * Searches the table for a setting which belongs to the profile identified by profileName.
+	 * @param profileName the name of the profile which setting is searched for
+	 * @return the found setting, if no setting is found, null is returned
 	 */
 	Setting getSetting(String profileName) {
 		
@@ -78,8 +78,8 @@ public class SettingManager extends TableManager {
 
 	/**
 	 * Searches the table for a setting which belongs to the profile identified by profileName and overwrites its values with the values stored in the parameter setting.
-	 * @param profileName The name of the profile which setting is updated.
-	 * @param setting The setting which values are used to overwrite the old setting.
+	 * @param profileName the name of the profile which setting is updated
+	 * @param setting the setting which values are used to overwrite the old setting
 	 */
 	void updateSetting(String profileName, Setting setting) {
 		
@@ -87,7 +87,7 @@ public class SettingManager extends TableManager {
 
 	/**
 	 * Deletes the setting which belongs to the profile identified by profileName from the table.
-	 * @param profileName The name of the profile which setting is deleted.
+	 * @param profileName the name of the profile which setting is deleted
 	 */
 	void deleteSetting(String profileName) {
 		

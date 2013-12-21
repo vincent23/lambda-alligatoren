@@ -26,7 +26,7 @@ public class SettingController {
 	 * shared preferences the corresponding setting is loaded and stored in
 	 * currentSetting.
 	 *
-	 * @param game The backreference to the central game object
+	 * @param game the backreference to the central game object
 	 */
 	public SettingController(AlligatorApp game) {
 
@@ -36,7 +36,7 @@ public class SettingController {
 	 * Replaces the current setting with newSetting. newSetting gets stored in
 	 * the database and overwrites the values of the old setting.
 	 * 
-	 * @param newSetting The setting used to replace the currently active setting.
+	 * @param newSetting the setting used to replace the currently active setting
 	 */
 	public void editCurrentSetting(Setting newSetting) {
 
@@ -46,7 +46,7 @@ public class SettingController {
 	 * Loads the setting, which belongs to the user identified with profile name
 	 * and sets it as the current setting.
 	 * 
-	 * @param profileName The name of the user, whose settings are loaded.
+	 * @param profileName the name of the user, whose settings are loaded
 	 */
 	public void changeCurrentSetting(String profileName) {
 
@@ -54,6 +54,7 @@ public class SettingController {
 
 	/**
 	 * Returns the current setting.
+     * @return the currently active settings
 	 */
 	public Setting getCurrentSetting() {
 		return null;

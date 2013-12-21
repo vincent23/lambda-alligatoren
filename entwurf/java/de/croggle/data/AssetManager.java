@@ -20,40 +20,40 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	/**
 	 * 
 	 * 
-	 * @param identifier A path resolvable by the assetmanager to the requested Animation
-	 * @return The Animation denoted by the given identifier
+	 * @param identifier a path resolvable by the assetmanager to the requested Animation
+	 * @return the animation denoted by the given identifier
 	 */
 	public Animation getAnimation(String identifier) {
 		return null;
 	}
 	
 	/**
-	 * @param identifier A path resolvable by the assetmanager to the requested Texture
-	 * @return The Texture denoted by the given identifier
+	 * @param identifier a path resolvable by the assetmanager to the requested Texture
+	 * @return the texture denoted by the given identifier
 	 */
 	public Texture getTexture(String identifier) {
 		return null;
 	}
 	
 	/**
-	 * @param identifier A path resolvable by the assetmanager to the requested BitmapFont
-	 * @return The BitmapFont denoted by the given identifier
+	 * @param identifier a path resolvable by the assetmanager to the requested BitmapFont
+	 * @return the bitmapFont denoted by the given identifier
 	 */
 	public BitmapFont getFont(String identifier) {
 		return null;
 	}
 	
 	/**
-	 * @param identifier A path resolvable by the assetmanager to the requested Sound
-	 * @return The Sound denoted by the given identifier
+	 * @param identifier a path resolvable by the assetmanager to the requested Sound
+	 * @return the sound denoted by the given identifier
 	 */
 	public Sound getSound(String identifier) {
 		return null;
 	}
 	
 	/**
-	 * @param identifier A path resolvable by the assetmanager to the requested Music
-	 * @return The Music denoted by the given identifier
+	 * @param identifier a path resolvable by the assetmanager to the requested Music
+	 * @return the music denoted by the given identifier
 	 */
 	public Music getMusic(String identifier) {
 		return null;

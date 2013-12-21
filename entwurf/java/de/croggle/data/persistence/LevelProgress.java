@@ -17,13 +17,13 @@ public class LevelProgress {
 	/**
 	 * Construct a new LevelProgress based on it's properties.
 	 *
-	 * @param profileId The id of the user's profile.
-	 * @param levelId The id of the level.
-	 * @param solved Whether the level has been solved.
-	 * @param currentBoard The serialized representation of the current board.
-	 * @param usedResets The number of resets used by the user.
-	 * @param usedHints The number of hints used by the user.
-	 * @param usedTime The time spent in the level by the user.
+	 * @param profileId the id of the user's profile.
+	 * @param levelId the id of the level.
+	 * @param solved whether the level has been solved.
+	 * @param currentBoard the serialized representation of the current board.
+	 * @param usedResets the number of resets used by the user.
+	 * @param usedHints the number of hints used by the user.
+	 * @param usedTime the time spent in the level by the user.
 	 */
 	public LevelProgress (long levelId, boolean solved, String currentBoard, int usedResets, int usedHints, int usedTime) {
 	}
@@ -31,7 +31,7 @@ public class LevelProgress {
 	/**
 	 * Construct a new LevelProgress using a cursor to the correct database row.
 	 *
-	 * @param cursor The cursor.
+	 * @param cursor the cursor
 	 */
 	public LevelProgress(android.database.Cursor cursor) {
 	}
@@ -39,7 +39,7 @@ public class LevelProgress {
 	/**
 	 * Get the id of the level.
 	 *
-	 * @return The level id.
+	 * @return the level id
 	 */
 	public long getLevelId() {
 		return levelId;
@@ -48,7 +48,7 @@ public class LevelProgress {
 	/**
 	 * Set the id of the level.
 	 *
-	 * @param levelId The level id.
+	 * @param levelId the level id.
 	 */
 	public void setLevelId(long levelId) {
 		this.levelId = levelId;
@@ -57,7 +57,7 @@ public class LevelProgress {
 	/**
 	 * Get whether the level has been solved.
 	 *
-	 * @return True if the level has been solved, false otherwise.
+	 * @return true if the level has been solved, false otherwise
 	 */
 	public boolean isSolved() {
 		return solved;
@@ -66,7 +66,7 @@ public class LevelProgress {
 	/**
 	 * Set whether the level has been solved.
 	 *
-	 * @param solved True if the level has been solved, false otherwise.
+	 * @param solved true if the level has been solved, false otherwise
 	 */
 	public void setSolved(boolean solved) {
 		this.solved = solved;
@@ -75,7 +75,7 @@ public class LevelProgress {
 	/**
 	 * Get the serialized version of the current board.
 	 *
-	 * @return The board.
+	 * @return the currently used board
 	 */
 	public String getCurrentBoard() {
 		return currentBoard;
@@ -84,7 +84,7 @@ public class LevelProgress {
 	/**
 	 * Set the serialized version of the current board.
 	 *
-	 * @param currentBoard The board.
+	 * @param currentBoard the currently used board
 	 */
 	public void setCurrentBoard(String currentBoard) {
 		this.currentBoard = currentBoard;
@@ -93,7 +93,7 @@ public class LevelProgress {
 	/**
 	 * Get the number of resets by the user.
 	 *
-	 * @return The number of resets.
+	 * @return the number of time the user reseted the level
 	 */
 	public int getUsedResets() {
 		return usedResets;
@@ -102,7 +102,7 @@ public class LevelProgress {
 	/**
 	 * Set the number of resets by the user.
 	 *
-	 * @param usedResets The number of resets.
+	 * @param usedResets the number of time the user reseted the level
 	 */
 	public void setUsedResets(int usedResets) {
 		this.usedResets = usedResets;
@@ -111,7 +111,7 @@ public class LevelProgress {
 	/**
 	 * Get the number of hints used by the user.
 	 *
-	 * @return The number of hints.
+	 * @return the number of time the user used hints
 	 */
 	public int getUsedHints() {
 		return usedHints;
@@ -120,7 +120,7 @@ public class LevelProgress {
 	/**
 	 * Set the number of hints used by the user.
 	 *
-	 * @param usedHints The number of hints.
+	 * @param usedHints the number of time the user used hints
 	 */
 	public void setUsedHints(int usedHints) {
 		this.usedHints = usedHints;
@@ -129,7 +129,7 @@ public class LevelProgress {
 	/**
 	 * Get the time spent by the user in the level.
 	 *
-	 * @return The time in seconds.
+	 * @return the time in seconds
 	 */
 	public int getUsedTime() {
 		return usedTime;
@@ -138,7 +138,7 @@ public class LevelProgress {
 	/**
 	 * Set the time spent by the user in the level.
 	 *
-	 * @param usedTime The time in seconds.
+	 * @param usedTime the time in seconds
 	 */
 	public void setUsedTime(int usedTime) {
 		this.usedTime = usedTime;

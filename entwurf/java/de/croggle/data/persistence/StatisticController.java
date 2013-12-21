@@ -23,8 +23,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * shared preferences the corresponding statistic is loaded and stored in
 	 * current Statistic.
 	 * 
-	 * @param game
-	 *            The backreference to the central game object
+	 * @param game he backreference to the central game object
 	 */
 	public StatisticController(AlligatorApp game) {
 	}
@@ -34,9 +33,9 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * statistic.
 	 * 
 	 * @param statistic
-	 *            The statistic to set as active
+	 *            the statistic to set as active
 	 * @param game
-	 *            The backreference to the central game object
+	 *            the backreference to the central game object
 	 */
 	public StatisticController(Statistic statistic, AlligatorApp game) {
 
@@ -47,7 +46,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * the database and overwrites the values of the old statistic.
 	 * 
 	 * @param newStatistic 
-	 * 				The statistic used to replace the currently active statistic.
+	 * 				the statistic used to replace the currently active statistic
 	 */
 	public Statistic editCurrentStatistic(Statistic newStatistic) {
 		return null;
@@ -58,9 +57,9 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * and sets it as the currently active statistic.
 	 * 
 	 * @param profileName
-	 * 			  The name of the user whose statistic is loaded.
+	 * 			  the name of the user whose statistic is loaded
 	 * @throws IllegalArgumentException
-	 *            When the string does not represent a profile in the database
+	 *            whenever the string does not represent a profile in the database
 	 */
 	public void changeCurrentStatistic(String profileName) throws IllegalArgumentException{
 		
@@ -80,10 +79,10 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * string.
 	 * 
 	 * @param profileName
-	 *            The identifier of the profile whose statistic should be loaded
+	 *            the identifier of the profile whose statistic should be loaded
 	 * @return the statistic of the specified profile
 	 * @throws IllegalArgumentException
-	 *             When the string does not represent a profile in the database
+	 *             whenever the string does not represent a profile in the database
 	 */
 	public Statistic getStatistic(String profileName) throws IllegalArgumentException {
 		return null;

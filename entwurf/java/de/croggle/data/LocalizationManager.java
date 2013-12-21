@@ -12,7 +12,7 @@ public class LocalizationManager {
 	
 	/**
 	* Creates the LocalizationManager that uses the given android context to achieve defined strings.
-	* @param context the android Activity's context
+	* @param context the android activity's context
 	*/
 	public LocalizationManager(Context context){
 	

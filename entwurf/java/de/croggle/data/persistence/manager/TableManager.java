@@ -23,7 +23,7 @@ public abstract class TableManager {
 		
 	/**
 	 * Creates a new Table Manager which manages a specific table form the database that belongs to the Context context.
-	 * @param context Is used to open or, if needed, create the database.
+	 * @param context the context that is used to open or, if needed, create the database
 	 */
 	TableManager(Context context) {
 		

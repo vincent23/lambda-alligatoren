@@ -81,7 +81,7 @@ public class StatisticManager extends TableManager {
 	
 	/**
 	 * Creates a new StatisticManager which manages the statistic table.
-	 * @param context Used to access the database.
+	 * @param context used to access the database
 	 */
 	StatisticManager(Context context) {
 		super(context);
@@ -90,8 +90,8 @@ public class StatisticManager extends TableManager {
 	
 	/**
 	 * Adds a new statistic to the table, the parameter profileName identifies the profile to which the statistic belongs.
-	 * @param profileName The name of the profile which statistic is added to the table.
-	 * @param statistic Contains the values to be stored in the table.
+	 * @param profileName the name of the profile which statistic is added to the table
+	 * @param statistic contains the values to be stored in the table
 	 */
 	void addStatistic(String profileName, Statistic statistic) {
 		
@@ -100,8 +100,8 @@ public class StatisticManager extends TableManager {
 
 	/**
 	 * Searches the table for a statistic which belongs to the profile identified by profile name.
-	 * @param profileName The name of the profile which statistic is loaded.
-	 * @return Returns the found statistic, if no statistic is found, null is returned.
+	 * @param profileName the name of the profile which statistic is loaded
+	 * @return the found statistic, if no statistic is found, null is returned
 	 */
 	Statistic getStatistic(String profileName) {
 	
@@ -110,8 +110,8 @@ public class StatisticManager extends TableManager {
 
 	/**
 	 * Searches the table for a statistic which belongs to the profile identified by profileName and overwrites its values with the values stored in the parameter statistic.
-	 * @param profileName The name of the profile which statistic is updated.
-	 * @param statistic The statistic which values are used to overwrite the old statistic.
+	 * @param profileName the name of the profile which statistic is updated
+	 * @param statistic the statistic which values are used to overwrite the old statistic
 	 */
 	void updateStatistic(String profileName, Statistic statistic) {
 		
@@ -119,7 +119,7 @@ public class StatisticManager extends TableManager {
 
 	/**
 	 * Deletes the statistic which belongs to the profile identified by profileName from the table.
-	 * @param profileName The name of the profile which statistic is deleted.
+	 * @param profileName the name of the profile which statistic is deleted
 	 */
 	void deleteStatistics(String profileName) {
 	

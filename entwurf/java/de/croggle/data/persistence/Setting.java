@@ -30,10 +30,10 @@ public class Setting {
 	 * 
 	 * Construct a new LevelProgress based on it's properties.
 	 *
-	 * @param volumeMusic The volume of the music.
-	 * @param volumeEffect The volume of the effects.
-	 * @param zoomEnabled Determines whether the zoom button is enabled or not.
-	 * @param colorblindEnabled Determines whether colorblind mode is enabled or not.
+	 * @param volumeMusic the volume of the music.
+	 * @param volumeEffect the volume of the effects.
+	 * @param zoomEnabled determines whether the zoom button is enabled or not.
+	 * @param colorblindEnabled determines whether colorblind mode is enabled or not.
 	 */
 	public Setting(float volumeMusic, float volumeEffect, boolean zoomEnabled, boolean colorblindEnabled) {
 		
@@ -48,7 +48,7 @@ public class Setting {
 	
 	/**
 	 * Get the music volume.
-	 * @return The music volume.
+	 * @return the volume of the music
 	 */
 	public float getVolumeMusic() {
 		return volumeMusic;
@@ -56,7 +56,7 @@ public class Setting {
 	
 	/**
 	 * Set the music volume.
-	 * @param volumeMusic The music volume.
+	 * @param volumeMusic the volume of the music
 	 */
 	public void setVolumeMusic(float volumeMusic) {
 		this.volumeMusic = volumeMusic;
@@ -64,7 +64,7 @@ public class Setting {
 
 	/**
 	 * Get the effect volume.
-	 * @return The volume of the effects.
+	 * @return the volume of the effects
 	 */
 	public float getVolumeEffects() {
 		return volumeEffects;
@@ -72,7 +72,7 @@ public class Setting {
 
 	/**
 	 * Set the effect volume.
-	 * @return The volume of the effects.
+	 * @return the volume of the effects
 	 */
 	public void setVolumeEffects(float volumeEffects) {
 		this.volumeEffects = volumeEffects;
@@ -80,7 +80,7 @@ public class Setting {
 
 	/**
 	 * Get whether zoom button is enabled or not.
-	 * @return If the oom button is enabled true is returned, else false is returned.
+	 * @return if the oom button is enabled true is returned, else false is returned
 	 */
 	public boolean isZoomEnabled() {
 		return zoomEnabled;
@@ -88,7 +88,7 @@ public class Setting {
 
 	/**
 	 * Set the whether zoom button is enabled or not.
-	 * @return True if zoom button is enabled, false otherwise.
+	 * @return true if zoom button is enabled, false otherwise
 	 */
 	public void setZoomEnabled(boolean zoomEnabled) {
 		this.zoomEnabled = zoomEnabled;
@@ -96,7 +96,7 @@ public class Setting {
 
 	/**
 	 * Get whether the colorblind mode is enabled or not.
-	 * @return If the colorblind mode is enabled true is returned, else false is returned.
+	 * @return if the colorblind mode is enabled true is returned, else false is returned
 	 */
 	public boolean isColorblindEnabled() {
 		return colorblindEnabled;
@@ -104,7 +104,7 @@ public class Setting {
 
 	/**
 	 * Set the whether the colorblind mode is enabled or not.
-	 * @return True if the colorblind mode is enabled, false otherwise.
+	 * @return true if the colorblind mode is enabled, false otherwise
 	 */
 	public void setColorblindEnabled(boolean colorblindEnabled) {
 		this.colorblindEnabled = colorblindEnabled;

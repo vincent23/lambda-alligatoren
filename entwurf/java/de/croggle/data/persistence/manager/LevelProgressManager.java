@@ -64,7 +64,7 @@ public class LevelProgressManager extends TableManager {
 	
 	/**
 	 * Creates a new LevelProgressManager which manages the level progress table.
-	 * @param context Used to access the database.
+	 * @param context the context used to access the database
 	 */
 	LevelProgressManager(Context context) {
 		super(context);
@@ -72,8 +72,8 @@ public class LevelProgressManager extends TableManager {
 	
 	/**
 	 * Adds a new level progress to the table, the parameter profileName identifies the profile to which the level progress belongs.
-	 * @param profileName The name of the profile to which the level progress belongs.
-	 * @param levelProgress Contains the values to be stored in the table.
+	 * @param profileName The name of the profile to which the level progress belongs
+	 * @param levelProgress the level progress contains the values to be stored in the table
 	 */
 	void addLevelProgress(String profileName, LevelProgress levelProgress) {
 				
@@ -81,9 +81,9 @@ public class LevelProgressManager extends TableManager {
 	
 	/**
 	 * Searches the table for a level progress that belongs to the profile identified by profileName and which level ID matches the level ID stored in levelProgress. 
-	 * @param profileName The name of the profile to which the level progresses belongs.
-	 * @param levelId The level ID of the searched-for level progress.
-	 * @return Returns the found level progress, if no level progress is found, null is returned.
+	 * @param profileName the name of the profile to which the level progresses belongs
+	 * @param levelId the level ID of the searched-for level progress
+	 * @return the found level progress, if no level progress is found, null is returned
 	 */
 	LevelProgress getLevelProgress(String profileName, long levelId)  {
 		return null;
@@ -93,8 +93,8 @@ public class LevelProgressManager extends TableManager {
 	/**
 	 * Searches the table for a levelProgress that belongs to the profile identified by profileName and which level ID matches the level ID stored in levelProgress. 
 	 * The values of the found levelProgress are overwritten by the values stored in the parameter levelProgress.
-	 * @param profileName The name of the profile to which the level progresses belongs.
-	 * @param levelProgress The level progress which values are used to overwrite the old level progress.
+	 * @param profileName the name of the profile to which the level progresses belongs
+	 * @param levelProgress the level progress which values are used to overwrite the old level progress
 	 */
 	void updateLevelProgress(String profileName, LevelProgress levelProgress) {
 		/*TODO*/
@@ -103,7 +103,7 @@ public class LevelProgressManager extends TableManager {
 	
 	/**
 	 * Deletes all level progresses which belong to the profile identified by profile name from the table.
-	 * @param profileName The name of the profile to which the level progresses belongs.
+	 * @param profileName the name of the profile to which the level progresses belongs
 	 */
 	void deleteLevelProgresses(String profileName) {
 		

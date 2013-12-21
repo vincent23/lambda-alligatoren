@@ -65,7 +65,7 @@ public class Statistic {
 
 	/**
 	 * Get the playtime.
-	 * @return The playtime is returned.
+	 * @return the time spent playing
 	 */
 	public int getPlaytime() {
 		return playtime;
@@ -73,7 +73,7 @@ public class Statistic {
 
 	/**
 	 * Get the number of hints used.
-	 * @return The number of hints used.
+	 * @return the number of hints used
 	 */
 	public int getUsedHints() {
 		return usedHints;
@@ -81,7 +81,7 @@ public class Statistic {
 
 	/**
 	 * Get the number of completed levels.
-	 * @return The number of completed levels.
+	 * @return the number of completed levels
 	 */
 	public int getLevelsComplete() {
 		return levelsComplete;
@@ -89,7 +89,7 @@ public class Statistic {
 
 	/**
 	 * Get the number of completed packages.
-	 * @return The number of completed packages.
+	 * @return he number of completed packages by the player
 	 */
 	public int getPackagesComplete() {
 		return packagesComplete;
@@ -97,7 +97,7 @@ public class Statistic {
 
 	/**
 	 * Get the number of resets used.
-	 * @return The number of used resets.
+	 * @return the number of used resets used by the player
 	 */
 	public int getResetsUsed() {
 		return resetsUsed;
@@ -105,7 +105,7 @@ public class Statistic {
 
 	/**
 	 * Get the number of recoloring actions.
-	 * @return The number of recoloring actions.
+	 * @return the number of recoloring actions
 	 */
 	public int getRecolorings() {
 		return recolorings;
@@ -113,7 +113,7 @@ public class Statistic {
 
 	/**
 	 * Get the total number of alligators eaten during beta reductions.
-	 * @return The number of eaten alligators.
+	 * @return the number of eaten alligators
 	 */
 	public int getAlligatorsEaten() {
 		return alligatorsEaten;
@@ -121,7 +121,7 @@ public class Statistic {
 
 	/**
 	 * Get the total number of alligators placed in the placement mode.
-	 * @return The number of eaten alligators.
+	 * @return the number of eaten alligators
 	 */
 	public int getAlligatorsPlaced() {
 		return alligatorsPlaced;
@@ -129,7 +129,7 @@ public class Statistic {
 
 	/**
 	 * Get the total number of eggs hatched during beta reductions.
-	 * @return The number of eaten alligators.
+	 * @return the number of eaten alligators
 	 */
 	public int getEggsHatched() {
 		return eggsHatched;
@@ -137,7 +137,7 @@ public class Statistic {
 	
 	/**
 	 * Get the total number of eggs placed in the placement mode.
-	 * @return The number of eaten alligators.
+	 * @return the number of eaten alligators
 	 */
 	public int getEggsPlaced() {
 		return eggsPlaced;
@@ -145,7 +145,7 @@ public class Statistic {
 
 	/**
 	 * Set the playtime.
-	 * @param playtime The new playtime.
+	 * @param playtime the new playtime
 	 */
 	public void setPlaytime(int playtime) {
 		this.playtime = playtime;
@@ -153,7 +153,7 @@ public class Statistic {
 
 	/**
 	 * Set the number of hints used.
-	 * @param playtime The new number of hints used.
+	 * @param playtime the new number of hints used
 	 */
 	public void setUsedHints(int usedHints) {
 		this.usedHints = usedHints;
@@ -161,7 +161,7 @@ public class Statistic {
 
 	/**
 	 * Set the number of completed levels.
-	 * @param playtime The new number of completed levels.
+	 * @param playtime the new number of completed levels
 	 */
 	public void setLevelsComplete(int levelsComplete) {
 		this.levelsComplete = levelsComplete;
@@ -169,7 +169,7 @@ public class Statistic {
 
 	/**
 	 * Set the number of completed packages.
-	 * @param playtime The new number of completed packages.
+	 * @param playtime the new number of completed packages
 	 */
 	public void setPackagesComplete(int packagesComplete) {
 		this.packagesComplete = packagesComplete;
@@ -177,7 +177,7 @@ public class Statistic {
 
 	/**
 	 * Set the number of resets used.
-	 * @param playtime The new amount of resets used.
+	 * @param playtime the new amount of resets used
 	 */
 	public void setResetsUsed(int resetsUsed) {
 		this.resetsUsed = resetsUsed;
@@ -185,7 +185,7 @@ public class Statistic {
 
 	/**
 	 * Set the number of recoloring actions.
-	 * @param playtime The new amount of recoloring actions.
+	 * @param playtime the new amount of recoloring actions
 	 */
 	public void setRecolorings(int recolorings) {
 		this.recolorings = recolorings;
@@ -193,7 +193,7 @@ public class Statistic {
 
 	/**
 	 * Set the number of eaten alligators.
-	 * @param playtime The new number of eaten alligators.
+	 * @param playtime the new number of eaten alligators
 	 */
 	public void setAlligatorsEaten(int alligatorsEaten) {
 		this.alligatorsEaten = alligatorsEaten;
@@ -201,7 +201,7 @@ public class Statistic {
 
 	/**
 	 * Set the number of placed alligators.
-	 * @param playtime The new number of placed alligators.
+	 * @param playtime the new number of placed alligators
 	 */
 	public void setAlligatorsPlaced(int alligatorsPlaced) {
 		this.alligatorsPlaced = alligatorsPlaced;
@@ -209,7 +209,7 @@ public class Statistic {
 
 	/**
 	 * Set the number of hatched eggs.
-	 * @param playtime The new number of hatched eggs.
+	 * @param playtime the new number of hatched eggs
 	 */
 	public void setEggsHatched(int eggsHatched) {
 		this.eggsHatched = eggsHatched;
@@ -217,7 +217,7 @@ public class Statistic {
 
 	/**
 	 * Set the number of hatched placed.
-	 * @param playtime The new number of hatched placed.
+	 * @param playtime the new number of hatched placed
 	 */
 	public void setEggsPlaced(int eggsPlaced) {
 		this.eggsPlaced = eggsPlaced;
