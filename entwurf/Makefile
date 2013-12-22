@@ -87,7 +87,7 @@ ifdef LEGACY
 endif
 
 # TexDoclet
-TEXDOCLET		= -docletpath $(DOCLETPATH)/TexDoclet.jar -doclet org.wonderly.doclets.TexDoclet -output "$(OUTDIR)/docs.tex" -silent
+TEXDOCLET		= -docletpath $(DOCLETPATH)/TexDoclet.jar -doclet org.wonderly.doclets.TexDoclet -output "$(OUTDIR)/docs.tex" -silent -package
 TEXDOCFILE		= $(OUTDIR)/docs.tex
 
 .PHONY: all debug help clean clean-% export\:% export texdoclet document
