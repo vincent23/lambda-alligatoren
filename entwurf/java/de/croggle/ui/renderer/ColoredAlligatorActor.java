@@ -13,10 +13,16 @@ public class ColoredAlligatorActor extends ParentActor {
 	public ColoredAlligatorActor() {
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void act(float delta) {
 	}
