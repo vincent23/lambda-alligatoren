@@ -35,8 +35,8 @@ public class Profile {
 	
 	/**
 	 * Creates a new profile with default settings and statistics.
-	 * @param name the name of the profile.
-	 * @param picturePath the path to the profiles' picture.
+	 * @param name the name of the profile
+	 * @param picturePath the path to the profiles' picture
 	 */
 	public Profile(String name, String picturePath) {
 
@@ -45,7 +45,7 @@ public class Profile {
 	
 	/**
 	 * Get the profile's name.
-	 * @return the profile's name.
+	 * @return the profile's name
 	 */
 	public String getName() {
 		return name;
@@ -53,7 +53,7 @@ public class Profile {
 
 	/**
 	 * Set the profile's name.
-	 * @param name the new name of the profile.
+	 * @param name the new name of the profile
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -61,7 +61,7 @@ public class Profile {
 
 	/**
 	 * Get the path to where the profile's picture is stored.
-	 * @param name the path to the location where the profile's picture is stored.
+	 * @param name the path to the location where the profile's picture is stored
 	 */
 	public String getPicturePath() {
 		return picturePath;
@@ -69,7 +69,7 @@ public class Profile {
 
 	/**
 	 * Set the profile's picture path.
-	 * @param name The new path to the profile's picture.
+	 * @param name The new path to the profile's picture
 	 */
 	public void setPicturePath(String picturePath) {
 		this.picturePath = picturePath;
@@ -77,7 +77,7 @@ public class Profile {
 
 	/**
 	 * Get the profile's setting.
-	 * @param name the profile's setting.
+	 * @param name the profile's setting
 	 */
 	public Setting getSetting() {
 		return setting;
@@ -85,7 +85,7 @@ public class Profile {
 
 	/**
 	 * Set the profile's setting.
-	 * @param name the new setting of the profile.
+	 * @param name the new setting of the profile
 	 */
 	public void setSetting(Setting setting) {
 		this.setting = setting;
@@ -93,7 +93,7 @@ public class Profile {
 
 	/**
 	 * Get the profile's statistic.
-	 * @param name the profile's statistic.
+	 * @param name the profile's statistic
 	 */
 	public Statistic getStatistic() {
 		return statistic;
@@ -101,7 +101,7 @@ public class Profile {
 
 	/**
 	 * Set the profile's statistic.
-	 * @param name the new setting of the profile.
+	 * @param name the new setting of the profile
 	 */
 	public void setStatistic(Statistic statistic) {
 		this.statistic = statistic;
