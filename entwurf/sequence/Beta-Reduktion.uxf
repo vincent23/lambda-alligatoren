@@ -4,12 +4,12 @@
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>720</x>
+      <x>700</x>
       <y>70</y>
-      <w>200</w>
+      <w>220</w>
       <h>50</h>
     </coordinates>
-    <panel_attributes>As example Lambdaterm 
+    <panel_attributes>As an example lambda term
 (λx.x) y is used.
  </panel_attributes>
     <additional_attributes/>
@@ -867,7 +867,7 @@ getParent()
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-replaceChildwith(x, y)
+replaceChildWith(x, y)
 </panel_attributes>
     <additional_attributes>30;50;310;50</additional_attributes>
   </element>
@@ -922,15 +922,17 @@ notifyReplace(x, y)
     <type>com.umlet.element.Note</type>
     <coordinates>
       <x>320</x>
-      <y>1520</y>
+      <y>1500</y>
       <w>170</w>
-      <h>90</h>
+      <h>110</h>
     </coordinates>
-    <panel_attributes>There are a lot of 
-methods called to 
-interact with the view 
-and aren't in this 
-diagram. </panel_attributes>
+    <panel_attributes>Handling of the
+onReplace event
+takes place in the
+view and is therefore
+not shown in this
+diagram.
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
