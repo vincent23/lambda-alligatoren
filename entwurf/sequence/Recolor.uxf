@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="12.2">
-  <zoom_level>10</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>430</x>
+      <x>344</x>
       <y>0</y>
-      <w>250</w>
-      <h>30</h>
+      <w>200</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>_replaceVisitor:ReplaceEggVisitor_</panel_attributes>
     <additional_attributes/>
@@ -15,21 +15,21 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>520</x>
+      <x>416</x>
       <y>0</y>
-      <w>50</w>
-      <h>100</h>
+      <w>40</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;80</additional_attributes>
+    <additional_attributes>24;24;24;64</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>540</x>
-      <y>80</y>
-      <w>20</w>
-      <h>1510</h>
+      <x>432</x>
+      <y>64</y>
+      <w>16</w>
+      <h>1208</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -37,10 +37,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>700</x>
+      <x>560</x>
       <y>0</y>
-      <w>200</w>
-      <h>30</h>
+      <w>160</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>_:CollectBoundColorsVisitor_</panel_attributes>
     <additional_attributes/>
@@ -48,10 +48,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>920</x>
+      <x>736</x>
       <y>0</y>
-      <w>190</w>
-      <h>30</h>
+      <w>152</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>_:CollectFreeColorsVisitor_</panel_attributes>
     <additional_attributes/>
@@ -59,21 +59,21 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>770</x>
+      <x>616</x>
       <y>0</y>
-      <w>50</w>
-      <h>110</h>
+      <w>40</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;90</additional_attributes>
+    <additional_attributes>24;24;24;72</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>790</x>
-      <y>90</y>
-      <w>20</w>
-      <h>50</h>
+      <x>632</x>
+      <y>72</y>
+      <w>16</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -81,46 +81,46 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>520</x>
-      <y>50</y>
-      <w>290</w>
-      <h>70</h>
+      <x>416</x>
+      <y>40</y>
+      <w>232</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 collect(bornFamily)
 </panel_attributes>
-    <additional_attributes>270;50;30;50</additional_attributes>
+    <additional_attributes>216;40;24;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>80</y>
-      <w>280</w>
-      <h>70</h>
+      <x>424</x>
+      <y>64</y>
+      <w>224</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 boundColors</panel_attributes>
-    <additional_attributes>30;50;260;50</additional_attributes>
+    <additional_attributes>24;40;208;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>990</x>
+      <x>792</x>
       <y>0</y>
-      <w>50</w>
-      <h>200</h>
+      <w>40</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;180</additional_attributes>
+    <additional_attributes>24;24;24;144</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>1010</x>
-      <y>180</y>
-      <w>20</w>
-      <h>50</h>
+      <x>808</x>
+      <y>144</y>
+      <w>16</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -128,35 +128,35 @@ boundColors</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>140</y>
-      <w>500</w>
-      <h>70</h>
+      <x>424</x>
+      <y>112</y>
+      <w>400</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 collect(bornFamily)
 </panel_attributes>
-    <additional_attributes>480;50;30;50</additional_attributes>
+    <additional_attributes>384;40;24;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>170</y>
-      <w>500</w>
-      <h>70</h>
+      <x>424</x>
+      <y>136</y>
+      <w>400</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 freeColors</panel_attributes>
-    <additional_attributes>30;50;480;50</additional_attributes>
+    <additional_attributes>24;40;384;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.InteractionFrame</type>
     <coordinates>
-      <x>180</x>
-      <y>280</y>
-      <w>1290</w>
-      <h>1270</h>
+      <x>144</x>
+      <y>224</y>
+      <w>1032</w>
+      <h>1016</h>
     </coordinates>
     <panel_attributes>foreach egg in parent</panel_attributes>
     <additional_attributes/>
@@ -164,21 +164,21 @@ freeColors</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>770</x>
-      <y>110</y>
-      <w>50</w>
-      <h>70</h>
+      <x>616</x>
+      <y>88</y>
+      <w>40</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;50</additional_attributes>
+    <additional_attributes>24;24;24;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqDestroyMark</type>
     <coordinates>
-      <x>790</x>
-      <y>150</y>
-      <w>20</w>
-      <h>20</h>
+      <x>632</x>
+      <y>120</y>
+      <w>16</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -186,21 +186,21 @@ freeColors</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>990</x>
-      <y>200</y>
-      <w>50</w>
-      <h>70</h>
+      <x>792</x>
+      <y>160</y>
+      <w>40</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;50</additional_attributes>
+    <additional_attributes>24;24;24;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqDestroyMark</type>
     <coordinates>
-      <x>1010</x>
-      <y>240</y>
-      <w>20</w>
-      <h>20</h>
+      <x>808</x>
+      <y>192</y>
+      <w>16</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -208,10 +208,10 @@ freeColors</panel_attributes>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>550</x>
-      <y>360</y>
-      <w>20</w>
-      <h>60</h>
+      <x>440</x>
+      <y>288</y>
+      <w>16</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -219,35 +219,35 @@ freeColors</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>290</y>
-      <w>268</w>
-      <h>100</h>
+      <x>424</x>
+      <y>232</y>
+      <w>212</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 findLocallyBoundColors(egg)
 </panel_attributes>
-    <additional_attributes>40;80;140;80;140;30;30;30</additional_attributes>
+    <additional_attributes>32;64;112;64;112;24;24;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>380</y>
-      <w>190</w>
-      <h>110</h>
+      <x>424</x>
+      <y>304</y>
+      <w>150</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 locallyBoundColors</panel_attributes>
-    <additional_attributes>30;90;100;90;100;30;40;30</additional_attributes>
+    <additional_attributes>24;72;80;72;80;24;32;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.InteractionFrame</type>
     <coordinates>
-      <x>220</x>
-      <y>1070</y>
-      <w>1190</w>
-      <h>400</h>
+      <x>176</x>
+      <y>856</y>
+      <w>952</w>
+      <h>320</h>
     </coordinates>
     <panel_attributes>foreach color in locallyBoundColors and boundColors</panel_attributes>
     <additional_attributes/>
@@ -255,10 +255,10 @@ locallyBoundColors</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>900</x>
-      <y>740</y>
-      <w>120</w>
-      <h>30</h>
+      <x>720</x>
+      <y>592</y>
+      <w>96</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>_:RecolorVisitor_</panel_attributes>
     <additional_attributes/>
@@ -266,21 +266,21 @@ locallyBoundColors</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>930</x>
-      <y>740</y>
-      <w>50</w>
-      <h>80</h>
+      <x>744</x>
+      <y>592</y>
+      <w>40</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;60</additional_attributes>
+    <additional_attributes>24;24;24;48</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>950</x>
-      <y>800</y>
-      <w>20</w>
-      <h>170</h>
+      <x>760</x>
+      <y>640</y>
+      <w>16</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -288,34 +288,34 @@ locallyBoundColors</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>760</y>
-      <w>440</w>
-      <h>70</h>
+      <x>424</x>
+      <y>608</y>
+      <w>352</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 recolor(parent, color, newColor, boardMessenger)
 </panel_attributes>
-    <additional_attributes>420;50;30;50</additional_attributes>
+    <additional_attributes>336;40;24;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>920</y>
-      <w>440</w>
-      <h>50</h>
+      <x>424</x>
+      <y>736</y>
+      <w>352</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;420;30</additional_attributes>
+    <additional_attributes>24;24;336;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.InteractionFrame</type>
     <coordinates>
-      <x>220</x>
-      <y>670</y>
-      <w>1190</w>
-      <h>370</h>
+      <x>176</x>
+      <y>536</y>
+      <w>952</w>
+      <h>296</h>
     </coordinates>
     <panel_attributes>foreach color in locallyBoundColors and freeColors</panel_attributes>
     <additional_attributes/>
@@ -323,10 +323,10 @@ recolor(parent, color, newColor, boardMessenger)
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>900</x>
-      <y>1130</y>
-      <w>120</w>
-      <h>30</h>
+      <x>720</x>
+      <y>904</y>
+      <w>96</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>_:RecolorVisitor_</panel_attributes>
     <additional_attributes/>
@@ -334,21 +334,21 @@ recolor(parent, color, newColor, boardMessenger)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>930</x>
-      <y>940</y>
-      <w>50</w>
-      <h>80</h>
+      <x>744</x>
+      <y>752</y>
+      <w>40</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;60;30;30</additional_attributes>
+    <additional_attributes>24;48;24;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqDestroyMark</type>
     <coordinates>
-      <x>950</x>
-      <y>990</y>
-      <w>20</w>
-      <h>20</h>
+      <x>760</x>
+      <y>792</y>
+      <w>16</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -356,21 +356,21 @@ recolor(parent, color, newColor, boardMessenger)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>930</x>
-      <y>1130</y>
-      <w>50</w>
-      <h>80</h>
+      <x>744</x>
+      <y>904</y>
+      <w>40</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;60</additional_attributes>
+    <additional_attributes>24;24;24;48</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>950</x>
-      <y>1190</y>
-      <w>20</w>
-      <h>170</h>
+      <x>760</x>
+      <y>952</y>
+      <w>16</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -378,34 +378,34 @@ recolor(parent, color, newColor, boardMessenger)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>1150</y>
-      <w>440</w>
-      <h>70</h>
+      <x>424</x>
+      <y>920</y>
+      <w>352</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 recolor(bornFamily, color, newColor, boardMessenger)
 </panel_attributes>
-    <additional_attributes>420;50;30;50</additional_attributes>
+    <additional_attributes>336;40;24;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>930</x>
-      <y>1330</y>
-      <w>50</w>
-      <h>80</h>
+      <x>744</x>
+      <y>1064</y>
+      <w>40</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;60;30;30</additional_attributes>
+    <additional_attributes>24;48;24;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqDestroyMark</type>
     <coordinates>
-      <x>950</x>
-      <y>1380</y>
-      <w>20</w>
-      <h>20</h>
+      <x>760</x>
+      <y>1104</y>
+      <w>16</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -413,21 +413,21 @@ recolor(bornFamily, color, newColor, boardMessenger)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>1310</y>
-      <w>440</w>
-      <h>50</h>
+      <x>424</x>
+      <y>1048</y>
+      <w>352</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;420;30</additional_attributes>
+    <additional_attributes>24;24;336;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>550</x>
-      <y>540</y>
-      <w>20</w>
-      <h>70</h>
+      <x>440</x>
+      <y>432</y>
+      <w>16</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -435,46 +435,46 @@ recolor(bornFamily, color, newColor, boardMessenger)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>460</y>
-      <w>266</w>
-      <h>120</h>
+      <x>424</x>
+      <y>368</y>
+      <w>210</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 findGloballyBoundColors(egg)
 </panel_attributes>
-    <additional_attributes>40;100;140;100;140;30;30;30</additional_attributes>
+    <additional_attributes>32;80;112;80;112;24;24;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>570</y>
-      <w>202</w>
-      <h>100</h>
+      <x>424</x>
+      <y>456</y>
+      <w>166</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 globallyBoundColors</panel_attributes>
-    <additional_attributes>30;80;110;80;110;30;40;30</additional_attributes>
+    <additional_attributes>24;64;88;64;88;24;32;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>220</x>
+      <x>176</x>
       <y>0</y>
-      <w>50</w>
-      <h>760</h>
+      <w>40</w>
+      <h>608</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;740</additional_attributes>
+    <additional_attributes>24;24;24;592</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>240</x>
-      <y>740</y>
-      <w>20</w>
-      <h>50</h>
+      <x>192</x>
+      <y>592</y>
+      <w>16</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -482,23 +482,23 @@ globallyBoundColors</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>230</x>
-      <y>700</y>
-      <w>330</w>
-      <h>70</h>
+      <x>184</x>
+      <y>560</y>
+      <w>264</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 requestColor(globallyBoundColors)
 </panel_attributes>
-    <additional_attributes>30;50;310;50</additional_attributes>
+    <additional_attributes>24;40;248;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>130</x>
+      <x>104</x>
       <y>0</y>
-      <w>240</w>
-      <h>30</h>
+      <w>192</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>_colorController:ColorController_</panel_attributes>
     <additional_attributes/>
@@ -506,46 +506,46 @@ requestColor(globallyBoundColors)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>230</x>
-      <y>730</y>
-      <w>330</w>
-      <h>70</h>
+      <x>184</x>
+      <y>584</y>
+      <w>264</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 newColor</panel_attributes>
-    <additional_attributes>310;50;30;50</additional_attributes>
+    <additional_attributes>248;40;24;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>220</x>
-      <y>760</y>
-      <w>50</w>
-      <h>380</h>
+      <x>176</x>
+      <y>608</y>
+      <w>40</w>
+      <h>304</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;360</additional_attributes>
+    <additional_attributes>24;24;24;288</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>230</x>
-      <y>1080</y>
-      <w>330</w>
-      <h>70</h>
+      <x>184</x>
+      <y>864</y>
+      <w>264</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 requestColor(globallyBoundColors)
 </panel_attributes>
-    <additional_attributes>30;50;310;50</additional_attributes>
+    <additional_attributes>24;40;248;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>240</x>
-      <y>1120</y>
-      <w>20</w>
-      <h>50</h>
+      <x>192</x>
+      <y>896</y>
+      <w>16</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -553,57 +553,57 @@ requestColor(globallyBoundColors)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>230</x>
-      <y>1110</y>
-      <w>330</w>
-      <h>70</h>
+      <x>184</x>
+      <y>888</y>
+      <w>264</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 newColor</panel_attributes>
-    <additional_attributes>310;50;30;50</additional_attributes>
+    <additional_attributes>248;40;24;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>220</x>
-      <y>1140</y>
-      <w>50</w>
-      <h>450</h>
+      <x>176</x>
+      <y>912</y>
+      <w>40</w>
+      <h>360</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;430</additional_attributes>
+    <additional_attributes>24;24;24;344</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>40</x>
-      <y>40</y>
-      <w>520</w>
-      <h>70</h>
+      <x>32</x>
+      <y>32</y>
+      <w>416</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 replace(parent, bornFamily, boardMessenger, colorController)
 </panel_attributes>
-    <additional_attributes>500;50;30;50</additional_attributes>
+    <additional_attributes>400;40;24;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>0</x>
-      <y>1550</y>
-      <w>560</w>
-      <h>50</h>
+      <y>1240</y>
+      <w>448</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;540;30</additional_attributes>
+    <additional_attributes>24;24;432;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1140</x>
+      <x>912</x>
       <y>0</y>
-      <w>290</w>
-      <h>30</h>
+      <w>232</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>_boardMessenger:BoardEventMessenger_</panel_attributes>
     <additional_attributes/>
@@ -611,34 +611,34 @@ replace(parent, bornFamily, boardMessenger, colorController)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1250</x>
+      <x>1000</x>
       <y>0</y>
       <w>40</w>
-      <h>870</h>
+      <h>704</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;860</additional_attributes>
+    <additional_attributes>24;24;24;688</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>940</x>
-      <y>820</y>
-      <w>350</w>
-      <h>70</h>
+      <x>752</x>
+      <y>656</y>
+      <w>280</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 notifyObjectRecolored(recoloredObject)
 </panel_attributes>
-    <additional_attributes>330;50;30;50</additional_attributes>
+    <additional_attributes>264;40;24;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>1270</x>
-      <y>860</y>
-      <w>20</w>
-      <h>50</h>
+      <x>1016</x>
+      <y>688</y>
+      <w>16</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -646,21 +646,21 @@ notifyObjectRecolored(recoloredObject)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>520</x>
-      <y>1560</y>
-      <w>50</w>
-      <h>120</h>
+      <x>416</x>
+      <y>1248</y>
+      <w>40</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;100</additional_attributes>
+    <additional_attributes>24;24;24;80</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.InteractionFrame</type>
     <coordinates>
-      <x>930</x>
-      <y>820</y>
-      <w>440</w>
-      <h>110</h>
+      <x>744</x>
+      <y>656</y>
+      <w>352</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>foreach recoloredObject in parent</panel_attributes>
     <additional_attributes/>
@@ -668,21 +668,21 @@ notifyObjectRecolored(recoloredObject)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>940</x>
-      <y>870</y>
-      <w>350</w>
-      <h>50</h>
+      <x>752</x>
+      <y>696</y>
+      <w>280</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;330;30</additional_attributes>
+    <additional_attributes>24;24;264;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.InteractionFrame</type>
     <coordinates>
-      <x>930</x>
-      <y>1210</y>
-      <w>440</w>
-      <h>110</h>
+      <x>744</x>
+      <y>968</y>
+      <w>352</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>foreach recoloredObject in parent</panel_attributes>
     <additional_attributes/>
@@ -690,34 +690,34 @@ notifyObjectRecolored(recoloredObject)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>940</x>
-      <y>1210</y>
-      <w>350</w>
-      <h>70</h>
+      <x>752</x>
+      <y>968</y>
+      <w>280</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 notifyObjectRecolored(recoloredObject)
 </panel_attributes>
-    <additional_attributes>330;50;30;50</additional_attributes>
+    <additional_attributes>264;40;24;40</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1250</x>
-      <y>880</y>
-      <w>50</w>
-      <h>390</h>
+      <x>1000</x>
+      <y>704</y>
+      <w>40</w>
+      <h>312</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;370</additional_attributes>
+    <additional_attributes>24;24;24;296</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>1270</x>
-      <y>1250</y>
-      <w>20</w>
-      <h>50</h>
+      <x>1016</x>
+      <y>1000</y>
+      <w>16</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -725,91 +725,158 @@ notifyObjectRecolored(recoloredObject)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>940</x>
-      <y>1260</y>
-      <w>350</w>
-      <h>50</h>
+      <x>752</x>
+      <y>1008</y>
+      <w>280</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;330;30</additional_attributes>
+    <additional_attributes>24;24;264;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1250</x>
-      <y>1270</y>
-      <w>50</w>
-      <h>320</h>
+      <x>1000</x>
+      <y>1016</y>
+      <w>40</w>
+      <h>256</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;300</additional_attributes>
+    <additional_attributes>24;24;24;240</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>600</x>
-      <y>970</y>
-      <w>300</w>
-      <h>50</h>
+      <x>480</x>
+      <y>776</y>
+      <w>240</w>
+      <h>40</h>
     </coordinates>
-    <panel_attributes>Remove color from locallyBoundColors
-and globallyBoundColors</panel_attributes>
+    <panel_attributes>Replace color in locallyBoundColors
+and globallyBoundColors with newColor</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>960</y>
-      <w>90</w>
-      <h>50</h>
+      <x>424</x>
+      <y>768</y>
+      <w>72</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>70;30;30;30</additional_attributes>
+    <additional_attributes>56;24;24;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>590</x>
-      <y>1380</y>
-      <w>300</w>
-      <h>50</h>
+      <x>472</x>
+      <y>1104</y>
+      <w>240</w>
+      <h>40</h>
     </coordinates>
-    <panel_attributes>Remove color from boundColors</panel_attributes>
+    <panel_attributes>Replace color in boundColors with
+newColor</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>1380</y>
-      <w>80</w>
-      <h>50</h>
+      <x>424</x>
+      <y>1104</y>
+      <w>64</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;60;30</additional_attributes>
+    <additional_attributes>24;24;48;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>590</x>
-      <y>1480</y>
-      <w>300</w>
-      <h>50</h>
+      <x>472</x>
+      <y>1184</y>
+      <w>240</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Now the actual replacing
-can happen</panel_attributes>
+can happen. This is shown in the beta
+reduction diagram.</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>530</x>
-      <y>1470</y>
-      <w>80</w>
-      <h>50</h>
+      <x>424</x>
+      <y>1176</y>
+      <w>64</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;60;30</additional_attributes>
+    <additional_attributes>24;24;48;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>704</x>
+      <y>288</y>
+      <w>240</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Find the colors which are bound in the
+subterm, because we have to recolor
+based on them.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>432</x>
+      <y>288</y>
+      <w>288</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>272;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>704</x>
+      <y>432</y>
+      <w>240</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Find the colors which are bound at the
+place of the egg, because when we have
+to recolor, we can't choose a color which
+occurs further up in the tree.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>464</x>
+      <y>560</y>
+      <w>240</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>All colors which occur free in the born
+family, but are bound at the place of the
+egg, have to be changed in the parent.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>472</x>
+      <y>872</y>
+      <w>240</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>All colors which occur bound the born
+family, but are already bound at the place
+of the egg, can be changed in the born
+family.</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
