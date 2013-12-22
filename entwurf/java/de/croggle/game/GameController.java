@@ -47,6 +47,13 @@ public class GameController implements BoardEventListener {
 	private List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
 
 	/**
+	 * Creates a new GameController for the given level.
+	 *
+	 */	
+	public GameController(Level level){
+	}
+
+	/**
 	 * prepare to switch game mode to placement, in which the player is able to
 	 * manipulate the board.
 	 */
