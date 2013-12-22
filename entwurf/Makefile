@@ -35,6 +35,7 @@ REQUIREFILE		= 	@if [ ! -f $1 ];\
 						then echo Could not find file $1. $2;\
 						false;\
 					fi
+MKDIR			= @mkdir -p / $1
 
 AT				= @
 SPACE 			:=
@@ -63,9 +64,10 @@ JAVADOC			= javadoc -classpath "$(CLASSPATH)" -quiet \
 UMLGRAPHDOCLET	= -docletpath $(DOCLETPATH)/UmlGraph.jar -doclet org.umlgraph.doclet.UmlGraph $(VIEWSOPT) \
 					-private -d "$(OUTDIR)" -outputencoding UTF-8
 VIEWSOPT		= -views
+#TODO hacky and not working for other packages
 VIEWFILES		= $(PACKAGEPATH)/uml.java 
 #$(shell find $(PACKAGEPATH) -type f -name 'uml.java')
-UMLFILES		= $(addprefix $(OUTDIR)/,$(notdir $(subst .java,.dot,$(VIEWFILES))))
+UMLFILES		= $(addprefix $(OUTDIR)/,$(subst $(PACKAGEPATH),,$(subst .java,.dot,$(VIEWFILES))))
 UMLDEPS			= $(UMLFILES)
 EXPORTFORMAT	= svg
 DPI				= 72
@@ -90,6 +92,11 @@ endif
 TEXDOCLET		= -docletpath $(DOCLETPATH)/TexDoclet.jar -doclet org.wonderly.doclets.TexDoclet -output "$(OUTDIR)/docs.tex" -silent -package
 TEXDOCFILE		= $(OUTDIR)/docs.tex
 
+# Sequence diagrams
+SEQUENCEDIR		= $(ROOTDIR)/sequence
+UMLETFILES		= $(shell find $(SEQUENCEDIR) -type f -name '*.uxf')
+SEQUENCEEXPORTS	= $(addprefix $(OUTDIR)/sequence/,$(subst $(SEQUENCEDIR),,$(subst .uxf,.$(EXPORTFORMAT),$(UMLETFILES))))
+
 .PHONY: all debug help clean clean-% export\:% export texdoclet document
 .PRECIOUS: $(subst dot,$(EXPORTFORMAT),$(UMLDEPS))
 
@@ -102,6 +109,7 @@ help:
 debug:
 	$(ECHO) nothing to see here...
 	$(ECHO) $(VIEWFILES)
+	$(ECHO) $(SEQUENCEEXPORTS)
 
 umlgraph: $(UMLDEPS)
 	@true
@@ -110,6 +118,7 @@ umlgraph: $(UMLDEPS)
 $(UMLFILES): $(OUTDIR)/ $(PACKAGEPATH)/uml.java $(JAVAFILES)
 	$(call REQUIRE,javadoc)
 	$(ECHO) building diagram...
+	$(call MKDIR,$(dir $@))
 	$(AT)$(JAVADOC) $(UMLGRAPHDOCLET) $(MUTE)
 	
 # Have uml class updated in every subpackage
@@ -168,8 +177,17 @@ $(OUTDIR)/$(PDFNAME).pdf: $(OUTDIR) $(TEXDOCFILE) $(TEXFILES)
 	$(AT) $(LATEXMK) $(MUTE)
 #	$(AT)pdflatex -interaction nonstopmode -jobname $(PDFNAME) -output-directory $(OUTDIR) $(ROOTDIR)/$(TEXFILENAME).tex $(MUTE)
 
-# Make sure, $(OUTDIR) exists
-$(OUTDIR)/:
+sequence: $(SEQUENCEEXPORTS)
+	@true
+	
+$(SEQUENCEEXPORTS): $(OUTDIR)/sequence/%.$(EXPORTFORMAT): $(SEQUENCEDIR)/%.uxf
+	$(call REQUIRE,umlet)
+	$(call MKDIR,$(dir $@))
+	$(AT)umlet -action=convert -format=$(EXPORTFORMAT) -filename=$< -output=$(dir $@)
+
+
+# Make sure, directories exist
+$(OUTDIR)/ $(OUTDIR)/sequence:
 	$(AT)mkdir $@
 	
 # Clean
