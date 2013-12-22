@@ -10,6 +10,7 @@ import de.croggle.game.board.Egg;
 import de.croggle.game.board.Board;
 
 import de.croggle.game.ColorController;
+import de.croggle.game.ColorOverflowException;
 
 /**
  * A visitor replacing eggs of a certain color with copies of a given
@@ -35,6 +36,7 @@ public class ReplaceEggsVisitor implements BoardObjectVisitor {
 	 * @param bornFamily the family with which eggs are replaced
 	 * @param boardMessenger the messenger used for sending events when eggs are replaced
 	 * @param colorController the color controller used for recoloring
+	 * @throws ColorOverflowException if recoloring occurs and there is no color available
 	 */
 	public static void replace(ColoredAlligator parent, InternalBoardObject bornFamily, BoardEventMessenger boardMessenger, ColorController colorController) {
 	}

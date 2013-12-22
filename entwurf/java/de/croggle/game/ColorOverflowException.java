@@ -3,7 +3,7 @@ package de.croggle.game;
 import java.lang.Exception;
 
 /**
-* The exception is thrown, when ever a lambda term contains more than 30 different colors. This mostly happens during alpha reduction.
+* The exception is thrown, when ever a lambda term contains more than 30 different colors. This mostly happens during alpha conversion.
 */
 public class ColorOverflowException extends Exception{
 	

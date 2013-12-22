@@ -4,6 +4,8 @@ import de.croggle.game.board.Board;
 import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.util.RingBuffer;
 
+import de.croggle.game.ColorOverflowException;
+
 /**
  * The Simulator is the instance, which evaluates the Board given to it. It can also undo steps done in the evaluation process.
  * 
@@ -38,6 +40,7 @@ public class Simulator {
 	 * Method, that evaluates one step in the Lambda Calculus.
 	 * 
 	 * @return the board after said step
+	 * @throws ColorOverflowException if recoloring occurs and there is no color available
 	 */
 	public Board evaluate(Board currentBoard) {
 		return null;

@@ -63,8 +63,9 @@ public class ColorController {
 	 * This is equivalent to calling <code>requestColor(allUsedColors)</code>, whith <code>allUsedColors</code> being an array of all colors used on the board.
 	 * 
 	 * @return a new color to be used on the board
+	 * @throws ColorOverflowException if there is no color available
 	 */
-	public de.croggle.game.Color requestColor() {
+	public de.croggle.game.Color requestColor() throws ColorOverflowException {
 		return null;
 	}
 
@@ -74,6 +75,7 @@ public class ColorController {
 	 *
 	 * @param usedColors a set of colors which are already used
 	 * @return a color to be used on the board
+	 * @throws ColorOverflowException if there is no color available
 	 */
 	public de.croggle.game.Color requestColor(de.croggle.game.Color[] usedColors) {
 	}
