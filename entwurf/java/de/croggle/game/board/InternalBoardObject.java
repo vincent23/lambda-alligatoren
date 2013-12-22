@@ -23,12 +23,6 @@ public interface InternalBoardObject extends BoardObject {
 	public Parent getParent();
 
     /**
-     * Gets whether the object is protected from user interactions involving colors or not.
-     * @return true if the object can be recolored, otherwise false
-     */
-    public boolean isRecolorable();
-
-    /**
      * Gets whether the object is protected from the user moving it or not.
      * @return true if the object can be moved, otherwise false
      */

@@ -9,9 +9,31 @@ import de.croggle.game.visitor.BoardObjectVisitor;
  * 
  * @composed 1 - 1-0 de.croggle.game.Color
  */
-public class Egg implements InternalBoardObject {
+public class Egg implements InternalBoardObject, ColoredBoardObject {
 	private Color color;
-
+	private boolean recolorable = true;
+	
+	/**
+	 * Creates a new egg with the specified color.
+	 * The color hereby serves as the name of the variable this egg represents, in lambda calculus speech.
+	 * The egg is created as a recolorable board object by this constructor.
+	 * @param c the color this egg has.
+	 */
+	public Egg(Color c) {
+		this.color = c;
+		this.recolorable = true;
+	}
+	
+	/**
+	 * Creates a new egg with the specified color and the permission value if the object is recolorable or not.
+	 * The color hereby serves as the name of the variable this egg represents, in lambda calculus speech.
+	 * @param c the color this egg has.
+	 * @param recolorable whether the egg is recolorable (true) or not (false)
+	 */
+	public Egg(Color c, boolean recolorable) {
+		this(c);
+		this.recolorable = recolorable;
+	}
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
 
@@ -27,12 +49,18 @@ public class Egg implements InternalBoardObject {
 	public Egg copy() {
 	}
 
-	/**
-	 * Gets the color of the egg.
-	 * @return The egg's color.
-	 */
-	public Color getColor(){
-		return null;
+	@Override
+	public boolean isRecolorable() {
+		// TODO
+	}
+	
+	 @Override
+	 public Color getColor() {
+		 return this.color;
+	 }
 
+	 @Override
+	public void setColor(Color c) throws RecolorNotAllowedException {
+		// TODO
 	}
 }

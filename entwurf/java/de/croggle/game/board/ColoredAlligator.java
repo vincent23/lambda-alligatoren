@@ -9,8 +9,31 @@ import de.croggle.game.visitor.BoardObjectVisitor;
  * 
  * @composed 1 - 1-0 de.croggle.game.Color
  **/
-public class ColoredAlligator extends Alligator {
+public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	private Color color;
+	private boolean recolorable = true;
+	
+	/**
+	 * Creates a new ColoredAlligator with the specified color.
+	 * The color hereby serves as the name of variables bound by this abstraction in lambda calculus speech.
+	 * The ColoredAlligator is created as a recolorable board object by this constructor.
+	 * @param c the color this alligator has.
+	 */
+	public ColoredAlligator(Color c) {
+		this.color = c;
+		this.recolorable = true;
+	}
+	
+	/**
+	 * Creates a new ColoredAlligator with the specified color and the permission value if the object is recolorable or not.
+	 * The color hereby serves as the name of variables bound by this abstraction in lambda calculus speech.
+	 * @param c the color this alligator has.
+	 * @param recolorable whether the ColoredAlligator is recolorable (true) or not (false)
+	 */
+	public ColoredAlligator(Color c, boolean recolorable) {
+		this(c);
+		this.recolorable = recolorable;
+	}
 
 	@Override
 	public Parent getParent() {
@@ -20,20 +43,26 @@ public class ColoredAlligator extends Alligator {
 
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
-
-
+		
 	}
 
 
 	@Override
 	public ColoredAlligator copy() {
 	}
-	/**
-	 * Gets the color of the alligator.
-	 * @return The alligator's color.
-	 */
-	public Color getColor(){
-		return null;
+	
+	@Override
+	public boolean isRecolorable() {
+		// TODO
+	}
+	
+	 @Override
+	 public Color getColor() {
+		 return this.color;
+	 }
 
+	 @Override
+	public void setColor(Color c) throws RecolorNotAllowedException {
+		// TODO
 	}
 }
