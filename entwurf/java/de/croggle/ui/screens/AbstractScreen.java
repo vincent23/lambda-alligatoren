@@ -31,8 +31,8 @@ public abstract class AbstractScreen implements Screen {
 
 	/**
 	 * Called when this screen is paused. A screen is paused before it is
-	 * destroyed, when the user pressed the Home button or an incoming call
-	 * happend
+	 * destroyed, when the user pressed the Home button or e.g. an incoming call
+	 * happens.
 	 */
 	public void pause() {
 
@@ -49,16 +49,16 @@ public abstract class AbstractScreen implements Screen {
 	 * Called in order to cause the screen to resize itself into the given size.
 	 * 
 	 * @param width
-	 *            the width, which the newly resized screen will have.
+	 *			the width, which the newly resized screen will have.
 	 * @param height
-	 *            the height, which the newly resized screen will have.
+	 *			the height, which the newly resized screen will have.
 	 */
 	public void resize(int width, int height) {
 
 	}
 
 	/**
-	 * Called in order to move the screen back from its paused state
+	 * Called in order to move the screen back from its paused state.
 	 */
 	public void resume() {
 

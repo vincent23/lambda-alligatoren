@@ -13,7 +13,7 @@ public class AchievementScreen extends AbstractScreen {
 	 * Creates the achievement overview screen that uses the given achievement
 	 * controller to display the current achievement progress.
 	 * 
-	 * @param achievment The achievement controller.
+	 * @param achievment the achievement controller
 	 */
 	public AchievementScreen(AchievementController achievement) {
 

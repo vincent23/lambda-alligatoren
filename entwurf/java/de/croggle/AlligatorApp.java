@@ -15,7 +15,7 @@ import de.croggle.ui.screens.AbstractScreen;
 
 /**
  * The central controlling unit. Receives the application lifecycle and is
- * responsible for managing screens as well as the smaller controllers.
+ * responsible for managing screens, as well as the smaller controllers.
  * 
  * @assoc 1 - 1 de.croggle.game.profile.ProfileController
  * @assoc 1 - 1 de.croggle.game.level.LevelPackagesController
@@ -63,7 +63,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	}
 
 	/**
-	 * Returns the profile controller which controls the information about the
+	 * Returns the profile controller, which controls the information about the
 	 * currently active profile.
 	 * 
 	 * @return the profile controller
@@ -82,7 +82,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	}
 
 	/**
-	 * Returns the achievement controller which holds the information about
+	 * Returns the achievement controller, which holds the information about
 	 * achievements associated with the current profile.
 	 * 
 	 * @return the achievement controller
@@ -92,7 +92,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	}
 
 	/**
-	 * Returns the statistic controller which contains all information about the
+	 * Returns the statistic controller, which contains all information about the
 	 * statistics of the active profile.
 	 * 
 	 * @return the statistic controller
@@ -102,7 +102,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	}
 
 	/**
-	 * Returns the persistence manager which is responsible for all database
+	 * Returns the persistence manager, which is responsible for all database
 	 * operations.
 	 * 
 	 * @return the persistence manager
@@ -112,7 +112,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	}
 
 	/**
-	 * Returns the asset manager which controls all kind of game media, e.g.
+	 * Returns the asset manager, which controls all kind of game media, e.g.
 	 * graphics.
 	 * 
 	 * @return the asset manager
@@ -122,7 +122,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	}
 
 	/**
-	 * Returns the localization manager which is used for translating strings to
+	 * Returns the localization manager, which is used for translating strings to
 	 * the appropriate language.
 	 * 
 	 * @return the localization manager
@@ -150,7 +150,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 
 	/**
 	 * Is called by the application lifecycle repeatedly and should update the
-	 * game logic.
+	 * game logic, as well as redraw the user interface.
 	 */
 	@Override
 	public void render() {
@@ -165,7 +165,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 
 	/**
 	 * Is called by the application lifecycle when the game is paused. Should
-	 * save everything that has not been saved yet, like the level progress, for
+	 * save everything, that has not been saved yet, like the level progress, for
 	 * the possibility of the game being shut down.
 	 */
 	@Override

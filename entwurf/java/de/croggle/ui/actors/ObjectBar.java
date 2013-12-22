@@ -5,7 +5,7 @@ import de.croggle.ui.renderer.ColoredAlligatorActor;
 import de.croggle.ui.renderer.EggActor;
 
 /**
- * The bar to drag alligators and eggs from on the screen.
+ * The bar to drag alligators and eggs from onto the screen.
  **/
 public class ObjectBar extends com.badlogic.gdx.scenes.scene2d.Actor {
 

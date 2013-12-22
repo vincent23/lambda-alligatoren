@@ -9,7 +9,7 @@ public abstract class ParentActor extends BoardObjectActor {
 
 	/**
 	 * Draws the actor. The sprite batch is configured to draw in he parent's coordinate system.
-	 * @param batch The sprite batch specifies where to draw into.
+	 * @param batch the sprite batch specifies where to draw into
 	 * @param parentAlpha
 	 */
 	@Override
@@ -18,7 +18,7 @@ public abstract class ParentActor extends BoardObjectActor {
 
 	/**
 	 * Updates the actor based on time.
-	 * @param delta Time in seconds since the last update.
+	 * @param delta time in seconds since the last update
 	 */
 	@Override
 	public void act(float delta) {

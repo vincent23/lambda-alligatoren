@@ -11,7 +11,7 @@ public class MainActivity extends AndroidApplication {
 
 	/**
 	 * Initializes the central ApplicationListener. 
-	 * Is called by the android lifecycle as soon as the app is started. On return the inner app lifecycle of ApplicationListener is started.
+	 * Is called by the android lifecycle as soon as the app is started. On return, the inner app lifecycle of ApplicationListener is started.
 	 */
 	@Override
 	void onCreate(Bundle savedInstance){
