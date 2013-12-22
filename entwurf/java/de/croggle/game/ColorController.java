@@ -20,7 +20,7 @@ import java.util.Map;
 public class ColorController {
 	private List<de.croggle.game.Color> usableColors;
 	private List<de.croggle.game.Color> bannedColors;
-	private Map<de.croggle.game.Color, java.awt.Color> lookup;
+	private Map<de.croggle.game.Color, com.badlogic.gdx.graphics.Color> lookup;
 
 	/**
 	 * Initializes the color controller with no colors blocked, no colors usable
@@ -29,7 +29,7 @@ public class ColorController {
 	public ColorController() {
 		usableColors = new ArrayList<de.croggle.game.Color>();
 		bannedColors = new ArrayList<de.croggle.game.Color>();
-		lookup = new HashMap<de.croggle.game.Color, java.awt.Color>(30);
+		lookup = new HashMap<de.croggle.game.Color, com.badlogic.gdx.graphics.Color>(30);
 	}
 
 	/**
@@ -37,31 +37,31 @@ public class ColorController {
 	 * real life color.
 	 * 
 	 * @param color
-	 *            The color, whose real life color is to be looked up
-	 * @return An awt color to be actually rendered to represent the virtual
+	 *            the color, whose real life color is to be looked up
+	 * @return an libgdx color to be actually rendered to represent the virtual
 	 *         color of a BoardObject
 	 */
-	public java.awt.Color getRepresantation(de.croggle.game.Color color) {
+	public com.badlogic.gdx.graphics.Color getRepresantation(de.croggle.game.Color color) {
 		return null;
 	}
 
 	/**
-	 * Performs a lookup upon a given awt.Color and returns the BoardObject
+	 * Performs a lookup upon a given libgdx.Color and returns the BoardObject
 	 * Color represented by it.
 	 * 
 	 * @param color
-	 *            The color, which represents the color to be looked up
-	 * @return A model color that is represented by the given awt.Color
+	 *            the color, which represents the color to be looked up
+	 * @return a model color that is represented by the given libgdx Color
 	 */
-	public java.awt.Color getAssociatedColor(java.awt.Color color) {
+	public com.badlogic.gdx.graphics.Color getAssociatedColor(com.badlogic.gdx.graphics.Color color) {
 		return null;
 	}
 
 	/**
 	 * Returns a new color to be used by the simulator on a board and already
-	 * assigns an actual awt.Color to it.
+	 * assigns an actual libgdx Color to it.
 	 * 
-	 * @return A new color to be used on the board
+	 * @return a new color to be used on the board
 	 */
 	public de.croggle.game.Color requestColor() {
 		return null;
@@ -72,7 +72,7 @@ public class ColorController {
 	 * recolor board objects.
 	 * 
 	 * @param color
-	 *            A color to be marked as usable
+	 *            a color to be marked as usable
 	 */
 	public void addUsableColor(de.croggle.game.Color color) {
 
@@ -83,7 +83,7 @@ public class ColorController {
 	 * board objects.
 	 * 
 	 * @param color
-	 *            A color to be blocked
+	 *            a color to be blocked
 	 */
 	public void addBlockedColor(de.croggle.game.Color color) {
 
@@ -91,7 +91,7 @@ public class ColorController {
 
 	/**
 	 * 
-	 * @return An array of all currently usable colors
+	 * @return an array of all currently usable colors
 	 */
 	public de.croggle.game.Color[] getUsableColors() {
 		return null;
@@ -102,7 +102,7 @@ public class ColorController {
 	 * list of usable colors
 	 * 
 	 * @param color
-	 * @return Whether the given color is blocked or not
+	 * @return whether the given color is blocked or not
 	 */
 	public boolean isBlocked(de.croggle.game.Color color) {
 		return false;
@@ -113,7 +113,7 @@ public class ColorController {
 	 * 
 	 * @param color
 	 *            the color whose usability should be tested
-	 * @return Whether the given color is usable or not
+	 * @return whether the given color is usable or not
 	 */
 	public boolean isUsable(de.croggle.game.Color color) {
 		return false;
