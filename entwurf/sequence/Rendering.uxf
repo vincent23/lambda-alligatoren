@@ -51,10 +51,10 @@
       <x>1266</x>
       <y>96</y>
       <w>30</w>
-      <h>378</h>
+      <h>180</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>18;18;18;366</additional_attributes>
+    <additional_attributes>18;18;18;168</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
@@ -117,10 +117,10 @@
       <x>1146</x>
       <y>96</y>
       <w>30</w>
-      <h>378</h>
+      <h>264</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>18;18;18;366</additional_attributes>
+    <additional_attributes>18;18;18;252</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
@@ -150,21 +150,21 @@
       <x>300</x>
       <y>96</y>
       <w>30</w>
-      <h>378</h>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>18;18;18;366</additional_attributes>
+    <additional_attributes>18;18;18;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>438</x>
-      <y>96</y>
+      <y>408</y>
       <w>30</w>
-      <h>378</h>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>18;18;18;366</additional_attributes>
+    <additional_attributes>18;18;18;54</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -172,21 +172,21 @@
       <x>600</x>
       <y>96</y>
       <w>30</w>
-      <h>378</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>18;18;18;366</additional_attributes>
+    <additional_attributes>18;18;18;48</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>786</x>
-      <y>96</y>
+      <y>228</y>
       <w>30</w>
-      <h>378</h>
+      <h>246</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>18;18;18;366</additional_attributes>
+    <additional_attributes>18;18;18;234</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
@@ -275,24 +275,24 @@ get(eater)
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>606</x>
-      <y>144</y>
+      <y>138</y>
       <w>204</w>
       <h>42</h>
     </coordinates>
-    <panel_attributes>lt=.&gt;&gt;
+    <panel_attributes>lt=&lt;
 eaterActor</panel_attributes>
-    <additional_attributes>192;30;18;30</additional_attributes>
+    <additional_attributes>18;30;192;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>984</x>
-      <y>96</y>
+      <y>192</y>
       <w>30</w>
-      <h>378</h>
+      <h>282</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>18;18;18;366</additional_attributes>
+    <additional_attributes>18;18;18;270</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
@@ -322,12 +322,12 @@ enterEatingState()
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>606</x>
-      <y>192</y>
+      <y>186</y>
       <w>402</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>lt=.&gt;&gt;</panel_attributes>
-    <additional_attributes>390;18;18;18</additional_attributes>
+    <panel_attributes>lt=&lt;</panel_attributes>
+    <additional_attributes>18;18;390;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -346,13 +346,13 @@ get(eaten)
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>606</x>
-      <y>216</y>
+      <y>210</y>
       <w>204</w>
       <h>42</h>
     </coordinates>
-    <panel_attributes>lt=.&gt;&gt;
+    <panel_attributes>lt=&lt;
 eatenActor</panel_attributes>
-    <additional_attributes>192;30;18;30</additional_attributes>
+    <additional_attributes>18;30;192;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
@@ -391,12 +391,12 @@ eatenActor</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1398</x>
-      <y>270</y>
+      <y>294</y>
       <w>30</w>
-      <h>150</h>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>18;18;18;138</additional_attributes>
+    <additional_attributes>18;18;18;114</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqDestroyMark</type>
@@ -461,11 +461,11 @@ create
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>1272</x>
-      <y>294</y>
+      <y>288</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.
+    <panel_attributes>lt=&lt;
 </panel_attributes>
     <additional_attributes>18;18;138;18</additional_attributes>
   </element>
@@ -477,7 +477,7 @@ create
       <w>684</w>
       <h>42</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.
+    <panel_attributes>lt=&lt;
 flattened
 </panel_attributes>
     <additional_attributes>18;30;672;30</additional_attributes>
@@ -521,40 +521,38 @@ addAction(Actions.moveTo(eater.getX(), eater.getY(), 10)))
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>606</x>
-      <y>336</y>
+      <y>348</y>
       <w>564</w>
-      <h>42</h>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.
-syncMsg
+    <panel_attributes>lt=&lt;
 </panel_attributes>
-    <additional_attributes>18;30;552;30</additional_attributes>
+    <additional_attributes>18;18;552;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>444</x>
-      <y>378</y>
+      <y>390</y>
       <w>180</w>
-      <h>42</h>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.
-syncMsg
+    <panel_attributes>lt=&lt;
+
 </panel_attributes>
-    <additional_attributes>18;30;168;30</additional_attributes>
+    <additional_attributes>18;18;168;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>306</x>
-      <y>396</y>
+      <y>408</y>
       <w>156</w>
-      <h>42</h>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.
-syncMsg
+    <panel_attributes>lt=&lt;
 </panel_attributes>
-    <additional_attributes>18;30;144;30</additional_attributes>
+    <additional_attributes>18;18;144;18</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.Text</type>
@@ -567,5 +565,93 @@ syncMsg
     <panel_attributes>in flattened 
 as eatenActor</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>438</x>
+      <y>96</y>
+      <w>30</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>18;18;18;36</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>600</x>
+      <y>390</y>
+      <w>30</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>18;18;18;72</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>786</x>
+      <y>156</y>
+      <w>30</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>18;18;18;72</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>786</x>
+      <y>96</y>
+      <w>30</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>18;18;18;60</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>984</x>
+      <y>96</y>
+      <w>30</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>18;18;18;96</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1146</x>
+      <y>348</y>
+      <w>30</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>18;18;18;114</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1266</x>
+      <y>306</y>
+      <w>30</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>18;18;18;156</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1398</x>
+      <y>270</y>
+      <w>30</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>18;18;18;24</additional_attributes>
   </element>
 </diagram>
