@@ -1,36 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram>
 <source><![CDATA[#! Rendering
-game:GameController
-simulator:Simulator
 eater:ColoredAlligator
 eaten:InternalBoardObject
+simulator:Simulator
 boardMessenger:BoardEventMessenger
 renderer:BoardActor
 actors:Hashmap<BoardObject,BoardObjectActor>
 eaterActor:ColoredAlligatorActor
 eatenActor:BoardObjectActor
-/flattenVisitor:FlattenVisitor
+flattenVisitor:FlattenVisitor[a]
 /flattened:BoardObject Array
 
-game:simulator.evaluate()
-simulator:[eater, eaten]=simulator.eat()
-simulator:eater.retrieve
-simulator:eaten.retrieve
-simulator[1]:
 simulator:boardMessenger.notifyEat(eater, eaten)
 boardMessenger:renderer.onEat(eater, eaten)
 renderer:eaterActor=actors.get(eater)
 renderer:eaterActor.enterEatingState()
 renderer:eatenActor=actors.get(eaten)
-renderer:flattenVisitor.new
 renderer:flattened=flattenVisitor.flatten(eaten)
 flattenVisitor:flattened.new
 [c:for each in flattened as eatenActor]
   renderer:eatenActor.addAction(Actions.moveTo(eater.getX(), eater.getY(), 10)));
 [/c]
-renderer:flattened.destroy
-renderer:flattenVisitor.destroy]]></source>
+renderer:flattened.destroy]]></source>
 <configuration>
 <property name="activationBarBorderThickness" value="1"/>
 <property name="actorWidth" value="25"/>
