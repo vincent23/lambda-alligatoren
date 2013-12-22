@@ -13,5 +13,9 @@ public class LevelPackage {
     private String emblemPath;
     private boolean hasAnimation;
 
+    /**
+     * Gets the level controller which is responsible for handling the levels within the level package.
+     * @return the level controller one must use to handle the levels within the level package
+     */
     public LevelController getLevelController();
 }
