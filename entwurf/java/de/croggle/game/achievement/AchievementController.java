@@ -33,9 +33,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	private AlligatorApp game;
 
 	/**
-	 * Creates a new Controller. If a profile name is stored in the shared
-	 * preferences the corresponding unlocked achievements are loaded and stored
-	 * in unlockedAchievements.
+	 * Creates a new Controller. On initialization the unlocked achievements are set to null.
 	 * 
 	 * @param game
 	 *            the backreference to the central game object.

@@ -19,9 +19,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	private AlligatorApp game;
 
 	/**
-	 * Creates a new controller. If a profile name is stored in the
-	 * shared preferences the corresponding statistic is loaded and stored in
-	 * current Statistic.
+	 * Creates a new controller. On initialization the active statistic is set to null.
 	 * 
 	 * @param game he backreference to the central game object
 	 */

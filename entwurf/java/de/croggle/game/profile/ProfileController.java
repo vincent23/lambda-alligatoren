@@ -21,7 +21,7 @@ public class ProfileController {
 	private AlligatorApp game;
 	
 	/**
-	* Creates a new profile controller. On initialization, the active profile is set to null.
+	* Creates a new profile controller. On initialization the active profile is set to null.
 	* @param game the backreference to the central game object
 	*/
 	public ProfileController(AlligatorApp game) {

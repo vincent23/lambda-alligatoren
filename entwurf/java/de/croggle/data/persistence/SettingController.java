@@ -22,9 +22,7 @@ public class SettingController {
 	private AlligatorApp game;
 
 	/**
-	 * Creates a new SettingController. If a profile name is stored in the
-	 * shared preferences the corresponding setting is loaded and stored in
-	 * currentSetting.
+	 * Creates a new SettingController. On initialization the active setting is set to null.
 	 *
 	 * @param game the backreference to the central game object
 	 */
