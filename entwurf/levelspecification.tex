@@ -162,14 +162,14 @@ Diese sind im Folgenden beschrieben.
 \subsubsection{Eier}
 Objekte vom Typ \strong{"'egg"'} besitzen die folgenden Eigenschaften:
 \begin{description}
-	\item[color:] Eine Ganzzahl >= 0, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
+	\item[color:] Eine Ganzzahl >= 0, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30. Negative Werte werden als "'keine Farbe/ungefärbt"' interpretiert.
 	\item[recolorable:] Wahrheitswert, ob das Objekt vom Nutzer nachträglich manuell umgefärbt werden darf.
 \end{description}
 
 \subsubsection{Farbige Alligatoren}
 Objekte vom Typ \strong{"'colored alligator"'} besitzen die folgenden Eigenschaften:
 \begin{description}
-	\item[color:] Eine Ganzzahl >= 0, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
+	\item[color:] Eine Ganzzahl >= 0, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30. Negative Werte werden als "'keine Farbe/ungefärbt"' interpretiert.
 	\item[recolorable:] Wahrheitswert, ob das Objekt vom Nutzer nachträglich manuell umgefärbt werden darf.
 	\item[children:] Eine Liste von weiteren BoardObjects
 \end{description}
@@ -439,15 +439,15 @@ Ordnerübersicht zur Levelspezifikation
 				.5 Daten für MC Levels
 					.6 \strong{"'initial"'} : Object - Board Objekt der An\-fangs\-kon\-stel\-la\-tion.
 					.6 \strong{"'answers"'} : Liste - Liste mit Board Objekten der möglichen Antworten.
-					.6 \strong{"'correct answer"'} : Unsigned Integer - Der Index der richtigen Antwort zur Fragestellung.
+					.6 \strong{"'correct answer"'} : unsigned Integer - Der Index der richtigen Antwort zur Fragestellung.
 				.5 Daten für FE Levels.
 					.6 \strong{"'initial constellation"'} : Object - Board Objekt der An\-fangs\-kon\-stel\-la\-tion.
 					.6 \strong{"'objective"'} : Object - Board Objekt der zu erreichenden Konstellation.
-					.6 \strong{"'blocked colors"'} : Liste - Liste mit unsigned Integer Werten, die blockierte Farben beschreiben.
+					.6 \strong{"'blocked colors"'} : Liste - Liste mit Integer Werten, die blockierte Farben beschreiben.
 					.6 \strong{"'blocked types"'} : Liste - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
 				.5 Daten für SA Levels.
 					.6 \strong{"'initial constellation"'} : Object - Board Objekt der Anfangskonstellation.
-					.6 \strong{"'blocked colors"'} : Liste - Liste mit unsigned Integer Werten, die blockierte Farben beschreiben.
+					.6 \strong{"'blocked colors"'} : Liste - Liste mit Integer Werten, die blockierte Farben beschreiben.
 					.6 \strong{"'blocked types"'} : Liste - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
 }
 
@@ -461,10 +461,10 @@ Ordnerübersicht zur Levelspezifikation
 			.4 \strong{"'removable"'} : Bool - Ob das Objekt nachträglich vom Nutzer vom Board entfernt werden kann.
 			.4 Die drei möglichen Typen von Board sind "'egg"', "'colored alligator"' und "'aged alligator"'.
 				.5 Typ \strong{"'egg"'}.
-					.6 \strong{"'color"'} : unsigned Integer - Die Identifikationsnummer der Farbe, die das Ei haben soll.
+					.6 \strong{"'color"'} : Integer - Die Identifikationsnummer der Farbe, die das Ei haben soll.
 					.6 \strong{"'recolorable"'} : Bool - Ob das Objekt nachträglich vom Nutzer umgefärbt werden kann.
 				.5 Typ \strong{"'colored alligator"'}.
-					.6 \strong{"'color"'} : unsigned Integer - Die Identifikationsnummer der Farbe, die der Alligator haben soll.
+					.6 \strong{"'color"'} : Integer - Die Identifikationsnummer der Farbe, die der Alligator haben soll.
 					.6 \strong{"'recolorable"'} : Bool - Ob der Alligator nachträglich vom Nutzer umgefärbt werden kann.
 					.6 \strong{"'children"'} : Liste - Eine Liste mit weiteren BoardObjects (Eier, Alligatoren\ldots{}), wie sie in diesem Listing beschrieben sind.
 				.5 Typ \strong{"'aged alligator"'}.
