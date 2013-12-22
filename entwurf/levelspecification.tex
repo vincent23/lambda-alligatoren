@@ -146,58 +146,77 @@ Diese Darstellung bildet das zu den Lambdatermen gehörige Klassenmodell transpa
 
 Das heißt, dass Spielfelder (im Folgenden auch Boards genannt) eine Liste von Elementen, genauer gesagt von BoardObjects, als Attribut besitzen.
 Von diesen BoardObjects existieren drei Typen, nämlich Ei, farbiger Alligator und alter Alligator.
-Alle diese drei Objekttypen verfügen über eine Zeichenkette mit Namen \strong{"'type"'}, die die Werte
+Alle diese drei Objekttypen verfügen über eine Zeichenkette mit Namen \strong{"'type"'}.
+Zusätzlich wird über den Wahrheitswert im Feld \strong{"'movable"'} festgelegt, ob der Nutzer das Objekt nachträglich bewegen darf.
+Ob er es ganz vom Spielfeld entfernen darf, wird mit dem Feld \strong{"'removable"'} gesagt.
+
+Das \strong{"'type"'}-Attribut, darf die folgenden Werte annehmen:
 \begin{itemize}
 	\item egg
 	\item colored alligator
 	\item aged alligator
 \end{itemize}
-annehmen darf.
-Aus dieser wird der genaue Typ eines BoardObjects abgeleitet, aus dem die weiteren Attribute hervorgehen.
+Aus diesem Attribut wird der genaue Typ eines BoardObjects abgeleitet, aus dem die weiteren Attribute hervorgehen.
 Diese sind im Folgenden beschrieben.
 
 \subsubsection{Eier}
 Objekte vom Typ \strong{"'egg"'} besitzen die folgenden Eigenschaften:
-\begin{itemize}
+\begin{description}
 	\item[color:] Eine Ganzzahl >= 0, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
-\end{itemize}
+	\item[recolorable:] Wahrheitswert, ob das Objekt vom Nutzer nachträglich manuell umgefärbt werden darf.
+\end{description}
 
 \subsubsection{Farbige Alligatoren}
 Objekte vom Typ \strong{"'colored alligator"'} besitzen die folgenden Eigenschaften:
-\begin{itemize}
+\begin{description}
 	\item[color:] Eine Ganzzahl >= 0, die einer Farbe zugeordnet wird. Der Wert befindet sich zwischen 0 und 30.
+	\item[recolorable:] Wahrheitswert, ob das Objekt vom Nutzer nachträglich manuell umgefärbt werden darf.
 	\item[children:] Eine Liste von weiteren BoardObjects
-\end{itemize}
+\end{description}
 
 \subsubsection{Alte Alligatoren}
 Objekte vom Typ \strong{"'aged alligator"'} besitzen die folgenden Eigenschaften:
-\begin{itemize}
+\begin{description}
 	\item[children:] Eine Liste von weiteren BoardObjects
-\end{itemize}
+\end{description}
 
 \begin{lstlisting}[language=json,caption={Ein einfaches Board mit allen existierenden BoardObjects}]
 {
 	"families" : [
 		{
 			"type" : "colored alligator",
+			"movable" : false,
+			"removable" : false,
 			"color" : 0,
+			"recolorable" : false,
 			"children" : [
 				{
 					"type" : "aged alligator",
+					"movable" : false,
+					"removable" : false,
 					"children" : [
 						{
 							"type" : "egg",
-							"color" : 0
+							"movable" : false,
+							"removable" : false,
+							"color" : 0,
+							"recolorable" : false
 						},
 						{
 							"type" : "egg",
-							"color" : 0
+							"movable" : false,
+							"removable" : false,
+							"color" : 0,
+							"recolorable" : false
 						}
 					]
 				},
 				{
 					"type" : "egg",
-					"color" : 0
+					"movable" : false,
+					"removable" : false,
+					"color" : 0,
+					"recolorable" : false
 				}
 			]
 		}
@@ -390,47 +409,64 @@ Ordnerübersicht zur Levelspezifikation
 
 \subsection{Inhalte einer "`package.json"' Datei}
 \dirtree{%
-.1 "'de{.}croggle"' : Object - Namensraum.
-	.2 "'packages"' : Liste - Liste mit Repräsentationen von Paketen{.} Gewöhnlich nur ein Paket.
+.1 \strong{"'de{.}croggle"'} : Object - Namensraum.
+	.2 \strong{"'packages"'} : Liste - Liste mit Repräsentationen von Paketen{.} Gewöhnlich nur ein Paket.
 		.3 : Object - Das zur Datei gehörende Paket als JSON Objekt.
-			.4 "'name"' : String - Der Anzeigename des Levelpakets.
-			.4 "'description"' : String - Eine Zeichenkette zur Beschreibung des Pakets.
-			.4 "'banner"' : String - Pfad zu einer Bilddatei, die als Banner für ein Levelpaket fungiert.
-			.4 "'design"' : String - Pfad zu einem Design, das auf alle Levels eines Pakets angewendet wird.
-			.4 "'animation"' : String - Pfad zu einer Animation, die vor dem ersten Betreten des Levels abgespielt wird.
-			.4 "'dependencies"' : Liste - Die Liste mit Abhängigkeiten.
-				.5 "'type"' : String - Der Typ einer Abhängigkeit.
+			.4 \strong{"'name"'} : String - Der Anzeigename des Levelpakets.
+			.4 \strong{"'description"'} : String - Eine Zeichenkette zur Beschreibung des Pakets.
+			.4 \strong{"'banner"'} : String - Pfad zu einer Bilddatei, die als Banner für ein Levelpaket fungiert.
+			.4 \strong{"'design"'} : String - Pfad zu einem Design, das auf alle Levels eines Pakets angewendet wird.
+			.4 \strong{"'animation"'} : String - Pfad zu einer Animation, die vor dem ersten Betreten des Levels abgespielt wird.
+			.4 \strong{"'dependencies"'} : Liste - Die Liste mit Abhängigkeiten.
+				.5 \strong{"'type"'} : String - Der Typ einer Abhängigkeit.
 				.5 Weitere Elemente für "'packageprogress"' Abhängigkeiten.
-					.6 "'package"' : unsigned Integer - Die Identifikationsnummer eines Pakets als Abhängigkeit.
-					.6 "'progress"' : unsigned Integer - Prozentzahl, zu der ein Paket als Abhängigkeit abgeschlossen sein muss.
+					.6 \strong{"'package"'} : unsigned Integer - Die Identifikationsnummer eines Pakets als Abhängigkeit.
+					.6 \strong{"'progress"'} : unsigned Integer - Prozentzahl, zu der ein Paket als Abhängigkeit abgeschlossen sein muss.
 }
 
 \subsection{Inhalte einer Level JSON Datei}
 \subsubsection{Rahmenwerk}
 \dirtree{%
-.1 "'de{.}croggle"' : Object - Namensraum.
-	.2 "'levels"' : Liste - Levelobjekte.
+.1 \strong{"'de{.}croggle"'} : Object - Namensraum.
+	.2 \strong{"'levels"'} : Liste - Levelobjekte.
 		.3 : Object - Darstellung einzelner Levels.
-			.4 "'type"' : String - Typ eines Levels.
-			.4 "'description"' : String - Beschreibung zu einem Level.
-			.4 "'design"' : String - Pfad zu einem Leveldesign.
-			.4 "'abort simulation after"' : Integer - Nach wie vielen Schritten ein Level gewonnen (positiv) oder verloren (negativ) ist.
-			.4 "'hints"' : Liste - Strings mit Pfaden zu Hilfegrafiken.
-			.4 "'data"' (multiple choice) : Object - Spezielle Daten für die einzelnen Level Typen.
+			.4 \strong{"'type"'} : String - Typ eines Levels.
+			.4 \strong{"'description"'} : String - Beschreibung zu einem Level.
+			.4 \strong{"'design"'} : String - Pfad zu einem Leveldesign.
+			.4 \strong{"'abort simulation after"'} : Integer - Nach wie vielen Schritten ein Level gewonnen (positiv) oder verloren (negativ) ist.
+			.4 \strong{"'hints"'} : Liste - Strings mit Pfaden zu Hilfegrafiken.
+			.4 \strong{"'data"'} (multiple choice) : Object - Spezielle Daten für die einzelnen Leveltypen.
 				.5 Daten für MC Levels
-					.6 "'initial"' : Object - Board Objekt der Anfangskonstellation.
-					.6 "'answers"' : Liste - Liste mit Board Objekten der möglichen Antworten.
-					.6 "'correct answer"' : Unsigned Integer - Der Index der richtigen Antwort zur Fragestellung.
+					.6 \strong{"'initial"'} : Object - Board Objekt der An\-fangs\-kon\-stel\-la\-tion.
+					.6 \strong{"'answers"'} : Liste - Liste mit Board Objekten der möglichen Antworten.
+					.6 \strong{"'correct answer"'} : Unsigned Integer - Der Index der richtigen Antwort zur Fragestellung.
 				.5 Daten für FE Levels.
-					.6 "'initial constellation"' : Object - Board Objekt der Anfangskonstellation.
-					.6 "'objective"' : Object - Board Objekt der zu erreichenden Konstellation.
-					.6 "'blocked colors"' : Liste - Liste mit unsigned Integer Werten, die blockierte Farben beschreiben.
-					.6 "'blocked types": Liste - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
+					.6 \strong{"'initial constellation"'} : Object - Board Objekt der An\-fangs\-kon\-stel\-la\-tion.
+					.6 \strong{"'objective"'} : Object - Board Objekt der zu erreichenden Konstellation.
+					.6 \strong{"'blocked colors"'} : Liste - Liste mit unsigned Integer Werten, die blockierte Farben beschreiben.
+					.6 \strong{"'blocked types"'} : Liste - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
 				.5 Daten für SA Levels.
-					.6 "'initial constellation"' : Object - Board Objekt der Anfangskonstellation.
-					.6 "'blocked colors"' : Liste - Liste mit unsigned Integer Werten, die blockierte Farben beschreiben.
-					.6 "'blocked types": Liste - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
+					.6 \strong{"'initial constellation"'} : Object - Board Objekt der Anfangskonstellation.
+					.6 \strong{"'blocked colors"'} : Liste - Liste mit unsigned Integer Werten, die blockierte Farben beschreiben.
+					.6 \strong{"'blocked types"'} : Liste - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
 }
 
 \subsubsection{Verschachtelte Alligatorbaumstruktur}
-
+\dirtree{%
+.1 : BoardObject - Objekte, die Konstellationen auf einem Spielfeld modellieren.
+	.2 \strong{"'families"'} : Liste - Eine Liste mit sogenannten "'BoardObjects"'.
+		.3 BoardObject Objekte.
+			.4 \strong{"'type"'} : String - Der genaue Typ des vorliegenden BoardObjects{.} Die Unterscheidungen der Typen werden im Folgenden erläutert.
+			.4 \strong{"'movable"'} : Bool - Ob das Objekt nachträglich vom Nutzer bewegt werden kann.
+			.4 \strong{"'removable"'} : Bool - Ob das Objekt nachträglich vom Nutzer vom Board entfernt werden kann.
+			.4 Die drei möglichen Typen von Board sind "'egg"', "'colored alligator"' und "'aged alligator"'.
+				.5 Typ \strong{"'egg"'}.
+					.6 \strong{"'color"'} : unsigned Integer - Die Identifikationsnummer der Farbe, die das Ei haben soll.
+					.6 \strong{"'recolorable"'} : Bool - Ob das Objekt nachträglich vom Nutzer umgefärbt werden kann.
+				.5 Typ \strong{"'colored alligator"'}.
+					.6 \strong{"'color"'} : unsigned Integer - Die Identifikationsnummer der Farbe, die der Alligator haben soll.
+					.6 \strong{"'recolorable"'} : Bool - Ob der Alligator nachträglich vom Nutzer umgefärbt werden kann.
+					.6 \strong{"'children"'} : Liste - Eine Liste mit weiteren BoardObjects (Eier, Alligatoren\ldots{}), wie sie in diesem Listing beschrieben sind.
+				.5 Typ \strong{"'aged alligator"'}.
+					.6 \strong{"'children"'} : Liste - Eine Liste mit weiteren BoardObjects (Eier, Alligatoren\ldots{}), wie sie in diesem Listing beschrieben sind.
+}
