@@ -1,6 +1,6 @@
 package de.croggle.game.event;
 
-import de.croggle.game.board.Alligator;
+import de.croggle.game.board.AgedAlligator;
 
 /**
  * 
@@ -19,6 +19,6 @@ public interface AgedAlligatorVanishesListener {
 	 * 
 	 * @param alligator The vanishing alligator.
 	 */
-	public void onAgedAlligatorVanishes(Alligator alligator);
+	public void onAgedAlligatorVanishes(AgedAlligator alligator);
 	
 }
