@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The color controller manages colors in the game. He is mainly responsible to
- * map the virtual colors of board objects consistently on real life colors.
- * Additionally it provides functionality to generate new colors used on boards
+ * The color controller manages colors in the game. It is mainly responsible for
+ * mapping the virtual colors of board objects consistently on real life colors.
+ * Additionally, it provides functionality for generating new colors used on boards
  * if needed by the simulator after applying recolor rules.
  * 
- * The terms ``blocked'' and ``usable'' for colors refer to which colors are blocked
+ * The terms "blocked" and "usable" for colors refer to which colors are blocked
  * by the level specification (blocked) and which are used by the game to let
  * the user recolor elements (usable).
  * 
@@ -58,7 +58,7 @@ public class ColorController {
 	}
 
 	/**
-	 * Returns a new color to be used by the simulator on a board and already
+	 * Returns a new color to be used by the simulator on a board and
 	 * assigns an actual libgdx Color to it.
 	 * This is equivalent to calling <code>requestColor(allUsedColors)</code>, whith <code>allUsedColors</code> being an array of all colors used on the board.
 	 * 

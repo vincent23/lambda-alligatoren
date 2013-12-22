@@ -7,6 +7,7 @@ import de.croggle.data.persistence.StatisticsDeltaProcessor;
 import de.croggle.game.board.Alligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
+import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.event.BoardEventListener;
@@ -47,7 +48,7 @@ public class GameController implements BoardEventListener {
 	private List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
 
 	/**
-	 * Creates a new GameController for the given level.
+	 * Creates a new game controller for the given level.
 	 *
 	 */	
 	public GameController(Level level){
@@ -97,13 +98,17 @@ public class GameController implements BoardEventListener {
 	}
 
 	/**
-	 * 
+	 * Registers a listener to which board events should be sent.
+	 *
+	 * @param listener the listener which should receive the events
 	 */
 	public void registerBoardEventListener(BoardEventListener listener) {
 	}
 
 	/**
+	 * Unregisters a board event listener, so that it won't receive future events.
 	 *
+	 * @param listener the listener to unregister
 	 */
 	public void unregisterBoardEventListener(BoardEventListener listener) {
 	}
@@ -126,7 +131,7 @@ public class GameController implements BoardEventListener {
 	 *
 	 */
 	@Override
-	public void onAgedAlligatorVanishes(Alligator alligator) {
+	public void onAgedAlligatorVanishes(AgedAlligator alligator) {
 	}
 
 	/**
