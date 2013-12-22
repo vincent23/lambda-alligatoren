@@ -60,11 +60,22 @@ public class ColorController {
 	/**
 	 * Returns a new color to be used by the simulator on a board and already
 	 * assigns an actual libgdx Color to it.
+	 * This is equivalent to calling <code>requestColor(allUsedColors)</code>, whith <code>allUsedColors</code> being an array of all colors used on the board.
 	 * 
 	 * @return a new color to be used on the board
 	 */
 	public de.croggle.game.Color requestColor() {
 		return null;
+	}
+
+	/**
+	 * Returns a color, which does not appear in <code>usedColors</code>, to be used by the simulator on a board for recoloring.
+	 * If all available colors are in usedColors, a new color is created.
+	 *
+	 * @param usedColors a set of colors which are already used
+	 * @return a color to be used on the board
+	 */
+	public de.croggle.game.Color requestColor(de.croggle.game.Color[] usedColors) {
 	}
 
 	/**
