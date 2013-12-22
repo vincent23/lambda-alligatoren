@@ -9,6 +9,8 @@ import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.Board;
 
+import de.croggle.game.ColorController;
+
 /**
  * A visitor replacing eggs of a certain color with copies of a given
  * family (subtree).
