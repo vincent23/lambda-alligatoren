@@ -4,20 +4,19 @@ import de.croggle.game.board.AgedAlligator;
 
 /**
  * 
- * The interface for listeners specifically listening to AlligatorVanishesEvents.
- * This board event is produced when a simulator removes any instance of
- * an alligator (aged or colored) from its associated board. The class is kept
- * general for both the rendered animation and the vanished alligator statistics
- * are either similar or behave the same for both types of alligators.
+ * Interface for listeners specifically listening to the onAgedAlligatorVanishes event.
+ * This event is produced when a simulator removes any instance of
+ * an aged alligator from its associated board. The class is kept
+ * general for both the rendered animation and the vanished alligator statistics.
  */
 public interface AgedAlligatorVanishesListener {
 	
 	/**
 	 * Receive an alligator vanishes event for further processing.
 	 * E.g. the statistics manager can count how many alligators have
-	 * vanished/been transformed on the boar in a game.
+	 * vanished/been transformed on the board in a game.
 	 * 
-	 * @param alligator The vanishing alligator.
+	 * @param alligator the vanishing alligator
 	 */
 	public void onAgedAlligatorVanishes(AgedAlligator alligator);
 	

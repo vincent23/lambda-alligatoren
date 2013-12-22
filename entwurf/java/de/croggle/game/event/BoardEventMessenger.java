@@ -10,6 +10,7 @@ import de.croggle.game.board.InternalBoardObject;
 
 /**
  * The location in which listeners are able to register and unregister themselves so they would recieve further notifications, e.g. when an object has been recolored.
+ * Objects of this class can easily be passed to methods, so that these can trigger events.
  * @has 1 - * de.croggle.game.event.BoardEventListener
  */
 public class BoardEventMessenger {
