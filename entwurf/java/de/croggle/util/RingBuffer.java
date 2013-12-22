@@ -19,8 +19,8 @@ public class RingBuffer<T> {
 	}
 
     /**
-     * places given object on top of the ringbuffer.
-     * @param obj the object, which will be placed upon the ringbuffer.
+     * Places the given object on top of the ringbuffer.
+     * @param obj the object which will be placed upon the ringbuffer.
      */
 	public void push (T obj) {
 		if (items < buffer.length) {
@@ -30,8 +30,8 @@ public class RingBuffer<T> {
 		head = (head + 1) % buffer.length;
 	}
 	/**
-     * removes the uppermost object of the ringbuffer and returns it.
-     * @return the object, which used to be on top of the ringbuffer.
+     * Removes the topmost object of the ringbuffer and returns it.
+     * @return the object which used to be on top of the ringbuffer.
      */
 	public T pop () {
 		if (items == 0) {
