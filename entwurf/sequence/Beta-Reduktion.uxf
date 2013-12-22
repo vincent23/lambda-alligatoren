@@ -606,7 +606,7 @@ true</panel_attributes>
     <coordinates>
       <x>1340</x>
       <y>1190</y>
-      <w>270</w>
+      <w>280</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>_replaceEggsVisitor:ReplaceEggsVisitor_</panel_attributes>
@@ -643,7 +643,7 @@ true</panel_attributes>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-replace(λx, y, boardMessenger)
+replace(λx, y, boardMessenger, colorController)
 </panel_attributes>
     <additional_attributes>1080;50;30;50</additional_attributes>
   </element>
@@ -1186,12 +1186,13 @@ given parent. It returns the found Eater.</panel_attributes>
       <x>540</x>
       <y>1260</y>
       <w>370</w>
-      <h>140</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>The static method 
 replace(ColoredAlligator parent, 
 InternalBoardObject bornFamily, 
-BoardEventMessenger boardMessenger)
+BoardEventMessenger boardMessenger,
+ColorController colorController)
 creates a new ReplaceEggsVisitor and calls 
 the method accept(visitor Visitor) on the
 given parent.</panel_attributes>
