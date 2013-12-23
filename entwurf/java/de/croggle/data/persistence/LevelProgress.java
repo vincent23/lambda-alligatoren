@@ -17,13 +17,13 @@ public class LevelProgress {
 	/**
 	 * Construct a new LevelProgress based on it's properties.
 	 *
-	 * @param profileId the id of the user's profile.
-	 * @param levelId the id of the level.
-	 * @param solved whether the level has been solved.
-	 * @param currentBoard the serialized representation of the current board.
-	 * @param usedResets the number of resets used by the user.
-	 * @param usedHints the number of hints used by the user.
-	 * @param usedTime the time spent in the level by the user.
+	 * @param profileId the id of the user's profile
+	 * @param levelId the id of the level
+	 * @param solved whether the level has been solved
+	 * @param currentBoard the serialized representation of the current board
+	 * @param usedResets the number of resets used by the user
+	 * @param usedHints the number of hints used by the user
+	 * @param usedTime the time spent in the level by the user
 	 */
 	public LevelProgress (long levelId, boolean solved, String currentBoard, int usedResets, int usedHints, int usedTime) {
 	}
@@ -48,7 +48,7 @@ public class LevelProgress {
 	/**
 	 * Set the id of the level.
 	 *
-	 * @param levelId the level id.
+	 * @param levelId the level id
 	 */
 	public void setLevelId(long levelId) {
 		this.levelId = levelId;
