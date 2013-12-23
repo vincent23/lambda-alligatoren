@@ -17,7 +17,7 @@ public class ValidationVisitor implements BoardObjectVisitor {
 	}
 
 	/**
-	 * Checks whether the given family represents a valid LambdaTerm.
+	 * Checks whether the given family represents a valid term within the lambda calculus.
 	 *
 	 * @param family the family to check for validity
 	 * @return true if the family is valid, false otherwise
