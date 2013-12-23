@@ -46,7 +46,7 @@ public abstract class AbstractScreen implements Screen {
 	}
 
 	/**
-	 * Called in order to cause the screen to resize itself into the given size.
+	 * Called when the application is resized. This can happen at any point during a non-paused state but will never happen before a call to create().
 	 * 
 	 * @param width
 	 *			the width, which the newly resized screen will have.
