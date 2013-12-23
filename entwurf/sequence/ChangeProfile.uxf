@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="11.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
   <zoom_level>10</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
@@ -272,7 +273,7 @@ persistanceManager</panel_attributes>
     <coordinates>
       <x>420</x>
       <y>470</y>
-      <w>206</w>
+      <w>204</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
@@ -1199,12 +1200,13 @@ getPersistanceManager()
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>420</x>
-      <y>1640</y>
+      <y>1620</y>
       <w>1310</w>
-      <h>50</h>
+      <h>70</h>
     </coordinates>
-    <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;1290;30</additional_attributes>
+    <panel_attributes>lt=&lt;
+true</panel_attributes>
+    <additional_attributes>30;50;1290;50</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
