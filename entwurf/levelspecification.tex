@@ -138,7 +138,7 @@ Listing 4.3 beschreibt das benötigte Rahmenwerk für alle Levels.
 }
 \end{lstlisting}
 
-\subsection{Darstellung von Lambda Ausdrücken}
+\subsection{Darstellung von Lambda-Ausdrücken}
 Alle Leveltypen haben gemein, dass sie an mindestens einer Stelle ein Spielfeld mit einem Alligatorausdruck anzeigen.
 Daher wird zunächst auf die Darstellung eines solchen Spielfelds mit der sich darauf befindlichen Konstellation (dem Lambda-Term) in der JSON Levelbeschreibung eingegangen.
 Diese Darstellung bildet das zu den Lambda-Termen gehörige Klassenmodell transparent ab.
@@ -261,7 +261,7 @@ Bei "'Färben und Einfügen"'-Levels werden nur die Ausgangskonstellation, die z
 Die Ausgangskonstellation findet sich wie bei Mutiple Choice Leveln im Feld \strong{"'initial constellation"'}, und wird mittels eines Board Objektes repräsentiert.
 Die Endkonstellation kann über das Board-wertige Attribut \strong{"'objective"'} ausgelesen werden.
 Gesperrte Farben werden durch eine Liste mit Ganzzahlen >= 0 dargestellt, die den Namen \strong{"'blocked colors"'} trägt.
-Gesperrte Objekttypen können in einer Liste von Zeichenketten mit Namen \strong{"'blocked types"'} angegeben werden, wobei deren Werte den bekannten Typen aus der Dartellung von Lambda Ausdrücken entspricht.
+Gesperrte Objekttypen können in einer Liste von Zeichenketten mit Namen \strong{"'blocked types"'} angegeben werden, wobei deren Werte den bekannten Typen aus der Dartellung von Lambda-Ausdrücken entspricht.
 Diese Funktion ist vor allem für die Tutorial Levels vorgesehen, wenn das Platzieren von Eiern etc. verhindert werden soll.
 
 \begin{lstlisting}[language=json,caption={Grober Aufbau des data Attributs eines "'Färben und Einfügen"' Levels}]
