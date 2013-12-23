@@ -1416,15 +1416,15 @@ at this point.</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>160</x>
+      <x>270</x>
       <y>1320</y>
-      <w>884</w>
+      <w>774</w>
       <h>35</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 count(currentBoard)
 </panel_attributes>
-    <additional_attributes>875;25;15;25</additional_attributes>
+    <additional_attributes>765;25;15;25</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
