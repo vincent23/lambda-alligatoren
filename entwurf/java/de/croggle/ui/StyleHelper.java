@@ -15,7 +15,7 @@ public class StyleHelper {
 
 	private Skin skin;
 	
-	private StyleHelper{}
+	private StyleHelper(){}
 
 	/**
 	 * Gets the current instance.
