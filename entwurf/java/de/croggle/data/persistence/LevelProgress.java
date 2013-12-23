@@ -15,7 +15,7 @@ public class LevelProgress {
 	private int usedTime;
 
 	/**
-	 * Construct a new LevelProgress based on it's properties.
+	 * Constructs a new LevelProgress based on it's properties.
 	 *
 	 * @param profileId the id of the user's profile
 	 * @param levelId the id of the level
@@ -29,7 +29,7 @@ public class LevelProgress {
 	}
 
 	/**
-	 * Construct a new LevelProgress using a cursor to the correct database row.
+	 * Constructs a new LevelProgress using a cursor to the correct database row.
 	 *
 	 * @param cursor the cursor
 	 */
@@ -37,7 +37,7 @@ public class LevelProgress {
 	}
 
 	/**
-	 * Get the id of the level.
+	 * Gets the id of the level.
 	 *
 	 * @return the level id
 	 */
@@ -46,7 +46,7 @@ public class LevelProgress {
 	}
 
 	/**
-	 * Set the id of the level.
+	 * Sets the id of the level.
 	 *
 	 * @param levelId the level id
 	 */
@@ -55,7 +55,7 @@ public class LevelProgress {
 	}
 
 	/**
-	 * Get whether the level has been solved.
+	 * Gets whether the level has been solved.
 	 *
 	 * @return true if the level has been solved, false otherwise
 	 */
@@ -64,7 +64,7 @@ public class LevelProgress {
 	}
 
 	/**
-	 * Set whether the level has been solved.
+	 * Sets whether the level has been solved.
 	 *
 	 * @param solved true if the level has been solved, false otherwise
 	 */
@@ -73,7 +73,7 @@ public class LevelProgress {
 	}
 
 	/**
-	 * Get the serialized version of the current board.
+	 * Gets the serialized version of the current board.
 	 *
 	 * @return the currently used board
 	 */
@@ -82,7 +82,7 @@ public class LevelProgress {
 	}
 
 	/**
-	 * Set the serialized version of the current board.
+	 * Sets the serialized version of the current board.
 	 *
 	 * @param currentBoard the currently used board
 	 */
@@ -91,43 +91,43 @@ public class LevelProgress {
 	}
 
 	/**
-	 * Get the number of resets by the user.
+	 * Gets the number of resets by the user.
 	 *
-	 * @return the number of time the user reseted the level
+	 * @return the number of times the user reseted the level
 	 */
 	public int getUsedResets() {
 		return usedResets;
 	}
 
 	/**
-	 * Set the number of resets by the user.
+	 * Sets the number of resets by the user.
 	 *
-	 * @param usedResets the number of time the user reseted the level
+	 * @param usedResets the number of times the user reseted the level
 	 */
 	public void setUsedResets(int usedResets) {
 		this.usedResets = usedResets;
 	}
 
 	/**
-	 * Get the number of hints used by the user.
+	 * Gets the number of hints used by the user.
 	 *
-	 * @return the number of time the user used hints
+	 * @return the number of times the user used hints
 	 */
 	public int getUsedHints() {
 		return usedHints;
 	}
 
 	/**
-	 * Set the number of hints used by the user.
+	 * Sets the number of hints used by the user.
 	 *
-	 * @param usedHints the number of time the user used hints
+	 * @param usedHints the number of times the user used hints
 	 */
 	public void setUsedHints(int usedHints) {
 		this.usedHints = usedHints;
 	}
 
 	/**
-	 * Get the time spent by the user in the level.
+	 * Gets the time spent by the user in the level.
 	 *
 	 * @return the time in seconds
 	 */
@@ -136,7 +136,7 @@ public class LevelProgress {
 	}
 
 	/**
-	 * Set the time spent by the user in the level.
+	 * Sets the time spent by the user in the level.
 	 *
 	 * @param usedTime the time in seconds
 	 */

@@ -3,7 +3,7 @@ package de.croggle.data.persistence;
 import de.croggle.AlligatorApp;
 
 /**
- * Controller, that holds and controls the active Statistic. The active
+ * Controller that holds and controls the active Statistic. The active
  * Statistic is the one that belongs to the active profile.
  */
 public class StatisticController implements StatisticsDeltaProcessor {
@@ -40,7 +40,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	}
 
 	/**
-	 * Replaces the current statistic with newStatistic. newStatistic gets stored in
+	 * Replaces the current statistic with a new one. The new statistic gets stored in
 	 * the database and overwrites the values of the old statistic.
 	 * 
 	 * @param newStatistic 
@@ -55,7 +55,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * and sets it as the currently active statistic.
 	 * 
 	 * @param profileName
-	 * 			  the name of the user whose statistic is loaded
+
 	 * @throws IllegalArgumentException
 	 *            whenever the string does not represent a profile in the database
 	 */
@@ -64,7 +64,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	}
 
 	/**
-	 * Returns the active statistic, that belongs to the active profile.
+	 * Returns the active statistic that belongs to the active profile.
 	 * 
 	 * @return the active statistic
 	 */

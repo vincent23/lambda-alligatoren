@@ -4,8 +4,7 @@ import de.croggle.AlligatorApp;
 
 
 /**
- * Controller, which handles the different settings are currently applied onto
- * the app.
+ * Controller which handles the different settings currently applied.
  * 
  * @navassoc 1 - 1 de.croggle.data.persistence.Setting
  */
@@ -31,7 +30,7 @@ public class SettingController {
 	}
 
 	/**
-	 * Replaces the current setting with newSetting. newSetting gets stored in
+	 * Replaces the current setting with a new one. The new setting gets stored in
 	 * the database and overwrites the values of the old setting.
 	 * 
 	 * @param newSetting the setting used to replace the currently active setting
@@ -41,10 +40,10 @@ public class SettingController {
 	}
 
 	/**
-	 * Loads the setting, which belongs to the user identified with profile name
+	 * Loads the setting, which belongs to the user identified with the profile name
 	 * and sets it as the current setting.
 	 * 
-	 * @param profileName the name of the user, whose settings are loaded
+	 * @param profileName the name of the user whose settings are loaded
 	 */
 	public void changeCurrentSetting(String profileName) {
 

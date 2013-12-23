@@ -28,7 +28,7 @@ public class Setting {
 	
 	/**
 	 * 
-	 * Construct a new LevelProgress based on it's properties.
+	 * Constructs a new LevelProgress based on it's properties.
 	 *
 	 * @param volumeMusic the volume of the music.
 	 * @param volumeEffect the volume of the effects.
@@ -47,7 +47,7 @@ public class Setting {
 	}
 	
 	/**
-	 * Get the music volume.
+	 * Gets the music volume.
 	 * @return the volume of the music
 	 */
 	public float getVolumeMusic() {
@@ -55,7 +55,7 @@ public class Setting {
 	}
 	
 	/**
-	 * Set the music volume.
+	 * Sets the music volume.
 	 * @param volumeMusic the volume of the music
 	 */
 	public void setVolumeMusic(float volumeMusic) {
@@ -63,7 +63,7 @@ public class Setting {
 	}
 
 	/**
-	 * Get the effect volume.
+	 * Gets the effect volume.
 	 * @return the volume of the effects
 	 */
 	public float getVolumeEffects() {
@@ -71,40 +71,40 @@ public class Setting {
 	}
 
 	/**
-	 * Set the effect volume.
-	 * @return the volume of the effects
+	 * Sets the effect volume.
+	 * @param volumeEffects the volume of the effects
 	 */
 	public void setVolumeEffects(float volumeEffects) {
 		this.volumeEffects = volumeEffects;
 	}
 
 	/**
-	 * Get whether zoom button is enabled or not.
-	 * @return if the oom button is enabled true is returned, else false is returned
+	 * Gets whether zoom button is enabled or not.
+	 * @return true if the zoom button is enabled, false otherwise
 	 */
 	public boolean isZoomEnabled() {
 		return zoomEnabled;
 	}
 
 	/**
-	 * Set the whether zoom button is enabled or not.
-	 * @return true if zoom button is enabled, false otherwise
+	 * Sets the whether zoom button is enabled or not.
+	 * @param zoomEnabled true for enabling zoom, false for disabling it
 	 */
 	public void setZoomEnabled(boolean zoomEnabled) {
 		this.zoomEnabled = zoomEnabled;
 	}
 
 	/**
-	 * Get whether the colorblind mode is enabled or not.
-	 * @return if the colorblind mode is enabled true is returned, else false is returned
+	 * Gets whether the colorblind mode is enabled or not.
+	 * @return true if the colorblind mode is enabled, false otherwise
 	 */
 	public boolean isColorblindEnabled() {
 		return colorblindEnabled;
 	}
 
 	/**
-	 * Set the whether the colorblind mode is enabled or not.
-	 * @return true if the colorblind mode is enabled, false otherwise
+	 * Sets the whether the colorblind mode is enabled or not.
+	 * @param colorblindEnabled true for enabling colorblind mode, false for disabling it
 	 */
 	public void setColorblindEnabled(boolean colorblindEnabled) {
 		this.colorblindEnabled = colorblindEnabled;
