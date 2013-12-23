@@ -1,7 +1,7 @@
 package de.croggle.data.persistence;
 
 /**
- * Represents everything there is to know about the things a user has done within the game in the database.
+ * Represents - in the database - everything there is to know about the things a user has done within the game .
  *
  */
 public class Statistic {
@@ -12,7 +12,7 @@ public class Statistic {
 	private int playtime;
 	
 	/**
-	 * The number of hints used by the user.
+	 * The number of used hints.
 	 */
 	private int usedHints;
 	
@@ -27,7 +27,7 @@ public class Statistic {
 	private int packagesComplete;
 	
 	/**
-	 * The number of resets done by the user.
+	 * The number of resets triggered by the user.
 	 */
 	private int resetsUsed;
 	

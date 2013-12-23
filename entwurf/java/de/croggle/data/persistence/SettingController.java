@@ -40,7 +40,7 @@ public class SettingController {
 	}
 
 	/**
-	 * Loads the setting, which belongs to the user identified with the profile name
+	 * Loads the setting which belongs to the user identified with the profile name
 	 * and sets it as the current setting.
 	 * 
 	 * @param profileName the name of the user whose settings are loaded

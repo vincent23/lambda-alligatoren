@@ -28,7 +28,7 @@ public class Setting {
 	
 	/**
 	 * 
-	 * Constructs a new LevelProgress based on it's properties.
+	 * Constructs a new LevelProgress based on its properties.
 	 *
 	 * @param volumeMusic the volume of the music.
 	 * @param volumeEffect the volume of the effects.
@@ -55,7 +55,7 @@ public class Setting {
 	}
 	
 	/**
-	 * Sets the music volume.
+	 * Sets the music's volume.
 	 * @param volumeMusic the volume of the music
 	 */
 	public void setVolumeMusic(float volumeMusic) {
