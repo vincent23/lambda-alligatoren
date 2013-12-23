@@ -47,25 +47,6 @@ public abstract class Achievement {
 	}
 
 	/**
-	 * Returns the index of the stage the achievement has reached.
-	 * 
-	 * @return the stage index
-	 */
-	public int getIndex() {
-		return 0;
-	}
-
-	/**
-	 * Set the index of the stage the achievement has reached.
-	 * 
-	 * @param index
-	 *            the index to set
-	 */
-	public void setIndex(int index) {
-
-	}
-
-	/**
 	 * Calculates the index of the stage the achievement has reached, according
 	 * to the current statistics.
 	 * 
