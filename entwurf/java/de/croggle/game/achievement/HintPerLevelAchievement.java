@@ -11,7 +11,7 @@ public class HintPerLevelAchievement extends PerLevelAchievement {
 	 * Calculates the index of the stage the achievement has reached according
 	 * to the statistics of a completed level.
 	 * 
-	 * @return the update index
+	 * @return the updated index
 	 */
 	@Override
 	public int requirementsMet() {

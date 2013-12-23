@@ -9,7 +9,7 @@ public class LevelAchievement extends Achievement {
 	 * Calculates the index of the stage the achievement has reached according
 	 * to the current statistics.
 	 * 
-	 * @return the update index
+	 * @return the updated index
 	 */
 	@Override
 	public int requirementsMet() {
