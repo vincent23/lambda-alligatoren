@@ -29,8 +29,8 @@ public class AgedAlligator extends Alligator {
 	}
 
 	/**
-	 * Returns the parent object of the internal board object, means the parent
-	 * knot in the tree structure.
+	 * Returns the parent object of the internal board object, meaning the parent
+	 * node in the tree structure.
 	 * 
 	 * @return the parent object
 	 */
@@ -50,7 +50,7 @@ public class AgedAlligator extends Alligator {
 	}
 
 	/**
-	 * Accepts a visitor, which is then used to traverse the object's subtree.
+	 * Accepts a visitor, which is then used for traversing the object's subtree.
 	 * 
 	 * @param visitor
 	 *            the visitor that tries to access the tree
@@ -60,8 +60,7 @@ public class AgedAlligator extends Alligator {
 	}
 
 	/**
-	 * Creates and returns a deep copy of the board object. This means that also
-	 * all children must be deep copies and no reference may be used twice.
+	 * Creates and returns a deep copy of the board object.
 	 * 
 	 * @return the deep copy of this object
 	 */
@@ -71,7 +70,7 @@ public class AgedAlligator extends Alligator {
 	}
 
 	/**
-	 * Gets whether the object is protected from the user moving it or not.
+	 * Gets whether the object is movable by the user.
 	 * 
 	 * @return true if the object can be moved, otherwise false
 	 */
@@ -81,7 +80,7 @@ public class AgedAlligator extends Alligator {
 	}
 
 	/**
-	 * Gets whether the object is protected being removed from the board or not.
+	 * Gets whether the object is removable by the user.
 	 * 
 	 * @return true if the object can be removed, otherwise false
 	 */

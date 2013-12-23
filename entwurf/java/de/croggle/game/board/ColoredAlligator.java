@@ -5,7 +5,7 @@ import de.croggle.game.visitor.BoardObjectVisitor;
 
 /**
  * Colored alligators represent lambda abstractions in the Lambda Calculus. The
- * color of the alligator is the variable, which is bound by the abstraction.
+ * color of the alligator is the variable which is bound by the abstraction.
  * 
  * @composed 1 - 1-0 de.croggle.game.Color
  **/
@@ -15,12 +15,12 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 
 	/**
 	 * Creates a new ColoredAlligator with the specified color. The color hereby
-	 * serves as the name of variables bound by this abstraction in lambda
-	 * calculus speech. The ColoredAlligator is created as a recolorable board
+	 * serves as the name of variables bound by this abstraction in  the Lambda
+	 * Calculus. The ColoredAlligator is created as a recolorable board
 	 * object by this constructor.
 	 * 
 	 * @param c
-	 *            the color this alligator has.
+	 *            the color this alligator has
 	 */
 	public ColoredAlligator(Color c) {
 		this.color = c;
@@ -30,11 +30,11 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	/**
 	 * Creates a new ColoredAlligator with the specified color and the
 	 * permission value if the object is recolorable or not. The color hereby
-	 * serves as the name of variables bound by this abstraction in lambda
-	 * calculus speech.
+	 * serves as the name of variables bound by this abstraction in the Lambda
+	 * Calculus.
 	 * 
 	 * @param c
-	 *            the color this alligator has.
+	 *            the color this alligator has
 	 * @param recolorable
 	 *            whether the ColoredAlligator is recolorable (true) or not
 	 *            (false)
@@ -65,7 +65,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	}
 
 	/**
-	 * Accepts a visitor, which is then used to traverse the object's subtree.
+	 * Accepts a visitor, which is then used for traversing the object's subtree.
 	 * 
 	 * @param visitor
 	 *            the visitor that tries to access the tree
@@ -76,8 +76,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	}
 
 	/**
-	 * Creates and returns a deep copy of the board object. This means that also
-	 * all children must be deep copies and no reference may be used twice.
+	 * Creates and returns a deep copy of the board object.
 	 * 
 	 * @return the deep copy
 	 */
@@ -87,8 +86,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	}
 
 	/**
-	 * Gets whether the object is protected from user interactions involving
-	 * colors or not.
+	 * Returns whether the object's color can be changed by the user.
 	 * 
 	 * @return true if the object can be recolored, otherwise false
 	 */
@@ -100,7 +98,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	/**
 	 * Returns the color that represents a variable's name on the board.
 	 * 
-	 * @return the current color of the BoardObject
+	 * @return the current color of the colored alligator
 	 */
 	@Override
 	public Color getColor() {
@@ -108,18 +106,18 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	}
 
 	/**
-	 * Sets the color of the BoardObject, in placement mode only if it is marked
+	 * Sets the color of the alligator, in placement mode only if it is marked
 	 * as recolorable.
 	 * 
 	 * @param c
-	 *            the new color the caller wants the BoardObject to have
+	 *            the new color for the colored alligator
 	 */
 	@Override
 	public void setColor(Color c) {
 	}
 
 	/**
-	 * Gets whether the object is protected from the user moving it or not.
+	 * Returns whether the object can be moved by the user.
 	 * 
 	 * @return true if the object can be moved, otherwise false
 	 */
@@ -129,7 +127,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	}
 
 	/**
-	 * Gets whether the object is protected being removed from the board or not.
+	 * Returns whether the user can remove this alligator from the board.
 	 * 
 	 * @return true if the object can be removed, otherwise false
 	 */

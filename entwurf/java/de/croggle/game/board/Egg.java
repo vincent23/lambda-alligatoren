@@ -16,7 +16,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 
 	/**
 	 * Creates a new egg with the specified color. The color hereby serves as
-	 * the name of the variable this egg represents, in lambda calculus speech.
+	 * the name of the variable this egg represents in the Lambda Calculus.
 	 * The egg is created as a recolorable board object by this constructor.
 	 * 
 	 * @param c
@@ -30,7 +30,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	/**
 	 * Creates a new egg with the specified color and the permission value if
 	 * the object is recolorable or not. The color hereby serves as the name of
-	 * the variable this egg represents, in lambda calculus speech.
+	 * the variable this egg represents in the Lambda Calculus.
 	 * 
 	 * @param c
 	 *            the color this egg has.
@@ -43,7 +43,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	}
 
 	/**
-	 * Accepts a visitor, which is then used to traverse the object's subtree.
+	 * Accepts a visitor, which is then used for traversing the object's subtree.
 	 * 
 	 * @param visitor
 	 *            the visitor that tries to access the tree
@@ -74,8 +74,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	}
 
 	/**
-	 * Creates and returns a deep copy of the board object. This means that no
-	 * reference may be used twice.
+	 * Creates and returns a deep copy of the board object.
 	 * 
 	 * @return the deep copy
 	 */
@@ -85,8 +84,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	}
 
 	/**
-	 * Gets whether the object is protected from user interactions involving
-	 * colors or not.
+	 * Returns whether the egg's color can be changed by the user.
 	 * 
 	 * @return true if the object can be recolored, otherwise false
 	 */
@@ -98,7 +96,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	/**
 	 * Returns the color that represents a variable's name on the board.
 	 * 
-	 * @return the current color of the BoardObject
+	 * @return the current color of the egg
 	 */
 	@Override
 	public Color getColor() {
@@ -106,20 +104,20 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	}
 
 	/**
-	 * Sets the color of the BoardObject, in placement mode only if it is marked
+	 * Sets the color of the egg, in placement mode only if it is marked
 	 * as recolorable.
 	 * 
 	 * @param c
-	 *            the new color the caller wants the BoardObject to have
+	 *            the new color for the egg
 	 */
 	@Override
 	public void setColor(Color c) {
 	}
 
 	/**
-	 * Gets whether the object is protected from the user moving it or not.
+	 * Returns whether the egg can be moved by the user.
 	 * 
-	 * @return true if the object can be moved, otherwise false
+	 * @return true if the egg can be moved, otherwise false
 	 */
 	@Override
 	public boolean isMovable() {
@@ -127,7 +125,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	}
 
 	/**
-	 * Gets whether the object is protected being removed from the board or not.
+	 * Returns whether the egg can be removed by the user.
 	 * 
 	 * @return true if the object can be removed, otherwise false
 	 */

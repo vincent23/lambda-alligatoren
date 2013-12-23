@@ -3,8 +3,8 @@ package de.croggle.game.board;
 import de.croggle.game.visitor.BoardObjectVisitor;
 
 /**
- * Root object of every alligator term. This class offers the root of the tree
- * structure used to model the lambda terms in this project.
+ * Root object of every alligator term. This class acts as the root of the tree
+ * structure used for modelling the lambda terms.
  */
 public class Board extends Parent implements BoardObject {
 
@@ -16,7 +16,7 @@ public class Board extends Parent implements BoardObject {
 	}
 
 	/**
-	 * Accepts a visitor, which is then used to traverse the object's subtree.
+	 * Accepts a visitor, which is then used for traversing the object's subtree.
 	 * 
 	 * @param visitor
 	 *            the visitor that tries to access the tree
@@ -27,8 +27,7 @@ public class Board extends Parent implements BoardObject {
 	}
 
 	/**
-	 * Creates and returns a deep copy of the board object. This means that also
-	 * all children must be deep copies and no reference may be used twice.
+	 * Creates and returns a deep copy of the board object.
 	 * 
 	 * @return the deep copy
 	 */

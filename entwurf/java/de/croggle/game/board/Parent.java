@@ -12,20 +12,13 @@ import java.util.List;
 
 public abstract class Parent {
 
-	/**
-	 * Superconstrucor of all parents. Creates a parent with no children.
-	 */
-	public Parent() {
-
-	}
-
 	private List<InternalBoardObject> children;
 
 	/**
 	 * Adds a child to the family of the parent.
 	 * 
 	 * @param child
-	 *            the child, which is added to the family of the parent
+	 *            the child which should be added to the family of the parent
 	 */
 	public void addChild(InternalBoardObject child) {
 	}
@@ -34,7 +27,7 @@ public abstract class Parent {
 	 * Removes a child from the family of the parent.
 	 * 
 	 * @param child
-	 *            the child, which is removed from the family of the parent
+	 *            the child which should be removed from the family of the parent
 	 * @return whether the removal was successful
 	 */
 	public boolean removeChild(InternalBoardObject child) {
@@ -42,14 +35,14 @@ public abstract class Parent {
 	}
 
 	/**
-	 * Replaces the child object with the replaceChild object. If the given
+	 * Replaces a child object with another one. If the given
 	 * child is not found, nothing gets replaced and false is returned.
 	 * 
 	 * @param child
 	 *            the child to replace
 	 * @param replaceChild
 	 *            the child that replaces the current child
-	 * @return true on replace success, false otherwise
+	 * @return true on success, false otherwise
 	 */
 	public boolean replaceChildWith(InternalBoardObject child,
 			InternalBoardObject replaceChild) {
@@ -57,9 +50,9 @@ public abstract class Parent {
 	}
 
 	/**
-	 * Returns an Iterator for the children list.
+	 * Returns an iterator for the children list.
 	 * 
-	 * @return the Iterator
+	 * @return the iterator
 	 */
 	public Iterator<InternalBoardObject> getIterator() {
 		return null;
@@ -70,9 +63,9 @@ public abstract class Parent {
 	 * in the list of the parent.
 	 * 
 	 * @param child
-	 *            the child is the InternalBoardObject which should be checked
+	 *            the child which should be checked
 	 *            on
-	 * @return returns true if the given child is the last child in the list
+	 * @return returns true if the given child is the last child in the list,
 	 *         false otherwise
 	 */
 	public boolean isLastChild(InternalBoardObject child) {
@@ -80,11 +73,11 @@ public abstract class Parent {
 	}
 
 	/**
-	 * Returns the following child after the one given as parameter.
+	 * Returns the child next to (to the right of) the one given as a parameter.
 	 * 
 	 * @param child
-	 *            the child is an InternalBoardObject in the children list
-	 * @return the child which is the next after the child in the list
+	 *            the child whose successor should be returned
+	 * @return the child which is the next one in the list after the given child
 	 */
 	public InternalBoardObject getNextChild(InternalBoardObject child) {
 		return null;

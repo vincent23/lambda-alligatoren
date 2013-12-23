@@ -1,7 +1,7 @@
 package de.croggle.game.board;
 
 /**
- * The exception is thrown, when ever a lambda term contains more than 300
+ * The exception is thrown whenever a lambda term contains more than 300
  * InternalBoardObjects. This happens while adding alligators or eggs to the
  * working set, e.g. in the sandbox mode.
  */

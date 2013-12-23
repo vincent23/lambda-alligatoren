@@ -7,8 +7,8 @@ package de.croggle.game.board;
 public interface InternalBoardObject extends BoardObject {
 
 	/**
-	 * Returns the parent object of the internal board object, means the parent
-	 * knot in the tree structure.
+	 * Returns the parent object of the internal board object, meaning the parent
+	 * node in the tree structure.
 	 * 
 	 * @return the parent object
 	 */
@@ -23,14 +23,14 @@ public interface InternalBoardObject extends BoardObject {
 	public void setParent(Parent parent);
 
 	/**
-	 * Gets whether the object is protected from the user moving it or not.
+	 * Returns whether the object can be moved by the user.
 	 * 
 	 * @return true if the object can be moved, otherwise false
 	 */
 	public boolean isMovable();
 
 	/**
-	 * Gets whether the object is protected being removed from the board or not.
+	 * Returns whether the object can be removed by the user.
 	 * 
 	 * @return true if the object can be removed, otherwise false
 	 */
