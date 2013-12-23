@@ -21,7 +21,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	/**
 	 * Creates a new controller. On initialization the active statistic is set to null.
 	 * 
-	 * @param game he backreference to the central game object
+	 * @param game the backreference to the central game object
 	 */
 	public StatisticController(AlligatorApp game) {
 	}
