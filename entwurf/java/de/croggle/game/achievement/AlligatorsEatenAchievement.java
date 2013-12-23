@@ -7,12 +7,11 @@ package de.croggle.game.achievement;
 public class AlligatorsEatenAchievement extends Achievement {
 
 	/**
-	 * Returns true if the achievement with the given index has been achieved,
-	 * otherwise false.
-	 * 
-	 * @param index
-	 *            specifies which stage out of this type of achievement should
-	 *            be checked.
+	 * Calculates the index of the stage the achievement has reached according
+	 * to the statistics of a completed level.
+	 *
+	 * @return the updated index
+     *
 	 */
 	@Override
 	public int requirementsMet() {
