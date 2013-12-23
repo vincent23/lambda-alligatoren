@@ -50,7 +50,7 @@ public class AgedAlligator extends Alligator {
 	}
 
 	/**
-	 * Accepts a visitor, which is then used for traversing the object's subtree.
+	 * Accepts a visitor, which is then used for traversing the subtree of the object.
 	 * 
 	 * @param visitor
 	 *            the visitor that tries to access the tree

@@ -23,7 +23,7 @@ public interface ColoredBoardObject {
 	Color getColor();
 
 	/**
-	 * Sets the color of the board object, in placement mode only if it is marked
+	 * Sets the color of the board object. In placement mode: Set only if it is marked
 	 * as recolorable.
 	 * 
 	 * @param c

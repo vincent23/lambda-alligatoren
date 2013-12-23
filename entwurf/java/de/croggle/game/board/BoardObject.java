@@ -7,7 +7,7 @@ import de.croggle.game.visitor.BoardObjectVisitor;
  */
 public interface BoardObject {
 	/**
-	 * Accepts a visitor, which is then used for traversing the object's subtree.
+	 * Accepts a visitor which is then used for traversing the object's subtree.
 	 * 
 	 * @param visitor
 	 *            the visitor that tries to access the tree

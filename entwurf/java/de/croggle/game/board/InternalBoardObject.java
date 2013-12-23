@@ -1,8 +1,8 @@
 package de.croggle.game.board;
 
 /**
- * Special type of BoardObject, whose specific attribute is, that its not the
- * uppermost BoardObject, which means it must have a parent.
+ * Special type of BoardObject whose specific attribute is that its not the
+ * uppermost BoardObject which means it must have a parent.
  */
 public interface InternalBoardObject extends BoardObject {
 

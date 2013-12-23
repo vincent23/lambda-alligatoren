@@ -43,7 +43,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	}
 
 	/**
-	 * Accepts a visitor, which is then used for traversing the object's subtree.
+	 * Accepts a visitor, which is then used for traversing the subtree of the object.
 	 * 
 	 * @param visitor
 	 *            the visitor that tries to access the tree
@@ -84,7 +84,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	}
 
 	/**
-	 * Returns whether the egg's color can be changed by the user.
+	 * Returns whether the color of the egg can be changed by the user.
 	 * 
 	 * @return true if the object can be recolored, otherwise false
 	 */
@@ -104,7 +104,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	}
 
 	/**
-	 * Sets the color of the egg, in placement mode only if it is marked
+	 * Sets the color of the egg. In placement mode: Set only if it is marked
 	 * as recolorable.
 	 * 
 	 * @param c

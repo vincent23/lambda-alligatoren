@@ -4,8 +4,8 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Parent is an abstract class to model the functions board objects, which can
- * be parents of families, must have.
+ * Parent is an abstract class to model the functions board objects - which can
+ * be parents of families - must have.
  * 
  * @has 1 - * InternalBoardObject
  **/
@@ -42,7 +42,7 @@ public abstract class Parent {
 
 	/**
 	 * Replaces a child object with another one. If the given
-	 * child is not found, nothing gets replaced and false is returned.
+	 * child is not found, nothing is replaced and false is returned.
 	 * 
 	 * @param child
 	 *            the child to replace

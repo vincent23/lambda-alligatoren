@@ -65,8 +65,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	}
 
 	/**
-	 * Accepts a visitor, which is then used for traversing the object's subtree.
-	 * 
+	 * Accepts a visitor which is then used for traversing the subtree of the object.
 	 * @param visitor
 	 *            the visitor that tries to access the tree
 	 */
@@ -86,7 +85,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	}
 
 	/**
-	 * Returns whether the object's color can be changed by the user.
+	 * Returns whether the color of the egg can be changed by the user.
 	 * 
 	 * @return true if the object can be recolored, otherwise false
 	 */
@@ -96,7 +95,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	}
 
 	/**
-	 * Returns the color that represents a variable's name on the board.
+	 * Returns the color that represents the name of a variable on the board.
 	 * 
 	 * @return the current color of the colored alligator
 	 */
@@ -106,7 +105,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	}
 
 	/**
-	 * Sets the color of the alligator, in placement mode only if it is marked
+	 * Sets the color of the alligator. In placement mode: Set color only if it is marked
 	 * as recolorable.
 	 * 
 	 * @param c
