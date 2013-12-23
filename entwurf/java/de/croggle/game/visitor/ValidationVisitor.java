@@ -7,7 +7,7 @@ import de.croggle.game.board.Board;
 import de.croggle.game.board.BoardObject;
 
 /**
- * A visitor for checking whether the given Board represents a valid Lambda-Term (whether the evaluation is possilble or not).
+ * A visitor for checking whether the given Board represents a valid term within the lambda calculus (whether the evaluation is possible or not).
  */
 public class ValidationVisitor implements BoardObjectVisitor {
 	/**

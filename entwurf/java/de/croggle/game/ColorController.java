@@ -33,7 +33,7 @@ public class ColorController {
 	}
 
 	/**
-	 * Performs a lookup upon a given model.Color to consistently map it to a
+	 * Performs a lookup upon a given model. Color to consistently map it to a
 	 * real life color.
 	 * 
 	 * @param color
