@@ -67,8 +67,10 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * @param profileName
 	 *            the name of the user which unlocked achievements are loaded
 	 * @return true if the change was successful, false otherwise
+	 * @throws IllegalArgumentException
+	 *            whenever the string does not represent a profile in the database
 	 */
-	public boolean changeUnlockedAchievements(String profileName) {
+	public void changeUnlockedAchievements(String profileName) throws IllegalArgumentException {
 
 	}
 

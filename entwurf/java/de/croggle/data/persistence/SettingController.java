@@ -44,8 +44,10 @@ public class SettingController {
 	 * and sets it as the current setting.
 	 * 
 	 * @param profileName the name of the user whose settings are loaded
+	 * @throws IllegalArgumentException
+	 *            whenever the string does not represent a profile in the database
 	 */
-	public void changeCurrentSetting(String profileName) {
+	public void changeCurrentSetting(String profileName) throws IllegalArgumentException {
 
 	}
 
