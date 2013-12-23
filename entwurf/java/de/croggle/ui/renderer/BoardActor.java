@@ -54,7 +54,7 @@ public class BoardActor extends ParentActor implements BoardEventListener {
 
 	/**
 	 * Visualizes the process of one alligator eating another and its children, or just an egg, on the board.
-	 * @param eater the alligator, which eats the other alligator
+	 * @param eater the alligator which eats the other alligator
 	 * @param eatenFamily the family which is eaten by the other alligator
 	 */
 	@Override
