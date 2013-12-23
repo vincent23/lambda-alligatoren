@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="12.2">
-  <zoom_level>10</zoom_level>
+  <zoom_level>4</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>800</x>
-      <y>430</y>
-      <w>100</w>
-      <h>30</h>
+      <x>540</x>
+      <y>144</y>
+      <w>40</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>_:AlligatorApp_</panel_attributes>
     <additional_attributes/>
@@ -15,10 +15,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>480</x>
-      <y>430</y>
-      <w>180</w>
-      <h>30</h>
+      <x>412</x>
+      <y>144</y>
+      <w>72</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>_:ProfileController_</panel_attributes>
     <additional_attributes/>
@@ -26,34 +26,34 @@
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>230</x>
-      <y>570</y>
-      <w>360</w>
-      <h>70</h>
+      <x>312</x>
+      <y>200</y>
+      <w>144</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 changeCurrentProfile(profileName)
 </panel_attributes>
-    <additional_attributes>340;50;30;50</additional_attributes>
+    <additional_attributes>136;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>550</x>
-      <y>430</y>
-      <w>50</w>
-      <h>200</h>
+      <x>440</x>
+      <y>144</y>
+      <w>20</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;180</additional_attributes>
+    <additional_attributes>12;12;12;72</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>570</x>
-      <y>610</y>
-      <w>20</w>
-      <h>1440</h>
+      <x>448</x>
+      <y>216</y>
+      <w>8</w>
+      <h>576</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -61,34 +61,34 @@ changeCurrentProfile(profileName)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>810</x>
-      <y>430</y>
-      <w>50</w>
-      <h>230</h>
+      <x>544</x>
+      <y>144</y>
+      <w>20</w>
+      <h>92</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;210</additional_attributes>
+    <additional_attributes>12;12;12;84</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>940</y>
-      <w>290</w>
-      <h>70</h>
+      <x>444</x>
+      <y>348</y>
+      <w>116</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getSettingController()
 </panel_attributes>
-    <additional_attributes>270;50;30;50</additional_attributes>
+    <additional_attributes>108;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>830</x>
-      <y>1090</y>
-      <w>20</w>
-      <h>40</h>
+      <x>552</x>
+      <y>408</y>
+      <w>8</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -96,22 +96,22 @@ getSettingController()
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>980</y>
-      <w>290</w>
-      <h>70</h>
+      <x>444</x>
+      <y>364</y>
+      <w>116</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 settingController</panel_attributes>
-    <additional_attributes>30;50;270;50</additional_attributes>
+    <additional_attributes>12;20;108;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>2180</x>
-      <y>430</y>
-      <w>320</w>
-      <h>30</h>
+      <x>1092</x>
+      <y>144</y>
+      <w>128</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>_persistenceManager : PersistenceManager_</panel_attributes>
     <additional_attributes/>
@@ -119,21 +119,21 @@ settingController</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2340</x>
-      <y>770</y>
-      <w>50</w>
-      <h>400</h>
+      <x>1156</x>
+      <y>280</y>
+      <w>20</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;380</additional_attributes>
+    <additional_attributes>12;12;12;152</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>2360</x>
-      <y>1150</y>
-      <w>20</w>
-      <h>70</h>
+      <x>1164</x>
+      <y>432</y>
+      <w>8</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -141,10 +141,10 @@ settingController</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>980</x>
-      <y>430</y>
-      <w>260</w>
-      <h>30</h>
+      <x>612</x>
+      <y>144</y>
+      <w>104</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>_settingController : SettingController_</panel_attributes>
     <additional_attributes/>
@@ -152,21 +152,21 @@ settingController</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1070</x>
-      <y>430</y>
-      <w>50</w>
-      <h>640</h>
+      <x>648</x>
+      <y>144</y>
+      <w>20</w>
+      <h>256</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;620</additional_attributes>
+    <additional_attributes>12;12;12;248</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>1090</x>
-      <y>1050</y>
-      <w>20</w>
-      <h>200</h>
+      <x>656</x>
+      <y>392</y>
+      <w>8</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -174,23 +174,23 @@ settingController</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>1000</y>
-      <w>550</w>
-      <h>70</h>
+      <x>444</x>
+      <y>372</y>
+      <w>220</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 changeCurrentSetting(profileName)
 </panel_attributes>
-    <additional_attributes>530;50;30;50</additional_attributes>
+    <additional_attributes>212;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>830</x>
-      <y>990</y>
-      <w>20</w>
-      <h>40</h>
+      <x>552</x>
+      <y>368</y>
+      <w>8</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -198,72 +198,72 @@ changeCurrentSetting(profileName)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>820</x>
-      <y>1040</y>
-      <w>290</w>
-      <h>70</h>
+      <x>548</x>
+      <y>388</y>
+      <w>116</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getPersistanceManager()
 </panel_attributes>
-    <additional_attributes>30;50;270;50</additional_attributes>
+    <additional_attributes>12;20;108;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1080</x>
-      <y>1100</y>
-      <w>1300</w>
-      <h>70</h>
+      <x>652</x>
+      <y>412</y>
+      <w>520</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getSetting(profileName)
 </panel_attributes>
-    <additional_attributes>1280;50;30;50</additional_attributes>
+    <additional_attributes>512;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1080</x>
-      <y>1170</y>
-      <w>1300</w>
-      <h>70</h>
+      <x>652</x>
+      <y>440</y>
+      <w>520</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 setting
 </panel_attributes>
-    <additional_attributes>30;50;1280;50</additional_attributes>
+    <additional_attributes>12;20;512;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>1220</y>
-      <w>550</w>
-      <h>50</h>
+      <x>444</x>
+      <y>460</y>
+      <w>220</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;530;30</additional_attributes>
+    <additional_attributes>12;12;212;12</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>820</x>
-      <y>1080</y>
-      <w>290</w>
-      <h>70</h>
+      <x>548</x>
+      <y>404</y>
+      <w>116</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 persistanceManager</panel_attributes>
-    <additional_attributes>270;50;30;50</additional_attributes>
+    <additional_attributes>108;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>580</x>
-      <y>880</y>
-      <w>20</w>
-      <h>60</h>
+      <x>452</x>
+      <y>324</y>
+      <w>8</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -271,33 +271,33 @@ persistanceManager</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>810</y>
-      <w>204</w>
-      <h>100</h>
+      <x>444</x>
+      <y>296</y>
+      <w>76</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
   saveProfileName()</panel_attributes>
-    <additional_attributes>40;80;110;80;110;30;30;30</additional_attributes>
+    <additional_attributes>16;32;44;32;44;12;12;12</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>810</x>
-      <y>1100</y>
-      <w>50</w>
-      <h>200</h>
+      <x>544</x>
+      <y>412</y>
+      <w>20</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;180</additional_attributes>
+    <additional_attributes>12;12;12;72</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>2510</x>
-      <y>430</y>
-      <w>130</w>
-      <h>30</h>
+      <x>1224</x>
+      <y>144</y>
+      <w>52</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>_:ProfileManager_</panel_attributes>
     <additional_attributes/>
@@ -305,10 +305,10 @@ persistanceManager</panel_attributes>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>2620</x>
-      <y>740</y>
-      <w>160</w>
-      <h>50</h>
+      <x>1268</x>
+      <y>268</y>
+      <w>64</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>Loads the profile 
 from the database</panel_attributes>
@@ -317,46 +317,46 @@ from the database</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2560</x>
-      <y>730</y>
-      <w>80</w>
-      <h>50</h>
+      <x>1244</x>
+      <y>264</y>
+      <w>32</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;60;30</additional_attributes>
+    <additional_attributes>12;12;24;12</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2350</x>
-      <y>1150</y>
-      <w>450</w>
-      <h>70</h>
+      <x>1160</x>
+      <y>432</y>
+      <w>180</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 setting</panel_attributes>
-    <additional_attributes>30;50;430;50</additional_attributes>
+    <additional_attributes>12;20;172;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2350</x>
-      <y>1110</y>
-      <w>450</w>
-      <h>70</h>
+      <x>1160</x>
+      <y>416</y>
+      <w>180</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getSetting(profileName)
 </panel_attributes>
-    <additional_attributes>430;50;30;50</additional_attributes>
+    <additional_attributes>172;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>2780</x>
-      <y>1160</y>
-      <w>20</w>
-      <h>40</h>
+      <x>1332</x>
+      <y>436</y>
+      <w>8</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -364,10 +364,10 @@ getSetting(profileName)
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>350</x>
-      <y>860</y>
-      <w>160</w>
-      <h>80</h>
+      <x>360</x>
+      <y>316</y>
+      <w>64</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Stores profileName 
 in SharedPreferences
@@ -378,32 +378,32 @@ currently active user.</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>900</y>
-      <w>120</w>
-      <h>80</h>
+      <x>444</x>
+      <y>332</y>
+      <w>48</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;60;100;60;100;30;40;30</additional_attributes>
+    <additional_attributes>12;24;40;24;40;12;16;12</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>480</x>
-      <y>880</y>
-      <w>120</w>
-      <h>50</h>
+      <x>412</x>
+      <y>324</y>
+      <w>48</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;100;30</additional_attributes>
+    <additional_attributes>12;12;40;12</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>830</x>
-      <y>640</y>
-      <w>20</w>
-      <h>40</h>
+      <x>552</x>
+      <y>228</y>
+      <w>8</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -411,87 +411,87 @@ currently active user.</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>590</y>
-      <w>290</w>
-      <h>70</h>
+      <x>444</x>
+      <y>208</y>
+      <w>116</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getPersistanceManager()
 </panel_attributes>
-    <additional_attributes>270;50;30;50</additional_attributes>
+    <additional_attributes>108;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>620</y>
-      <w>290</w>
-      <h>70</h>
+      <x>444</x>
+      <y>220</y>
+      <w>116</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 persistanceManager</panel_attributes>
-    <additional_attributes>30;50;270;50</additional_attributes>
+    <additional_attributes>12;20;108;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2350</x>
-      <y>690</y>
-      <w>240</w>
-      <h>70</h>
+      <x>1160</x>
+      <y>248</y>
+      <w>96</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getProfile(profileName)
 </panel_attributes>
-    <additional_attributes>220;50;30;50</additional_attributes>
+    <additional_attributes>88;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>680</y>
-      <w>1820</w>
-      <h>70</h>
+      <x>444</x>
+      <y>244</y>
+      <w>728</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 loadProfile(profileName)
 </panel_attributes>
-    <additional_attributes>1800;50;30;50</additional_attributes>
+    <additional_attributes>720;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>750</y>
-      <w>1820</w>
-      <h>70</h>
+      <x>444</x>
+      <y>272</y>
+      <w>728</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 profile
 </panel_attributes>
-    <additional_attributes>30;50;1800;50</additional_attributes>
+    <additional_attributes>12;20;720;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2350</x>
-      <y>730</y>
-      <w>240</w>
-      <h>70</h>
+      <x>1160</x>
+      <y>264</y>
+      <w>96</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 profile
 </panel_attributes>
-    <additional_attributes>30;50;220;50</additional_attributes>
+    <additional_attributes>12;20;88;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>2360</x>
-      <y>730</y>
-      <w>20</w>
-      <h>70</h>
+      <x>1164</x>
+      <y>264</y>
+      <w>8</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -499,10 +499,10 @@ profile
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>2570</x>
-      <y>740</y>
-      <w>20</w>
-      <h>40</h>
+      <x>1248</x>
+      <y>268</y>
+      <w>8</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -510,21 +510,21 @@ profile
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2340</x>
-      <y>430</y>
-      <w>50</w>
-      <h>320</h>
+      <x>1156</x>
+      <y>144</y>
+      <w>20</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;300</additional_attributes>
+    <additional_attributes>12;12;12;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>2710</x>
-      <y>430</y>
-      <w>140</w>
-      <h>30</h>
+      <x>1304</x>
+      <y>144</y>
+      <w>56</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>_:SettingManager_</panel_attributes>
     <additional_attributes/>
@@ -532,67 +532,67 @@ profile
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2550</x>
-      <y>430</y>
-      <w>50</w>
-      <h>330</h>
+      <x>1240</x>
+      <y>144</y>
+      <w>20</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;310</additional_attributes>
+    <additional_attributes>12;12;12;124</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2760</x>
-      <y>430</y>
-      <w>50</w>
-      <h>750</h>
+      <x>1324</x>
+      <y>144</y>
+      <w>20</w>
+      <h>300</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;730</additional_attributes>
+    <additional_attributes>12;12;12;292</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>810</x>
-      <y>650</y>
-      <w>50</w>
-      <h>360</h>
+      <x>544</x>
+      <y>232</y>
+      <w>20</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;340</additional_attributes>
+    <additional_attributes>12;12;12;136</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>810</x>
-      <y>1000</y>
-      <w>50</w>
-      <h>110</h>
+      <x>544</x>
+      <y>372</y>
+      <w>20</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;90</additional_attributes>
+    <additional_attributes>12;12;12;36</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>1230</y>
-      <w>290</w>
-      <h>70</h>
+      <x>444</x>
+      <y>464</y>
+      <w>116</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getStatisticController()
 </panel_attributes>
-    <additional_attributes>270;50;30;50</additional_attributes>
+    <additional_attributes>108;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>830</x>
-      <y>1280</y>
-      <w>20</w>
-      <h>50</h>
+      <x>552</x>
+      <y>484</y>
+      <w>8</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -600,22 +600,22 @@ getStatisticController()
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>1280</y>
-      <w>290</w>
-      <h>70</h>
+      <x>444</x>
+      <y>484</y>
+      <w>116</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 statisticControler</panel_attributes>
-    <additional_attributes>30;50;270;50</additional_attributes>
+    <additional_attributes>12;20;108;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1350</x>
-      <y>430</y>
-      <w>280</w>
-      <h>30</h>
+      <x>760</x>
+      <y>144</y>
+      <w>112</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>_statisticController : StatisticController_</panel_attributes>
     <additional_attributes/>
@@ -623,10 +623,10 @@ statisticControler</panel_attributes>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>2610</x>
-      <y>1070</y>
-      <w>160</w>
-      <h>50</h>
+      <x>1264</x>
+      <y>400</y>
+      <w>64</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>Loads the setting 
 form the database</panel_attributes>
@@ -635,21 +635,21 @@ form the database</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2730</x>
-      <y>1090</y>
-      <w>80</w>
-      <h>90</h>
+      <x>1312</x>
+      <y>408</y>
+      <w>32</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;60;70</additional_attributes>
+    <additional_attributes>12;12;24;28</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>2860</x>
-      <y>430</y>
-      <w>140</w>
-      <h>30</h>
+      <x>1364</x>
+      <y>144</y>
+      <w>56</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>_:StatisticManager_</panel_attributes>
     <additional_attributes/>
@@ -657,21 +657,21 @@ form the database</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1460</x>
-      <y>430</y>
-      <w>50</w>
-      <h>940</h>
+      <x>804</x>
+      <y>144</y>
+      <w>20</w>
+      <h>376</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;920</additional_attributes>
+    <additional_attributes>12;12;12;368</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>1480</x>
-      <y>1350</y>
-      <w>20</w>
-      <h>270</h>
+      <x>812</x>
+      <y>512</y>
+      <w>8</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -679,47 +679,47 @@ form the database</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>1300</y>
-      <w>940</w>
-      <h>70</h>
+      <x>444</x>
+      <y>492</y>
+      <w>376</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 changeCurrentStatistic(profileName)
 </panel_attributes>
-    <additional_attributes>920;50;30;50</additional_attributes>
+    <additional_attributes>368;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2340</x>
-      <y>1190</y>
-      <w>50</w>
-      <h>320</h>
+      <x>1156</x>
+      <y>448</y>
+      <w>20</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;300</additional_attributes>
+    <additional_attributes>12;12;12;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1470</x>
-      <y>1440</y>
-      <w>910</w>
-      <h>70</h>
+      <x>808</x>
+      <y>548</y>
+      <w>364</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getStatistic(profileName)
 </panel_attributes>
-    <additional_attributes>890;50;30;50</additional_attributes>
+    <additional_attributes>356;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>2360</x>
-      <y>1490</y>
-      <w>20</w>
-      <h>70</h>
+      <x>1164</x>
+      <y>568</y>
+      <w>8</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -727,36 +727,36 @@ getStatistic(profileName)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2350</x>
-      <y>1490</y>
-      <w>600</w>
-      <h>70</h>
+      <x>1160</x>
+      <y>568</y>
+      <w>240</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 statistic
 </panel_attributes>
-    <additional_attributes>30;50;580;50</additional_attributes>
+    <additional_attributes>12;20;232;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2350</x>
-      <y>1450</y>
-      <w>600</w>
-      <h>70</h>
+      <x>1160</x>
+      <y>552</y>
+      <w>240</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getStatistic(profileName)
 </panel_attributes>
-    <additional_attributes>580;50;30;50</additional_attributes>
+    <additional_attributes>232;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>2930</x>
-      <y>1500</y>
-      <w>20</w>
-      <h>40</h>
+      <x>1392</x>
+      <y>572</y>
+      <w>8</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -764,21 +764,21 @@ getStatistic(profileName)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>3020</x>
-      <y>1820</y>
-      <w>100</w>
-      <h>110</h>
+      <x>1428</x>
+      <y>700</y>
+      <w>60</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;80;90</additional_attributes>
+    <additional_attributes>12;12;52;36</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>2960</x>
-      <y>1720</y>
-      <w>120</w>
-      <h>130</h>
+      <x>1404</x>
+      <y>660</y>
+      <w>48</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>Loads the 
 unlocked 
@@ -790,78 +790,78 @@ database</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2910</x>
-      <y>430</y>
-      <w>50</w>
-      <h>1090</h>
+      <x>1384</x>
+      <y>144</y>
+      <w>20</w>
+      <h>436</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;1070</additional_attributes>
+    <additional_attributes>12;12;12;428</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2760</x>
-      <y>1170</y>
-      <w>50</w>
-      <h>980</h>
+      <x>1324</x>
+      <y>440</y>
+      <w>20</w>
+      <h>424</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;960</additional_attributes>
+    <additional_attributes>12;12;12;416</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1470</x>
-      <y>1510</y>
-      <w>910</w>
-      <h>70</h>
+      <x>808</x>
+      <y>576</y>
+      <w>364</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 statistic
 </panel_attributes>
-    <additional_attributes>30;50;890;50</additional_attributes>
+    <additional_attributes>12;20;356;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2550</x>
-      <y>750</y>
-      <w>50</w>
-      <h>1400</h>
+      <x>1240</x>
+      <y>272</y>
+      <w>20</w>
+      <h>596</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;1380</additional_attributes>
+    <additional_attributes>12;12;12;588</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>1580</y>
-      <w>940</w>
-      <h>50</h>
+      <x>444</x>
+      <y>604</y>
+      <w>376</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;920;30</additional_attributes>
+    <additional_attributes>12;12;368;12</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>810</x>
-      <y>1300</y>
-      <w>50</w>
-      <h>110</h>
+      <x>544</x>
+      <y>492</y>
+      <w>20</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;90</additional_attributes>
+    <additional_attributes>12;12;12;36</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1700</x>
-      <y>430</y>
-      <w>360</w>
-      <h>30</h>
+      <x>900</x>
+      <y>144</y>
+      <w>144</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>_achievementController : AchievementController_</panel_attributes>
     <additional_attributes/>
@@ -869,23 +869,23 @@ statistic
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>1640</y>
-      <w>290</w>
-      <h>70</h>
+      <x>444</x>
+      <y>628</y>
+      <w>116</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getAchievementController()
 </panel_attributes>
-    <additional_attributes>270;50;30;50</additional_attributes>
+    <additional_attributes>108;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>830</x>
-      <y>1690</y>
-      <w>20</w>
-      <h>50</h>
+      <x>552</x>
+      <y>648</y>
+      <w>8</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -893,22 +893,22 @@ getAchievementController()
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>1690</y>
-      <w>290</w>
-      <h>70</h>
+      <x>444</x>
+      <y>648</y>
+      <w>116</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 achievementControlller</panel_attributes>
-    <additional_attributes>30;50;270;50</additional_attributes>
+    <additional_attributes>12;20;108;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>1850</x>
-      <y>1760</y>
-      <w>20</w>
-      <h>260</h>
+      <x>960</x>
+      <y>676</y>
+      <w>8</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -916,23 +916,23 @@ achievementControlller</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>1710</y>
-      <w>1310</w>
-      <h>70</h>
+      <x>444</x>
+      <y>656</y>
+      <w>524</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 changeUnlockedAchievements(profileName)
 </panel_attributes>
-    <additional_attributes>1290;50;30;50</additional_attributes>
+    <additional_attributes>516;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>2360</x>
-      <y>1900</y>
-      <w>20</w>
-      <h>70</h>
+      <x>1164</x>
+      <y>732</y>
+      <w>8</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -940,36 +940,36 @@ changeUnlockedAchievements(profileName)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2350</x>
-      <y>1900</y>
-      <w>770</w>
-      <h>70</h>
+      <x>1160</x>
+      <y>732</y>
+      <w>328</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 unlockedAchievements
 </panel_attributes>
-    <additional_attributes>30;50;750;50</additional_attributes>
+    <additional_attributes>12;20;320;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2350</x>
-      <y>1860</y>
-      <w>770</w>
-      <h>70</h>
+      <x>1160</x>
+      <y>716</y>
+      <w>328</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getUnlockedAchievements(profileName)
 </panel_attributes>
-    <additional_attributes>750;50;30;50</additional_attributes>
+    <additional_attributes>320;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>3100</x>
-      <y>1910</y>
-      <w>20</w>
-      <h>40</h>
+      <x>1480</x>
+      <y>736</y>
+      <w>8</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -977,69 +977,69 @@ getUnlockedAchievements(profileName)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2910</x>
-      <y>1510</y>
-      <w>50</w>
-      <h>630</h>
+      <x>1384</x>
+      <y>576</y>
+      <w>20</w>
+      <h>292</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;610</additional_attributes>
+    <additional_attributes>12;12;12;284</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1840</x>
-      <y>1920</y>
-      <w>540</w>
-      <h>70</h>
+      <x>956</x>
+      <y>740</y>
+      <w>216</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 unlockedAchievements
 </panel_attributes>
-    <additional_attributes>30;50;520;50</additional_attributes>
+    <additional_attributes>12;20;208;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1830</x>
-      <y>430</y>
-      <w>50</w>
-      <h>1350</h>
+      <x>952</x>
+      <y>144</y>
+      <w>20</w>
+      <h>540</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;1330</additional_attributes>
+    <additional_attributes>12;12;12;532</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2340</x>
-      <y>1530</y>
-      <w>50</w>
-      <h>390</h>
+      <x>1156</x>
+      <y>584</y>
+      <w>20</w>
+      <h>156</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;370</additional_attributes>
+    <additional_attributes>12;12;12;148</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1840</x>
-      <y>1850</y>
-      <w>540</w>
-      <h>70</h>
+      <x>956</x>
+      <y>712</y>
+      <w>216</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getAllUnlockedAchievements(profileName)
 </panel_attributes>
-    <additional_attributes>520;50;30;50</additional_attributes>
+    <additional_attributes>208;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>3020</x>
-      <y>430</y>
-      <w>210</w>
-      <h>30</h>
+      <x>1444</x>
+      <y>144</y>
+      <w>84</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>_:AchievementManager_</panel_attributes>
     <additional_attributes/>
@@ -1047,21 +1047,21 @@ getAllUnlockedAchievements(profileName)
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>3080</x>
-      <y>430</y>
-      <w>50</w>
-      <h>1500</h>
+      <x>1472</x>
+      <y>144</y>
+      <w>20</w>
+      <h>600</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;1480</additional_attributes>
+    <additional_attributes>12;12;12;592</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>2820</x>
-      <y>1330</y>
-      <w>90</w>
-      <h>130</h>
+      <x>1348</x>
+      <y>504</y>
+      <w>36</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>Loads the 
 statistic 
@@ -1072,43 +1072,43 @@ database</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1460</x>
-      <y>1590</y>
-      <w>50</w>
-      <h>550</h>
+      <x>800</x>
+      <y>608</y>
+      <w>24</w>
+      <h>256</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;530</additional_attributes>
+    <additional_attributes>16;12;12;248</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2340</x>
-      <y>1940</y>
-      <w>50</w>
-      <h>210</h>
+      <x>1156</x>
+      <y>748</y>
+      <w>20</w>
+      <h>116</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;190</additional_attributes>
+    <additional_attributes>12;12;12;108</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>3080</x>
-      <y>1920</y>
-      <w>50</w>
-      <h>220</h>
+      <x>1472</x>
+      <y>740</y>
+      <w>20</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;200</additional_attributes>
+    <additional_attributes>12;12;12;120</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>830</x>
-      <y>1390</y>
-      <w>20</w>
-      <h>40</h>
+      <x>552</x>
+      <y>528</y>
+      <w>8</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -1116,35 +1116,35 @@ database</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>820</x>
-      <y>1340</y>
-      <w>680</w>
-      <h>70</h>
+      <x>548</x>
+      <y>508</y>
+      <w>272</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getPersistanceManager()
 </panel_attributes>
-    <additional_attributes>30;50;660;50</additional_attributes>
+    <additional_attributes>12;20;264;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>820</x>
-      <y>1380</y>
-      <w>680</w>
-      <h>70</h>
+      <x>548</x>
+      <y>524</y>
+      <w>272</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 persistanceManager</panel_attributes>
-    <additional_attributes>660;50;30;50</additional_attributes>
+    <additional_attributes>264;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.SeqObjectActive</type>
     <coordinates>
-      <x>830</x>
-      <y>1820</y>
-      <w>20</w>
-      <h>40</h>
+      <x>552</x>
+      <y>700</y>
+      <w>8</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -1152,147 +1152,136 @@ persistanceManager</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>820</x>
-      <y>1810</y>
-      <w>1050</w>
-      <h>70</h>
+      <x>548</x>
+      <y>696</y>
+      <w>420</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;
 persistanceManager</panel_attributes>
-    <additional_attributes>1030;50;30;50</additional_attributes>
+    <additional_attributes>412;20;12;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>820</x>
-      <y>1770</y>
-      <w>1050</w>
-      <h>70</h>
+      <x>548</x>
+      <y>680</y>
+      <w>420</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 getPersistanceManager()
 </panel_attributes>
-    <additional_attributes>30;50;1030;50</additional_attributes>
+    <additional_attributes>12;20;412;20</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>810</x>
-      <y>1400</y>
-      <w>50</w>
-      <h>310</h>
+      <x>544</x>
+      <y>532</y>
+      <w>20</w>
+      <h>124</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;290</additional_attributes>
+    <additional_attributes>12;12;12;116</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>2870</x>
-      <y>1430</y>
-      <w>90</w>
-      <h>90</h>
+      <x>1368</x>
+      <y>544</y>
+      <w>36</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;70;70</additional_attributes>
+    <additional_attributes>12;12;28;28</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>1980</y>
-      <w>1310</w>
-      <h>50</h>
+      <x>444</x>
+      <y>764</y>
+      <w>524</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;1290;30</additional_attributes>
+    <additional_attributes>12;12;516;12</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>810</x>
-      <y>1710</y>
-      <w>50</w>
-      <h>130</h>
+      <x>544</x>
+      <y>656</y>
+      <w>20</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;110</additional_attributes>
+    <additional_attributes>12;12;12;44</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>160</x>
-      <y>2020</y>
-      <w>430</w>
-      <h>50</h>
+      <x>312</x>
+      <y>780</y>
+      <w>144</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>lt=&lt;</panel_attributes>
-    <additional_attributes>30;30;410;30</additional_attributes>
+    <additional_attributes>12;12;136;12</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>550</x>
-      <y>2020</y>
-      <w>50</w>
-      <h>130</h>
+      <x>440</x>
+      <y>780</y>
+      <w>20</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;110</additional_attributes>
+    <additional_attributes>12;12;12;80</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>810</x>
-      <y>1830</y>
-      <w>50</w>
-      <h>320</h>
+      <x>544</x>
+      <y>704</y>
+      <w>20</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;300</additional_attributes>
+    <additional_attributes>12;12;12;152</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1060</x>
-      <y>1220</y>
-      <w>60</w>
-      <h>930</h>
+      <x>644</x>
+      <y>460</y>
+      <w>24</w>
+      <h>404</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>40;30;30;910</additional_attributes>
+    <additional_attributes>16;12;12;396</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>1830</x>
-      <y>1990</y>
-      <w>50</w>
-      <h>150</h>
+      <x>952</x>
+      <y>768</y>
+      <w>20</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;130</additional_attributes>
+    <additional_attributes>12;12;12;92</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.custom.InteractionFrame</type>
     <coordinates>
-      <x>0</x>
-      <y>0</y>
-      <w>3110</w>
-      <h>1800</h>
+      <x>324</x>
+      <y>64</y>
+      <w>1256</w>
+      <h>796</h>
     </coordinates>
     <panel_attributes>Change user profile</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>2910</x>
-      <y>1310</y>
-      <w>50</w>
-      <h>420</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30;30;30;400</additional_attributes>
   </element>
 </diagram>
