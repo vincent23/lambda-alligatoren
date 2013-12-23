@@ -15,6 +15,12 @@ public abstract class Parent {
 	private List<InternalBoardObject> children;
 
 	/**
+	 * Superconstructor of all parents. Creates a parent with no children.
+	 */
+	protected Parent() {
+	}
+
+	/**
 	 * Adds a child to the family of the parent.
 	 * 
 	 * @param child

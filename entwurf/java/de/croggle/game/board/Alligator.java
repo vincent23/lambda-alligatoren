@@ -16,6 +16,12 @@ public abstract class Alligator extends Parent implements InternalBoardObject {
 	private Parent parent;
 
 	/**
+	 * Superconstructor for all alligators.
+	 */
+	protected Alligator() {
+	}
+
+	/**
 	 * Accepts a visitor, which is then used for traversing the object's subtree.
 	 * 
 	 * @param visitor
