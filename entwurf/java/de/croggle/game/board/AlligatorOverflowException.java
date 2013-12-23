@@ -8,14 +8,15 @@ import java.lang.Exception;
 public class AlligatorOverflowException extends Exception{
 	
 	/**
-	 * @inheritDoc
+	 * Creates a new instance of the exception with the default constructor.
 	 */
 	public AlligatorOverflowException() {
 		super();
 	}
 	
-	/**
-	 * @inheritDoc
+		/**
+	 * Creates a new instance of the exception with the given error message.
+	 * @param message a message describing the cause of the exception that occured.
 	 */
 	public AlligatorOverflowException(String message) {
 		super(message);
