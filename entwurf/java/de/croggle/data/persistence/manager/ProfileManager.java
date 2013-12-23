@@ -16,14 +16,14 @@ import android.content.Context;
 public class ProfileManager extends TableManager {
 
 	/**
-	 * Name for the column that stores the profile names. The names are used as the primary key.
+	 * Name of the column that stores the profile names. The names are used as the primary key.
 	 */
 	static final String KEY_PROFILE_NAME = "profileName";
 	
 	/**
-	 * Name for the column that stores the path to the profile pictures.
+	 * Name of the column that stores the path to the profile pictures.
 	 */
-	static final String KEY_PICTUREPATH = "picturepath";
+	static final String KEY_PICTUREPATH = "picturePath";
 
 	/**
 	 * The name of the table.
