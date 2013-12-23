@@ -18,7 +18,7 @@ public class AlligatorOverflowException extends Exception {
 	 * Creates a new instance of the exception with the given error message.
 	 * 
 	 * @param message
-	 *            a message describing the cause of the exception that occured.
+	 *            a message describing the cause of the exception that occured
 	 */
 	public AlligatorOverflowException(String message) {
 		super(message);
