@@ -40,7 +40,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	}
 
 	/**
-	 * Replaces the current statistic with a new one. The new statistic gets stored in
+	 * Replaces the current statistic with a new one. The new statistic is stored in
 	 * the database and overwrites the values of the old statistic.
 	 * 
 	 * @param newStatistic 

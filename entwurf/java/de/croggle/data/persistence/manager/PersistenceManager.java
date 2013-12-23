@@ -11,7 +11,7 @@ import de.croggle.AlligatorApp;
 
 /**
  * 
- * This class provides methods for storing and loading profile specific data. 
+ * This class provides methods for storing and loading profile-specific data.
  * 
  * @navassoc 1 - 1 de.croggle.data.persistence.manager.ProfileManager
  * @navassoc 1 - 1 de.croggle.data.persistence.manager.SettingManager
@@ -54,7 +54,7 @@ public class PersistenceManager {
 
 
 	/**
-	 * Creates a new PersistanceManager and initializes the different managers.
+	 * Creates a new PersistenceManager and initializes the different managers.
 	 * @param game the backwards reference to the central game object
 	 */
 	public PersistenceManager(AlligatorApp game) {
@@ -72,14 +72,14 @@ public class PersistenceManager {
 	/**
 	 * Returns the profile with the given profile name.
 	 * @param profileName the name of the profile which is to be loaded
-	 * @return the profile which was loaded, null if there is no profile with this name
+	 * @return the profile which has been loaded, null if there is no profile with this name
 	 */
 	public Profile loadProfile(String profileName) {
 		return null;
 	}
 	
 	/**
-	 * Overwrites the profile identified by the given name with the values of the new profile. Every reference to the profile name gets updated.
+	 * Overwrites the profile identified by the given name with the values of the new profile. Every reference to the profile name is updated.
 	 * @param profileName the string to identify the profile which is to be edited
 	 * @param profile contains the values used for overwriting the old profile
 	 */
@@ -96,7 +96,7 @@ public class PersistenceManager {
 	}
 
 	/**
-	 * Deletes the profile with the given name (all entries referenced by it are deleted also). 
+	 * Deletes the profile with the given name (all entries referenced by it are also deleted).
 	 * @param profileName the name of the profile to be deleted
 	 */
 	public void deleteProfile(String profileName) {
@@ -150,7 +150,7 @@ public class PersistenceManager {
 	}
 
 	/**
-	 * Returns the level progress whose level ID matches the given leven id and which belongs to the profile with the given profile name.
+	 * Returns the level progress whose level ID matches the given level id and which belongs to the profile with the given profile name.
 	 * @param profileName the name of the profile to which the levelProgress belongs
 	 * @param levelID the level ID of the level progress
 	 * @return the found level progress, null if no level progress is found

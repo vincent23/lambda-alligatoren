@@ -216,8 +216,8 @@ public class Statistic {
 	}
 
 	/**
-	 * Sets the number of eggs placed.
-	 * @param eggsPlaced the new number of eggs placed
+	 * Sets the number of placed eggs.
+	 * @param eggsPlaced the new number of placed eggs
 	 */
 	public void setEggsPlaced(int eggsPlaced) {
 		this.eggsPlaced = eggsPlaced;

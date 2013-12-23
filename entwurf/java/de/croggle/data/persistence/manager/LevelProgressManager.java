@@ -15,22 +15,22 @@ import android.content.Context;
 public class LevelProgressManager extends TableManager {
 	
 	/**
-	 * Name for the column that stores the profile names. The names are used as the primary key.
+	 * Name of the column that stores the profile names. The names are used as the primary key.
 	 */
 	static final String KEY_PROFILE_NAME = "profileName";
 	
 	/**
-	 * Name for the column that stores the level id. The IDs are used as the secondary key.
+	 * Name of the column that stores the level id. The IDs are used as the secondary key.
 	 */
 	static final String KEY_LEVEL_ID = "levelId";
 	
 	/**
-	 * Name for the column that stores the information whether the level is solved or not.
+	 * Name of the column that stores whether the level has been solved or not.
 	 */
 	static final String KEY_SOLVED = "solved";
 	
 	/**
-	 * Name for the column that stores the current board.
+	 * Name of the column that stores the current board.
 	 */
 	static final String KEY_CURRENT_BOARD = "currentBoard";
 	
@@ -40,12 +40,12 @@ public class LevelProgressManager extends TableManager {
 	static final String KEY_USED_RESETS = "usedResets";
 	
 	/**
-	 * Name for the column that stores the number of used hints.
+	 * Name of the column that stores the number of used hints.
 	 */
 	static final String KEY_USED_HINTS = "usedHints";
 	
 	/**
-	 * Name for the column that stores the amount of used time.
+	 * Name of the column that stores the amount of used time.
 	 */
 	static final String KEY_USED_TIME = "usedTime";
 		
@@ -81,7 +81,7 @@ public class LevelProgressManager extends TableManager {
 	
 	/**
 	 * Searches the table for a level progress that belongs to the profile identified by the profile name and whose level ID matches the level ID stored in level progress. 
-	 * @param profileName the name of the profile to which the level progresses belongs
+	 * @param profileName the name of the profile to which the level progresses belong
 	 * @param levelId the level ID of the searched-for level progress
 	 * @return the found level progress, null if no level progress is found
 	 */
@@ -91,9 +91,9 @@ public class LevelProgressManager extends TableManager {
 	
 	
 	/**
-	 * Searches the table for a level progress that belongs to the profile identified by profile name and whose level ID matches the level ID stored in levelProgress. 
+	 * Searches the table for a level progress that belongs to the profile identified by the profile name and whose level ID matches the level ID stored in levelProgress. 
 	 * The values of the found level progress are overwritten by the new level progress.
-	 * @param profileName the name of the profile to which the level progresses belongs
+	 * @param profileName the name of the profile to which the level progresses belong
 	 * @param levelProgress the level progress whose values are used for overwriting the old level progress
 	 */
 	void updateLevelProgress(String profileName, LevelProgress levelProgress) {
@@ -103,7 +103,7 @@ public class LevelProgressManager extends TableManager {
 	
 	/**
 	 * Deletes all level progresses which belong to the profile identified by the profile name from the table.
-	 * @param profileName the name of the profile to which the level progresses belongs
+	 * @param profileName the name of the profile to which the level progresses belong
 	 */
 	void deleteLevelProgresses(String profileName) {
 		

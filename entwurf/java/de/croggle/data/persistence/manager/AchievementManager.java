@@ -16,17 +16,17 @@ import android.content.Context;
 public class AchievementManager extends TableManager {
 	
 	/**
-	 * Name for the column that stores the profile names. Those names are used as the primary key.
+	 * Name of the column that stores the profile names. Those names are used as the primary key.
 	 */
 	static final String KEY_PROFILE_NAME = "profileName";
 	
 	/**
-	 * Name for the column that stores the achievement IDs.
+	 * Name of the column that stores the achievement IDs.
 	 */	
 	static final String KEY_ACHIEVEMENT_ID = "achievementID";
 	
 	/**
-	 * Name for the column that stores the achievement states.
+	 * Name of the column that stores the achievement states.
 	 */
 	static final String KEY_ACHIEVEMENT_State = "achievementState";
 	

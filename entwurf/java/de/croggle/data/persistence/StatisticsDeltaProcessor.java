@@ -1,8 +1,7 @@
 package de.croggle.data.persistence;
 
 /**
- * A listener that is to be implemented by all classes that need to calculate
- * stuff from the statistic values that occur during a level.
+ * A listener that is to be implemented by all classes that need to process data from the statistic values that occur during a level.
  */
 public interface StatisticsDeltaProcessor {
 	/**
