@@ -27,7 +27,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	}
 
 	/**
-	 * Creates a controller with the given statistic as initial avtive
+	 * Creates a controller with the given statistic as initial active
 	 * statistic.
 	 * 
 	 * @param statistic

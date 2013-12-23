@@ -12,6 +12,20 @@ public class LevelPackage {
     private String description;
     private String emblemPath;
     private boolean hasAnimation;
+    
+    /**
+     * Creates a level package with default values.
+     */
+    public LevelPackage(){
+    }
+    
+    /**
+     * Creates a level package with the given id.
+     * All other fields have the default values.
+     * @param levelPackageId the folder id of the levelPackage
+     */
+    public LevelPackage(int levelPackageId){
+    }
 
     /**
      * Gets the level controller which is responsible for handling the levels within the level package.

@@ -9,6 +9,9 @@ import com.badlogic.gdx.utils.JsonValue;
  * delegates requests for level instantiation to this class' instantiate method.
  */
 public class LoadLevelHelper {
+
+	private LoadLevelHelper(){}
+
 	/**
 	 * Called to load a new level. With both the package index and the level index
 	 * it is possible to distinctively indentify the required level.

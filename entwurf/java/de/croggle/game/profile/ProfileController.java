@@ -33,7 +33,8 @@ public class ProfileController {
 	}
 	
 	/**
-	* Sets the profile identified by the given profile name as the active profile. 
+	* Sets the profile identified by the given profile name as the active profile.
+	* The profile that was active before needs to be entirely saved before calling this method.
 	* @param newProfileName the string identifying the new profile
 	* @throws IllegalArgumentException when there is no saved profile identified by the given profile name
 	*/

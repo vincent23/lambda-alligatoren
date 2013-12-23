@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class StyleHelper {
 
 	private Skin skin;
+	
+	private StyleHelper{}
 
 	/**
 	 * Gets the current instance.

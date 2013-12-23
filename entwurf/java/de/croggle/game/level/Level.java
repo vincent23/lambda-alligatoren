@@ -22,6 +22,12 @@ public abstract class Level {
 	private String hint;
 	private String description;
 	private int abortSimulationAfter;
+	
+	/**
+	 * Creates an empty level with the default values.
+	 */
+	public Level(){
+	}
 
 	/**
 	 * Gets the index of the level package this level belongs to.

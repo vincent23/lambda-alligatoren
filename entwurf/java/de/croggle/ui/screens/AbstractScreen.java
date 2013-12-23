@@ -14,6 +14,14 @@ public abstract class AbstractScreen implements Screen {
 	private AlligatorApp game;
 	private Stage stage;
 	private Table table;
+	
+	/**
+	 * Superconstructor for all screens. 
+	 * Initializes everything they share, e.g. their stage.
+	 * @param game the backreference to the central game
+	 */
+	public AbstractScreen(AlligatorApp game){
+	}
 
 	/**
 	 * Called in order to cause the screen to release all resources held.

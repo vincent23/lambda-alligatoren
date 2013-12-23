@@ -12,5 +12,12 @@ public class ObjectBar extends com.badlogic.gdx.scenes.scene2d.Actor {
 	private AgedAlligatorActor agedAlligator;
 	private ColoredAlligatorActor coloredAlligator;
 	private EggActor egg;
+	
+	/**
+	 * Creates an object bar with the ui elements the
+	 * user can drag to the screen per default.
+	 */
+	public ObjectBar(){
+	}
 
 }

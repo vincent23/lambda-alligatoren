@@ -11,7 +11,7 @@ public class LevelPackagesController {
 	private AlligatorApp game;
 	
 	/**
-	* 
+	* Creates a new controller with no packages attached.
 	* @param game the backreference to the central game object
 	*/
 	public LevelPackagesController(AlligatorApp game){
