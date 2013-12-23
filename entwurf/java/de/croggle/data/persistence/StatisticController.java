@@ -47,7 +47,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * 				the statistic used to replace the currently active statistic
 	 */
 	public void editCurrentStatistic(Statistic newStatistic) {
-		return null;
+		
 	}
 
 	/**
