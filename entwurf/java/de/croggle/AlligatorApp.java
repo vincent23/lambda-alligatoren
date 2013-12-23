@@ -15,7 +15,7 @@ import de.croggle.ui.screens.AbstractScreen;
 
 /**
  * The central unit controlling the game. Receives the application lifecycle and is
- * responsible for managing screens, as well as the minor controllers.
+ * responsible for managing screens as well as the minor controllers.
  * 
  * @assoc 1 - 1 de.croggle.game.profile.ProfileController
  * @assoc 1 - 1 de.croggle.game.level.LevelPackagesController
@@ -43,7 +43,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	private List<AbstractScreen> screens;
 
 	/**
-	 * Creates the game with the given context and initializes all controllers
+	 * Creates the game using the given context and initializes all controllers
 	 * and screens.
 	 * 
 	 * @param context
@@ -112,7 +112,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	}
 
 	/**
-	 * Returns the asset manager which controls all kind of game media, e.g.
+	 * Returns the asset manager which controls all kinds of game media, e.g.
 	 * graphics.
 	 * 
 	 * @return the asset manager
@@ -132,7 +132,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	}
 
 	/**
-	 * Returns the setting controller that holds all profile specific settings.
+	 * Returns the setting controller that holds all profile-specific settings.
 	 * 
 	 * @return the setting controller
 	 */
@@ -142,7 +142,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 
 	/**
 	 * Is called by the application lifecycle on creation. Does all
-	 * initialization that hasn't been done by the constructor.
+	 * the initialization that hasn't been done by the constructor.
 	 */
 	@Override
 	public void create() {
@@ -159,7 +159,7 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	/**
 	 * Is called by the application lifecycle on resize.
      * @param width the width that the screen will have afterwards.
-     * @param height the height that screen will have afterwards.
+     * @param height the height that the screen will have afterwards.
 	 */
 	@Override
 	public void resize(int width, int height) {
@@ -167,8 +167,8 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 
 	/**
 	 * Is called by the application lifecycle when the game is paused. Should
-	 * save everything, that has not been saved yet, like the level progress, for
-	 * the possibility of the game being shut down.
+	 * save everything that has not been saved yet -  such as the level progress - 
+     * in case the game is shut down.
 	 */
 	@Override
 	public void pause() {
