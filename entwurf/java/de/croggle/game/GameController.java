@@ -49,7 +49,7 @@ public class GameController implements BoardEventListener {
 
 	/**
 	 * Creates a new game controller for the given level.
-	 *
+	 * @param level the level the GameController should work with.
 	 */	
 	public GameController(Level level){
 	}
@@ -91,7 +91,7 @@ public class GameController implements BoardEventListener {
 	/**
 	 * Unregisters the statistic listener.
 	 * 
-	 * @param listener
+	 * @param listener the listener
 	 */
 	public void unregister(StatisticsDeltaProcessor listener) {
 
