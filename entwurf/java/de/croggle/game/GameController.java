@@ -4,10 +4,9 @@ import java.util.List;
 
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.StatisticsDeltaProcessor;
-import de.croggle.game.board.Alligator;
+import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
-import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.event.BoardEventListener;
@@ -16,8 +15,8 @@ import de.croggle.game.level.Level;
 
 /**
  * Central controller within which the actual playing of the a level is
- * controlled. Additionally, it handles the consequences of finishing a level and
- * distributes the changes.
+ * controlled. Additionally, it handles the consequences of finishing a level
+ * and distributes the changes.
  * 
  * @navassoc 1 - 1 de.croggle.game.level.Level
  * @navassoc 1 - 2 de.croggle.game.board.Board
@@ -49,9 +48,11 @@ public class GameController implements BoardEventListener {
 
 	/**
 	 * Creates a new game controller for the given level.
-	 * @param level the level the GameController should work with
-	 */	
-	public GameController(Level level){
+	 * 
+	 * @param level
+	 *            the level the GameController should work with
+	 */
+	public GameController(Level level) {
 	}
 
 	/**
@@ -91,7 +92,8 @@ public class GameController implements BoardEventListener {
 	/**
 	 * Unregisters the statistic listener.
 	 * 
-	 * @param listener the listener
+	 * @param listener
+	 *            the listener
 	 */
 	public void unregister(StatisticsDeltaProcessor listener) {
 
@@ -99,50 +101,54 @@ public class GameController implements BoardEventListener {
 
 	/**
 	 * Registers a listener to which board events should be sent.
-	 *
-	 * @param listener the listener which should receive the events
+	 * 
+	 * @param listener
+	 *            the listener which should receive the events
 	 */
 	public void registerBoardEventListener(BoardEventListener listener) {
 	}
 
 	/**
-	 * Unregisters a board event listener so that it won't receive future events.
-	 *
-	 * @param listener the listener to unregister
+	 * Unregisters a board event listener so that it won't receive future
+	 * events.
+	 * 
+	 * @param listener
+	 *            the listener to unregister
 	 */
 	public void unregisterBoardEventListener(BoardEventListener listener) {
 	}
 
 	/**
-	 *
+	 * Registers the recoloring of an object in the statisticsDelta.
 	 */
 	@Override
 	public void onObjectRecolored(InternalBoardObject recoloredObject) {
 	}
 
 	/**
-	 *
+	 * Registers the amount of alligators and eggs eaten in the statisticsDelta.
 	 */
 	@Override
 	public void onEat(ColoredAlligator eater, InternalBoardObject eatenFamily) {
 	}
 
 	/**
-	 *
+	 * Would register this in the statisticsDelta, but currently there is no
+	 * value like this in the statistic.
 	 */
 	@Override
 	public void onAgedAlligatorVanishes(AgedAlligator alligator) {
 	}
 
 	/**
-	 *
+	 * Resets all necessary values of the statisticsDelta.
 	 */
 	@Override
 	public void onBoardRebuilt(Board board) {
 	}
 
 	/**
-	 *
+	 * Registers the hatched egg and the born family in the statisticsDelta.
 	 */
 	@Override
 	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
