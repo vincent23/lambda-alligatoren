@@ -79,7 +79,7 @@ public class Setting {
 	}
 
 	/**
-	 * Gets whether zoom button is enabled or not.
+	 * Gets whether zoom button is enabled or disabled.
 	 * @return true if the zoom button is enabled, false otherwise
 	 */
 	public boolean isZoomEnabled() {
@@ -87,7 +87,7 @@ public class Setting {
 	}
 
 	/**
-	 * Sets the whether zoom button is enabled or not.
+	 * Sets zoom button to enabled or disabled.
 	 * @param zoomEnabled true for enabling zoom, false for disabling it
 	 */
 	public void setZoomEnabled(boolean zoomEnabled) {
@@ -95,7 +95,7 @@ public class Setting {
 	}
 
 	/**
-	 * Gets whether the colorblind mode is enabled or not.
+	 * Gets whether the colorblind mode is enabled or disabled.
 	 * @return true if the colorblind mode is enabled, false otherwise
 	 */
 	public boolean isColorblindEnabled() {
@@ -103,7 +103,7 @@ public class Setting {
 	}
 
 	/**
-	 * Sets the whether the colorblind mode is enabled or not.
+	 * Sets the colorblind mode to enabled or disabled.
 	 * @param colorblindEnabled true for enabling colorblind mode, false for disabling it
 	 */
 	public void setColorblindEnabled(boolean colorblindEnabled) {
