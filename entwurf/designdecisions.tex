@@ -17,8 +17,6 @@ Im "`Model"' werden die Alligatorenkonstellationen durch eine veränderbare (mut
 Muss die Konstellation im Laufe des Spiels geändert werden, können einzelne Teilbäume der Konstellation geändert werden.
 Allerdings ergibt sich hier das Problem, dass beim Einfügen von Teilbäumen an mehreren Stellen immer vollständige Kopien (deep copy) dieses Teilbaumes eingefügt werden müssen, damit keine Probleme mit Referenzen auftreten.
 
-Einen weiteren Grund für die Entscheidung mit veränderbaren Objekten zu arbeiten ist, dass diese ein vertrautes Konzept darstellen, wohingegen für die Arbeit mit nicht veränderbaren Objekten eine längere Einarbeitungszeit in den Umgang und den Konzepte der funktionalen Programmierung nötig wäre.
-
 \section{Visitor Pattern}
 Durch die Darstellung der Alligatorenkonstellation in einer Baumstruktur liegt die Verwendung des Visitor-Patterns nahe.
 Das Muster wird hier vorrangig benutzt um neue Operationen, die auf der Konstellation ausgeführt werden sollen, einfach hinzufügen zu können.
