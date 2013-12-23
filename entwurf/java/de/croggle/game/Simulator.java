@@ -3,6 +3,7 @@ package de.croggle.game;
 import de.croggle.game.board.Board;
 import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.util.RingBuffer;
+import de.croggle.game.board.IllegalBoardException;
 
 import de.croggle.game.ColorOverflowException;
 
@@ -29,9 +30,10 @@ public class Simulator {
 	 * @param colorController the color controller used for recoloring during evaluation
 	 * @param boardMessenger the board messenger used for sending events during evaluation
 	 * 
+	 * @throws IllegalBoardException if the <code>entranceBoard</code> is not a valid board
 	 */	
 	public Simulator(Board entranceBoard, ColorController colorController,
-			BoardEventMessenger boardMessenger) {
+			BoardEventMessenger boardMessenger) throws IllegalBoardException {
 		this.history = new RingBuffer(30);
 		this.entranceBoard = entranceBoard;
 		this.currentBoard = entranceBoard;
