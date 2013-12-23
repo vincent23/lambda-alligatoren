@@ -1,7 +1,7 @@
 package de.croggle.game.achievement;
 
 /**
- * An achievements the player gets for having at least a certain amount of
+ * An achievement the player gets for having at least a certain amount of
  * alligators eaten in any level.
  * 
  */

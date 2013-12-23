@@ -1,7 +1,7 @@
 package de.croggle.game.achievement;
 
 /**
- * An achievement that rewards completing given amounts of levels.
+ * An achievement that rewards completing a given amount of levels.
  */
 public class LevelAchievement extends Achievement {
 

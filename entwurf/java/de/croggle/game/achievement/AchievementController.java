@@ -46,7 +46,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * Receives statistics delta from the just finished level and processes it.
 	 * 
 	 * @param statisticsDelta
-	 *            changes within the statistic of an account, which occured
+	 *            changes within the statistic of an account which occured
 	 *            during the completion of a level
 	 * @return list of achieved achievements (might be empty)
 	 */

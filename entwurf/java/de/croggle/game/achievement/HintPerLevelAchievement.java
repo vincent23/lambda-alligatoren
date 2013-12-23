@@ -1,7 +1,7 @@
 package de.croggle.game.achievement;
 
 /**
- * An achievement the player gets for using no hints (or a certain number) in a
+ * An achievement the player gets for using no hints (or a certain number of them) in a
  * level.
  * 
  */
