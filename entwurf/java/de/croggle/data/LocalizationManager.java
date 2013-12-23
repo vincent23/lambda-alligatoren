@@ -19,7 +19,7 @@ public class LocalizationManager {
 	}
 
     /**
-     * Loads and returns the atring identified by the given id. 
+     * Loads and returns the string identified by the given id. 
      * The strings should be defined in the common Android language xml files (values/strings). The language is decided by the system.
      * The identifier can be accessed by <code>R.string.identifier</code>.
      * @param indentifier the identifying number
