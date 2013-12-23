@@ -29,7 +29,7 @@ import de.croggle.ui.screens.AbstractScreen;
  */
 public class AlligatorApp extends com.badlogic.gdx.Game {
 
-	// the android context
+	// the Android Context
 	private Context context;
 
 	private ProfileController profileController;
@@ -47,16 +47,16 @@ public class AlligatorApp extends com.badlogic.gdx.Game {
 	 * and screens.
 	 * 
 	 * @param context
-	 *            the android Activity's context
+	 *            the Android Activity's context
 	 */
 	public AlligatorApp(Context context) {
 
 	}
 
 	/**
-	 * Returns the android context the game operates in.
+	 * Returns the Android Context the game operates in.
 	 * 
-	 * @return the android context
+	 * @return the Android Context
 	 */
 	public Context getContext() {
 		return null;
