@@ -3,7 +3,7 @@ package de.croggle.data;
 import android.content.Context;
 
 /**
- * Manager whose task is to handle the translation of the app from one language to another.
+ * Manager whose task it is to handle the translation of the app from one language to another.
  * The strings should be defined in the usual Android strings xml file.
  */
 public class LocalizationManager {

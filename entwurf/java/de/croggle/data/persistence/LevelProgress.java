@@ -3,7 +3,7 @@ package de.croggle.data.persistence;
 
 
 /**
- * Represents the saved progress of a user in one level in the database.
+ * Represents the progress saved by a user during one level in the database.
  */
 public class LevelProgress {
 
@@ -91,9 +91,9 @@ public class LevelProgress {
 	}
 
 	/**
-	 * Gets the number of resets by the user.
+	 * Gets the number of resets triggered by the user.
 	 *
-	 * @return the number of times the user reseted the level
+	 * @return the number of times the user resetted the level
 	 */
 	public int getUsedResets() {
 		return usedResets;
