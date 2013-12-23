@@ -18,6 +18,10 @@ public class ProfileController {
 	* The currently active profile.
 	*/
 	private Profile currentProfile;
+	
+	/**
+	 * The backreference to the central game object.
+	 */
 	private AlligatorApp game;
 	
 	/**

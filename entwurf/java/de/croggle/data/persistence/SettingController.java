@@ -16,7 +16,7 @@ public class SettingController {
 	private Setting currentSetting;
 	
 	/**
-	 * Backreference to the game.
+	 * The backreference to the central game object.
 	 */
 	private AlligatorApp game;
 

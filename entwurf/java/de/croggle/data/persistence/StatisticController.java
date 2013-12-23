@@ -14,7 +14,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	private Statistic currentStatistic;
 	
 	/**
-	 * Backreference to the game.
+	 * The backreference to the central game object.
 	 */
 	private AlligatorApp game;
 
@@ -54,7 +54,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * Loads the statistic which belongs to the user identified by profile name
 	 * and sets it as the currently active statistic.
 	 * 
-	 * @param profileName
+	 * @param profileName the name of the user whose statistic is loaded
 
 	 * @throws IllegalArgumentException
 	 *            whenever the string does not represent a profile in the database
