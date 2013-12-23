@@ -14,8 +14,6 @@ import de.croggle.game.event.BoardEventListener;
 
 /**
  * An actor used for representing an alligator constellation.
- * 
- * @has 1 - * BoardObjectActor
  */
 public class BoardActor extends ParentActor implements BoardEventListener {
 

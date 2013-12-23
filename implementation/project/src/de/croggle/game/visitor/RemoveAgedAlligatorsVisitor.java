@@ -11,8 +11,6 @@ import de.croggle.game.event.BoardEventMessenger;
  * A visitor looking for aged alligators, which are not nessesary because they
  * have only one children.
  * 
- * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
- * 
  */
 public class RemoveAgedAlligatorsVisitor implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;

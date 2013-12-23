@@ -9,12 +9,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 /**
  * This class is responsible for managing the different kinds of assets the apps
  * needs to work flawlessly.
- * 
- * @navassoc 1 - * Animation
- * @navassoc 1 - * BitmapFont
- * @navassoc 1 - * Music
- * @navassoc 1 - * Sound
- * @navassoc 1 - * Texture
  */
 public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 

@@ -7,8 +7,6 @@ import de.croggle.game.board.Board;
 
 /**
  * This class represents the concept of a level within the game.
- * 
- * @composed 1 - 3 de.croggle.game.board.Board
  */
 public abstract class Level {
 	private int levelIndex;

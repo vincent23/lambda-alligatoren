@@ -6,8 +6,6 @@ import java.util.List;
 /**
  * Parent is an abstract class to model the functions board objects - which can
  * be parents of families - must have.
- * 
- * @has 1 - * InternalBoardObject
  **/
 
 public abstract class Parent {

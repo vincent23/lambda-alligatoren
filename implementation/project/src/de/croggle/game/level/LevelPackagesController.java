@@ -4,8 +4,6 @@ import de.croggle.AlligatorApp;
 
 /**
  * Controls the overview over the different level packages.
- * 
- * @navassoc 1 - * de.croggle.game.level.LevelPackage
  */
 public class LevelPackagesController {
 

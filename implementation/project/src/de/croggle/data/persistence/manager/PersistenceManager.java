@@ -13,12 +13,6 @@ import de.croggle.game.profile.Profile;
  * 
  * This class provides methods for storing and loading profile-specific data.
  * 
- * @navassoc 1 - 1 de.croggle.data.persistence.manager.ProfileManager
- * @navassoc 1 - 1 de.croggle.data.persistence.manager.SettingManager
- * @navassoc 1 - 1 de.croggle.data.persistence.manager.StatisticManager
- * @navassoc 1 - 1 de.croggle.data.persistence.manager.LevelProgressManager
- * @navassoc 1 - 1 de.croggle.data.persistence.manager.AchievementManager
- * 
  */
 public class PersistenceManager {
 

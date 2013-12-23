@@ -8,8 +8,6 @@ import de.croggle.game.achievement.Achievement;
 /**
  * A concrete table manager which is responsible for managing the SQLite table
  * that stores the unlocked achievements of the different profiles.
- * 
- * @navassoc 1 - * de.croggle.game.achievement.Achievement
  */
 public class AchievementManager extends TableManager {
 

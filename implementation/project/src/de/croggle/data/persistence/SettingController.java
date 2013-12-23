@@ -4,8 +4,6 @@ import de.croggle.AlligatorApp;
 
 /**
  * Controller which handles the different settings currently applied.
- * 
- * @navassoc 1 - 1 de.croggle.data.persistence.Setting
  */
 public class SettingController {
 

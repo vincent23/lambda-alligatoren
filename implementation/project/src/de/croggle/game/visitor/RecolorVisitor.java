@@ -11,8 +11,6 @@ import de.croggle.game.event.BoardEventMessenger;
 /**
  * A visitor for replacing occurences of one color in a family with another
  * color.
- * 
- * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
  */
 public class RecolorVisitor implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;

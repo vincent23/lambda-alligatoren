@@ -4,9 +4,6 @@ import java.util.List;
 
 /**
  * Controls the content of a level package.
- * 
- * @navassoc 1 - * de.croggle.game.level.Level
- * @depend - <uses> - de.croggle.game.level.LoadLevelHelper
  */
 public class LevelController {
 	// The index of the package the controller controls

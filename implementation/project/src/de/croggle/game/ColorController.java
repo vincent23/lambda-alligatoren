@@ -14,8 +14,6 @@ import java.util.Map;
  * The terms "blocked" and "usable" for colors refer to which colors are blocked
  * by the level specification (blocked) and which are used by the game to let
  * the user recolor elements (usable).
- * 
- * @navassoc 1 - * de.croggle.game.Color
  */
 public class ColorController {
 	private List<de.croggle.game.Color> usableColors;

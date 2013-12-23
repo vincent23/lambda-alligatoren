@@ -7,8 +7,6 @@ import de.croggle.data.persistence.SettingController;
  * Screen within which the player can see the chosen settings and change dem
  * according to his will. For reference see ``Pflichtenheft 10.5.10 / Abbildung
  * 19''.
- * 
- * @depend - <uses> - de.croggle.data.persistence.SettingController
  */
 public class SettingsScreen extends AbstractScreen {
 	/**

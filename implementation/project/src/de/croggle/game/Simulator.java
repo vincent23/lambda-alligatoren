@@ -9,13 +9,6 @@ import de.croggle.util.RingBuffer;
 /**
  * The Simulator is the instance which evaluates the Board given to it. It can
  * also undo steps done in the evaluation process.
- * 
- * @has 1 - 2-32 de.croggle.game.board.Board
- * @navassoc 1 - 1 de.croggle.util.RingBuffer
- * @navassoc 1 - 1 de.croggle.game.event.BoardEventMessenger
- * @depend - <uses> - de.croggle.game.visitor.FindEatingVisitor
- * @depend - <uses> - de.croggle.game.visitor.ReplaceEggsVisitor
- * @depend - <uses> - de.croggle.game.visitor.RemoveAgedAlligatorsVisitor
  */
 public class Simulator {
 	private Board entranceBoard;

@@ -9,9 +9,6 @@ import de.croggle.data.persistence.StatisticsDeltaProcessor;
 /**
  * Controller responsible for the achievements and for checking whether
  * achievements have been achieved.
- * 
- * @navassoc 1 - * de.croggle.game.achievement.Achievement
- * @navassoc 1 - * de.croggle.data.persistence.manager.PersistenceManager
  */
 public class AchievementController implements StatisticsDeltaProcessor {
 

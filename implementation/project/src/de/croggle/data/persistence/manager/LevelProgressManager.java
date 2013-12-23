@@ -6,8 +6,6 @@ import de.croggle.data.persistence.LevelProgress;
 /**
  * A concrete table manager which is responsible for managing the SQLite table
  * that stores the level progresses of the different profiles.
- * 
- * @navassoc 1 - * de.croggle.data.persistence.LevelProgress
  */
 
 public class LevelProgressManager extends TableManager {

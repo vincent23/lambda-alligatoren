@@ -6,8 +6,6 @@ import de.croggle.data.persistence.Setting;
 /**
  * A concrete table manager which is responsible for managing the SQLite table
  * that stores the settings of the different profiles.
- * 
- * @navassoc 1 - * de.croggle.data.persistence.Setting
  */
 public class SettingManager extends TableManager {
 

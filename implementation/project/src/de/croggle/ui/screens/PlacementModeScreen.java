@@ -6,10 +6,6 @@ import de.croggle.game.GameController;
 /**
  * Screen within which the player can manipulate the board by moving alligators
  * and eggs. For reference see ``Pflichtenheft 10.5.4 / Abbildungen 12 und 1''.
- * 
- * @assoc 1 - 1 de.croggle.ui.actors.ObjectBar
- * 
- * @depend - <uses> - de.croggle.game.GameController
  */
 public class PlacementModeScreen extends AbstractScreen {
 

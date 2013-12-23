@@ -6,8 +6,6 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 
 /**
  * Android backend that initializes the central ApplicationListener.
- * 
- * @depend - <creates> - AlligatorApp
  */
 public class MainActivity extends AndroidApplication {
 

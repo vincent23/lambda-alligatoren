@@ -16,16 +16,6 @@ import de.croggle.ui.screens.AbstractScreen;
 /**
  * The central unit controlling the game. Manages the application lifecycle and
  * is responsible for managing screens as well as the minor controllers.
- * 
- * @assoc 1 - 1 de.croggle.game.profile.ProfileController
- * @assoc 1 - 1 de.croggle.game.level.LevelPackagesController
- * @assoc 1 - 1 de.croggle.game.achievement.AchievementController
- * @assoc 1 - 1 de.croggle.data.persistence.StatisticController
- * @assoc 1 - 1 de.croggle.data.persistence.SettingController
- * @assoc 1 - 1 de.croggle.data.persistence.manager.PersistenceManager
- * @navassoc 1 - 1 de.croggle.data.AssetManager
- * @navassoc 1 - 1 de.croggle.data.LocalizationManager
- * @assoc 1 - * de.croggle.ui.screens.AbstractScreen
  */
 public class AlligatorApp extends com.badlogic.gdx.Game {
 

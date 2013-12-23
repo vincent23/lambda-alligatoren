@@ -6,8 +6,6 @@ import de.croggle.data.persistence.Statistic;
 /**
  * A concrete table manager is responsible for managing the SQLite table that
  * stores the statistics of the different profiles.
- * 
- * @navassoc 1 - * de.croggle.data.persistence.Statistic
  */
 public class StatisticManager extends TableManager {
 

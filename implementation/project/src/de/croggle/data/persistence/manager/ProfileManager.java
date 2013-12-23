@@ -8,8 +8,6 @@ import de.croggle.game.profile.Profile;
 /**
  * A concrete table manager which is responsible for managing the SQLite table
  * that stores the different profiles.
- * 
- * @navassoc 1 - * de.croggle.game.profile.Profile
  */
 public class ProfileManager extends TableManager {
 
