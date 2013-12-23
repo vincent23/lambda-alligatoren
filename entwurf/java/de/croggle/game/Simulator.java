@@ -44,6 +44,8 @@ public class Simulator {
 	 * 
 	 * @return the board after said step
 	 * @throws ColorOverflowException if recoloring occurs and there is no color available
+	 * @throws AlligatorOverflowException if there are more than the max. allowed amount of
+	 * BoardObjects on the board after the evaluation step
 	 */
 	public Board evaluate(Board currentBoard) {
 		return null;
