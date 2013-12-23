@@ -22,29 +22,37 @@ public class CollectBoundColorsVisitor implements BoardObjectVisitor {
 	 * @return the set of bound colors
 	 */
 	public static Color[] collect(BoardObject family) {
+		return null;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitEgg(Egg egg);
+	public void visitEgg(Egg egg) {
+		
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitColoredAlligator(ColoredAlligator alligator);
+	public void visitColoredAlligator(ColoredAlligator alligator) {
+		
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void visitAgedAlligator(AgedAlligator alligator) {
+		
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitAgedAlligator(AgedAlligator alligator);
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void visitBoard(Board board);
+	public void visitBoard(Board board) {
+		
+	}
 }

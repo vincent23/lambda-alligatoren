@@ -43,7 +43,7 @@ public class FindEatingVisitor implements BoardObjectVisitor {
 	 * @return the eating alligator if one was found, otherwise null
 	 */
 	public static ColoredAlligator findEater(Board board) {
-		return eater;
+		return null;
 	}
 
 	/**

@@ -23,30 +23,39 @@ public class ValidationVisitor implements BoardObjectVisitor {
 	 * @return true if the family is valid, false otherwise
 	 */
 	public static boolean isValid(BoardObject family) {
+		return false;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitEgg(Egg egg);
+	public void visitEgg(Egg egg) {
+		
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitColoredAlligator(ColoredAlligator alligator);
+	public void visitColoredAlligator(ColoredAlligator alligator) {
+		
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitAgedAlligator(AgedAlligator alligator);
+	public void visitAgedAlligator(AgedAlligator alligator) {
+		
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitBoard(Board board);
+	public void visitBoard(Board board) {
+		
+	}
 
 }

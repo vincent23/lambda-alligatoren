@@ -45,25 +45,33 @@ public class ReplaceEggsVisitor implements BoardObjectVisitor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitEgg(Egg egg);
+	public void visitEgg(Egg egg) {
+		
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitColoredAlligator(ColoredAlligator alligator);
+	public void visitColoredAlligator(ColoredAlligator alligator) {
+		
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitAgedAlligator(AgedAlligator alligator);
+	public void visitAgedAlligator(AgedAlligator alligator) {
+		
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitBoard(Board board);
+	public void visitBoard(Board board) {
+		
+	}
 
 	/**
 	 * Returns all colors of colored alligators above <code>egg</code> but below <code>parent</code>.
@@ -73,6 +81,7 @@ public class ReplaceEggsVisitor implements BoardObjectVisitor {
 	 * @return the set of bound colors
 	 */
 	private Color[] findLocallyBoundColors(Egg egg) {
+		return null;
 	}
 
 	/**
@@ -83,5 +92,6 @@ public class ReplaceEggsVisitor implements BoardObjectVisitor {
 	 * @return the set of bound colors
 	 */
 	private Color[] findGloballyBoundColors(Egg egg) {
+		return null;
 	}
 }

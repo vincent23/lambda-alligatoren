@@ -26,30 +26,39 @@ public class CountBoardObjectsVisitor implements BoardObjectVisitor {
 	 * @return the number of family members
 	 */
 	public static int count(BoardObject family) {
+		return 0;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitEgg(Egg egg);
+	public void visitEgg(Egg egg) {
+		
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitColoredAlligator(ColoredAlligator alligator);
+	public void visitColoredAlligator(ColoredAlligator alligator) {
+		
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitAgedAlligator(AgedAlligator alligator);
+	public void visitAgedAlligator(AgedAlligator alligator) {
+		
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void visitBoard(Board board);
+	public void visitBoard(Board board) {
+		
+	}
 
 }
