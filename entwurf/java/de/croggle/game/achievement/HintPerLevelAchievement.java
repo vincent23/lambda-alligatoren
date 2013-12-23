@@ -8,10 +8,7 @@ package de.croggle.game.achievement;
 public class HintPerLevelAchievement extends PerLevelAchievement {
 
 	/**
-	 * Calculates the index of the stage the achievement has reached according
-	 * to the statistics of a completed level.
-	 * 
-	 * @return the updated index
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int requirementsMet() {

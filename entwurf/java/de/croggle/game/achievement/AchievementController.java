@@ -7,7 +7,7 @@ import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.StatisticsDeltaProcessor;
 
 /**
- * Controller responsible for the achievements and checking whether achievements
+ * Controller responsible for the achievements and for checking whether achievements
  * have been achieved.
  * 
  * @navassoc 1 - * de.croggle.game.achievement.Achievement
@@ -36,37 +36,36 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * Creates a new Controller. On initialization the unlocked achievements are set to null.
 	 * 
 	 * @param game
-	 *            the backreference to the central game object.
+	 *            the backreference to the central game object
 	 */
 	public AchievementController(AlligatorApp game) {
 
 	}
 
 	/**
-	 * Recieves statisticsDelta from the just finished Level and processes it.
+	 * Receives statistics delta from the just finished level and processes it.
 	 * 
 	 * @param statisticsDelta
 	 *            changes within the statistic of an account, which occured
-	 *            during the completion of a level.
-	 * @return List<Achievement> List of achieved achievements. Can be empty if
-	 *         no achievements were achieved.
+	 *            during the completion of a level
+	 * @return list of achieved achievements (might be empty)
 	 */
 	public List<Achievement> processStatisticsDelta(Statistic statisticsDelta) {
 		return null;
 	}
 
 	/**
-	 * Initiates the the available achievements.
+	 * Initiates the available achievements.
 	 */
 	public void initiateAvailableAchievements() {
 	}
 
 	/**
-	 * Loads the achievements unlocked by the user with the name profileName and
+	 * Loads the achievements unlocked by the user with the name <code>profileName</code> and
 	 * sets them as the unlocked achievements.
 	 * 
 	 * @param profileName
-	 *            The name of the user which unlocked achievements are loaded.
+	 *            the name of the user which unlocked achievements are loaded
 	 */
 	public void changeUnlockedAchievements(String profileName) {
 
@@ -75,7 +74,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	/**
 	 * Get the achievements unlocked by the currently active user.
 	 * 
-	 * @return A List of unlocked achievements.
+	 * @return a list of unlocked achievements
 	 */
 	public List<Achievement> getUnlockedAchievements() {
 		return null;
@@ -84,7 +83,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	/**
 	 * Get all achievements available in the game.
 	 * 
-	 * @return A List of available achievements.
+	 * @return a list of available achievements
 	 */
 	public List<Achievement> getAvailableAchievements() {
 		return null;
@@ -93,7 +92,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	/**
 	 * Returns the list of achievements that were unlocked during the last
 	 * completed level The list may be emptied afterwards, so no references
-	 * should be hold.
+	 * should be held.
 	 * 
 	 * @return the list of latest unlocked achievements
 	 */
@@ -105,7 +104,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * Checks whether the new statistic changes in a level cause new
 	 * achievements to get unlocked. In this case it sets them as unlocked; the
 	 * newly unlocked achievements can be accessed via the
-	 * getLatestUnlockedAchievements() method.
+	 * <code>getLatestUnlockedAchievements()</code> method.
 	 * 
 	 * @param statisticsDelta
 	 *            the packed statistic changes

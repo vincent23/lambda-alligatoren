@@ -7,10 +7,7 @@ package de.croggle.game.achievement;
 public class TimeAchievement extends Achievement {
 
 	/**
-	 * Calculates the index of the stage the achievement has reached according
-	 * to the current statistics.
-	 * 
-	 * @return the updated index
+	 * {@inheritDoc}
 	 */
 	@Override
 	public int requirementsMet() {

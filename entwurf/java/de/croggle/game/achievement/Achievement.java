@@ -2,7 +2,7 @@ package de.croggle.game.achievement;
 
 /**
  * A reward given to the player for completing a special feat, e.g. playing for
- * a certain amount of time or beaten a certain amount of levels.
+ * a certain amount of time or beating a certain amount of levels.
  */
 public abstract class Achievement {
 	private String[] description;
@@ -30,7 +30,7 @@ public abstract class Achievement {
 	 * Returns the path to the picture that represents the achievement.
 	 * 
 	 * @param index
-	 *            the stage index for which the emblem path shoule be returned
+	 *            the stage index for which the emblem path should be returned
 	 * @return the path leading to the achievement's emblem
 	 */
 	public String getEmblemPath(int index) {
@@ -66,7 +66,7 @@ public abstract class Achievement {
 	}
 
 	/**
-	 * Calculates the index of the stage the achievement has reached according
+	 * Calculates the index of the stage the achievement has reached, according
 	 * to the current statistics.
 	 * 
 	 * @return the updated index
