@@ -7,7 +7,7 @@ Die Gründe für die Verwendung von JSON sind
 	\item Einfache Schreib- und Editierbarkeit
 	\item Gute Les- und Nachvollziehbarkeit
 	\item Geringerer Overhead gegenüber XML
-	\item Unterstützung von Haus aus durch libGDX
+	\item Unterstützung von Haus aus durch libgdx
 	\item Gute Austausch- und Erweiterbarkeit gegenüber datenbank- oder codebasierten Herangehensweisen
 \end{enumerate}
 Dafür ist es zunächst jedoch erforderlich, dass die Struktur der letztendlich für den Aufbau eines Levels benötigten Daten, detailliert spezifiziert ist.
@@ -15,9 +15,9 @@ Im folgenden werden die einzelnen Attribute eines Levels und ihre Bedeutungen, s
 
 \section{Grundlegendes}
 Im Folgenden wird stets davon ausgegangen, dass sich jegliche Dateisystem Pfadangaben relativ zu "`/assets"' beziehen, wobei als Wurzelverzeichnis das Android Projektverzeichnis angesehen wird.
-Die Nutzung des "`asset"'-Ordners wird hierbei von libGDX vorgegeben.
+Die Nutzung des "`asset"'-Ordners wird hierbei von libgdx vorgegeben.
 Vergleiche hierzu den entsprechenden Artikel der Dokumentation \footnote{\url{https://github.com/libgdx/libgdx/wiki/File-handling\#android}}.
-Zudem sei erwähnt, dass sich alle in JSON angegebenen Elemente, die von der Anwendung benutzt werden, im Namespace "'de.croggle"' befinden.
+Zudem sei erwähnt, dass sich alle in JSON angegebenen Elemente, die von der Anwendung benutzt werden, im Namespace \strong{"'de.croggle"'} befinden.
 Das heißt, dass sich in dem Wurzelobjekt jeder JSON Datei ein Objekt mit diesem Namen befindet.
 Dies macht es sicherer, gegebenenfalls in Zukunft vom Nutzer angegebene Levels zu laden, auch wenn dies derzeit nicht als Funktion vorgesehen ist.
 \begin{lstlisting}[language=json,caption={Standardinhalt jeder JSON Datei der Anwendung}]
@@ -31,8 +31,7 @@ Die Spezifikation beschreibt lediglich die Elemente, die in Objekten verpflichte
 Darüber hinausgehende Attribute werden von der Applikation ignoriert.
 Sollten einzelne Elemente oder auch nur deren Inhalt als optional angesehen werden, ist dies entsprechend im Text ausgewiesen.
 
-Da die Beschreibungen von Levels, ähnlich wie Quellcode, komplexe Sachverhalte im Lambda-Kalkül abbilden können, deren Wirkungsweise nicht direkt ersichtlich sein kann,
-sieht die Spezifikation der JSON Repräsentation Kommentarattribute vor.
+Da die Beschreibungen von Levels, ähnlich wie Quellcode, komplexe Sachverhalte im Lambda-Kalkül abbilden können, deren Wirkungsweise nicht direkt ersichtlich sein kann, sieht die Spezifikation der JSON Repräsentation Kommentarattribute vor.
 Diese können und sollen verwendet werden, um besonders schwer nachzuvollziehende Stellen zu dokumentieren, aber auch, um einfach auf die Ideen und Zielsetzungen innerhalb eines bestimmten Levels hinzuweisen.
 Solche Kommentarattribute werden durch das Präfix \strong{"'\_comment"'} markiert und eingeleitet.
 Attributsnamen, die mit diesem beginnen sind dementsprechend reserviert.
@@ -47,6 +46,8 @@ Zuletzt ermöglicht die Spezifikation auch mehrere Kommentarattribute innerhalb 
 Dafür wird den jeweiligen \strong{"'\_comment"'}-Attributnamen noch jeweils eine Ziffernfolge angehängt, welche von Null beginnend aufsteigt.
 Dies ist nötig, da der JSON Standard keine gleichen Attributnamen innerhalb einunddesselben Objekts vorsieht.
 Listing 4.2 verdeutlicht die Anwendung von Kommenatren in JSON Files.
+
+\needspace{5cm}
 \begin{lstlisting}[language=json,caption={Kommentare in einer JSON Datei}]
 {
 	"_comment" : "Dies ist ein kurzer Kommentar",
@@ -100,7 +101,7 @@ In einem Feld \strong{"'abort simulation after"'} kann optional die ganzzahlige 
 Positive Werte implizieren, dass im Anschluss das Level als erfolgreich abgschlossen gewertet werden soll.
 Bei einem negativen Wert gilt das Level nach Ablauf der Schrittzahl als verloren.
 Der Wert Null ("'0"') bedeutet hierbei, dass kein Abbruch geschieht, was dem voreingestellten Verhalten entspricht.
-Das Attribut "'hints"' bezeichnet eine Liste von Zeichenketten, die Pfade zu Hilfegrafiken angeben, die der Nutzer als Hilfestellung anzeigen lassen kann.
+Das Attribut \strong{"'hints"'} bezeichnet eine Liste von Zeichenketten, die Pfade zu Hilfegrafiken angeben, die der Nutzer als Hilfestellung anzeigen lassen kann.
 Im derzeitigen Entwurf ist nur ein einziger Tipp pro Level vorgesenen.
 Orientiert an anderen Spielen auf dem Markt hält eine Liste allerdings die Möglichkeit offen, weitere Tipps pro Level hinzuzufügen, ohne dass die JSON Spezifikation geändert werden muss.
 In diesem Falle würden die Tipps in der Reihenfolge aufgedeckt werden, in der sie in der Liste vorkommen.
@@ -117,6 +118,8 @@ Für jeden dieser Typen unterscheidet sich der Inhalt des letzten Attributs, dem
 Dieses enthält die für die einzelnen Typen unterschiedlichen Daten.
 Diese werden im Folgenden spezifiziert.
 Listing 4.3 beschreibt das benötigte Rahmenwerk für alle Levels.
+
+\needspace{5cm}
 \begin{lstlisting}[language=json,caption={JSON Leveldatei, z.B. json/00/00.json}]
 {
 	"de.croggle" : {
@@ -148,7 +151,7 @@ Das heißt, dass Spielfelder (im Folgenden auch Boards genannt) eine Liste von E
 Von diesen BoardObjects existieren drei Typen, nämlich Ei, farbiger Alligator und alter Alligator.
 Alle diese drei Objekttypen verfügen über eine Zeichenkette mit Namen \strong{"'type"'}.
 Zusätzlich wird über den Wahrheitswert im Feld \strong{"'movable"'} festgelegt, ob der Nutzer das Objekt nachträglich bewegen darf.
-Ob er es ganz vom Spielfeld entfernen darf, wird mit dem Feld \strong{"'removable"'} gesagt.
+Ob er es ganz vom Spielfeld entfernen darf, wird mit dem Feld \strong{"'removable"'} angegeben.
 
 Das \strong{"'type"'}-Attribut, darf die folgenden Werte annehmen:
 \begin{itemize}
@@ -180,6 +183,7 @@ Objekte vom Typ \strong{"'aged alligator"'} besitzen die folgenden Eigenschaften
 	\item[children:] Eine Liste von weiteren BoardObjects
 \end{description}
 
+\needspace{5cm}
 \begin{lstlisting}[language=json,caption={Ein einfaches Board mit allen existierenden BoardObjects}]
 {
 	"families" : [
@@ -243,6 +247,7 @@ Er bezieht sich auf die Position der gemeinten Konstellation in der \strong{"'an
 Es ist jedoch zu beachten, dass die Reihenfolge der Elemente in der Liste keinen Einfluss auf deren Position in der dem Nutzer gezeigten Liste mit Antworten hat.
 Diese wird nämlich randomisiert erstellt.
 
+\needspace{5cm}
 \begin{lstlisting}[language=json,caption={Grober Aufbau des data Attributs eines Multiple Choice Levels}]
 "type" : "multiple choice",
 "data" : {
@@ -258,12 +263,13 @@ Diese wird nämlich randomisiert erstellt.
 
 \subsection{"'Färben und Einfügen"' Leveldaten}
 Bei "'Färben und Einfügen"'-Levels werden nur die Ausgangskonstellation, die zu erreichende Endkonstellation und Listen mit für den Nutzer gesperrte Farben und Objekttypen als Angabe benötigt.
-Die Ausgangskonstellation findet sich wie bei Mutiple Choice Leveln im Feld \strong{"'initial constellation"'}, und wird mittels eines Board Objektes repräsentiert.
+Die Ausgangskonstellation findet sich wie bei Multiple Choice Leveln im Feld \strong{"'initial constellation"'}, und wird mittels eines Board Objektes repräsentiert.
 Die Endkonstellation kann über das Board-wertige Attribut \strong{"'objective"'} ausgelesen werden.
 Gesperrte Farben werden durch eine Liste mit Ganzzahlen >= 0 dargestellt, die den Namen \strong{"'blocked colors"'} trägt.
 Gesperrte Objekttypen können in einer Liste von Zeichenketten mit Namen \strong{"'blocked types"'} angegeben werden, wobei deren Werte den bekannten Typen aus der Dartellung von Lambda-Ausdrücken entspricht.
 Diese Funktion ist vor allem für die Tutorial Levels vorgesehen, wenn das Platzieren von Eiern etc. verhindert werden soll.
 
+\needspace{3cm}
 \begin{lstlisting}[language=json,caption={Grober Aufbau des data Attributs eines "'Färben und Einfügen"' Levels}]
 "type" : "modification",
 "data" : {
@@ -337,9 +343,11 @@ Mittels einer Zeichenkette \strong{"'banner"'} wird der Pfad zu einer für das L
 Auch die Angaben von Designthema und Animation beim ersten Betreten werden durch Pfade in Zeichenketten angegeben.
 Für ersteres heißt diese \strong{"'design"'}, für zweiteres \strong{"'animation"'}.
 Die Paketdesigns können von Levels mittels des dazu vorgesehenen \strong{"'design"'} Attributes überschrieben werden.
-Da die Beschreibung von Abhängigkeiten eine größere Komplexität aufweist, ist ihr im folgenden eine Untersection gewidmet.
+Da die Beschreibung von Abhängigkeiten eine größere Komplexität aufweist, ist ihr im folgenden eine Untersektion gewidmet.
 Grundsätzlich werden sie in einer Liste mit dem Namen \strong{"'dependencies"'} definiert.
 Das folgende Listing veranschaulicht all diese Spezifikationen.
+
+\needspace{5cm}
 \begin{lstlisting}[language=json,caption={Standardinhalt der Definition eines Levels}]
 {
 	"de.croggle" : {
@@ -375,13 +383,15 @@ Im Folgenden sind den jeweiligen Typen Abschnitte gewidmet, in denen weitere Att
 
 \subsubsection{Paketfortschritt: "'packageprogress"'}
 Für die Angabe eines mindestens benötigten Fortschritts eines Pakets werden Felder für das gemeinte Paket und für den Fortschritt benötigt.
-Für Ersteres heißt dieses \strong{"'package"'} und beinhaltet eine Ganzzahl größer Null und kleiner hundert.
+Für Ersteres heißt dieses \strong{"'package"'} und beinhaltet eine Ganzzahl größer Null und kleiner 100.
 Zweiteres findet sich im Feld \strong{"'progress"'}, welches auch eine Ganzzahl enthält, die den Fortschritt in Prozent darstellt.
 Der Wert befindet sich also zwischen einschließlich 0 und 100.
 Null Prozent heißt hierbei lediglich, dass das Level freigeschaltet sein muss. 
 Das Gesperrtsein eines Pakets kann also keine Abhängigkeit sein.
 Bei hundert Prozent müssen alle Levels erfolgreich abgeschlossen worden sein, die zu dem angegebenen Paket gehören.
 Das folgende Listing fasst dies noch einmal zusammen.
+
+\needspace{5cm}
 \begin{lstlisting}[language=json,caption={Beispielhafte Definition einer Abhängigkeit vom Typ "'boxprogress"'}]
 {
 	"type" : "packageprogress",
@@ -410,14 +420,14 @@ Ordnerübersicht zur Levelspezifikation
 \subsection{Inhalte einer "`package.json"' Datei}
 \dirtree{%
 .1 \strong{"'de{.}croggle"'} : Object - Namensraum.
-	.2 \strong{"'packages"'} : Liste - Liste mit Repräsentationen von Paketen{.} Gewöhnlich nur ein Paket.
+	.2 \strong{"'packages"'} : List - Liste mit Repräsentationen von Paketen{.} Gewöhnlich nur ein Paket.
 		.3 : Object - Das zur Datei gehörende Paket als JSON Objekt.
 			.4 \strong{"'name"'} : String - Der Anzeigename des Levelpakets.
 			.4 \strong{"'description"'} : String - Eine Zeichenkette zur Beschreibung des Pakets.
 			.4 \strong{"'banner"'} : String - Pfad zu einer Bilddatei, die als Banner für ein Levelpaket fungiert.
 			.4 \strong{"'design"'} : String - Pfad zu einem Design, das auf alle Levels eines Pakets angewendet wird.
 			.4 \strong{"'animation"'} : String - Pfad zu einer Animation, die vor dem ersten Betreten des Levels abgespielt wird.
-			.4 \strong{"'dependencies"'} : Liste - Die Liste mit Abhängigkeiten.
+			.4 \strong{"'dependencies"'} : List - Die Liste mit Abhängigkeiten.
 				.5 \strong{"'type"'} : String - Der Typ einer Abhängigkeit.
 				.5 Weitere Elemente für "'packageprogress"' Abhängigkeiten.
 					.6 \strong{"'package"'} : unsigned Integer - Die Identifikationsnummer eines Pakets als Abhängigkeit.
@@ -428,45 +438,45 @@ Ordnerübersicht zur Levelspezifikation
 \subsubsection{Rahmenwerk}
 \dirtree{%
 .1 \strong{"'de{.}croggle"'} : Object - Namensraum.
-	.2 \strong{"'levels"'} : Liste - Levelobjekte.
+	.2 \strong{"'levels"'} : List - Liste mit Levelobjekten{.} Gewöhnlich nur ein Paket.
 		.3 : Object - Darstellung einzelner Levels.
 			.4 \strong{"'type"'} : String - Typ eines Levels.
 			.4 \strong{"'description"'} : String - Beschreibung zu einem Level.
 			.4 \strong{"'design"'} : String - Pfad zu einem Leveldesign.
 			.4 \strong{"'abort simulation after"'} : Integer - Nach wie vielen Schritten ein Level gewonnen (positiv) oder verloren (negativ) ist.
-			.4 \strong{"'hints"'} : Liste - Strings mit Pfaden zu Hilfegrafiken.
+			.4 \strong{"'hints"'} : List - Strings mit Pfaden zu Hilfegrafiken.
 			.4 \strong{"'data"'} (multiple choice) : Object - Spezielle Daten für die einzelnen Leveltypen.
 				.5 Daten für MC Levels
 					.6 \strong{"'initial"'} : Object - Board Objekt der An\-fangs\-kon\-stel\-la\-tion.
-					.6 \strong{"'answers"'} : Liste - Liste mit Board Objekten der möglichen Antworten.
+					.6 \strong{"'answers"'} : List - Liste mit Board Objekten der möglichen Antworten.
 					.6 \strong{"'correct answer"'} : unsigned Integer - Der Index der richtigen Antwort zur Fragestellung.
 				.5 Daten für FE Levels.
 					.6 \strong{"'initial constellation"'} : Object - Board Objekt der An\-fangs\-kon\-stel\-la\-tion.
 					.6 \strong{"'objective"'} : Object - Board Objekt der zu erreichenden Konstellation.
-					.6 \strong{"'blocked colors"'} : Liste - Liste mit Integer Werten, die blockierte Farben beschreiben.
-					.6 \strong{"'blocked types"'} : Liste - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
+					.6 \strong{"'blocked colors"'} : List - Liste mit Integer Werten, die blockierte Farben beschreiben.
+					.6 \strong{"'blocked types"'} : List - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
 				.5 Daten für SA Levels.
 					.6 \strong{"'initial constellation"'} : Object - Board Objekt der Anfangskonstellation.
-					.6 \strong{"'blocked colors"'} : Liste - Liste mit Integer Werten, die blockierte Farben beschreiben.
-					.6 \strong{"'blocked types"'} : Liste - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
+					.6 \strong{"'blocked colors"'} : List - Liste mit Integer Werten, die blockierte Farben beschreiben.
+					.6 \strong{"'blocked types"'} : List - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
 }
 
-\subsubsection{Verschachtelte Alligatorbaumstruktur}
+\subsubsection{Alligator-Baumstruktur}
 \dirtree{%
-.1 : BoardObject - Objekte, die Konstellationen auf einem Spielfeld modellieren.
-	.2 \strong{"'families"'} : Liste - Eine Liste mit sogenannten "'BoardObjects"'.
-		.3 BoardObject Objekte.
+.1 : Board - Objekt, das ein Spielfeld mit einer Konstellation modelliert.
+	.2 \strong{"'families"'} : List - Eine Liste mit sogenannten "'BoardObjects"'.
+		.3 BoardObject Objekte - Objekte, die Teil einer Konstellation auf dem Spielfeld sind.
 			.4 \strong{"'type"'} : String - Der genaue Typ des vorliegenden BoardObjects{.} Die Unterscheidungen der Typen werden im Folgenden erläutert.
 			.4 \strong{"'movable"'} : Bool - Ob das Objekt nachträglich vom Nutzer bewegt werden kann.
 			.4 \strong{"'removable"'} : Bool - Ob das Objekt nachträglich vom Nutzer vom Board entfernt werden kann.
-			.4 Die drei möglichen Typen von Board sind "'egg"', "'colored alligator"' und "'aged alligator"'.
+			.4 Die drei möglichen Typen von BoardObjects sind "'egg"', "'colored alligator"' und "'aged alligator"'.
 				.5 Typ \strong{"'egg"'}.
 					.6 \strong{"'color"'} : Integer - Die Identifikationsnummer der Farbe, die das Ei haben soll.
 					.6 \strong{"'recolorable"'} : Bool - Ob das Objekt nachträglich vom Nutzer umgefärbt werden kann.
 				.5 Typ \strong{"'colored alligator"'}.
 					.6 \strong{"'color"'} : Integer - Die Identifikationsnummer der Farbe, die der Alligator haben soll.
 					.6 \strong{"'recolorable"'} : Bool - Ob der Alligator nachträglich vom Nutzer umgefärbt werden kann.
-					.6 \strong{"'children"'} : Liste - Eine Liste mit weiteren BoardObjects (Eier, Alligatoren\ldots{}), wie sie in diesem Listing beschrieben sind.
+					.6 \strong{"'children"'} : List - Eine Liste mit weiteren BoardObjects (Eier, Alligatoren\ldots{}), wie sie in diesem Listing beschrieben sind.
 				.5 Typ \strong{"'aged alligator"'}.
-					.6 \strong{"'children"'} : Liste - Eine Liste mit weiteren BoardObjects (Eier, Alligatoren\ldots{}), wie sie in diesem Listing beschrieben sind.
+					.6 \strong{"'children"'} : List - Eine Liste mit weiteren BoardObjects (Eier, Alligatoren\ldots{}), wie sie in diesem Listing beschrieben sind.
 }
