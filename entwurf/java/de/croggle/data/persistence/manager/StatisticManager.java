@@ -15,57 +15,57 @@ public class StatisticManager extends TableManager {
 
 
 	/**
-	 * Name for the column that stores the profile names. The names are used as the primary key.
+	 * Name of the column that stores the profile names. The names are used as the primary key.
 	 */
 	static final String KEY_PROFILE_NAME = "profileName";
 	
 	/**
-	 * Name for the column that stores the playtimes.
+	 * Name of the column that stores the playtimes.
 	 */
 	static final String KEY_PLAYTIME = "playtime";
 	
 	/**
-	 * Name for the column that stores the number of used hints.
+	 * Name of the column that stores the number of used hints.
 	 */
 	static final String KEY_USED_HINTS = "usedHints";
 	
 	/**
-	 * Name for the column that stores the number of used resets.
+	 * Name of the column that stores the number of used resets.
 	 */
 	static final String KEY_USED_RESETS = "usedResets";
 	
 	/**
-	 * Name for the column that stores the number of recoloring actions.
+	 * Name of the column that stores the number of recoloring actions.
 	 */
 	static final String KEY_RECOLORINGS = "recolorings";
 	
 	/**
-	 * Name for the column that stores the number of completed levels.
+	 * Name of the column that stores the number of completed levels.
 	 */
 	static final String KEY_LEVELS_COMPLETE = "levelsComplete";
 	
 	/**
-	 * Name for the column that stores the number of completed packages.
+	 * Name of the column that stores the number of completed packages.
 	 */
 	static final String KEY_PACKAGES_COMPLETE = "packagesComplete";
 	
 	/**
-	 * Name for the column that stores the number of eaten alligators.
+	 * Name of the column that stores the number of eaten alligators.
 	 */
 	static final String KEY_ALLIGATORS_EATEN = "alligatorsEaten";
 	
 	/**
-	 * Name for the column that stores the number of placed alligators.
+	 * Name of the column that stores the number of placed alligators.
 	 */
 	static final String KEY_ALLIGATORS_PLACED = "alligatorsPlaced";
 	
 	/**
-	 * Name for the column that stores the number of hatched eggs.
+	 * Name of the column that stores the number of hatched eggs.
 	 */
 	static final String KEY_EGGS_HATCHED = "eggsHatched";
 	
 	/**
-	 * Name for the column that stores the number of placed eggs.
+	 * Name of the column that stores the number of placed eggs.
 	 */
 	static final String KEY_EGGS_PLACED = "eggsPlaced";
 

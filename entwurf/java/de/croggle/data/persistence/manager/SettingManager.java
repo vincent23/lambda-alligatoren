@@ -13,27 +13,27 @@ import android.content.Context;
 public class SettingManager extends TableManager {
 
 	/**
-	 * Name for the column that stores the profile names. The names are used as the primary key.
+	 * Name of the column that stores the profile names. The names are used as the primary key.
 	 */
 	static final String KEY_PROFILE_NAME = "profileName";
 	
 	/**
-	 * Name for the column that stores the volume of the music.
+	 * Name of the column that stores the volume of the music.
 	 */
 	static final String KEY_VOLUME_MUSIC = "volumeMusic";
 	
 	/**
-	 * Name for the column that stores the volume of the effects.
+	 * Name of the column that stores the volume of the effects.
 	 */
 	static final String KEY_VOLUME_EFFECTS = "volumeEffects";
 	
 	/**
-	 * Name for the column that stores the information whether zoom is enabled or not.
+	 * Name of the column that stores the information whether zoom is enabled or not.
 	 */
 	static final String KEY_ZOOM_ENABLED = "zoomEnabled";
 	
 	/**
-	 * Name for the column that stores the information whether the colorblind mode is enabled or not.
+	 * Name of the column that stores the information whether the colorblind mode is enabled or not.
 	 */
 	static final String KEY_COLORBLIND_ENABLED = "colorblindEnabled";
 
@@ -77,7 +77,7 @@ public class SettingManager extends TableManager {
 	}
 
 	/**
-	 * Searches the table for a setting which belongs to the profile identified by the given profile name and overwrites it's values with the values of the new setting.
+	 * Searches the table for a setting which belongs to the profile identified by the given profile name and overwrites its values with the values of the new setting.
 	 * @param profileName the name of the profile whose setting is edited
 	 * @param setting the setting whose values are used for overwriting the old setting
 	 */
@@ -87,7 +87,7 @@ public class SettingManager extends TableManager {
 
 	/**
 	 * Deletes the setting which belongs to the profile identified by the given profile name from the table.
-	 * @param profileName the name of the profile whose setting should be deleted
+	 * @param profileName the name of the profile whose setting is to be deleted
 	 */
 	void deleteSetting(String profileName) {
 		
