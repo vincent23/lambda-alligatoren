@@ -14,8 +14,8 @@ import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.screens.AbstractScreen;
 
 /**
- * The central unit controlling the game. Receives the application lifecycle and is
- * responsible for managing screens as well as the minor controllers.
+ * The central unit controlling the game. Manages the application lifecycle and is
+ * responsible for managing screens, as well as the minor controllers.
  * 
  * @assoc 1 - 1 de.croggle.game.profile.ProfileController
  * @assoc 1 - 1 de.croggle.game.level.LevelPackagesController
