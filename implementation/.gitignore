@@ -1,0 +1,11 @@
+*.dex
+*.class
+*.apk
+
+bin/
+gen/
+proguard/
+.settings/
+
+local.properties
+
