@@ -9,7 +9,7 @@ import android.content.Context;
 
 
 /**
- * A concrete table manager which is responsible for managing the sqlite-table that stores the different profiles.
+ * A concrete table manager which is responsible for managing the SQLite table that stores the different profiles.
  * 
  * @navassoc 1 - * de.croggle.game.profile.Profile
  */
@@ -32,13 +32,13 @@ public class ProfileManager extends TableManager {
 	
 	
 	/**
-	 * The string used to create the profile table via a sql query.
+	 * The string used for creating the profile table via a sql query.
 	 */
 	static final String CREATE_TABLE = "null";
 	
 	/**
 	 * Creates a new ProfileManager which manages the profile table.
-	 * @param context the context used to access the database
+	 * @param context the context used for accessing the database
 	 */
 	ProfileManager(Context context) {
 		super(context);
@@ -55,25 +55,25 @@ public class ProfileManager extends TableManager {
 	}
 
 	/**
-	 * Searches the table for a profile which name matches profileName.
-	 * @param profileName the name of the searched-for profile
-	 * @return the found profile, if no profile is found, null is returned
+	 * Searches the table for a profile whose name matches the given profile name.
+	 * @param profileName the name of the searched profile
+	 * @return the found profile, null if no profile is found
 	 */
 	Profile getProfile(String profileName) {
 		return null;
 	}
 
 	/**
-	 * Searches the table for a profile which name matches profileName and overwrites its values with the values stored in profile.
+	 * Searches the table for a profile whose name matches the given profile name and overwrites its values with the values of the new profile.
 	 * @param profileName the name of the profile which is edited.
-	 * @param profile contains the values used to overwrite the old entry
+	 * @param profile contains the values used for overwriting the old entry
 	 */
 	void editProfile(String profileName, Profile profile) {
 		
 	}
 
 	/**
-	 * Deletes the profile which name matches profileName from the table.
+	 * Deletes the profile whose name matches the given profile name from the table.
 	 * @param profileName the name of the user whose profile is to be deleted
 	 */
 	void deleteProfile(String profileName) {
@@ -82,6 +82,8 @@ public class ProfileManager extends TableManager {
 
 	/**
 	 * Returns all profiles stored in the table.
+	 *
+	 * @return the list of all profiles
 	 */
 	List<Profile> getAllProfiles() {
 		return null;

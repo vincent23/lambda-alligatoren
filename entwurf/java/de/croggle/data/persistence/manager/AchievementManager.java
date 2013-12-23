@@ -9,7 +9,7 @@ import android.content.Context;
 
 
 /**
- * A concrete table manager which is responsible for managing the sqlite-table that stores the unlocked achievements of the different profiles.
+ * A concrete table manager which is responsible for managing the SQLite table that stores the unlocked achievements of the different profiles.
  * 
  * @navassoc 1 - * de.croggle.game.achievement.Achievement
  */
@@ -37,13 +37,13 @@ public class AchievementManager extends TableManager {
 	
 		
 	/**
-	 * The string used to create the achievement table via a sql query.
+	 * The string used for creating the achievement table via a sql query.
 	 */
 	static final String CREATE_TABLE = "null";
 	
 	/**
-	 * Creates a new AchievementManager used to manage the achievement table.
-	 * @param context the context used to access the database
+	 * Creates a new AchievementManager used for managing the achievement table.
+	 * @param context the context used for accessing the database
 	 */
 	AchievementManager(Context context) {
 		super(context);
@@ -52,8 +52,8 @@ public class AchievementManager extends TableManager {
 
 		
 	/**
-	 * Adds a new unlocked achievement to the table, the parameter profileName identifies the profile to which the unlocked achievement belongs.
-	 * @param profileName the name of the profile to which the unlocked achievement belongs.
+	 * Adds a new unlocked achievement to the table.
+	 * @param profileName the name of the profile to which the unlocked achievement belongs
 	 * @param achievement contains the values to be stored in the table
 	 */
 	void addUnlockedAchievement(String profileName, Achievement achievement) {
@@ -61,17 +61,17 @@ public class AchievementManager extends TableManager {
 	}
 
 	/**
-	 * Returns all achievements stored in the table that were unlocked by the user with the profile name profileName.
-	 * @param profileName the name of the user which unlocked achievements are searched-for
-	 * @return a list of all achievements unlocked by the user with the name profileName
+	 * Returns all achievements stored in the table that were unlocked by the user with the given profile name.
+	 * @param profileName the name of the user whose unlocked achievements are searched for
+	 * @return a list of all achievements unlocked by the user
 	 */
 	List<Achievement> getUnlockedAchievements(String profileName) {
 		return null;
 	}
 
 	/**
-	 * Deletes all achievements that were unlocked by the user with the profile name profileName from the table.
-	 * @param profileName the name of the profile which unlocked achievements are deleted
+	 * Deletes all achievements that were unlocked by the user with the given profile name from the table.
+	 * @param profileName the name of the profile whose unlocked achievements are deleted
 	 */
 	void deleteUnlockedAchievements(String profileName) {
 		

@@ -70,18 +70,18 @@ public class PersistenceManager {
 	}
 
 	/**
-	 * Returns the profile with the name profileName.
+	 * Returns the profile with the given profile name.
 	 * @param profileName the name of the profile which is to be loaded
-	 * @return the profile which was loaded
+	 * @return the profile which was loaded, null if there is no profile with this name
 	 */
 	public Profile loadProfile(String profileName) {
 		return null;
 	}
 	
 	/**
-	 * Overwrites the profile indexed by profileName with the values stored in profile. Every reference to the profile name gets updated.
+	 * Overwrites the profile identified by the given name with the values of the new profile. Every reference to the profile name gets updated.
 	 * @param profileName the string to identify the profile which is to be edited
-	 * @param profile contains the the values used to overwrite the old profile
+	 * @param profile contains the values used for overwriting the old profile
 	 */
 	public void editProfile(String profileName, Profile profile) {
 		
@@ -89,14 +89,14 @@ public class PersistenceManager {
 
 	/**
 	 * Returns all stored profiles.
-	 * @return profile a list of all stored profiles
+	 * @return a list of all stored profiles
 	 */
 	public List<Profile> getAllProfiles() {
 		return null;
 	}
 
 	/**
-	 * Deletes the profile with the name profileName (all entries referenced by profileName are deleted). 
+	 * Deletes the profile with the given name (all entries referenced by it are deleted also). 
 	 * @param profileName the name of the profile to be deleted
 	 */
 	public void deleteProfile(String profileName) {
@@ -104,63 +104,63 @@ public class PersistenceManager {
 	}
 
 	/**
-	 * Returns the setting of the profile with the name profileName.
-	 * @param profileName the name of the profile to which the setting belongs.
-	 * @return the found setting, if no setting is found null is returned
+	 * Returns the setting of the profile with the given profile name.
+	 * @param profileName the name of the profile to which the setting belongs
+	 * @return the found setting, null if no setting is found
 	 */
 	public Setting getSetting(String profileName) {
 		return null;
 	}
 
 	/**
-	 * Overwrites the setting of the profile with the name profileName with the values stored in newSetting.
+	 * Overwrites the setting of the profile identified by the given name with the values of the new setting.
 	 * @param profileName the name of the profile to which the setting belongs
-	 * @param newSetting contains the new values used to overwrite the old setting
+	 * @param newSetting contains the new values used for overwriting the old setting
 	 */
 	public void editSetting(String profileName, Setting newSetting) {
 
 	}
 
 	/**
-	 * Returns the statistic of the profile with the name profileName.
+	 * Returns the statistic of the profile with the givne name.
 	 * @param profileName the name of the profile to which the statistic belongs
-	 * @return the found statistic is returned, if no statistic is found null is returned
+	 * @return the found statistic, null if no statistic is found
 	 */
 	public Statistic getStatistic(String profileName) {
 		return null;
 	}
 
 	/**
-	 * Overwrites the statistic of a specific profile identified by profileName with the values stored in newStatistic.
+	 * Overwrites the statistic of a specific profile identified by the given profile name with the new statistic.
 	 * @param profileName the name of the profile to which the statistic belongs
-	 * @param newStatistic contains the new values used to overwrite the old statistic
+	 * @param newStatistic contains the new values used for overwriting the old statistic
 	 */
 	public void editStatistic(String profileName, Statistic newStatistic) {
 
 	}
 
 	/**
-	 * Saves a levelProgress for a specific profile identified by profileName. If there already is an entry for the profile which has the same level
-	 * id as the level id of leveProgress, the old entry get overwritten.
+	 * Saves a level progress for a specific profile identified by the given profile name. If there already is an entry for the profile which has the same level
+	 * id as the level id of the level progress, the old entry gets overwritten.
 	 * @param profileName the name of the profile to which the statistic belongs
-	 * @param levelProgress contains the new values used to store the levelProgress or overwrite the old levelProgress
+	 * @param levelProgress contains the new values used for storing the level progress or overwrite the old level progress
 	 */
 	public void saveLevelProgress(String profileName, LevelProgress levelProgress) {
 
 	}
 
 	/**
-	 * Returns the levelProgress which level ID matches levelID and which belongs to the profile with the name profileName. 
-	 * @param profileName the name of the profile to which the levelProgress belongs.
-	 * @param levelID the level ID of the levelProgress
-	 * @return he found level progress, if no level progress is found null is returned
+	 * Returns the level progress whose level ID matches the given leven id and which belongs to the profile with the given profile name.
+	 * @param profileName the name of the profile to which the levelProgress belongs
+	 * @param levelID the level ID of the level progress
+	 * @return the found level progress, null if no level progress is found
 	 */
 	public LevelProgress getLevelProgress(String profileName, int levelID) {
 		return null;
 	}
 	
 	/**
-	 * Saves an unlocked achievement for a specific profile identified by profileName.
+	 * Saves an unlocked achievement for a specific profile identified by the given profile name.
 	 * @param profileName the name of the user that unlocked the achievement
 	 * @param achievement contains the values to be stored
 	 */
@@ -169,9 +169,9 @@ public class PersistenceManager {
 	}
 	
 	/**
-	 * Returns all achievements unlocked by the user identified with profileName.
+	 * Returns all achievements unlocked by the user identified by the given profile name.
 	 * @param profileName the name of the profile whose unlocked achievements are searched for
-	 * @return a list containing all achievements unlocked by the user with the name profileName is returned
+	 * @return a list containing all achievements unlocked by the user
 	 */
 	public List<Achievement> getAllUnlockedAchievements(String profileName) {
 		return null;

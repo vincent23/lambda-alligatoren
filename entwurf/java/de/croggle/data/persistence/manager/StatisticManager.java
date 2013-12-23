@@ -7,7 +7,7 @@ import android.content.Context;
 
 
 /**
- * A concrete table manager is responsible for managing the sqlite-table that stores the statistics of the different profiles.
+ * A concrete table manager is responsible for managing the SQLite table that stores the statistics of the different profiles.
  * 
  * @navassoc 1 - * de.croggle.data.persistence.Statistic
  */
@@ -55,7 +55,7 @@ public class StatisticManager extends TableManager {
 	static final String KEY_ALLIGATORS_EATEN = "alligatorsEaten";
 	
 	/**
-	 * Name for the column that stores the number of eaten alligators.
+	 * Name for the column that stores the number of placed alligators.
 	 */
 	static final String KEY_ALLIGATORS_PLACED = "alligatorsPlaced";
 	
@@ -75,13 +75,13 @@ public class StatisticManager extends TableManager {
 	static final String TABLE_NAME = "StatisticTable";
 	
 	/**
-	 * The string used to create the statistic table via a sql query.
+	 * The string used for creating the statistic table via a sql query.
 	 */
 	static final String CREATE_TABLE = "null";
 	
 	/**
 	 * Creates a new StatisticManager which manages the statistic table.
-	 * @param context used to access the database
+	 * @param context used for accessing the database
 	 */
 	StatisticManager(Context context) {
 		super(context);
@@ -89,8 +89,8 @@ public class StatisticManager extends TableManager {
 	}
 	
 	/**
-	 * Adds a new statistic to the table, the parameter profileName identifies the profile to which the statistic belongs.
-	 * @param profileName the name of the profile which statistic is added to the table
+	 * Adds a new statistic to the table.
+	 * @param profileName the name of the profile whose statistic is added to the table
 	 * @param statistic contains the values to be stored in the table
 	 */
 	void addStatistic(String profileName, Statistic statistic) {
@@ -99,9 +99,9 @@ public class StatisticManager extends TableManager {
 	}
 
 	/**
-	 * Searches the table for a statistic which belongs to the profile identified by profile name.
-	 * @param profileName the name of the profile which statistic is loaded
-	 * @return the found statistic, if no statistic is found, null is returned
+	 * Searches the table for a statistic which belongs to the profile identified by the given profile name.
+	 * @param profileName the name of the profile whose statistic is loaded
+	 * @return the found statistic, null if no statistic is found
 	 */
 	Statistic getStatistic(String profileName) {
 	
@@ -109,17 +109,17 @@ public class StatisticManager extends TableManager {
 	}
 
 	/**
-	 * Searches the table for a statistic which belongs to the profile identified by profileName and overwrites its values with the values stored in the parameter statistic.
-	 * @param profileName the name of the profile which statistic is edited
-	 * @param statistic the statistic which values are used to overwrite the old statistic
+	 * Searches the table for a statistic which belongs to the profile identified by the given profile name and overwrites its values with the values of the new statistic.
+	 * @param profileName the name of the profile whose statistic is edited
+	 * @param statistic the statistic whose values are used for overwriting the old statistic
 	 */
 	void editStatistic(String profileName, Statistic statistic) {
 		
 	}
 
 	/**
-	 * Deletes the statistic which belongs to the profile identified by profileName from the table.
-	 * @param profileName the name of the profile which statistic is deleted
+	 * Deletes the statistic which belongs to the profile identified by the given profile name from the table.
+	 * @param profileName the name of the profile whose statistic is deleted
 	 */
 	void deleteStatistics(String profileName) {
 	

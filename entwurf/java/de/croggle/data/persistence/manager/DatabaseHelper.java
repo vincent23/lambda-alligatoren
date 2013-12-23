@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 /**
- * This class is responsible for creating and managing the database with its different tables.
+ * This class is responsible for creating and managing the database with it's different tables.
  * 
  * @navassoc 1 - 1 de.croggle.data.persistence.manager.TableManager
  */
@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_Version = 1;
 	
 	/**
-	 * Creates a new DatabaseHelper which is used manages the database.
+	 * Creates a new DatabaseHelper, which is used manages the database.
 	 * @param context the context used to create the database
 	 */
 	public DatabaseHelper(Context context) {
@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * Creates all tables if the don't already exist.
+	 * Creates all tables if they don't already exist.
 	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {

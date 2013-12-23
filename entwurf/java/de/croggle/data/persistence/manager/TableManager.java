@@ -5,25 +5,25 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * Table Manager is an abstract superclass for all classes which manage tables.
+ * An abstract superclass for all classes which manage tables.
  *
  */
 public abstract class TableManager {
 
 	/**
-	 * The DatabaseHelper is used to access the database in which the table is stored.
+	 * The DatabaseHelper is used for accessing the database in which the table is stored.
 	 */
-	DatabaseHelper databaseHelper;
+	protected DatabaseHelper databaseHelper;
 	
 	/**
 	 * The database in which the table is stored.
 	 */
-	SQLiteDatabase databse;
+	protected SQLiteDatabase database;
 	
 		
 	/**
-	 * Creates a new Table Manager which manages a specific table form the database that belongs to the Context context.
-	 * @param context the context that is used to open or, if needed, create the database
+	 * Creates a new TableManager, which manages a specific table from the database that belongs to the given context.
+	 * @param context the context that is used for opening or, if needed, creating the database
 	 */
 	TableManager(Context context) {
 		
