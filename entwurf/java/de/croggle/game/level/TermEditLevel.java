@@ -10,6 +10,9 @@ import de.croggle.game.ColorController;
 public class TermEditLevel extends Level {
 	ColorController colorController;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean hasAnimation() {
 		return false;

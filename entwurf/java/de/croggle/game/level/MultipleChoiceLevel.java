@@ -13,11 +13,17 @@ public class MultipleChoiceLevel extends Level {
 
 	/**
 	 * Method to check whether the given answer was the correct one.
+	 *
+	 * @param selection the index of the selected answer
+	 * @return true if the answer was right, false otherwise
 	 */
 	public boolean validateAnswer(int selection) {
 		return selection == correctAnswer;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean hasAnimation() {
 		return false;

@@ -3,22 +3,22 @@ package de.croggle.game.level;
 import com.badlogic.gdx.utils.JsonValue;
 
 /**
- * The LoadLevelHelper class encapsulates the functionality needed to
- * instantiate a level/game from the respective json file. Therefore it moves a
- * larger portion of program logic from the LevelController, which in turn
+ * Encapsulates the functionality needed for
+ * instantiating a level/game from the respective JSON file. Therefore it removes a
+ * larger portion of program logic from the <code>LevelController</code>, which in turn
  * delegates requests for level instantiation to this class' instantiate method.
  */
 public class LoadLevelHelper {
 	/**
-	 * Called to load a new level. With both the packageIndex and the levelIndex
+	 * Called to load a new level. With both the package index and the level index
 	 * it is possible to distinctively indentify the required level.
 	 * 
 	 * @param packageIndex
 	 *            specifies the level package from which the level is supposed
 	 *            to be loaded
 	 * @param levelIndex
-	 *            the id of the level within the package.
-	 * @return the level denoted by the given indices/identifiers.
+	 *            the id of the level within the package
+	 * @return the level denoted by the given indices/identifiers
 	 */
 	static Level instantiate(int packageIndex, int levelIndex) {
 		return null;
