@@ -31,14 +31,14 @@ public abstract class Achievement {
 	 * 
 	 * @param index
 	 *            the stage index for which the emblem path should be returned
-	 * @return the path leading to the achievement's emblem
+	 * @return the path leading to the emblem of the achievement
 	 */
 	public String getEmblemPath(int index) {
 		return null;
 	}
 
 	/**
-	 * Returns the achievement's id that identifies it.
+	 * Returns the id of the achievement that identifies it.
 	 * 
 	 * @return the achievement id
 	 */

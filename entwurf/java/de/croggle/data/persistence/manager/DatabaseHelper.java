@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_Version = 1;
 	
 	/**
-	 * Creates a new DatabaseHelper which is used manages the database.
+	 * Creates a new DatabaseHelper which is used for managing the database.
 	 * @param context the context used to create the database
 	 */
 	public DatabaseHelper(Context context) {

@@ -15,8 +15,8 @@ import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.game.level.Level;
 
 /**
- * Central controller, within which the actual playing of the a level is
- * controlled. Additionally it handles the consequences of finishing a level and
+ * Central controller within which the actual playing of the a level is
+ * controlled. Additionally, it handles the consequences of finishing a level and
  * distributes the changes.
  * 
  * @navassoc 1 - 1 de.croggle.game.level.Level
@@ -80,7 +80,7 @@ public class GameController implements BoardEventListener {
 
 	/**
 	 * Registers a listener to whom the statisticsDelta should be passed after
-	 * level completion.
+	 * th completion of the level.
 	 * 
 	 * @param listener
 	 *            the listener
@@ -106,7 +106,7 @@ public class GameController implements BoardEventListener {
 	}
 
 	/**
-	 * Unregisters a board event listener, so that it won't receive future events.
+	 * Unregisters a board event listener so that it won't receive future events.
 	 *
 	 * @param listener the listener to unregister
 	 */
