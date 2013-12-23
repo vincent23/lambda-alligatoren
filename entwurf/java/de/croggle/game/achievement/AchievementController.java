@@ -11,7 +11,7 @@ import de.croggle.data.persistence.StatisticsDeltaProcessor;
  * have been achieved.
  * 
  * @navassoc 1 - * de.croggle.game.achievement.Achievement
- * @navassoc 1 - * de.croggle.data.persistence.manager.AchievementManager
+ * @navassoc 1 - * de.croggle.data.persistence.manager.PersistenceManager
  */
 public class AchievementController implements StatisticsDeltaProcessor {
 
