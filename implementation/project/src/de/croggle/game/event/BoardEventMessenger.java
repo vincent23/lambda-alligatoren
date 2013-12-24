@@ -1,5 +1,6 @@
 package de.croggle.game.event;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.croggle.game.board.AgedAlligator;
@@ -18,6 +19,10 @@ public class BoardEventMessenger {
 
 	private List<BoardEventListener> listeners;
 
+	public BoardEventMessenger() {
+		listeners = new ArrayList<BoardEventListener>();
+	}
+
 	/**
 	 * Registers a new listener to listen for board events sent via this
 	 * messenger. The listener will receive all future events, until it is
@@ -27,6 +32,7 @@ public class BoardEventMessenger {
 	 *            the listener to register
 	 */
 	public void register(BoardEventListener listener) {
+		listeners.add(listener);
 	}
 
 	/**
@@ -37,6 +43,7 @@ public class BoardEventMessenger {
 	 *            the listener to unregister
 	 */
 	public void unregister(BoardEventListener listener) {
+		listeners.remove(listener);
 	}
 
 	/**
@@ -47,6 +54,9 @@ public class BoardEventMessenger {
 	 *            the object which was recolored
 	 */
 	public void notifyObjectRecolored(InternalBoardObject recoloredObject) {
+		for (BoardEventListener listener : listeners) {
+			listener.onObjectRecolored(recoloredObject);
+		}
 	}
 
 	/**
@@ -59,6 +69,10 @@ public class BoardEventMessenger {
 	 */
 	public void notifyEat(ColoredAlligator eater,
 			InternalBoardObject eatenFamily) {
+		for (BoardEventListener listener : listeners) {
+			listener.onEat(eater, eatenFamily);
+			;
+		}
 	}
 
 	/**
@@ -69,6 +83,9 @@ public class BoardEventMessenger {
 	 *            the alligator that has vanished
 	 */
 	public void notifyAgedAlligatorVanishes(AgedAlligator alligator) {
+		for (BoardEventListener listener : listeners) {
+			listener.onAgedAlligatorVanishes(alligator);
+		}
 	}
 
 	/**
@@ -78,6 +95,10 @@ public class BoardEventMessenger {
 	 *            the board which was rebuilt
 	 */
 	public void notifyBoardRebuilt(Board board) {
+		for (BoardEventListener listener : listeners) {
+			listener.onBoardRebuilt(board);
+			;
+		}
 	}
 
 	/**
@@ -89,5 +110,8 @@ public class BoardEventMessenger {
 	 *            the family that hatched out of the egg
 	 */
 	public void notifyReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
+		for (BoardEventListener listener : listeners) {
+			listener.onReplace(replacedEgg, bornFamily);
+		}
 	}
 }
