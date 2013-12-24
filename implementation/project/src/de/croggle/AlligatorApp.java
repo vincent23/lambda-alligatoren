@@ -3,6 +3,9 @@ package de.croggle;
 import java.util.List;
 
 import android.content.Context;
+
+import com.badlogic.gdx.Game;
+
 import de.croggle.data.AssetManager;
 import de.croggle.data.LocalizationManager;
 import de.croggle.data.persistence.SettingController;
@@ -17,7 +20,7 @@ import de.croggle.ui.screens.AbstractScreen;
  * The central unit controlling the game. Manages the application lifecycle and
  * is responsible for managing screens as well as the minor controllers.
  */
-public class AlligatorApp extends com.badlogic.gdx.Game {
+public class AlligatorApp extends Game {
 
 	// the Android Context
 	private Context context;

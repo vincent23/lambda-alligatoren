@@ -15,8 +15,9 @@ public class MainActivity extends AndroidApplication {
 	 * lifecycle of ApplicationListener is started.
 	 */
 	@Override
-	protected void onCreate(Bundle savedInstance) {
-
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		initialize(new AlligatorApp(this), true);
 	}
 
 }
