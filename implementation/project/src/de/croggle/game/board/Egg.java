@@ -10,20 +10,9 @@ import de.croggle.game.visitor.BoardObjectVisitor;
 public class Egg implements InternalBoardObject, ColoredBoardObject {
 	private Color color;
 	private boolean recolorable;
+	private boolean movable;
+	private boolean removable;
 	private Parent parent;
-
-	/**
-	 * Creates a new egg with the specified color. The color hereby serves as
-	 * the name of the variable this egg represents in the Lambda Calculus. The
-	 * egg is created as a recolorable board object by this constructor.
-	 * 
-	 * @param c
-	 *            the color this egg has.
-	 */
-	public Egg(Color c) {
-		this.color = c;
-		this.recolorable = true;
-	}
 
 	/**
 	 * Creates a new egg with the specified color and the permission value if
@@ -31,12 +20,16 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 * the variable this egg represents in the Lambda Calculus.
 	 * 
 	 * @param c
-	 *            the color this egg has.
+	 *            the color this egg has
 	 * @param recolorable
 	 *            whether the egg is recolorable (true) or not (false)
 	 */
-	public Egg(Color c, boolean recolorable) {
-		this(c);
+	public Egg(Parent parent, boolean movable, boolean removable, Color c,
+			boolean recolorable) {
+		this.parent = parent;
+		this.movable = movable;
+		this.removable = removable;
+		this.color = c;
 		this.recolorable = recolorable;
 	}
 
@@ -70,6 +63,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 */
 	@Override
 	public void setParent(Parent parent) {
+		this.parent = parent;
 	}
 
 	/**
@@ -79,7 +73,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 */
 	@Override
 	public Egg copy() {
-		return null;
+		return new Egg(parent, movable, removable, color, recolorable);
 	}
 
 	/**
@@ -89,7 +83,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 */
 	@Override
 	public boolean isRecolorable() {
-		return false;
+		return recolorable;
 	}
 
 	/**
@@ -99,7 +93,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 */
 	@Override
 	public Color getColor() {
-		return this.color;
+		return color;
 	}
 
 	/**
@@ -111,6 +105,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 */
 	@Override
 	public void setColor(Color c) {
+		this.color = c;
 	}
 
 	/**
@@ -120,7 +115,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 */
 	@Override
 	public boolean isMovable() {
-		return false;
+		return movable;
 	}
 
 	/**
@@ -130,6 +125,6 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 */
 	@Override
 	public boolean isRemovable() {
-		return false;
+		return removable;
 	}
 }
