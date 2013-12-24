@@ -1,7 +1,5 @@
 package de.croggle.game.board;
 
-import de.croggle.game.visitor.BoardObjectVisitor;
-
 /**
  * Alligator is the abstract super class of aged and colored alligators. Both
  * have their similar rendering in common (which implies a similar type) and
@@ -14,22 +12,17 @@ import de.croggle.game.visitor.BoardObjectVisitor;
 public abstract class Alligator extends Parent implements InternalBoardObject {
 
 	private Parent parent;
+	private boolean movable;
+	private boolean removable;
 
 	/**
 	 * Superconstructor for all alligators.
 	 */
-	protected Alligator() {
+	protected Alligator(Parent parent, boolean movable, boolean removable) {
+		this.parent = parent;
+		this.movable = movable;
+		this.removable = removable;
 	}
-
-	/**
-	 * Accepts a visitor which is then used for traversing the subtree of the
-	 * object.
-	 * 
-	 * @param visitor
-	 *            the visitor that tries to access the tree
-	 */
-	@Override
-	public abstract void accept(BoardObjectVisitor visitor);
 
 	/**
 	 * Returns the parent object of this alligator.
@@ -37,7 +30,9 @@ public abstract class Alligator extends Parent implements InternalBoardObject {
 	 * @return the parent alligator
 	 */
 	@Override
-	public abstract Parent getParent();
+	public Parent getParent() {
+		return parent;
+	}
 
 	/**
 	 * Sets the given parent as the parent object.
@@ -47,5 +42,14 @@ public abstract class Alligator extends Parent implements InternalBoardObject {
 	 */
 	@Override
 	public void setParent(Parent parent) {
+		this.parent = parent;
+	}
+
+	public boolean isMovable() {
+		return movable;
+	}
+
+	public boolean isRemovable() {
+		return removable;
 	}
 }
