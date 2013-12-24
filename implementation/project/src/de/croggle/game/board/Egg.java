@@ -33,6 +33,10 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 		this.recolorable = recolorable;
 	}
 
+	private Egg(Egg egg) {
+		this(egg.parent, egg.movable, egg.removable, egg.color, egg.recolorable);
+	}
+
 	/**
 	 * Accepts a visitor, which is then used for traversing the subtree of the
 	 * object.
@@ -73,7 +77,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 */
 	@Override
 	public Egg copy() {
-		return new Egg(parent, movable, removable, color, recolorable);
+		return new Egg(this);
 	}
 
 	/**

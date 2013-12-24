@@ -14,6 +14,10 @@ public class Board extends Parent implements BoardObject {
 	public Board() {
 	}
 
+	private Board(Board board) {
+		super(board);
+	}
+
 	/**
 	 * Accepts a visitor which is then used for traversing the object's subtree.
 	 * 
@@ -33,8 +37,6 @@ public class Board extends Parent implements BoardObject {
 	 */
 	@Override
 	public Board copy() {
-		final Board newBoard = new Board();
-		newBoard.copyChildrenFrom(this);
-		return newBoard;
+		return new Board(this);
 	}
 }

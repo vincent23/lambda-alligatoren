@@ -19,6 +19,10 @@ public class AgedAlligator extends Alligator {
 		super(parent, movable, removable);
 	}
 
+	private AgedAlligator(AgedAlligator agedAlligator) {
+		super(agedAlligator);
+	}
+
 	/**
 	 * Accepts a visitor, which is then used for traversing the subtree of the
 	 * object.
@@ -39,9 +43,6 @@ public class AgedAlligator extends Alligator {
 	 */
 	@Override
 	public AgedAlligator copy() {
-		final AgedAlligator newAgedAlligator = new AgedAlligator(getParent(),
-				isMovable(), isRemovable());
-		newAgedAlligator.copyChildrenFrom(this);
-		return newAgedAlligator;
+		return new AgedAlligator(this);
 	}
 }

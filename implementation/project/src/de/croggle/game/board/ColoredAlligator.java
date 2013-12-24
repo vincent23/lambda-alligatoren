@@ -30,6 +30,12 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 		this.recolorable = recolorable;
 	}
 
+	private ColoredAlligator(ColoredAlligator coloredAlligator) {
+		super(coloredAlligator);
+		this.color = coloredAlligator.color;
+		this.recolorable = coloredAlligator.recolorable;
+	}
+
 	/**
 	 * Accepts a visitor which is then used for traversing the subtree of the
 	 * object.
@@ -50,10 +56,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	 */
 	@Override
 	public ColoredAlligator copy() {
-		final ColoredAlligator newColoredAlligator = new ColoredAlligator(
-				getParent(), isMovable(), isRemovable(), color, recolorable);
-		newColoredAlligator.copyChildrenFrom(this);
-		return newColoredAlligator;
+		return new ColoredAlligator(this);
 	}
 
 	/**

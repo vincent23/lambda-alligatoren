@@ -22,6 +22,14 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 		children = new ArrayList<InternalBoardObject>();
 	}
 
+	protected Parent(Parent parent) {
+		for (InternalBoardObject child : parent) {
+			InternalBoardObject copiedChild = child.copy();
+			copiedChild.setParent(this);
+			addChild(copiedChild);
+		}
+	}
+
 	/**
 	 * Adds a child to the family of the parent.
 	 * 
@@ -107,12 +115,6 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 	protected void acceptOnChildren(BoardObjectVisitor visitor) {
 		for (InternalBoardObject child : this) {
 			child.accept(visitor);
-		}
-	}
-
-	protected void copyChildrenFrom(Parent parent) {
-		for (InternalBoardObject child : parent) {
-			addChild(child.copy());
 		}
 	}
 }

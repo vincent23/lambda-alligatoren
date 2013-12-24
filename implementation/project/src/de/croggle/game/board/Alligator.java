@@ -24,6 +24,10 @@ public abstract class Alligator extends Parent implements InternalBoardObject {
 		this.removable = removable;
 	}
 
+	protected Alligator(Alligator alligator) {
+		this(alligator.parent, alligator.movable, alligator.removable);
+	}
+
 	/**
 	 * Returns the parent object of this alligator.
 	 * 
