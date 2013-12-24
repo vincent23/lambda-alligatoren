@@ -1,5 +1,6 @@
 package de.croggle.game.board;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
  * be parents of families - must have.
  **/
 
-public abstract class Parent {
+public abstract class Parent implements Iterable<InternalBoardObject> {
 
 	private List<InternalBoardObject> children;
 
@@ -16,6 +17,7 @@ public abstract class Parent {
 	 * Superconstructor of all parents. Creates a parent with no children.
 	 */
 	protected Parent() {
+		children = new ArrayList<InternalBoardObject>();
 	}
 
 	/**
@@ -25,6 +27,7 @@ public abstract class Parent {
 	 *            the child which should be added to the family of the parent
 	 */
 	public void addChild(InternalBoardObject child) {
+		children.add(child);
 	}
 
 	/**
@@ -36,7 +39,7 @@ public abstract class Parent {
 	 * @return whether the removal was successful
 	 */
 	public boolean removeChild(InternalBoardObject child) {
-		return false;
+		return children.remove(child);
 	}
 
 	/**
@@ -51,7 +54,13 @@ public abstract class Parent {
 	 */
 	public boolean replaceChildWith(InternalBoardObject child,
 			InternalBoardObject replaceChild) {
-		return false;
+		final int location = children.indexOf(child);
+		if (location == -1) {
+			return false;
+		} else {
+			children.set(location, replaceChild);
+			return true;
+		}
 	}
 
 	/**
@@ -59,8 +68,8 @@ public abstract class Parent {
 	 * 
 	 * @return the iterator
 	 */
-	public Iterator<InternalBoardObject> getIterator() {
-		return null;
+	public Iterator<InternalBoardObject> iterator() {
+		return children.iterator();
 	}
 
 	/**
@@ -73,7 +82,7 @@ public abstract class Parent {
 	 *         false otherwise
 	 */
 	public boolean isLastChild(InternalBoardObject child) {
-		return false;
+		return getNextChild(child) == null;
 	}
 
 	/**
@@ -81,9 +90,15 @@ public abstract class Parent {
 	 * 
 	 * @param child
 	 *            the child whose successor should be returned
-	 * @return the child which is the next one in the list after the given child
+	 * @return the child which is the next one in the list after the given
+	 *         child, null if it is the last child
 	 */
 	public InternalBoardObject getNextChild(InternalBoardObject child) {
-		return null;
+		final int location = children.indexOf(child);
+		if (location > 0 && location + 1 < children.size()) {
+			return children.get(location + 1);
+		} else {
+			return null;
+		}
 	}
 }
