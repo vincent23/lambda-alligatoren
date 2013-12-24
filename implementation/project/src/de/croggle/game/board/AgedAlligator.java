@@ -29,9 +29,7 @@ public class AgedAlligator extends Alligator {
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
 		visitor.visitAgedAlligator(this);
-		for (InternalBoardObject child : this) {
-			child.accept(visitor);
-		}
+		acceptOnChildren(visitor);
 	}
 
 	/**
@@ -43,9 +41,7 @@ public class AgedAlligator extends Alligator {
 	public AgedAlligator copy() {
 		final AgedAlligator newAgedAlligator = new AgedAlligator(getParent(),
 				isMovable(), isRemovable());
-		for (InternalBoardObject child : this) {
-			newAgedAlligator.addChild(child.copy());
-		}
+		newAgedAlligator.copyChildrenFrom(this);
 		return newAgedAlligator;
 	}
 }

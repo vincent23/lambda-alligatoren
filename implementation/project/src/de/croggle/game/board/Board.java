@@ -12,7 +12,6 @@ public class Board extends Parent implements BoardObject {
 	 * Creates a new board with no children.
 	 */
 	public Board() {
-
 	}
 
 	/**
@@ -23,7 +22,8 @@ public class Board extends Parent implements BoardObject {
 	 */
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
-
+		visitor.visitBoard(this);
+		acceptOnChildren(visitor);
 	}
 
 	/**
@@ -33,6 +33,8 @@ public class Board extends Parent implements BoardObject {
 	 */
 	@Override
 	public Board copy() {
-		return null;
+		final Board newBoard = new Board();
+		newBoard.copyChildrenFrom(this);
+		return newBoard;
 	}
 }

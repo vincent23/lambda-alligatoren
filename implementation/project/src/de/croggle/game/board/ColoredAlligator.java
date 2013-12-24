@@ -40,9 +40,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
 		visitor.visitColoredAlligator(this);
-		for (InternalBoardObject child : this) {
-			child.accept(visitor);
-		}
+		acceptOnChildren(visitor);
 	}
 
 	/**
@@ -54,9 +52,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	public ColoredAlligator copy() {
 		final ColoredAlligator newColoredAlligator = new ColoredAlligator(
 				getParent(), isMovable(), isRemovable(), color, recolorable);
-		for (InternalBoardObject child : this) {
-			newColoredAlligator.addChild(child.copy());
-		}
+		newColoredAlligator.copyChildrenFrom(this);
 		return newColoredAlligator;
 	}
 

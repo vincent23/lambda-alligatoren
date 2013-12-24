@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import de.croggle.game.visitor.BoardObjectVisitor;
+
 /**
  * Parent is an abstract class to model the functions board objects - which can
  * be parents of families - must have.
@@ -99,6 +101,18 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 			return children.get(location + 1);
 		} else {
 			return null;
+		}
+	}
+
+	protected void acceptOnChildren(BoardObjectVisitor visitor) {
+		for (InternalBoardObject child : this) {
+			child.accept(visitor);
+		}
+	}
+
+	protected void copyChildrenFrom(Parent parent) {
+		for (InternalBoardObject child : parent) {
+			addChild(child.copy());
 		}
 	}
 }
