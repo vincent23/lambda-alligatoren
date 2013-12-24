@@ -9,21 +9,7 @@ import de.croggle.game.visitor.BoardObjectVisitor;
  **/
 public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	private Color color;
-	private boolean recolorable = true;
-
-	/**
-	 * Creates a new ColoredAlligator with the specified color. The color hereby
-	 * serves as the name of variables bound by this abstraction in the Lambda
-	 * Calculus. The ColoredAlligator is created as a recolorable board object
-	 * by this constructor.
-	 * 
-	 * @param c
-	 *            the color this alligator has
-	 */
-	public ColoredAlligator(Color c) {
-		this.color = c;
-		this.recolorable = true;
-	}
+	private boolean recolorable;
 
 	/**
 	 * Creates a new ColoredAlligator with the specified color and the
@@ -37,29 +23,11 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	 *            whether the ColoredAlligator is recolorable (true) or not
 	 *            (false)
 	 */
-	public ColoredAlligator(Color c, boolean recolorable) {
-		this(c);
+	public ColoredAlligator(Parent parent, boolean movable, boolean removable,
+			Color c, boolean recolorable) {
+		super(parent, movable, removable);
+		this.color = c;
 		this.recolorable = recolorable;
-	}
-
-	/**
-	 * Returns the parent object of this alligator.
-	 * 
-	 * @return the parent alligator
-	 */
-	@Override
-	public Parent getParent() {
-		return null;
-	}
-
-	/**
-	 * Sets the given parent as the parent object.
-	 * 
-	 * @param parent
-	 *            the new parent of this object
-	 */
-	@Override
-	public void setParent(Parent parent) {
 	}
 
 	/**
@@ -71,7 +39,10 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	 */
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
-
+		visitor.visitColoredAlligator(this);
+		for (InternalBoardObject child : this) {
+			child.accept(visitor);
+		}
 	}
 
 	/**
@@ -81,7 +52,12 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	 */
 	@Override
 	public ColoredAlligator copy() {
-		return null;
+		final ColoredAlligator newColoredAlligator = new ColoredAlligator(
+				getParent(), isMovable(), isRemovable(), color, recolorable);
+		for (InternalBoardObject child : this) {
+			newColoredAlligator.addChild(child.copy());
+		}
+		return newColoredAlligator;
 	}
 
 	/**
@@ -91,7 +67,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	 */
 	@Override
 	public boolean isRecolorable() {
-		return false;
+		return recolorable;
 	}
 
 	/**
@@ -101,7 +77,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	 */
 	@Override
 	public Color getColor() {
-		return this.color;
+		return color;
 	}
 
 	/**
@@ -113,25 +89,6 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	 */
 	@Override
 	public void setColor(Color c) {
-	}
-
-	/**
-	 * Returns whether the object can be moved by the user.
-	 * 
-	 * @return true if the object can be moved, otherwise false
-	 */
-	@Override
-	public boolean isMovable() {
-		return false;
-	}
-
-	/**
-	 * Returns whether the user can remove this alligator from the board.
-	 * 
-	 * @return true if the object can be removed, otherwise false
-	 */
-	@Override
-	public boolean isRemovable() {
-		return false;
+		this.color = c;
 	}
 }

@@ -10,41 +10,13 @@ import de.croggle.game.visitor.BoardObjectVisitor;
 public class AgedAlligator extends Alligator {
 
 	/**
-	 * Creates an aged alligator with no child objects and no parent.
-	 */
-	public AgedAlligator() {
-
-	}
-
-	/**
 	 * Creates an aged alligator with no children and the given parent.
 	 * 
 	 * @param parent
 	 *            the parent this alligator should have
 	 */
-	public AgedAlligator(Parent parent) {
-
-	}
-
-	/**
-	 * Returns the parent object of the internal board object, meaning the
-	 * parent node in the tree structure.
-	 * 
-	 * @return the parent object
-	 */
-	@Override
-	public Parent getParent() {
-		return null;
-	}
-
-	/**
-	 * Sets the given parent as the parent object.
-	 * 
-	 * @param parent
-	 *            the new parent of this object
-	 */
-	@Override
-	public void setParent(Parent parent) {
+	public AgedAlligator(Parent parent, boolean movable, boolean removable) {
+		super(parent, movable, removable);
 	}
 
 	/**
@@ -56,6 +28,10 @@ public class AgedAlligator extends Alligator {
 	 */
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
+		visitor.visitAgedAlligator(this);
+		for (InternalBoardObject child : this) {
+			child.accept(visitor);
+		}
 	}
 
 	/**
@@ -65,26 +41,11 @@ public class AgedAlligator extends Alligator {
 	 */
 	@Override
 	public AgedAlligator copy() {
-		return null;
-	}
-
-	/**
-	 * Gets whether the object is movable by the user.
-	 * 
-	 * @return true if the object can be moved, otherwise false
-	 */
-	@Override
-	public boolean isMovable() {
-		return false;
-	}
-
-	/**
-	 * Gets whether the object is removable by the user.
-	 * 
-	 * @return true if the object can be removed, otherwise false
-	 */
-	@Override
-	public boolean isRemovable() {
-		return false;
+		final AgedAlligator newAgedAlligator = new AgedAlligator(getParent(),
+				isMovable(), isRemovable());
+		for (InternalBoardObject child : this) {
+			newAgedAlligator.addChild(child.copy());
+		}
+		return newAgedAlligator;
 	}
 }
