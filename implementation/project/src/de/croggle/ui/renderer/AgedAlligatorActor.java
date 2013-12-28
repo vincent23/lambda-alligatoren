@@ -1,6 +1,7 @@
 package de.croggle.ui.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import de.croggle.game.board.AgedAlligator;
 
 /**
  * An actor used for representing an aged alligator.
@@ -9,8 +10,10 @@ public class AgedAlligatorActor extends ParentActor {
 
 	/**
 	 * Creates a new actor.
+	 * @param alligator the AgedAlligator represented by this actor
 	 */
-	public AgedAlligatorActor() {
+	public AgedAlligatorActor(AgedAlligator alligator) {
+		super(alligator);
 	}
 
 	/**

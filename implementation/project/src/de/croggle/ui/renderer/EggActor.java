@@ -1,6 +1,7 @@
 package de.croggle.ui.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import de.croggle.game.board.Egg;
 
 /**
  * An actor used for representing an egg.
@@ -9,8 +10,10 @@ public class EggActor extends BoardObjectActor {
 
 	/**
 	 * Creates a new actor.
+	 * @param egg The egg represented by the actor
 	 */
-	public EggActor() {
+	public EggActor(Egg egg) {
+		super(egg);
 	}
 
 	/**

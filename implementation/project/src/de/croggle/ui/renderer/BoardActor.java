@@ -13,29 +13,39 @@ import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.event.BoardEventListener;
 
 /**
- * An actor used for representing an alligator constellation.
+ * An actor used for representing a whole board, i.e. an alligator constellation.
  */
-public class BoardActor extends ParentActor implements BoardEventListener {
+public class BoardActor implements BoardEventListener {
 
-	private HashMap<BoardObject, BoardObjectActor> actors;
-
+	private HashMap<HashKey<BoardObject>, BoardObjectActor> actors;
+	private final Board board;
+	
 	/**
 	 * Creates a new actor.
+	 * @param board
 	 */
-	public BoardActor() {
+	public BoardActor(Board board) {
+		this.board = board;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Draws the actor.
+	 * coordinate system.
+	 * 
+	 * @param batch
+	 *            the sprite batch specifies where to draw into
+	 * @param parentAlpha
+	 *            the parent's alpha value
 	 */
-	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Updates the actor based on time.
+	 * 
+	 * @param delta
+	 *            time in seconds since the last update
 	 */
-	@Override
 	public void act(float delta) {
 	}
 
