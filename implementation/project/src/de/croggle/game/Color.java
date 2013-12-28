@@ -3,7 +3,7 @@ package de.croggle.game;
 /**
  * A color represents a variable name.
  */
-public class Color {
+public class Color implements Comparable<Color> {
 	private int id;
 
 	/**
@@ -43,5 +43,9 @@ public class Color {
 		int hash = 5;
 		hash = 17 * hash + this.id;
 		return hash;
+	}
+
+	public int compareTo(Color c) {
+		return this.id - c.id;
 	}
 }
