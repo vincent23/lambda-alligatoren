@@ -17,6 +17,10 @@ public abstract class Alligator extends Parent implements InternalBoardObject {
 
 	/**
 	 * Superconstructor for all alligators.
+	 * 
+	 * @param parent the parent of the alligator
+	 * @param movable whether the board object is movable or not
+	 * @param removable whether the board object is removable or not
 	 */
 	protected Alligator(Parent parent, boolean movable, boolean removable) {
 		this.parent = parent;
@@ -24,6 +28,11 @@ public abstract class Alligator extends Parent implements InternalBoardObject {
 		this.removable = removable;
 	}
 
+	/**
+	 * Copy constructor for alligators.
+	 * 
+	 * @param alligator the alligator to be copied.
+	 */
 	protected Alligator(Alligator alligator) {
 		this(alligator.parent, alligator.movable, alligator.removable);
 	}

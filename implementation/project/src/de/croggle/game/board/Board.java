@@ -39,4 +39,5 @@ public class Board extends Parent implements BoardObject {
 	public Board copy() {
 		return new Board(this);
 	}
+	
 }

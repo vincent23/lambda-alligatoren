@@ -22,7 +22,9 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 		children = new ArrayList<InternalBoardObject>();
 	}
 
+	@SuppressWarnings("LeakingThisInConstructor")
 	protected Parent(Parent parent) {
+		this();
 		for (InternalBoardObject child : parent) {
 			InternalBoardObject copiedChild = child.copy();
 			copiedChild.setParent(this);
@@ -36,7 +38,7 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 	 * @param child
 	 *            the child which should be added to the family of the parent
 	 */
-	public void addChild(InternalBoardObject child) {
+	public final void addChild(InternalBoardObject child) {
 		children.add(child);
 	}
 
@@ -116,5 +118,30 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 		for (InternalBoardObject child : this) {
 			child.accept(visitor);
 		}
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == null)
+			return false;
+		if (o.getClass() != Parent.class)
+			return false;
+		
+		Parent oParent = (Parent) o;
+		if (this.children.size() != oParent.children.size())
+			return false;
+		
+		boolean equal = true;
+		for (int i = 0; i < this.children.size(); i++) {
+			equal &= this.children.get(i).equals(oParent.children.get(i));
+		}
+		return equal;
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 7;
+		hash = 23 * hash + this.children.hashCode();
+		return hash;
 	}
 }

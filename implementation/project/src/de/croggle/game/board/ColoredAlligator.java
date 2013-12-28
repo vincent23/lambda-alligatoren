@@ -9,7 +9,7 @@ import de.croggle.game.visitor.BoardObjectVisitor;
  **/
 public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	private Color color;
-	private boolean recolorable;
+	private final boolean recolorable;
 
 	/**
 	 * Creates a new ColoredAlligator with the specified color and the
@@ -17,6 +17,9 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	 * serves as the name of variables bound by this abstraction in the Lambda
 	 * Calculus.
 	 * 
+	 * @param parent the ColoredAlligator's parent
+	 * @param movable whether the BoardObject is movable or not
+	 * @param removable whether the BoardObject is removable or not
 	 * @param c
 	 *            the color this alligator has
 	 * @param recolorable
@@ -89,5 +92,23 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	@Override
 	public void setColor(Color c) {
 		this.color = c;
+	}
+	
+	@Override
+	public boolean equals (Object o) {
+		if (o == null)
+			return false;
+		if (o.getClass() != ColoredAlligator.class)
+			return false;
+		
+		ColoredAlligator oAllig = (ColoredAlligator) o;
+		return this.color.equals(oAllig.color) && super.equals(oAllig); // use Parent.equals for child comparison
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 53 * hash + (this.color != null ? this.color.hashCode() : 0);
+		return hash;
 	}
 }

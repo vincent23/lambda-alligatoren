@@ -131,4 +131,23 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	public boolean isRemovable() {
 		return removable;
 	}
+	
+	@Override
+	public boolean  equals(Object o) {
+		// TODO discuss whether color suffices for equality or also consider movable, removable, parent...
+		if (o == null)
+			return false;
+		if (o.getClass() != Egg.class)
+			return false;
+		
+		Egg oEgg = (Egg) o;
+		return oEgg.color.equals(this.color);
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 7;
+		hash = 31 * hash + (this.color != null ? this.color.hashCode() : 0);
+		return hash;
+	}
 }
