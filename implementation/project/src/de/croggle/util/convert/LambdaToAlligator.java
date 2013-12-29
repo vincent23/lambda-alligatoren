@@ -239,11 +239,12 @@ public class LambdaToAlligator {
 	 */
 	private Color strToColor(String s) {
 		Color c;
-		if (colors.get(s) != null) {
+		if (colors.containsKey(s)) {
 			c = colors.get(s);
 		} else {
 			try {
 				c = ccntrl.requestColor(colors.values().toArray(new Color[colors.size()]));
+				colors.put(s, c);
 			} catch (ColorOverflowException ex) {
 				throw new IllegalArgumentException("Too many variable names in given term");
 			}
