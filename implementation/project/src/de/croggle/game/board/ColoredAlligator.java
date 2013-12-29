@@ -49,7 +49,7 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
 		visitor.visitColoredAlligator(this);
-		acceptOnChildren(visitor);
+		//acceptOnChildren(visitor); // TODO I think, this is not expected behaviour
 	}
 
 	/**
@@ -94,21 +94,13 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 		this.color = c;
 	}
 	
-	@Override
-	public boolean equals (Object o) {
+	public boolean match (BoardObject o) {
 		if (o == null)
 			return false;
 		if (o.getClass() != ColoredAlligator.class)
 			return false;
 		
 		ColoredAlligator oAllig = (ColoredAlligator) o;
-		return this.color.equals(oAllig.color) && super.equals(oAllig); // use Parent.equals for child comparison
-	}
-
-	@Override
-	public int hashCode() {
-		int hash = 3;
-		hash = 53 * hash + (this.color != null ? this.color.hashCode() : 0);
-		return hash;
+		return this.color.equals(oAllig.color) && super.match(oAllig); // use Parent.match for child comparison
 	}
 }

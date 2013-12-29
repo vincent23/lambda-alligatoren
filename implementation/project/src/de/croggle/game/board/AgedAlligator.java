@@ -33,7 +33,7 @@ public class AgedAlligator extends Alligator {
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
 		visitor.visitAgedAlligator(this);
-		acceptOnChildren(visitor);
+		//acceptOnChildren(visitor); // TODO I think, this is not expected behaviour
 	}
 
 	/**
