@@ -8,7 +8,8 @@
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
-        android:targetPackage="de.croggle" />
+        android:targetPackage="de.croggle" 
+		android:label="Tests for de.croggle"/>
 
     <application
         android:icon="@drawable/ic_launcher"
