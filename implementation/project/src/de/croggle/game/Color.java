@@ -16,7 +16,7 @@ public class Color implements Comparable<Color> {
 	 *             when the id is not a number between 0 and 29
 	 */
 	public Color(int id) {
-
+		this.id = id;
 	}
 
 	/**
@@ -24,7 +24,7 @@ public class Color implements Comparable<Color> {
 	 * @return the color id that this object is an instance of. 
 	 */
 	public int getId() {
-		return 0;
+		return this.id;
 	}
 	
 	@Override

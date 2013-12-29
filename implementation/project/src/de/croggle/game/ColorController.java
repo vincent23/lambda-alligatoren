@@ -231,6 +231,11 @@ public class ColorController {
 	private com.badlogic.gdx.graphics.Color colorFromHexString(String s) {               
 		if(s.startsWith("0x"))
 			s = s.substring(2);
+		else if(s.startsWith("#"))
+			s = s.substring(1);
+		
+		if(s.length() == 6)
+			s = "FF" + s;
 
 		if(s.length() != 8) // AARRGGBB
 			throw new IllegalArgumentException("String must have the form AARRGGBB");
