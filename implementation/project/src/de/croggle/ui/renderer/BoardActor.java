@@ -17,7 +17,7 @@ import de.croggle.game.event.BoardEventListener;
  */
 public class BoardActor implements BoardEventListener {
 
-	private HashMap<HashKey<BoardObject>, BoardObjectActor> actors;
+	private HashMap<BoardObject, BoardObjectActor> actors;
 	private final Board board;
 	
 	/**
