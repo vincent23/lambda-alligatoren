@@ -18,6 +18,8 @@ public class LambdaToAlligatorTest extends TestCase {
 	
 	public void testSimpleTerm() {
 		Board b = LambdaToAlligator.convert("(λx.x) y");
+		String s = AlligatorToLambda.convert(b);
+		assertEquals("λx.x y", s);
 	}
 	
 	public void testComplexTerm() {
