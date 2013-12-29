@@ -22,7 +22,6 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 		children = new ArrayList<InternalBoardObject>();
 	}
 
-	@SuppressWarnings("LeakingThisInConstructor")
 	protected Parent(Parent parent) {
 		this();
 		for (InternalBoardObject child : parent) {
@@ -38,8 +37,65 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 	 * @param child
 	 *            the child which should be added to the family of the parent
 	 */
-	public final void addChild(InternalBoardObject child) {
-		children.add(child);
+	public final boolean addChild(InternalBoardObject child) {
+		child.setParent(this);
+		if (!children.contains(child)) {
+			children.add(child);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Inserts a given child to the list of children of this parent.
+	 * The child is inserted before the element currently at the given position.
+	 * 
+	 * @param child the child to be inserted
+	 * @param pos the position, where the child is to be inserted
+	 */
+	public boolean insertChild(InternalBoardObject child, int pos) {
+		child.setParent(this);
+		if (!children.contains(child)) {
+			this.children.add(pos, child);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Finds and returns the position of a given child in the list of children this parent has.
+	 * 
+	 * 
+	 * @param child the child whose position is to be obtained
+	 * @return the position of child
+	 */
+	public int getChildPosition(InternalBoardObject child) {
+		return this.children.indexOf(child);
+	}
+	
+	/**
+	 * Returns the first child of this parent.
+	 * 
+	 * @return the first child of this parent
+	 * @throws NoSuchChildException if this parent has no children
+	 */
+	public InternalBoardObject getFirstChild() {
+		if (this.children.isEmpty()) {
+			throw new NoSuchChildException();
+		}
+		
+		return this.children.get(0);
+	}
+	
+	/**
+	 * Returns the number of children this parent has.
+	 * 
+	 * @return the number of children this parent has
+	 */
+	public int getChildCount() {
+		return this.children.size();
 	}
 
 	/**
@@ -64,14 +120,19 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 	 *            the child that replaces the current child
 	 * @return true on success, false otherwise
 	 */
-	public boolean replaceChildWith(InternalBoardObject child,
+	public boolean replaceChild(InternalBoardObject child,
 			InternalBoardObject replaceChild) {
 		final int location = children.indexOf(child);
 		if (location == -1) {
 			return false;
 		} else {
-			children.set(location, replaceChild);
-			return true;
+			replaceChild.setParent(this);
+			if (!children.contains(replaceChild)) {
+				children.set(location, replaceChild);
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 
@@ -82,6 +143,16 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 	 */
 	public Iterator<InternalBoardObject> iterator() {
 		return children.iterator();
+	}
+	
+	/**
+	 * Returns an iterator initially pointing to the element at the given position
+	 * 
+	 * @param begin the position at which to start iterating
+	 * @return the iterator
+	 */
+	public Iterator<InternalBoardObject> iterator(int begin) {
+		return children.listIterator(begin);
 	}
 
 	/**
@@ -107,24 +178,23 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 	 */
 	public InternalBoardObject getNextChild(InternalBoardObject child) {
 		final int location = children.indexOf(child);
-		if (location > 0 && location + 1 < children.size()) {
+		if (location >= 0 && location + 1 < children.size()) {
 			return children.get(location + 1);
 		} else {
 			return null;
 		}
 	}
 
-	protected void acceptOnChildren(BoardObjectVisitor visitor) {
+	public void acceptOnChildren(BoardObjectVisitor visitor) {
 		for (InternalBoardObject child : this) {
 			child.accept(visitor);
 		}
 	}
 	
-	@Override
-	public boolean equals(Object o) {
+	public boolean match(BoardObject o) {
 		if (o == null)
 			return false;
-		if (o.getClass() != Parent.class)
+		if (o.getClass() != this.getClass())
 			return false;
 		
 		Parent oParent = (Parent) o;
@@ -133,15 +203,8 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 		
 		boolean equal = true;
 		for (int i = 0; i < this.children.size(); i++) {
-			equal &= this.children.get(i).equals(oParent.children.get(i));
+			equal &= this.children.get(i).match(oParent.children.get(i));
 		}
 		return equal;
-	}
-
-	@Override
-	public int hashCode() {
-		int hash = 7;
-		hash = 23 * hash + this.children.hashCode();
-		return hash;
 	}
 }
