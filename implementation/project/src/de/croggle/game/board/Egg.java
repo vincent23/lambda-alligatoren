@@ -19,6 +19,9 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 * the object is recolorable or not. The color hereby serves as the name of
 	 * the variable this egg represents in the Lambda Calculus.
 	 * 
+	 * @param parent the parent of this egg, as in "directly above it"
+	 * @param movable whether the BoardObject is movable or not
+	 * @param removable whether the BoardObject can be removed or not
 	 * @param c
 	 *            the color this egg has
 	 * @param recolorable
@@ -46,7 +49,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 */
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
-
+		visitor.visitEgg(this);
 	}
 
 	/**
@@ -56,7 +59,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	 */
 	@Override
 	public Parent getParent() {
-		return null;
+		return this.parent;
 	}
 
 	/**
@@ -132,8 +135,7 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 		return removable;
 	}
 	
-	@Override
-	public boolean  equals(Object o) {
+	public boolean  match(BoardObject o) {
 		// TODO discuss whether color suffices for equality or also consider movable, removable, parent...
 		if (o == null)
 			return false;
@@ -142,12 +144,5 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 		
 		Egg oEgg = (Egg) o;
 		return oEgg.color.equals(this.color);
-	}
-
-	@Override
-	public int hashCode() {
-		int hash = 7;
-		hash = 31 * hash + (this.color != null ? this.color.hashCode() : 0);
-		return hash;
 	}
 }
