@@ -48,10 +48,10 @@ public class AlligatorToJson implements BoardObjectVisitor {
 		println("{");
 		depth ++;
 		println("\"type\" : \"egg\",");
-		println("\"color\" : \"" + egg.getColor().getId() + "\",");
-		println("\"movable\" : \"" + egg.isMovable() + "\",");
-		println("\"removable\" : \"" + egg.isRemovable() + "\",");
-		println("\"recolorable\" : \"" + egg.isRecolorable() + "\"");
+		println("\"color\" : " + egg.getColor().getId() + ",");
+		println("\"movable\" : " + egg.isMovable() + ",");
+		println("\"removable\" : " + egg.isRemovable() + ",");
+		println("\"recolorable\" : " + egg.isRecolorable() + "");
 		depth--;
 		if (egg.getParent().isLastChild(egg)) {
 			println("}");
@@ -65,10 +65,10 @@ public class AlligatorToJson implements BoardObjectVisitor {
 		println("{");
 		depth ++;
 		println("\"type\" : \"colored alligator\",");
-		println("\"color\" : \"" + alligator.getColor().getId() + "\",");
-		println("\"movable\" : \"" + alligator.isMovable() + "\",");
-		println("\"removable\" : \"" + alligator.isRemovable() + "\",");
-		println("\"recolorable\" : \"" + alligator.isRecolorable() + "\",");
+		println("\"color\" : " + alligator.getColor().getId() + ",");
+		println("\"movable\" : " + alligator.isMovable() + ",");
+		println("\"removable\" : " + alligator.isRemovable() + ",");
+		println("\"recolorable\" : " + alligator.isRecolorable() + ",");
 		print(indent() + "\"children\" : ");
 		printChildren(alligator);
 		depth--;
@@ -84,8 +84,8 @@ public class AlligatorToJson implements BoardObjectVisitor {
 		println("{");
 		depth ++;
 		println("\"type\" : \"aged alligator\",");
-		println("\"movable\" : \"" + alligator.isMovable() + "\",");
-		println("\"removable\" : \"" + alligator.isRemovable() + "\",");
+		println("\"movable\" : " + alligator.isMovable() + ",");
+		println("\"removable\" : " + alligator.isRemovable() + ",");
 		print(indent() + "\"children\" : ");
 		printChildren(alligator);
 		depth--;
