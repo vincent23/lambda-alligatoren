@@ -29,6 +29,13 @@ public class LambdaToAlligatorTest extends TestCase {
 		String s = AlligatorToLambda.convert(b);
 		assertEquals("λx.λy.λz.λp.(x z (y z p)) λz.λp.(z (z (z p))) λz.λp.(z (z (z (z p))))", s);
 	}
+	
+	public void testLongVariableNames() {
+		String term = "λone.one two";
+		Board b = LambdaToAlligator.convert(term);
+		String s = AlligatorToLambda.convert(b);
+		assertEquals("λx.x y", s);
+	}
 
 
 	@Override
