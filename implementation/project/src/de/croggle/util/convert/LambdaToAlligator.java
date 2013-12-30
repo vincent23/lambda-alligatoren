@@ -14,9 +14,10 @@ import de.croggle.game.board.Parent;
 import de.croggle.game.visitor.BoardObjectVisitor;
 import de.croggle.game.visitor.RemoveAgedAlligatorsVisitor;
 
-import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,32 +29,45 @@ import java.util.Map;
 public class LambdaToAlligator {
 	
 	private static char lambda = '\u03bb'; //λ
-	private static String bindPrefix = "" + lambda;
-	private static String bindPostfix = ".";
+	private static String abstractionPrefix = "" + lambda;
+	private static String abstractionSeparator = ".";
 	
-	private String bindPrfx;
-	private String bindPstfx;
-	private List<UnparsedObject> unparsed;
-	private Map<String, Color> colors;
-	//private Board b;
-	private ColorController ccntrl;
+	private final String bindPrfx;
+	private final String bindPstfx;
+	private final Deque<UnparsedObject> unparsedDeque;
+	private final List<UnparsedObject> unparsedList;
+	private final Map<String, Color> colors;
+	private final ColorController ccntrl;
 	
+	/**
+	 * Creates a new LambdaToAlligator instance, initializing internal values for 
+	 * <ul>
+	 * <li>abstraction prefix</li>
+	 * <li>abstraction separator</li>
+	 * <li>the linked list of not yet compiled (unparsed) BoardObjects</li>
+	 * <li>the map of already assigned colors to variable names</li>
+	 * <li>the color controller for retrieving new colors</li>
+	 * </ul>
+	 */
 	private LambdaToAlligator() {
-		bindPrfx = bindPrefix;
-		bindPstfx = bindPostfix;
-		unparsed = new ArrayList<UnparsedObject>();
+		bindPrfx = abstractionPrefix;
+		bindPstfx = abstractionSeparator;
+		unparsedDeque = new LinkedList<UnparsedObject>();
+		unparsedList = (LinkedList<UnparsedObject>) unparsedDeque;
 		ccntrl = new ColorController();
 		colors = new HashMap<String, Color>(30);
 	}
 	
 	/**
+	 * Turns a given String of a (valid) lambda calculus term into a constellation of BoardObjects,
+	 * places on the board that is returned.
 	 * 
-	 * @param expr
-	 * @return 
+	 * @param expr a lambda calculus term to be converted
+	 * @return a board with the given term's alligator representation
 	 */
 	public static Board convert(String expr) {
-		LambdaToAlligator converter = new LambdaToAlligator();
-		Board result = new Board();
+		final LambdaToAlligator converter = new LambdaToAlligator();
+		final Board result = new Board();
 		converter.boardFromString(result, expr);
 		return result;
 	}
@@ -67,20 +81,19 @@ public class LambdaToAlligator {
 	private void boardFromString(Board b, String expr) {
 		expr = expr.replaceAll("\\s+", " ").trim();
 		
-		//this.b = b;
 		UnparsedObject unp = new UnparsedObject(expr);
-		this.unparsed.add(unp);
+		this.unparsedDeque.add(unp);
 		b.addChild(unp);
 		
 		// stage one parsing
-		while (unparsed.get(0).getClass() == UnparsedObject.class) {
+		while (unparsedDeque.element().getClass() == UnparsedObject.class) {
 			parseStageOne();
 		}
 		
-		java.util.Collections.sort(unparsed);
+		java.util.Collections.sort(unparsedList);
 		
 		// stage two parsing
-		while (!unparsed.isEmpty()) {
+		while (!unparsedDeque.isEmpty()) {
 			parseStageTwo();
 		}
 		
@@ -92,10 +105,10 @@ public class LambdaToAlligator {
 	 * at the beginning of the List "unparsed"
 	 */
 	private void parseStageOne() {
-		if (unparsed.isEmpty() || unparsed.get(0).getClass() != UnparsedObject.class)
+		if (unparsedDeque.isEmpty() || unparsedDeque.element().getClass() != UnparsedObject.class)
 			return;
 		
-		UnparsedObject o = unparsed.get(0);
+		UnparsedObject o = unparsedDeque.element();
 		String e = o.getExpr();
 		if (e.startsWith(bindPrfx)) {
 			splitAbstraction(o);
@@ -107,15 +120,15 @@ public class LambdaToAlligator {
 	}
 	
 	/**
-	 * Expects "unparsed" to be sorted, with first braces coming first, followed by abstractions and variables at the end.
+	 * Expects the list of unparsed objects to be sorted, with first braces coming first, followed by abstractions and variables at the end.
 	 * Will turn all mentioned UnparsedExpression types step-by-step into their alligator counterparts.
 	 */
 	private void parseStageTwo() {
-		if (unparsed.isEmpty())
+		if (unparsedDeque.isEmpty())
 			return;
-		assert(unparsed.get(0).getClass() != UnparsedObject.class);
+		assert(unparsedDeque.element().getClass() != UnparsedObject.class);
 		
-		UnparsedObject o = unparsed.get(0);
+		UnparsedObject o = unparsedDeque.element();
 		if (o.getClass() == AbstractionBegin.class) {
 			buildAbstraction((AbstractionBegin) o);
 		} else if (o.getClass() == OpeningBrace.class) {
@@ -131,13 +144,14 @@ public class LambdaToAlligator {
 	 * Expects the abstraction prefix (λ) as argument and combines
 	 * the following Variable, AbstractionSeparator and (Egg|Alligator) to a colored alligator
 	 * 
-	 * @param o 
+	 * @param o the begin of the abstraction
 	 */
 	private void buildAbstraction(AbstractionBegin o) {
 		Parent p = o.getParent();
 		
 		InternalBoardObject nextChild;
 		
+		// get the bound variable
 		Variable var;
 		nextChild = p.getNextChild(o);
 		if (nextChild.getClass() != Variable.class) {
@@ -146,6 +160,7 @@ public class LambdaToAlligator {
 			var = (Variable) p.getNextChild(o);
 		}
 		
+		// get the abstraction separator
 		AbstractionSeparator sep;
 		nextChild = p.getNextChild(var);
 		if (nextChild.getClass() != AbstractionSeparator.class) {
@@ -154,10 +169,10 @@ public class LambdaToAlligator {
 			sep = (AbstractionSeparator) p.getNextChild(var);
 		}
 		
+		// get the bound term
 		InternalBoardObject boundTerm;
 		nextChild = p.getNextChild(sep);
 		// neither Egg (still as variable) nor parenthesis (already parsed as AgedAlligators) nor 
-		
 		if (!(nextChild instanceof Variable) && !(nextChild instanceof Alligator) && (nextChild.getClass() != AbstractionBegin.class)) {
 			throw new IllegalArgumentException("No binding seperator ('.') found for abstraction");
 		} else if (nextChild.getClass() == AbstractionBegin.class) {
@@ -170,20 +185,24 @@ public class LambdaToAlligator {
 		Color c = strToColor(var.getExpr());
 		ColoredAlligator abstraction = new ColoredAlligator(p, true, true, c, true);
 		abstraction.addChild(boundTerm);
-		p.replaceChild(o, abstraction);
-		p.removeChild(var);
-		p.removeChild(sep);
-		p.removeChild(boundTerm);
 		
-		unparsed.remove(o); // the abstraction
-		unparsed.remove(var); // has turned into a color
-		unparsed.remove(sep); // part of the abstraction
+		p.replaceChild(o, abstraction);
+		unparsedDeque.remove(o); // the abstraction
+		
+		p.removeChild(var);
+		unparsedDeque.remove(var); // has turned into a color
+		
+		p.removeChild(sep);
+		unparsedDeque.remove(sep); // part of the abstraction
+		
+		p.removeChild(boundTerm);
 		// boundTerm is probably an alligator, or will turn into an egg later
 	}
 	
 	/**
+	 * Turns the given OpeningBrace and all following BoardObjects of the same parent up to the matching ClosingBrace into an aged alligator.
 	 * 
-	 * @param o the opening brace to be turned into an aged alligator
+	 * @param o the opening brace of the part to be turned into an aged alligator
 	 */
 	private void buildBraces(OpeningBrace o) {
 		Parent p = o.getParent();
@@ -215,8 +234,8 @@ public class LambdaToAlligator {
 		p.removeChild(close);
 		p.replaceChild(o, braces);
 		
-		unparsed.remove(o);
-		unparsed.remove(close);
+		unparsedDeque.remove(o);
+		unparsedDeque.remove(close);
 	}
 	
 	/**
@@ -229,11 +248,12 @@ public class LambdaToAlligator {
 		Color c = strToColor(o.getExpr());
 		Egg e = new Egg(p, true, true, c, true);
 		p.replaceChild(o, e);
-		unparsed.remove(o);
+		unparsedDeque.remove(o);
 	}
 	
 	/**
 	 * Translate a string into a color using a color controller.
+	 * 
 	 * @param s the string to be translated into a color
 	 * @return a color that will from now on be associated with the given string
 	 */
@@ -253,10 +273,10 @@ public class LambdaToAlligator {
 	}
 	
 	/**
-	 * Extracts the first occuring lambda abstarction (starting at the beginning of the uparsed term)
-	 * and replaces it with the abstraction begin, the bound variable string, the 
+	 * Extracts the first occurrence of a lambda abstraction (starting at the beginning of the unparsed term)
+	 * and replaces it with the abstraction begin, the bound variable string, the abstraction separator and the rest.
 	 * 
-	 * @param o 
+	 * @param o the UnparsedExpression with a lambda abstraction at the beginning
 	 */
 	private void splitAbstraction(UnparsedObject o) {
 		String var;
@@ -278,23 +298,23 @@ public class LambdaToAlligator {
 		if (!rest.trim().equals("")) {
 			UnparsedObject restObj = new UnparsedObject(rest);
 			p.insertChild(restObj, pos + 1);
-			unparsed.add(0, restObj);
+			unparsedDeque.addFirst(restObj);
 		}
 		
 		p.replaceChild(o, as);
-		unparsed.add(unparsed.size(), as);
-		unparsed.remove(o);
+		unparsedDeque.addLast(as);
+		unparsedDeque.remove(o);
 		
 		p.insertChild(varObj, pos);
-		unparsed.add(0, varObj);
+		unparsedDeque.addFirst(varObj);
 		
 		p.insertChild(ab, pos);
-		unparsed.add(unparsed.size(), ab);
+		unparsedDeque.addLast(ab);
 		
 	}
 	
 	/**
-	 * Extracts the first occuring set of braces (starting at the beginning of the uparsed term) from the given UnparsedObject
+	 * Extracts the first occurrence of a set of braces (starting at the beginning of the uparsed term) from the given UnparsedObject
 	 * and replaces it with starting braces, the brace body, a closing brace and the remaining unparsed term.
 	 * 
 	 * @param o the UnparsedObject to be replaced
@@ -327,21 +347,21 @@ public class LambdaToAlligator {
 		if (!rest.trim().equals("")) {
 			UnparsedObject restObj = new UnparsedObject(rest);
 			p.insertChild(restObj, pos + 1);
-			unparsed.add(0, restObj);
+			unparsedDeque.addFirst(restObj);
 		}
 		
 		p.replaceChild(o, cb);
-		unparsed.add(unparsed.size(), cb);
-		unparsed.remove(o);
+		unparsedDeque.addLast(cb);
+		unparsedDeque.remove(o);
 		
 		if (!body.trim().equals("")) {
 			UnparsedObject bodyObj = new UnparsedObject(body);
 			p.insertChild(bodyObj, pos);
-			unparsed.add(0, bodyObj);
+			unparsedDeque.addFirst(bodyObj);
 		}
 		
 		p.insertChild(ob, pos);
-		unparsed.add(unparsed.size(), ob);
+		unparsedDeque.addLast(ob);
 		
 	}
 	
@@ -372,28 +392,41 @@ public class LambdaToAlligator {
 		String rest = e.substring(end);
 		if (!rest.trim().equals("")) {
 			UnparsedObject restObj = new UnparsedObject(rest);
-			this.unparsed.add(0, restObj);
+			this.unparsedDeque.addFirst(restObj);
 			p.insertChild(restObj, p.getChildPosition(o) + 1);
 		}
 		
 		p.replaceChild(o, varObj);
-		this.unparsed.remove(o);
-		this.unparsed.add(unparsed.size(), varObj);
+		this.unparsedDeque.remove(o);
+		this.unparsedDeque.addLast(varObj);
 	}
 	
+	/**
+	 * Base class of all unparsed BoardObjects.
+	 * Represents a typeless unparsed part of a lambda term.
+	 *
+	 */
 	private class UnparsedObject implements InternalBoardObject, Comparable<UnparsedObject> {
 		private Parent parent;
 		private String expr;
 		
 		public UnparsedObject() {
-			
 		}
 		
 		public UnparsedObject(String expr) {
 			this.expr = expr.trim();
 			assert(!this.expr.equals(""));
 		}
-
+		
+		public UnparsedObject(UnparsedObject o) {
+			this.parent = o.parent;
+			this.expr = o.expr;
+		}
+		
+		/**
+		 * Get the unparsed part of the term as string this object represents.
+		 * @return the unparsed expression string
+		 */
 		public String getExpr() {
 			return expr;
 		}
@@ -403,40 +436,42 @@ public class LambdaToAlligator {
 			assert(!this.expr.equals(""));
 		}
 		
-		
-		public UnparsedObject(UnparsedObject o) {
-			this.parent = o.parent;
-			this.expr = o.expr;
-		}
-		
+		@Override
 		public Parent getParent() {
 			return this.parent;
 		}
 
+		@Override
 		public void setParent(Parent parent) {
 			this.parent = parent;
 		}
 
+		@Override
 		public boolean isMovable() {
 			return true;
 		}
 
+		@Override
 		public boolean isRemovable() {
 			return true;
 		}
 
+		@Override
 		public InternalBoardObject copy() {
 			return new UnparsedObject(this);
 		}
 
+		@Override
 		public void accept(BoardObjectVisitor visitor) {
 			throw new UnsupportedOperationException("Not supported yet.");
 		}
 
+		@Override
 		public boolean match(BoardObject b) {
 			throw new UnsupportedOperationException("Not supported yet.");
 		}
 
+		@Override
 		public int compareTo(UnparsedObject arg0) {
 			if (arg0.getClass() == UnparsedObject.class) {
 				return 0;
@@ -446,6 +481,10 @@ public class LambdaToAlligator {
 		}
 	}
 	
+	/**
+	 * A class representing the begin of a lambda abstraction.
+	 *
+	 */
 	private class AbstractionBegin extends UnparsedObject {
 		public AbstractionBegin() {
 			super(bindPrfx);
@@ -465,6 +504,11 @@ public class LambdaToAlligator {
 			}
 		}
 	}
+	
+	/**
+	 * Class representing the separation of the bound variable from the bound term in a lambda abstraction
+	 *
+	 */
 	private class AbstractionSeparator extends UnparsedObject {
 		public AbstractionSeparator() {
 			super(bindPstfx);
@@ -482,6 +526,11 @@ public class LambdaToAlligator {
 			}
 		}
 	}
+	
+	/**
+	 * A class representing an opening brace in a lambda term.
+	 *
+	 */
 	private class OpeningBrace extends UnparsedObject {
 		public OpeningBrace() {
 			super("(");
@@ -501,6 +550,11 @@ public class LambdaToAlligator {
 			}
 		}
 	}
+	
+	/**
+	 * Class representing a closing brace in a lambda term.
+	 *
+	 */
 	private class ClosingBrace extends UnparsedObject {
 		public ClosingBrace() {
 			super(")");
@@ -520,6 +574,12 @@ public class LambdaToAlligator {
 			}
 		}
 	}
+	
+	/**
+	 * Class representing all variable(-names) that can occur in a lambda term,
+	 * i.e. bound and unbound variables.
+	 *
+	 */
 	private class Variable extends UnparsedObject {
 		public Variable(String name) {
 			this.setExpr(name);
