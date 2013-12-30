@@ -7,7 +7,7 @@ import android.content.Context;
 import com.badlogic.gdx.Game;
 
 import de.croggle.data.AssetManager;
-import de.croggle.data.LocalizationManager;
+import de.croggle.data.LocalizationHelper;
 import de.croggle.data.persistence.SettingController;
 import de.croggle.data.persistence.StatisticController;
 import de.croggle.data.persistence.manager.PersistenceManager;
@@ -23,7 +23,7 @@ import de.croggle.ui.screens.AbstractScreen;
 public class AlligatorApp extends Game {
 
 	// the Android Context
-	private Context context;
+	private final Context context;
 
 	private ProfileController profileController;
 	private AchievementController achievementController;
@@ -32,7 +32,6 @@ public class AlligatorApp extends Game {
 	private LevelPackagesController levelPackagesController;
 	private PersistenceManager persistenceManager;
 	private AssetManager assetManager;
-	private LocalizationManager localizationManager;
 	private List<AbstractScreen> screens;
 
 	/**
@@ -43,7 +42,8 @@ public class AlligatorApp extends Game {
 	 *            the Android Activity's context
 	 */
 	public AlligatorApp(Context context) {
-
+		this.context = context;
+		LocalizationHelper.setContext(this.context);
 	}
 
 	/**
@@ -111,16 +111,6 @@ public class AlligatorApp extends Game {
 	 * @return the asset manager
 	 */
 	public AssetManager getAssetManager() {
-		return null;
-	}
-
-	/**
-	 * Returns the localization manager which is used for translating strings to
-	 * the appropriate language.
-	 * 
-	 * @return the localization manager
-	 */
-	public LocalizationManager getLocalizationManager() {
 		return null;
 	}
 
