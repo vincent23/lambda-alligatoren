@@ -4,7 +4,7 @@ package de.croggle.game;
  * A color represents a variable name.
  */
 public class Color implements Comparable<Color> {
-	private int id;
+	private final int id;
 
 	/**
 	 * Creates a color with the given id. The id needs to be between 0 and 29
@@ -16,7 +16,18 @@ public class Color implements Comparable<Color> {
 	 *             when the id is not a number between 0 and 29
 	 */
 	public Color(int id) {
+		if (id < 0) {
+			throw new IllegalArgumentException("Cannot inintialize Color with negative id");
+		}
 		this.id = id;
+	}
+	
+	private Color() {
+		this.id = -1;
+	}
+	
+	protected static Color uncolored() {
+		return new Color();
 	}
 
 	/**

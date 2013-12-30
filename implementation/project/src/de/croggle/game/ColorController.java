@@ -18,6 +18,7 @@ import java.util.Map.Entry;
  */
 public class ColorController {
 	private static final int MAX_COLORS = 30;
+	private final de.croggle.game.Color uncolored;
 	private List<de.croggle.game.Color> usableColors;
 	private List<de.croggle.game.Color> bannedColors;
 	
@@ -69,6 +70,7 @@ public class ColorController {
 		usableColors = new ArrayList<de.croggle.game.Color>();
 		bannedColors = new ArrayList<de.croggle.game.Color>();
 		lookup = new HashMap<de.croggle.game.Color, com.badlogic.gdx.graphics.Color>(30);
+		uncolored = de.croggle.game.Color.uncolored();
 	}
 
 	/**
@@ -101,6 +103,10 @@ public class ColorController {
 			}
 		}
 		return null;
+	}
+	
+	public de.croggle.game.Color getUncolored() {
+		return this.uncolored;
 	}
 
 	/**
