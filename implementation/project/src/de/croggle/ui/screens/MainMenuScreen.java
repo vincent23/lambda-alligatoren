@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.graphics.Texture;
+
 import de.croggle.AlligatorApp;
 
 /**
@@ -8,17 +10,23 @@ import de.croggle.AlligatorApp;
  * Abbildung 9''.
  */
 public class MainMenuScreen extends AbstractScreen {
+	
+	Texture background;;
+	
 	/**
 	 * Creates the main menu screen from whom the player can navigate into the
 	 * different parts of the app.
 	 * 
-	 * @param game
-	 *            the backreference to the central game
 	 * @param app
 	 *            the instance of alligator app, from which everything is
 	 *            connected
 	 */
-	public MainMenuScreen(AlligatorApp game, AlligatorApp app) {
-		super(game);
+	public MainMenuScreen(AlligatorApp app) {
+		super(app);
+	}
+	
+	@Override
+	public void render(float delta) {
+		
 	}
 }

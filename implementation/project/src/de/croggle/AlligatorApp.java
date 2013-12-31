@@ -5,9 +5,8 @@ import java.util.List;
 import android.content.Context;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.assets.AssetManager;
 
-import de.croggle.data.AssetManager;
-import de.croggle.data.LocalizationHelper;
 import de.croggle.data.persistence.SettingController;
 import de.croggle.data.persistence.StatisticController;
 import de.croggle.data.persistence.manager.PersistenceManager;
@@ -15,6 +14,7 @@ import de.croggle.game.achievement.AchievementController;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.screens.AbstractScreen;
+import de.croggle.ui.screens.MainMenuScreen;
 
 /**
  * The central unit controlling the game. Manages the application lifecycle and
@@ -43,6 +43,8 @@ public class AlligatorApp extends Game {
 	 */
 	public AlligatorApp(Context context) {
 		this.context = context;
+		
+		this.assetManager = new AssetManager();
 	}
 
 	/**
@@ -128,6 +130,7 @@ public class AlligatorApp extends Game {
 	 */
 	@Override
 	public void create() {
+		this.setScreen(new MainMenuScreen(this));
 	}
 
 	/**
