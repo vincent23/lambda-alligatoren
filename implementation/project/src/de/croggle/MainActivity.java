@@ -5,6 +5,10 @@ import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
+import de.croggle.data.AndroidLocalizationBackend;
+import de.croggle.data.LocalizationBackend;
+import de.croggle.data.LocalizationHelper;
+
 /**
  * Android backend that initializes the central ApplicationListener.
  */
@@ -20,6 +24,9 @@ public class MainActivity extends AndroidApplication {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		LocalizationBackend locBack = new AndroidLocalizationBackend(this);
+		LocalizationHelper.setBackend(locBack);
 		
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		

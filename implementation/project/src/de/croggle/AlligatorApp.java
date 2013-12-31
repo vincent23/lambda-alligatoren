@@ -43,7 +43,6 @@ public class AlligatorApp extends Game {
 	 */
 	public AlligatorApp(Context context) {
 		this.context = context;
-		LocalizationHelper.setContext(this.context);
 	}
 
 	/**
