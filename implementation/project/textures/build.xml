@@ -5,7 +5,7 @@
 	<property name="standalone.dir" location="."/>
 	<property name="pkg.dir" location="packages" />
 	<property name="build.dir" location="../assets/textures" />
-	<property name="gdx.path" location="../lib/gdx.jar" />
+	<property name="gdx.path" location="../libs/gdx.jar" />
 	<property name="gdx-tools.path" location="../tools/gdx-tools.jar" />
 
 	<!-- Deletes the existing build, docs and dist directory-->
@@ -24,8 +24,8 @@
 			<arg value="${pkg.dir}"/>
 			<arg value="${build.dir}"/>
 			<classpath>
-				<pathelement path="${gdx.path}"/>
-				<pathelement path="${gdx-tools.path}"/>
+				<pathelement location="${gdx.path}"/>
+				<pathelement location="${gdx-tools.path}"/>
 			</classpath>
 		</java>
 	</target>
