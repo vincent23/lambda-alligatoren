@@ -67,7 +67,7 @@ VIEWSOPT		= -views
 #TODO hacky and not working for other packages
 VIEWFILES		= $(PACKAGEPATH)/uml.java 
 #$(shell find $(PACKAGEPATH) -type f -name 'uml.java')
-UMLFILES		= $(addprefix $(OUTDIR)/,$(subst $(PACKAGEPATH),,$(subst .java,.dot,$(VIEWFILES))))
+UMLFILES		= $(subst $(PACKAGEPATH),$(OUTDIR),$(subst .java,.dot,$(VIEWFILES)))
 UMLDEPS			= $(UMLFILES)
 EXPORTFORMAT	= svg
 DPI				= 72
@@ -109,7 +109,9 @@ help:
 debug:
 	$(ECHO) nothing to see here...
 	$(ECHO) $(VIEWFILES)
-	$(ECHO) $(SEQUENCEEXPORTS)
+	$(ECHO) $(UMLFILES)
+	$(ECHO) $(UMLDEPS)
+#	$(ECHO) $(SEQUENCEEXPORTS)
 
 umlgraph: $(UMLDEPS)
 	@true
@@ -125,6 +127,7 @@ $(UMLFILES): $(OUTDIR)/ $(PACKAGEPATH)/uml.java $(JAVAFILES)
 $(SRCDIR)/%/uml.java: $(SRCDIR)/uml.java
 	$(ECHO) Updating uml.java for package $(PACKAGE)...
 	$(AT)cp -f $< $@
+#	Replace first line with package
 	$(AT)perl -i -pe 's/.*/package $(PACKAGE);/ if $$. == 1' $@
 
 # Legacy: Delegate export:xxx commands to export
