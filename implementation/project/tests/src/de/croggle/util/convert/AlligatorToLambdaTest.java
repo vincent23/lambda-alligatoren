@@ -17,6 +17,6 @@ public class AlligatorToLambdaTest extends TestCase {
 		Egg e2 = new Egg(b, true, true, new Color(1), true);
 		b.addChild(e2);
 		
-		assertEquals("λx.x y", AlligatorToLambda.convert(b));
+		assertEquals("(λx.x) y", AlligatorToLambda.convert(b));
 	}
 }

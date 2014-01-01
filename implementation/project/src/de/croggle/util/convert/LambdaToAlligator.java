@@ -169,22 +169,30 @@ public class LambdaToAlligator {
 			sep = (AbstractionSeparator) p.getNextChild(var);
 		}
 		
-		// get the bound term
-		InternalBoardObject boundTerm;
-		nextChild = p.getNextChild(sep);
-		// neither Egg (still as variable) nor parenthesis (already parsed as AgedAlligators) nor 
-		if (!(nextChild instanceof Variable) && !(nextChild instanceof Alligator) && (nextChild.getClass() != AbstractionBegin.class)) {
-			throw new IllegalArgumentException("No binding seperator ('.') found for abstraction");
-		} else if (nextChild.getClass() == AbstractionBegin.class) {
-			buildAbstraction((AbstractionBegin) nextChild);
-			boundTerm = (ColoredAlligator) p.getNextChild(sep); // re-get the child, which was transformed in the mean time
-		} else {
-			boundTerm = (InternalBoardObject) nextChild;
-		}
-		
+		// instantiate the alligator
 		Color c = strToColor(var.getExpr());
 		ColoredAlligator abstraction = new ColoredAlligator(p, true, true, c, true);
-		abstraction.addChild(boundTerm);
+		
+		// get the bound terms
+		int pos = p.getChildPosition(sep) + 1;
+		InternalBoardObject nextBound;
+		Iterator<InternalBoardObject> it = p.iterator(pos);
+		if (!it.hasNext()) {
+			throw new IllegalArgumentException("No bound term found for abstraction");
+		}
+		while (it.hasNext()) {
+			nextBound = it.next();
+			// neither Egg (still as variable) nor parenthesis (already parsed as AgedAlligators) need to be considered here
+			if (!(nextBound instanceof Variable) && !(nextBound instanceof Alligator) && (nextBound.getClass() != AbstractionBegin.class) && (nextBound.getClass() != AbstractionSeparator.class)) {
+				throw new IllegalArgumentException("Illegal term bound: " + nextBound.getClass().getSimpleName());
+			} /* Not needed, I guess. 
+			else if (nextBound.getClass() == AbstractionBegin.class) {
+				buildAbstraction((AbstractionBegin) nextBound);
+				boundTerm = (ColoredAlligator) p.getNextChild(sep); // re-get the child, which was transformed in the mean time
+			}*/ else {
+				abstraction.addChild(nextBound);
+			}
+		}
 		
 		p.replaceChild(o, abstraction);
 		unparsedDeque.remove(o); // the abstraction
@@ -195,7 +203,9 @@ public class LambdaToAlligator {
 		p.removeChild(sep);
 		unparsedDeque.remove(sep); // part of the abstraction
 		
-		p.removeChild(boundTerm);
+		for (InternalBoardObject child : abstraction) {
+			p.removeChild(child);
+		}
 		// boundTerm is probably an alligator, or will turn into an egg later
 	}
 	

@@ -92,8 +92,15 @@ public class AlligatorToLambda implements BoardObjectVisitor {
 
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
+		boolean par = !alligator.getParent().isLastChild(alligator);
+		if (par) {
+			result += "(";
+		}
 		result += "λ" + colorToName(alligator.getColor()) + ".";
-		visitParent(alligator, true);
+		visitParent(alligator, false);
+		if (par) {
+			result += ")";
+		}
 	}
 
 }
