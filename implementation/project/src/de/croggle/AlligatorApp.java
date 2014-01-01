@@ -6,6 +6,7 @@ import android.content.Context;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import de.croggle.data.persistence.SettingController;
 import de.croggle.data.persistence.StatisticController;
@@ -33,6 +34,8 @@ public class AlligatorApp extends Game {
 	private PersistenceManager persistenceManager;
 	private AssetManager assetManager;
 	private List<AbstractScreen> screens;
+	
+	public SpriteBatch batch;
 
 	/**
 	 * Creates the game using the given context and initializes all controllers
@@ -43,8 +46,6 @@ public class AlligatorApp extends Game {
 	 */
 	public AlligatorApp(Context context) {
 		this.context = context;
-		
-		this.assetManager = new AssetManager();
 	}
 
 	/**
@@ -112,7 +113,7 @@ public class AlligatorApp extends Game {
 	 * @return the asset manager
 	 */
 	public AssetManager getAssetManager() {
-		return null;
+		return this.assetManager;
 	}
 
 	/**
@@ -130,6 +131,8 @@ public class AlligatorApp extends Game {
 	 */
 	@Override
 	public void create() {
+		this.batch = new SpriteBatch();
+		this.assetManager = new AssetManager();
 		this.setScreen(new MainMenuScreen(this));
 	}
 
@@ -139,6 +142,7 @@ public class AlligatorApp extends Game {
 	 */
 	@Override
 	public void render() {
+		super.render();
 	}
 
 	/**
@@ -177,5 +181,6 @@ public class AlligatorApp extends Game {
 	 */
 	@Override
 	public void dispose() {
+		batch.dispose();
 	}
 }
