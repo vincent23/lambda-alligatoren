@@ -8,4 +8,5 @@ proguard/
 .settings/
 
 local.properties
-
+project/assets/textures/
+!project/tools/**/*.jar

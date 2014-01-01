@@ -1,8 +1,10 @@
 package de.croggle.ui.screens;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 import de.croggle.AlligatorApp;
 
@@ -27,9 +29,14 @@ public class MainMenuScreen extends AbstractScreen {
 	public MainMenuScreen(AlligatorApp app) {
 		super(app);
 		AssetManager manager = app.getAssetManager();
-		manager.load("swamp.png", Texture.class);
+		TextureLoader.TextureParameter backgroundParams = new TextureLoader.TextureParameter();
+//		backgroundParams.minFilter = TextureFilter.MipMapLinearLinear;
+//		backgroundParams.magFilter = TextureFilter.MipMapLinearLinear;
+		backgroundParams.genMipMaps = true;
+		manager.load("textures/swamp.png", Texture.class, backgroundParams);
 		manager.finishLoading();
-		background = game.getAssetManager().get("swamp.png", Texture.class);
+		background = game.getAssetManager().get("textures/swamp.png", Texture.class);
+		background.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.MipMapLinearLinear);
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1024, 600);
 	}
@@ -46,5 +53,10 @@ public class MainMenuScreen extends AbstractScreen {
 		game.batch.begin();
 		game.batch.draw(background, 0, 0);
 		game.batch.end();
+	}
+	
+	@Override
+	public void dispose() {
+		background.dispose();
 	}
 }

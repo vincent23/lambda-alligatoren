@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<project name="libgdx-texture-packer" default="main" basedir=".">
+	<!-- Sets variables which can later be used. -->
+	<!-- The value of a property is accessed via ${} -->
+	<property name="standalone.dir" location="."/>
+	<property name="pkg.dir" location="packages" />
+	<property name="build.dir" location="../assets/textures" />
+	<property name="gdx.path" location="../lib/gdx.jar" />
+	<property name="gdx-tools.path" location="../tools/gdx-tools.jar" />
+
+	<!-- Deletes the existing build, docs and dist directory-->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<!-- Creates the	build, docs and dist directory-->
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+	</target>
+
+	<!-- Runs the libgdx texturepacker2 tool -->
+	<target name="pack" depends="makedir">
+		<java classname="com.badlogic.gdx.tools.imagepacker.TexturePacker2">
+			<arg value="${pkg.dir}"/>
+			<arg value="${build.dir}"/>
+			<classpath>
+				<pathelement location="${gdx.path}"/>
+				<pathelement path="${gdx-tools.path}"/>
+			</classpath>
+		</java>
+	</target>
+	
+	<target name="copy" depends="makedir">
+		<copy todir="${build.dir}">
+			<fileset dir="${standalone.dir}">
+				<include name="*.png"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="main" depends="copy, pack">
+		<description>Main target</description>
+	</target>
+</project> 
