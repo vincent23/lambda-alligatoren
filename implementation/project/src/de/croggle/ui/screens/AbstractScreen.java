@@ -11,9 +11,9 @@ import de.croggle.AlligatorApp;
  */
 public abstract class AbstractScreen implements Screen {
 
-	private AlligatorApp game;
-	private Stage stage;
-	private Table table;
+	protected AlligatorApp game;
+	protected Stage stage;
+	protected Table table;
 
 	/**
 	 * Superconstructor for all screens. Initializes everything they share, e.g.
@@ -23,6 +23,7 @@ public abstract class AbstractScreen implements Screen {
 	 *            the backreference to the central game
 	 */
 	public AbstractScreen(AlligatorApp game) {
+		this.game = game;
 	}
 
 	/**
