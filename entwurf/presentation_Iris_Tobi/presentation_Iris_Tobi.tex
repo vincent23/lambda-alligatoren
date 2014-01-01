@@ -1,0 +1,113 @@
+\documentclass[t]{beamer}
+\usetheme[deutsch]{KIT}
+\setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{}
+\graphicspath{ {Systemmodelle/images_blank/} }
+
+\KITfoot{ Croggle - Praxis der Softwareentwicklung WS 13/14}
+\usepackage[utf8]{inputenc}
+\usepackage{ngerman}
+\usepackage[scaled]{uarial}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+\usenavigationsymbols
+
+
+\title{Croggle}
+\subtitle{PSE - Entwurfsphase \\[0.3cm]
+Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  $\cdot$ Vincent Schüßler $\cdot$ Lena Winter}
+\institute[IPD]{Institut für Programmstruktutren und Datenorganisation}
+
+\TitleImage[height=\titleimageht]{banner.png}
+
+
+\begin{document}
+
+\begin{frame}
+        \maketitle
+\end{frame}
+
+\begin{frame}
+	\frametitle{Designentscheidungen}
+	Wegweisende Entscheidungen für den weiteren Aufbaue der App:\\
+	\begin{itemize}
+		\item Model View Controller
+		\item libgdx
+		\item Aufbau des Model
+		\item Visitor Pattern
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Nicht umgesetzte Wunschkriterien}
+	Nicht modellierte Wunschkriterien, die nicht weiter verfolgt werden: \\
+     \\
+	\begin{itemize}
+		\item Avatarerstellung (/F130+/)
+		\item Automatische Kameraführung (/F236+/)
+		\item Bestimmte Achievements (/F250+/)
+		\item Sandboxlevel speichern/laden (/F260+/)
+		\begin{itemize}
+			\item Nichtterminierender Ausdruck
+			\item Anzahl Spalten/Zeilen
+			\item Erreichtes innerhalt einer Spielsitzung
+		\end{itemize}
+	\end{requirements}
+	\includegraphics[width=\textwidth]{Spielelemente.png}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Multiple-Choice Level}
+	\includegraphics[width=\textwidth]{level_choice.png}
+\end{frame}
+\begin{frame}
+	\frametitle{Färbelevel}
+	\includegraphics<1>[width=\textwidth]{level_white.png}\pause
+	
+	\includegraphics<2>[width=\textwidth]{level_end_color.png}
+
+	\includegraphics<3>[width=\textwidth]{level_color.png}
+
+	\includegraphics<4>[width=\textwidth]{level_colored_egg.png}
+\end{frame}
+\begin{frame}
+	\frametitle{Einfügelevel}
+	\includegraphics<1>[width=\textwidth]{level_start.png}
+
+	\includegraphics<2>[width=\textwidth]{level_end.png}
+
+	\includegraphics<3>[width=\textwidth]{level_croc.png}
+
+	\includegraphics<4>[width=\textwidth]{level_color_purple.png}
+
+	\includegraphics<5>[width=\textwidth]{level_colored_croc.png}
+
+	\includegraphics<6>[width=\textwidth]{level_colored_croc0.png}
+
+	\includegraphics<7>[width=\textwidth]{level_colored_croc01.png}
+
+	\includegraphics<8>[width=\textwidth]{level_colored_croc1.png}
+
+	\includegraphics<9>[width=\textwidth]{level_colored_croc2.png}
+\end{frame}
+\begin{frame}
+	\frametitle{Simulationsmodus}
+	\includegraphics<1>[width=\textwidth]{level_simulation_croc.png}
+
+	\includegraphics<2>[width=\textwidth]{level_simulation_solved.png}
+\end{frame}
+\begin{frame}
+	\frametitle{Achievement unlocked}
+	\includegraphics[width=\textwidth]{achievement_aligator.png}
+\end{frame}
+\begin{frame}
+	\frametitle{Achievementmenü}
+	\includegraphics[width=\textwidth]{achievements.png}
+\end{frame}
+\begin{frame}
+	\frametitle{Statistiken}
+	\includegraphics<1>[width=\textwidth]{stats_mod.png}
+	\includegraphics<2>[width=\textwidth]{stats_fort.png}
+\end{frame}
+
+\end{document}
