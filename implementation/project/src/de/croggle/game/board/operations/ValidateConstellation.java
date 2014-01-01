@@ -1,4 +1,4 @@
-package de.croggle.game.visitor;
+package de.croggle.game.board.operations;
 
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
@@ -7,27 +7,26 @@ import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 
 /**
- * A visitor for counting the number of objects in a family.
+ * A visitor for checking whether the given Board represents a valid term within
+ * the lambda calculus (whether the evaluation is possible or not).
  */
-public class CountBoardObjectsVisitor implements BoardObjectVisitor {
-	private int count;
-
+public class ValidateConstellation implements BoardObjectVisitor {
 	/**
 	 *
 	 */
-	private CountBoardObjectsVisitor() {
-		this.count = 0;
+	private ValidateConstellation(BoardObject family) {
 	}
 
 	/**
-	 * Count the number of objects in a family.
+	 * Checks whether the given family represents a valid term within the lambda
+	 * calculus.
 	 * 
 	 * @param family
-	 *            the family whose members should be counted
-	 * @return the number of family members
+	 *            the family to check for validity
+	 * @return true if the family is valid, false otherwise
 	 */
-	public static int count(BoardObject family) {
-		return 0;
+	public static boolean isValid(BoardObject family) {
+		return false;
 	}
 
 	/**

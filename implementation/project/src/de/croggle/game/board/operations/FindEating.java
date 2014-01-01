@@ -1,4 +1,4 @@
-package de.croggle.game.visitor;
+package de.croggle.game.board.operations;
 
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
@@ -8,13 +8,13 @@ import de.croggle.game.board.Egg;
 /**
  * A visitor for finding a colored alligator which can eat a family next to it.
  */
-public class FindEatingVisitor implements BoardObjectVisitor {
+public class FindEating implements BoardObjectVisitor {
 	private ColoredAlligator eater;
 
 	/**
 	 * Creates a new visitor with no found alligator.
 	 */
-	private FindEatingVisitor() {
+	private FindEating() {
 		this.eater = null;
 	}
 

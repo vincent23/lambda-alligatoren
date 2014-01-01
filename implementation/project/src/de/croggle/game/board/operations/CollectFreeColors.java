@@ -1,5 +1,6 @@
-package de.croggle.game.visitor;
+package de.croggle.game.board.operations;
 
+import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.BoardObject;
@@ -7,26 +8,24 @@ import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 
 /**
- * A visitor for checking whether the given Board represents a valid term within
- * the lambda calculus (whether the evaluation is possible or not).
+ * A visitor for collecting all the colors of eggs with no matching alligator
+ * above them. This is equivalent to the set of variables which occur free in a
+ * given subterm.
  */
-public class ValidationVisitor implements BoardObjectVisitor {
-	/**
-	 *
-	 */
-	private ValidationVisitor(BoardObject family) {
+public class CollectFreeColors implements BoardObjectVisitor {
+	private CollectFreeColors(BoardObject family) {
 	}
 
 	/**
-	 * Checks whether the given family represents a valid term within the lambda
-	 * calculus.
+	 * Returns the set of colors of eggs with no matching alligator above them
+	 * in the given family.
 	 * 
 	 * @param family
-	 *            the family to check for validity
-	 * @return true if the family is valid, false otherwise
+	 *            the family to examine
+	 * @return the set of free colors
 	 */
-	public static boolean isValid(BoardObject family) {
-		return false;
+	public static Color[] collect(BoardObject family) {
+		return null;
 	}
 
 	/**
@@ -60,5 +59,4 @@ public class ValidationVisitor implements BoardObjectVisitor {
 	public void visitBoard(Board board) {
 
 	}
-
 }

@@ -12,7 +12,7 @@ import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.Parent;
-import de.croggle.game.visitor.BoardObjectVisitor;
+import de.croggle.game.board.operations.BoardObjectVisitor;
 
 public class AlligatorToLambda implements BoardObjectVisitor {
 	

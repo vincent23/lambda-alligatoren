@@ -1,4 +1,4 @@
-package de.croggle.game.visitor;
+package de.croggle.game.board.operations;
 
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
@@ -11,8 +11,8 @@ import de.croggle.game.board.Egg;
  * "flat" array of BoardObjects. Useful if sequentially iterating through all
  * objects in the tree is needed to be achieved.
  */
-public class FlattenVisitor implements BoardObjectVisitor {
-	private FlattenVisitor() {
+public class FlattenToArray implements BoardObjectVisitor {
+	private FlattenToArray() {
 	}
 
 	/**

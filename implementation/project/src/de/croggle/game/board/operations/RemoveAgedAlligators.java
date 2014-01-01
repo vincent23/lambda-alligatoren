@@ -1,4 +1,4 @@
-package de.croggle.game.visitor;
+package de.croggle.game.board.operations;
 
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
@@ -12,21 +12,21 @@ import de.croggle.game.event.BoardEventMessenger;
  * have only one children.
  * 
  */
-public class RemoveAgedAlligatorsVisitor implements BoardObjectVisitor {
+public class RemoveAgedAlligators implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;
 
 	/**
 	 *
 	 * @param boardMessenger
 	 */
-	private RemoveAgedAlligatorsVisitor(BoardEventMessenger boardMessenger) {
+	private RemoveAgedAlligators(BoardEventMessenger boardMessenger) {
 		this.boardMessenger = boardMessenger;
 	}
 	
 	/**
 	 * 
 	 */
-	private RemoveAgedAlligatorsVisitor() {
+	private RemoveAgedAlligators() {
 		this.boardMessenger = null;
 	}
 
@@ -41,7 +41,7 @@ public class RemoveAgedAlligatorsVisitor implements BoardObjectVisitor {
 	 */
 	public static void remove(BoardObject family,
 			BoardEventMessenger boardMessenger) {
-		RemoveAgedAlligatorsVisitor visitor = new RemoveAgedAlligatorsVisitor(boardMessenger);
+		RemoveAgedAlligators visitor = new RemoveAgedAlligators(boardMessenger);
 		family.accept(visitor);
 	}
 	
@@ -52,7 +52,7 @@ public class RemoveAgedAlligatorsVisitor implements BoardObjectVisitor {
 	 *            the family in which old alligators should be removed
 	 */
 	public static void remove(BoardObject family) {
-		RemoveAgedAlligatorsVisitor visitor = new RemoveAgedAlligatorsVisitor();
+		RemoveAgedAlligators visitor = new RemoveAgedAlligators();
 		family.accept(visitor);
 	}
 

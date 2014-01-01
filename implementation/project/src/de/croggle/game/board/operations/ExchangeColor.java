@@ -1,4 +1,4 @@
-package de.croggle.game.visitor;
+package de.croggle.game.board.operations;
 
 import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
@@ -12,10 +12,10 @@ import de.croggle.game.event.BoardEventMessenger;
  * A visitor for replacing occurences of one color in a family with another
  * color.
  */
-public class RecolorVisitor implements BoardObjectVisitor {
+public class ExchangeColor implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;
 
-	private RecolorVisitor(BoardObject family, Color oldColor, Color newColor,
+	private ExchangeColor(BoardObject family, Color oldColor, Color newColor,
 			BoardEventMessenger boardMessenger) {
 	}
 

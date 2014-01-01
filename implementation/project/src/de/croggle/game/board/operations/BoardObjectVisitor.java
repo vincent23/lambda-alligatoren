@@ -1,4 +1,4 @@
-package de.croggle.game.visitor;
+package de.croggle.game.board.operations;
 
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;

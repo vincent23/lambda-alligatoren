@@ -1,7 +1,7 @@
 package de.croggle.game.board;
 
 import de.croggle.game.Color;
-import de.croggle.game.visitor.BoardObjectVisitor;
+import de.croggle.game.board.operations.BoardObjectVisitor;
 
 /**
  * An egg represents a variable within the Lambda Calculus. If the guarding

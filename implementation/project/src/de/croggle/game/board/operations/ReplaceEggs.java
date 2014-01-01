@@ -1,4 +1,4 @@
-package de.croggle.game.visitor;
+package de.croggle.game.board.operations;
 
 import de.croggle.game.Color;
 import de.croggle.game.ColorController;
@@ -15,10 +15,10 @@ import de.croggle.game.event.BoardEventMessenger;
  * (subtree).
  * 
  */
-public class ReplaceEggsVisitor implements BoardObjectVisitor {
+public class ReplaceEggs implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;
 
-	private ReplaceEggsVisitor(ColoredAlligator parent,
+	private ReplaceEggs(ColoredAlligator parent,
 			InternalBoardObject bornFamily, BoardEventMessenger boardMessenger,
 			ColorController colorController) {
 	}

@@ -1,6 +1,5 @@
-package de.croggle.game.visitor;
+package de.croggle.game.board.operations;
 
-import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.BoardObject;
@@ -8,24 +7,27 @@ import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 
 /**
- * A visitor for collecting all the colors of eggs with no matching alligator
- * above them. This is equivalent to the set of variables which occur free in a
- * given subterm.
+ * A visitor for counting the number of objects in a family.
  */
-public class CollectFreeColorsVisitor implements BoardObjectVisitor {
-	private CollectFreeColorsVisitor(BoardObject family) {
+public class CountBoardObjects implements BoardObjectVisitor {
+	private int count;
+
+	/**
+	 *
+	 */
+	private CountBoardObjects() {
+		this.count = 0;
 	}
 
 	/**
-	 * Returns the set of colors of eggs with no matching alligator above them
-	 * in the given family.
+	 * Count the number of objects in a family.
 	 * 
 	 * @param family
-	 *            the family to examine
-	 * @return the set of free colors
+	 *            the family whose members should be counted
+	 * @return the number of family members
 	 */
-	public static Color[] collect(BoardObject family) {
-		return null;
+	public static int count(BoardObject family) {
+		return 0;
 	}
 
 	/**
@@ -59,4 +61,5 @@ public class CollectFreeColorsVisitor implements BoardObjectVisitor {
 	public void visitBoard(Board board) {
 
 	}
+
 }

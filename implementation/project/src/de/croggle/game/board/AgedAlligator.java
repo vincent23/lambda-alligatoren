@@ -1,6 +1,6 @@
 package de.croggle.game.board;
 
-import de.croggle.game.visitor.BoardObjectVisitor;
+import de.croggle.game.board.operations.BoardObjectVisitor;
 
 /**
  * 

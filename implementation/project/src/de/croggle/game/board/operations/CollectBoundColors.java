@@ -1,4 +1,4 @@
-package de.croggle.game.visitor;
+package de.croggle.game.board.operations;
 
 import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
@@ -11,8 +11,8 @@ import de.croggle.game.board.Egg;
  * A visitor for collecting all the colors of alligators in a family. This is
  * equivalent to the set of variables which are bound in a given subterm.
  */
-public class CollectBoundColorsVisitor implements BoardObjectVisitor {
-	private CollectBoundColorsVisitor(BoardObject family) {
+public class CollectBoundColors implements BoardObjectVisitor {
+	private CollectBoundColors(BoardObject family) {
 	}
 
 	/**

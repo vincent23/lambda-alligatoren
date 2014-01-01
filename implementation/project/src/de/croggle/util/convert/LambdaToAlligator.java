@@ -11,8 +11,8 @@ import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.Parent;
-import de.croggle.game.visitor.BoardObjectVisitor;
-import de.croggle.game.visitor.RemoveAgedAlligatorsVisitor;
+import de.croggle.game.board.operations.BoardObjectVisitor;
+import de.croggle.game.board.operations.RemoveAgedAlligators;
 
 import java.util.Deque;
 import java.util.HashMap;
@@ -97,7 +97,7 @@ public class LambdaToAlligator {
 			parseStageTwo();
 		}
 		
-		RemoveAgedAlligatorsVisitor.remove(b);
+		RemoveAgedAlligators.remove(b);
 	}
 	
 	/**

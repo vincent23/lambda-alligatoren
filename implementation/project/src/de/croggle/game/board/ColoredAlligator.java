@@ -1,7 +1,7 @@
 package de.croggle.game.board;
 
 import de.croggle.game.Color;
-import de.croggle.game.visitor.BoardObjectVisitor;
+import de.croggle.game.board.operations.BoardObjectVisitor;
 
 /**
  * Colored alligators represent lambda abstractions in the Lambda Calculus. The

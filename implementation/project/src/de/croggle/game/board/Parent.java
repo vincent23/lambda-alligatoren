@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import de.croggle.game.visitor.BoardObjectVisitor;
+import de.croggle.game.board.operations.BoardObjectVisitor;
 
 /**
  * Parent is an abstract class to model the functions board objects - which can
