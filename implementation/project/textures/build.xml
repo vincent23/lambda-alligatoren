@@ -24,7 +24,7 @@
 			<arg value="${pkg.dir}"/>
 			<arg value="${build.dir}"/>
 			<classpath>
-				<pathelement location="${gdx.path}"/>
+				<pathelement path="${gdx.path}"/>
 				<pathelement path="${gdx-tools.path}"/>
 			</classpath>
 		</java>
