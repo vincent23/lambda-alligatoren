@@ -9,9 +9,9 @@ public class Color implements Comparable<Color> {
 	static {
 		uncolored = new UncoloredColor();
 	}
-	
+
 	private final int id;
-	
+
 	private static final Color uncolored;
 
 	/**
@@ -25,15 +25,16 @@ public class Color implements Comparable<Color> {
 	 */
 	public Color(int id) {
 		if (id < 0) {
-			throw new IllegalArgumentException("Cannot inintialize Color with negative id");
+			throw new IllegalArgumentException(
+					"Cannot inintialize Color with negative id");
 		}
 		this.id = id;
 	}
-	
+
 	/**
-	 * Returns the pointer-identical reference to
-	 * a unique color that represents the "uncolored" color. I.e. a color representing
-	 * all colors of objects, whose color is not yet defined.
+	 * Returns the pointer-identical reference to a unique color that represents
+	 * the "uncolored" color. I.e. a color representing all colors of objects,
+	 * whose color is not yet defined.
 	 * 
 	 * @return the global singleton "uncolored" color.
 	 */
@@ -43,19 +44,20 @@ public class Color implements Comparable<Color> {
 
 	/**
 	 * Gets the globally unique color id between 0 and 29.
-	 * @return the color id that this object is an instance of. 
+	 * 
+	 * @return the color id that this object is an instance of.
 	 */
 	public int getId() {
 		return this.id;
 	}
-	
+
 	@Override
-	public boolean equals (Object o) {
-		if (o == null) 
+	public boolean equals(Object o) {
+		if (o == null)
 			return false;
 		if (o.getClass() != Color.class)
 			return false;
-		
+
 		Color oColor = (Color) o;
 		return oColor.id == this.id;
 	}
@@ -70,29 +72,30 @@ public class Color implements Comparable<Color> {
 	public int compareTo(Color c) {
 		return this.id - c.id;
 	}
-	
+
 	private static class UncoloredColor extends Color {
 		public UncoloredColor() {
-			super (0);
+			super(0);
 			if (Color.uncolored != null) {
-				throw new IllegalStateException("The uncolored color must be globally unique");
+				throw new IllegalStateException(
+						"The uncolored color must be globally unique");
 			}
 		}
-		
+
 		@Override
 		public int getId() {
 			return -1;
 		}
-		
+
 		@Override
-		public boolean equals (Object o) {
+		public boolean equals(Object o) {
 			return o == this;
 		}
 
 		@Override
 		public int hashCode() {
 			int hash = 5;
-			hash = 17 * hash -1;
+			hash = 17 * hash - 1;
 			return hash;
 		}
 	}

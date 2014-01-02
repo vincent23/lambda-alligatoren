@@ -171,7 +171,7 @@ public class LambdaToAlligator {
 		
 		// instantiate the alligator
 		Color c = strToColor(var.getExpr());
-		ColoredAlligator abstraction = new ColoredAlligator(p, true, true, c, true);
+		ColoredAlligator abstraction = new ColoredAlligator(true, true, c, true);
 		
 		// get the bound terms
 		int pos = p.getChildPosition(sep) + 1;
@@ -232,7 +232,7 @@ public class LambdaToAlligator {
 		
 		ClosingBrace close = (ClosingBrace) current;
 		
-		AgedAlligator braces = new AgedAlligator(p, true, true);
+		AgedAlligator braces = new AgedAlligator(true, true);
 		i = p.iterator(p.getChildPosition(o) + 1);
 		while (i.hasNext() && !(current = i.next()).equals(close)) {
 			braces.addChild(current);
@@ -256,7 +256,7 @@ public class LambdaToAlligator {
 	private void buildVariable(Variable o) {
 		Parent p = o.getParent();
 		Color c = strToColor(o.getExpr());
-		Egg e = new Egg(p, true, true, c, true);
+		Egg e = new Egg(true, true, c, true);
 		p.replaceChild(o, e);
 		unparsedDeque.remove(o);
 	}

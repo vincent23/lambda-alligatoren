@@ -38,7 +38,10 @@ public class FindEating implements BoardObjectVisitor {
 	}
 
 	/**
-	 * Search a colored alligator which can eat a family next to it.
+	 * Search the top-leftmost colored alligator which can eat a family next to
+	 * it. In this case, "left" is preferred over "top", i.e. in a term ()The eaten family can be retrieved by calling
+	 * <code>eater.getParent().getNextChild(eater)</code> where "eater" is the
+	 * returned ColoredAlligator.
 	 * 
 	 * @param board
 	 *            the board in which colored alligators should be searched

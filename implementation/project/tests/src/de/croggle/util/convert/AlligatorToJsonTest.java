@@ -13,11 +13,11 @@ public class AlligatorToJsonTest extends TestCase {
 	 */
 	public void testSimpleManual() {
 		Board b = new Board();
-		ColoredAlligator a = new ColoredAlligator(b, true, true, new Color(0), true);
+		ColoredAlligator a = new ColoredAlligator(true, true, new Color(0), true);
 		b.addChild(a);
-		Egg e1 = new Egg(a, true, true, new Color(0), true);
+		Egg e1 = new Egg(true, true, new Color(0), true);
 		a.addChild(e1);
-		Egg e2 = new Egg(b, true, true, new Color(1), true);
+		Egg e2 = new Egg(true, true, new Color(1), true);
 		b.addChild(e2);
 		
 		String expected =
