@@ -11,16 +11,19 @@ package de.croggle.game.board;
  **/
 public abstract class Alligator extends Parent implements InternalBoardObject {
 
-	private Parent parent;
+	private Parent parent = null;
 	private boolean movable;
 	private boolean removable;
 
 	/**
 	 * Superconstructor for all alligators.
 	 * 
-	 * @param parent the parent of the alligator
-	 * @param movable whether the board object is movable or not
-	 * @param removable whether the board object is removable or not
+	 * @param parent
+	 *            the parent of the alligator
+	 * @param movable
+	 *            whether the board object is movable or not
+	 * @param removable
+	 *            whether the board object is removable or not
 	 */
 	protected Alligator(Parent parent, boolean movable, boolean removable) {
 		this.parent = parent;
@@ -29,16 +32,32 @@ public abstract class Alligator extends Parent implements InternalBoardObject {
 	}
 
 	/**
+	 * Initializes an alligator without a parent and no children.
+	 * 
+	 * @param movable
+	 *            whether the board object is movable or not
+	 * @param removable
+	 *            whether the board object is removable or not
+	 */
+	protected Alligator(boolean movable, boolean removable) {
+		this.movable = movable;
+		this.removable = removable;
+	}
+
+	/**
 	 * Copy constructor for alligators.
 	 * 
-	 * @param alligator the alligator to be copied.
+	 * @param alligator
+	 *            the alligator to be copied.
 	 */
 	protected Alligator(Alligator alligator) {
 		this(alligator.parent, alligator.movable, alligator.removable);
 	}
 
 	/**
-	 * Returns the parent object of this alligator.
+	 * Returns the parent object of this alligator. TODO maybe throw
+	 * null-pointer exception here? Accessing parents where there is no parent
+	 * seems undesirable.
 	 * 
 	 * @return the parent alligator
 	 */

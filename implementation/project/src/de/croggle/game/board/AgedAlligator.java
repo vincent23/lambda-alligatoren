@@ -14,9 +14,25 @@ public class AgedAlligator extends Alligator {
 	 * 
 	 * @param parent
 	 *            the parent this alligator should have
+	 * @param movable
+	 *            whether the board object is movable or not
+	 * @param removable
+	 *            whether the board object is removable or not
 	 */
-	public AgedAlligator(Parent parent, boolean movable, boolean removable) {
+	private AgedAlligator(Parent parent, boolean movable, boolean removable) {
 		super(parent, movable, removable);
+	}
+
+	/**
+	 * Creates an aged alligator with no children and without a parent.
+	 * 
+	 * @param movable
+	 *            whether the board object is movable or not
+	 * @param removable
+	 *            whether the board object is removable or not
+	 */
+	public AgedAlligator(boolean movable, boolean removable) {
+		super(movable, removable);
 	}
 
 	private AgedAlligator(AgedAlligator agedAlligator) {
@@ -33,7 +49,8 @@ public class AgedAlligator extends Alligator {
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
 		visitor.visitAgedAlligator(this);
-		//acceptOnChildren(visitor); // TODO I think, this is not expected behaviour
+		// acceptOnChildren(visitor); // TODO I think, this is not expected
+		// behaviour
 	}
 
 	/**

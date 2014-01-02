@@ -12,24 +12,49 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	private boolean recolorable;
 	private boolean movable;
 	private boolean removable;
-	private Parent parent;
+	private Parent parent = null;
 
 	/**
 	 * Creates a new egg with the specified color and the permission value if
 	 * the object is recolorable or not. The color hereby serves as the name of
 	 * the variable this egg represents in the Lambda Calculus.
 	 * 
-	 * @param parent the parent of this egg, as in "directly above it"
-	 * @param movable whether the BoardObject is movable or not
-	 * @param removable whether the BoardObject can be removed or not
+	 * @param parent
+	 *            the parent of this egg, as in "directly above it"
+	 * @param movable
+	 *            whether the BoardObject is movable or not
+	 * @param removable
+	 *            whether the BoardObject can be removed or not
 	 * @param c
 	 *            the color this egg has
 	 * @param recolorable
 	 *            whether the egg is recolorable (true) or not (false)
 	 */
-	public Egg(Parent parent, boolean movable, boolean removable, Color c,
+	private Egg(Parent parent, boolean movable, boolean removable, Color c,
 			boolean recolorable) {
 		this.parent = parent;
+		this.movable = movable;
+		this.removable = removable;
+		this.color = c;
+		this.recolorable = recolorable;
+	}
+
+	/**
+	 * Creates a new egg with the specified color and the permission value if
+	 * the object is recolorable or not. The color hereby serves as the name of
+	 * the variable this egg represents in the Lambda Calculus. The parent will
+	 * be initialized with "null"
+	 * 
+	 * @param movable
+	 *            whether the BoardObject is movable or not
+	 * @param removable
+	 *            whether the BoardObject can be removed or not
+	 * @param c
+	 *            the color this egg has
+	 * @param recolorable
+	 *            whether the egg is recolorable (true) or not (false)
+	 */
+	public Egg(boolean movable, boolean removable, Color c, boolean recolorable) {
 		this.movable = movable;
 		this.removable = removable;
 		this.color = c;
@@ -134,14 +159,15 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 	public boolean isRemovable() {
 		return removable;
 	}
-	
-	public boolean  match(BoardObject o) {
-		// TODO discuss whether color suffices for equality or also consider movable, removable, parent...
+
+	public boolean match(BoardObject o) {
+		// TODO discuss whether color suffices for equality or also consider
+		// movable, removable, parent...
 		if (o == null)
 			return false;
 		if (o.getClass() != Egg.class)
 			return false;
-		
+
 		Egg oEgg = (Egg) o;
 		return oEgg.color.equals(this.color);
 	}

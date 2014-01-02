@@ -17,18 +17,45 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	 * serves as the name of variables bound by this abstraction in the Lambda
 	 * Calculus.
 	 * 
-	 * @param parent the ColoredAlligator's parent
-	 * @param movable whether the BoardObject is movable or not
-	 * @param removable whether the BoardObject is removable or not
+	 * @param parent
+	 *            the ColoredAlligator's parent
+	 * @param movable
+	 *            whether the BoardObject is movable or not
+	 * @param removable
+	 *            whether the BoardObject is removable or not
 	 * @param c
 	 *            the color this alligator has
 	 * @param recolorable
 	 *            whether the ColoredAlligator is recolorable (true) or not
 	 *            (false)
 	 */
-	public ColoredAlligator(Parent parent, boolean movable, boolean removable,
+	private ColoredAlligator(Parent parent, boolean movable, boolean removable,
 			Color c, boolean recolorable) {
 		super(parent, movable, removable);
+		this.color = c;
+		this.recolorable = recolorable;
+	}
+
+	/**
+	 * Creates a new ColoredAlligator with the specified color and the
+	 * permission value if the object is recolorable or not. The color hereby
+	 * serves as the name of variables bound by this abstraction in the Lambda
+	 * Calculus. The parent of this InternalBoardObject will be initialized with
+	 * null.
+	 * 
+	 * @param movable
+	 *            whether the BoardObject is movable or not
+	 * @param removable
+	 *            whether the BoardObject is removable or not
+	 * @param c
+	 *            the color this alligator has
+	 * @param recolorable
+	 *            whether the ColoredAlligator is recolorable (true) or not
+	 *            (false)
+	 */
+	public ColoredAlligator(boolean movable, boolean removable, Color c,
+			boolean recolorable) {
+		super(movable, removable);
 		this.color = c;
 		this.recolorable = recolorable;
 	}
@@ -49,7 +76,8 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
 		visitor.visitColoredAlligator(this);
-		//acceptOnChildren(visitor); // TODO I think, this is not expected behaviour
+		// acceptOnChildren(visitor); // TODO I think, this is not expected
+		// behaviour
 	}
 
 	/**
@@ -93,14 +121,18 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	public void setColor(Color c) {
 		this.color = c;
 	}
-	
-	public boolean match (BoardObject o) {
+
+	public boolean match(BoardObject o) {
 		if (o == null)
 			return false;
 		if (o.getClass() != ColoredAlligator.class)
 			return false;
-		
+
 		ColoredAlligator oAllig = (ColoredAlligator) o;
-		return this.color.equals(oAllig.color) && super.match(oAllig); // use Parent.match for child comparison
+		return this.color.equals(oAllig.color) && super.match(oAllig); // use
+																		// Parent.match
+																		// for
+																		// child
+																		// comparison
 	}
 }
