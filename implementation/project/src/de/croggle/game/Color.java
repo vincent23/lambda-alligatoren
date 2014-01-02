@@ -1,10 +1,18 @@
 package de.croggle.game;
 
+import android.R.integer;
+
 /**
  * A color represents a variable name.
  */
 public class Color implements Comparable<Color> {
+	static {
+		uncolored = new UncoloredColor();
+	}
+	
 	private final int id;
+	
+	private static final Color uncolored;
 
 	/**
 	 * Creates a color with the given id. The id needs to be between 0 and 29
@@ -22,12 +30,15 @@ public class Color implements Comparable<Color> {
 		this.id = id;
 	}
 	
-	private Color() {
-		this.id = -1;
-	}
-	
-	protected static Color uncolored() {
-		return new Color();
+	/**
+	 * Returns the pointer-identical reference to
+	 * a unique color that represents the "uncolored" color. I.e. a color representing
+	 * all colors of objects, whose color is not yet defined.
+	 * 
+	 * @return the global singleton "uncolored" color.
+	 */
+	public static Color uncolored() {
+		return Color.uncolored;
 	}
 
 	/**
@@ -58,5 +69,31 @@ public class Color implements Comparable<Color> {
 
 	public int compareTo(Color c) {
 		return this.id - c.id;
+	}
+	
+	private static class UncoloredColor extends Color {
+		public UncoloredColor() {
+			super (0);
+			if (Color.uncolored != null) {
+				throw new IllegalStateException("The uncolored color must be globally unique");
+			}
+		}
+		
+		@Override
+		public int getId() {
+			return -1;
+		}
+		
+		@Override
+		public boolean equals (Object o) {
+			return o == this;
+		}
+
+		@Override
+		public int hashCode() {
+			int hash = 5;
+			hash = 17 * hash -1;
+			return hash;
+		}
 	}
 }
