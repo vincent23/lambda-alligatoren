@@ -13,7 +13,8 @@ public class GetParentHierarchyTest extends TestCase {
 	
 	public void testSimpleTree() {
 		Board b = new Board();
-		ColoredAlligator a = new ColoredAlligator(true, true, new Color(0), true);
+		ColoredAlligator a = new ColoredAlligator(true, true, new Color(0),
+				true);
 		b.addChild(a);
 		Egg e1 = new Egg(true, true, new Color(0), true);
 		a.addChild(e1);
