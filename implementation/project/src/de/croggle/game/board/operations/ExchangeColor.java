@@ -14,9 +14,21 @@ import de.croggle.game.event.BoardEventMessenger;
  */
 public class ExchangeColor implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;
+	
+	private final Color oldColor;
+	private final Color newColor;
 
-	private ExchangeColor(BoardObject family, Color oldColor, Color newColor,
+	private ExchangeColor(Color oldColor, Color newColor,
 			BoardEventMessenger boardMessenger) {
+		this.boardMessenger = boardMessenger;
+		this.newColor = newColor;
+		this.oldColor = oldColor;
+	}
+	
+	private ExchangeColor(Color oldColor, Color newColor) {
+		this.boardMessenger = null;
+		this.newColor = newColor;
+		this.oldColor = oldColor;
 	}
 
 	/**
@@ -31,10 +43,29 @@ public class ExchangeColor implements BoardObjectVisitor {
 	 *            the color used for replacing the old color
 	 * @param boardMessenger
 	 *            the messenger used for notifying listeners about the
-	 *            recoloring
+	 *            recolored BoardObjects
 	 */
 	public static void recolor(BoardObject family, Color oldColor,
 			Color newColor, BoardEventMessenger boardMessenger) {
+		ExchangeColor colorExchanger = new ExchangeColor(oldColor, newColor, boardMessenger);
+		family.accept(colorExchanger);
+	}
+	
+	/**
+	 * Recolor all alligators and eggs in <code>family</code> which have the
+	 * color <code>oldColor</code> with <code>newColor</code>.
+	 * 
+	 * @param family
+	 *            the family to recolor
+	 * @param oldColor
+	 *            the color to replaced
+	 * @param newColor
+	 *            the color used for replacing the old color
+	 */
+	public static void recolor(BoardObject family, Color oldColor,
+			Color newColor) {
+		ExchangeColor colorExchanger = new ExchangeColor(oldColor, newColor);
+		family.accept(colorExchanger);
 	}
 
 	/**
@@ -42,7 +73,12 @@ public class ExchangeColor implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitEgg(Egg egg) {
-
+		if (egg.getColor().equals(this.oldColor)) {
+			egg.setColor(this.newColor);
+			if (this.boardMessenger != null) {
+				this.boardMessenger.notifyObjectRecolored(egg);
+			}
+		}
 	}
 
 	/**
@@ -50,7 +86,13 @@ public class ExchangeColor implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
-
+		if (alligator.getColor().equals(this.oldColor)) {
+			alligator.setColor(this.newColor);
+			if (this.boardMessenger != null) {
+				this.boardMessenger.notifyObjectRecolored(alligator);
+			}
+		}
+		alligator.acceptOnChildren(this);
 	}
 
 	/**
@@ -58,7 +100,7 @@ public class ExchangeColor implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
-
+		alligator.acceptOnChildren(this);
 	}
 
 	/**
@@ -66,6 +108,6 @@ public class ExchangeColor implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitBoard(Board board) {
-
+		board.acceptOnChildren(this);
 	}
 }
