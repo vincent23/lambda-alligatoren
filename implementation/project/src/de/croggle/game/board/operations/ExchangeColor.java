@@ -14,7 +14,7 @@ import de.croggle.game.event.BoardEventMessenger;
  */
 public class ExchangeColor implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;
-	
+
 	private final Color oldColor;
 	private final Color newColor;
 
@@ -24,7 +24,7 @@ public class ExchangeColor implements BoardObjectVisitor {
 		this.newColor = newColor;
 		this.oldColor = oldColor;
 	}
-	
+
 	private ExchangeColor(Color oldColor, Color newColor) {
 		this.boardMessenger = null;
 		this.newColor = newColor;
@@ -42,15 +42,16 @@ public class ExchangeColor implements BoardObjectVisitor {
 	 * @param newColor
 	 *            the color used for replacing the old color
 	 * @param boardMessenger
-	 *            the messenger used for notifying listeners about the
-	 *            recolored BoardObjects
+	 *            the messenger used for notifying listeners about the recolored
+	 *            BoardObjects
 	 */
 	public static void recolor(BoardObject family, Color oldColor,
 			Color newColor, BoardEventMessenger boardMessenger) {
-		ExchangeColor colorExchanger = new ExchangeColor(oldColor, newColor, boardMessenger);
+		ExchangeColor colorExchanger = new ExchangeColor(oldColor, newColor,
+				boardMessenger);
 		family.accept(colorExchanger);
 	}
-	
+
 	/**
 	 * Recolor all alligators and eggs in <code>family</code> which have the
 	 * color <code>oldColor</code> with <code>newColor</code>.

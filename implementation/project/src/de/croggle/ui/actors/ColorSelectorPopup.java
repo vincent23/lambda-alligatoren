@@ -10,21 +10,26 @@ import de.croggle.game.board.ColoredBoardObject;
  * 
  */
 public class ColorSelectorPopup extends Actor {
-	
+
 	private final ColoredBoardObject boardObject;
-	
+
 	/**
-	 * Creates a new popup to offer the possibility to recolor a certain ColoredBoardObect.
+	 * Creates a new popup to offer the possibility to recolor a certain
+	 * ColoredBoardObect.
 	 * 
-	 * @throws IllegalArgumentException if the given {@link ColoredBoardObject} does not allow recoloring
-	 * @param c the {@link ColoredBoardObject} to recolor
+	 * @throws IllegalArgumentException
+	 *             if the given {@link ColoredBoardObject} does not allow
+	 *             recoloring
+	 * @param c
+	 *            the {@link ColoredBoardObject} to recolor
 	 */
 	public ColorSelectorPopup(ColoredBoardObject c) {
 		if (!c.isRecolorable()) {
-			throw new IllegalArgumentException("ColorSelectPopup can only work on ColoredBoardObjects which allow  recoloring.");
+			throw new IllegalArgumentException(
+					"ColorSelectPopup can only work on ColoredBoardObjects which allow  recoloring.");
 		}
-		
+
 		this.boardObject = c;
 	}
-	
+
 }

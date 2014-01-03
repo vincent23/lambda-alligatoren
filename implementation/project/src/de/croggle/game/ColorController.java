@@ -21,46 +21,20 @@ public class ColorController {
 	private final de.croggle.game.Color uncolored;
 	private List<de.croggle.game.Color> usableColors;
 	private List<de.croggle.game.Color> bannedColors;
-	
+
 	// TODO inelegant version of bidirectional map
 	private Map<de.croggle.game.Color, com.badlogic.gdx.graphics.Color> lookup;
-	
+
 	/*
-	 * The predefined colors mapped onto variable names
-	 * source: http://tools.medialab.sciences-po.fr/iwanthue/index.php
+	 * The predefined colors mapped onto variable names source:
+	 * http://tools.medialab.sciences-po.fr/iwanthue/index.php
 	 */
-	private static final String[] colors = {
-		"#804498",		
-		"#6BD942",
-		"#DA4A29",
-		"#303C21",
-		"#75DFC9",
-		"#D3A937",
-		"#DA979B",
-		"#93ABDA",
-		"#DA386D",
-		"#5B8B31",
-		"#C9CF89",
-		"#C956E1",
-		"#5F2820",
-		"#5A274E",
-		"#6EE089",
-		"#C6D94A",
-		"#515C92",
-		"#CD93D3",
-		"#CACAB8",
-		"#537A67",
-		"#7474DC",
-		"#C47C41",
-		"#75672D",
-		"#31394A",
-		"#BA4B47",
-		"#D54AB3",
-		"#B64E83",
-		"#58AA74",
-		"#8B6B6A",
-		"#68AFC1"
-	};
+	private static final String[] colors = { "#804498", "#6BD942", "#DA4A29",
+			"#303C21", "#75DFC9", "#D3A937", "#DA979B", "#93ABDA", "#DA386D",
+			"#5B8B31", "#C9CF89", "#C956E1", "#5F2820", "#5A274E", "#6EE089",
+			"#C6D94A", "#515C92", "#CD93D3", "#CACAB8", "#537A67", "#7474DC",
+			"#C47C41", "#75672D", "#31394A", "#BA4B47", "#D54AB3", "#B64E83",
+			"#58AA74", "#8B6B6A", "#68AFC1" };
 
 	/**
 	 * Initializes the color controller with no colors blocked, no colors usable
@@ -69,7 +43,8 @@ public class ColorController {
 	public ColorController() {
 		usableColors = new ArrayList<de.croggle.game.Color>();
 		bannedColors = new ArrayList<de.croggle.game.Color>();
-		lookup = new HashMap<de.croggle.game.Color, com.badlogic.gdx.graphics.Color>(30);
+		lookup = new HashMap<de.croggle.game.Color, com.badlogic.gdx.graphics.Color>(
+				30);
 		uncolored = de.croggle.game.Color.uncolored();
 	}
 
@@ -97,14 +72,15 @@ public class ColorController {
 	 */
 	public de.croggle.game.Color getAssociatedColor(
 			com.badlogic.gdx.graphics.Color color) {
-		for (Entry<de.croggle.game.Color, com.badlogic.gdx.graphics.Color> entry : lookup.entrySet()) {
+		for (Entry<de.croggle.game.Color, com.badlogic.gdx.graphics.Color> entry : lookup
+				.entrySet()) {
 			if (color.equals(entry.getValue())) {
 				return entry.getKey();
 			}
 		}
 		return null;
 	}
-	
+
 	public de.croggle.game.Color getUncolored() {
 		return this.uncolored;
 	}
@@ -121,9 +97,10 @@ public class ColorController {
 	 */
 	public de.croggle.game.Color requestColor() throws ColorOverflowException {
 		if (lookup.size() >= MAX_COLORS) {
-				throw new ColorOverflowException("Exceeded maximum number of colors: " + MAX_COLORS);
+			throw new ColorOverflowException(
+					"Exceeded maximum number of colors: " + MAX_COLORS);
 		}
-		
+
 		de.croggle.game.Color c = new de.croggle.game.Color(lookup.size());
 		this.lookup.put(c, colorFromHexString(colors[c.getId()]));
 		return c;
@@ -140,9 +117,11 @@ public class ColorController {
 	 * @throws ColorOverflowException
 	 *             if there is no color available
 	 */
-	public de.croggle.game.Color requestColor(de.croggle.game.Color[] usedColors) throws ColorOverflowException {
+	public de.croggle.game.Color requestColor(de.croggle.game.Color[] usedColors)
+			throws ColorOverflowException {
 		if (usedColors.length >= MAX_COLORS) {
-				throw new ColorOverflowException("Exceeded maximum number of colors: " + MAX_COLORS);
+			throw new ColorOverflowException(
+					"Exceeded maximum number of colors: " + MAX_COLORS);
 		}
 		java.util.Arrays.sort(usedColors);
 		int i;
@@ -151,12 +130,12 @@ public class ColorController {
 				break;
 			}
 		}
-		
+
 		de.croggle.game.Color c = new de.croggle.game.Color(i);
 		if (this.lookup.size() <= i) {
 			this.lookup.put(c, colorFromHexString(colors[i]));
 		}
-		
+
 		return c;
 	}
 
@@ -187,7 +166,8 @@ public class ColorController {
 	 * @return an array of all currently usable colors
 	 */
 	public de.croggle.game.Color[] getUsableColors() {
-		return this.usableColors.toArray(new de.croggle.game.Color[this.usableColors.size()]);
+		return this.usableColors
+				.toArray(new de.croggle.game.Color[this.usableColors.size()]);
 	}
 
 	/**
@@ -211,13 +191,16 @@ public class ColorController {
 	public boolean isUsable(de.croggle.game.Color color) {
 		return this.usableColors.contains(color);
 	}
-	
-	
-	/* Expects a hex value as integer and returns the appropriate Color object.
-	 * @param hex
-	 *		must be of the form 0xAARRGGBB
+
+	/*
+	 * Expects a hex value as integer and returns the appropriate Color object.
+	 * 
+	 * @param hex must be of the form 0xAARRGGBB
+	 * 
 	 * @return the generated Color object
-	 * @author Michael.Lowfyr@gmail.com - https://code.google.com/p/libgdx-users/wiki/ColorHexConverter
+	 * 
+	 * @author Michael.Lowfyr@gmail.com -
+	 * https://code.google.com/p/libgdx-users/wiki/ColorHexConverter
 	 */
 	private com.badlogic.gdx.graphics.Color colorFromHex(long hex) {
 		float a = (hex & 0xFF000000L) >> 24;
@@ -225,26 +208,32 @@ public class ColorController {
 		float g = (hex & 0xFF00L) >> 8;
 		float b = (hex & 0xFFL);
 
-		return new com.badlogic.gdx.graphics.Color(r/255f, g/255f, b/255f, a/255f);
+		return new com.badlogic.gdx.graphics.Color(r / 255f, g / 255f,
+				b / 255f, a / 255f);
 	}
 
-
-	/* Expects a hex value as String and returns the appropriate Color object
+	/*
+	 * Expects a hex value as String and returns the appropriate Color object
+	 * 
 	 * @param s the hex string to create the Color object from
+	 * 
 	 * @return the generated Color object
-	 * @author Michael.Lowfyr@gmail.com - https://code.google.com/p/libgdx-users/wiki/ColorHexConverter
+	 * 
+	 * @author Michael.Lowfyr@gmail.com -
+	 * https://code.google.com/p/libgdx-users/wiki/ColorHexConverter
 	 */
-	private com.badlogic.gdx.graphics.Color colorFromHexString(String s) {               
-		if(s.startsWith("0x"))
+	private com.badlogic.gdx.graphics.Color colorFromHexString(String s) {
+		if (s.startsWith("0x"))
 			s = s.substring(2);
-		else if(s.startsWith("#"))
+		else if (s.startsWith("#"))
 			s = s.substring(1);
-		
-		if(s.length() == 6)
+
+		if (s.length() == 6)
 			s = "FF" + s;
 
-		if(s.length() != 8) // AARRGGBB
-			throw new IllegalArgumentException("String must have the form AARRGGBB");
+		if (s.length() != 8) // AARRGGBB
+			throw new IllegalArgumentException(
+					"String must have the form AARRGGBB");
 
 		return colorFromHex(Long.parseLong(s, 16));
 	}

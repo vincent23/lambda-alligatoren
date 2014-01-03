@@ -34,7 +34,7 @@ public class AlligatorApp extends Game {
 	private PersistenceManager persistenceManager;
 	private AssetManager assetManager;
 	private List<AbstractScreen> screens;
-	
+
 	public SpriteBatch batch;
 
 	/**

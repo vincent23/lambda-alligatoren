@@ -15,19 +15,19 @@ import de.croggle.game.board.Parent;
 import de.croggle.game.board.operations.BoardObjectVisitor;
 
 public class AlligatorToLambda implements BoardObjectVisitor {
-	
+
 	private Map<Color, String> names;
 	private String result;
-	
+
 	private AlligatorToLambda() {
 		names = new HashMap<Color, String>();
 	}
-	
+
 	public static String convert(BoardObject b) {
 		AlligatorToLambda converter = new AlligatorToLambda();
 		return converter.toString(b);
 	}
-	
+
 	private String toString(BoardObject b) {
 		result = "";
 		b.accept(this);
@@ -54,7 +54,7 @@ public class AlligatorToLambda implements BoardObjectVisitor {
 			return name;
 		}
 	}
-	
+
 	@Override
 	public void visitEgg(Egg egg) {
 		result += colorToName(egg.getColor());
@@ -68,7 +68,7 @@ public class AlligatorToLambda implements BoardObjectVisitor {
 				result += "(";
 			}
 			Iterator<InternalBoardObject> i = p.iterator();
-			while(i.hasNext()) {
+			while (i.hasNext()) {
 				i.next().accept(this);
 				if (i.hasNext()) {
 					result += " ";

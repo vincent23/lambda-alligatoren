@@ -35,6 +35,6 @@ public interface InternalBoardObject extends BoardObject {
 	 * @return true if the object can be removed, otherwise false
 	 */
 	public boolean isRemovable();
-	
+
 	public InternalBoardObject copy();
 }

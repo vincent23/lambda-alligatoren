@@ -20,12 +20,15 @@ public interface BoardObject {
 	 * @return the deep copy
 	 */
 	BoardObject copy();
-	
+
 	/**
-	 * Tests two board objects for equality.
-	 * For the implementation, the same rules apply as for the implementation of the @{link java.lang.Object#equals java equals} method.
-	 * @param b the board object this object is compared to
+	 * Tests two board objects for equality. For the implementation, the same
+	 * rules apply as for the implementation of the @{link
+	 * java.lang.Object#equals java equals} method.
+	 * 
+	 * @param b
+	 *            the board object this object is compared to
 	 * @return true if both board objects match/are equal, false otherwise
 	 */
-	boolean match (BoardObject b);
+	boolean match(BoardObject b);
 }

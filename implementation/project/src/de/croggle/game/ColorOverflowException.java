@@ -1,6 +1,5 @@
 package de.croggle.game;
 
-
 /**
  * The exception is thrown whenever a lambda term contains more than 30
  * different colors. This mostly happens during alpha conversion.

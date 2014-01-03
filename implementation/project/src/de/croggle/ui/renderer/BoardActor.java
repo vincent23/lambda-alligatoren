@@ -13,15 +13,17 @@ import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.event.BoardEventListener;
 
 /**
- * An actor used for representing a whole board, i.e. an alligator constellation.
+ * An actor used for representing a whole board, i.e. an alligator
+ * constellation.
  */
 public class BoardActor implements BoardEventListener {
 
 	private HashMap<BoardObject, BoardObjectActor> actors;
 	private final Board board;
-	
+
 	/**
 	 * Creates a new actor.
+	 * 
 	 * @param board
 	 */
 	public BoardActor(Board board) {
@@ -29,8 +31,7 @@ public class BoardActor implements BoardEventListener {
 	}
 
 	/**
-	 * Draws the actor.
-	 * coordinate system.
+	 * Draws the actor. coordinate system.
 	 * 
 	 * @param batch
 	 *            the sprite batch specifies where to draw into

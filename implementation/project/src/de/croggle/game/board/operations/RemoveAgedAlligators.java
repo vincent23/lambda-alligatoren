@@ -16,13 +16,13 @@ public class RemoveAgedAlligators implements BoardObjectVisitor {
 	private BoardEventMessenger boardMessenger;
 
 	/**
-	 *
+	 * 
 	 * @param boardMessenger
 	 */
 	private RemoveAgedAlligators(BoardEventMessenger boardMessenger) {
 		this.boardMessenger = boardMessenger;
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -44,7 +44,7 @@ public class RemoveAgedAlligators implements BoardObjectVisitor {
 		RemoveAgedAlligators visitor = new RemoveAgedAlligators(boardMessenger);
 		family.accept(visitor);
 	}
-	
+
 	/**
 	 * Removes all old alligators which are not necessary.
 	 * 
@@ -82,7 +82,8 @@ public class RemoveAgedAlligators implements BoardObjectVisitor {
 			if (children == 0) {
 				alligator.getParent().removeChild(alligator);
 			} else if (children == 1) {
-				alligator.getParent().replaceChild(alligator, alligator.getFirstChild());
+				alligator.getParent().replaceChild(alligator,
+						alligator.getFirstChild());
 			}
 			if (this.boardMessenger != null)
 				this.boardMessenger.notifyAgedAlligatorVanishes(alligator);

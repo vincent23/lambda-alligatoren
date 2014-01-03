@@ -46,13 +46,15 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 			return false;
 		}
 	}
-	
+
 	/**
-	 * Inserts a given child to the list of children of this parent.
-	 * The child is inserted before the element currently at the given position.
+	 * Inserts a given child to the list of children of this parent. The child
+	 * is inserted before the element currently at the given position.
 	 * 
-	 * @param child the child to be inserted
-	 * @param pos the position, where the child is to be inserted
+	 * @param child
+	 *            the child to be inserted
+	 * @param pos
+	 *            the position, where the child is to be inserted
 	 */
 	public boolean insertChild(InternalBoardObject child, int pos) {
 		child.setParent(this);
@@ -63,32 +65,35 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 			return false;
 		}
 	}
-	
+
 	/**
-	 * Finds and returns the position of a given child in the list of children this parent has.
+	 * Finds and returns the position of a given child in the list of children
+	 * this parent has.
 	 * 
 	 * 
-	 * @param child the child whose position is to be obtained
+	 * @param child
+	 *            the child whose position is to be obtained
 	 * @return the position of child
 	 */
 	public int getChildPosition(InternalBoardObject child) {
 		return this.children.indexOf(child);
 	}
-	
+
 	/**
 	 * Returns the first child of this parent.
 	 * 
 	 * @return the first child of this parent
-	 * @throws NoSuchChildException if this parent has no children
+	 * @throws NoSuchChildException
+	 *             if this parent has no children
 	 */
 	public InternalBoardObject getFirstChild() {
 		if (this.children.isEmpty()) {
 			throw new NoSuchChildException();
 		}
-		
+
 		return this.children.get(0);
 	}
-	
+
 	/**
 	 * Returns the number of children this parent has.
 	 * 
@@ -144,11 +149,13 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 	public Iterator<InternalBoardObject> iterator() {
 		return children.iterator();
 	}
-	
+
 	/**
-	 * Returns an iterator initially pointing to the element at the given position
+	 * Returns an iterator initially pointing to the element at the given
+	 * position
 	 * 
-	 * @param begin the position at which to start iterating
+	 * @param begin
+	 *            the position at which to start iterating
 	 * @return the iterator
 	 */
 	public Iterator<InternalBoardObject> iterator(int begin) {
@@ -190,17 +197,17 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 			child.accept(visitor);
 		}
 	}
-	
+
 	public boolean match(BoardObject o) {
 		if (o == null)
 			return false;
 		if (o.getClass() != this.getClass())
 			return false;
-		
+
 		Parent oParent = (Parent) o;
 		if (this.children.size() != oParent.children.size())
 			return false;
-		
+
 		boolean equal = true;
 		for (int i = 0; i < this.children.size(); i++) {
 			equal &= this.children.get(i).match(oParent.children.get(i));

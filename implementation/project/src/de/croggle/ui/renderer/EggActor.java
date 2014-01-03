@@ -10,7 +10,9 @@ public class EggActor extends BoardObjectActor {
 
 	/**
 	 * Creates a new actor.
-	 * @param egg The egg represented by the actor
+	 * 
+	 * @param egg
+	 *            The egg represented by the actor
 	 */
 	public EggActor(Egg egg) {
 		super(egg);

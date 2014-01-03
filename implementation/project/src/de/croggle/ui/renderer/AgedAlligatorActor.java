@@ -10,7 +10,9 @@ public class AgedAlligatorActor extends ParentActor {
 
 	/**
 	 * Creates a new actor.
-	 * @param alligator the AgedAlligator represented by this actor
+	 * 
+	 * @param alligator
+	 *            the AgedAlligator represented by this actor
 	 */
 	public AgedAlligatorActor(AgedAlligator alligator) {
 		super(alligator);

@@ -11,7 +11,8 @@ public abstract class ParentActor extends BoardObjectActor {
 	/**
 	 * Superconstructor for all render actors.
 	 * 
-	 * @param object the object represented by this actor
+	 * @param object
+	 *            the object represented by this actor
 	 */
 	public ParentActor(InternalBoardObject object) {
 		super(object);

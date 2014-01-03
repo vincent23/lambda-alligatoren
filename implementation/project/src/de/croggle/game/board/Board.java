@@ -27,7 +27,8 @@ public class Board extends Parent implements BoardObject {
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
 		visitor.visitBoard(this);
-		//acceptOnChildren(visitor); // TODO I think, this is not expected behaviour
+		// acceptOnChildren(visitor); // TODO I think, this is not expected
+		// behaviour
 	}
 
 	/**
@@ -39,5 +40,5 @@ public class Board extends Parent implements BoardObject {
 	public Board copy() {
 		return new Board(this);
 	}
-	
+
 }

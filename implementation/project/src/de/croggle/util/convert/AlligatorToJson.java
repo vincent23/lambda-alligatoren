@@ -13,40 +13,42 @@ import de.croggle.game.board.operations.BoardObjectVisitor;
 
 /**
  * Helper class to format a given tree of BoardObjects as json.
- *
+ * 
  */
 public class AlligatorToJson implements BoardObjectVisitor {
 
 	private String result;
 	private int depth;
-	
+
 	private AlligatorToJson() {
 		result = "";
 		depth = 0;
 	}
-	
+
 	/**
-	 * Performs the conversion between alligator constellations and their json formatted string representations.
+	 * Performs the conversion between alligator constellations and their json
+	 * formatted string representations.
 	 * 
-	 * @param b the BoardOobject to be converted
+	 * @param b
+	 *            the BoardOobject to be converted
 	 * @return the converted json string
 	 */
 	public static String convert(BoardObject b) {
 		AlligatorToJson converter = new AlligatorToJson();
 		return converter.toJson(b);
 	}
-	
+
 	private String toJson(BoardObject b) {
 		result = "";
 		depth = 0;
 		b.accept(this);
 		return result;
 	}
-	
+
 	@Override
 	public void visitEgg(Egg egg) {
 		println("{");
-		depth ++;
+		depth++;
 		println("\"type\" : \"egg\",");
 		println("\"color\" : " + egg.getColor().getId() + ",");
 		println("\"movable\" : " + egg.isMovable() + ",");
@@ -63,7 +65,7 @@ public class AlligatorToJson implements BoardObjectVisitor {
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
 		println("{");
-		depth ++;
+		depth++;
 		println("\"type\" : \"colored alligator\",");
 		println("\"color\" : " + alligator.getColor().getId() + ",");
 		println("\"movable\" : " + alligator.isMovable() + ",");
@@ -82,7 +84,7 @@ public class AlligatorToJson implements BoardObjectVisitor {
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
 		println("{");
-		depth ++;
+		depth++;
 		println("\"type\" : \"aged alligator\",");
 		println("\"movable\" : " + alligator.isMovable() + ",");
 		println("\"removable\" : " + alligator.isRemovable() + ",");
@@ -99,7 +101,7 @@ public class AlligatorToJson implements BoardObjectVisitor {
 	@Override
 	public void visitBoard(Board board) {
 		println("{");
-		depth ++;
+		depth++;
 		print(indent() + "\"families\" : ");
 		printChildren(board);
 		depth--;
@@ -109,8 +111,9 @@ public class AlligatorToJson implements BoardObjectVisitor {
 	private void printChildren(Parent p) {
 		printChildren(p, false, true);
 	}
-	
-	private void printChildren(Parent p,  boolean indentBefore, boolean breakAfter) {
+
+	private void printChildren(Parent p, boolean indentBefore,
+			boolean breakAfter) {
 		if (p.getChildCount() < 1) {
 			if (indentBefore)
 				print(indent() + "[]");
@@ -123,15 +126,15 @@ public class AlligatorToJson implements BoardObjectVisitor {
 				println("[");
 			else
 				print("[\n");
-			depth ++;
+			depth++;
 			Iterator<InternalBoardObject> i = p.iterator();
-			while(i.hasNext()) {
+			while (i.hasNext()) {
 				i.next().accept(this);
 				if (i.hasNext()) {
 					print(",\n");
 				}
 			}
-			depth --;
+			depth--;
 			if (breakAfter) {
 				println("]");
 			} else {
@@ -139,15 +142,15 @@ public class AlligatorToJson implements BoardObjectVisitor {
 			}
 		}
 	}
-	
+
 	private void println(String line) {
 		result += indent() + line + "\n";
 	}
-	
+
 	private void print(String s) {
 		result += s;
 	}
-	
+
 	private String indent() {
 		String result = "";
 		for (int i = 0; i < depth; i++)

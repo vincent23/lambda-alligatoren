@@ -14,7 +14,7 @@ import de.croggle.game.board.Parent;
 /**
  * A visitor-based operation to determine the list of a BoardObject's parents.
  * Use the static <code>get</code> method(s) to receive the respective lists.
- *
+ * 
  */
 public class GetParentHierarchy implements BoardObjectVisitor {
 

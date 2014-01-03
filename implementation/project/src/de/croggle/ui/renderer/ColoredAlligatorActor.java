@@ -10,6 +10,7 @@ public class ColoredAlligatorActor extends ParentActor {
 
 	/**
 	 * Creates a new actor.
+	 * 
 	 * @param alligator
 	 */
 	public ColoredAlligatorActor(ColoredAlligator alligator) {
