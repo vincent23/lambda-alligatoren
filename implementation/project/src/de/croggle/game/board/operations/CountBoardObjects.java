@@ -13,7 +13,7 @@ public class CountBoardObjects implements BoardObjectVisitor {
 	private int count;
 
 	/**
-	 *
+	 * Initializes the BoardObject counter with 0 BoardObjects counted.
 	 */
 	private CountBoardObjects() {
 		this.count = 0;
@@ -27,7 +27,9 @@ public class CountBoardObjects implements BoardObjectVisitor {
 	 * @return the number of family members
 	 */
 	public static int count(BoardObject family) {
-		return 0;
+		CountBoardObjects counter = new CountBoardObjects();
+		family.accept(counter);
+		return counter.count;
 	}
 
 	/**
@@ -35,7 +37,7 @@ public class CountBoardObjects implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitEgg(Egg egg) {
-
+		count++;
 	}
 
 	/**
@@ -43,7 +45,8 @@ public class CountBoardObjects implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
-
+		count++;
+		alligator.acceptOnChildren(this);
 	}
 
 	/**
@@ -51,7 +54,8 @@ public class CountBoardObjects implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
-
+		count++;
+		alligator.acceptOnChildren(this);
 	}
 
 	/**
@@ -59,7 +63,8 @@ public class CountBoardObjects implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitBoard(Board board) {
-
+		count++;
+		board.acceptOnChildren(this);
 	}
 
 }
