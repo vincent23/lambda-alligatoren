@@ -3,6 +3,7 @@ package de.croggle.game.profile;
 /**
  * The exception is thrown whenever there are more than the 6 possible profiles.
  */
+@SuppressWarnings("serial")
 public class ProfileOverflowException extends Exception {
 
 	/**

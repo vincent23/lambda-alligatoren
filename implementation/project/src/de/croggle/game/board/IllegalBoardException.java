@@ -4,6 +4,7 @@ package de.croggle.game.board;
  * The exception is thrown when the alligator constellation does not represent a
  * correct lambda term after the simulation has been started.
  */
+@SuppressWarnings("serial")
 public class IllegalBoardException extends Exception {
 
 	/**

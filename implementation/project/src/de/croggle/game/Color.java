@@ -1,7 +1,5 @@
 package de.croggle.game;
 
-import android.R.integer;
-
 /**
  * A color represents a variable name.
  */

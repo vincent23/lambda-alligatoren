@@ -5,6 +5,7 @@ package de.croggle.game.board;
  * InternalBoardObjects. This happens while adding alligators or eggs to the
  * working set, e.g. in the sandbox mode.
  */
+@SuppressWarnings("serial")
 public class AlligatorOverflowException extends Exception {
 
 	/**
