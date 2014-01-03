@@ -162,22 +162,22 @@ public class LambdaToAlligator {
 
 		// get the bound variable
 		Variable var;
-		nextChild = p.getNextChild(o);
+		nextChild = p.getChildAfter(o);
 		if (nextChild.getClass() != Variable.class) {
 			throw new IllegalArgumentException(
 					"Not a variable name bound by lambda abstraction");
 		} else {
-			var = (Variable) p.getNextChild(o);
+			var = (Variable) p.getChildAfter(o);
 		}
 
 		// get the abstraction separator
 		AbstractionSeparator sep;
-		nextChild = p.getNextChild(var);
+		nextChild = p.getChildAfter(var);
 		if (nextChild.getClass() != AbstractionSeparator.class) {
 			throw new IllegalArgumentException(
 					"No binding seperator ('.') found for abstraction");
 		} else {
-			sep = (AbstractionSeparator) p.getNextChild(var);
+			sep = (AbstractionSeparator) p.getChildAfter(var);
 		}
 
 		// instantiate the alligator

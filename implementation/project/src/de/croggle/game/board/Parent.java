@@ -172,18 +172,19 @@ public abstract class Parent implements Iterable<InternalBoardObject> {
 	 *         false otherwise
 	 */
 	public boolean isLastChild(InternalBoardObject child) {
-		return getNextChild(child) == null;
+		return !children.isEmpty()
+				&& children.get(children.size() - 1).equals(child);
 	}
 
 	/**
-	 * Returns the child next to (to the right of) the one given as a parameter.
+	 * Returns the child next (to the right of) the one given as a parameter.
 	 * 
 	 * @param child
 	 *            the child whose successor should be returned
 	 * @return the child which is the next one in the list after the given
 	 *         child, null if it is the last child
 	 */
-	public InternalBoardObject getNextChild(InternalBoardObject child) {
+	public InternalBoardObject getChildAfter(InternalBoardObject child) {
 		final int location = children.indexOf(child);
 		if (location >= 0 && location + 1 < children.size()) {
 			return children.get(location + 1);
