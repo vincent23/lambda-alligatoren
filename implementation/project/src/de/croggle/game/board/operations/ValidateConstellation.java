@@ -14,12 +14,7 @@ import de.croggle.game.board.Parent;
  * A visitor for checking whether the given Board represents a valid term within
  * the lambda calculus (whether the evaluation is possible or not).
  */
-public class ValidateConstellation implements BoardObjectVisitor {
-
-	private boolean objectsUncolored = false;
-	private boolean agedAlligatorChildless = false;
-	private boolean coloredAlligatorChildless = false;
-	private boolean boardEmpty = false;
+public class ValidateConstellation extends AbstractBoardValidator implements BoardObjectVisitor {
 
 	private boolean isValid = true;
 
@@ -37,44 +32,7 @@ public class ValidateConstellation implements BoardObjectVisitor {
 	 * 
 	 */
 	private ValidateConstellation(BoardErrorType[] errorTypes) {
-		this.applyErrorTypeSettings(errorTypes);
-	}
-
-	/**
-	 * Configures this {@link ValidateConstellation} to look for all
-	 * {@link BoardErrorType}s specified in the given array.
-	 * 
-	 * @param errorTypes
-	 *            the error types to be looked for
-	 */
-	private final void applyErrorTypeSettings(BoardErrorType[] errorTypes) {
-		objectsUncolored = false;
-		agedAlligatorChildless = false;
-		coloredAlligatorChildless = false;
-		boardEmpty = false;
-		for (BoardErrorType t : errorTypes) {
-			switch (t) {
-			case AGEDALLIGATOR_CHILDLESS: {
-				this.agedAlligatorChildless = true;
-				break;
-			}
-			case COLOREDALLIGATOR_CHILDLESS: {
-				this.coloredAlligatorChildless = true;
-				break;
-			}
-			case UNCOLORED_OBJECT: {
-				this.objectsUncolored = true;
-				break;
-			}
-			case EMPTY_BOARD: {
-				this.boardEmpty = true;
-				break;
-			}
-			default: {
-				throw new IllegalStateException("This should never happen");
-			}
-			}
-		}
+		super(errorTypes);
 	}
 
 	/**

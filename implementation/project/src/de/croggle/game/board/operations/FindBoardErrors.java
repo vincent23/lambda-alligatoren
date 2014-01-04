@@ -13,12 +13,7 @@ import de.croggle.game.board.Egg;
  * A board operation to find all error occurrences in a board.
  * 
  */
-public class FindBoardErrors implements BoardObjectVisitor {
-
-	private boolean objectsUncolored = false;
-	private boolean agedAlligatorChildless = false;
-	private boolean coloredAlligatorChildless = false;
-	private boolean boardEmpty = false;
+public class FindBoardErrors extends AbstractBoardValidator implements BoardObjectVisitor {
 
 	private List<BoardError> errors;
 
@@ -36,45 +31,8 @@ public class FindBoardErrors implements BoardObjectVisitor {
 	 * 
 	 */
 	private FindBoardErrors(BoardErrorType[] errorTypes) {
+		super(errorTypes);
 		this.errors = new ArrayList<BoardError>();
-		this.applyErrorTypeSettings(errorTypes);
-	}
-
-	/**
-	 * Configures this {@link FindBoardErrors} to look for all
-	 * {@link BoardErrorType}s specified in the given array.
-	 * 
-	 * @param errorTypes
-	 *            the error types to be looked for
-	 */
-	private final void applyErrorTypeSettings(BoardErrorType[] errorTypes) {
-		objectsUncolored = false;
-		agedAlligatorChildless = false;
-		coloredAlligatorChildless = false;
-		boardEmpty = false;
-		for (BoardErrorType t : errorTypes) {
-			switch (t) {
-			case AGEDALLIGATOR_CHILDLESS: {
-				this.agedAlligatorChildless = true;
-				break;
-			}
-			case COLOREDALLIGATOR_CHILDLESS: {
-				this.coloredAlligatorChildless = true;
-				break;
-			}
-			case UNCOLORED_OBJECT: {
-				this.objectsUncolored = true;
-				break;
-			}
-			case EMPTY_BOARD: {
-				this.boardEmpty = true;
-				break;
-			}
-			default: {
-				throw new IllegalStateException("This should never happen");
-			}
-			}
-		}
 	}
 
 	/**
