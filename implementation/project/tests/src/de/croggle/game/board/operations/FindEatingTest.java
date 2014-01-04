@@ -18,10 +18,10 @@ public class FindEatingTest extends TestCase {
 		a.addChild(e1);
 		Egg e2 = new Egg(true, true, new Color(1), true);
 		b.addChild(e2);
-		
+
 		assertEquals(a, FindEating.findEater(b));
 	}
-	
+
 	public void testPrecedence() {
 		// test if the left-most eater eats, not the top-most
 		// the following term can be roughly given as ((λx.x) (λy.y)) (λx.x) y
@@ -33,17 +33,17 @@ public class FindEatingTest extends TestCase {
 		aa.addChild(a1);
 		Egg e1 = new Egg(true, true, new Color(0), true);
 		a1.addChild(e1);
-		
+
 		ColoredAlligator a2 = new ColoredAlligator(true, true, new Color(0),
 				true);
 		b.addChild(a2);
 		Egg e2 = new Egg(true, true, new Color(0), true);
 		a2.addChild(e2);
-		
+
 		Egg e3 = new Egg(true, true, new Color(1), true);
 		b.addChild(e3);
-		
+
 		assertEquals(a1, FindEating.findEater(b));
 	}
-	
+
 }

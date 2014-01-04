@@ -10,7 +10,7 @@ import de.croggle.game.board.Egg;
 import junit.framework.TestCase;
 
 public class GetParentHierarchyTest extends TestCase {
-	
+
 	public void testSimpleTree() {
 		Board b = new Board();
 		ColoredAlligator a = new ColoredAlligator(true, true, new Color(0),
@@ -20,15 +20,15 @@ public class GetParentHierarchyTest extends TestCase {
 		a.addChild(e1);
 		Egg e2 = new Egg(true, true, new Color(1), true);
 		b.addChild(e2);
-		
-		List<BoardObject>l1 = GetParentHierarchy.get(e1);
+
+		List<BoardObject> l1 = GetParentHierarchy.get(e1);
 		assertEquals(2, l1.size());
 		assertTrue(l1.get(0).getClass() == Board.class);
 		assertTrue(l1.get(1).getClass() == ColoredAlligator.class);
-		
-		List<BoardObject>l2 = GetParentHierarchy.get(e2);
+
+		List<BoardObject> l2 = GetParentHierarchy.get(e2);
 		assertEquals(1, l2.size());
 		assertTrue(l2.get(0).getClass() == Board.class);
 	}
-	
+
 }
