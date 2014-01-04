@@ -1,4 +1,4 @@
-package de.croggle.game.board.operations;
+package de.croggle.game.board.operations.validation;
 
 /**
  * An enumeration describing the different BoardError types. Can be used to

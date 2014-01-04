@@ -1,4 +1,4 @@
-package de.croggle.game.board.operations;
+package de.croggle.game.board.operations.validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import de.croggle.game.board.Board;
 import de.croggle.game.board.BoardObject;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
+import de.croggle.game.board.operations.BoardObjectVisitor;
 
 /**
  * A board operation to find all error occurrences in a board.

@@ -1,4 +1,4 @@
-package de.croggle.game.board.operations;
+package de.croggle.game.board.operations.validation;
 
 public abstract class AbstractBoardValidator {
 	protected boolean objectsUncolored = false;

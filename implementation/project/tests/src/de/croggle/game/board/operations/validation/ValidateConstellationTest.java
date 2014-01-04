@@ -1,10 +1,12 @@
-package de.croggle.game.board.operations;
+package de.croggle.game.board.operations.validation;
 
 import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
+import de.croggle.game.board.operations.validation.BoardErrorType;
+import de.croggle.game.board.operations.validation.ValidateConstellation;
 import junit.framework.TestCase;
 
 public class ValidateConstellationTest extends TestCase {

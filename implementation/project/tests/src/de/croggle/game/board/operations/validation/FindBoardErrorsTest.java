@@ -1,4 +1,4 @@
-package de.croggle.game.board.operations;
+package de.croggle.game.board.operations.validation;
 
 import java.util.List;
 
@@ -7,6 +7,9 @@ import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
+import de.croggle.game.board.operations.validation.BoardError;
+import de.croggle.game.board.operations.validation.BoardErrorType;
+import de.croggle.game.board.operations.validation.FindBoardErrors;
 import junit.framework.TestCase;
 
 public class FindBoardErrorsTest extends TestCase {

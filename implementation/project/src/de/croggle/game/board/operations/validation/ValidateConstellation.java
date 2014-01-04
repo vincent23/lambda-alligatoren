@@ -1,4 +1,4 @@
-package de.croggle.game.board.operations;
+package de.croggle.game.board.operations.validation;
 
 import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
@@ -9,6 +9,7 @@ import de.croggle.game.board.ColoredBoardObject;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.Parent;
+import de.croggle.game.board.operations.BoardObjectVisitor;
 
 /**
  * A visitor for checking whether the given Board represents a valid term within

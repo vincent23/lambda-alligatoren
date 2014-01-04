@@ -1,4 +1,4 @@
-package de.croggle.game.board.operations;
+package de.croggle.game.board.operations.validation;
 
 /**
  * Interface for dispatchers of {@link BoardError}s. By calling
