@@ -18,5 +18,9 @@ public enum BoardErrorType {
 	/**
 	 * Represents {@link ColoredAlligatorChildlessError}s.
 	 */
-	COLOREDALLIGATOR_CHILDLESS
+	COLOREDALLIGATOR_CHILDLESS,
+	/**
+	 * Represents {@link EmptyBoardError}s.
+	 */
+	EMPTY_BOARD
 }

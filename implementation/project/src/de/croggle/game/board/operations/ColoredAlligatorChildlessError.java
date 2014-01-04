@@ -6,7 +6,7 @@ import de.croggle.game.board.ColoredAlligator;
 /**
  * Error that occurs if a {@link ColoredAlligator} has no children.
  * 
- *
+ * 
  */
 public class ColoredAlligatorChildlessError extends AbstractBoardError {
 
