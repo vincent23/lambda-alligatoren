@@ -19,9 +19,12 @@ public class MatchWithRenaming {
 	 * Performs a test for alpha equivalence (see class description) between two
 	 * alligator expressions.
 	 * 
-	 * @param a the first expression to be compared
-	 * @param b the second expression to be compared
-	 * @return true, if the two given expressions are alpha-equivalent, false otherwise
+	 * @param a
+	 *            the first expression to be compared
+	 * @param b
+	 *            the second expression to be compared
+	 * @return true, if the two given expressions are alpha-equivalent, false
+	 *         otherwise
 	 */
 	public static boolean match(BoardObject a, BoardObject b) {
 		throw new UnsupportedOperationException("Not implemented yet");

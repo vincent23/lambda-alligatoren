@@ -11,6 +11,8 @@ import de.croggle.game.board.Egg;
  * A visitor for collecting all the colors of eggs with no matching alligator
  * above them. This is equivalent to the set of variables which occur free in a
  * given subterm.
+ * 
+ * TODO implement
  */
 public class CollectFreeColors implements BoardObjectVisitor {
 	private CollectFreeColors(BoardObject family) {

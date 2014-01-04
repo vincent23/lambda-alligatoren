@@ -24,7 +24,7 @@ public class FindEatingTest extends TestCase {
 	
 	public void testPrecedence() {
 		// test if the left-most eater eats, not the top-most
-		// the following term can be roughly described as ((λx.x) (λy.y)) (λx.x) y
+		// the following term can be roughly given as ((λx.x) (λy.y)) (λx.x) y
 		Board b = new Board();
 		AgedAlligator aa = new AgedAlligator(true, true);
 		b.addChild(aa);
