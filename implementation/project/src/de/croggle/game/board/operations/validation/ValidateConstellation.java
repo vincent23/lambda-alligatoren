@@ -84,7 +84,7 @@ public class ValidateConstellation extends AbstractBoardValidator implements
 		// Attention: must remain in this order, otherwise cancellation of child
 		// iteration will not happen if the alligator has no color
 		validateColoredObject(alligator);
-		validateParent(alligator, coloredAlligatorChildless);
+		validateParent(alligator, validateColoredAlligatorChildless);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class ValidateConstellation extends AbstractBoardValidator implements
 	 */
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
-		validateParent(alligator, agedAlligatorChildless);
+		validateParent(alligator, validateAgedAlligatorChildless);
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class ValidateConstellation extends AbstractBoardValidator implements
 	 */
 	@Override
 	public void visitBoard(Board board) {
-		validateParent(board, boardEmpty);
+		validateParent(board, validateEmptyBoard);
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class ValidateConstellation extends AbstractBoardValidator implements
 	 *            the ColoredBoardObject to be validated
 	 */
 	private void validateColoredObject(ColoredBoardObject cbo) {
-		if (this.objectsUncolored) {
+		if (this.validateObjectsUncolored) {
 			this.isValid &= !cbo.getColor().equals(Color.uncolored());
 		}
 	}

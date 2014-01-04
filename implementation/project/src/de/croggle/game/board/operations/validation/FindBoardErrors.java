@@ -71,17 +71,17 @@ public class FindBoardErrors extends AbstractBoardValidator implements
 
 	@Override
 	public void visitEgg(Egg egg) {
-		if (objectsUncolored && egg.getColor().equals(Color.uncolored())) {
+		if (validateObjectsUncolored && egg.getColor().equals(Color.uncolored())) {
 			this.errors.add(new ObjectUncoloredError(egg));
 		}
 	}
 
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
-		if (coloredAlligatorChildless && alligator.getChildCount() == 0) {
+		if (validateColoredAlligatorChildless && alligator.getChildCount() == 0) {
 			this.errors.add(new ColoredAlligatorChildlessError(alligator));
 		}
-		if (objectsUncolored && alligator.getColor().equals(Color.uncolored())) {
+		if (validateObjectsUncolored && alligator.getColor().equals(Color.uncolored())) {
 			this.errors.add(new ObjectUncoloredError(alligator));
 		}
 		alligator.acceptOnChildren(this);
@@ -89,7 +89,7 @@ public class FindBoardErrors extends AbstractBoardValidator implements
 
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
-		if (agedAlligatorChildless && alligator.getChildCount() == 0) {
+		if (validateAgedAlligatorChildless && alligator.getChildCount() == 0) {
 			this.errors.add(new AgedAlligatorChildlessError(alligator));
 		}
 		alligator.acceptOnChildren(this);
@@ -97,7 +97,7 @@ public class FindBoardErrors extends AbstractBoardValidator implements
 
 	@Override
 	public void visitBoard(Board board) {
-		if (boardEmpty && board.getChildCount() == 0) {
+		if (validateEmptyBoard && board.getChildCount() == 0) {
 			this.errors.add(new EmptyBoardError(board));
 		}
 		board.acceptOnChildren(this);
