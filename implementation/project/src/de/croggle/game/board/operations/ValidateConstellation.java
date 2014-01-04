@@ -14,7 +14,8 @@ import de.croggle.game.board.Parent;
  * A visitor for checking whether the given Board represents a valid term within
  * the lambda calculus (whether the evaluation is possible or not).
  */
-public class ValidateConstellation extends AbstractBoardValidator implements BoardObjectVisitor {
+public class ValidateConstellation extends AbstractBoardValidator implements
+		BoardObjectVisitor {
 
 	private boolean isValid = true;
 

@@ -22,5 +22,15 @@ public enum BoardErrorType {
 	/**
 	 * Represents {@link EmptyBoardError}s.
 	 */
-	EMPTY_BOARD
+	EMPTY_BOARD;
+
+	/**
+	 * Returns all representations of {@link BoardError}s in this enumeration.
+	 * Has the same effect as the standard Enum.values() method.
+	 * 
+	 * @return all representations of {@link BoardError}s in this enumeration
+	 */
+	public static BoardErrorType[] all() {
+		return BoardErrorType.values();
+	}
 }

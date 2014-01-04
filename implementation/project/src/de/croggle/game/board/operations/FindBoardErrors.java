@@ -3,6 +3,7 @@ package de.croggle.game.board.operations;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.BoardObject;
@@ -13,7 +14,8 @@ import de.croggle.game.board.Egg;
  * A board operation to find all error occurrences in a board.
  * 
  */
-public class FindBoardErrors extends AbstractBoardValidator implements BoardObjectVisitor {
+public class FindBoardErrors extends AbstractBoardValidator implements
+		BoardObjectVisitor {
 
 	private List<BoardError> errors;
 
@@ -43,7 +45,9 @@ public class FindBoardErrors extends AbstractBoardValidator implements BoardObje
 	 * @return a list of all errors found in the given expression
 	 */
 	public static List<BoardError> find(BoardObject b) {
-		throw new UnsupportedOperationException("Not implemented yet");
+		FindBoardErrors finder = new FindBoardErrors();
+		b.accept(finder);
+		return finder.errors;
 	}
 
 	/**
@@ -59,30 +63,42 @@ public class FindBoardErrors extends AbstractBoardValidator implements BoardObje
 	 */
 	public static List<BoardError> find(BoardObject b,
 			BoardErrorType[] errorTypes) {
-		throw new UnsupportedOperationException("Not implemented yet");
+		FindBoardErrors finder = new FindBoardErrors(errorTypes);
+		b.accept(finder);
+		return finder.errors;
 	}
 
 	@Override
 	public void visitEgg(Egg egg) {
-		// TODO Auto-generated method stub
-
+		if (objectsUncolored && egg.getColor().equals(Color.uncolored())) {
+			this.errors.add(new ObjectUncoloredError(egg));
+		}
 	}
 
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
-		// TODO Auto-generated method stub
-
+		if (coloredAlligatorChildless && alligator.getChildCount() == 0) {
+			this.errors.add(new ColoredAlligatorChildlessError(alligator));
+		}
+		if (objectsUncolored && alligator.getColor().equals(Color.uncolored())) {
+			this.errors.add(new ObjectUncoloredError(alligator));
+		}
+		alligator.acceptOnChildren(this);
 	}
 
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
-		// TODO Auto-generated method stub
-
+		if (agedAlligatorChildless && alligator.getChildCount() == 0) {
+			this.errors.add(new AgedAlligatorChildlessError(alligator));
+		}
+		alligator.acceptOnChildren(this);
 	}
 
 	@Override
 	public void visitBoard(Board board) {
-		// TODO Auto-generated method stub
-
+		if (boardEmpty && board.getChildCount() == 0) {
+			this.errors.add(new EmptyBoardError(board));
+		}
+		board.acceptOnChildren(this);
 	}
 }

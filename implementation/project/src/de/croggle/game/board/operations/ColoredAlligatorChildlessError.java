@@ -1,6 +1,5 @@
 package de.croggle.game.board.operations;
 
-import de.croggle.game.board.BoardObject;
 import de.croggle.game.board.ColoredAlligator;
 
 /**
@@ -10,7 +9,7 @@ import de.croggle.game.board.ColoredAlligator;
  */
 public class ColoredAlligatorChildlessError extends AbstractBoardError {
 
-	public ColoredAlligatorChildlessError(BoardObject cause) {
+	public ColoredAlligatorChildlessError(ColoredAlligator cause) {
 		super(cause);
 	}
 

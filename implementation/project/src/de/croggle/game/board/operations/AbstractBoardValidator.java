@@ -5,11 +5,11 @@ public abstract class AbstractBoardValidator {
 	protected boolean agedAlligatorChildless = false;
 	protected boolean coloredAlligatorChildless = false;
 	protected boolean boardEmpty = false;
-	
+
 	public AbstractBoardValidator(BoardErrorType[] errorTypes) {
 		this.applyErrorTypeSettings(errorTypes);
 	}
-	
+
 	/**
 	 * Configures this {@link ValidateConstellation} to look for all
 	 * {@link BoardErrorType}s specified in the given array.

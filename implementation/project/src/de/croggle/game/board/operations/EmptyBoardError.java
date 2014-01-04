@@ -1,10 +1,10 @@
 package de.croggle.game.board.operations;
 
-import de.croggle.game.board.BoardObject;
+import de.croggle.game.board.Board;
 
 public class EmptyBoardError extends AbstractBoardError {
 
-	public EmptyBoardError(BoardObject cause) {
+	public EmptyBoardError(Board cause) {
 		super(cause);
 	}
 

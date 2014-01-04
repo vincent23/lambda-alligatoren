@@ -11,7 +11,8 @@ import de.croggle.game.board.operations.BoardObjectVisitor;
  * be parents of families - must have.
  **/
 
-public abstract class Parent implements Iterable<InternalBoardObject>, BoardObject {
+public abstract class Parent implements Iterable<InternalBoardObject>,
+		BoardObject {
 
 	private List<InternalBoardObject> children;
 

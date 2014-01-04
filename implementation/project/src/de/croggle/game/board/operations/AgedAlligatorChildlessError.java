@@ -1,7 +1,6 @@
 package de.croggle.game.board.operations;
 
 import de.croggle.game.board.AgedAlligator;
-import de.croggle.game.board.BoardObject;
 
 /**
  * Error that occurs if an {@link AgedAlligator} has no children.
@@ -10,7 +9,7 @@ import de.croggle.game.board.BoardObject;
  */
 public class AgedAlligatorChildlessError extends AbstractBoardError {
 
-	public AgedAlligatorChildlessError(BoardObject cause) {
+	public AgedAlligatorChildlessError(AgedAlligator cause) {
 		super(cause);
 	}
 
