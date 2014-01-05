@@ -13,6 +13,11 @@
 \usenavigationsymbols
 
 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\input{commands}
+
 \title{Croggle}
 \subtitle{PSE - Entwurfsphase \\[0.3cm]
 Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  $\cdot$ Vincent Schüßler $\cdot$ Lena Winter}
@@ -35,16 +40,18 @@ Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  
 		\item libgdx
 		\item Aufbau des Model
 		\item Visitor Pattern
+		\item Levelrepräsentation mit JSON
+		\item SQLite Datenbank
+		\item Observer/Listener Pattern
 	\end{itemize}
-	\includegraphics<1>[width=0.85\textwidth]{mvc.jpg}
+	%%\includegraphics<1>[width=0.85\textwidth]{mvc.jpg}
 
-	\includegraphics<2>[width=0.8\textwidth]{libgdx.png}
+	%%\includegraphics<2>[width=0.8\textwidth]{libgdx.png}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Nicht umgesetzte Wunschkriterien}
 	Nicht modellierte Wunschkriterien, die nicht weiter verfolgt werden: \\
-     \\
 	\begin{itemize}
 		\item Avatarerstellung (/F130+/)
 		\item Automatische Kameraführung (/F236+/)
@@ -52,11 +59,98 @@ Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  
 		\begin{itemize}
 			\item Nichtterminierender Ausdruck
 			\item Anzahl Spalten/Zeilen
-			\item Erreichtes innerhalt einer Spielsitzung
+			\item Erreichtes innerhalb einer Spielsitzung
 		\end{itemize}
 
 		\item Sandboxlevel speichern/laden (/F260+/)
 	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{lstlisting}[language=json,caption={JSON Leveldatei, z.B. json/00/00.json}]
+	{
+	"de.croggle" : {
+		"levels" : [
+			{
+				"type" : "multiple choice",
+				"description" : "Asks the player for the result of (λx.x) x",
+				"design" : "desgigns/standard",
+				"abort simulation after": "0",
+				"hints" : [
+					"textures/hints/hint01.png"
+				],
+				"data" : {
+					"initial constellation" : {
+						"families" : [
+							{
+								"type" : "colored alligator",
+								"movable" : false,
+								"removable" : false,
+								"color" : 0,
+								"recolorable" : false,
+								"children" : [
+									{
+										"type" : "egg",
+										"movable" : false,
+										"removable" : false,
+										"color" : 0,
+										"recolorable" : false
+									}
+								]
+							},
+							{
+								"type" : "egg",
+								"movable" : false,
+								"removable" : false,
+								"color" : 0,
+								"recolorable" : false
+							}
+						]
+					},
+					"answers" : [
+						{
+							"families" : [
+								{
+									"type" : "egg",
+									"movable" : false,
+									"removable" : false,
+									"color" : 0,
+									"recolorable" : false
+								}
+							]
+						},
+						{
+							"families" : [
+								{
+									"type" : "egg",
+									"movable" : false,
+									"removable" : false,
+									"color" : 1,
+									"recolorable" : false
+								}
+							]
+						},
+						{
+							"families" : [
+								{
+									"type" : "egg",
+									"movable" : false,
+									"removable" : false,
+									"color" : 2,
+									"recolorable" : false
+								}
+							]
+						}
+					],
+					"correct answer" : 0
+				}
+			}
+		]
+	}
+}
+
+		
+	\end{lstlisting}
 \end{frame}
 
 \begin{frame}
@@ -67,9 +161,10 @@ Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  
 \end{frame}
 
 \begin{frame}
-	\frametitle{Sequenzdiagramm \(\beta\)-Reduktion}
+	\frametitle{Sequenzdiagramm \(\beta\)-Reduktion: (\(\lambda\)x.x) y}
 	\begin{center}
-	\includegraphics[width=0.5\textwidth]{Beta-Reduktion.png}
+	\includegraphics<1>[width= 0.4\textwidth]{Alligator1.png}
+	\includegraphics<2>[width=0.5\textwidth]{Beta-Reduktion.png}
 	\end{center}
 \end{frame}
 
@@ -103,7 +198,22 @@ Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  
 	\frametitle{Spielbrett aufräumen}
 	\begin{center}
 		\includegraphics<1>[width=0.5\textwidth]{Beta-Reduction-withYellow.png}
+		\includegraphics<2>[width=0.4\textwidth]{Alligator2.png}
 	\end{center}
 \end{frame}
+
+\begin{frame}
+	\frametitle{}
+	\begin{center}
+	\begin{Huge}
+		Vielen Dank\\ für Ihre Aufmerksamkeit
+	\end{Huge}
+	\end{center}
+\end{frame}
+
+%%\begin{frame}
+%%	\frametitle{\(\beta\)-Reduktion: Detailansicht}
+%%	\includegraphics[width=\textwidth]{unnoetig.png}
+%%\end{frame}
 
 \end{document}
