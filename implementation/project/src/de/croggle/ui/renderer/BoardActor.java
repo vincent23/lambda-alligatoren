@@ -1,6 +1,6 @@
 package de.croggle.ui.renderer;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -18,8 +18,8 @@ import de.croggle.game.event.BoardEventListener;
  */
 public class BoardActor implements BoardEventListener {
 
-	private HashMap<BoardObject, BoardObjectActor> actors;
-	private final Board board;
+	private Map<BoardObject, BoardObjectActor> actors;
+	private Board board;
 
 	/**
 	 * Creates a new actor.
@@ -92,6 +92,7 @@ public class BoardActor implements BoardEventListener {
 	 */
 	@Override
 	public void onBoardRebuilt(Board board) {
+		this.board = board;
 	}
 
 	/**

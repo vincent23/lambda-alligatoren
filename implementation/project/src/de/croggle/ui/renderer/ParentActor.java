@@ -1,7 +1,9 @@
 package de.croggle.ui.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import de.croggle.game.board.InternalBoardObject;
+import de.croggle.game.board.Parent;
 
 /**
  * An actor used for representing a parent object.
@@ -14,7 +16,7 @@ public abstract class ParentActor extends BoardObjectActor {
 	 * @param object
 	 *            the object represented by this actor
 	 */
-	public ParentActor(InternalBoardObject object) {
+	public ParentActor(Parent object) {
 		super(object);
 	}
 

@@ -1,14 +1,15 @@
 package de.croggle.ui.renderer;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import de.croggle.game.board.InternalBoardObject;
+
+import de.croggle.game.board.BoardObject;
 
 /**
  * An actor used for representing a board object.
  */
 public abstract class BoardObjectActor extends Actor {
 
-	private final InternalBoardObject object;
+	private final BoardObject object;
 
 	/**
 	 * The superconstructor for all board object actors.
@@ -16,7 +17,7 @@ public abstract class BoardObjectActor extends Actor {
 	 * @param object
 	 *            the InternalBoardObject represented by the BoardObjectActor
 	 */
-	public BoardObjectActor(InternalBoardObject object) {
+	public BoardObjectActor(BoardObject object) {
 		this.object = object;
 	}
 }
