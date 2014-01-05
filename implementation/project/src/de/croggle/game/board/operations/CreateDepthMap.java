@@ -58,5 +58,6 @@ public class CreateDepthMap implements BoardObjectVisitor {
 		this.depthMap.put(p, depth);
 		depth++;
 		p.acceptOnChildren(this);
+		depth--;
 	}
 }
