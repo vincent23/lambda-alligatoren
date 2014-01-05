@@ -23,13 +23,13 @@ public class ValidateConstellationTest extends TestCase {
 		b.addChild(a);
 		a.addChild(new Egg(true, true, Color.uncolored(), true));
 		assertFalse(ValidateConstellation.isValid(b,
-				new BoardErrorType[] { BoardErrorType.UNCOLORED_OBJECT }));
+				new BoardErrorType[] { BoardErrorType.OBJECT_UNCOLORED }));
 	}
 
 	public void testUncoloredAlligator() {
 		b.addChild(new ColoredAlligator(true, true, Color.uncolored(), false));
 		assertFalse(ValidateConstellation.isValid(b,
-				new BoardErrorType[] { BoardErrorType.UNCOLORED_OBJECT }));
+				new BoardErrorType[] { BoardErrorType.OBJECT_UNCOLORED }));
 	}
 
 	public void testEmptyAgedAlligator() {
@@ -59,7 +59,7 @@ public class ValidateConstellationTest extends TestCase {
 		b.addChild(a);
 		a.addChild(new Egg(true, true, new Color(1), true));
 		assertTrue(ValidateConstellation.isValid(b,
-				new BoardErrorType[] { BoardErrorType.UNCOLORED_OBJECT }));
+				new BoardErrorType[] { BoardErrorType.OBJECT_UNCOLORED }));
 	}
 
 	public void testNoEmptyAgedAlligator() {

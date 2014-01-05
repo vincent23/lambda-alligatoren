@@ -26,7 +26,7 @@ public class FindBoardErrorsTest extends TestCase {
 		b.addChild(a);
 		a.addChild(new Egg(true, true, Color.uncolored(), true));
 		List<BoardError> result = FindBoardErrors.find(b,
-				new BoardErrorType[] { BoardErrorType.UNCOLORED_OBJECT });
+				new BoardErrorType[] { BoardErrorType.OBJECT_UNCOLORED });
 		assertEquals(1, result.size());
 		assertEquals(ObjectUncoloredError.class, result.get(0).getClass());
 	}
@@ -34,7 +34,7 @@ public class FindBoardErrorsTest extends TestCase {
 	public void testUncoloredAlligator() {
 		b.addChild(new ColoredAlligator(true, true, Color.uncolored(), false));
 		List<BoardError> result = FindBoardErrors.find(b,
-				new BoardErrorType[] { BoardErrorType.UNCOLORED_OBJECT });
+				new BoardErrorType[] { BoardErrorType.OBJECT_UNCOLORED });
 		assertEquals(1, result.size());
 		assertEquals(ObjectUncoloredError.class, result.get(0).getClass());
 	}
@@ -72,7 +72,7 @@ public class FindBoardErrorsTest extends TestCase {
 		b.addChild(a);
 		a.addChild(new Egg(true, true, new Color(1), true));
 		List<BoardError> result = FindBoardErrors.find(b,
-				new BoardErrorType[] { BoardErrorType.UNCOLORED_OBJECT });
+				new BoardErrorType[] { BoardErrorType.OBJECT_UNCOLORED });
 		assertEquals(0, result.size());
 	}
 
