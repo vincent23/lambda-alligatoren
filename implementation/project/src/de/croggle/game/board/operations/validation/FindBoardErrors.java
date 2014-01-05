@@ -27,7 +27,7 @@ public class FindBoardErrors extends AbstractBoardValidator implements
 	 */
 	private FindBoardErrors() {
 		this(new BoardErrorType[] { BoardErrorType.COLOREDALLIGATOR_CHILDLESS,
-				BoardErrorType.UNCOLORED_OBJECT });
+				BoardErrorType.OBJECT_UNCOLORED });
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class FindBoardErrors extends AbstractBoardValidator implements
 
 	@Override
 	public void visitEgg(Egg egg) {
-		if (validateObjectsUncolored && egg.getColor().equals(Color.uncolored())) {
+		if (validateObjectUncolored && egg.getColor().equals(Color.uncolored())) {
 			this.errors.add(new ObjectUncoloredError(egg));
 		}
 	}
@@ -81,7 +81,8 @@ public class FindBoardErrors extends AbstractBoardValidator implements
 		if (validateColoredAlligatorChildless && alligator.getChildCount() == 0) {
 			this.errors.add(new ColoredAlligatorChildlessError(alligator));
 		}
-		if (validateObjectsUncolored && alligator.getColor().equals(Color.uncolored())) {
+		if (validateObjectUncolored
+				&& alligator.getColor().equals(Color.uncolored())) {
 			this.errors.add(new ObjectUncoloredError(alligator));
 		}
 		alligator.acceptOnChildren(this);

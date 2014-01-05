@@ -27,7 +27,7 @@ public class ValidateConstellation extends AbstractBoardValidator implements
 	 */
 	private ValidateConstellation() {
 		this(new BoardErrorType[] { BoardErrorType.COLOREDALLIGATOR_CHILDLESS,
-				BoardErrorType.UNCOLORED_OBJECT });
+				BoardErrorType.OBJECT_UNCOLORED });
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class ValidateConstellation extends AbstractBoardValidator implements
 	 *            the ColoredBoardObject to be validated
 	 */
 	private void validateColoredObject(ColoredBoardObject cbo) {
-		if (this.validateObjectsUncolored) {
+		if (this.validateObjectUncolored) {
 			this.isValid &= !cbo.getColor().equals(Color.uncolored());
 		}
 	}

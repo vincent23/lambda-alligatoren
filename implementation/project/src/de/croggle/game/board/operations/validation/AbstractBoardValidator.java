@@ -1,7 +1,7 @@
 package de.croggle.game.board.operations.validation;
 
 public abstract class AbstractBoardValidator {
-	protected boolean validateObjectsUncolored = false;
+	protected boolean validateObjectUncolored = false;
 	protected boolean validateAgedAlligatorChildless = false;
 	protected boolean validateColoredAlligatorChildless = false;
 	protected boolean validateEmptyBoard = false;
@@ -18,7 +18,7 @@ public abstract class AbstractBoardValidator {
 	 *            the error types to be looked for
 	 */
 	protected final void applyErrorTypeSettings(BoardErrorType[] errorTypes) {
-		validateObjectsUncolored = false;
+		validateObjectUncolored = false;
 		validateAgedAlligatorChildless = false;
 		validateColoredAlligatorChildless = false;
 		validateEmptyBoard = false;
@@ -32,8 +32,8 @@ public abstract class AbstractBoardValidator {
 				this.validateColoredAlligatorChildless = true;
 				break;
 			}
-			case UNCOLORED_OBJECT: {
-				this.validateObjectsUncolored = true;
+			case OBJECT_UNCOLORED: {
+				this.validateObjectUncolored = true;
 				break;
 			}
 			case EMPTY_BOARD: {

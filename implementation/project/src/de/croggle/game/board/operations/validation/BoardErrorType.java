@@ -10,7 +10,7 @@ public enum BoardErrorType {
 	/**
 	 * Represents {@link ObjectUncoloredError}s.
 	 */
-	UNCOLORED_OBJECT,
+	OBJECT_UNCOLORED,
 	/**
 	 * Represents {@link AgedAlligatorChildlessError}s.
 	 */
