@@ -67,93 +67,6 @@ Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  
 \end{frame}
 
 \begin{frame}
-	\begin{lstlisting}[language=json,caption={JSON Leveldatei, z.B. json/00/00.json}]
-	{
-	"de.croggle" : {
-		"levels" : [
-			{
-				"type" : "multiple choice",
-				"description" : "Asks the player for the result of (λx.x) x",
-				"design" : "desgigns/standard",
-				"abort simulation after": "0",
-				"hints" : [
-					"textures/hints/hint01.png"
-				],
-				"data" : {
-					"initial constellation" : {
-						"families" : [
-							{
-								"type" : "colored alligator",
-								"movable" : false,
-								"removable" : false,
-								"color" : 0,
-								"recolorable" : false,
-								"children" : [
-									{
-										"type" : "egg",
-										"movable" : false,
-										"removable" : false,
-										"color" : 0,
-										"recolorable" : false
-									}
-								]
-							},
-							{
-								"type" : "egg",
-								"movable" : false,
-								"removable" : false,
-								"color" : 0,
-								"recolorable" : false
-							}
-						]
-					},
-					"answers" : [
-						{
-							"families" : [
-								{
-									"type" : "egg",
-									"movable" : false,
-									"removable" : false,
-									"color" : 0,
-									"recolorable" : false
-								}
-							]
-						},
-						{
-							"families" : [
-								{
-									"type" : "egg",
-									"movable" : false,
-									"removable" : false,
-									"color" : 1,
-									"recolorable" : false
-								}
-							]
-						},
-						{
-							"families" : [
-								{
-									"type" : "egg",
-									"movable" : false,
-									"removable" : false,
-									"color" : 2,
-									"recolorable" : false
-								}
-							]
-						}
-					],
-					"correct answer" : 0
-				}
-			}
-		]
-	}
-}
-
-		
-	\end{lstlisting}
-\end{frame}
-
-\begin{frame}
 	\frametitle{Repräsentation der \(\lambda\)-Terme}
 	\begin{center}
 		\includegraphics[width=0.8\textwidth]{umlAwesome.png}
@@ -183,22 +96,28 @@ Lukas Böhm $\cdot$ Tobias Hornberger $\cdot$ Jonas Mehlhaus \\ Iris Mehrbrodt  
 
 
 \begin{frame}
-	\frametitle{Ersetzen der Eier}
+	\frametitle{Änderungen im Baum}
 	\begin{center}
 		\includegraphics<1>[width=0.5\textwidth]{Beta-Reduktion-withBlue.png}
 	\end{center}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Ersetzen der Eier: Detailansicht}
+	\frametitle{Änderungen im Baum: Detailansicht}
 	\includegraphics[width=0.95\textwidth]{ReplaceEggs.png}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Spielbrett aufräumen}
 	\begin{center}
-		\includegraphics<1>[width=0.5\textwidth]{Beta-Reduction-withYellow.png}
-		\includegraphics<2>[width=0.4\textwidth]{Alligator2.png}
+		\includegraphics[width=0.5\textwidth]{Beta-Reduction-withYellow.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Ergebnis}
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{Alligator2.png}
 	\end{center}
 \end{frame}
 
