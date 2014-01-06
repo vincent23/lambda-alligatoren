@@ -2,7 +2,6 @@ package de.croggle.ui.renderer;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.Parent;
 
 /**

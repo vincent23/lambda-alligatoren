@@ -100,7 +100,8 @@ public class CreateWidthMap implements BoardObjectVisitor {
 			child.accept(this);
 			childWidth += widthMap.get(child);
 			if (it.hasNext()) {
-				childWidth += padding;
+				// TODO apply scaling on padding or not?
+				childWidth += padding * scaling;
 			}
 		}
 		goHigher();
@@ -114,6 +115,9 @@ public class CreateWidthMap implements BoardObjectVisitor {
 		this.scaling *= scaleFactor;
 	}
 
+	/**
+	 * Leave the current level inside the syntax tree
+	 */
 	private void goHigher() {
 		this.scaling /= scaleFactor;
 	}

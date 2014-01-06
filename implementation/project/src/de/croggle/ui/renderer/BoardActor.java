@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
-import de.croggle.game.board.BoardObject;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
@@ -18,7 +17,7 @@ import de.croggle.game.event.BoardEventListener;
  */
 public class BoardActor implements BoardEventListener {
 
-	private Map<BoardObject, BoardObjectActor> actors;
+	private Map<InternalBoardObject, BoardObjectActor> actors;
 	private Board board;
 
 	/**
@@ -93,6 +92,7 @@ public class BoardActor implements BoardEventListener {
 	@Override
 	public void onBoardRebuilt(Board board) {
 		this.board = board;
+		this.actors = BoardObjectActorBuilder.build(board);
 	}
 
 	/**
