@@ -9,7 +9,7 @@ import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import junit.framework.TestCase;
 
-public class CreateHeightMapTest extends TestCase {
+public class CreateWidthMapTest extends TestCase {
 	public void testSimple() {
 		Board b = new Board();
 		ColoredAlligator a = new ColoredAlligator(true, true, new Color(0),
@@ -20,10 +20,10 @@ public class CreateHeightMapTest extends TestCase {
 		Egg e2 = new Egg(true, true, new Color(1), true);
 		b.addChild(e2);
 
-		Map<BoardObject, Integer> map = CreateHeightMap.create(b);
-		assertEquals(2, (int) map.get(b));
-		assertEquals(1, (int) map.get(a));
-		assertEquals(0, (int) map.get(e2));
-		assertEquals(0, (int) map.get(e1));
+		Map<BoardObject, Double> map = CreateWidthMap.create(b);
+		assertEquals(2.0, map.get(b));
+		assertEquals(1.0, map.get(a));
+		assertEquals(1.0, map.get(e1));
+		assertEquals(1.0, map.get(e2));
 	}
 }

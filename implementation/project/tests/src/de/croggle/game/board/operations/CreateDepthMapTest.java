@@ -19,7 +19,7 @@ public class CreateDepthMapTest extends TestCase {
 		a.addChild(e1);
 		Egg e2 = new Egg(true, true, new Color(1), true);
 		b.addChild(e2);
-		
+
 		Map<BoardObject, Integer> map = CreateDepthMap.create(b);
 		assertEquals(0, (int) map.get(b));
 		assertEquals(1, (int) map.get(a));
