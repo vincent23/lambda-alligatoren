@@ -1,0 +1,80 @@
+{
+	"de.croggle" : {
+		"levels" : [
+			{
+				"type" : "multiple choice",
+				"description" : "Asks the player for the result of (λx.x) x",
+				"design" : "desgigns/standard",
+				"abort simulation after": "0",
+				"hints" : [
+					"textures/hints/hint01.png"
+				],
+				"data" : {
+					"initial constellation" : {
+						"families" : [
+							{
+								"type" : "colored alligator",
+								"movable" : false,
+								"removable" : false,
+								"color" : 0,
+								"recolorable" : false,
+								"children" : [
+									{
+										"type" : "egg",
+										"movable" : false,
+										"removable" : false,
+										"color" : 0,
+										"recolorable" : false
+									}
+								]
+							},
+							{
+								"type" : "egg",
+								"movable" : false,
+								"removable" : false,
+								"color" : 0,
+								"recolorable" : false
+							}
+						]
+					},
+					"answers" : [
+						{
+							"families" : [
+								{
+									"type" : "egg",
+									"movable" : false,
+									"removable" : false,
+									"color" : 0,
+									"recolorable" : false
+								}
+							]
+						},
+						{
+							"families" : [
+								{
+									"type" : "egg",
+									"movable" : false,
+									"removable" : false,
+									"color" : 1,
+									"recolorable" : false
+								}
+							]
+						},
+						{
+							"families" : [
+								{
+									"type" : "egg",
+									"movable" : false,
+									"removable" : false,
+									"color" : 2,
+									"recolorable" : false
+								}
+							]
+						}
+					],
+					"correct answer" : 0
+				}
+			}
+		]
+	}
+}
