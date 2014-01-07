@@ -22,13 +22,30 @@ public abstract class Level {
 	private int abortSimulationAfter;
 
 	/**
-	 * Creates an empty level with the default values.
+	 * Creates a new level with the given parameters.
+	 * 
+	 * @param levelIndex
+	 *            the level index of the level in the package
+	 * @param packageIndex
+	 *            the index of the levels package
+	 * @param initialBoard
+	 *            the initial Board the level starts with.
+	 * @param goalBoard
+	 *            the board, which have to be achieved to complete the level
+	 * @param animation
+	 *            the path to the animation of the level
+	 * @param userColors
+	 *            the colors given to the user to color BoardObjects in
+	 * @param hint
+	 *            the hint given to the user if he pushes the hint button
+	 * @param description
+	 *            the description of the level
+	 * @param abortSimulationAfter
+	 *            number of evaluation steps the simulation is aborted after
 	 */
-	public Level() {
-	}
-	
-
-	public Level(int levelIndex, int packageIndex, Board initialBoard, Board goalBoard, Animation animation, Color[] userColors, String hint, String description, int abortSimulationAfter){
+	public Level(int levelIndex, int packageIndex, Board initialBoard,
+			Board goalBoard, Animation animation, Color[] userColors,
+			String hint, String description, int abortSimulationAfter) {
 		this.levelIndex = levelIndex;
 		this.packageIndex = packageIndex;
 		this.initialBoard = initialBoard;
@@ -83,7 +100,7 @@ public abstract class Level {
 	 * @return true if the level has a simulation, otherwise false
 	 */
 	public boolean hasAnimation() {
-		return !(animation == null);
+		return animation != null;
 	}
 
 	/**
