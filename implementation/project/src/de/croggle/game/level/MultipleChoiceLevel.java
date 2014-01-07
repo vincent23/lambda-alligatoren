@@ -22,11 +22,4 @@ public class MultipleChoiceLevel extends Level {
 		return selection == correctAnswer;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean hasAnimation() {
-		return false;
-	}
 }

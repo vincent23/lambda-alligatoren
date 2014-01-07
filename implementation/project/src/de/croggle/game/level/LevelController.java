@@ -57,7 +57,7 @@ public class LevelController {
 	 * @return the package index
 	 */
 	public int getPackageIndex() {
-		return 0;
+		return packageIndex;
 	}
 
 	/**

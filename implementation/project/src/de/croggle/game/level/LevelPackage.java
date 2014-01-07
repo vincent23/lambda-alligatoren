@@ -25,6 +25,7 @@ public class LevelPackage {
 	 *            the folder id of the levelPackage
 	 */
 	public LevelPackage(int levelPackageId) {
+		this.levelPackageId = levelPackageId;
 	}
 
 	/**

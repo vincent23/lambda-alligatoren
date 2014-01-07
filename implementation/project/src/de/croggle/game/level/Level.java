@@ -26,6 +26,19 @@ public abstract class Level {
 	 */
 	public Level() {
 	}
+	
+
+	public Level(int levelIndex, int packageIndex, Board initialBoard, Board goalBoard, Animation animation, Color[] userColors, String hint, String description, int abortSimulationAfter){
+		this.levelIndex = levelIndex;
+		this.packageIndex = packageIndex;
+		this.initialBoard = initialBoard;
+		this.goalBoard = goalBoard;
+		this.animation = animation;
+		this.userColors = userColors;
+		this.hint = hint;
+		this.description = description;
+		this.abortSimulationAfter = abortSimulationAfter;
+	}
 
 	/**
 	 * Gets the index of the level package this level belongs to.
@@ -34,7 +47,7 @@ public abstract class Level {
 	 */
 
 	public int getPackageIndex() {
-		return 0;
+		return packageIndex;
 	}
 
 	/**
@@ -43,7 +56,7 @@ public abstract class Level {
 	 * @return the index of the level
 	 */
 	public int getLevelIndex() {
-		return 0;
+		return levelIndex;
 	}
 
 	/**
@@ -52,7 +65,7 @@ public abstract class Level {
 	 * @return the initial board
 	 */
 	public Board getInitialBoard() {
-		return null;
+		return initialBoard;
 	}
 
 	/**
@@ -61,7 +74,7 @@ public abstract class Level {
 	 * @return the board which is the goal of the level
 	 */
 	public Board getGoalBoard() {
-		return null;
+		return goalBoard;
 	}
 
 	/**
@@ -70,7 +83,7 @@ public abstract class Level {
 	 * @return true if the level has a simulation, otherwise false
 	 */
 	public boolean hasAnimation() {
-		return false;
+		return !(animation == null);
 	}
 
 	/**
@@ -79,7 +92,7 @@ public abstract class Level {
 	 * @return the path to the animation of the level
 	 */
 	public Animation getAnimation() {
-		return null;
+		return animation;
 	}
 
 	/**
@@ -88,7 +101,7 @@ public abstract class Level {
 	 * @return the path to the hint of the level
 	 */
 	public String gethint() {
-		return null;
+		return hint;
 	}
 
 	/**
@@ -97,7 +110,7 @@ public abstract class Level {
 	 * @return the description of the level
 	 */
 	public String getDescription() {
-		return null;
+		return description;
 	}
 
 	/**
@@ -106,7 +119,7 @@ public abstract class Level {
 	 * @return an array of colors
 	 */
 	public Color[] getUserColors() {
-		return null;
+		return userColors;
 	}
 
 	/**
@@ -115,6 +128,6 @@ public abstract class Level {
 	 * @return the number of steps the simulation runs
 	 */
 	public int getAbortSimulationAfter() {
-		return 0;
+		return abortSimulationAfter;
 	}
 }
