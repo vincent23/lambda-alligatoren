@@ -58,5 +58,14 @@ public class MultipleChoiceLevel extends Level {
 	public boolean validateAnswer(int selection) {
 		return selection == correctAnswer;
 	}
+	
+	/**
+	 * Method to get the ansers od this level.
+	 * 
+	 * @return the possible answers of this level.
+	 */
+	public Board[] getAnswers(){
+		return answers;
+	}
 
 }

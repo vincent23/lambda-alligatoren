@@ -15,7 +15,7 @@ public class LoadLevelHelper {
 
 	/**
 	 * Called to load a new level. With both the package index and the level
-	 * index it is possible to distinctively indentify the required level.
+	 * index it is possible to distinctively identify the required level.
 	 * 
 	 * @param packageIndex
 	 *            specifies the level package from which the level is supposed

@@ -39,7 +39,6 @@ public class ColorEditLevel extends Level {
 			String hint, String description, int abortSimulationAfter) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation, userColors,
 				hint, description, abortSimulationAfter);
-		// TODO Auto-generated constructor stub
 	}
 
 	ColorController colorController;

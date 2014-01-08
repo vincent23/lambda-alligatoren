@@ -54,7 +54,7 @@ public class AlligatorApp extends Game {
 	 * @return the Android Context
 	 */
 	public Context getContext() {
-		return null;
+		return context;
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class AlligatorApp extends Game {
 	 * @return the profile controller
 	 */
 	public ProfileController getProfileController() {
-		return null;
+		return profileController;
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class AlligatorApp extends Game {
 	 * @return the level packages controller
 	 */
 	public LevelPackagesController getLevelPackagesController() {
-		return null;
+		return levelPackagesController;
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class AlligatorApp extends Game {
 	 * @return the achievement controller
 	 */
 	public AchievementController getAchievementController() {
-		return null;
+		return achievementController;
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class AlligatorApp extends Game {
 	 * @return the statistic controller
 	 */
 	public StatisticController getStatisticController() {
-		return null;
+		return statisticController;
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class AlligatorApp extends Game {
 	 * @return the persistence manager
 	 */
 	public PersistenceManager getPersistenceManager() {
-		return null;
+		return persistenceManager;
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class AlligatorApp extends Game {
 	 * @return the setting controller
 	 */
 	public SettingController getSettingController() {
-		return null;
+		return settingController;
 	}
 
 	/**

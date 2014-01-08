@@ -4,7 +4,6 @@ package de.croggle.game.level;
  * Compilation of several, thematically linked levels.
  */
 public class LevelPackage {
-	private int size;
 	private int levelPackageId;
 	private String name;
 	private String description;
@@ -28,25 +27,7 @@ public class LevelPackage {
 		this.levelPackageId = levelPackageId;
 	}
 
-	/**
-	 * Gets the level controller which is responsible for handling the levels
-	 * within the level package.
-	 * 
-	 * @return the level controller one must use to handle the levels within the
-	 *         level package
-	 */
-	public LevelController getLevelController() {
-		return null;
-	}
 
-	/**
-	 * Returns the amount of levels in this package.
-	 * 
-	 * @return the size of the package
-	 */
-	public int getSize() {
-		return size;
-	}
 
 	/**
 	 * Returns the unique identifier of the package, which is defined as the

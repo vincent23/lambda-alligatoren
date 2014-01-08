@@ -2,6 +2,8 @@ package de.croggle.game.level;
 
 import java.util.List;
 
+import de.croggle.AlligatorApp;
+
 /**
  * Controls the content of a level package.
  */
@@ -9,23 +11,8 @@ public class LevelController {
 	// The index of the package the controller controls
 	private int packageIndex;
 	private List<Level> levels;
+	private AlligatorApp game;
 
-	/**
-	 * Creates the controller with an empty list of levels.
-	 */
-	public LevelController() {
-
-	}
-
-	/**
-	 * Creates the controller with a given list of levels to manage.
-	 * 
-	 * @param levels
-	 *            the list of levels the controller should hold
-	 */
-	public LevelController(List<Level> levels) {
-
-	}
 
 	/**
 	 * Creates the controller with the given package index. It will manage the
@@ -34,8 +21,10 @@ public class LevelController {
 	 * @param packageIndex
 	 *            the index of the package whose levels should be controlled
 	 */
-	public LevelController(int packageIndex) {
-
+	public LevelController(int packageIndex, AlligatorApp game) {
+		this.packageIndex = packageIndex;
+		this.levels = this.getLevelFromPackage(packageIndex);
+		this.game = game;
 	}
 
 	/**
@@ -47,7 +36,7 @@ public class LevelController {
 	 * @return the desired level
 	 */
 	public Level getLevel(int levelIndex) {
-		return null;
+		return levels.get(levelIndex);
 	}
 
 	/**
@@ -67,7 +56,15 @@ public class LevelController {
 	 * @return the package size
 	 */
 	public int getPackageSize() {
-		return 0;
+		return levels.size();
 	}
+	
+	private List<Level> getLevelFromPackage(int packageIndex){
+		//TODO
+		
+		
+		return null;
+	}
+
 
 }
