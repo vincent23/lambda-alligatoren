@@ -1,7 +1,10 @@
 package de.croggle.game.level;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import android.content.res.AssetManager;
 import de.croggle.AlligatorApp;
 
 /**
@@ -23,8 +26,8 @@ public class LevelController {
 	 */
 	public LevelController(int packageIndex, AlligatorApp game) {
 		this.packageIndex = packageIndex;
-		this.levels = this.getLevelFromPackage(packageIndex);
 		this.game = game;
+		this.getLevelFromPackage(packageIndex);
 	}
 
 	/**
@@ -59,11 +62,21 @@ public class LevelController {
 		return levels.size();
 	}
 	
-	private List<Level> getLevelFromPackage(int packageIndex){
-		//TODO
+	private void getLevelFromPackage(int packageIndex){
+		AssetManager manager  = game.getContext().getAssets();
+		String[] levelNames = null;
+		try {
+			levelNames = manager.list("json/levels/" + this.packageIndex);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int numberOfLevel = levelNames.length-1;
+		levels = new ArrayList<Level>();
+		for(int i = 0; i < numberOfLevel; i++ ){
+			levels.add(LoadLevelHelper.instantiate(packageIndex, i));
+		}
 		
-		
-		return null;
 	}
 
 
