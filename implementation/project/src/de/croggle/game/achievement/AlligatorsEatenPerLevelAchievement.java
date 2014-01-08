@@ -12,7 +12,16 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 	 */
 	@Override
 	public int requirementsMet() {
-		return 0;
+		int index = getIndex();
+		int oldVal = 0; //TODO: where do i get this?
+		int newVal = 0;
+		int diff = newVal - oldVal;
+		while (diff >= getStage(index) ) {
+			index++;
+		}
+		
+		return index;
+		
 	}
 
 }

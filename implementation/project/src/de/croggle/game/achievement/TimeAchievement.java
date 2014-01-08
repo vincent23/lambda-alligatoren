@@ -11,7 +11,13 @@ public class TimeAchievement extends Achievement {
 	 */
 	@Override
 	public int requirementsMet() {
-		return 0;
+		int index = getIndex();
+		int newTime =  0; //TODO: were do i get this?
+		while(newTime >= getStage(index)) {
+			index++;
+		}
+		
+		return index;
 	}
-
+	
 }
