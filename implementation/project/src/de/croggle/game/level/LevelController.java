@@ -27,7 +27,7 @@ public class LevelController {
 	public LevelController(int packageIndex, AlligatorApp game) {
 		this.packageIndex = packageIndex;
 		this.game = game;
-		this.getLevelFromPackage(packageIndex);
+		this.getLevelFromPackage();
 	}
 
 	/**
@@ -62,19 +62,21 @@ public class LevelController {
 		return levels.size();
 	}
 	
-	private void getLevelFromPackage(int packageIndex){
+	/**
+	 * Method to load the level of the package the LevelController manages.
+	 */
+	private void getLevelFromPackage(){
 		AssetManager manager  = game.getContext().getAssets();
 		String[] levelNames = null;
 		try {
-			levelNames = manager.list("json/levels/" + this.packageIndex);
+			levelNames = manager.list("json/levels/" + String.format("%02d", this.packageIndex));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// TODO 
 		}
 		int numberOfLevel = levelNames.length-1;
 		levels = new ArrayList<Level>();
 		for(int i = 0; i < numberOfLevel; i++ ){
-			levels.add(LoadLevelHelper.instantiate(packageIndex, i));
+			levels.add(LoadLevelHelper.instantiate(this.packageIndex, i, this.game));
 		}
 		
 	}

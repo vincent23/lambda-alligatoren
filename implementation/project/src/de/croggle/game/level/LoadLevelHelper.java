@@ -2,6 +2,8 @@ package de.croggle.game.level;
 
 import com.badlogic.gdx.utils.JsonValue;
 
+import de.croggle.AlligatorApp;
+
 /**
  * Encapsulates the functionality needed for instantiating a level/game from the
  * respective JSON file. Therefore it removes a larger portion of program logic
@@ -24,7 +26,7 @@ public class LoadLevelHelper {
 	 *            the id of the level within the package
 	 * @return the level denoted by the given indices/identifiers
 	 */
-	static Level instantiate(int packageIndex, int levelIndex) {
+	static Level instantiate(int packageIndex, int levelIndex, AlligatorApp game) {
 		return null;
 	}
 
@@ -56,7 +58,7 @@ public class LoadLevelHelper {
 	 *            The JSON object from which to read the level's properties
 	 */
 	private static void fillGeneric(Level level,
-			com.badlogic.gdx.utils.JsonValue json) {
+			JsonValue json) {
 
 	}
 
