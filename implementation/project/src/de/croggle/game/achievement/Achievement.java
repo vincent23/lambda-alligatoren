@@ -23,7 +23,7 @@ public abstract class Achievement {
 	 * @return the text which is shown in order to describe the achievement
 	 */
 	public String getDescription(int index) {
-		return null;
+		return description[index];
 	}
 
 	/**
@@ -34,7 +34,7 @@ public abstract class Achievement {
 	 * @return the path leading to the emblem of the achievement
 	 */
 	public String getEmblemPath(int index) {
-		return null;
+		return emblemPath[index];
 	}
 
 	/**
@@ -43,7 +43,32 @@ public abstract class Achievement {
 	 * @return the achievement id
 	 */
 	public int getId() {
-		return 0;
+		return id;
+	}
+	
+	/**
+	 * Returns the requirement for the given stage.
+	 * @param index the stage index for which the requirement should be returned
+	 * @return the requirement
+	 */
+	public int getStage(int index) {
+		return stages[index];
+	}
+	
+	/**
+	 * Returns the index of the Achievement.
+	 * @return
+	 */
+	public int getIndex() {
+		return index;
+	}
+	
+	/**
+	 * Sets the achievement's index. 
+	 * @param index the new index
+	 */
+	public void setIndex(int index) {
+		this.index = index;
 	}
 
 	/**
