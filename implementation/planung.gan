@@ -6,8 +6,8 @@
         <field id="tpd5" name="End date" width="16" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="54" order="0"/>
-        <field id="1" name="Default role" width="45" order="1"/>
+        <field id="0" name="Name" width="52" order="0"/>
+        <field id="1" name="Default role" width="47" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -59,13 +59,13 @@
         <task id="8" name="util" color="#8cb6ce" meeting="false" start="2014-01-07" duration="3" complete="0" expand="true">
             <depend id="10" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="9" name="data.persistence.manager" color="#8cb6ce" meeting="false" start="2014-01-14" duration="1" complete="0" expand="true">
+        <task id="9" name="data.persistence.manager" color="#8cb6ce" meeting="false" start="2014-01-14" duration="7" complete="0" expand="true">
             <depend id="11" type="2" difference="0" hardness="Strong"/>
             <depend id="12" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="10" name="game" color="#8cb6ce" meeting="false" start="2014-01-22" duration="7" complete="0" expand="true"/>
-        <task id="11" name="game.profile" color="#8cb6ce" meeting="false" start="2014-01-15" duration="5" complete="0" expand="true"/>
-        <task id="12" name="game.achievement (Controller)" color="#8cb6ce" meeting="false" start="2014-01-16" duration="5" complete="0" expand="true">
+        <task id="11" name="game.profile" color="#8cb6ce" meeting="false" start="2014-01-23" duration="5" complete="0" expand="true"/>
+        <task id="12" name="game.achievement (Controller)" color="#8cb6ce" meeting="false" start="2014-01-23" duration="5" complete="0" expand="true">
             <depend id="10" type="3" difference="0" hardness="Strong"/>
         </task>
         <task id="13" name="ui.renderer" color="#8cb6ce" meeting="false" start="2014-01-07" duration="11" complete="0" expand="true"/>
