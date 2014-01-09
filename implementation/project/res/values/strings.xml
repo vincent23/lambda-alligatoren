@@ -1,5 +1,19 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <string name="app_name">Croggle</string>
+    <string name="achievement_minutes_played"> minutes played</string>
+    <string name="achievement_hours_played"> hours played</string>
+    <string name="achievement_time_final"> :(  you played this game for way to long</string>
+    <string name="achievement_alligators_placed"> alligators placed</string>
+    <string name="achievement_alligators_placed_final"> wow. You placed a lot of alligators.</string>
+    <string name="achievement_alligators_placed_per_level"> alligators placed within one level</string>
+    <string name="achievement_alligator_placed_per_level_final"> wow. you placed a lot of alligators within one level.</string>
+    <string name="achievement_alligators_eaten"> alligators eaten</string>
+    <string name="achievement_alligators_eaten_final"> wow. You ate a lot of alligators.</string>
+    <string name="achievement_alligators_eaten_per_level"> alligators eaten within one level</string>
+    <string name="achievement_hints_used_per_level">no hint used within a level</string>
+    <string name="achievement_alligators_eaten_per_level_final"> wow. You ate a lot of alligators within one level.</string>
+    <string name="achievement_level_completed"> levels solved</string>
+    
 
 </resources>

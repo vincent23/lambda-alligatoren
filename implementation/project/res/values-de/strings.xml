@@ -1,5 +1,8 @@
 <resources>
 
     <string name="app_name">Croggle</string>
+    <string name="achievement_minutes_played">Minuten gespielt</string>
+    <string name="achievement_hours_played">Stunden gespielt</string>
+    <string name="achievement_time_final">Sehr gut! du hast das Spiel lange gespielt!</string>
 
 </resources>
