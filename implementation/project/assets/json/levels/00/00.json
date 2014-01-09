@@ -1,46 +1,46 @@
 {
-"de . croggle" : {
-"levels" : [
-{
-"type" : "modification" ,
-"description" : "Erstes Tutoriallevel, in dem das Einfärben von Elementen erklärt
-wird." ,
-"design" : "" ,
-"abort simulation after" : "" ,
-"hints" : [
-],
-"data" : {
-"initial constellation" : {
-"families" : [
-{
-"type" : "egg" ,
-"movable" : false ,
-"removable" : false ,
-"color" : -1 ,
-"recolorable" : true
-}
-]
-},
-"objective" : {
-"families" : [
-{
-"type" : "egg" ,
-"movable" : false ,
-"removable" : false ,
-"color" : 5 ,
-"recolorable" : true
-}
-]
-},
-"blocked colors" : [
-],
-"blocked types" : [
-"colored alligator",
-"aged alligator",
-"egg",
-]
-}
-}
-]
-}
+	"de.croggle" : {
+		"levels" : [
+			{
+			"type" : "modification" ,
+			"description" : "Erstes Tutoriallevel, in dem das Einfärben von Elementen erklärt
+			wird." ,
+			"design" : "" ,
+			"abort simulation after" : "" ,
+			"hints" : [
+			],
+			"data" : {
+				"initial constellation" : {
+					"families" : [
+						{
+							"type" : "egg" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : -1 ,
+							"recolorable" : true
+						}
+					]
+				},
+				"objective" : {
+					"families" : [
+						{
+							"type" : "egg" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 5 ,
+							"recolorable" : true
+						}
+					]
+				},
+				"blocked colors" : [
+				],
+				"blocked types" : [
+					"colored alligator",
+					"aged alligator",
+					"egg",
+				]
+				}
+			}
+		]
+	}
 }
