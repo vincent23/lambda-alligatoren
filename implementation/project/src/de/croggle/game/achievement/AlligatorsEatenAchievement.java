@@ -13,7 +13,13 @@ public class AlligatorsEatenAchievement extends Achievement {
 	 */
 	@Override
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
-		return 0;
+		int index = getIndex();
+		int alligatorsEaten = statistic.getAlligatorsEaten();
+		while ( alligatorsEaten >= getStage(index)) {
+			index++;
+		}
+		//TODO: decide whether I have to correct the index of the Achievement here.
+		return index;
 	}
 
 }

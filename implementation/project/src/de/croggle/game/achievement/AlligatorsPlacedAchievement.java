@@ -3,11 +3,10 @@ package de.croggle.game.achievement;
 import de.croggle.data.persistence.Statistic;
 
 /**
- * An achievement the player gets for having at least a certain amount of
- * alligators eaten in any level.
- * 
+ * Achievements which are awarded for reaching certain, specified amounts of
+ * placed alligators.
  */
-public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
+public class AlligatorsPlacedAchievement extends Achievement {
 
 	/**
 	 * {@inheritDoc}
@@ -15,13 +14,12 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 	@Override
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
-		int alligatorsEatenPerLevel = statisticDelta.getAlligatorsEaten();
-		while (alligatorsEatenPerLevel >= getStage(index) ) {
+		int alligatorsPlaced = statistic.getAlligatorsPlaced();
+		while ( alligatorsPlaced >= getStage(index)) {
 			index++;
 		}
 		//TODO: decide whether I have to correct the index of the Achievement here.
 		return index;
-		
 	}
 
 }

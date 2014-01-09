@@ -14,7 +14,13 @@ public class HintPerLevelAchievement extends PerLevelAchievement {
 	 */
 	@Override
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
-		return 0;
+		int index = getIndex();
+		int hintsUsed = statisticDelta.getUsedHints();
+		while ( hintsUsed <= getStage(index)) { //careful: this time its < instead of >
+			index++;
+		}
+		//TODO: decide whether I have to correct the index of the Achievement here.
+		return index;
 	}
 
 }
