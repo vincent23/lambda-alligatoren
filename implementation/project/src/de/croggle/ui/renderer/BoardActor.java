@@ -3,12 +3,15 @@ package de.croggle.ui.renderer;
 import java.util.Map;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
+import de.croggle.game.board.BoardObject;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
+import de.croggle.game.board.operations.FlattenToArray;
 import de.croggle.game.event.BoardEventListener;
 
 /**
@@ -19,6 +22,7 @@ public class BoardActor implements BoardEventListener {
 
 	private Map<InternalBoardObject, BoardObjectActor> actors;
 	private Board board;
+	private Stage stage;
 
 	/**
 	 * Creates a new actor.
@@ -27,6 +31,7 @@ public class BoardActor implements BoardEventListener {
 	 */
 	public BoardActor(Board board) {
 		this.board = board;
+		this.stage = new Stage();
 	}
 
 	/**
@@ -38,6 +43,7 @@ public class BoardActor implements BoardEventListener {
 	 *            the parent's alpha value
 	 */
 	public void draw(SpriteBatch batch, float parentAlpha) {
+		stage.draw();
 	}
 
 	/**
@@ -47,6 +53,7 @@ public class BoardActor implements BoardEventListener {
 	 *            time in seconds since the last update
 	 */
 	public void act(float delta) {
+		stage.act();
 	}
 
 	/**
@@ -70,6 +77,8 @@ public class BoardActor implements BoardEventListener {
 	 */
 	@Override
 	public void onEat(ColoredAlligator eater, InternalBoardObject eatenFamily) {
+		((ColoredAlligatorActor) actors.get(eater)).enterEatingState();
+		BoardObject[] eatenArr = FlattenToArray.flatten(eatenFamily);
 	}
 
 	/**
