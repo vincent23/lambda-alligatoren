@@ -1,5 +1,6 @@
 package de.croggle.game.achievement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.croggle.AlligatorApp;
@@ -21,7 +22,9 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * A list of all achievements unlocked by the currently active user.
 	 */
 	private List<Achievement> unlockedAchievements;
-	// list of achievements unlocked during the last level
+	/**
+	 * list of achievements unlocked during the last level
+	 */
 	private List<Achievement> latestUnlockedAchievements;
 
 	/**
@@ -37,6 +40,8 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 *            the backreference to the central game object
 	 */
 	public AchievementController(AlligatorApp game) {
+		this.unlockedAchievements = new ArrayList<Achievement>();
+		this.game = game;
 
 	}
 
@@ -56,6 +61,9 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * Initiates the available achievements.
 	 */
 	public void initiateAvailableAchievements() {
+		for (Achievement achievement : availableAchievements) {
+			achievement.initialize();
+		}
 	}
 
 	/**

@@ -7,6 +7,7 @@ import de.croggle.data.persistence.Statistic;
  * a certain amount of time or beating a certain amount of levels.
  */
 public abstract class Achievement {
+	// Array because the different stages have different descriptions!
 	private String[] description;
 	private String[] emblemPath;
 	private int id;
@@ -91,5 +92,26 @@ public abstract class Achievement {
 	 */
 	public abstract int requirementsMet(Statistic statistic,
 			Statistic statisticDelta);
+
+	/**
+	 * Initializes the achievement.
+	 */
+	public abstract void initialize();
+
+	public void setDescription(String[] description) {
+		this.description = description;
+	}
+
+	public void setEmblemPath(String[] emblemPath) {
+		this.emblemPath = emblemPath;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setStages(int[] stages) {
+		this.stages = stages;
+	}
 
 }
