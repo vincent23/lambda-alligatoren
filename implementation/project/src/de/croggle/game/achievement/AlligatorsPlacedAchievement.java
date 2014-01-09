@@ -23,4 +23,10 @@ public class AlligatorsPlacedAchievement extends Achievement {
 		return index;
 	}
 
+	@Override
+	public void initialize() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -25,4 +25,10 @@ public class HintPerLevelAchievement extends PerLevelAchievement {
 		return index;
 	}
 
+	@Override
+	public void initialize() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

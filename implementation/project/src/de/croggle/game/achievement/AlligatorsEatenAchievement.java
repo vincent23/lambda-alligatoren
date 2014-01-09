@@ -23,4 +23,10 @@ public class AlligatorsEatenAchievement extends Achievement {
 		return index;
 	}
 
+	@Override
+	public void initialize() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -22,4 +22,10 @@ public class LevelAchievement extends Achievement {
 		return index;
 	}
 
+	@Override
+	public void initialize() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

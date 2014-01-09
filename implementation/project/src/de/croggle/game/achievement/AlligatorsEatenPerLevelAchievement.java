@@ -25,4 +25,10 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 
 	}
 
+	@Override
+	public void initialize() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
