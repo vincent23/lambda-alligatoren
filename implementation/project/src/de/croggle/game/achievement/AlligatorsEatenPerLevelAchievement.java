@@ -27,7 +27,19 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
+		int[] stages = { 1, 2, 5, 10, 20};
+		String[] emblemPath = new String[1]; // TODO: Path to the Emblems
+												// reintun.
+		String[] description = new String[5];
+		for (int i = 0; i < 9; i++) { //TODO: Fix Localization stuff. 
+			description[i] = "Herzlichen Glückwunsch! Du hast jetzt "
+						+ stages[i] / 60 + " Minuten Spielzeit erreicht.";
+		}
+		description[9] = "Herzlichen Glückwunsch! Du hast nun alle zeitbasierten Errungenschaften geschafft.";
+		setDescription(description);
+		setStages(stages);
+		setEmblemPath(emblemPath);
+		setId(-1); // TODO: decide on Ids for the different Achievements. 
 		
 	}
 

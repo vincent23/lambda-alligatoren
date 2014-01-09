@@ -25,7 +25,21 @@ public class AlligatorsEatenAchievement extends Achievement {
 
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
+		int[] stages = { 5, 20, 50, 100, 175, 250,
+				500, 750, 1250, 2500 };
+		String[] emblemPath = new String[1]; // TODO: Path zu den Emblems
+												// reintun.
+		String[] description = new String[10];
+		for (int i = 0; i < 9; i++) {
+			description[i] = "Herzlichen Glückwunsch! Du hast jetzt mehr als "
+						+ stages[i]  + " Alligatoren fressen lassen.";
+			
+		}
+		description[9] = "Herzlichen Glückwunsch! Du hast nun alle Errungenschaften mit fressenden Alligatoren geschafft.";
+		setDescription(description);
+		setStages(stages);
+		setEmblemPath(emblemPath);
+		setId(-1); // TODO: IDs für alle achievements festlegen.
 		
 	}
 

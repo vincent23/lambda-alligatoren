@@ -1,5 +1,6 @@
 package de.croggle.game.achievement;
 
+import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +89,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * @return a list of unlocked achievements
 	 */
 	public List<Achievement> getUnlockedAchievements() {
-		return null;
+		return unlockedAchievements;
 	}
 
 	/**
@@ -97,7 +98,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * @return a list of available achievements
 	 */
 	public List<Achievement> getAvailableAchievements() {
-		return null;
+		return availableAchievements;
 	}
 
 	/**
@@ -108,7 +109,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * @return the list of latest unlocked achievements
 	 */
 	public List<Achievement> getLatestUnlockedAchievements() {
-		return null;
+		return latestUnlockedAchievements;
 	}
 
 	/**
@@ -122,6 +123,15 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 */
 	@Override
 	public void processDelta(Statistic statisticsDelta) {
-
+		List<Achievement> unlockedAchievements = new ArrayList<Achievement>();
+		latestUnlockedAchievements.clear();
+		for ( Achievement achievement: availableAchievements) {
+			int oldVal = 0; //achievement.requirementsMet(statistic, statisticDelta) //TODO: How do i get the basevalue from the database in here?
+			int newVal = 0; //achievement.requirementsMet(statistic, statisticDelta) // the new stuff
+			if ( oldVal != newVal) {
+				unlockedAchievements.add(achievement);
+				latestUnlockedAchievements.add(achievement);
+			}
+		}
 	}
 }
