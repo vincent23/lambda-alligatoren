@@ -1,6 +1,7 @@
 package de.croggle.game.achievement;
 
 import de.croggle.data.persistence.Statistic;
+import static de.croggle.data.LocalizationHelper._;
 
 /**
  * Achievements which are awarded for reaching certain, specified amounts of
@@ -31,11 +32,10 @@ public class AlligatorsEatenAchievement extends Achievement {
 												// reintun.
 		String[] description = new String[10];
 		for (int i = 0; i < 9; i++) {
-			description[i] = "Herzlichen Glückwunsch! Du hast jetzt mehr als "
-						+ stages[i]  + " Alligatoren fressen lassen.";
+			description[i] = stages[i]  + _("achievement_alligators_eaten");
 			
 		}
-		description[9] = "Herzlichen Glückwunsch! Du hast nun alle Errungenschaften mit fressenden Alligatoren geschafft.";
+		description[9] = _("achievement_alligators_eaten_final");
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);

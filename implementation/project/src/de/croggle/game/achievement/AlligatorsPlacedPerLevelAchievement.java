@@ -1,5 +1,6 @@
 package de.croggle.game.achievement;
 
+import static de.croggle.data.LocalizationHelper._;
 import de.croggle.data.persistence.Statistic;
 
 /**
@@ -27,7 +28,19 @@ public class AlligatorsPlacedPerLevelAchievement extends PerLevelAchievement {
 
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
+		int[] stages = { 2, 5, 10, 15, 25};
+		String[] emblemPath = new String[1]; // TODO: Path to the Emblems
+												// reintun.
+		String[] description = new String[5];
+		for (int i = 0; i < 9; i++) { //TODO: Fix Localization stuff. 
+			description[i] = stages[i] / 60 + _("achievement_alligators_placed_per_level");
+		}
+		description[9] = _("achievement_alligators_placed_per_level_final");
+		setDescription(description);
+		setStages(stages);
+		setEmblemPath(emblemPath);
+		setId(-1); // TODO: decide on Ids for the different Achievements. 
+		
 		
 	}
 

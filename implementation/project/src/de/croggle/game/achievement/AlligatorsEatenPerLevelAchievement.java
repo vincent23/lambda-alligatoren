@@ -1,6 +1,7 @@
 package de.croggle.game.achievement;
 
 import de.croggle.data.persistence.Statistic;
+import static de.croggle.data.LocalizationHelper._;
 
 /**
  * An achievement the player gets for having at least a certain amount of
@@ -32,10 +33,9 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 												// reintun.
 		String[] description = new String[5];
 		for (int i = 0; i < 9; i++) { //TODO: Fix Localization stuff. 
-			description[i] = "Herzlichen Glückwunsch! Du hast jetzt "
-						+ stages[i] / 60 + " Minuten Spielzeit erreicht.";
+			description[i] = stages[i] / 60 + _("achievement_alligators_eaten_per_level");
 		}
-		description[9] = "Herzlichen Glückwunsch! Du hast nun alle zeitbasierten Errungenschaften geschafft.";
+		description[9] = _("achievement_alligators_eaten_per_level_final");
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);

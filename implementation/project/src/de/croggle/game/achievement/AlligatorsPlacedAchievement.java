@@ -1,5 +1,6 @@
 package de.croggle.game.achievement;
 
+import static de.croggle.data.LocalizationHelper._;
 import de.croggle.data.persistence.Statistic;
 
 /**
@@ -25,7 +26,18 @@ public class AlligatorsPlacedAchievement extends Achievement {
 
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
+		int[] stages = { 10, 25, 50,  100, 200, 300, 500, 750, 1000, 2000 };
+		String[] emblemPath = new String[1]; // TODO: Path zu den Emblems
+												// reintun.
+		String[] description = new String[10];
+		for (int i = 0; i < 9; i++) {
+			description[i] = stages[i] / 60 + _("achievement_alligators_placed");
+		}
+		description[9] = _("achievement_alligators_placed_final");
+		setDescription(description);
+		setStages(stages);
+		setEmblemPath(emblemPath);
+		setId(-1); // TODO: IDs für alle achievements festlegen.
 		
 	}
 

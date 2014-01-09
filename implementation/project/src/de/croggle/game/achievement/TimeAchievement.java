@@ -1,6 +1,7 @@
 package de.croggle.game.achievement;
 
 import de.croggle.data.persistence.Statistic;
+import static de.croggle.data.LocalizationHelper._;
 
 /**
  * Achievements which are awarded for reaching certain, specified amounts of
@@ -26,20 +27,18 @@ public class TimeAchievement extends Achievement {
 	@Override
 	public void initialize() {
 		int[] stages = { 5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60, 120 * 60,
-				180 * 60, 300 * 60, 600 * 60, 1000 * 60 };
+				180 * 60, 300 * 60, 600 * 60, 6000 * 60 };
 		String[] emblemPath = new String[1]; // TODO: Path zu den Emblems
 												// reintun.
 		String[] description = new String[10];
 		for (int i = 0; i < 9; i++) {
-			if (i < 4) {
-				description[i] = "Herzlichen Glückwunsch! Du hast jetzt "
-						+ stages[i] / 60 + " Minuten Spielzeit erreicht.";
+			if (i < 5) {
+				description[i] = stages[i] / 60 + _("achievement_minutes_played");
 			} else {
-				description[i] = "Herzlichen Glückwunsch! Du hast jetzt "
-						+ stages[i] / 360 + " Stunden Spielzeit erreicht.";
+				description[i] = stages[i] / 360 + _("achievement_hours_played");
 			}
 		}
-		description[9] = "Herzlichen Glückwunsch! Du hast nun alle zeitbasierten Errungenschaften geschafft.";
+		description[9] = _("achievement_time_final");
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);
