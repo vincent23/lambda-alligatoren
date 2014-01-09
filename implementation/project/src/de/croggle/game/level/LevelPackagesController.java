@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonReader;
+
 import android.content.res.AssetManager;
 import de.croggle.AlligatorApp;
 
@@ -47,7 +50,7 @@ public class LevelPackagesController {
 	
 	
 	/**
-	 * Method to initialise the levelPackages from the assets.
+	 * Method to initialize the levelPackages from the assets.
 	 */
 	private void initialiseLevelPackages(){
 		AssetManager manager  = game.getContext().getAssets();
@@ -69,7 +72,9 @@ public class LevelPackagesController {
 	 * @param PackageIndex of the Level Package which should be loaded.
 	 * @return the Level Package belonging to the given index. 
 	 */
-	private LevelPackage loadPackage(int PackageIndex){
+	private LevelPackage loadPackage(int packageIndex){
+		AssetManager manager = game.getContext().getAssets();
+		JsonReader reader = new JsonReader();
 	return null;	
 	}
 

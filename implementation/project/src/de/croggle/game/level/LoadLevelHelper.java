@@ -3,6 +3,7 @@ package de.croggle.game.level;
 import com.badlogic.gdx.utils.JsonValue;
 
 import de.croggle.AlligatorApp;
+import de.croggle.util.convert.JsonToAlligator;
 
 /**
  * Encapsulates the functionality needed for instantiating a level/game from the
@@ -27,6 +28,8 @@ public class LoadLevelHelper {
 	 * @return the level denoted by the given indices/identifiers
 	 */
 	static Level instantiate(int packageIndex, int levelIndex, AlligatorApp game) {
+		
+		
 		return null;
 	}
 
@@ -43,6 +46,7 @@ public class LoadLevelHelper {
 	 *         from
 	 */
 	private static JsonValue getJson(int packageIndex, int levelIndex) {
+
 		return null;
 	}
 
@@ -57,8 +61,23 @@ public class LoadLevelHelper {
 	 * @param json
 	 *            The JSON object from which to read the level's properties
 	 */
-	private static void fillGeneric(Level level,
-			JsonValue json) {
+	private static Level fillGeneric(JsonValue json, int levelIndex, int packageIndex) {
+		String leveltype = json.getString("type");
+		Level level = null;
+		if(leveltype.equals("multiple choice")){
+			level = fillMultipleChoice(json, levelIndex,packageIndex);
+		}else if(leveltype.equals("modification")){
+			JsonValue data = json.getChild("data");
+			JsonValue initialBoard = data.getChild("initial constellation");
+			//TODO brauche bei JsonToAlligator ein Board zurück oder cast?
+			level = new MultipleChoiceLevel(levelIndex, packageIndex, null, null, null, null, leveltype, leveltype, 0, null, 0);
+		}else if(leveltype.equals("step count")){
+			
+		}else{
+			
+		}
+		return level;
+		
 
 	}
 
@@ -73,8 +92,8 @@ public class LoadLevelHelper {
 	 * @param json
 	 *            The JSON object from which to read the level's properties
 	 */
-	private static void fillMultipleChoice(MultipleChoiceLevel level,
-			JsonValue json) {
-
+	private static Level fillMultipleChoice(
+			JsonValue json, int levelIndex, int packageIndex) {
+			return null;
 	}
 }
