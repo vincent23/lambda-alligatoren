@@ -1,14 +1,14 @@
 {
-" de . croggle " : {
-" packages " : [
+"de . croggle" : {
+"packages" : [
 {
-" _comment " : "Erstes Paket, beinhaltet alle wichtigen Tutorials zum erlenen der Spielprinzipien." ,
-" name " : "Erstes Paket" ,
-" decription " : "Levelpaket zum Erlernen von Croggel." ,
-" banner " : "..." ,
-" design " : "..." ,
-" animation " : "" ,
-" dependencies " : [
+"_comment" : "Erstes Paket, beinhaltet alle wichtigen Tutorials zum erlenen der Spielprinzipien." ,
+"name" : "Erstes Paket" ,
+"decription" : "Levelpaket zum Erlernen von Croggel." ,
+"banner" : "..." ,
+"design" : "..." ,
+"animation" : "" ,
+"dependencies" : [
 ]
 }
 ]

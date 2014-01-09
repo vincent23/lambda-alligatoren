@@ -1,43 +1,43 @@
 {
-" de . croggle " : {
-" levels " : [
+"de . croggle" : {
+"levels" : [
 {
-" type " : " modification " ,
-" description " : "Erstes Tutoriallevel, in dem das Einfärben von Elementen erklärt
+"type" : "modification" ,
+"description" : "Erstes Tutoriallevel, in dem das Einfärben von Elementen erklärt
 wird." ,
-" design " : "" ,
-" abort simulation after " : "" ,
-" hints " : [
+"design" : "" ,
+"abort simulation after" : "" ,
+"hints" : [
 ],
-" data " : {
-" initial constellation " : {
-	" families " : [
-		{
-			" type " : " egg " ,
-			" movable " : false ,
-			" removable " : false ,
-			" color " : -1 ,
-			" recolorable " : true
-		}
-	]
+"data" : {
+"initial constellation" : {
+"families" : [
+{
+"type" : "egg" ,
+"movable" : false ,
+"removable" : false ,
+"color" : -1 ,
+"recolorable" : true
+}
+]
 },
-" objective " : {
-	" families " : [
-		{
-			" type " : " egg " ,
-			" movable " : false ,
-			" removable " : false ,
-			" color " : 5 ,
-			" recolorable " : true
-		}
-	]
+"objective" : {
+"families" : [
+{
+"type" : "egg" ,
+"movable" : false ,
+"removable" : false ,
+"color" : 5 ,
+"recolorable" : true
+}
+]
 },
-" blocked colors " : [
+"blocked colors" : [
 ],
-" blocked types " : [
-	"colored alligator",
-	"aged alligator",
-	"egg",
+"blocked types" : [
+"colored alligator",
+"aged alligator",
+"egg",
 ]
 }
 }
