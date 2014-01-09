@@ -1,5 +1,10 @@
 package de.croggle.game.level;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import android.content.res.AssetManager;
 import de.croggle.AlligatorApp;
 
 /**
@@ -8,7 +13,7 @@ import de.croggle.AlligatorApp;
 public class LevelPackagesController {
 
 	private AlligatorApp game;
-
+	private List <LevelPackage> levelPackages;
 	/**
 	 * Creates a new controller with no packages attached.
 	 * 
@@ -17,6 +22,7 @@ public class LevelPackagesController {
 	 */
 	public LevelPackagesController(AlligatorApp game) {
 		this.game = game;
+		this.initialiseLevelPackages();
 	}
 	
 	/**
@@ -29,6 +35,42 @@ public class LevelPackagesController {
 	 */
 	public LevelController getLevelController(int packageId) {
 		return new LevelController(packageId, game);
+	}
+	
+	/**
+	 * Gets the levelPackages of the game.
+	 * @return a List of levelPackages
+	 */
+	public List<LevelPackage> getLevelPackages(){
+		return this.levelPackages;
+	}
+	
+	
+	/**
+	 * Method to initialise the levelPackages from the assets.
+	 */
+	private void initialiseLevelPackages(){
+		AssetManager manager  = game.getContext().getAssets();
+		String[] packageNames = null;
+		try {
+			packageNames = manager.list("json/levels/");
+		} catch (IOException e) {
+			// TODO 
+		}
+		int numberOfPackages = packageNames.length-1;
+		levelPackages = new ArrayList<LevelPackage>();
+		for(int i = 0; i < numberOfPackages; i++ ){
+			levelPackages.add(this.loadPackage(i));
+		}
+		
+	}
+	
+	/**
+	 * @param PackageIndex of the Level Package which should be loaded.
+	 * @return the Level Package belonging to the given index. 
+	 */
+	private LevelPackage loadPackage(int PackageIndex){
+	return null;	
 	}
 
 }
