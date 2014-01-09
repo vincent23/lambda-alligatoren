@@ -47,27 +47,32 @@ public abstract class Achievement {
 	public int getId() {
 		return id;
 	}
-	
+
 	/**
 	 * Returns the requirement for the given stage.
-	 * @param index the stage index for which the requirement should be returned
+	 * 
+	 * @param index
+	 *            the stage index for which the requirement should be returned
 	 * @return the requirement
 	 */
 	public int getStage(int index) {
 		return stages[index];
 	}
-	
+
 	/**
 	 * Returns the index of the Achievement.
+	 * 
 	 * @return
 	 */
 	public int getIndex() {
 		return index;
 	}
-	
+
 	/**
-	 * Sets the achievement's index. 
-	 * @param index the new index
+	 * Sets the achievement's index.
+	 * 
+	 * @param index
+	 *            the new index
 	 */
 	public void setIndex(int index) {
 		this.index = index;
@@ -77,11 +82,14 @@ public abstract class Achievement {
 	 * Calculates the index of the stage the achievement has reached, according
 	 * to the current statistics.
 	 * 
-	 * @param statistic the profiles statistic after the level was completed
-	 * @param statisticDelta the change that occured during the level
+	 * @param statistic
+	 *            the profiles statistic after the level was completed
+	 * @param statisticDelta
+	 *            the change that occured during the level
 	 * 
 	 * @return the updated index
 	 */
-	public abstract int requirementsMet(Statistic statistic, Statistic statisticDelta);
+	public abstract int requirementsMet(Statistic statistic,
+			Statistic statisticDelta);
 
 }

@@ -14,12 +14,13 @@ public class TimeAchievement extends Achievement {
 	@Override
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
-		int newTime =  statistic.getPlaytime();
-		while(newTime >= getStage(index)) {
+		int newTime = statistic.getPlaytime();
+		while (newTime >= getStage(index)) {
 			index++;
 		}
-		//TODO: decide whether I have to correct the index of the Achievement here.
+		// TODO: decide whether I have to correct the index of the Achievement
+		// here.
 		return index;
 	}
-	
+
 }

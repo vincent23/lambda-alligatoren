@@ -16,10 +16,12 @@ public class HintPerLevelAchievement extends PerLevelAchievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int hintsUsed = statisticDelta.getUsedHints();
-		while ( hintsUsed <= getStage(index)) { //careful: this time its < instead of >
+		while (hintsUsed <= getStage(index)) { // careful: this time its <
+												// instead of >
 			index++;
 		}
-		//TODO: decide whether I have to correct the index of the Achievement here.
+		// TODO: decide whether I have to correct the index of the Achievement
+		// here.
 		return index;
 	}
 

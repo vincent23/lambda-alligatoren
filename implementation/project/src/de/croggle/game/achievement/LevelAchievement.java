@@ -14,10 +14,11 @@ public class LevelAchievement extends Achievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int newLevelsComplete = statistic.getLevelsComplete();
-		while(newLevelsComplete >=  getStage(index)) {
+		while (newLevelsComplete >= getStage(index)) {
 			index++;
 		}
-		//TODO: decide whether I have to correct the index of the Achievement here.
+		// TODO: decide whether I have to correct the index of the Achievement
+		// here.
 		return index;
 	}
 

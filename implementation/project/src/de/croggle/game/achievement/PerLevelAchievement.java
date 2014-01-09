@@ -12,6 +12,7 @@ public abstract class PerLevelAchievement extends Achievement {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public abstract int requirementsMet(Statistic statistic, Statistic statisticDelta);
+	public abstract int requirementsMet(Statistic statistic,
+			Statistic statisticDelta);
 
 }
