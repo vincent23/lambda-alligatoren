@@ -1,5 +1,7 @@
 package de.croggle.game.achievement;
 
+import de.croggle.data.persistence.Statistic;
+
 /**
  * A reward given to the player for completing a special feat, e.g. playing for
  * a certain amount of time or beating a certain amount of levels.
@@ -75,8 +77,11 @@ public abstract class Achievement {
 	 * Calculates the index of the stage the achievement has reached, according
 	 * to the current statistics.
 	 * 
+	 * @param statistic the profiles statistic after the level was completed
+	 * @param statisticDelta the change that occured during the level
+	 * 
 	 * @return the updated index
 	 */
-	public abstract int requirementsMet();
+	public abstract int requirementsMet(Statistic statistic, Statistic statisticDelta);
 
 }
