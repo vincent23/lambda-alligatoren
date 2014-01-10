@@ -4,13 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
+import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
-import de.croggle.game.board.BoardObject;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
@@ -22,7 +20,7 @@ import de.croggle.game.event.BoardEventListener;
  * An actor used for representing a whole board, i.e. an alligator
  * constellation.
  */
-public class BoardActor extends Actor implements BoardEventListener {
+public class BoardActor extends WidgetGroup implements BoardEventListener {
 
 	private Map<InternalBoardObject, BoardObjectActor> actors;
 	private Board board;
