@@ -76,8 +76,6 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 	@Override
 	public void accept(BoardObjectVisitor visitor) {
 		visitor.visitColoredAlligator(this);
-		// acceptOnChildren(visitor); // TODO I think, this is not expected
-		// behaviour
 	}
 
 	/**

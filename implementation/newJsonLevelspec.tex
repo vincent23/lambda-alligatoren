@@ -24,6 +24,7 @@
 			.4 \emph{"'type"'} : "'multiple choice"'.
 			.4 \emph{"'description"'} : String - Beschreibung zu einem Level.
 			.4 \emph{"'design"'} : String - Pfad zu einem Leveldesign.
+			.4 \emph{"'animation"'} : String - Pfad zu einer Animation.
 			.4 \emph{"'abort simulation after"'} : Integer - Nach wie vielen Schritten ein Level gewonnen (positiv) oder verloren (negativ) ist.
 			.4 \emph{"'hints"'} : List - Strings mit Pfaden zu Hilfegrafiken.
 			.4 \emph{"'data"'} (multiple choice) : Object - Spezielle Daten für die einzelnen Leveltypen.
@@ -40,11 +41,13 @@
 			.4 \emph{"'type"'} : "'color edit"'.
 			.4 \emph{"'description"'} : String - Beschreibung zu einem Level.
 			.4 \emph{"'design"'} : String - Pfad zu einem Leveldesign.
+			.4 \emph{"'animation"'} : String - Pfad zu einer Animation.
 			.4 \emph{"'abort simulation after"'} : Integer - Nach wie vielen Schritten ein Level gewonnen (positiv) oder verloren (negativ) ist.
 			.4 \emph{"'hints"'} : List - Strings mit Pfaden zu Hilfegrafiken.
 			.4 \emph{"'data"'} (multiple choice) : Object - Spezielle Daten für die einzelnen Leveltypen.
 				.5 \emph{"'initial constellation"'} : Object - Board Objekt der An\-fangs\-kon\-stel\-la\-tion.
 				.5 \emph{"'objective"'} : Object - Board Objekt der zu erreichenden Konstellation.
+				.5 \emph{"'user colors"'} : List - Liste mit 6 verschiedenen Integer Werten, die die Farben beschreiben, die der Benutzer zum Färben von Elementen benutzen soll. 
 				.5 \emph{"'blocked colors"'} : List - Liste mit Integer Werten, die blockierte Farben beschreiben.
 }
 
@@ -56,12 +59,14 @@
 			.4 \emph{"'type"'} : "'term edit"'.
 			.4 \emph{"'description"'} : String - Beschreibung zu einem Level.
 			.4 \emph{"'design"'} : String - Pfad zu einem Leveldesign.
+			.4 \emph{"'animation"'} : String - Pfad zu einer Animation.
 			.4 \emph{"'abort simulation after"'} : Integer - Nach wie vielen Schritten ein Level gewonnen (positiv) oder verloren (negativ) ist.
 			.4 \emph{"'hints"'} : List - Strings mit Pfaden zu Hilfegrafiken.
 			.4 \emph{"'data"'} (multiple choice) : Object - Spezielle Daten für die einzelnen Leveltypen.
 				.5 \emph{"'initial constellation"'} : Object - Board Objekt der An\-fangs\-kon\-stel\-la\-tion.
 				.5 \emph{"'objective"'} : Object - Board Objekt der zu erreichenden Konstellation.
 				.5 \emph{"'blocked colors"'} : List - Liste mit Integer Werten, die blockierte Farben beschreiben.
+				.5 \emph{"'user colors"'} : List - Liste mit 6 verschiedenen Integer Werten, die die Farben beschreiben, die der Benutzer zum Färben von Elementen benutzen soll.
 				.5 \emph{"'blocked types"'} : List - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
 }
 \end{document}

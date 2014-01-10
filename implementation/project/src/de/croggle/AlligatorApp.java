@@ -32,7 +32,6 @@ public class AlligatorApp extends Game {
 	private SettingController settingController;
 	private LevelPackagesController levelPackagesController;
 	private PersistenceManager persistenceManager;
-	private AssetManager assetManager;
 	private List<AbstractScreen> screens;
 
 	public SpriteBatch batch;
@@ -113,7 +112,7 @@ public class AlligatorApp extends Game {
 	 * @return the asset manager
 	 */
 	public AssetManager getAssetManager() {
-		return this.assetManager;
+		return de.croggle.data.AssetManager.getInstance();
 	}
 
 	/**
@@ -132,7 +131,6 @@ public class AlligatorApp extends Game {
 	@Override
 	public void create() {
 		this.batch = new SpriteBatch();
-		this.assetManager = new AssetManager();
 		this.setScreen(new MainMenuScreen(this));
 	}
 
