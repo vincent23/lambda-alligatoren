@@ -54,6 +54,76 @@ public class JsonToAlligator {
 	}
 
 	/**
+	 * Converts a json-formatted string into a constellation of
+	 * {@link InternalBoardObject}s, if it is well-formed according to the
+	 * game's json specification.
+	 * 
+	 * @param jsonString
+	 *            a String to be read as and converted to a constellation of
+	 *            {@link InternalBoardObject}s
+	 * @return a constellation of {@link InternalBoardObject}s corresponding to
+	 *         the given json string
+	 */
+	public static InternalBoardObject convertInternalBoardObject(
+			String jsonString) {
+		JsonReader reader = new JsonReader();
+		JsonValue val = reader.parse(jsonString);
+
+		return convertInternalBoardObject(val);
+	}
+
+	/**
+	 * Converts a given {@link JsonValue} object into a constellation of
+	 * {@link InternalBoardObject}s, if it is well-formed according to the
+	 * game's json specification.
+	 * 
+	 * @param json
+	 *            an existing {@link JsonValue} representing a valid
+	 *            {@link BoardObject} constellation
+	 * @return a constellation of {@link InternalBoardObject}s corresponding to
+	 *         the content of the given {@link JsonValue}
+	 */
+	public static InternalBoardObject convertInternalBoardObject(JsonValue json) {
+		return dispatchInternalBoardObject(json);
+	}
+
+	/**
+	 * Treat a given json-formatted string as a representation of a
+	 * {@link Board} complying with the game's json specification. Then use it
+	 * to create a java instance of the {@link Board} and return it.
+	 * 
+	 * @param boardJson
+	 *            the json string to be converted to a {@link Board}
+	 * @return an instance of {@link Board} corresponding to the constellation
+	 *         described in the given json string
+	 */
+	public static Board convertBoard(String boardJson) {
+		JsonReader reader = new JsonReader();
+		JsonValue val = reader.parse(boardJson);
+
+		return convertBoard(val);
+	}
+
+	/**
+	 * Treat a given {@link JsonValue} object as a representation of a
+	 * {@link Board} complying with the game's json specification. Then use it
+	 * to create a java instance of the {@link Board} and return it.
+	 * 
+	 * @param board
+	 *            the {@link JsonValue} to be converted to a {@link Board}
+	 * @return an instance of {@link Board} corresponding to the constellation
+	 *         described in the given {@link JsonValue}
+	 */
+	public static Board convertBoard(JsonValue board) {
+		if (!board.hasChild("families")) {
+			throw new IllegalArgumentException(
+					"Illegal board: Did not find list \"families\" in given JsonValue.");
+		}
+
+		return toBoard(board);
+	}
+
+	/**
 	 * Dispatches a JsonValue by examining its "type" attribute to the
 	 * respective build*er function.
 	 * 
