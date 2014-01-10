@@ -1,5 +1,7 @@
 package de.croggle.game.level;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.utils.JsonValue;
 
 import de.croggle.AlligatorApp;
@@ -28,9 +30,15 @@ public class LoadLevelHelper {
 	 * @return the level denoted by the given indices/identifiers
 	 */
 	static Level instantiate(int packageIndex, int levelIndex, AlligatorApp game) {
-		
-		
-		return null;
+		JsonValue json = getJson(packageIndex, levelIndex);
+		Level level = null;
+		try {
+			level = fillGeneric(json, levelIndex, packageIndex);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+
+		return level;
 	}
 
 	/**
@@ -60,24 +68,33 @@ public class LoadLevelHelper {
 	 *            value
 	 * @param json
 	 *            The JSON object from which to read the level's properties
+	 * @throws IOException
+	 *             if there is an error reading the json file
 	 */
-	private static Level fillGeneric(JsonValue json, int levelIndex, int packageIndex) {
+	private static Level fillGeneric(JsonValue json, int levelIndex,
+			int packageIndex) throws IOException {
 		String leveltype = json.getString("type");
 		Level level = null;
-		if(leveltype.equals("multiple choice")){
-			level = fillMultipleChoice(json, levelIndex,packageIndex);
-		}else if(leveltype.equals("modification")){
+		if (leveltype.equals("multiple choice")) {
+			level = fillMultipleChoice(json, levelIndex, packageIndex);
+		} else if (leveltype.equals("color edit")) {
 			JsonValue data = json.getChild("data");
 			JsonValue initialBoard = data.getChild("initial constellation");
-			//TODO brauche bei JsonToAlligator ein Board zurück oder cast?
-			level = new MultipleChoiceLevel(levelIndex, packageIndex, null, null, null, null, leveltype, leveltype, 0, null, 0);
-		}else if(leveltype.equals("step count")){
-			
-		}else{
-			
+			// TODO brauche bei JsonToAlligator ein Board zurück oder cast?
+			level = new ColorEditLevel(levelIndex, packageIndex, null, null,
+					null, null, json.getString("hint"),
+					json.getString("description"),
+					json.getInt("abort simulation after"));
+		} else if (leveltype.equals("step count")) {
+			level = new TermEditLevel(levelIndex, packageIndex, null, null,
+					null, null, json.getString("hint"),
+					json.getString("description"),
+					json.getInt("abort simulation after"));
+
+		} else {
+			throw new IOException("Unspecified leveltype!");
 		}
 		return level;
-		
 
 	}
 
@@ -92,8 +109,14 @@ public class LoadLevelHelper {
 	 * @param json
 	 *            The JSON object from which to read the level's properties
 	 */
-	private static Level fillMultipleChoice(
-			JsonValue json, int levelIndex, int packageIndex) {
-			return null;
+	private static Level fillMultipleChoice(JsonValue json, int levelIndex,
+			int packageIndex) {
+		JsonValue data = json.getChild("data");
+		Level level = new MultipleChoiceLevel(levelIndex, packageIndex, null,
+				null, null, null, json.getString("hint"),
+				json.getString("description"),
+				json.getInt("abort simulation after"), null,
+				data.getInt("correct answer"));
+		return level;
 	}
 }
