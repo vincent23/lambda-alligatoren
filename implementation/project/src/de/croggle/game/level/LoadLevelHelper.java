@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.badlogic.gdx.utils.JsonValue;
 
 import de.croggle.AlligatorApp;
+import de.croggle.game.Color;
 import de.croggle.util.convert.JsonToAlligator;
 
 /**
@@ -81,12 +82,23 @@ public class LoadLevelHelper {
 			JsonValue data = json.getChild("data");
 			JsonValue initialBoard = data.getChild("initial constellation");
 			// TODO brauche bei JsonToAlligator ein Board zurück oder cast?
+			Color[] userColors = getColorfromJson(data.getChild("user colors"));
+			Color[] blockedColors = getColorfromJson(data
+					.getChild("blocked colors"));
+
 			level = new ColorEditLevel(levelIndex, packageIndex, null, null,
-					null, null, null, json.getString("hint"),
+					null, userColors, blockedColors, json.getString("hint"),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
-		} else if (leveltype.equals("step count")) {
-			level = new TermEditLevel(levelIndex, packageIndex, null, null, null, null, null, json.getString("hint"),
+		} else if (leveltype.equals("term edit")) {
+			JsonValue data = json.getChild("data");
+			JsonValue initialBoard = data.getChild("initial constellation");
+			// TODO brauche bei JsonToAlligator ein Board zurück oder cast?
+			Color[] userColors = getColorfromJson(data.getChild("user colors"));
+			Color[] blockedColors = getColorfromJson(data
+					.getChild("blocked colors"));
+			level = new TermEditLevel(levelIndex, packageIndex, null, null,
+					null, userColors, blockedColors, json.getString("hint"),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
 
@@ -112,8 +124,33 @@ public class LoadLevelHelper {
 			int packageIndex) {
 		JsonValue data = json.getChild("data");
 		Level level = new MultipleChoiceLevel(levelIndex, packageIndex, null,
-				null, null, null, null, json.getInt("abort simulation after"), null,
-				data.getInt("correct answer"));
+				null, null, json.getString("hint"), json.getString("description"), json.getInt("abort simulation after"),
+				null, data.getInt("correct answer"));
 		return level;
+	}
+
+	private static Color[] getColorfromJson(JsonValue json) {
+		int size = json.size;
+		if(!json.isArray()){
+			//TODO
+		}
+		if(size != 6){
+			//TODO Exception schreiben
+		}
+		Color[] color = new Color[size];
+		for( int i = 0; i < size; i++){
+			color[i]= new Color(json.getInt(i));
+		}
+		
+		for(int i = 0; i < size; i++ ){
+			int id = color[i].getId();
+			for(int k = 0; k < i; k++){
+				if(id == color[k].getId()){
+					//TODO Exception
+				}
+			}
+		}
+		return color;
+
 	}
 }
