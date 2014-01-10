@@ -1,8 +1,6 @@
 package de.croggle.game.level;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-
-import de.croggle.game.Color;
 import de.croggle.game.board.Board;
 
 /**
@@ -38,10 +36,9 @@ public class MultipleChoiceLevel extends Level {
 	 *            number of evaluation steps the simulation is aborted after
 	 */
 	public MultipleChoiceLevel(int levelIndex, int packageIndex,
-			Board initialBoard, Board goalBoard, Animation animation,
-			Color[] userColors, String hint, String description,
+			Board initialBoard, Board goalBoard, Animation animation,  String hint, String description,
 			int abortSimulationAfter, Board[] answers, int correctAnswer) {
-		super(levelIndex, packageIndex, initialBoard, goalBoard, animation, userColors,
+		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
 				hint, description, abortSimulationAfter);
 		this.answers = answers;
 		this.correctAnswer = correctAnswer;
@@ -60,7 +57,7 @@ public class MultipleChoiceLevel extends Level {
 	}
 	
 	/**
-	 * Method to get the ansers od this level.
+	 * Method to get the answers of this level.
 	 * 
 	 * @return the possible answers of this level.
 	 */

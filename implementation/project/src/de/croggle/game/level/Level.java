@@ -1,8 +1,6 @@
 package de.croggle.game.level;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-
-import de.croggle.game.Color;
 import de.croggle.game.board.Board;
 
 /**
@@ -15,8 +13,6 @@ public abstract class Level {
 	private Board initialBoard;
 	private Board goalBoard;
 	private Animation animation;
-
-	private Color[] userColors;
 	private String hint;
 	private String description;
 	private int abortSimulationAfter;
@@ -44,14 +40,13 @@ public abstract class Level {
 	 *            number of evaluation steps the simulation is aborted after
 	 */
 	public Level(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, Animation animation, Color[] userColors,
+			Board goalBoard, Animation animation,
 			String hint, String description, int abortSimulationAfter) {
 		this.levelIndex = levelIndex;
 		this.packageIndex = packageIndex;
 		this.initialBoard = initialBoard;
 		this.goalBoard = goalBoard;
 		this.animation = animation;
-		this.userColors = userColors;
 		this.hint = hint;
 		this.description = description;
 		this.abortSimulationAfter = abortSimulationAfter;
@@ -128,15 +123,6 @@ public abstract class Level {
 	 */
 	public String getDescription() {
 		return description;
-	}
-
-	/**
-	 * Gets the colors usable by the user.
-	 * 
-	 * @return an array of colors
-	 */
-	public Color[] getUserColors() {
-		return userColors;
 	}
 
 	/**

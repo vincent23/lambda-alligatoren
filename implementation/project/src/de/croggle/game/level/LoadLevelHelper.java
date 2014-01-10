@@ -82,12 +82,11 @@ public class LoadLevelHelper {
 			JsonValue initialBoard = data.getChild("initial constellation");
 			// TODO brauche bei JsonToAlligator ein Board zurück oder cast?
 			level = new ColorEditLevel(levelIndex, packageIndex, null, null,
-					null, null, json.getString("hint"),
+					null, null, null, json.getString("hint"),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
 		} else if (leveltype.equals("step count")) {
-			level = new TermEditLevel(levelIndex, packageIndex, null, null,
-					null, null, json.getString("hint"),
+			level = new TermEditLevel(levelIndex, packageIndex, null, null, null, null, null, json.getString("hint"),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
 
@@ -113,9 +112,7 @@ public class LoadLevelHelper {
 			int packageIndex) {
 		JsonValue data = json.getChild("data");
 		Level level = new MultipleChoiceLevel(levelIndex, packageIndex, null,
-				null, null, null, json.getString("hint"),
-				json.getString("description"),
-				json.getInt("abort simulation after"), null,
+				null, null, null, null, json.getInt("abort simulation after"), null,
 				data.getInt("correct answer"));
 		return level;
 	}
