@@ -1,0 +1,67 @@
+\documentclass[parskip=full]{scrreprt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{dirtree}% directory trees
+\usepackage{listings}% for source code listings
+\usepackage{xcolor}% for the json formatting to work without modification
+\usepackage{needspace}
+
+\begin{document}
+
+\chapter{Inhalte einer Level JSON Datei}
+\section{Multiple-Choice-Level}
+\dirtree{%
+.1 \emph{"'de{.}croggle"'} : Object - Namensraum.
+	.2 \emph{"'levels"'} : List - Liste mit Levelobjekten{.} Gewöhnlich nur ein Paket.
+		.3 : Object - Darstellung einzelner Levels.
+			.4 \emph{"'type"'} : "'multiple choice"'.
+			.4 \emph{"'description"'} : String - Beschreibung zu einem Level.
+			.4 \emph{"'design"'} : String - Pfad zu einem Leveldesign.
+			.4 \emph{"'abort simulation after"'} : Integer - Nach wie vielen Schritten ein Level gewonnen (positiv) oder verloren (negativ) ist.
+			.4 \emph{"'hints"'} : List - Strings mit Pfaden zu Hilfegrafiken.
+			.4 \emph{"'data"'} (multiple choice) : Object - Spezielle Daten für die einzelnen Leveltypen.
+				.5 \emph{"'initial"'} : Object - Board Objekt der An\-fangs\-kon\-stel\-la\-tion.
+				.5 \emph{"'answers"'} : List - Liste mit Board Objekten der möglichen Antworten.
+				.5 \emph{"'correct answer"'} : unsigned Integer - Der Index der richtigen Antwort zur Fragestellung.
+}
+
+\section{Färbe-Level}
+\dirtree{%
+.1 \emph{"'de{.}croggle"'} : Object - Namensraum.
+	.2 \emph{"'levels"'} : List - Liste mit Levelobjekten{.} Gewöhnlich nur ein Paket.
+		.3 : Object - Darstellung einzelner Levels.
+			.4 \emph{"'type"'} : "'color edit"'.
+			.4 \emph{"'description"'} : String - Beschreibung zu einem Level.
+			.4 \emph{"'design"'} : String - Pfad zu einem Leveldesign.
+			.4 \emph{"'abort simulation after"'} : Integer - Nach wie vielen Schritten ein Level gewonnen (positiv) oder verloren (negativ) ist.
+			.4 \emph{"'hints"'} : List - Strings mit Pfaden zu Hilfegrafiken.
+			.4 \emph{"'data"'} (multiple choice) : Object - Spezielle Daten für die einzelnen Leveltypen.
+				.5 \emph{"'initial constellation"'} : Object - Board Objekt der An\-fangs\-kon\-stel\-la\-tion.
+				.5 \emph{"'objective"'} : Object - Board Objekt der zu erreichenden Konstellation.
+				.5 \emph{"'blocked colors"'} : List - Liste mit Integer Werten, die blockierte Farben beschreiben.
+}
+
+\section{Einfüge-Level}
+\dirtree{%
+.1 \emph{"'de{.}croggle"'} : Object - Namensraum.
+	.2 \emph{"'levels"'} : List - Liste mit Levelobjekten{.} Gewöhnlich nur ein Paket.
+		.3 : Object - Darstellung einzelner Levels.
+			.4 \emph{"'type"'} : "'term edit"'.
+			.4 \emph{"'description"'} : String - Beschreibung zu einem Level.
+			.4 \emph{"'design"'} : String - Pfad zu einem Leveldesign.
+			.4 \emph{"'abort simulation after"'} : Integer - Nach wie vielen Schritten ein Level gewonnen (positiv) oder verloren (negativ) ist.
+			.4 \emph{"'hints"'} : List - Strings mit Pfaden zu Hilfegrafiken.
+			.4 \emph{"'data"'} (multiple choice) : Object - Spezielle Daten für die einzelnen Leveltypen.
+				.5 \emph{"'initial constellation"'} : Object - Board Objekt der An\-fangs\-kon\-stel\-la\-tion.
+				.5 \emph{"'objective"'} : Object - Board Objekt der zu erreichenden Konstellation.
+				.5 \emph{"'blocked colors"'} : List - Liste mit Integer Werten, die blockierte Farben beschreiben.
+				.5 \emph{"'blocked types"'} : List - String Liste mit Namen von Elementtypen, die im Level nicht platzierbar sind (egg, colored alligator, aged alligator).
+}
+\end{document}
