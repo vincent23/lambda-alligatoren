@@ -30,7 +30,7 @@ import de.croggle.game.board.operations.CreateWidthMap;
  * responsible for the correct positioning of the child. The advantage or result
  * of this is, that the parent enforces paddings.
  */
-public class BoardObjectActorBuilder implements BoardObjectVisitor {
+public class ActorLayoutBuilder implements BoardObjectVisitor {
 
 	// settings
 	/**
@@ -83,7 +83,7 @@ public class BoardObjectActorBuilder implements BoardObjectVisitor {
 	 */
 	private Vector2 currentPosition;
 
-	private BoardObjectActorBuilder(Board b, Vector2 treeOrigin,
+	private ActorLayoutBuilder(Board b, Vector2 treeOrigin,
 			int objectWidth, int objectHeight, double scalefactor,
 			int paddingHorizontal, int paddingVertical,
 			TreeGrowth horizontalGrowDirection, TreeGrowth verticalGrowDirection) {
@@ -142,7 +142,7 @@ public class BoardObjectActorBuilder implements BoardObjectVisitor {
 			Vector2 treeOrigin, int objectWidth, int objectHeight,
 			double scalefactor, int paddingHorizontal, int paddingVertical,
 			TreeGrowth horizontalGrowDirection, TreeGrowth verticalGrowDirection) {
-		BoardObjectActorBuilder builder = new BoardObjectActorBuilder(b,
+		ActorLayoutBuilder builder = new ActorLayoutBuilder(b,
 				treeOrigin, objectWidth, objectHeight, scalefactor,
 				paddingHorizontal, paddingVertical, horizontalGrowDirection,
 				verticalGrowDirection);

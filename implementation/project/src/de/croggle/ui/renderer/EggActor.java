@@ -1,6 +1,10 @@
 package de.croggle.ui.renderer;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import de.croggle.data.AssetManager;
 import de.croggle.game.board.Egg;
 
 /**
@@ -8,6 +12,10 @@ import de.croggle.game.board.Egg;
  */
 public class EggActor extends BoardObjectActor {
 
+	Texture tex;
+	TextureRegion texreg;
+	AssetManager assetManager;
+	
 	/**
 	 * Creates a new actor.
 	 * 
@@ -16,6 +24,8 @@ public class EggActor extends BoardObjectActor {
 	 */
 	public EggActor(Egg egg) {
 		super(egg);
+		
+		assetManager = AssetManager.getInstance();
 	}
 
 	/**

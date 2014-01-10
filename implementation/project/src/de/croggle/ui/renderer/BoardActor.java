@@ -112,7 +112,7 @@ public class BoardActor extends Actor implements BoardEventListener {
 	@Override
 	public void onBoardRebuilt(Board board) {
 		this.board = board;
-		this.actors = BoardObjectActorBuilder.build(board);
+		this.actors = ActorLayoutBuilder.build(board);
 	}
 
 	/**
