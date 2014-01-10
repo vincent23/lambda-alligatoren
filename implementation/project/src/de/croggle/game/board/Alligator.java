@@ -11,7 +11,7 @@ package de.croggle.game.board;
  **/
 public abstract class Alligator extends Parent implements InternalBoardObject {
 
-	private Parent parent = null;
+	private Parent parent;
 	private boolean movable;
 	private boolean removable;
 
@@ -40,6 +40,7 @@ public abstract class Alligator extends Parent implements InternalBoardObject {
 	 *            whether the board object is removable or not
 	 */
 	protected Alligator(boolean movable, boolean removable) {
+		this.parent = null;
 		this.movable = movable;
 		this.removable = removable;
 	}
