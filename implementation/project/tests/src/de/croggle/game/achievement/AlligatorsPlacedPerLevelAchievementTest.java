@@ -9,37 +9,33 @@ import de.croggle.data.TestLocalizationBackend;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.game.achievement.*;
 
-public class TimeAchievementTest extends TestCase {
+public class AlligatorsPlacedPerLevelAchievementTest extends TestCase {
 	
 	public void testInitialize() {
 		TestLocalizationBackend backend = new TestLocalizationBackend();
 		LocalizationHelper.setBackend(backend);
-		backend.putString("achievement_minutes_played", " minutes played");
-		backend.putString("achievement_hours_played", " hours played");
-		backend.putString("achievement_time_final", "played");
-		Achievement testAchievement = new TimeAchievement();
+		backend.putString("achievement_alligators_placed_per_level", " placed");
+		backend.putString("achievement_alligators_placed_per_level_final", "placed");
+		Achievement testAchievement = new AlligatorsPlacedPerLevelAchievement();
 		testAchievement.initialize();
 		assertTrue(testAchievement.getId() == -1);
-		int[] testStages = { 5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60, 120 * 60,
-				180 * 60, 300 * 60, 600 * 60, 6000 * 60 };
-		for (int i = 0; i < 10; i++) {
+		int[] testStages = { 2, 5, 10, 15, 25};
+		for (int i = 0; i < 5; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);
-			assertTrue(testAchievement.getDescription(i).endsWith("yed"));
+			assertTrue(testAchievement.getDescription(i).endsWith("placed"));
 		}
 	} 
 	
 	public void testIndexstuff() {
-		Achievement testAchievement = new TimeAchievement();
-		int[] testStages = { 5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60, 120 * 60,
-				180 * 60, 300 * 60, 600 * 60, 6000 * 60 };
+		Achievement testAchievement = new AlligatorsPlacedPerLevelAchievement();
+		int[] testStages = { 2, 5, 10, 15, 25};
 		testAchievement.setStages(testStages);
 		Statistic testStatistic = new Statistic();
-		testStatistic.setPlaytime(604);
+		testStatistic.setAlligatorsPlaced(5);
 		assertTrue(testAchievement.requirementsMet(testStatistic, testStatistic) == 2);
-		testStatistic.setPlaytime(15);
+		testStatistic.setAlligatorsPlaced(0);
 		assertTrue(testAchievement.requirementsMet(testStatistic, testStatistic) == 0);
 		
 		
 	}
-
 }
