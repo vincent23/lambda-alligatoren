@@ -12,8 +12,8 @@ import de.croggle.AlligatorApp;
 public abstract class AbstractScreen implements Screen {
 
 	protected AlligatorApp game;
-	protected Stage stage;
-	protected Table table;
+	protected final Stage stage;
+	protected final Table table;
 
 	/**
 	 * Superconstructor for all screens. Initializes everything they share, e.g.
@@ -24,13 +24,17 @@ public abstract class AbstractScreen implements Screen {
 	 */
 	public AbstractScreen(AlligatorApp game) {
 		this.game = game;
+		stage = new Stage();
+		table = new Table();
+		table.setFillParent(true);
+		stage.addActor(table);
 	}
 
 	/**
 	 * Called in order to cause the screen to release all resources held.
 	 */
 	public void dispose() {
-
+		stage.dispose();
 	}
 
 	/**
@@ -53,7 +57,8 @@ public abstract class AbstractScreen implements Screen {
 	 * Called when the screen should render itself.
 	 */
 	public void render(float delta) {
-
+		stage.draw();
+		stage.act(delta);
 	}
 
 	/**
