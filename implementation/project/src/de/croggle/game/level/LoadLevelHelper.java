@@ -71,9 +71,10 @@ public class LoadLevelHelper {
 	 *            The JSON object from which to read the level's properties
 	 * @throws IOException
 	 *             if there is an error reading the json file
+	 * @throws InvalidJsonException 
 	 */
 	private static Level fillGeneric(JsonValue json, int levelIndex,
-			int packageIndex) throws IOException {
+			int packageIndex) throws IOException, InvalidJsonException {
 		String leveltype = json.getString("type");
 		Level level = null;
 		if (leveltype.equals("multiple choice")) {
@@ -83,6 +84,9 @@ public class LoadLevelHelper {
 			JsonValue initialBoard = data.getChild("initial constellation");
 			// TODO brauche bei JsonToAlligator ein Board zurück oder cast?
 			Color[] userColors = getColorfromJson(data.getChild("user colors"));
+			if(userColors.length != 6){
+				throw new InvalidJsonException("The user color Array in this json file has to contain six items!");
+			}
 			Color[] blockedColors = getColorfromJson(data
 					.getChild("blocked colors"));
 
@@ -129,13 +133,10 @@ public class LoadLevelHelper {
 		return level;
 	}
 
-	private static Color[] getColorfromJson(JsonValue json) {
+	private static Color[] getColorfromJson(JsonValue json) throws InvalidJsonException {
 		int size = json.size;
 		if(!json.isArray()){
-			//TODO
-		}
-		if(size != 6){
-			//TODO Exception schreiben
+			throw new InvalidJsonException("There seems to be no Color array in this json file.");
 		}
 		Color[] color = new Color[size];
 		for( int i = 0; i < size; i++){
@@ -146,7 +147,7 @@ public class LoadLevelHelper {
 			int id = color[i].getId();
 			for(int k = 0; k < i; k++){
 				if(id == color[k].getId()){
-					//TODO Exception
+					throw new InvalidJsonException("There is two times the same color.");
 				}
 			}
 		}
