@@ -1,9 +1,12 @@
 package de.croggle.ui.renderer;
 
+import java.util.List;
 import java.util.Map;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
@@ -11,18 +14,18 @@ import de.croggle.game.board.BoardObject;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
-import de.croggle.game.board.operations.FlattenToArray;
+import de.croggle.game.board.Parent;
+import de.croggle.game.board.operations.FlattenTree;
 import de.croggle.game.event.BoardEventListener;
 
 /**
  * An actor used for representing a whole board, i.e. an alligator
  * constellation.
  */
-public class BoardActor implements BoardEventListener {
+public class BoardActor extends Actor implements BoardEventListener {
 
 	private Map<InternalBoardObject, BoardObjectActor> actors;
 	private Board board;
-	private Stage stage;
 
 	/**
 	 * Creates a new actor.
@@ -31,11 +34,10 @@ public class BoardActor implements BoardEventListener {
 	 */
 	public BoardActor(Board board) {
 		this.board = board;
-		this.stage = new Stage();
 	}
 
 	/**
-	 * Draws the actor. coordinate system.
+	 * Draws the actor.
 	 * 
 	 * @param batch
 	 *            the sprite batch specifies where to draw into
@@ -43,7 +45,9 @@ public class BoardActor implements BoardEventListener {
 	 *            the parent's alpha value
 	 */
 	public void draw(SpriteBatch batch, float parentAlpha) {
-		stage.draw();
+		for(BoardObjectActor boa : actors.values()) {
+			boa.draw(batch, parentAlpha);
+		}
 	}
 
 	/**
@@ -53,7 +57,7 @@ public class BoardActor implements BoardEventListener {
 	 *            time in seconds since the last update
 	 */
 	public void act(float delta) {
-		stage.act();
+		super.act(delta); // makes progress on every action
 	}
 
 	/**
@@ -77,8 +81,15 @@ public class BoardActor implements BoardEventListener {
 	 */
 	@Override
 	public void onEat(ColoredAlligator eater, InternalBoardObject eatenFamily) {
-		((ColoredAlligatorActor) actors.get(eater)).enterEatingState();
-		BoardObject[] eatenArr = FlattenToArray.flatten(eatenFamily);
+		ColoredAlligatorActor eaterActor = ((ColoredAlligatorActor) actors.get(eater));
+		eaterActor.enterEatingState();
+		List<InternalBoardObject> eatenLst = FlattenTree.toList(eatenFamily);
+		for (InternalBoardObject eaten : eatenLst) {
+			MoveToAction action = new MoveToAction();
+			action.setPosition(eaterActor.getX(), eaterActor.getY());
+			action.setDuration(0.2f);
+			actors.get(eaten).addAction(action);
+		}
 	}
 
 	/**
@@ -115,5 +126,8 @@ public class BoardActor implements BoardEventListener {
 	 */
 	@Override
 	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
+		actors.remove(replacedEgg);
+		Parent p = replacedEgg.getParent();
+		//ActorLayoutFixer.fixOnRemove(p, p.getChildPosition(bornFamily), childWidth, stillPresent, actors, growth, animationlength);
 	}
 }

@@ -32,19 +32,6 @@ import de.croggle.game.board.operations.CreateWidthMap;
  */
 public class BoardObjectActorBuilder implements BoardObjectVisitor {
 
-	public static enum TreeGrowth {
-		/**
-		 * Enum value representing tree growth from negative values to positive
-		 * values, i.e. growth following the axis' direction.
-		 */
-		NEG_POS,
-		/**
-		 * Enum value representing tree growth from positive values to negative
-		 * values, i.e. growth inverse to the axis
-		 */
-		POS_NEG
-	}
-
 	// settings
 	/**
 	 * The relative size of a child as compared to its parent.
@@ -217,7 +204,7 @@ public class BoardObjectActorBuilder implements BoardObjectVisitor {
 
 	@Override
 	public void visitBoard(Board board) {
-		board.acceptOnChildren(this);
+		layoutChildren(board);
 	}
 
 	private float getScaling() {
