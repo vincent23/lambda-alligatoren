@@ -29,6 +29,7 @@ public class HintPerLevelAchievementTest extends TestCase {
 
 	public void testIndexStuff() {
 		Achievement testAchievement = new HintPerLevelAchievement();
+		testAchievement.setIndex(0);
 		int[] testStages = { 0 };
 		testAchievement.setStages(testStages);
 		Statistic testStatistic = new Statistic();

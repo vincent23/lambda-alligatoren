@@ -17,7 +17,7 @@ public class AlligatorsPlacedPerLevelAchievement extends PerLevelAchievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int alligatorsPlacedPerLevel = statisticDelta.getAlligatorsPlaced();
-		while (alligatorsPlacedPerLevel >= getStage(index)) {
+		while (index < getNumberOfStages() && alligatorsPlacedPerLevel >= getStage(index)) {
 			index++;
 		}
 		// TODO: decide whether I have to correct the index of the Achievement
@@ -28,6 +28,7 @@ public class AlligatorsPlacedPerLevelAchievement extends PerLevelAchievement {
 
 	@Override
 	public void initialize() {
+		setIndex(0);
 		int[] stages = { 2, 5, 10, 15, 25};
 		String[] emblemPath = new String[1]; // TODO: Path to the Emblems
 												// reintun.

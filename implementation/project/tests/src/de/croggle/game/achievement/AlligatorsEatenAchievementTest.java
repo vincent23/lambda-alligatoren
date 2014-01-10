@@ -34,9 +34,14 @@ public class AlligatorsEatenAchievementTest extends TestCase {
 				500, 750, 1250, 2500 };
 		testAchievement.setStages(testStages);
 		Statistic testStatistic = new Statistic();
-		testStatistic.setAlligatorsEaten(49);
+		testStatistic.setAlligatorsEaten(2700);
+	//	System.out.println(testAchievement.requirementsMet(testStatistic, testStatistic));
+		assertTrue(testAchievement.requirementsMet(testStatistic, testStatistic) == 10);
+		testStatistic.setAlligatorsEaten(31);
+		testAchievement.setIndex(0);
 		assertTrue(testAchievement.requirementsMet(testStatistic, testStatistic) == 2);
 		testStatistic.setAlligatorsEaten(4);
+		testAchievement.setIndex(0);
 		assertTrue(testAchievement.requirementsMet(testStatistic, testStatistic) == 0);
 		
 		

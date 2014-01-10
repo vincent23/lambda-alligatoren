@@ -34,6 +34,8 @@ public class TimeAchievementTest extends TestCase {
 				180 * 60, 300 * 60, 600 * 60, 6000 * 60 };
 		testAchievement.setStages(testStages);
 		Statistic testStatistic = new Statistic();
+		testStatistic.setPlaytime(6001*60);
+		assertTrue(testAchievement.requirementsMet(testStatistic, testStatistic) == 10);
 		testStatistic.setPlaytime(604);
 		assertTrue(testAchievement.requirementsMet(testStatistic, testStatistic) == 2);
 		testStatistic.setPlaytime(15);

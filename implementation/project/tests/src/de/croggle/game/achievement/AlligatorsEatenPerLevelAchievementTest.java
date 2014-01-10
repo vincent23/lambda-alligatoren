@@ -26,11 +26,16 @@ public class AlligatorsEatenPerLevelAchievementTest extends TestCase {
 		}
 	}
 
-	public void testIndexstuff() {
+	public void testIndexStuff() {
 		Achievement testAchievement = new AlligatorsEatenPerLevelAchievement();
 		int[] testStages = { 1, 2, 5, 10, 20};
 		testAchievement.setStages(testStages);
 		Statistic testStatistic = new Statistic();
+		testStatistic.setAlligatorsEaten(30);
+		System.out.println(testAchievement
+				.requirementsMet(testStatistic, testStatistic));
+		assertTrue(testAchievement
+				.requirementsMet(testStatistic, testStatistic) == 5);
 		testStatistic.setAlligatorsEaten(4);
 		assertTrue(testAchievement
 				.requirementsMet(testStatistic, testStatistic) == 2);

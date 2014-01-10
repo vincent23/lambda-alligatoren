@@ -31,6 +31,8 @@ public class AlligatorsPlacedPerLevelAchievementTest extends TestCase {
 		int[] testStages = { 2, 5, 10, 15, 25};
 		testAchievement.setStages(testStages);
 		Statistic testStatistic = new Statistic();
+		testStatistic.setAlligatorsPlaced(30);
+		assertTrue(testAchievement.requirementsMet(testStatistic, testStatistic) == 5);
 		testStatistic.setAlligatorsPlaced(5);
 		assertTrue(testAchievement.requirementsMet(testStatistic, testStatistic) == 2);
 		testStatistic.setAlligatorsPlaced(0);

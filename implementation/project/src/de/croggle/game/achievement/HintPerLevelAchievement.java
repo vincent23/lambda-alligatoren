@@ -17,7 +17,7 @@ public class HintPerLevelAchievement extends PerLevelAchievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int hintsUsed = statisticDelta.getUsedHints();
-		while (hintsUsed <= getStage(index)) { // careful: this time its <
+		while (index < getNumberOfStages() && hintsUsed <= getStage(index)) { // careful: this time its <
 												// instead of >
 			index++;
 		}
@@ -28,6 +28,7 @@ public class HintPerLevelAchievement extends PerLevelAchievement {
 
 	@Override
 	public void initialize() {
+		setIndex(0);
 		int[] stages = {0};
 		String[] emblemPath = new String[1]; // TODO: Path to the Emblems
 												// reintun.

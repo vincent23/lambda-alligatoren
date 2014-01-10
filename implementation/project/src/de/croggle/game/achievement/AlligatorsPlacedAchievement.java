@@ -16,7 +16,7 @@ public class AlligatorsPlacedAchievement extends Achievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int alligatorsPlaced = statistic.getAlligatorsPlaced();
-		while (alligatorsPlaced >= getStage(index)) {
+		while (index < getNumberOfStages() && alligatorsPlaced >= getStage(index)) {
 			index++;
 		}
 		// TODO: decide whether I have to correct the index of the Achievement
@@ -26,6 +26,7 @@ public class AlligatorsPlacedAchievement extends Achievement {
 
 	@Override
 	public void initialize() {
+		setIndex(0);
 		int[] stages = { 10, 25, 50,  100, 200, 300, 500, 750, 1000, 2000 };
 		String[] emblemPath = new String[1]; // TODO: Path zu den Emblems
 												// reintun.

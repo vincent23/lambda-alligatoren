@@ -16,16 +16,17 @@ public class TimeAchievement extends Achievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int newTime = statistic.getPlaytime();
-		while (newTime >= getStage(index)) {
+		while (index < getNumberOfStages() && newTime >= getStage(index)) {
 			index++;
 		}
 		// TODO: decide whether I have to correct the index of the Achievement
-		// here.
+		// here
 		return index;
 	}
 
 	@Override
 	public void initialize() {
+		setIndex(0);
 		int[] stages = { 5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60, 120 * 60,
 				180 * 60, 300 * 60, 600 * 60, 6000 * 60 };
 		String[] emblemPath = new String[1]; // TODO: Path zu den Emblems

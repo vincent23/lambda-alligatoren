@@ -17,17 +17,19 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int alligatorsEatenPerLevel = statisticDelta.getAlligatorsEaten();
-		while (alligatorsEatenPerLevel >= getStage(index)) {
+		while (index < getNumberOfStages() && alligatorsEatenPerLevel >= getStage(index)) {
 			index++;
 		}
 		// TODO: decide whether I have to correct the index of the Achievement
 		// here.
+	
 		return index;
 
 	}
 
 	@Override
 	public void initialize() {
+		setIndex(0);
 		int[] stages = { 1, 2, 5, 10, 20};
 		String[] emblemPath = new String[1]; // TODO: Path to the Emblems
 												// reintun.

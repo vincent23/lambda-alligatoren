@@ -16,16 +16,17 @@ public class AlligatorsEatenAchievement extends Achievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int alligatorsEaten = statistic.getAlligatorsEaten();
-		while (alligatorsEaten >= getStage(index)) {
+		while (index < getNumberOfStages() && alligatorsEaten >= getStage(index)) {
 			index++;
 		}
 		// TODO: decide whether I have to correct the index of the Achievement
-		// here.
+		// here.: I did: I ll do it
 		return index;
 	}
 
 	@Override
 	public void initialize() {
+		setIndex(0);
 		int[] stages = { 5, 20, 50, 100, 175, 250,
 				500, 750, 1250, 2500 };
 		String[] emblemPath = new String[1]; // TODO: Path zu den Emblems

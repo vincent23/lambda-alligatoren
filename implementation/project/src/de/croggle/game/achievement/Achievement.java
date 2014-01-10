@@ -114,4 +114,8 @@ public abstract class Achievement {
 		this.stages = stages;
 	}
 
+	public int getNumberOfStages() {
+		return stages.length;
+	}
+
 }

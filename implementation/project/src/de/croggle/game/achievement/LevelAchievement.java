@@ -15,7 +15,7 @@ public class LevelAchievement extends Achievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int newLevelsComplete = statistic.getLevelsComplete();
-		while (newLevelsComplete >= getStage(index)) {
+		while (index < getNumberOfStages() && newLevelsComplete >= getStage(index)) {
 			index++;
 		}
 		// TODO: decide whether I have to correct the index of the Achievement
@@ -25,6 +25,7 @@ public class LevelAchievement extends Achievement {
 
 	@Override
 	public void initialize() {
+		setIndex(0);
 		int[] stages = { 1, 2, 4, 6, 8, 10, 12 };
 		String[] emblemPath = new String[1]; // TODO: Path zu den Emblems
 												// reintun.
