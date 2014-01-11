@@ -2,11 +2,11 @@ package de.croggle.ui.renderer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 import de.croggle.data.AssetManager;
 import de.croggle.game.ColorController;
@@ -21,7 +21,7 @@ public class EggActor extends ColoredBoardObjectActor {
 	TextureRegion mask;
 	TextureRegion foreground;
 	AssetManager assetManager;
-	ShapeRenderer shapes;
+	Texture background;
 
 	/**
 	 * Creates a new actor.
@@ -38,11 +38,56 @@ public class EggActor extends ColoredBoardObjectActor {
 		tex = assetManager.get("textures/pack.atlas", TextureAtlas.class);
 		mask = tex.findRegion("egg/background");
 		foreground = tex.findRegion("egg/foreground");
-		shapes = new ShapeRenderer();
 		this.setWidth(foreground.getRegionWidth());
 		this.setHeight(foreground.getRegionHeight());
+		Pixmap bg = new Pixmap((int)getWidth(), (int)getHeight(), Pixmap.Format.RGB888);
+		bg.setColor(controller.getRepresentation(((Egg)this.object).getColor()));
+		bg.fill();
+		background = new Texture(bg);
 	}
 
+	
+	private void drawBackground(SpriteBatch batch, float width, float height) {
+		//now that the buffer has our alpha, we simply draw the sprite with the mask applied
+		Gdx.gl.glColorMask(true, true, true, true);
+		batch.setBlendFunction(GL10.GL_DST_ALPHA, GL10.GL_ONE_MINUS_DST_ALPHA);
+		
+		//The scissor test is optional, but it depends 
+		//Gdx.gl.glEnable(GL10.GL_SCISSOR_TEST);
+		//Gdx.gl.glScissor(clipX, clipY, clipWidth, clipHeight);
+		
+		//draw our background to be masked
+		batch.draw(background, 0, 0, width, height);
+		
+		batch.flush();
+		//disable scissor before continuing
+		//Gdx.gl.glDisable(GL10.GL_SCISSOR_TEST);
+	}
+	
+	private void drawAlphaMask(SpriteBatch batch, float width, float height) {
+		//disable RGB color, only enable ALPHA to the frame buffer
+		Gdx.gl.glColorMask(false, false, false, true);
+		
+		//change the blending function for our alpha map
+		batch.setBlendFunction(GL10.GL_ONE, GL10.GL_ZERO);
+		
+		//draw alpha mask sprite(s)
+		batch.draw(mask, 0, 0, width, height);
+		
+		//flush the batch to the GPU
+		batch.flush();
+	}
+	
+	private void drawForeground(SpriteBatch batch, float width, float height) {
+		//regular blending mode
+		batch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+		
+		batch.draw(foreground, 0, 0, width, height);
+		
+		//flush the batch to the GPU
+		batch.flush();
+	}
+	
 	/**
 	 * Draws the actor. The sprite batch is configured to draw in he parent's
 	 * coordinate system.
@@ -54,51 +99,20 @@ public class EggActor extends ColoredBoardObjectActor {
 	 */
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
-		//batch.begin(); // called by stage.draw in AbstractScreen
-		// 2. clear our depth buffer with 1.0
-		Gdx.gl.glClearDepthf(1f);
-		Gdx.gl.glClear(GL10.GL_DEPTH_BUFFER_BIT);
-
-		// 3. set the function to LESS
-		Gdx.gl.glDepthFunc(GL10.GL_LESS);
-
-		// 4. enable depth writing
-		Gdx.gl.glEnable(GL10.GL_DEPTH_TEST);
-
-		// 5. Enable depth writing, disable RGBA color writing
-		Gdx.gl.glDepthMask(true);
-		Gdx.gl.glColorMask(false, false, false, false);
-
-		// /////////// Draw mask
-
-		// 6. render your primitive shapes
-		batch.draw(mask, 0, 0, getWidth(), getHeight());
+		float w = getWidth();
+		float h = getHeight();
 		
-		batch.end();
-
-		// /////////// Draw sprite(s) to be masked
-		shapes.begin(ShapeType.Filled);
-
-		// 8. Enable RGBA color writing
-		Gdx.gl.glDepthMask(false);
-		Gdx.gl.glColorMask(true, true, true, true);
-
-		// 9. Make sure testing is enabled.
-		Gdx.gl.glEnable(GL10.GL_DEPTH_TEST);
-
-		// 10. Now depth discards pixels outside our masked shapes
-		Gdx.gl.glDepthFunc(GL10.GL_EQUAL);
-
-		// push to the batch
-		shapes.setColor(controller.getRepresentation(((Egg)this.object).getColor()));
-		shapes.rect(0, 0, getWidth(), getHeight());
-
-		// end/flush your batch
-		shapes.end();
+		// just to make sure
+		batch.enableBlending();
 		
-		batch.begin();
-		batch.draw(foreground, 0, 0, getWidth(), getHeight());
-		//batch.end(); // called by stage.draw in AbstractScreen
+		//draw the alpha mask
+		drawAlphaMask(batch, w, h);
+		
+		//draw our foreground elements
+		drawBackground(batch, w, h);
+		
+		//draw background
+		drawForeground(batch, w, h);
 	}
 
 	/**
