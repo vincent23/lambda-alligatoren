@@ -9,12 +9,13 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 import de.croggle.data.AssetManager;
+import de.croggle.game.ColorController;
 import de.croggle.game.board.Egg;
 
 /**
  * An actor used for representing an egg.
  */
-public class EggActor extends BoardObjectActor {
+public class EggActor extends ColoredBoardObjectActor {
 
 	TextureAtlas tex;
 	TextureRegion mask;
@@ -28,8 +29,8 @@ public class EggActor extends BoardObjectActor {
 	 * @param egg
 	 *            The egg represented by the actor
 	 */
-	public EggActor(Egg egg) {
-		super(egg);
+	public EggActor(Egg egg, ColorController controller) {
+		super(egg, controller);
 
 		assetManager = AssetManager.getInstance();
 		assetManager.load("textures/pack", TextureAtlas.class);

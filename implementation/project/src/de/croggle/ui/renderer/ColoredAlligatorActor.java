@@ -6,7 +6,7 @@ import de.croggle.game.board.ColoredAlligator;
 /**
  * An actor used for representing a colored alligator.
  */
-public class ColoredAlligatorActor extends ParentActor {
+public class ColoredAlligatorActor extends BoardObjectActor {
 
 	/**
 	 * Creates a new actor.

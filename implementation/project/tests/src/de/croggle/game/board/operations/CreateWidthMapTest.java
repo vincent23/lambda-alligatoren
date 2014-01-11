@@ -20,10 +20,10 @@ public class CreateWidthMapTest extends TestCase {
 		Egg e2 = new Egg(true, true, new Color(1), true);
 		b.addChild(e2);
 
-		Map<BoardObject, Double> map = CreateWidthMap.create(b);
-		assertEquals(2.0, map.get(b));
-		assertEquals(1.0, map.get(a));
-		assertEquals(1.0, map.get(e1));
-		assertEquals(1.0, map.get(e2));
+		Map<BoardObject, Float> map = CreateWidthMap.create(b);
+		assertEquals(2.0f, map.get(b));
+		assertEquals(1.0f, map.get(a));
+		assertEquals(1.0f, map.get(e1));
+		assertEquals(1.0f, map.get(e2));
 	}
 }

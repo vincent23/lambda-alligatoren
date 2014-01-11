@@ -14,16 +14,16 @@ import de.croggle.game.board.Parent;
 
 public class CreateWidthMap implements BoardObjectVisitor {
 
-	private Map<BoardObject, Double> widthMap;
+	private Map<BoardObject, Float> widthMap;
 
-	private final int objectWidth;
-	private final double scaleFactor;
-	private final int padding;
+	private final float objectWidth;
+	private final float scaleFactor;
+	private final float padding;
 
-	private double scaling = 1;
+	private float scaling = 1;
 
-	private CreateWidthMap(int objectWidth, double depthScaleFactor, int padding) {
-		this.widthMap = new HashMap<BoardObject, Double>();
+	private CreateWidthMap(float objectWidth, float depthScaleFactor, float padding) {
+		this.widthMap = new HashMap<BoardObject, Float>();
 		this.objectWidth = objectWidth;
 		this.scaleFactor = depthScaleFactor;
 		this.padding = padding;
@@ -50,8 +50,8 @@ public class CreateWidthMap implements BoardObjectVisitor {
 	 * @return a map containing {@link BoardObject}s and their respective width,
 	 *         in regard of the given parameters
 	 */
-	public static Map<BoardObject, Double> create(BoardObject b,
-			int objectWidth, double depthScaleFactor, int padding) {
+	public static Map<BoardObject, Float> create(BoardObject b,
+			float objectWidth, float depthScaleFactor, float padding) {
 		CreateWidthMap creator = new CreateWidthMap(objectWidth,
 				depthScaleFactor, padding);
 		b.accept(creator);
@@ -66,7 +66,7 @@ public class CreateWidthMap implements BoardObjectVisitor {
 	 *            the BoardObject to create a width map for
 	 * @return a map containing {@link BoardObject}s and their respective width
 	 */
-	public static Map<BoardObject, Double> create(BoardObject b) {
+	public static Map<BoardObject, Float> create(BoardObject b) {
 		return create(b, 1, 1, 0);
 	}
 
@@ -91,8 +91,8 @@ public class CreateWidthMap implements BoardObjectVisitor {
 	}
 
 	private void visitParent(Parent p) {
-		double width = getObectWidth();
-		double childWidth = 0;
+		float width = getObectWidth();
+		float childWidth = 0;
 		goDeeper();
 		Iterator<InternalBoardObject> it = p.iterator();
 		while (it.hasNext()) {
@@ -122,7 +122,7 @@ public class CreateWidthMap implements BoardObjectVisitor {
 		this.scaling /= scaleFactor;
 	}
 
-	private double getObectWidth() {
+	private float getObectWidth() {
 		return scaling * objectWidth;
 	}
 }

@@ -47,6 +47,15 @@ public class GameController implements BoardEventListener {
 	}
 
 	/**
+	 * Returns the gam's ColorController.
+	 * 
+	 * @return the game's current ColorController
+	 */
+	public ColorController getColorController() {
+		return this.colorController;
+	}
+	
+	/**
 	 * prepare to switch game mode to placement, in which the player is able to
 	 * manipulate the board.
 	 */

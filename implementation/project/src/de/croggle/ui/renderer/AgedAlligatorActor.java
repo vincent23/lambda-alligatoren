@@ -6,7 +6,7 @@ import de.croggle.game.board.AgedAlligator;
 /**
  * An actor used for representing an aged alligator.
  */
-public class AgedAlligatorActor extends ParentActor {
+public class AgedAlligatorActor extends BoardObjectActor {
 
 	/**
 	 * Creates a new actor.
