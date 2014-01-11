@@ -39,6 +39,8 @@ public class EggActor extends ColoredBoardObjectActor {
 		mask = tex.findRegion("egg/background");
 		foreground = tex.findRegion("egg/foreground");
 		shapes = new ShapeRenderer();
+		this.setWidth(foreground.getRegionWidth());
+		this.setHeight(foreground.getRegionHeight());
 	}
 
 	/**
@@ -70,7 +72,7 @@ public class EggActor extends ColoredBoardObjectActor {
 		// /////////// Draw mask
 
 		// 6. render your primitive shapes
-		batch.draw(mask, 0, 0);
+		batch.draw(mask, 0, 0, getWidth(), getHeight());
 		
 		batch.end();
 
@@ -78,7 +80,7 @@ public class EggActor extends ColoredBoardObjectActor {
 		shapes.begin(ShapeType.Filled);
 
 		// 8. Enable RGBA color writing
-		// (SpriteBatch.begin() will disable depth mask)
+		Gdx.gl.glDepthMask(false);
 		Gdx.gl.glColorMask(true, true, true, true);
 
 		// 9. Make sure testing is enabled.
@@ -88,13 +90,14 @@ public class EggActor extends ColoredBoardObjectActor {
 		Gdx.gl.glDepthFunc(GL10.GL_EQUAL);
 
 		// push to the batch
+		shapes.setColor(controller.getRepresentation(((Egg)this.object).getColor()));
 		shapes.rect(0, 0, getWidth(), getHeight());
 
 		// end/flush your batch
 		shapes.end();
 		
 		batch.begin();
-		batch.draw(foreground, 0, 0);
+		batch.draw(foreground, 0, 0, getWidth(), getHeight());
 		//batch.end(); // called by stage.draw in AbstractScreen
 	}
 
