@@ -1,6 +1,8 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
@@ -57,6 +59,7 @@ public abstract class AbstractScreen implements Screen {
 	 * Called when the screen should render itself.
 	 */
 	public void render(float delta) {
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		stage.draw();
 		stage.act(delta);
 	}

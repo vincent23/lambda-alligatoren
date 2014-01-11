@@ -33,9 +33,9 @@ public class EggActor extends ColoredBoardObjectActor {
 		super(egg, controller);
 
 		assetManager = AssetManager.getInstance();
-		assetManager.load("textures/pack", TextureAtlas.class);
+		assetManager.load("textures/pack.atlas", TextureAtlas.class);
 		assetManager.finishLoading();
-		tex = assetManager.get("textures/pack", TextureAtlas.class);
+		tex = assetManager.get("textures/pack.atlas", TextureAtlas.class);
 		mask = tex.findRegion("egg/background");
 		foreground = tex.findRegion("egg/foreground");
 		shapes = new ShapeRenderer();
@@ -52,8 +52,7 @@ public class EggActor extends ColoredBoardObjectActor {
 	 */
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
-		
-		batch.begin();
+		//batch.begin(); // called by stage.draw in AbstractScreen
 		// 2. clear our depth buffer with 1.0
 		Gdx.gl.glClearDepthf(1f);
 		Gdx.gl.glClear(GL10.GL_DEPTH_BUFFER_BIT);
@@ -96,7 +95,7 @@ public class EggActor extends ColoredBoardObjectActor {
 		
 		batch.begin();
 		batch.draw(foreground, 0, 0);
-		batch.end();
+		//batch.end(); // called by stage.draw in AbstractScreen
 	}
 
 	/**
@@ -107,6 +106,7 @@ public class EggActor extends ColoredBoardObjectActor {
 	 */
 	@Override
 	public void act(float delta) {
+		super.act(delta);
 	}
 
 	/**

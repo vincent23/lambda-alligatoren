@@ -44,6 +44,7 @@ public class GameController implements BoardEventListener {
 	 *            the level the GameController should work with
 	 */
 	public GameController(Level level) {
+		this.colorController = new ColorController();
 	}
 
 	/**
