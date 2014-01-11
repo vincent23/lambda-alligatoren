@@ -2,7 +2,12 @@ package de.croggle.ui.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
@@ -16,6 +21,8 @@ public abstract class AbstractScreen implements Screen {
 	protected AlligatorApp game;
 	protected final Stage stage;
 	protected final Table table;
+	private Texture background;
+	private OrthographicCamera camera;
 
 	/**
 	 * Superconstructor for all screens. Initializes everything they share, e.g.
@@ -30,6 +37,12 @@ public abstract class AbstractScreen implements Screen {
 		table = new Table();
 		table.setFillParent(true);
 		stage.addActor(table);
+
+		Gdx.input.setInputProcessor(stage);
+
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, 1024, 600);
+
 	}
 
 	/**
@@ -37,6 +50,7 @@ public abstract class AbstractScreen implements Screen {
 	 */
 	public void dispose() {
 		stage.dispose();
+		background.dispose();
 	}
 
 	/**
@@ -60,6 +74,20 @@ public abstract class AbstractScreen implements Screen {
 	 */
 	public void render(float delta) {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+
+		camera.update();
+
+		// tell the SpriteBatch to render in the
+		// coordinate system specified by the camera.
+		game.batch.setProjectionMatrix(camera.combined);
+
+		// begin a new batch and draw the background
+		if (background != null) {
+			game.batch.begin();
+			game.batch.draw(background, 0, 0);
+			game.batch.end();
+		}
+
 		stage.draw();
 		stage.act(delta);
 	}
@@ -75,7 +103,7 @@ public abstract class AbstractScreen implements Screen {
 	 *            the height, which the newly resized screen will have.
 	 */
 	public void resize(int width, int height) {
-
+		stage.setViewport(1024, 600, true);
 	}
 
 	/**
@@ -90,5 +118,19 @@ public abstract class AbstractScreen implements Screen {
 	 */
 	public void show() {
 
+	}
+
+	public void setBackground(String backgroundPath) {
+		AssetManager manager = de.croggle.data.AssetManager.getInstance();
+		TextureLoader.TextureParameter backgroundParams = new TextureLoader.TextureParameter();
+		// backgroundParams.minFilter = TextureFilter.MipMapLinearLinear;
+		// backgroundParams.magFilter = TextureFilter.MipMapLinearLinear;
+		backgroundParams.genMipMaps = true;
+
+		manager.load(backgroundPath, Texture.class, backgroundParams);
+		manager.finishLoading();
+		background = game.getAssetManager().get(backgroundPath, Texture.class);
+		background.setFilter(TextureFilter.MipMapLinearLinear,
+				TextureFilter.MipMapLinearLinear);
 	}
 }

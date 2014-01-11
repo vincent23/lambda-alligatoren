@@ -1,12 +1,14 @@
 package de.croggle.ui.screens;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.TextureLoader;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import de.croggle.AlligatorApp;
+import de.croggle.ui.StyleHelper;
 
 /**
  * Screen, which shows the central menu one uses to navigate into every other
@@ -14,9 +16,6 @@ import de.croggle.AlligatorApp;
  * Abbildung 9''.
  */
 public class MainMenuScreen extends AbstractScreen {
-
-	Texture background;;
-	OrthographicCamera camera;
 
 	/**
 	 * Creates the main menu screen from whom the player can navigate into the
@@ -28,37 +27,47 @@ public class MainMenuScreen extends AbstractScreen {
 	 */
 	public MainMenuScreen(AlligatorApp app) {
 		super(app);
-		AssetManager manager = app.getAssetManager();
-		TextureLoader.TextureParameter backgroundParams = new TextureLoader.TextureParameter();
-		// backgroundParams.minFilter = TextureFilter.MipMapLinearLinear;
-		// backgroundParams.magFilter = TextureFilter.MipMapLinearLinear;
-		backgroundParams.genMipMaps = true;
-		manager.load("textures/swamp.png", Texture.class, backgroundParams);
-		manager.finishLoading();
-		background = game.getAssetManager().get("textures/swamp.png",
-				Texture.class);
-		background.setFilter(TextureFilter.MipMapLinearLinear,
-				TextureFilter.MipMapLinearLinear);
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 1024, 600);
+
+		setBackground("textures/swamp.png");
+
+		// do all the button stuff
+		fillTable();
 	}
 
 	@Override
 	public void render(float delta) {
-		camera.update();
-
-		// tell the SpriteBatch to render in the
-		// coordinate system specified by the camera.
-		game.batch.setProjectionMatrix(camera.combined);
-
-		// begin a new batch and draw the background
-		game.batch.begin();
-		game.batch.draw(background, 0, 0);
-		game.batch.end();
+		super.render(delta);
 	}
 
 	@Override
 	public void dispose() {
-		background.dispose();
+		super.dispose();
+	}
+
+	private void fillTable() {
+		StyleHelper.getInstance();
+		AssetManager manager = de.croggle.data.AssetManager.getInstance();
+		Table profileButtonTable = new Table();
+		Table leftTable = new Table();
+
+		ImageButton play = new ImageButton(new TextureRegionDrawable(manager
+				.get("textures/pack.atlas", TextureAtlas.class).findRegion(
+						"widgets/dummy-icon")));
+		// ImageButton stats = new ImageButton(manager.get("widgets/dummy-icon",
+		// Drawable.class));
+		// ImageButton settings = new ImageButton(manager.get(
+		// "widgets/dummy-icon", Drawable.class));
+		// ImageButton achievements = new ImageButton(manager.get(
+		// "widgets/dummy-icon", Drawable.class));
+
+		leftTable.add(play);
+
+		// TODO this should be a ProfileButton
+		profileButtonTable
+				.add(new Button(StyleHelper.getInstance().getButtonStyle()))
+				.space(20).width(200).height(200);
+
+		table.add(leftTable);
+		table.add(profileButtonTable);
 	}
 }
