@@ -36,6 +36,10 @@ public class MainActivity extends AndroidApplication {
 		config.useAccelerometer = false;
 		config.useCompass = false;
 		config.useWakelock = true;
+		config.r = 8;
+		config.g = 8;
+		config.b = 8;
+		config.a = 8;
 
 		initialize(new AlligatorApp(this), config);
 	}
