@@ -1,34 +1,15 @@
 package de.croggle.ui.renderer;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import de.croggle.game.ColorController;
 import de.croggle.game.board.ColoredAlligator;
 
 /**
  * An actor used for representing a colored alligator.
  */
-public class ColoredAlligatorActor extends BoardObjectActor {
+public class ColoredAlligatorActor extends ColoredBoardObjectActor {
 
-	/**
-	 * Creates a new actor.
-	 * 
-	 * @param alligator
-	 */
-	public ColoredAlligatorActor(ColoredAlligator alligator) {
-		super(alligator);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void draw(SpriteBatch batch, float parentAlpha) {
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void act(float delta) {
+	public ColoredAlligatorActor(ColoredAlligator alligator, ColorController controller) {
+		super(alligator, controller, "coloredalligator/foreground", "coloredalligator/background");
 	}
 
 	/**

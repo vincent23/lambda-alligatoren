@@ -1,11 +1,10 @@
 package de.croggle.ui.screens;
 
 import de.croggle.AlligatorApp;
-import de.croggle.game.Color;
 import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
-import de.croggle.game.board.Egg;
-import de.croggle.ui.renderer.EggActor;
+import de.croggle.game.board.ColoredAlligator;
+import de.croggle.ui.renderer.ColoredAlligatorActor;
 
 /**
  * Screen which is shown during the evaluation-phase of a level. For reference
@@ -30,7 +29,7 @@ public class SimulationModeScreen extends AbstractScreen {
 		super(game);
 		this.gameController = controller;
 		try {
-			this.stage.addActor(new EggActor(new Egg(true, true, controller.getColorController().requestColor(), true), gameController.getColorController()));
+			this.stage.addActor(new ColoredAlligatorActor(new ColoredAlligator(true, true, controller.getColorController().requestColor(), true), gameController.getColorController()));
 		} catch (ColorOverflowException e) {
 			//TODO silly exception
 		}

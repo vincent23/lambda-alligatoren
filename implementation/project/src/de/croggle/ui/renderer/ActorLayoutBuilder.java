@@ -145,7 +145,7 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
-		ColoredAlligatorActor a = new ColoredAlligatorActor(alligator);
+		ColoredAlligatorActor a = new ColoredAlligatorActor(alligator, config.getColorController());
 		setParentActorBounds(a);
 		actors.put(alligator, a);
 		layoutChildren(alligator);

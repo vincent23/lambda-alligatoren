@@ -13,7 +13,7 @@
         stripWhitespaceY: false,
         alphaThreshold: 0,
         filterMin: Nearest,
-        filterMag: Nearest,
+        filterMag: Linear,
         wrapX: ClampToEdge,
         wrapY: ClampToEdge,
         format: RGBA8888,
