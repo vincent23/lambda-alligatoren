@@ -57,7 +57,7 @@ public class ColorController {
 	 * @return an libgdx color to be actually rendered to represent the virtual
 	 *         color of a BoardObject
 	 */
-	public com.badlogic.gdx.graphics.Color getRepresantation(
+	public com.badlogic.gdx.graphics.Color getRepresentation(
 			de.croggle.game.Color color) {
 		return lookup.get(color);
 	}
