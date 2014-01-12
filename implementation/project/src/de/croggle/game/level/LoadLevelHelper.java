@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.JsonValue;
 
 import de.croggle.AlligatorApp;
 import de.croggle.game.Color;
+import de.croggle.game.board.Board;
 import de.croggle.util.convert.JsonToAlligator;
 
 /**
@@ -29,20 +30,18 @@ public class LoadLevelHelper {
 	 * @param levelIndex
 	 *            the id of the level within the package
 	 * @return the level denoted by the given indices/identifiers
-	 * @throws InvalidJsonException 
+	 * @throws InvalidJsonException
 	 */
-	static Level instantiate(int packageIndex, int levelIndex, AlligatorApp game) throws InvalidJsonException {
+	static Level instantiate(int packageIndex, int levelIndex, AlligatorApp game)
+			throws InvalidJsonException {
 		JsonValue json = getJson(packageIndex, levelIndex);
 		Level level = null;
 		try {
 			level = fillGeneric(json, levelIndex, packageIndex);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
 		} catch (InvalidJsonException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-
+		} 
 		return level;
 	}
 
@@ -75,10 +74,10 @@ public class LoadLevelHelper {
 	 *            The JSON object from which to read the level's properties
 	 * @throws IOException
 	 *             if there is an error reading the json file
-	 * @throws InvalidJsonException 
+	 * @throws InvalidJsonException
 	 */
 	private static Level fillGeneric(JsonValue json, int levelIndex,
-			int packageIndex) throws IOException, InvalidJsonException {
+			int packageIndex) throws  InvalidJsonException {
 		String leveltype = json.getString("type");
 		Level level = null;
 		if (leveltype.equals("multiple choice")) {
@@ -86,32 +85,41 @@ public class LoadLevelHelper {
 		} else if (leveltype.equals("color edit")) {
 			JsonValue data = json.getChild("data");
 			JsonValue initialBoard = data.getChild("initial constellation");
-			// TODO brauche bei JsonToAlligator ein Board zurück oder cast?
+			JsonValue goalBoard = data.getChild("objective");
 			Color[] userColors = getColorfromJson(data.getChild("user colors"));
-			if(userColors.length != 6){
-				throw new InvalidJsonException("The user color Array in this json file has to contain six items!");
+			if (userColors.length != 6) {
+				throw new InvalidJsonException(
+						"The user color Array in this json file has to contain six items!");
 			}
 			Color[] blockedColors = getColorfromJson(data
 					.getChild("blocked colors"));
 
-			level = new ColorEditLevel(levelIndex, packageIndex, null, null,
-					null, userColors, blockedColors, json.getString("hint"),
+			level = new ColorEditLevel(levelIndex, packageIndex,
+					JsonToAlligator.convertBoard(initialBoard),
+					JsonToAlligator.convertBoard(goalBoard), null, userColors,
+					blockedColors, json.getString("hint"),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
 		} else if (leveltype.equals("term edit")) {
 			JsonValue data = json.getChild("data");
 			JsonValue initialBoard = data.getChild("initial constellation");
-			// TODO brauche bei JsonToAlligator ein Board zurück oder cast?
+			JsonValue goalBoard = data.getChild("objective");
 			Color[] userColors = getColorfromJson(data.getChild("user colors"));
+			if (userColors.length != 6) {
+				throw new InvalidJsonException(
+						"The user color Array in this json file has to contain six items!");
+			}
 			Color[] blockedColors = getColorfromJson(data
 					.getChild("blocked colors"));
-			level = new TermEditLevel(levelIndex, packageIndex, null, null,
-					null, userColors, blockedColors, json.getString("hint"),
+			level = new TermEditLevel(levelIndex, packageIndex,
+					JsonToAlligator.convertBoard(initialBoard),
+					JsonToAlligator.convertBoard(goalBoard), null, userColors,
+					blockedColors, json.getString("hint"),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
 
 		} else {
-			throw new IOException("Unspecified leveltype!");
+			throw new InvalidJsonException("Unspecified leveltype!");
 		}
 		return level;
 
@@ -127,31 +135,54 @@ public class LoadLevelHelper {
 	 *            information from a json value
 	 * @param json
 	 *            The JSON object from which to read the level's properties
+	 * @throws InvalidJsonException 
 	 */
 	private static Level fillMultipleChoice(JsonValue json, int levelIndex,
-			int packageIndex) {
+			int packageIndex) throws InvalidJsonException {
 		JsonValue data = json.getChild("data");
-		Level level = new MultipleChoiceLevel(levelIndex, packageIndex, null,
-				null, null, json.getString("hint"), json.getString("description"), json.getInt("abort simulation after"),
-				null, data.getInt("correct answer"));
+		JsonValue initialBoard = data.getChild("initial");
+		int correctAnswer = data.getInt("correct answer");
+		Board[] answers = getAnswersfromJson(data.getChild("answers"));
+		Level level = new MultipleChoiceLevel(levelIndex, packageIndex, JsonToAlligator.convertBoard(initialBoard),
+				answers[correctAnswer], null, json.getString("hint"),
+				json.getString("description"),
+				json.getInt("abort simulation after"), answers, correctAnswer
+				);
 		return level;
 	}
-
-	private static Color[] getColorfromJson(JsonValue json) throws InvalidJsonException {
+	private static Board[] getAnswersfromJson(JsonValue json) throws InvalidJsonException{
 		int size = json.size;
-		if(!json.isArray()){
-			throw new InvalidJsonException("There seems to be no Color array in this json file.");
+		if (!json.isArray()) {
+			throw new InvalidJsonException(
+					"There seems to be no answer array in this json file.");
+		}else if(size != 3){
+			throw new InvalidJsonException("The number of naswers should be three!");
+		}
+		Board[] answers = new Board[size]; 
+		for(int i = 0; i< size; i++){
+			answers[i] = JsonToAlligator.convertBoard(json.get(i));
+		}
+		return answers;
+	}
+
+	private static Color[] getColorfromJson(JsonValue json)
+			throws InvalidJsonException {
+		int size = json.size;
+		if (!json.isArray()) {
+			throw new InvalidJsonException(
+					"There seems to be no Color array in this json file.");
 		}
 		Color[] color = new Color[size];
-		for( int i = 0; i < size; i++){
-			color[i]= new Color(json.getInt(i));
+		for (int i = 0; i < size; i++) {
+			color[i] = new Color(json.getInt(i));
 		}
-		
-		for(int i = 0; i < size; i++ ){
+
+		for (int i = 0; i < size; i++) {
 			int id = color[i].getId();
-			for(int k = 0; k < i; k++){
-				if(id == color[k].getId()){
-					throw new InvalidJsonException("There is two times the same color.");
+			for (int k = 0; k < i; k++) {
+				if (id == color[k].getId()) {
+					throw new InvalidJsonException(
+							"There is two times the same color.");
 				}
 			}
 		}

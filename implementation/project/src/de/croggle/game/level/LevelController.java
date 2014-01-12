@@ -76,7 +76,12 @@ public class LevelController {
 		int numberOfLevel = levelNames.length-1;
 		levels = new ArrayList<Level>();
 		for(int i = 0; i < numberOfLevel; i++ ){
-			levels.add(LoadLevelHelper.instantiate(this.packageIndex, i, this.game));
+			try {
+				levels.add(LoadLevelHelper.instantiate(this.packageIndex, i, this.game));
+			} catch (InvalidJsonException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
