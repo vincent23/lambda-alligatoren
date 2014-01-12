@@ -1,5 +1,8 @@
 package de.croggle.game.board.operations;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
@@ -10,11 +13,12 @@ import de.croggle.game.board.Egg;
 /**
  * A visitor for collecting all the colors of alligators in a family. This is
  * equivalent to the set of variables which are bound in a given subterm.
- * 
- * TODO implement
  */
 public class CollectBoundColors implements BoardObjectVisitor {
-	private CollectBoundColors(BoardObject family) {
+	private final Set<Color> boundColors;
+
+	private CollectBoundColors() {
+		boundColors = new HashSet<Color>();
 	}
 
 	/**
@@ -25,7 +29,9 @@ public class CollectBoundColors implements BoardObjectVisitor {
 	 * @return the set of bound colors
 	 */
 	public static Color[] collect(BoardObject family) {
-		return null;
+		final CollectBoundColors visitor = new CollectBoundColors();
+		family.accept(visitor);
+		return (Color[]) visitor.boundColors.toArray();
 	}
 
 	/**
@@ -33,7 +39,6 @@ public class CollectBoundColors implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitEgg(Egg egg) {
-
 	}
 
 	/**
@@ -41,7 +46,8 @@ public class CollectBoundColors implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
-
+		boundColors.add(alligator.getColor());
+		alligator.acceptOnChildren(this);
 	}
 
 	/**
@@ -49,7 +55,7 @@ public class CollectBoundColors implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
-
+		alligator.acceptOnChildren(this);
 	}
 
 	/**
@@ -57,6 +63,6 @@ public class CollectBoundColors implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitBoard(Board board) {
-
+		board.acceptOnChildren(this);
 	}
 }
