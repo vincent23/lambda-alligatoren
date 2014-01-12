@@ -46,25 +46,25 @@ public class CollectFreeColors implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitEgg(Egg egg) {
-		final Color color = egg.getColor();
+		final Color eggColor = egg.getColor();
 		if (egg != family) {
 			Parent parent = egg.getParent();
-			while (parent != family) {
+			while (true) {
 				// TODO find a way to remove instanceof
-				if (parent instanceof InternalBoardObject) {
+				if (parent instanceof ColoredAlligator) {
+					final ColoredAlligator colored = (ColoredAlligator) parent;
+					if (eggColor.equals(colored.getColor())) {
+						return;
+					}
+				}
+				if (parent != family && parent instanceof InternalBoardObject) {
 					parent = ((InternalBoardObject) parent).getParent();
 				} else {
 					break;
 				}
-				if (parent instanceof ColoredAlligator) {
-					final ColoredAlligator colored = (ColoredAlligator) parent;
-					if (color.equals(colored.getColor())) {
-						return;
-					}
-				}
 			}
 		}
-		freeColors.add(color);
+		freeColors.add(eggColor);
 	}
 
 	/**
