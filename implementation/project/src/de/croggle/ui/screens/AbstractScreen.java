@@ -24,6 +24,9 @@ public abstract class AbstractScreen implements Screen {
 	private Texture background;
 	private OrthographicCamera camera;
 
+	protected int screenWidth;
+	protected int screenHeight;
+
 	/**
 	 * Superconstructor for all screens. Initializes everything they share, e.g.
 	 * their stage.
@@ -42,6 +45,11 @@ public abstract class AbstractScreen implements Screen {
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1024, 600);
+
+		screenWidth = Gdx.graphics.getWidth();
+		screenHeight = Gdx.graphics.getHeight();
+
+		table.debug(); // turn on all debug lines (table, cell, and widget)
 
 	}
 
@@ -90,6 +98,8 @@ public abstract class AbstractScreen implements Screen {
 
 		stage.draw();
 		stage.act(delta);
+		// draw debugging lines
+		Table.drawDebug(stage);
 	}
 
 	/**
@@ -103,7 +113,7 @@ public abstract class AbstractScreen implements Screen {
 	 *            the height, which the newly resized screen will have.
 	 */
 	public void resize(int width, int height) {
-		stage.setViewport(1024, 600, true);
+		stage.setViewport(width, height, true);
 	}
 
 	/**

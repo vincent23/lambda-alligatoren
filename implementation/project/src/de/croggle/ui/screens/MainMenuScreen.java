@@ -1,11 +1,8 @@
 package de.croggle.ui.screens;
 
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import de.croggle.AlligatorApp;
 import de.croggle.ui.StyleHelper;
@@ -45,29 +42,32 @@ public class MainMenuScreen extends AbstractScreen {
 	}
 
 	private void fillTable() {
-		StyleHelper.getInstance();
-		AssetManager manager = de.croggle.data.AssetManager.getInstance();
 		Table profileButtonTable = new Table();
 		Table leftTable = new Table();
 
-		ImageButton play = new ImageButton(new TextureRegionDrawable(manager
-				.get("textures/pack.atlas", TextureAtlas.class).findRegion(
-						"widgets/dummy-icon")));
-		// ImageButton stats = new ImageButton(manager.get("widgets/dummy-icon",
-		// Drawable.class));
-		// ImageButton settings = new ImageButton(manager.get(
-		// "widgets/dummy-icon", Drawable.class));
-		// ImageButton achievements = new ImageButton(manager.get(
-		// "widgets/dummy-icon", Drawable.class));
+		ImageButton play = new ImageButton(StyleHelper.getInstance()
+				.getImageButtonStyleRound("widgets/dummy-icon"));
+		ImageButton stats = new ImageButton(StyleHelper.getInstance()
+				.getImageButtonStyleRound("widgets/dummy-icon"));
+		ImageButton settings = new ImageButton(StyleHelper.getInstance()
+				.getImageButtonStyleRound("widgets/dummy-icon"));
+		ImageButton achievements = new ImageButton(StyleHelper.getInstance()
+				.getImageButtonStyleRound("widgets/dummy-icon"));
+		Button profileButton = new Button(StyleHelper.getInstance()
+				.getButtonStyle());
 
-		leftTable.add(play);
+		leftTable.add(play).expandY().colspan(3);
+		leftTable.row();
+		leftTable.add(settings).pad(30).left().bottom();
+		leftTable.add(stats).pad(30).left().bottom();
+		leftTable.add(achievements).pad(30).right().bottom().expandX();
 
 		// TODO this should be a ProfileButton
-		profileButtonTable
-				.add(new Button(StyleHelper.getInstance().getButtonStyle()))
-				.space(20).width(200).height(200);
+		profileButtonTable.add(profileButton).pad(50).width(200).height(200);
 
-		table.add(leftTable);
-		table.add(profileButtonTable);
+		table.add(leftTable).height(screenHeight).expand().fill();
+		table.add(profileButtonTable).height(screenHeight);
+
+		leftTable.debug();
 	}
 }

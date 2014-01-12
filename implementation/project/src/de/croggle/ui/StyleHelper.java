@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton.ImageTextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import de.croggle.data.AssetManager;
 
@@ -18,13 +19,14 @@ public class StyleHelper {
 
 	private static StyleHelper instance;
 	private Skin skin;
+	private TextureAtlas atlas;
 
 	public StyleHelper() {
 		AssetManager manager = AssetManager.getInstance();
 		manager.load("textures/pack.atlas", TextureAtlas.class);
 		manager.finishLoading();
-		skin = new Skin(Gdx.files.internal("skin.json"), manager.get(
-				"textures/pack.atlas", TextureAtlas.class));
+		atlas = manager.get("textures/pack.atlas", TextureAtlas.class);
+		skin = new Skin(Gdx.files.internal("skin.json"), atlas);
 	}
 
 	/**
@@ -46,6 +48,12 @@ public class StyleHelper {
 	 */
 	public Skin getSkin() {
 		return skin;
+	}
+
+	public void dispose() {
+		if (skin != null) {
+			skin.dispose();
+		}
 	}
 
 	/**
@@ -71,8 +79,24 @@ public class StyleHelper {
 	 * 
 	 * @return the image button's style
 	 */
-	ImageButtonStyle getImageButtonStyle() {
-		return null;
+	public ImageButtonStyle getImageButtonStyle() {
+		return skin.get(ImageButtonStyle.class);
+	}
+
+	public ImageButtonStyle getImageButtonStyleRound() {
+		return skin.get("round", ImageButtonStyle.class);
+	}
+
+	public ImageButtonStyle getImageButtonStyle(String icon) {
+		ImageButtonStyle style = getImageButtonStyle();
+		style.imageUp = new TextureRegionDrawable(atlas.findRegion(icon));
+		return style;
+	}
+
+	public ImageButtonStyle getImageButtonStyleRound(String icon) {
+		ImageButtonStyle style = getImageButtonStyleRound();
+		style.imageUp = new TextureRegionDrawable(atlas.findRegion(icon));
+		return style;
 	}
 
 	/**

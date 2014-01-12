@@ -14,6 +14,7 @@ import de.croggle.data.persistence.manager.PersistenceManager;
 import de.croggle.game.achievement.AchievementController;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.profile.ProfileController;
+import de.croggle.ui.StyleHelper;
 import de.croggle.ui.screens.AbstractScreen;
 import de.croggle.ui.screens.MainMenuScreen;
 
@@ -180,5 +181,6 @@ public class AlligatorApp extends Game {
 	@Override
 	public void dispose() {
 		batch.dispose();
+		StyleHelper.getInstance().dispose();
 	}
 }

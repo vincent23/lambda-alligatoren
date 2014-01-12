@@ -16,5 +16,9 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 },
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: { font: default-font, fontColor: white }
+},
+com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+	default: { down: widgets/dummy-button, up: widgets/dummy-button },
+	round: { down: widgets/dummy-button-round, up: widgets/dummy-button-round }
 }
 }
