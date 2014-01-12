@@ -1,14 +1,13 @@
 package de.croggle.game.board.operations;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 
-public class CollectBoundColorsTest extends TestCase {
+public class CollectBoundColorsTest extends CollectColorsTest {
 
 	public void testSimpleBoundColor() {
 		final Board board = new Board();
@@ -95,14 +94,5 @@ public class CollectBoundColorsTest extends TestCase {
 		Assert.assertTrue(arrayContainsColor(boundColors, color1));
 		Assert.assertTrue(arrayContainsColor(boundColors, color2));
 		Assert.assertFalse(arrayContainsColor(boundColors, color3));
-	}
-
-	private boolean arrayContainsColor(Color[] colorArray, Color color) {
-		for (Color c : colorArray) {
-			if (c.equals(color)) {
-				return true;
-			}
-		}
-		return false;
 	}
 }
