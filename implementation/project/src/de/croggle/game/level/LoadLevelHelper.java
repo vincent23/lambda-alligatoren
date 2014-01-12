@@ -29,8 +29,9 @@ public class LoadLevelHelper {
 	 * @param levelIndex
 	 *            the id of the level within the package
 	 * @return the level denoted by the given indices/identifiers
+	 * @throws InvalidJsonException 
 	 */
-	static Level instantiate(int packageIndex, int levelIndex, AlligatorApp game) {
+	static Level instantiate(int packageIndex, int levelIndex, AlligatorApp game) throws InvalidJsonException {
 		JsonValue json = getJson(packageIndex, levelIndex);
 		Level level = null;
 		try {
