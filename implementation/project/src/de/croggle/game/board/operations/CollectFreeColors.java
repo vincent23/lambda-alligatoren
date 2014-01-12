@@ -37,7 +37,7 @@ public class CollectFreeColors implements BoardObjectVisitor {
 	public static Color[] collect(BoardObject family) {
 		final CollectFreeColors visitor = new CollectFreeColors(family);
 		family.accept(visitor);
-		return (Color[]) visitor.freeColors.toArray();
+		return visitor.freeColors.toArray(new Color[visitor.freeColors.size()]);
 	}
 
 	/**

@@ -31,7 +31,8 @@ public class CollectBoundColors implements BoardObjectVisitor {
 	public static Color[] collect(BoardObject family) {
 		final CollectBoundColors visitor = new CollectBoundColors();
 		family.accept(visitor);
-		return (Color[]) visitor.boundColors.toArray();
+		return visitor.boundColors
+				.toArray(new Color[visitor.boundColors.size()]);
 	}
 
 	/**
