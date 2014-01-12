@@ -25,8 +25,8 @@ public class ParentTest extends TestCase {
 	public void testAddChild() {
 		final InternalBoardObject child = getNewChild();
 		parent.addChild(child);
-		Assert.assertEquals(parent.getChildCount(), 1);
-		Assert.assertEquals(parent.getChildPosition(child), 0);
+		Assert.assertEquals(1, parent.getChildCount());
+		Assert.assertEquals(0, parent.getChildPosition(child));
 		Assert.assertTrue(parent.getFirstChild() == child);
 		Assert.assertTrue(child.getParent() == parent);
 		Assert.assertTrue(parent.isLastChild(child));
@@ -85,22 +85,22 @@ public class ParentTest extends TestCase {
 		parent.addChild(child1);
 		parent.addChild(child2);
 		parent.addChild(child3);
-		Assert.assertEquals(parent.getChildPosition(child1), 0);
-		Assert.assertEquals(parent.getChildPosition(child2), 1);
-		Assert.assertEquals(parent.getChildPosition(child3), 2);
+		Assert.assertEquals(0, parent.getChildPosition(child1));
+		Assert.assertEquals(1, parent.getChildPosition(child2));
+		Assert.assertEquals(2, parent.getChildPosition(child3));
 
 		parent.removeChild(child1);
-		Assert.assertEquals(parent.getChildPosition(child1), -1);
-		Assert.assertEquals(parent.getChildPosition(child2), 0);
-		Assert.assertEquals(parent.getChildPosition(child3), 1);
+		Assert.assertEquals(-1, parent.getChildPosition(child1));
+		Assert.assertEquals(0, parent.getChildPosition(child2));
+		Assert.assertEquals(1, parent.getChildPosition(child3));
 		parent.removeChild(child2);
-		Assert.assertEquals(parent.getChildPosition(child1), -1);
-		Assert.assertEquals(parent.getChildPosition(child2), -1);
-		Assert.assertEquals(parent.getChildPosition(child3), 0);
+		Assert.assertEquals(-1, parent.getChildPosition(child1));
+		Assert.assertEquals(-1, parent.getChildPosition(child2));
+		Assert.assertEquals(0, parent.getChildPosition(child3));
 		parent.removeChild(child3);
-		Assert.assertEquals(parent.getChildPosition(child1), -1);
-		Assert.assertEquals(parent.getChildPosition(child2), -1);
-		Assert.assertEquals(parent.getChildPosition(child3), -1);
+		Assert.assertEquals(-1, parent.getChildPosition(child1));
+		Assert.assertEquals(-1, parent.getChildPosition(child2));
+		Assert.assertEquals(-1, parent.getChildPosition(child3));
 
 	}
 
@@ -110,24 +110,24 @@ public class ParentTest extends TestCase {
 		final InternalBoardObject child3 = getNewChild();
 		parent.addChild(child1);
 		parent.addChild(child2);
-		Assert.assertEquals(parent.getChildPosition(child1), 0);
-		Assert.assertEquals(parent.getChildPosition(child2), 1);
-		Assert.assertEquals(parent.getChildPosition(child3), -1);
+		Assert.assertEquals(0, parent.getChildPosition(child1));
+		Assert.assertEquals(1, parent.getChildPosition(child2));
+		Assert.assertEquals(-1, parent.getChildPosition(child3));
 
 		Assert.assertFalse(parent.replaceChild(child3, child1));
-		Assert.assertEquals(parent.getChildPosition(child1), 0);
-		Assert.assertEquals(parent.getChildPosition(child2), 1);
-		Assert.assertEquals(parent.getChildPosition(child3), -1);
+		Assert.assertEquals(0, parent.getChildPosition(child1));
+		Assert.assertEquals(1, parent.getChildPosition(child2));
+		Assert.assertEquals(-1, parent.getChildPosition(child3));
 
 		Assert.assertTrue(parent.replaceChild(child2, child3));
-		Assert.assertEquals(parent.getChildPosition(child1), 0);
-		Assert.assertEquals(parent.getChildPosition(child2), -1);
-		Assert.assertEquals(parent.getChildPosition(child3), 1);
+		Assert.assertEquals(0, parent.getChildPosition(child1));
+		Assert.assertEquals(-1, parent.getChildPosition(child2));
+		Assert.assertEquals(1, parent.getChildPosition(child3));
 
 		Assert.assertFalse(parent.replaceChild(child1, child3));
-		Assert.assertEquals(parent.getChildPosition(child1), 0);
-		Assert.assertEquals(parent.getChildPosition(child2), -1);
-		Assert.assertEquals(parent.getChildPosition(child3), 1);
+		Assert.assertEquals(0, parent.getChildPosition(child1));
+		Assert.assertEquals(-1, parent.getChildPosition(child2));
+		Assert.assertEquals(1, parent.getChildPosition(child3));
 	}
 
 	private InternalBoardObject getNewChild() {

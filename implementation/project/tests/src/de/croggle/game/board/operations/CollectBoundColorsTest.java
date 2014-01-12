@@ -18,8 +18,8 @@ public class CollectBoundColorsTest extends CollectColorsTest {
 		board.addChild(coloredAlligator);
 		coloredAlligator.addChild(egg);
 		final Color[] boundColors = CollectBoundColors.collect(board);
-		Assert.assertEquals(boundColors.length, 1);
-		Assert.assertEquals(boundColors[0], color);
+		Assert.assertEquals(1, boundColors.length);
+		Assert.assertEquals(color, boundColors[0]);
 	}
 
 	public void testRootBoundColor() {
@@ -30,8 +30,8 @@ public class CollectBoundColorsTest extends CollectColorsTest {
 		coloredAlligator.addChild(egg);
 		final Color[] boundColors = CollectBoundColors
 				.collect(coloredAlligator);
-		Assert.assertEquals(boundColors.length, 1);
-		Assert.assertEquals(boundColors[0], color);
+		Assert.assertEquals(1, boundColors.length);
+		Assert.assertEquals(color, boundColors[0]);
 	}
 
 	public void testMultipleBoundColors() {
@@ -56,7 +56,7 @@ public class CollectBoundColorsTest extends CollectColorsTest {
 		colored3.addChild(egg2);
 
 		final Color[] boundColors = CollectBoundColors.collect(aged);
-		Assert.assertEquals(boundColors.length, 3);
+		Assert.assertEquals(3, boundColors.length);
 		Assert.assertTrue(arrayContainsColor(boundColors, color1));
 		Assert.assertTrue(arrayContainsColor(boundColors, color2));
 		Assert.assertTrue(arrayContainsColor(boundColors, color3));
@@ -90,7 +90,7 @@ public class CollectBoundColorsTest extends CollectColorsTest {
 		colored4.addChild(egg3);
 
 		final Color[] boundColors = CollectBoundColors.collect(aged);
-		Assert.assertEquals(boundColors.length, 2);
+		Assert.assertEquals(2, boundColors.length);
 		Assert.assertTrue(arrayContainsColor(boundColors, color1));
 		Assert.assertTrue(arrayContainsColor(boundColors, color2));
 		Assert.assertFalse(arrayContainsColor(boundColors, color3));
