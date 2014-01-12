@@ -49,6 +49,7 @@ public class CollectFreeColors implements BoardObjectVisitor {
 		Parent parent;
 		do {
 			parent = egg.getParent();
+			// TODO find a way to remove instanceof
 			if (parent instanceof ColoredAlligator) {
 				final ColoredAlligator colored = (ColoredAlligator) parent;
 				if (color.equals(colored.getColor())) {
