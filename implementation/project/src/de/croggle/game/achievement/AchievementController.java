@@ -124,11 +124,13 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	@Override
 	public void processDelta(Statistic statisticsDelta) {
 		List<Achievement> unlockedAchievements = new ArrayList<Achievement>();
+		Statistic statistic = null; //TODO: database access here?
 		latestUnlockedAchievements.clear();
 		for ( Achievement achievement: availableAchievements) {
-			int oldVal = 0; //achievement.requirementsMet(statistic, statisticDelta) //TODO: How do i get the basevalue from the database in here?
-			int newVal = 0; //achievement.requirementsMet(statistic, statisticDelta) // the new stuff
+			int oldVal = achievement.getIndex(); //TODO: How do i get the basevalue from the database in here?
+			int newVal = achievement.requirementsMet(statistic, statisticsDelta); // the new stuff
 			if ( oldVal != newVal) {
+				achievement.setIndex(newVal);
 				unlockedAchievements.add(achievement);
 				latestUnlockedAchievements.add(achievement);
 			}
