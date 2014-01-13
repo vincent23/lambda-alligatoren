@@ -37,7 +37,6 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	/**
 	 * Creates a new Controller. On initialization the unlocked achievements are
 	 * set to null.
-	 * 
 	 * @param game
 	 *            the backreference to the central game object
 	 */
