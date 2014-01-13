@@ -74,4 +74,24 @@ public class LevelPackage {
 	public boolean hasAnimation() {
 		return hasAnimation;
 	}
+	
+	/**
+	 * Gets the Animation of this levelPackage if there is one.
+	 * @return the Animation if there is one else null is returned
+	 */
+	public Animation getAnimation(){
+		if(this.hasAnimation()){
+			return this.animation;
+		}else{
+			return null;
+		}
+	}
+	
+	/**
+	 * gets the path to the design of this level.
+	 * @return the design of this level
+	 */
+	public String getDesign(){
+		return this.design;
+	}
 }
