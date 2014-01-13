@@ -22,6 +22,7 @@ public class AchievementControllerTest extends TestCase {
 		backend.putString("achievement_alligators_placed_per_level", "  Allgators placed per Level .");
 		backend.putString("achievement_alligators_placed_per_level_final", "Alligators placed per Level .");
 		backend.putString("achievement_hints_used_per_level", "fewer than one hints used .");
+		backend.putString("achievement_level_completed", " level completed .");
 		backend.putString("achievement_minutes_played", " minutes played .");
 		backend.putString("achievement_hours_played", " hours played .");
 		backend.putString("achievement_time_final", "played .");
@@ -51,13 +52,13 @@ public class AchievementControllerTest extends TestCase {
 		statistic2.setPlaytime(0);
 		statistic2.setUsedHints(1);
 		
+		
+		
 		List<Achievement> unlockedAchievement = achievementController.updateAchievements(statistic1, statistic2);
 		for( Achievement achievement3 : unlockedAchievement) {
-			
-			System.out.println(achievement3.getIndex());
 			assertTrue(achievement3.getDescription(achievement3.getIndex()).endsWith(" ."));
 		}
-		System.out.println(unlockedAchievement.size());
+		
 		assertTrue(unlockedAchievement.size() == 7);
 		
 		for ( Achievement achievement2 : achievementController.getLatestUnlockedAchievements()) {
