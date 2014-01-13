@@ -44,6 +44,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	public AchievementController(AlligatorApp game) {
 		this.unlockedAchievements = new HashMap<Achievement, Integer>();
 		this.game = game;
+		initiateAvailableAchievements();
 
 	}
 
@@ -63,9 +64,13 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * Initiates the available achievements.
 	 */
 	public void initiateAvailableAchievements() {
-		// availableAchievements.add(new TimeAchievement());
-		// availableAchievements.add(new AlligatorsEatenAchievement());
-		// availableAchievements.add(new AlligatorsPlaAchievement());
+		availableAchievements.add(new AlligatorsEatenAchievement());
+		availableAchievements.add(new AlligatorsPlacedAchievement());
+		availableAchievements.add(new AlligatorsEatenPerLevelAchievement());
+		availableAchievements.add(new AlligatorsPlacedPerLevelAchievement());
+		availableAchievements.add(new HintPerLevelAchievement());
+		availableAchievements.add(new LevelAchievement());
+		availableAchievements.add(new TimeAchievement());
 
 		for (Achievement achievement : availableAchievements) {
 			achievement.initialize();
