@@ -170,7 +170,7 @@ public class LoadLevelHelper {
 	 * Method to generate a Board Array from the given json. 
 	 * @param json the JsonValue the Array should be generated from
 	 * @return the generated Board Array
-	 * @throws InvalidJsonException if json has the wrong format
+	 * @throws InvalidJsonException if json has the wrong format 
 	 */
 	private static Board[] getAnswersfromJson(JsonValue json) throws InvalidJsonException{
 		int size = json.size;
@@ -224,7 +224,7 @@ public class LoadLevelHelper {
 	 * @param game context of the game
 	 * @return the Animation created
 	 */
-	private static Animation getAnimationfromJson(JsonValue json, AlligatorApp game){
+	public static Animation getAnimationfromJson(JsonValue json, AlligatorApp game){
 		
 		AssetManager manager = game.getAssetManager();
 		Texture animationSheet = manager.get(json.getString("animation"),Texture.class);

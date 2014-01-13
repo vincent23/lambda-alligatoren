@@ -1,5 +1,7 @@
 package de.croggle.game.level;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
+
 /**
  * Compilation of several, thematically linked levels.
  */
@@ -9,24 +11,21 @@ public class LevelPackage {
 	private String description;
 	private String emblemPath;
 	private boolean hasAnimation;
+	private Animation animation;
+	private String design;
 
 	/**
 	 * Creates a level package with default values.
 	 */
-	public LevelPackage() {
-	}
-
-	/**
-	 * Creates a level package with the given id. All other fields have the
-	 * default values.
-	 * 
-	 * @param levelPackageId
-	 *            the folder id of the levelPackage
-	 */
-	public LevelPackage(int levelPackageId) {
+	public LevelPackage(int levelPackageId, String name, String description, String emblemPath, boolean hasAnimation, Animation animation, String design){
 		this.levelPackageId = levelPackageId;
+		this.name = name;
+		this.description = description;
+		this.emblemPath = emblemPath;
+		this.hasAnimation = hasAnimation;
+		this.animation = animation;
+		this.design = design;
 	}
-
 
 
 	/**
