@@ -46,28 +46,33 @@ public class MainMenuScreen extends AbstractScreen {
 		Table leftTable = new Table();
 
 		ImageButton play = new ImageButton(StyleHelper.getInstance()
-				.getImageButtonStyleRound("widgets/dummy-icon"));
+				.getImageButtonStyleRound("widgets/icon-play"));
 		ImageButton stats = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/dummy-icon"));
 		ImageButton settings = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/dummy-icon"));
 		ImageButton achievements = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/dummy-icon"));
+		// TODO this should be a ProfileButton
 		Button profileButton = new Button(StyleHelper.getInstance()
 				.getButtonStyle());
 
-		leftTable.add(play).expandY().colspan(3);
-		leftTable.row();
-		leftTable.add(settings).pad(30).left().bottom();
-		leftTable.add(stats).pad(30).left().bottom();
-		leftTable.add(achievements).pad(30).right().bottom().expandX();
+		play.getImageCell().pad(20);
 
-		// TODO this should be a ProfileButton
-		profileButtonTable.add(profileButton).pad(50).width(200).height(200);
+		leftTable.pad(30);
+		leftTable.defaults().width(screenWidth / 10).height(screenWidth / 10);
+		leftTable.add(play).expandY().colspan(3).width(screenWidth / 5)
+				.height(screenWidth / 5);
+		leftTable.row();
+		leftTable.add(settings).bottom().space(20);
+		leftTable.add(stats).bottom().space(20);
+		leftTable.add(achievements).right().bottom().expandX().width(150)
+				.height(150);
+
+		profileButtonTable.add(profileButton).padRight(50).width(200)
+				.height(200);
 
 		table.add(leftTable).height(screenHeight).expand().fill();
 		table.add(profileButtonTable).height(screenHeight);
-
-		leftTable.debug();
 	}
 }

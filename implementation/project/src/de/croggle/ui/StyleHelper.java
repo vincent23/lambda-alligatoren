@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton.ImageTextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import de.croggle.data.AssetManager;
 
@@ -83,19 +82,39 @@ public class StyleHelper {
 		return skin.get(ImageButtonStyle.class);
 	}
 
+	/**
+	 * Returns the style for a round image button
+	 * 
+	 * @return
+	 */
 	public ImageButtonStyle getImageButtonStyleRound() {
 		return skin.get("round", ImageButtonStyle.class);
 	}
 
+	/**
+	 * Returns the style for an image button with the given icon as image.
+	 * 
+	 * @param icon
+	 *            the identifier of the icon in the texture atlas
+	 * @return
+	 */
 	public ImageButtonStyle getImageButtonStyle(String icon) {
-		ImageButtonStyle style = getImageButtonStyle();
-		style.imageUp = new TextureRegionDrawable(atlas.findRegion(icon));
+		ImageButtonStyle style = new ImageButtonStyle(getImageButtonStyle());
+		style.imageUp = skin.getDrawable(icon);
 		return style;
 	}
 
+	/**
+	 * Returns the style for a round image button with the given icon as image.
+	 * 
+	 * @param icon
+	 *            the identifier of the icon in the texture atlas
+	 * @return
+	 */
 	public ImageButtonStyle getImageButtonStyleRound(String icon) {
-		ImageButtonStyle style = getImageButtonStyleRound();
-		style.imageUp = new TextureRegionDrawable(atlas.findRegion(icon));
+		ImageButtonStyle style = new ImageButtonStyle(
+				getImageButtonStyleRound());
+		style.imageUp = skin.getDrawable(icon);
 		return style;
 	}
 

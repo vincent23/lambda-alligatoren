@@ -49,7 +49,7 @@ public abstract class AbstractScreen implements Screen {
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 
-		table.debug(); // turn on all debug lines (table, cell, and widget)
+		// table.debug(); // turn on all debug lines (table, cell, and widget)
 
 	}
 
