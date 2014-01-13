@@ -5,7 +5,7 @@ package de.croggle.data.persistence;
  */
 public class LevelProgress {
 
-	private long levelId;
+	private int levelId;
 	private boolean solved;
 	private String currentBoard;
 	private int usedResets;
@@ -30,8 +30,14 @@ public class LevelProgress {
 	 * @param usedTime
 	 *            the time spent in the level by the user
 	 */
-	public LevelProgress(long levelId, boolean solved, String currentBoard,
+	public LevelProgress(int levelId, boolean solved, String currentBoard,
 			int usedResets, int usedHints, int usedTime) {
+		this.levelId = levelId;
+		this.solved = solved;
+		this.currentBoard = currentBoard;
+		this.usedResets = usedResets;
+		this.usedHints = usedHints;
+		this.usedTime = usedTime;
 	}
 
 	/**
@@ -49,7 +55,7 @@ public class LevelProgress {
 	 * 
 	 * @return the level id
 	 */
-	public long getLevelId() {
+	public int getLevelId() {
 		return levelId;
 	}
 
@@ -59,7 +65,7 @@ public class LevelProgress {
 	 * @param levelId
 	 *            the level id
 	 */
-	public void setLevelId(long levelId) {
+	public void setLevelId(int levelId) {
 		this.levelId = levelId;
 	}
 
@@ -72,6 +78,7 @@ public class LevelProgress {
 		return solved;
 	}
 
+	
 	/**
 	 * Sets whether the level has been solved.
 	 * 
@@ -156,6 +163,33 @@ public class LevelProgress {
 	 */
 	public void setUsedTime(int usedTime) {
 		this.usedTime = usedTime;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LevelProgress other = (LevelProgress) obj;
+		if (currentBoard == null) {
+			if (other.currentBoard != null)
+				return false;
+		} else if (!currentBoard.equals(other.currentBoard))
+			return false;
+		if (levelId != other.levelId)
+			return false;
+		if (solved != other.solved)
+			return false;
+		if (usedHints != other.usedHints)
+			return false;
+		if (usedResets != other.usedResets)
+			return false;
+		if (usedTime != other.usedTime)
+			return false;
+		return true;
 	}
 
 }

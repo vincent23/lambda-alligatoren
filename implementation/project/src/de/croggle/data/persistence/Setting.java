@@ -9,22 +9,22 @@ public class Setting {
 	/**
 	 * The volume of the music played in the game.
 	 */
-	private float volumeMusic;
+	private float volumeMusic = 0.5f;
 
 	/**
 	 * The volume of the effects used in the game.
 	 */
-	private float volumeEffects;
+	private float volumeEffects  = 0.5f;
 
 	/**
 	 * Determines whether the zoom button is enabled or not.
 	 */
-	private boolean zoomEnabled;
+	private boolean zoomEnabled = false;
 
 	/**
 	 * Determines whether colorblind mode is enabled or not.
 	 */
-	private boolean colorblindEnabled;
+	private boolean colorblindEnabled = false;
 
 	/**
 	 * 
@@ -32,15 +32,19 @@ public class Setting {
 	 * 
 	 * @param volumeMusic
 	 *            the volume of the music.
-	 * @param volumeEffect
+	 * @param volumeEffects
 	 *            the volume of the effects.
 	 * @param zoomEnabled
 	 *            determines whether the zoom button is enabled or not.
 	 * @param colorblindEnabled
 	 *            determines whether colorblind mode is enabled or not.
 	 */
-	public Setting(float volumeMusic, float volumeEffect, boolean zoomEnabled,
+	public Setting(float volumeMusic, float volumeEffects, boolean zoomEnabled,
 			boolean colorblindEnabled) {
+		this.volumeMusic = volumeMusic;
+		this.volumeEffects = volumeEffects;
+		this.zoomEnabled = zoomEnabled;
+		this.colorblindEnabled = colorblindEnabled;
 
 	}
 
@@ -125,6 +129,29 @@ public class Setting {
 	 */
 	public void setColorblindEnabled(boolean colorblindEnabled) {
 		this.colorblindEnabled = colorblindEnabled;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Setting other = (Setting) obj;
+		if (colorblindEnabled != other.colorblindEnabled)
+			return false;
+		if (Float.floatToIntBits(volumeEffects) != Float
+				.floatToIntBits(other.volumeEffects))
+			return false;
+		if (Float.floatToIntBits(volumeMusic) != Float
+				.floatToIntBits(other.volumeMusic))
+			return false;
+		if (zoomEnabled != other.zoomEnabled)
+			return false;
+		return true;
 	}
 
 }

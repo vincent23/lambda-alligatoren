@@ -1,9 +1,14 @@
 package de.croggle.data.persistence.manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import de.croggle.game.achievement.Achievement;
+import de.croggle.game.profile.Profile;
 
 /**
  * A concrete table manager which is responsible for managing the SQLite table
@@ -25,7 +30,7 @@ public class AchievementManager extends TableManager {
 	/**
 	 * Name of the column that stores the achievement states.
 	 */
-	static final String KEY_ACHIEVEMENT_State = "achievementState";
+	static final String KEY_ACHIEVEMENT_INDEX = "achievementIndex";
 
 	/**
 	 * The name of the table.
@@ -35,7 +40,12 @@ public class AchievementManager extends TableManager {
 	/**
 	 * The string used for creating the achievement table via a sql query.
 	 */
-	static final String CREATE_TABLE = "null";
+	static final String CREATE_TABLE = "create table " + TABLE_NAME
+			+ "(" + KEY_PROFILE_NAME + " text not null, "
+            + KEY_ACHIEVEMENT_ID + " integer, "
+            + KEY_ACHIEVEMENT_INDEX + " integer, "
+            + "FOREIGN KEY(" + KEY_PROFILE_NAME + ") REFERENCES " + ProfileManager.TABLE_NAME + "(" + ProfileManager.KEY_PROFILE_NAME + ") ON UPDATE CASCADE ON DELETE CASCADE )";
+ ;
 
 	/**
 	 * Creates a new AchievementManager used for managing the achievement table.
@@ -58,8 +68,15 @@ public class AchievementManager extends TableManager {
 	 *            contains the values to be stored in the table
 	 */
 	void addUnlockedAchievement(String profileName, Achievement achievement) {
-
-	}
+		
+		ContentValues values = new ContentValues();
+		
+		values.put(KEY_PROFILE_NAME, profileName);
+		values.put(KEY_ACHIEVEMENT_ID, achievement.getId());
+		values.put(KEY_ACHIEVEMENT_INDEX, achievement.getId());
+		
+		database.insert(TABLE_NAME, null, values);
+		}
 
 	/**
 	 * Returns all achievements stored in the table that were unlocked by the
@@ -71,7 +88,20 @@ public class AchievementManager extends TableManager {
 	 * @return a list of all achievements unlocked by the user
 	 */
 	List<Achievement> getUnlockedAchievements(String profileName) {
-		return null;
+		
+		List<Achievement> unlockedAchievements = new ArrayList<Achievement>();
+		
+		String selectQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + KEY_PROFILE_NAME + " = '" + profileName + "'";
+		Cursor cursor = database.rawQuery(selectQuery, null);
+		 if (cursor.moveToFirst()) {
+			 do {
+				 int achievementId = cursor.getInt(cursor.getColumnIndex(KEY_ACHIEVEMENT_ID));
+				 int index = cursor.getInt(cursor.getColumnIndex(KEY_ACHIEVEMENT_INDEX));
+				 Achievement achievement = null; // Cannot create abstract Achievement
+				 unlockedAchievements.add(achievement);
+		        } while (cursor.moveToNext());
+		}
+		return unlockedAchievements;
 	}
 
 	/**
@@ -83,7 +113,18 @@ public class AchievementManager extends TableManager {
 	 *            deleted
 	 */
 	void deleteUnlockedAchievements(String profileName) {
-
+		database.delete(TABLE_NAME, KEY_PROFILE_NAME + " = ?",
+	            new String[] { profileName });
+	}
+	
+	void clearTable() {
+		database.execSQL("delete from "+ TABLE_NAME);
+	}
+	
+	@Override
+	long getRowCount() {
+		return DatabaseUtils.queryNumEntries(database, TABLE_NAME);
+		
 	}
 
 }

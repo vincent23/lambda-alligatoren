@@ -10,58 +10,73 @@ public class Statistic {
 	/**
 	 * The amount of time a user has played the game.
 	 */
-	private int playtime;
+	private int playtime = 0;
 
 	/**
 	 * The number of used hints.
 	 */
-	private int usedHints;
+	private int usedHints = 0;
 
 	/**
 	 * The number of levels the user has completed.
 	 */
-	private int levelsComplete;
+	private int levelsComplete = 0;
 
 	/**
 	 * The number of packages the user has completed.
 	 */
-	private int packagesComplete;
+	private int packagesComplete = 0;
 
 	/**
 	 * The number of resets triggered by the user.
 	 */
-	private int resetsUsed;
+	private int resetsUsed = 0;
 
 	/**
 	 * The number of recoloring actions performed by the user.
 	 */
-	private int recolorings;
+	private int recolorings = 0;
 
 	/**
 	 * The number of alligators eaten during beta reductions.
 	 */
-	private int alligatorsEaten;
+	private int alligatorsEaten = 0;
 
 	/**
 	 * The number of alligators placed in the placement mode.
 	 */
-	private int alligatorsPlaced;
+	private int alligatorsPlaced = 0;
 
 	/**
 	 * The number of eggs hatched during beta reductions.
 	 */
-	private int eggsHatched;
+	private int eggsHatched = 0;
 
 	/**
 	 * The number of eggs placed in the placement mode.
 	 */
-	private int eggsPlaced;
+	private int eggsPlaced = 0;
 
 	/**
 	 * Creates a new default statistic.
 	 */
 	public Statistic() {
 
+	}
+	
+	public Statistic(int playtime, int usedHints, int resetsUsed, int recolorings, int levelsComplete, 
+			int packagesComplete, int alligatorsEaten ,int alligatorsPlaced, int eggsHatched, int eggsPlaced) {
+		this.playtime = playtime;
+		this.usedHints = usedHints;
+		this.resetsUsed = resetsUsed;
+		this.recolorings = recolorings;
+		this.levelsComplete = levelsComplete;
+		this.packagesComplete = packagesComplete;
+		this.alligatorsEaten = alligatorsEaten;
+		this.alligatorsPlaced = alligatorsPlaced;
+		this.eggsHatched = eggsHatched;
+		this.eggsPlaced = eggsPlaced;
+		
 	}
 
 	/**
@@ -253,5 +268,40 @@ public class Statistic {
 	public void setEggsPlaced(int eggsPlaced) {
 		this.eggsPlaced = eggsPlaced;
 	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Statistic other = (Statistic) obj;
+		if (alligatorsEaten != other.alligatorsEaten)
+			return false;
+		if (alligatorsPlaced != other.alligatorsPlaced)
+			return false;
+		if (eggsHatched != other.eggsHatched)
+			return false;
+		if (eggsPlaced != other.eggsPlaced)
+			return false;
+		if (levelsComplete != other.levelsComplete)
+			return false;
+		if (packagesComplete != other.packagesComplete)
+			return false;
+		if (playtime != other.playtime)
+			return false;
+		if (recolorings != other.recolorings)
+			return false;
+		if (resetsUsed != other.resetsUsed)
+			return false;
+		if (usedHints != other.usedHints)
+			return false;
+		return true;
+	}
+	
+	
 
 }

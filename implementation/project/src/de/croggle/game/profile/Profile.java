@@ -42,6 +42,10 @@ public class Profile {
 	 *            the path to the profiles' picture
 	 */
 	public Profile(String name, String picturePath) {
+		this.name = name;
+		this.picturePath = picturePath;
+		this.setting = new Setting();
+		this.statistic = new Statistic();
 
 	}
 
@@ -122,6 +126,28 @@ public class Profile {
 	 */
 	public void setStatistic(Statistic statistic) {
 		this.statistic = statistic;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Profile other = (Profile) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (picturePath == null) {
+			if (other.picturePath != null)
+				return false;
+		} else if (!picturePath.equals(other.picturePath))
+			return false;
+		return true;
 	}
 
 }
