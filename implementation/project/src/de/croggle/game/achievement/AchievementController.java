@@ -2,6 +2,7 @@ package de.croggle.game.achievement;
 
 import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.croggle.AlligatorApp;
@@ -22,7 +23,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	/**
 	 * A list of all achievements unlocked by the currently active user.
 	 */
-	private List<Achievement> unlockedAchievements;
+	private HashMap<Achievement, Integer> unlockedAchievements;
 	/**
 	 * list of achievements unlocked during the last level
 	 */
@@ -41,7 +42,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 *            the backreference to the central game object
 	 */
 	public AchievementController(AlligatorApp game) {
-		this.unlockedAchievements = new ArrayList<Achievement>();
+		this.unlockedAchievements = new HashMap<Achievement, Integer>();
 		this.game = game;
 
 	}
@@ -62,9 +63,15 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * Initiates the available achievements.
 	 */
 	public void initiateAvailableAchievements() {
+		// availableAchievements.add(new TimeAchievement());
+		// availableAchievements.add(new AlligatorsEatenAchievement());
+		// availableAchievements.add(new AlligatorsPlaAchievement());
+
 		for (Achievement achievement : availableAchievements) {
 			achievement.initialize();
+			unlockedAchievements.put(achievement, 0);
 		}
+
 	}
 
 	/**
@@ -88,7 +95,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * 
 	 * @return a list of unlocked achievements
 	 */
-	public List<Achievement> getUnlockedAchievements() {
+	public HashMap<Achievement, Integer> getUnlockedAchievements() {
 		return unlockedAchievements;
 	}
 
@@ -123,15 +130,20 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 */
 	@Override
 	public void processDelta(Statistic statisticsDelta) {
-		List<Achievement> unlockedAchievements = new ArrayList<Achievement>();
-		Statistic statistic = null; //TODO: database access here?
+		HashMap<Achievement, Integer> unlockedAchievements = this.unlockedAchievements;
+		Statistic statistic = null; // TODO: database access here?
 		latestUnlockedAchievements.clear();
-		for ( Achievement achievement: availableAchievements) {
-			int oldVal = achievement.getIndex(); //TODO: How do i get the basevalue from the database in here?
-			int newVal = achievement.requirementsMet(statistic, statisticsDelta); // the new stuff
-			if ( oldVal != newVal) {
+		for (Achievement achievement : availableAchievements) {
+			int oldVal = achievement.getIndex();
+			int newVal = achievement
+					.requirementsMet(statistic, statisticsDelta); // Changes
+																	// after
+																	// update of
+																	// statistic
+			if (oldVal != newVal) {
 				achievement.setIndex(newVal);
-				unlockedAchievements.add(achievement);
+				unlockedAchievements.remove(achievement);
+				unlockedAchievements.put(achievement, newVal);
 				latestUnlockedAchievements.add(achievement);
 			}
 		}
