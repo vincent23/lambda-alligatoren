@@ -43,6 +43,8 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 */
 	public AchievementController(AlligatorApp game) {
 		this.unlockedAchievements = new HashMap<Achievement, Integer>();
+		this.availableAchievements = new ArrayList<Achievement>();
+		this.latestUnlockedAchievements = new ArrayList<Achievement>();
 		this.game = game;
 		initiateAvailableAchievements();
 
@@ -63,14 +65,21 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	/**
 	 * Initiates the available achievements.
 	 */
-	public void initiateAvailableAchievements() {
-		availableAchievements.add(new AlligatorsEatenAchievement());
-		availableAchievements.add(new AlligatorsPlacedAchievement());
-		availableAchievements.add(new AlligatorsEatenPerLevelAchievement());
-		availableAchievements.add(new AlligatorsPlacedPerLevelAchievement());
-		availableAchievements.add(new HintPerLevelAchievement());
-		availableAchievements.add(new LevelAchievement());
-		availableAchievements.add(new TimeAchievement());
+	private void initiateAvailableAchievements() {
+		Achievement alligatorsEatenAchievement = new AlligatorsEatenAchievement();
+		Achievement alligatorsEatenPerLevelAchievement = new AlligatorsEatenPerLevelAchievement();
+		Achievement alligatorsPlacedAchievement = new AlligatorsPlacedAchievement();
+		Achievement alligatorsPlacedPerLevelAchievement = new AlligatorsPlacedPerLevelAchievement();
+		Achievement hintPerLevelAchievement = new HintPerLevelAchievement();
+		Achievement levelAchievement = new LevelAchievement();
+		Achievement timeAchievement = new TimeAchievement();
+		availableAchievements.add(alligatorsEatenAchievement);
+		availableAchievements.add(alligatorsEatenPerLevelAchievement);
+		availableAchievements.add(alligatorsPlacedAchievement);
+		availableAchievements.add(alligatorsPlacedPerLevelAchievement);
+		availableAchievements.add(hintPerLevelAchievement);
+		availableAchievements.add(levelAchievement);
+		availableAchievements.add(timeAchievement);
 
 		for (Achievement achievement : availableAchievements) {
 			achievement.initialize();
@@ -123,6 +132,26 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	public List<Achievement> getLatestUnlockedAchievements() {
 		return latestUnlockedAchievements;
 	}
+	
+	protected List<Achievement> updateAchievements(Statistic statistic, Statistic statisticDelta) {
+		List<Achievement> latestChanges = new ArrayList<Achievement>();
+		for (Achievement achievement : availableAchievements) {
+			int oldVal = achievement.getIndex();
+			int newVal = achievement
+					.requirementsMet(statistic, statisticDelta); // Changes
+																	// after
+																	// update of
+																	// statistic
+			if (oldVal != newVal) {
+				achievement.setIndex(newVal);
+				unlockedAchievements.remove(achievement);
+				unlockedAchievements.put(achievement, newVal);
+				latestChanges.add(achievement);
+			}
+		}
+		return latestChanges;
+	}
+	
 
 	/**
 	 * Checks whether the new statistic changes in a level cause new
@@ -135,22 +164,8 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 */
 	@Override
 	public void processDelta(Statistic statisticsDelta) {
-		HashMap<Achievement, Integer> unlockedAchievements = this.unlockedAchievements;
-		Statistic statistic = null; // TODO: database access here?
 		latestUnlockedAchievements.clear();
-		for (Achievement achievement : availableAchievements) {
-			int oldVal = achievement.getIndex();
-			int newVal = achievement
-					.requirementsMet(statistic, statisticsDelta); // Changes
-																	// after
-																	// update of
-																	// statistic
-			if (oldVal != newVal) {
-				achievement.setIndex(newVal);
-				unlockedAchievements.remove(achievement);
-				unlockedAchievements.put(achievement, newVal);
-				latestUnlockedAchievements.add(achievement);
-			}
-		}
+		Statistic statistic = null; // TODO: database access here?
+		latestUnlockedAchievements = updateAchievements(statistic, statisticsDelta);
 	}
 }

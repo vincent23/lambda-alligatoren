@@ -30,7 +30,7 @@ public class LevelAchievement extends Achievement {
 		String[] emblemPath = new String[1]; // TODO: Path zu den Emblems
 												// reintun.
 		String[] description = new String[7];
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < 7; i++) {
 			description[i] = stages[i]  + _("achievement_level_completed");
 			
 		}
