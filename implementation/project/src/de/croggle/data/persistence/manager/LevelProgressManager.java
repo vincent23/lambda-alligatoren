@@ -1,7 +1,11 @@
 package de.croggle.data.persistence.manager;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import de.croggle.data.persistence.LevelProgress;
+
 
 /**
  * A concrete table manager which is responsible for managing the SQLite table
@@ -55,7 +59,16 @@ public class LevelProgressManager extends TableManager {
 	/**
 	 * The string used for creating the level progress table via a sql query.
 	 */
-	static final String CREATE_TABLE = "null";
+	static final String CREATE_TABLE  = "create table " + TABLE_NAME
+			+ "(" + KEY_PROFILE_NAME + " text not null, "
+            + KEY_LEVEL_ID + " integer, "
+            + KEY_SOLVED + " boolean, "
+            + KEY_CURRENT_BOARD + " text not null, "
+			+ KEY_USED_RESETS + " int, " 
+			+ KEY_USED_HINTS + " int, " 
+			+ KEY_USED_TIME + " int, " + 
+			"FOREIGN KEY(" + KEY_PROFILE_NAME + ") REFERENCES " + ProfileManager.TABLE_NAME + "(" + ProfileManager.KEY_PROFILE_NAME + ") ON UPDATE CASCADE ON DELETE CASCADE )";
+	
 
 	/**
 	 * Creates a new LevelProgressManager which manages the level progress
@@ -78,7 +91,18 @@ public class LevelProgressManager extends TableManager {
 	 *            table
 	 */
 	void addLevelProgress(String profileName, LevelProgress levelProgress) {
-
+		
+		ContentValues values = new ContentValues();
+		
+		values.put(KEY_PROFILE_NAME, profileName);
+		values.put(KEY_LEVEL_ID, levelProgress.getLevelId());
+		values.put(KEY_SOLVED, levelProgress.isSolved());
+		values.put(KEY_CURRENT_BOARD, levelProgress.getCurrentBoard());
+		values.put(KEY_USED_RESETS, levelProgress.getUsedResets());
+		values.put(KEY_USED_HINTS, levelProgress.getUsedHints());
+		values.put(KEY_USED_TIME, levelProgress.getUsedTime());
+		
+		database.insert(TABLE_NAME, null, values);
 	}
 
 	/**
@@ -93,7 +117,23 @@ public class LevelProgressManager extends TableManager {
 	 * @return the found level progress, null if no level progress is found
 	 */
 	LevelProgress getLevelProgress(String profileName, long levelId) {
-		return null;
+		
+		String selectQuery = "select * from " + TABLE_NAME + " where "
+	            + KEY_PROFILE_NAME + " = " + "'" + profileName + "' and " + KEY_LEVEL_ID + " = " + levelId;
+		
+		Cursor cursor = database.rawQuery(selectQuery, null);
+		
+		if (cursor.moveToFirst()) {
+			 int levelID = cursor.getInt(cursor.getColumnIndex(KEY_LEVEL_ID));
+			 boolean solved = (cursor.getInt(cursor.getColumnIndex(KEY_SOLVED)) == 1) ? true : false;
+			 String currentBoard = cursor.getString(cursor.getColumnIndex(KEY_CURRENT_BOARD));
+			 int usedResets = cursor.getInt(cursor.getColumnIndex(KEY_USED_RESETS));
+			 int usedHints = cursor.getInt(cursor.getColumnIndex(KEY_USED_HINTS));
+			 int usedTime = cursor.getInt(cursor.getColumnIndex(KEY_USED_TIME));
+			 return new LevelProgress(levelID, solved, currentBoard, usedResets, usedHints, usedTime);
+		 }
+		 
+		 return null;
 	}
 
 	/**
@@ -109,7 +149,18 @@ public class LevelProgressManager extends TableManager {
 	 *            old level progress
 	 */
 	void updateLevelProgress(String profileName, LevelProgress levelProgress) {
-		/* TODO */
+		
+		ContentValues values = new ContentValues();
+		
+		values.put(KEY_LEVEL_ID, levelProgress.getLevelId());
+		values.put(KEY_SOLVED, levelProgress.isSolved());
+		values.put(KEY_CURRENT_BOARD, levelProgress.getCurrentBoard());
+		values.put(KEY_USED_RESETS, levelProgress.getUsedResets());
+		values.put(KEY_USED_HINTS, levelProgress.getUsedHints());
+		values.put(KEY_USED_TIME, levelProgress.getUsedTime());
+		
+		database.update(TABLE_NAME, values, KEY_PROFILE_NAME + " = '" + profileName + "' and " + KEY_LEVEL_ID + " = " + levelProgress.getLevelId(),
+	            null);
 
 	}
 
@@ -121,7 +172,18 @@ public class LevelProgressManager extends TableManager {
 	 *            the name of the profile to which the level progresses belong
 	 */
 	void deleteLevelProgresses(String profileName) {
-
+		database.delete(TABLE_NAME, KEY_PROFILE_NAME + " = ?",
+	            new String[] { profileName });
+	}
+	
+	void clearTable() {
+		database.execSQL("delete from "+ TABLE_NAME);
+	}
+	
+	@Override
+	long getRowCount() {
+		return DatabaseUtils.queryNumEntries(database, TABLE_NAME);
+		
 	}
 
 }

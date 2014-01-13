@@ -3,6 +3,7 @@ package de.croggle.data.persistence.manager;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * This class is responsible for creating and managing the database with its
@@ -35,6 +36,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		db.execSQL(AchievementManager.CREATE_TABLE);
+		db.execSQL(LevelProgressManager.CREATE_TABLE);
+		db.execSQL(ProfileManager.CREATE_TABLE);
+		db.execSQL(SettingManager.CREATE_TABLE);
+		db.execSQL(StatisticManager.CREATE_TABLE);
+		
+		
+		
 
 	}
 
@@ -43,7 +52,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+		db.execSQL("DROP TABLE IF EXISTS " + AchievementManager.TABLE_NAME);
+		db.execSQL("DROP TABLE IF EXISTS " + LevelProgressManager.TABLE_NAME);
+		db.execSQL("DROP TABLE IF EXISTS " + ProfileManager.TABLE_NAME);
+		db.execSQL("DROP TABLE IF EXISTS " + SettingManager.TABLE_NAME);
+		db.execSQL("DROP TABLE IF EXISTS " + StatisticManager.TABLE_NAME);
+		
+		onCreate(db);
 	}
 
 }
