@@ -1,6 +1,7 @@
 package de.croggle.game.level;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,9 @@ public class LevelPackagesController {
 	 * 
 	 * @param game
 	 *            the backreference to the central game object
+	 * @throws IOException 
 	 */
-	public LevelPackagesController(AlligatorApp game) {
+	public LevelPackagesController(AlligatorApp game) throws IOException {
 		this.game = game;
 		this.initialiseLevelPackages();
 	}
@@ -51,8 +53,9 @@ public class LevelPackagesController {
 	
 	/**
 	 * Method to initialize the levelPackages from the assets.
+	 * @throws IOException 
 	 */
-	private void initialiseLevelPackages(){
+	private void initialiseLevelPackages() throws IOException{
 		AssetManager manager  = game.getContext().getAssets();
 		String[] packageNames = null;
 		try {
@@ -71,9 +74,13 @@ public class LevelPackagesController {
 	/**
 	 * @param PackageIndex of the Level Package which should be loaded.
 	 * @return the Level Package belonging to the given index. 
+	 * @throws IOException 
 	 */
-	private LevelPackage loadPackage(int packageIndex){
+	private LevelPackage loadPackage(int packageIndex) throws IOException{
 		AssetManager manager = game.getContext().getAssets();
+		InputStream stream = manager.open("json/levels/"+ String.format("%02d", packageIndex) + "/package.json");
+		
+		
 		JsonReader reader = new JsonReader();
 	return null;	
 	}
