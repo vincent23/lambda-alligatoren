@@ -23,8 +23,9 @@ public class LevelController {
 	 * 
 	 * @param packageIndex
 	 *            the index of the package whose levels should be controlled
+	 * @throws IOException 
 	 */
-	public LevelController(int packageIndex, AlligatorApp game) {
+	public LevelController(int packageIndex, AlligatorApp game) throws IOException {
 		this.packageIndex = packageIndex;
 		this.game = game;
 		this.getLevelFromPackage();
@@ -64,8 +65,9 @@ public class LevelController {
 	
 	/**
 	 * Method to load the level of the package the LevelController manages.
+	 * @throws IOException 
 	 */
-	private void getLevelFromPackage(){
+	private void getLevelFromPackage() throws IOException{
 		AssetManager manager  = game.getContext().getAssets();
 		String[] levelNames = null;
 		try {

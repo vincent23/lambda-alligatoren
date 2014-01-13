@@ -38,8 +38,9 @@ public class LevelPackagesController {
 	 *            the Id of the chosen LevelPackage
 	 * @return the level controller one must use to handle the levels within the
 	 *         level package
+	 * @throws IOException 
 	 */
-	public LevelController getLevelController(int packageId) {
+	public LevelController getLevelController(int packageId) throws IOException {
 		return new LevelController(packageId, game);
 	}
 

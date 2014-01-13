@@ -1,11 +1,13 @@
 package de.croggle.game.level;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 
 import de.croggle.AlligatorApp;
@@ -41,9 +43,10 @@ public class LoadLevelHelper {
 	 *            the id of the level within the package
 	 * @return the level denoted by the given indices/identifiers
 	 * @throws InvalidJsonException
+	 * @throws IOException 
 	 */
 	static Level instantiate(int packageIndex, int levelIndex, AlligatorApp game)
-			throws InvalidJsonException {
+			throws InvalidJsonException, IOException {
 		JsonValue json = getJson(packageIndex, levelIndex, game);
 		Level level = null;
 		try {
@@ -66,11 +69,16 @@ public class LoadLevelHelper {
 	 *            the id of the level within the package.
 	 * @return json value with the data needed to create the requested level
 	 *         from
+	 * @throws IOException 
 	 */
-	private static JsonValue getJson(int packageIndex, int levelIndex, AlligatorApp game) {
-		AssetManager manager = game.getAssetManager();
-	
-		return null;
+	private static JsonValue getJson(int packageIndex, int levelIndex, AlligatorApp game) throws IOException {
+		android.content.res.AssetManager manager = game.getContext().getAssets();
+		InputStream stream = manager.open("json/levels/"
+				+ String.format("%02d", packageIndex) +String.format("/%02d", levelIndex));
+		JsonReader reader = new JsonReader();
+		JsonValue de_croggle = reader.parse(stream);
+		
+		return de_croggle.getChild("levels");
 	}
 
 	/**
