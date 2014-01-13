@@ -29,7 +29,7 @@ public class ColorController {
 	 * The predefined colors mapped onto variable names source:
 	 * http://tools.medialab.sciences-po.fr/iwanthue/index.php
 	 */
-	private static final String[] colors = { "#804498", "#6BD942", "#DA4A29",
+	private static final String[] colors = { "#6BD942", "#804498", "#DA4A29",
 			"#303C21", "#75DFC9", "#D3A937", "#DA979B", "#93ABDA", "#DA386D",
 			"#5B8B31", "#C9CF89", "#C956E1", "#5F2820", "#5A274E", "#6EE089",
 			"#C6D94A", "#515C92", "#CD93D3", "#CACAB8", "#537A67", "#7474DC",
