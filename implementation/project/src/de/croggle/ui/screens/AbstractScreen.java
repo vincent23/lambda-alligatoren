@@ -120,14 +120,13 @@ public abstract class AbstractScreen implements Screen {
 	 * Called in order to move the screen back from its paused state.
 	 */
 	public void resume() {
-
 	}
 
 	/**
 	 * Called when this screen should be the game's current screen.
 	 */
 	public void show() {
-
+		
 	}
 
 	public void setBackground(String backgroundPath) {

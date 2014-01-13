@@ -5,10 +5,12 @@ package de.croggle.data;
  * automatically initialized with a new AssetManager (standard constructor).
  */
 public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
+	/* Static initialization will cause problems on app resume
 	static {
 		assetManager = new AssetManager();
 	}
-	private static final AssetManager assetManager;
+	*/
+	private static AssetManager assetManager;
 
 	private AssetManager() {
 	}
@@ -21,5 +23,9 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 */
 	public static AssetManager getInstance() {
 		return assetManager;
+	}
+	
+	public static void initialize() {
+		AssetManager.assetManager = new AssetManager();
 	}
 }

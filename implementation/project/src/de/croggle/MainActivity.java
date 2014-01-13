@@ -43,5 +43,5 @@ public class MainActivity extends AndroidApplication {
 
 		initialize(new AlligatorApp(this), config);
 	}
-
+	
 }

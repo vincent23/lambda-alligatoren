@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import de.croggle.data.AssetManager;
 import de.croggle.game.ColorController;
 import de.croggle.game.board.ColoredBoardObject;
-import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 
 public class ColoredBoardObjectActor extends BoardObjectActor {
@@ -126,6 +125,5 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	}
 	
 	protected void sizeChanged() {
-		
 	}
 }

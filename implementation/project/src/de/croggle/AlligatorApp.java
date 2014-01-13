@@ -16,7 +16,9 @@ import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.screens.AbstractScreen;
+import de.croggle.ui.screens.LoadingScreen;
 import de.croggle.ui.screens.MainMenuScreen;
+import de.croggle.ui.screens.ProgressingJob;
 
 /**
  * The central unit controlling the game. Manages the application lifecycle and
@@ -131,6 +133,7 @@ public class AlligatorApp extends Game {
 	 */
 	@Override
 	public void create() {
+		de.croggle.data.AssetManager.initialize();
 		this.batch = new SpriteBatch();
 		this.setScreen(new MainMenuScreen(this));
 	}
@@ -172,6 +175,24 @@ public class AlligatorApp extends Game {
 	 */
 	@Override
 	public void resume() {
+		super.resume();
+		this.setScreen(new LoadingScreen(this, new ProgressingJob() {
+			
+			@Override
+			public boolean update() {
+				return getAssetManager().update();
+			}
+			
+			@Override
+			public float getProgress() {
+				return getAssetManager().getProgress();
+			}
+			
+			@Override
+			public void finish() {
+				getAssetManager().finishLoading();
+			}
+		}, this.getScreen()));
 	}
 
 	/**
