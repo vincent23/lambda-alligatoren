@@ -1,7 +1,16 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.SettingController;
+import de.croggle.ui.StyleHelper;
 
 /**
  * Screen within which the player can see the chosen settings and change dem
@@ -9,6 +18,9 @@ import de.croggle.data.persistence.SettingController;
  * 19''.
  */
 public class SettingsScreen extends AbstractScreen {
+
+	private SettingController settingController;
+
 	/**
 	 * Creates the screen that is shown to the player while changing his
 	 * profile's settings.
@@ -21,5 +33,55 @@ public class SettingsScreen extends AbstractScreen {
 	 */
 	public SettingsScreen(AlligatorApp game, SettingController controller) {
 		super(game);
+		settingController = controller;
+
+		fillTable();
+	}
+
+	private void fillTable() {
+		StyleHelper helper = StyleHelper.getInstance();
+		ImageButton back = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+
+		Table scrollTable = new Table();
+		ScrollPane scroll = new ScrollPane(scrollTable);
+
+		Label gameplay = new Label("Gameplay", helper.getLabelStyle());
+		Label zoom = new Label("Zoom Buttons On", helper.getLabelStyle());
+		Label colorBlindness = new Label("Color Blindness Mode",
+				helper.getLabelStyle());
+		Label sound = new Label("Sound", helper.getLabelStyle());
+		Label music = new Label("Music", helper.getLabelStyle());
+		Label effects = new Label("Effects", helper.getLabelStyle());
+		Label profile = new Label("Profile", helper.getLabelStyle());
+
+		CheckBox zoomCheckBox = new CheckBox("Zoom Buttons On",
+				helper.getCheckBoxStyle());
+		CheckBox colorBlindnessCheckBox = new CheckBox("Color Blindness Mode",
+				helper.getCheckBoxStyle());
+
+		Slider musicSlider = new Slider(0, 100, 1, false,
+				helper.getSliderStyle());
+		Slider effectsSlider = new Slider(0, 100, 1, false,
+				helper.getSliderStyle());
+
+		TextButton editProfile = new TextButton("Edit Profile",
+				helper.getTextButtonStyle());
+
+		scrollTable.add(gameplay).row();
+		scrollTable.add(zoomCheckBox).row();
+		scrollTable.add(colorBlindnessCheckBox).row();
+		scrollTable.add(sound).row();
+		scrollTable.add(music);
+		scrollTable.add(musicSlider).row();
+		scrollTable.add(effects);
+		scrollTable.add(effectsSlider).row();
+		scrollTable.add(profile).row();
+		scrollTable.add(editProfile);
+
+		table.add(back).width(screenWidth / 10).height(screenWidth / 10).top()
+				.left();
+		table.add(scroll).expand().fill();
+		table.pad(30);
 	}
 }

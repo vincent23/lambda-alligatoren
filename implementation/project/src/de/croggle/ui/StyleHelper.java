@@ -3,10 +3,12 @@ package de.croggle.ui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox.CheckBoxStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton.ImageTextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 
 import de.croggle.data.AssetManager;
@@ -132,8 +134,16 @@ public class StyleHelper {
 	 * 
 	 * @return the label's style
 	 */
-	LabelStyle getLabelStyle() {
-		return null;
+	public LabelStyle getLabelStyle() {
+		return skin.get(LabelStyle.class);
+	}
+
+	public CheckBoxStyle getCheckBoxStyle() {
+		return skin.get(CheckBoxStyle.class);
+	}
+
+	public SliderStyle getSliderStyle() {
+		return skin.get(SliderStyle.class);
 	}
 
 }
