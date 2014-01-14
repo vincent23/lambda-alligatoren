@@ -22,15 +22,15 @@ public class HintPerLevelAchievementTest extends TestCase {
 		Achievement testAchievement = new HintPerLevelAchievement();
 		testAchievement.initialize();
 		assertTrue(testAchievement.getId() == -1);
-		int[] testStages = { 0, 1 };
+		int[] testStages = { 1, 0 };
 		assertTrue(testAchievement.getStage(0) == testStages[0]);
-		assertTrue(testAchievement.getDescription(0).endsWith("sed"));
+		assertTrue(testAchievement.getDescription(1).endsWith("sed"));
 	}
 
 	public void testIndexStuff() {
 		Achievement testAchievement = new HintPerLevelAchievement();
 		testAchievement.setIndex(0);
-		int[] testStages = { 0 };
+		int[] testStages = { 1, 0 };
 		testAchievement.setStages(testStages);
 		Statistic testStatistic = new Statistic();
 		testStatistic.setUsedHints(1);

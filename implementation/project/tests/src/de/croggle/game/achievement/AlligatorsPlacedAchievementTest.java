@@ -23,8 +23,8 @@ public class AlligatorsPlacedAchievementTest extends TestCase {
 		Achievement testAchievement = new AlligatorsPlacedAchievement();
 		testAchievement.initialize();
 		assertTrue(testAchievement.getId() == -1);
-		int[] testStages = { 10, 25, 50, 100, 200, 300, 500, 750, 1000, 2000 };
-		for (int i = 0; i < 10; i++) {
+		int[] testStages = { 0,  10, 25, 50, 100, 200, 300, 500, 750, 1000, 2000 };
+		for (int i = 1; i < 11; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);
 			assertTrue(testAchievement.getDescription(i).endsWith("placed"));
 		}
@@ -32,7 +32,7 @@ public class AlligatorsPlacedAchievementTest extends TestCase {
 
 	public void testIndexstuff() {
 		Achievement testAchievement = new AlligatorsPlacedAchievement();
-		int[] testStages = { 10, 25, 50, 100, 200, 300, 500, 750, 1000, 2000 };
+		int[] testStages = { 0,  10, 25, 50, 100, 200, 300, 500, 750, 1000, 2000 };
 		testAchievement.setStages(testStages);
 		Statistic testStatistic = new Statistic();
 		testStatistic.setAlligatorsPlaced(3000);

@@ -48,6 +48,8 @@ public class AchievementController implements StatisticsDeltaProcessor {
 		initiateAvailableAchievements();
 
 	}
+	
+	
 
 	/**
 	 * Receives statistics delta from the just finished level and processes it.
@@ -61,6 +63,12 @@ public class AchievementController implements StatisticsDeltaProcessor {
 		return null;
 	}
 
+	protected List<Achievement> convertDb() { // TODO: wie kommt das da rein?
+		List<Achievement> converted = new ArrayList<Achievement>();
+		//TODO : conversion
+		return converted;
+		
+	}
 	/**
 	 * Initiates the available achievements.
 	 */
@@ -132,6 +140,12 @@ public class AchievementController implements StatisticsDeltaProcessor {
 		return latestUnlockedAchievements;
 	}
 	
+	/**
+	 * Changes the available and unlocked achievements and returns said changes.
+	 * @param statistic 
+	 * @param statisticDelta
+	 * @return
+	 */
 	protected List<Achievement> updateAchievements(Statistic statistic, Statistic statisticDelta) {
 		List<Achievement> latestChanges = new ArrayList<Achievement>();
 		for (Achievement achievement : availableAchievements) {

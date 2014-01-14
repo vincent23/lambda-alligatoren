@@ -19,8 +19,8 @@ public class AlligatorsEatenPerLevelAchievementTest extends TestCase {
 		Achievement testAchievement = new AlligatorsEatenPerLevelAchievement();
 		testAchievement.initialize();
 		assertTrue(testAchievement.getId() == -1);
-		int[] testStages = { 1, 2, 5, 10, 20};
-		for (int i = 0; i < 4; i++) {
+		int[] testStages = {0, 1, 2, 5, 10, 20};
+		for (int i = 1; i < 6; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);
 			assertTrue(testAchievement.getDescription(i).endsWith("level"));
 		}
@@ -28,7 +28,7 @@ public class AlligatorsEatenPerLevelAchievementTest extends TestCase {
 
 	public void testIndexStuff() {
 		Achievement testAchievement = new AlligatorsEatenPerLevelAchievement();
-		int[] testStages = { 1, 2, 5, 10, 20};
+		int[] testStages = {0, 1, 2, 5, 10, 20};
 		testAchievement.setStages(testStages);
 		Statistic testStatistic = new Statistic();
 		testStatistic.setAlligatorsEaten(30);

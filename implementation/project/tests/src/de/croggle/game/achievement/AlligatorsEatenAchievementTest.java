@@ -20,9 +20,9 @@ public class AlligatorsEatenAchievementTest extends TestCase {
 		Achievement testAchievement = new AlligatorsEatenAchievement();
 		testAchievement.initialize();
 		assertTrue(testAchievement.getId() == -1);
-		int[] testStages = { 5, 20, 50, 100, 175, 250,
+		int[] testStages = {0, 5, 20, 50, 100, 175, 250,
 				500, 750, 1250, 2500 };
-		for (int i = 0; i < 10; i++) {
+		for (int i = 1; i < 11; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);
 			assertTrue(testAchievement.getDescription(i).endsWith("eaten"));
 		}
@@ -30,7 +30,7 @@ public class AlligatorsEatenAchievementTest extends TestCase {
 	
 	public void testIndexstuff() {
 		Achievement testAchievement = new AlligatorsEatenAchievement();
-		int[] testStages = { 5, 20, 50, 100, 175, 250,
+		int[] testStages = {0, 5, 20, 50, 100, 175, 250,
 				500, 750, 1250, 2500 };
 		testAchievement.setStages(testStages);
 		Statistic testStatistic = new Statistic();

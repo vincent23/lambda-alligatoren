@@ -20,9 +20,9 @@ public class TimeAchievementTest extends TestCase {
 		Achievement testAchievement = new TimeAchievement();
 		testAchievement.initialize();
 		assertTrue(testAchievement.getId() == -1);
-		int[] testStages = { 5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60, 120 * 60,
+		int[] testStages = {0,  5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60, 120 * 60,
 				180 * 60, 300 * 60, 600 * 60, 6000 * 60 };
-		for (int i = 0; i < 10; i++) {
+		for (int i = 1; i < 11; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);
 			assertTrue(testAchievement.getDescription(i).endsWith("yed"));
 		}
@@ -30,7 +30,7 @@ public class TimeAchievementTest extends TestCase {
 	
 	public void testIndexstuff() {
 		Achievement testAchievement = new TimeAchievement();
-		int[] testStages = { 5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60, 120 * 60,
+		int[] testStages = {0, 5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60, 120 * 60,
 				180 * 60, 300 * 60, 600 * 60, 6000 * 60 };
 		testAchievement.setStages(testStages);
 		Statistic testStatistic = new Statistic();
