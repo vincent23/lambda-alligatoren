@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.badlogic.gdx.math.Vector2;
 
+import de.croggle.game.ColorController;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.BoardObject;
@@ -131,8 +132,10 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	 * @return the map of layouted BoardObjectActors, accessible via the
 	 *         InternalBoardObject they represent
 	 */
-	public static Map<InternalBoardObject, BoardObjectActor> build(Board b) {
-		return build(b, new ActorLayoutConfiguration());
+	public static Map<InternalBoardObject, BoardObjectActor> build(Board b, ColorController ccntrlr) {
+		ActorLayoutConfiguration config = new ActorLayoutConfiguration();
+		config.setColorController(ccntrlr);
+		return build(b, config);
 	}
 
 	@Override
@@ -175,7 +178,7 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	 * @param p
 	 */
 	private void setParentActorBounds(BoardObjectActor p) {
-		double totalWidth = widthMap.get(p);
+		double totalWidth = widthMap.get(p.getBoardObject());
 		float w = config.getOriginalObjectWidth() * getScaling();
 		float h = config.getOriginalObjectHeight() * getScaling();
 		float offset = ((float) totalWidth + w) / 2.f;

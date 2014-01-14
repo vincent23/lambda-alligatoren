@@ -1,9 +1,16 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.math.Vector2;
+
 import de.croggle.AlligatorApp;
+import de.croggle.game.Color;
+import de.croggle.game.ColorController;
 import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
+import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
+import de.croggle.game.board.Egg;
+import de.croggle.ui.renderer.BoardActor;
 import de.croggle.ui.renderer.ColoredAlligatorActor;
 
 /**
@@ -28,10 +35,27 @@ public class SimulationModeScreen extends AbstractScreen {
 	public SimulationModeScreen(AlligatorApp game, GameController controller) {
 		super(game);
 		this.gameController = controller;
+		
+		ColorController cctrlr = new ColorController();
+		Board b = new Board();
+		Color c0;
+		Color c1;
 		try {
-			this.stage.addActor(new ColoredAlligatorActor(new ColoredAlligator(true, true, controller.getColorController().requestColor(), true), gameController.getColorController()));
+			c0 = cctrlr.requestColor();
+			c1 = cctrlr.requestColor();
 		} catch (ColorOverflowException e) {
-			//TODO silly exception
+			throw new RuntimeException("Test failed");
 		}
+		ColoredAlligator a = new ColoredAlligator(false, false, c0, false);
+		Egg e1 = new Egg(false, false, c0, false);
+		Egg e2 = new Egg(false, false, c1, false);
+		b.addChild(a);
+		b.addChild(e2);
+		a.addChild(e1);
+		
+		BoardActor ba = new BoardActor(b, cctrlr);
+		ba.getLayoutConfiguration().setTreeOrigin(new Vector2(0, 600));
+		
+		this.stage.addActor(ba);
 	}
 }

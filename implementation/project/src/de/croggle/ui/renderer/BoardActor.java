@@ -1,5 +1,6 @@
 package de.croggle.ui.renderer;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,15 +29,22 @@ public class BoardActor extends Group implements BoardEventListener {
 	private Map<InternalBoardObject, BoardObjectActor> actors;
 	private Board board;
 	private ActorLayoutConfiguration config;
-
+	
+	private BoardActor(Board b) {
+		this.board = b;
+		actors = new HashMap<InternalBoardObject, BoardObjectActor>();
+	}
+	
 	/**
 	 * Creates a new BoardActor.
 	 * 
 	 * @param board
 	 */
 	public BoardActor(Board board, ActorLayoutConfiguration config) {
-		this.board = board;
+		this(board);
 		this.config = config;
+		actors = new HashMap<InternalBoardObject, BoardObjectActor>();
+		this.onBoardRebuilt(board);
 	}
 
 	/**
@@ -48,9 +56,19 @@ public class BoardActor extends Group implements BoardEventListener {
 	 * @param board
 	 */
 	public BoardActor(Board board, ColorController controller) {
-		this.board = board;
+		this(board);
 		this.config = new ActorLayoutConfiguration();
 		config.setColorController(controller);
+		this.onBoardRebuilt(board);
+	}
+	
+	/**
+	 * Returns this {@link BoardActor}'s {@link ActorLayoutConfiguration configuration to layout its actors}.
+	 * 
+	 * @return this {@link BoardActor}'s {@link ActorLayoutConfiguration}
+	 */
+	public ActorLayoutConfiguration getLayoutConfiguration() {
+		return config;
 	}
 
 	/**
@@ -185,7 +203,7 @@ public class BoardActor extends Group implements BoardEventListener {
 	@Override
 	public void onBoardRebuilt(Board board) {
 		this.board = board;
-		this.actors = ActorLayoutBuilder.build(board);
+		this.actors = ActorLayoutBuilder.build(board, config);
 		clear();
 		for (BoardObjectActor actor : this.actors.values()) {
 			addActor(actor);
