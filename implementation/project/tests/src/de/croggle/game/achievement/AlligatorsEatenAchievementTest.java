@@ -28,7 +28,7 @@ public class AlligatorsEatenAchievementTest extends TestCase {
 		}
 	} 
 	
-	public void testIndexstuff() {
+	public void testIndexingAndIncreaseDecrease() {
 		Achievement testAchievement = new AlligatorsEatenAchievement();
 		int[] testStages = {0, 5, 20, 50, 100, 175, 250,
 				500, 750, 1250, 2500 };

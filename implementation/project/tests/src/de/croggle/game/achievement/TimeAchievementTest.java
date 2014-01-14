@@ -28,7 +28,7 @@ public class TimeAchievementTest extends TestCase {
 		}
 	} 
 	
-	public void testIndexstuff() {
+	public void testIndexingAndIncreaseDecrease() {
 		Achievement testAchievement = new TimeAchievement();
 		int[] testStages = {0, 5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60, 120 * 60,
 				180 * 60, 300 * 60, 600 * 60, 6000 * 60 };

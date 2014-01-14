@@ -26,7 +26,7 @@ public class AlligatorsPlacedPerLevelAchievementTest extends TestCase {
 		}
 	} 
 	
-	public void testIndexstuff() {
+	public void testIndexingAndIncreaseDecrease() {
 		Achievement testAchievement = new AlligatorsPlacedPerLevelAchievement();
 		int[] testStages = {0, 2, 5, 10, 15, 25};
 		testAchievement.setStages(testStages);

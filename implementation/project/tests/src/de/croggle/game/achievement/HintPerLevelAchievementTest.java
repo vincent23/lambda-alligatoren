@@ -27,7 +27,7 @@ public class HintPerLevelAchievementTest extends TestCase {
 		assertTrue(testAchievement.getDescription(1).endsWith("sed"));
 	}
 
-	public void testIndexStuff() {
+	public void testIndexingAndIncreaseDecrease() {
 		Achievement testAchievement = new HintPerLevelAchievement();
 		testAchievement.setIndex(0);
 		int[] testStages = { 1, 0 };
