@@ -1,5 +1,8 @@
 package de.croggle.game.board.operations;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import de.croggle.game.Color;
 import de.croggle.game.ColorController;
 import de.croggle.game.ColorOverflowException;
@@ -9,6 +12,7 @@ import de.croggle.game.board.BoardObject;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
+import de.croggle.game.board.Parent;
 import de.croggle.game.event.BoardEventMessenger;
 
 /**
@@ -21,23 +25,27 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	private final InternalBoardObject bornFamilyPrototype;
 	private final Color eggColor;
 	private final ColorController colorController;
+	private BoardObject constellation;
 
-	private ReplaceEggs(Color eggColor, InternalBoardObject bornFamily) {
-		this(eggColor, bornFamily, null, null);
+	private ReplaceEggs(BoardObject constellation, Color eggColor,
+			InternalBoardObject bornFamily) {
+		this(constellation, eggColor, bornFamily, null, null);
 	}
 
-	private ReplaceEggs(Color eggColor, InternalBoardObject bornFamily,
-			BoardEventMessenger boardMessenger) {
-		this(eggColor, bornFamily, boardMessenger, null);
+	private ReplaceEggs(BoardObject constellation, Color eggColor,
+			InternalBoardObject bornFamily, BoardEventMessenger boardMessenger) {
+		this(constellation, eggColor, bornFamily, boardMessenger, null);
 	}
 
-	private ReplaceEggs(Color eggColor, InternalBoardObject bornFamily,
+	private ReplaceEggs(BoardObject constellation, Color eggColor,
+			InternalBoardObject bornFamily, ColorController colorController) {
+		this(constellation, eggColor, bornFamily, null, colorController);
+	}
+
+	private ReplaceEggs(BoardObject constellation, Color eggColor,
+			InternalBoardObject bornFamily, BoardEventMessenger boardMessenger,
 			ColorController colorController) {
-		this(eggColor, bornFamily, null, colorController);
-	}
-
-	private ReplaceEggs(Color eggColor, InternalBoardObject bornFamily,
-			BoardEventMessenger boardMessenger, ColorController colorController) {
+		this.constellation = constellation;
 		this.eggColor = eggColor;
 		this.bornFamilyPrototype = bornFamily;
 		this.boardMessenger = boardMessenger;
@@ -66,8 +74,8 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	public static void replace(BoardObject constellation, Color eggColor,
 			InternalBoardObject bornFamily, BoardEventMessenger boardMessenger,
 			ColorController colorController) {
-		ReplaceEggs replacer = new ReplaceEggs(eggColor, bornFamily,
-				boardMessenger, colorController);
+		ReplaceEggs replacer = new ReplaceEggs(constellation, eggColor,
+				bornFamily, boardMessenger, colorController);
 		constellation.accept(replacer);
 	}
 
@@ -90,8 +98,8 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 */
 	public static void replace(BoardObject constellation, Color eggColor,
 			InternalBoardObject bornFamily, BoardEventMessenger boardMessenger) {
-		ReplaceEggs replacer = new ReplaceEggs(eggColor, bornFamily,
-				boardMessenger);
+		ReplaceEggs replacer = new ReplaceEggs(constellation, eggColor,
+				bornFamily, boardMessenger);
 		constellation.accept(replacer);
 	}
 
@@ -115,8 +123,8 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 */
 	public static void replace(BoardObject constellation, Color eggColor,
 			InternalBoardObject bornFamily, ColorController colorController) {
-		ReplaceEggs replacer = new ReplaceEggs(eggColor, bornFamily,
-				colorController);
+		ReplaceEggs replacer = new ReplaceEggs(constellation, eggColor,
+				bornFamily, colorController);
 		constellation.accept(replacer);
 	}
 
@@ -138,7 +146,8 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 */
 	public static void replace(BoardObject constellation, Color eggColor,
 			InternalBoardObject bornFamily) {
-		ReplaceEggs replacer = new ReplaceEggs(eggColor, bornFamily);
+		ReplaceEggs replacer = new ReplaceEggs(constellation, eggColor,
+				bornFamily);
 		constellation.accept(replacer);
 	}
 
@@ -198,7 +207,7 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 * @return the set of bound colors
 	 */
 	private Color[] findLocallyBoundColors(Egg egg) {
-		return null;
+		return findBoundColorsBelow(egg, constellation);
 	}
 
 	/**
@@ -210,6 +219,27 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 * @return the set of bound colors
 	 */
 	private Color[] findGloballyBoundColors(Egg egg) {
-		return null;
+		return findBoundColorsBelow(egg, null);
+	}
+
+	private Color[] findBoundColorsBelow(Egg egg, BoardObject topmost) {
+		final Set<Color> boundColors = new HashSet<Color>();
+		final Color eggColor = egg.getColor();
+		Parent parent = egg.getParent();
+		while (true) {
+			// TODO remove instanceof
+			if (parent instanceof ColoredAlligator) {
+				ColoredAlligator coloredAlligator = (ColoredAlligator) parent;
+				if (coloredAlligator.getColor().equals(eggColor)) {
+					boundColors.add(eggColor);
+				}
+			}
+			if (parent != topmost && parent instanceof InternalBoardObject) {
+				parent = ((InternalBoardObject) parent).getParent();
+			} else {
+				break;
+			}
+		}
+		return boundColors.toArray(new Color[boundColors.size()]);
 	}
 }
