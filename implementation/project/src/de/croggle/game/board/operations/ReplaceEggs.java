@@ -1,5 +1,6 @@
 package de.croggle.game.board.operations;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +27,8 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	private final Color eggColor;
 	private final ColorController colorController;
 	private BoardObject constellation;
+	private Color[] boundColors;
+	private Color[] freeColors;
 
 	private ReplaceEggs(BoardObject constellation, Color eggColor,
 			InternalBoardObject bornFamily) {
@@ -50,6 +53,11 @@ public class ReplaceEggs implements BoardObjectVisitor {
 		this.bornFamilyPrototype = bornFamily;
 		this.boardMessenger = boardMessenger;
 		this.colorController = colorController;
+
+		if (colorController != null) {
+			boundColors = CollectBoundColors.collect(constellation);
+			freeColors = CollectFreeColors.collect(constellation);
+		}
 	}
 
 	/**
@@ -159,8 +167,39 @@ public class ReplaceEggs implements BoardObjectVisitor {
 		if (egg.getColor().equals(this.eggColor)) {
 			InternalBoardObject replacement;
 			if (this.colorController != null) {
-				// TODO implement correct recoloring
 				replacement = this.bornFamilyPrototype.copy();
+				final Color[] locallyBoundColors = findLocallyBoundColors(egg);
+				final Color[] globallyBoundColors = findGloballyBoundColors(egg);
+
+				final Set<Color> locallyBoundAndFreeColors = new HashSet<Color>();
+				Collections.addAll(locallyBoundAndFreeColors,
+						locallyBoundColors);
+				Collections.addAll(locallyBoundAndFreeColors, freeColors);
+				for (Color color : locallyBoundAndFreeColors) {
+					try {
+						final Color newColor = colorController
+								.requestColor(globallyBoundColors);
+						ExchangeColor.recolor(constellation, color, newColor,
+								boardMessenger);
+					} catch (ColorOverflowException e) {
+						// TODO handle exception
+					}
+				}
+				final Set<Color> locallyBoundAndBoundColors = new HashSet<Color>();
+				Collections.addAll(locallyBoundAndBoundColors,
+						locallyBoundColors);
+				Collections.addAll(locallyBoundAndBoundColors, boundColors);
+				for (Color color : locallyBoundAndBoundColors) {
+					try {
+						final Color newColor = colorController
+								.requestColor(globallyBoundColors);
+						ExchangeColor.recolor(replacement, color, newColor,
+								boardMessenger);
+					} catch (ColorOverflowException e) {
+						// TODO handle exception
+					}
+
+				}
 			} else {
 				replacement = this.bornFamilyPrototype.copy();
 			}
