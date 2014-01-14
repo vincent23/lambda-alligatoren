@@ -110,6 +110,16 @@ public class ProfileController {
 	public boolean isValidUserName(String newUserName) {
 		return false;
 	}
+	
+	/**
+	 * Get the name of the currently active user.
+	 * @return The name of the currently active user.
+	 */
+	
+	//NEW
+	public String getCurrentProfileName() {
+		return currentProfile.getName();
+	}
 
 	/**
 	 * Stores the name of the currently active user in shared preferences.
