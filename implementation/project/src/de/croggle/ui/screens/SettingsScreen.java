@@ -3,7 +3,6 @@ package de.croggle.ui.screens;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -44,7 +43,7 @@ public class SettingsScreen extends AbstractScreen {
 				helper.getImageButtonStyleRound("widgets/dummy-icon"));
 
 		Table scrollTable = new Table();
-		ScrollPane scroll = new ScrollPane(scrollTable);
+		// ScrollPane scroll = new ScrollPane(scrollTable);
 
 		Label gameplay = new Label("Gameplay", helper.getLabelStyle());
 		Label zoom = new Label("Zoom Buttons On", helper.getLabelStyle());
@@ -55,9 +54,8 @@ public class SettingsScreen extends AbstractScreen {
 		Label effects = new Label("Effects", helper.getLabelStyle());
 		Label profile = new Label("Profile", helper.getLabelStyle());
 
-		CheckBox zoomCheckBox = new CheckBox("Zoom Buttons On",
-				helper.getCheckBoxStyle());
-		CheckBox colorBlindnessCheckBox = new CheckBox("Color Blindness Mode",
+		CheckBox zoomCheckBox = new CheckBox("", helper.getCheckBoxStyle());
+		CheckBox colorBlindnessCheckBox = new CheckBox("",
 				helper.getCheckBoxStyle());
 
 		Slider musicSlider = new Slider(0, 100, 1, false,
@@ -68,20 +66,24 @@ public class SettingsScreen extends AbstractScreen {
 		TextButton editProfile = new TextButton("Edit Profile",
 				helper.getTextButtonStyle());
 
+		scrollTable.defaults().left().space(20);
 		scrollTable.add(gameplay).row();
+		scrollTable.add(zoom).expandX().padLeft(30);
 		scrollTable.add(zoomCheckBox).row();
+		scrollTable.add(colorBlindness).expandX().padLeft(30);
 		scrollTable.add(colorBlindnessCheckBox).row();
 		scrollTable.add(sound).row();
-		scrollTable.add(music);
-		scrollTable.add(musicSlider).row();
-		scrollTable.add(effects);
-		scrollTable.add(effectsSlider).row();
+		scrollTable.add(music).padLeft(30);
+		scrollTable.add(musicSlider).width(screenWidth / 4).row();
+		scrollTable.add(effects).padLeft(30);
+		scrollTable.add(effectsSlider).width(screenWidth / 4).row();
 		scrollTable.add(profile).row();
-		scrollTable.add(editProfile);
+		scrollTable.add(editProfile).width(screenWidth / 5);
 
+		scrollTable.pad(50).padRight(screenWidth / 5);
 		table.add(back).width(screenWidth / 10).height(screenWidth / 10).top()
 				.left();
-		table.add(scroll).expand().fill();
+		table.add(scrollTable).expand().fill();
 		table.pad(30);
 	}
 }
