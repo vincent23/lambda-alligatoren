@@ -17,7 +17,7 @@ public class AlligatorsPlacedPerLevelAchievement extends PerLevelAchievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int alligatorsPlacedPerLevel = statisticDelta.getAlligatorsPlaced();
-		while (index < (getNumberOfStages() - 1) && alligatorsPlacedPerLevel >= getStage(index)) {
+		while (index < (getNumberOfStages() - 1) && alligatorsPlacedPerLevel >= getStage(index + 1)) {
 			index++;
 		}
 		// TODO: decide whether I have to correct the index of the Achievement

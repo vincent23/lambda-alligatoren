@@ -16,7 +16,7 @@ public class TimeAchievement extends Achievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int newTime = statistic.getPlaytime();
-		while (index < (getNumberOfStages() - 1) && newTime >= getStage(index)) {
+		while (index < (getNumberOfStages() - 1) && newTime >= getStage(index + 1)) {
 			index++;
 		}
 		// TODO: decide whether I have to correct the index of the Achievement

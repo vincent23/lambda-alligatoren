@@ -55,14 +55,34 @@ public class AchievementControllerTest extends TestCase {
 		
 		
 		List<Achievement> unlockedAchievement = achievementController.updateAchievements(statistic1, statistic2);
+		
+		
+		assertTrue(unlockedAchievement.isEmpty());
+		for ( Achievement achievement5 : achievementController.getAvailableAchievements())
+			assertTrue(achievement5.getIndex() == 0);
+		
+		
+		for ( Achievement achievement2 : achievementController.getLatestUnlockedAchievements()) {
+			assertTrue(achievementController.getAvailableAchievements().contains(achievement2));
+		}
+		
+		statistic1.setAlligatorsEaten(1);
+		statistic2.setAlligatorsEaten(1);
+		statistic1.setAlligatorsPlaced(15);
+		statistic2.setAlligatorsPlaced(1);
+		statistic1.setLevelsComplete(1);
+		statistic1.setUsedHints(1);
+		statistic2.setUsedHints(0);
+		statistic1.setPlaytime(360);
+		
+		unlockedAchievement = achievementController.updateAchievements(statistic1, statistic2);
+		achievementController.updateAchievements(statistic1, statistic2);
 		for( Achievement achievement3 : unlockedAchievement) {
 			assertTrue(achievement3.getDescription(achievement3.getIndex()).endsWith(" ."));
 		}
 		
-		assertTrue(unlockedAchievement.size() == 7);
-		
-		for ( Achievement achievement2 : achievementController.getLatestUnlockedAchievements()) {
-			assertTrue(achievementController.getAvailableAchievements().contains(achievement2));
+		for ( Achievement achievement4 : unlockedAchievement) {
+			assertTrue(achievement4.getIndex() == 1);
 		}
 	}
 
