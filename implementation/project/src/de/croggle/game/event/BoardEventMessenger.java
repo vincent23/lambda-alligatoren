@@ -6,6 +6,7 @@ import java.util.List;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
+import de.croggle.game.board.ColoredBoardObject;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 
@@ -53,7 +54,7 @@ public class BoardEventMessenger {
 	 * @param recoloredObject
 	 *            the object which was recolored
 	 */
-	public void notifyObjectRecolored(InternalBoardObject recoloredObject) {
+	public void notifyObjectRecolored(ColoredBoardObject recoloredObject) {
 		for (BoardEventListener listener : listeners) {
 			listener.onObjectRecolored(recoloredObject);
 		}

@@ -1,6 +1,6 @@
 package de.croggle.game.event;
 
-import de.croggle.game.board.InternalBoardObject;
+import de.croggle.game.board.ColoredBoardObject;
 
 /**
  * 
@@ -19,6 +19,6 @@ public interface ObjectRecoloredListener {
 	 * @param recoloredObject
 	 *            the board object whose color changed
 	 */
-	public void onObjectRecolored(InternalBoardObject recoloredObject);
+	public void onObjectRecolored(ColoredBoardObject recoloredObject);
 
 }

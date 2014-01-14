@@ -7,6 +7,7 @@ import de.croggle.data.persistence.StatisticsDeltaProcessor;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
+import de.croggle.game.board.ColoredBoardObject;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.event.BoardEventListener;
@@ -123,7 +124,7 @@ public class GameController implements BoardEventListener {
 	 * Registers the recoloring of an object in the statisticsDelta.
 	 */
 	@Override
-	public void onObjectRecolored(InternalBoardObject recoloredObject) {
+	public void onObjectRecolored(ColoredBoardObject recoloredObject) {
 	}
 
 	/**
