@@ -46,15 +46,18 @@ public class SimulationModeScreen extends AbstractScreen {
 		} catch (ColorOverflowException e) {
 			throw new RuntimeException("Test failed");
 		}
-		ColoredAlligator a = new ColoredAlligator(false, false, c0, false);
+		ColoredAlligator a1 = new ColoredAlligator(false, false, c0, false);
+		ColoredAlligator a2 = new ColoredAlligator(false, false, c1, false);
 		Egg e1 = new Egg(false, false, c0, false);
 		Egg e2 = new Egg(false, false, c1, false);
-		b.addChild(a);
-		b.addChild(e2);
-		a.addChild(e1);
+		b.addChild(a1);
+		b.addChild(a2);
+		a1.addChild(e1);
+		a2.addChild(e2);
 		
 		BoardActor ba = new BoardActor(b, cctrlr);
-		ba.getLayoutConfiguration().setTreeOrigin(new Vector2(0, 600));
+		ba.getLayoutConfiguration().setTreeOrigin(new Vector2(0, 400));
+		ba.onBoardRebuilt(b);
 		
 		this.stage.addActor(ba);
 	}

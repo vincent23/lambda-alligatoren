@@ -50,7 +50,7 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	/**
 	 * The current scaling of newly added BoardObjectActors
 	 */
-	private double scaling = 1;
+	private float scaling = 1;
 	/**
 	 * Where newly added BoardObjectActors will be placed
 	 */
@@ -164,11 +164,13 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 
 	@Override
 	public void visitBoard(Board board) {
+		goHigher();
 		layoutChildren(board);
+		goDeeper();
 	}
 
 	private float getScaling() {
-		return (float) scaling;
+		return scaling;
 	}
 
 	/**
@@ -181,7 +183,7 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 		double totalWidth = widthMap.get(p.getBoardObject());
 		float w = config.getOriginalObjectWidth() * getScaling();
 		float h = config.getOriginalObjectHeight() * getScaling();
-		float offset = ((float) totalWidth + w) / 2.f;
+		float offset = ((float) totalWidth - w) / 2.f;
 		if (config.getHorizontalGrowth() == TreeGrowth.POS_NEG) {
 			offset *= -1;
 		}

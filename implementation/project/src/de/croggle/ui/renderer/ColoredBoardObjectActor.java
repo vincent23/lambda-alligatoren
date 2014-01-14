@@ -45,7 +45,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		background = new Texture(bg);
 	}
 	
-	private void drawBackground(SpriteBatch batch, float width, float height) {
+	private void drawBackground(SpriteBatch batch) {
 		//now that the buffer has our alpha, we simply draw the sprite with the mask applied
 		Gdx.gl.glColorMask(true, true, true, true);
 		batch.setBlendFunction(GL10.GL_DST_ALPHA, GL10.GL_ONE_MINUS_DST_ALPHA);
@@ -55,14 +55,14 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		//Gdx.gl.glScissor(clipX, clipY, clipWidth, clipHeight);
 		
 		//draw our background to be masked
-		batch.draw(background, 0, 0, width, height);
+		batch.draw(background, getX(), getY(), getWidth(), getHeight());
 		
 		batch.flush();
 		//disable scissor before continuing
 		//Gdx.gl.glDisable(GL10.GL_SCISSOR_TEST);
 	}
 	
-	private void drawAlphaMask(SpriteBatch batch, float width, float height) {
+	private void drawAlphaMask(SpriteBatch batch) {
 		//disable RGB color, only enable ALPHA to the frame buffer
 		Gdx.gl.glColorMask(false, false, false, true);
 		
@@ -70,17 +70,17 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		batch.setBlendFunction(GL10.GL_ONE, GL10.GL_ZERO);
 		
 		//draw alpha mask sprite(s)
-		batch.draw(mask, 0, 0, width, height);
+		batch.draw(mask, getX(), getY(), getWidth(), getHeight());
 		
 		//flush the batch to the GPU
 		batch.flush();
 	}
 	
-	private void drawForeground(SpriteBatch batch, float width, float height) {
+	private void drawForeground(SpriteBatch batch) {
 		//regular blending mode
 		batch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
 		
-		batch.draw(foreground, 0, 0, width, height);
+		batch.draw(foreground, getX(), getY(), getWidth(), getHeight());
 		
 		//flush the batch to the GPU
 		batch.flush();
@@ -97,20 +97,17 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	 */
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
-		float w = getWidth();
-		float h = getHeight();
-		
 		// just to make sure
 		batch.enableBlending();
 		
 		//draw the alpha mask
-		drawAlphaMask(batch, w, h);
+		drawAlphaMask(batch);
 		
 		//draw our foreground elements
-		drawBackground(batch, w, h);
+		drawBackground(batch);
 		
 		//draw background
-		drawForeground(batch, w, h);
+		drawForeground(batch);
 	}
 
 	/**
