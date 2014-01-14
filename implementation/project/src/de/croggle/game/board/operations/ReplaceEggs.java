@@ -23,26 +23,17 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	private final ColorController colorController;
 
 	private ReplaceEggs(Color eggColor, InternalBoardObject bornFamily) {
-		this.eggColor = eggColor;
-		this.bornFamilyPrototype = bornFamily;
-		this.boardMessenger = null;
-		this.colorController = null;
+		this(eggColor, bornFamily, null, null);
 	}
 
 	private ReplaceEggs(Color eggColor, InternalBoardObject bornFamily,
 			BoardEventMessenger boardMessenger) {
-		this.eggColor = eggColor;
-		this.bornFamilyPrototype = bornFamily;
-		this.boardMessenger = boardMessenger;
-		this.colorController = null;
+		this(eggColor, bornFamily, boardMessenger, null);
 	}
 
 	private ReplaceEggs(Color eggColor, InternalBoardObject bornFamily,
 			ColorController colorController) {
-		this.eggColor = eggColor;
-		this.bornFamilyPrototype = bornFamily;
-		this.boardMessenger = null;
-		this.colorController = colorController;
+		this(eggColor, bornFamily, null, colorController);
 	}
 
 	private ReplaceEggs(Color eggColor, InternalBoardObject bornFamily,
