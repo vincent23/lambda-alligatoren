@@ -2,7 +2,7 @@ package de.croggle.ui.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
+import de.croggle.data.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -23,6 +23,7 @@ public abstract class AbstractScreen implements Screen {
 	protected final Table table;
 	private Texture background;
 	private OrthographicCamera camera;
+	private boolean assetsLoaded = false;
 
 	protected int screenWidth;
 	protected int screenHeight;
@@ -123,10 +124,24 @@ public abstract class AbstractScreen implements Screen {
 	}
 
 	/**
-	 * Called when this screen should be the game's current screen.
+	 * Called when this screen should be the game's current screen. The method
+	 * is final since it implements default behavior which must not be
+	 * overridden. If you want to add code to be called on show, override the
+	 * protected method onShow() instead.
 	 */
-	public void show() {
-		
+	public final void show() {
+		if (!assetsLoaded()) {
+			AssetManager.getInstance().finishLoading();
+			this.setAssetsLoaded(true);
+		}
+		onShow();
+	}
+
+	/**
+	 * Override this method to
+	 */
+	protected void onShow() {
+
 	}
 
 	public void setBackground(String backgroundPath) {
@@ -141,5 +156,26 @@ public abstract class AbstractScreen implements Screen {
 		background = game.getAssetManager().get(backgroundPath, Texture.class);
 		background.setFilter(TextureFilter.MipMapLinearLinear,
 				TextureFilter.MipMapLinearLinear);
+	}
+
+	/**
+	 * Tells, whether this screen's asset dependencies have been loaded
+	 * externally (e.g. by a {@link LoadingScreen}) or whether the screen has to
+	 * finish loading them itself.
+	 * 
+	 * @return true if all assets have been loaded before
+	 */
+	public boolean assetsLoaded() {
+		return assetsLoaded;
+	}
+
+	/**
+	 * Sets this screen's asset dependencies' loading status.
+	 * 
+	 * @param assetsLoaded
+	 *            true, if all assets have been loaded already, false otherwise.
+	 */
+	public void setAssetsLoaded(boolean assetsLoaded) {
+		this.assetsLoaded = assetsLoaded;
 	}
 }
