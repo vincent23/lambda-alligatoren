@@ -25,7 +25,9 @@ public class SettingController {
 	 *            the backreference to the central game object
 	 */
 	public SettingController(AlligatorApp game) {
-
+		this.game = game;
+		String profileName = game.getProfileController().getCurrentProfileName();
+		changeCurrentSetting(profileName);
 	}
 
 	/**
@@ -36,7 +38,9 @@ public class SettingController {
 	 *            the setting used to replace the currently active setting
 	 */
 	public void editCurrentSetting(Setting newSetting) {
-
+		currentSetting = newSetting;
+		String profileName = game.getProfileController().getCurrentProfileName();
+		game.getPersistenceManager().editSetting(profileName, newSetting);
 	}
 
 	/**
@@ -51,6 +55,7 @@ public class SettingController {
 	 */
 	public void changeCurrentSetting(String profileName)
 			throws IllegalArgumentException {
+		currentSetting = game.getPersistenceManager().getSetting("profileName");
 
 	}
 
@@ -60,7 +65,7 @@ public class SettingController {
 	 * @return the currently active settings
 	 */
 	public Setting getCurrentSetting() {
-		return null;
+		return currentSetting;
 	}
 
 }

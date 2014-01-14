@@ -26,6 +26,9 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 *            the backreference to the central game object
 	 */
 	public StatisticController(AlligatorApp game) {
+		this.game = game;
+		String profileName = game.getProfileController().getCurrentProfileName();
+		changeCurrentStatistic(profileName);
 	}
 
 	/**
@@ -49,7 +52,9 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 *            the statistic used to replace the currently active statistic
 	 */
 	public void editCurrentStatistic(Statistic newStatistic) {
-
+		currentStatistic = newStatistic;
+		String profileName = game.getProfileController().getCurrentProfileName();
+		game.getPersistenceManager().editStatistic(profileName, newStatistic);
 	}
 
 	/**
@@ -65,7 +70,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 */
 	public void changeCurrentStatistic(String profileName)
 			throws IllegalArgumentException {
-
+		currentStatistic = game.getPersistenceManager().getStatistic(profileName);
 	}
 
 	/**
@@ -74,7 +79,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * @return the active statistic
 	 */
 	public Statistic getCurrentStatistic() {
-		return null;
+		return currentStatistic;
 	}
 
 	/**
@@ -90,7 +95,7 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 */
 	public Statistic getStatistic(String profileName)
 			throws IllegalArgumentException {
-		return null;
+		return game.getPersistenceManager().getStatistic(profileName);
 	}
 
 	/**
@@ -99,7 +104,20 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 */
 	@Override
 	public void processDelta(Statistic statisticsDelta) {
-
+		
+		currentStatistic.setAlligatorsEaten(currentStatistic.getAlligatorsEaten() + statisticsDelta.getAlligatorsEaten());
+		currentStatistic.setAlligatorsPlaced(currentStatistic.getAlligatorsPlaced() + statisticsDelta.getAlligatorsPlaced());
+		currentStatistic.setEggsHatched(currentStatistic.getEggsHatched() + statisticsDelta.getEggsHatched());
+		currentStatistic.setEggsPlaced(currentStatistic.getEggsPlaced() + statisticsDelta.getEggsPlaced());
+		currentStatistic.setRecolorings(currentStatistic.getRecolorings() + statisticsDelta.getRecolorings());
+		currentStatistic.setResetsUsed(currentStatistic.getResetsUsed() + statisticsDelta.getResetsUsed());
+		currentStatistic.setUsedHints(currentStatistic.getUsedHints() + statisticsDelta.getUsedHints());
+		currentStatistic.setPlaytime(currentStatistic.getPlaytime() + statisticsDelta.getPlaytime());
+		currentStatistic.setLevelsComplete(currentStatistic.getLevelsComplete() + statisticsDelta.getLevelsComplete());
+		currentStatistic.setPackagesComplete(currentStatistic.getPackagesComplete() + statisticsDelta.getPackagesComplete());
+		
+		String profileName = game.getProfileController().getCurrentProfileName();
+		game.getPersistenceManager().editStatistic(profileName, currentStatistic);
 	}
 
 }

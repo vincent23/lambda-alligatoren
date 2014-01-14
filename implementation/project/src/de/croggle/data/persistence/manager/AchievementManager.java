@@ -1,7 +1,10 @@
 package de.croggle.data.persistence.manager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -85,11 +88,11 @@ public class AchievementManager extends TableManager {
 	 * @param profileName
 	 *            the name of the user whose unlocked achievements are searched
 	 *            for
-	 * @return a list of all achievements unlocked by the user
+	 * @return a map containing the ids and states of all achievements unlocked by the user
 	 */
-	List<Achievement> getUnlockedAchievements(String profileName) {
+	Map<Integer, Integer> getUnlockedAchievements(String profileName) {
 		
-		List<Achievement> unlockedAchievements = new ArrayList<Achievement>();
+		Map<Integer, Integer> unlockedAchievements = new HashMap<Integer, Integer> ();
 		
 		String selectQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + KEY_PROFILE_NAME + " = '" + profileName + "'";
 		Cursor cursor = database.rawQuery(selectQuery, null);
@@ -97,8 +100,7 @@ public class AchievementManager extends TableManager {
 			 do {
 				 int achievementId = cursor.getInt(cursor.getColumnIndex(KEY_ACHIEVEMENT_ID));
 				 int index = cursor.getInt(cursor.getColumnIndex(KEY_ACHIEVEMENT_INDEX));
-				 Achievement achievement = null; // Cannot create abstract Achievement
-				 unlockedAchievements.add(achievement);
+				 unlockedAchievements.put(achievementId, index);
 		        } while (cursor.moveToNext());
 		}
 		return unlockedAchievements;

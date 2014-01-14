@@ -1,6 +1,11 @@
 package de.croggle.data.persistence.manager;
 
 import java.util.List;
+import java.util.Map;
+
+
+
+
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.LevelProgress;
@@ -211,9 +216,11 @@ public class PersistenceManager {
 	 * @param profileName
 	 *            the name of the profile whose unlocked achievements are
 	 *            searched for
-	 * @return a list containing all achievements unlocked by the user
+	 * @return a map containing the ids and states of all achievements unlocked by the user
 	 */
-	public List<Achievement> getAllUnlockedAchievements(String profileName) {
+	
+	//CHANGED
+	public Map<Integer, Integer> getAllUnlockedAchievements(String profileName) {
 		return null;
 	}
 
