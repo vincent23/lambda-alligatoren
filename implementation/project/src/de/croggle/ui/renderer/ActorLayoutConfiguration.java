@@ -15,11 +15,18 @@ public class ActorLayoutConfiguration {
 	private TreeGrowth verticalGrowth;
 	private ColorController colorController;
 	private float verticaleScaleFactor;
-	private float originalObjectWidth;
-	private float originalObjectHeight;
+	private float uniformObjectWidth;
+	private float uniformObjectHeight;
 	private Vector2 treeOrigin;
 	private float horizontalPadding;
 	private float verticalPadding;
+
+	private float eggWidth;
+	private float eggHeight;
+	private float agedAlligatorWidth;
+	private float agedAlligatorHeight;
+	private float coloredAlligatorWidth;
+	private float coloredAlligatorHeight;
 
 	/**
 	 * 
@@ -30,11 +37,15 @@ public class ActorLayoutConfiguration {
 
 		this.colorController = null;
 		this.verticaleScaleFactor = .75f;
-		this.originalObjectHeight = 100;
-		this.originalObjectWidth = 150;
+		this.uniformObjectHeight = 100;
+		this.uniformObjectWidth = 150;
 		this.treeOrigin = new Vector2(0, 0);
 		this.horizontalPadding = 2;
 		this.verticalPadding = 1;
+
+		eggWidth = 100;
+		eggHeight = 50;
+
 	}
 
 	/**
@@ -65,19 +76,29 @@ public class ActorLayoutConfiguration {
 	 */
 	public ActorLayoutConfiguration(Vector2 treeOrigin,
 			TreeGrowth horizontalGrowth, TreeGrowth verticalGrowth,
-			float verticalScaleFactor, float originalObjectWidth,
-			float originalObjectHeight, float horizontalPadding,
-			float verticalPadding, ColorController controller) {
+			float verticalScaleFactor, float horizontalPadding,
+			float verticalPadding, ColorController controller, float eggWidth,
+			float eggHeight, float agedAlligatorWidth,
+			float agedAlligatorHeight, float coloredAlligatorWidth,
+			float coloredAlligatorHeight) {
 		this.treeOrigin = treeOrigin;
 		this.horizontalGrowth = horizontalGrowth;
 		this.verticalGrowth = verticalGrowth;
 		this.verticaleScaleFactor = verticalScaleFactor;
-		this.originalObjectWidth = originalObjectWidth;
-		this.originalObjectHeight = originalObjectHeight;
+
 		this.horizontalPadding = horizontalPadding;
 		this.verticalPadding = verticalPadding;
 		this.colorController = controller;
 
+		this.eggWidth = eggWidth;
+		this.eggHeight = eggHeight;
+		this.agedAlligatorWidth = agedAlligatorWidth;
+		this.agedAlligatorHeight = agedAlligatorHeight;
+		this.coloredAlligatorWidth = coloredAlligatorWidth;
+		this.coloredAlligatorHeight = coloredAlligatorHeight;
+
+		this.uniformObjectWidth = Math.max(Math.max(eggWidth, coloredAlligatorWidth), agedAlligatorWidth);
+		this.uniformObjectHeight = Math.max(Math.max(eggHeight, coloredAlligatorHeight), agedAlligatorHeight);
 	}
 
 	/**
@@ -148,33 +169,37 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @return
 	 */
-	public float getOriginalObjectWidth() {
-		return originalObjectWidth;
+	public float getUniformObjectWidth() {
+		return uniformObjectWidth;
 	}
 
 	/**
 	 * 
 	 * @param originalObjectWidth
 	 */
-	public void setOriginalObjectWidth(float originalObjectWidth) {
-		this.originalObjectWidth = originalObjectWidth;
+	/*
+	public void setUniformObjectWidth(float originalObjectWidth) {
+		this.uniformObjectWidth = originalObjectWidth;
 	}
+	*/
 
 	/**
 	 * 
 	 * @return
 	 */
-	public float getOriginalObjectHeight() {
-		return originalObjectHeight;
+	public float getUniformObjectHeight() {
+		return uniformObjectHeight;
 	}
 
 	/**
 	 * 
 	 * @param originalObjectHeight
 	 */
-	public void setOriginalObjectHeight(float originalObjectHeight) {
-		this.originalObjectHeight = originalObjectHeight;
+	/*
+	public void setUniformObjectHeight(float originalObjectHeight) {
+		this.uniformObjectHeight = originalObjectHeight;
 	}
+	*/
 
 	/**
 	 * 
@@ -222,5 +247,115 @@ public class ActorLayoutConfiguration {
 	 */
 	public void setVerticalPadding(float verticalPadding) {
 		this.verticalPadding = verticalPadding;
+	}
+
+	private void newWidth(float width) {
+		this.uniformObjectWidth = Math.max(width, uniformObjectWidth);
+	}
+	
+	private void newHeight(float height) {
+		this.uniformObjectHeight = Math.max(height, uniformObjectHeight);
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public float getEggWidth() {
+		return eggWidth;
+	}
+
+	/**
+	 * 
+	 * @param eggWidth
+	 */
+	public void setEggWidth(float eggWidth) {
+		this.eggWidth = eggWidth;
+		newWidth(eggWidth);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public float getEggHeight() {
+		return eggHeight;
+	}
+
+	/**
+	 * 
+	 * @param eggHeight
+	 */
+	public void setEggHeight(float eggHeight) {
+		this.eggHeight = eggHeight;
+		newHeight(eggHeight);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public float getAgedAlligatorWidth() {
+		return agedAlligatorWidth;
+	}
+
+	/**
+	 * 
+	 * @param agedAlligatorWidth
+	 */
+	public void setAgedAlligatorWidth(float agedAlligatorWidth) {
+		this.agedAlligatorWidth = agedAlligatorWidth;
+		newWidth(agedAlligatorWidth);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public float getAgedAlligatorHeight() {
+		return agedAlligatorHeight;
+	}
+
+	/**
+	 * 
+	 * @param agedAlligatorHeight
+	 */
+	public void setAgedAlligatorHeight(float agedAlligatorHeight) {
+		this.agedAlligatorHeight = agedAlligatorHeight;
+		newHeight(agedAlligatorHeight);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public float getColoredAlligatorWidth() {
+		return coloredAlligatorWidth;
+	}
+
+	/**
+	 * 
+	 * @param coloredAlligatorWidth
+	 */
+	public void setColoredAlligatorWidth(float coloredAlligatorWidth) {
+		this.coloredAlligatorWidth = coloredAlligatorWidth;
+		newWidth(coloredAlligatorWidth);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public float getColoredAlligatorHeight() {
+		return coloredAlligatorHeight;
+	}
+
+	/**
+	 * 
+	 * @param coloredAlligatorHeight
+	 */
+	public void setColoredAlligatorHeight(float coloredAlligatorHeight) {
+		this.coloredAlligatorHeight = coloredAlligatorHeight;
+		newHeight(coloredAlligatorHeight);
 	}
 }

@@ -60,7 +60,7 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 		this.config = config;
 		this.actors = new HashMap<InternalBoardObject, BoardObjectActor>();
 		this.widthMap = CreateWidthMap
-				.create(b, config.getOriginalObjectWidth(),
+				.create(b, config.getUniformObjectWidth(),
 						config.getVerticaleScaleFactor(),
 						config.getHorizontalPadding());
 		this.currentPosition = config.getTreeOrigin();
@@ -141,8 +141,8 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	@Override
 	public void visitEgg(Egg egg) {
 		BoardObjectActor a = new EggActor(egg, config.getColorController());
-		a.setBounds(currentPosition.x, currentPosition.y, config.getOriginalObjectWidth()
-				* getScaling(), config.getOriginalObjectHeight() * getScaling());
+		a.setBounds(currentPosition.x, currentPosition.y, config.getUniformObjectWidth()
+				* getScaling(), config.getUniformObjectHeight() * getScaling());
 		actors.put(egg, a);
 	}
 
@@ -181,8 +181,8 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	 */
 	private void setParentActorBounds(BoardObjectActor p) {
 		double totalWidth = widthMap.get(p.getBoardObject());
-		float w = config.getOriginalObjectWidth() * getScaling();
-		float h = config.getOriginalObjectHeight() * getScaling();
+		float w = config.getUniformObjectWidth() * getScaling();
+		float h = config.getUniformObjectHeight() * getScaling();
 		float offset = ((float) totalWidth - w) / 2.f;
 		if (config.getHorizontalGrowth() == TreeGrowth.POS_NEG) {
 			offset *= -1;
@@ -194,7 +194,7 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 		Vector2 initialPosition = currentPosition.cpy();
 
 		// move currentPosition one level down
-		float h = config.getOriginalObjectHeight() * getScaling();
+		float h = config.getUniformObjectHeight() * getScaling();
 		if (config.getVerticalGrowth() == TreeGrowth.NEG_POS) {
 			// TODO apply scaling on padding?
 			currentPosition.y += h + config.getVerticalPadding() * getScaling();

@@ -6,7 +6,7 @@ import de.croggle.game.Color;
  * Interface of all colorable and recolorable board objects. In other words,
  * this interface adds naming functionality to syntax tree elements.
  */
-public interface ColoredBoardObject {
+public interface ColoredBoardObject extends InternalBoardObject {
 
 	/**
 	 * Returns whether the color of the board object can be changed by the user.

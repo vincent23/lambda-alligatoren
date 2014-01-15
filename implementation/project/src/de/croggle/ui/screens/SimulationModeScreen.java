@@ -1,17 +1,16 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 import de.croggle.AlligatorApp;
-import de.croggle.game.Color;
+import de.croggle.data.AssetManager;
 import de.croggle.game.ColorController;
 import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
 import de.croggle.game.board.Board;
-import de.croggle.game.board.ColoredAlligator;
-import de.croggle.game.board.Egg;
 import de.croggle.ui.renderer.BoardActor;
-import de.croggle.ui.renderer.ColoredAlligatorActor;
+import de.croggle.util.convert.LambdaToAlligator;
 
 /**
  * Screen which is shown during the evaluation-phase of a level. For reference
@@ -36,8 +35,26 @@ public class SimulationModeScreen extends AbstractScreen {
 		super(game);
 		this.gameController = controller;
 		
+		// load the texture atlas 
+		AssetManager assetManager = AssetManager.getInstance();
+		assetManager.load("textures/pack.atlas", TextureAtlas.class);
+		this.setBackground("textures/swamp.png");
+	}
+	
+	protected void onShow() {
 		ColorController cctrlr = new ColorController();
-		Board b = new Board();
+		
+		
+		Board b = LambdaToAlligator.convert("(λx.x) ((λy.y) (λz.z))");
+		for (int i = 0; i < 3; i++) {
+			// tell the colorcontroller that we need some colors instantiated
+			try {
+				cctrlr.requestColor();
+			} catch (ColorOverflowException e) {
+				throw new RuntimeException("Test failed");
+			}
+		}
+		/*
 		Color c0;
 		Color c1;
 		try {
@@ -46,19 +63,26 @@ public class SimulationModeScreen extends AbstractScreen {
 		} catch (ColorOverflowException e) {
 			throw new RuntimeException("Test failed");
 		}
-		ColoredAlligator a1 = new ColoredAlligator(false, false, c0, false);
-		ColoredAlligator a2 = new ColoredAlligator(false, false, c1, false);
-		Egg e1 = new Egg(false, false, c0, false);
-		Egg e2 = new Egg(false, false, c1, false);
-		b.addChild(a1);
-		b.addChild(a2);
-		a1.addChild(e1);
-		a2.addChild(e2);
+		ColoredAlligator a00 = new ColoredAlligator(false, false, c0, false);
+		ColoredAlligator a01 = new ColoredAlligator(false, false, c0, false);
+		ColoredAlligator a10 = new ColoredAlligator(false, false, c1, false);
+		Egg e00 = new Egg(false, false, c0, false);
+		Egg e01 = new Egg(false, false, c0, false);
+		Egg e10 = new Egg(false, false, c1, false);
+		b.addChild(a00);
+		a00.addChild(a01);
+		a00.addChild(a10);
+		a01.addChild(e00);
+		a01.addChild(e01);
+		a10.addChild(e10);
+		*/
 		
 		BoardActor ba = new BoardActor(b, cctrlr);
-		ba.getLayoutConfiguration().setTreeOrigin(new Vector2(0, 400));
+		ba.getLayoutConfiguration().setTreeOrigin(new Vector2(50, 400));
 		ba.onBoardRebuilt(b);
 		
-		this.stage.addActor(ba);
+		this.table.add(ba);
 	}
+	
+	
 }
