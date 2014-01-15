@@ -87,7 +87,10 @@ public class CreateWidthMap implements BoardObjectVisitor {
 
 	@Override
 	public void visitBoard(Board board) {
+		// prevent board from adding up to level depth
+		goHigher();
 		visitParent(board);
+		goDeeper();
 	}
 
 	private void visitParent(Parent p) {
@@ -101,7 +104,7 @@ public class CreateWidthMap implements BoardObjectVisitor {
 			childWidth += widthMap.get(child);
 			if (it.hasNext()) {
 				// TODO apply scaling on padding or not?
-				childWidth += padding * scaling;
+				childWidth += padding * getScaling();
 			}
 		}
 		goHigher();
@@ -120,6 +123,10 @@ public class CreateWidthMap implements BoardObjectVisitor {
 	 */
 	private void goHigher() {
 		this.scaling /= scaleFactor;
+	}
+	
+	private float getScaling() {
+		return scaling;
 	}
 
 	private float getObectWidth() {

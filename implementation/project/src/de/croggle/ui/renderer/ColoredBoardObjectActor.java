@@ -27,8 +27,6 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		this.controller = controller;
 
 		AssetManager assetManager = AssetManager.getInstance();
-		// assetManager.load("textures/pack.atlas", TextureAtlas.class);
-		// assetManager.finishLoading();
 		TextureAtlas tex;
 		try {
 			tex = assetManager.get("textures/pack.atlas", TextureAtlas.class);
@@ -51,7 +49,6 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	private void drawBackground(SpriteBatch batch) {
 		// now that the buffer has our alpha, we simply draw the sprite with the
 		// mask applied
-		Gdx.gl.glColorMask(true, true, true, true);
 		batch.setBlendFunction(GL10.GL_DST_ALPHA, GL10.GL_ONE_MINUS_DST_ALPHA);
 
 		// The scissor test is optional, but it depends
@@ -64,9 +61,13 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		batch.flush();
 		// disable scissor before continuing
 		Gdx.gl.glDisable(GL10.GL_SCISSOR_TEST);
+		// reset blend function
+		batch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	private void drawAlphaMask(SpriteBatch batch) {
+		// prevent batch from drawing buffered stuff here
+		batch.flush();
 		// disable RGB color, only enable ALPHA to the frame buffer
 		Gdx.gl.glColorMask(false, false, false, true);
 
@@ -78,12 +79,13 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 
 		// flush the batch to the GPU
 		batch.flush();
+		// reset the color mask
+		Gdx.gl.glColorMask(true, true, true, true);
+		// reset blend function
+		batch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	private void drawForeground(SpriteBatch batch) {
-		// regular blending mode
-		batch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
-
 		batch.draw(foreground, getX(), getY(), getWidth(), getHeight());
 
 		// flush the batch to the GPU
@@ -112,6 +114,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 
 		// draw background
 		drawForeground(batch);
+		batch.flush();
 	}
 
 	/**

@@ -5,10 +5,13 @@ import com.badlogic.gdx.math.Vector2;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
+import de.croggle.game.Color;
 import de.croggle.game.ColorController;
 import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
+import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
+import de.croggle.game.board.Egg;
 import de.croggle.ui.renderer.BoardActor;
 import de.croggle.util.convert.LambdaToAlligator;
 
@@ -45,7 +48,14 @@ public class SimulationModeScreen extends AbstractScreen {
 		ColorController cctrlr = new ColorController();
 		
 		
-		Board b = LambdaToAlligator.convert("(λx.x) ((λy.y) (λz.z))");
+		//Board b = LambdaToAlligator.convert("(λx.x) ((λy.y) (λz.z))");
+		Board b = new Board();
+		b.addChild(new AgedAlligator(false, false));
+		b.addChild(new AgedAlligator(false, false));
+		b.addChild(new AgedAlligator(false, false));
+		b.addChild(new AgedAlligator(false, false));
+		b.addChild(new AgedAlligator(false, false));
+		b.addChild(new Egg(false, false, new Color(0), false));
 		for (int i = 0; i < 3; i++) {
 			// tell the colorcontroller that we need some colors instantiated
 			try {
@@ -82,6 +92,10 @@ public class SimulationModeScreen extends AbstractScreen {
 		ba.onBoardRebuilt(b);
 		
 		this.table.add(ba);
+	}
+	
+	public void dispose() {
+		super.dispose();
 	}
 	
 	

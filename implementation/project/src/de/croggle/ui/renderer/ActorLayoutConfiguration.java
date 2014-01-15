@@ -14,7 +14,7 @@ public class ActorLayoutConfiguration {
 	private TreeGrowth horizontalGrowth;
 	private TreeGrowth verticalGrowth;
 	private ColorController colorController;
-	private float verticaleScaleFactor;
+	private float verticalScaleFactor;
 	private float uniformObjectWidth;
 	private float uniformObjectHeight;
 	private Vector2 treeOrigin;
@@ -36,16 +36,23 @@ public class ActorLayoutConfiguration {
 		this.verticalGrowth = TreeGrowth.POS_NEG;
 
 		this.colorController = null;
-		this.verticaleScaleFactor = .75f;
-		this.uniformObjectHeight = 100;
-		this.uniformObjectWidth = 150;
+		this.verticalScaleFactor = .75f;
+		
 		this.treeOrigin = new Vector2(0, 0);
-		this.horizontalPadding = 2;
-		this.verticalPadding = 1;
+		this.horizontalPadding = 0;
+		this.verticalPadding = 0;
 
 		eggWidth = 100;
-		eggHeight = 50;
+		eggHeight = 70;
 
+		agedAlligatorWidth = 150;
+		agedAlligatorHeight = 70;
+		
+		coloredAlligatorWidth = agedAlligatorWidth;
+		coloredAlligatorHeight = 80;
+		
+		this.uniformObjectWidth = 150;
+		this.uniformObjectHeight = 80;
 	}
 
 	/**
@@ -84,7 +91,7 @@ public class ActorLayoutConfiguration {
 		this.treeOrigin = treeOrigin;
 		this.horizontalGrowth = horizontalGrowth;
 		this.verticalGrowth = verticalGrowth;
-		this.verticaleScaleFactor = verticalScaleFactor;
+		this.verticalScaleFactor = verticalScaleFactor;
 
 		this.horizontalPadding = horizontalPadding;
 		this.verticalPadding = verticalPadding;
@@ -153,16 +160,16 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @return
 	 */
-	public float getVerticaleScaleFactor() {
-		return verticaleScaleFactor;
+	public float getVerticalScaleFactor() {
+		return verticalScaleFactor;
 	}
 
 	/**
 	 * 
 	 * @param verticaleScaleFactor
 	 */
-	public void setVerticaleScaleFactor(float verticaleScaleFactor) {
-		this.verticaleScaleFactor = verticaleScaleFactor;
+	public void setVerticalScaleFactor(float verticaleScaleFactor) {
+		this.verticalScaleFactor = verticaleScaleFactor;
 	}
 
 	/**

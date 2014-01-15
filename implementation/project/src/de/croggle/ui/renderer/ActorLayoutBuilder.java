@@ -61,7 +61,7 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 		this.actors = new HashMap<InternalBoardObject, BoardObjectActor>();
 		this.widthMap = CreateWidthMap
 				.create(b, config.getUniformObjectWidth(),
-						config.getVerticaleScaleFactor(),
+						config.getVerticalScaleFactor(),
 						config.getHorizontalPadding());
 		this.currentPosition = config.getTreeOrigin();
 	}
@@ -141,8 +141,14 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	@Override
 	public void visitEgg(Egg egg) {
 		BoardObjectActor a = new EggActor(egg, config.getColorController());
-		a.setBounds(currentPosition.x, currentPosition.y, config.getUniformObjectWidth()
-				* getScaling(), config.getUniformObjectHeight() * getScaling());
+		float offsetx = (config.getUniformObjectWidth() - config.getEggWidth()) / 2 * getScaling();
+		float offsety = (config.getUniformObjectHeight() - config.getEggWidth()) / 2 * getScaling();
+		if (config.getHorizontalGrowth() == TreeGrowth.POS_NEG) {
+			offsetx *= -1;
+			offsety *= -1;
+		}
+		a.setBounds(currentPosition.x + offsetx, currentPosition.y + offsety, config.getEggWidth()
+				* getScaling(), config.getEggHeight() * getScaling());
 		actors.put(egg, a);
 	}
 
@@ -164,6 +170,7 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 
 	@Override
 	public void visitBoard(Board board) {
+		// prevent board from adding up to the depth
 		goHigher();
 		layoutChildren(board);
 		goDeeper();
@@ -183,6 +190,13 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 		double totalWidth = widthMap.get(p.getBoardObject());
 		float w = config.getUniformObjectWidth() * getScaling();
 		float h = config.getUniformObjectHeight() * getScaling();
+		if (p instanceof AgedAlligatorActor) {
+			w = config.getAgedAlligatorWidth() * getScaling();
+			h = config.getAgedAlligatorHeight() * getScaling();
+		} else if (p instanceof ColoredAlligatorActor) {
+			w = config.getColoredAlligatorWidth() * getScaling();
+			h = config.getColoredAlligatorHeight() * getScaling();
+		}
 		float offset = ((float) totalWidth - w) / 2.f;
 		if (config.getHorizontalGrowth() == TreeGrowth.POS_NEG) {
 			offset *= -1;
@@ -202,12 +216,19 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 			// TODO apply scaling on padding?
 			currentPosition.y -= h + config.getVerticalPadding() * getScaling();
 		}
+		
+		// used for having children still centered if smaller than parent
+		float childrenWidth = 0;
+		for (InternalBoardObject child : p) {
+			childrenWidth += widthMap.get(child);
+		}
 
 		// iterate over the children and layout them depending on the horizontal
 		// grow direction
 		goDeeper();
 		Iterator<InternalBoardObject> it = p.iterator();
 		if (config.getHorizontalGrowth() == TreeGrowth.NEG_POS) {
+			currentPosition.x += (widthMap.get(p) - childrenWidth) / 2;
 			while (it.hasNext()) {
 				InternalBoardObject child = it.next();
 				child.accept(this);
@@ -218,6 +239,7 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 				}
 			}
 		} else {
+			currentPosition.x -= (widthMap.get(p) - childrenWidth) / 2;
 			while (it.hasNext()) {
 				InternalBoardObject child = it.next();
 				child.accept(this);
@@ -237,13 +259,13 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	 * Enter the next level inside the syntax tree
 	 */
 	private void goDeeper() {
-		this.scaling *= config.getVerticaleScaleFactor();
+		this.scaling *= config.getVerticalScaleFactor();
 	}
 
 	/**
 	 * Leave the current level inside the syntax tree
 	 */
 	private void goHigher() {
-		this.scaling /= config.getVerticaleScaleFactor();
+		this.scaling /= config.getVerticalScaleFactor();
 	}
 }
