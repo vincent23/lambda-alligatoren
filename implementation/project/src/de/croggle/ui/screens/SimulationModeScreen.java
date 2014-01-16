@@ -48,14 +48,7 @@ public class SimulationModeScreen extends AbstractScreen {
 		ColorController cctrlr = new ColorController();
 		
 		
-		//Board b = LambdaToAlligator.convert("(λx.x) ((λy.y) (λz.z))");
-		Board b = new Board();
-		b.addChild(new AgedAlligator(false, false));
-		b.addChild(new AgedAlligator(false, false));
-		b.addChild(new AgedAlligator(false, false));
-		b.addChild(new AgedAlligator(false, false));
-		b.addChild(new AgedAlligator(false, false));
-		b.addChild(new Egg(false, false, new Color(0), false));
+		Board b = LambdaToAlligator.convert("(λx.x) ((λy.y) (λz.z))");
 		for (int i = 0; i < 3; i++) {
 			// tell the colorcontroller that we need some colors instantiated
 			try {

@@ -142,12 +142,12 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	public void visitEgg(Egg egg) {
 		BoardObjectActor a = new EggActor(egg, config.getColorController());
 		float offsetx = (config.getUniformObjectWidth() - config.getEggWidth()) / 2 * getScaling();
-		float offsety = (config.getUniformObjectHeight() - config.getEggWidth()) / 2 * getScaling();
+		//float offsety = (config.getUniformObjectHeight() - config.getEggWidth()) / 2 * getScaling();
 		if (config.getHorizontalGrowth() == TreeGrowth.POS_NEG) {
 			offsetx *= -1;
-			offsety *= -1;
+			//offsety *= -1;
 		}
-		a.setBounds(currentPosition.x + offsetx, currentPosition.y + offsety, config.getEggWidth()
+		a.setBounds(currentPosition.x + offsetx, currentPosition.y, config.getEggWidth()
 				* getScaling(), config.getEggHeight() * getScaling());
 		actors.put(egg, a);
 	}
@@ -232,7 +232,8 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 			while (it.hasNext()) {
 				InternalBoardObject child = it.next();
 				child.accept(this);
-				currentPosition.x += getScaling() * widthMap.get(child);
+				// don't need to apply scaling as createWidthMap already did that for us
+				currentPosition.x += widthMap.get(child);
 				if (it.hasNext()) {
 					// TODO apply scaling on padding?
 					currentPosition.x += getScaling() * config.getHorizontalPadding();
