@@ -8,6 +8,9 @@ import de.croggle.game.board.AgedAlligator;
  * event. This event is produced when a simulator removes any instance of an
  * aged alligator from its associated board. The class is kept general for both
  * the rendered animation and the vanished alligator statistics.
+ * 
+ * The event is fired <strong>after</strong> the alligator has been removed from
+ * the main tree.
  */
 public interface AgedAlligatorVanishesListener {
 
@@ -18,7 +21,11 @@ public interface AgedAlligatorVanishesListener {
 	 * 
 	 * @param alligator
 	 *            the vanishing alligator
+	 * @param positionInParent
+	 *            the index of the alligator that vanished in its parent's
+	 *            children list, before it was removed
 	 */
-	public void onAgedAlligatorVanishes(AgedAlligator alligator);
+	public void onAgedAlligatorVanishes(AgedAlligator alligator,
+			int positionInParent);
 
 }

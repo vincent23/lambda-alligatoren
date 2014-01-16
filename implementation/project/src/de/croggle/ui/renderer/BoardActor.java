@@ -117,7 +117,7 @@ public class BoardActor extends Group implements BoardEventListener {
 	 */
 	@Override
 	public void onEat(final ColoredAlligator eater,
-			final InternalBoardObject eatenFamily) {
+			final InternalBoardObject eatenFamily, int eatenParentPosition) {
 		ColoredAlligatorActor eaterActor = ((ColoredAlligatorActor) actors
 				.get(eater));
 		eaterActor.enterEatingState();
@@ -189,7 +189,7 @@ public class BoardActor extends Group implements BoardEventListener {
 	 *            the alligator which disappeared
 	 */
 	@Override
-	public void onAgedAlligatorVanishes(AgedAlligator alligator) {
+	public void onAgedAlligatorVanishes(AgedAlligator alligator, int positionInParent) {
 		removeObjectAnimated(alligator);
 	}
 

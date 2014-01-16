@@ -1,7 +1,7 @@
 package de.croggle.ui.renderer;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -46,25 +46,6 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		background = new Texture(bg);
 	}
 
-	private void drawBackground(SpriteBatch batch) {
-		// now that the buffer has our alpha, we simply draw the sprite with the
-		// mask applied
-		batch.setBlendFunction(GL10.GL_DST_ALPHA, GL10.GL_ONE_MINUS_DST_ALPHA);
-
-		// The scissor test is optional, but it depends
-		Gdx.gl.glEnable(GL10.GL_SCISSOR_TEST);
-		Gdx.gl.glScissor((int) getX(), (int) getY(), (int) Math.ceil(getWidth()), (int) Math.ceil(getHeight()));
-
-		// draw our background to be masked
-		batch.draw(background, getX(), getY(), getWidth(), getHeight());
-
-		batch.flush();
-		// disable scissor before continuing
-		Gdx.gl.glDisable(GL10.GL_SCISSOR_TEST);
-		// reset blend function
-		batch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
-	}
-
 	private void drawAlphaMask(SpriteBatch batch) {
 		// prevent batch from drawing buffered stuff here
 		batch.flush();
@@ -72,7 +53,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		Gdx.gl.glColorMask(false, false, false, true);
 
 		// change the blending function for our alpha map
-		batch.setBlendFunction(GL10.GL_ONE, GL10.GL_ZERO);
+		batch.setBlendFunction(GL20.GL_ONE, GL20.GL_ZERO);
 
 		// draw alpha mask sprite(s)
 		batch.draw(mask, getX(), getY(), getWidth(), getHeight());
@@ -82,7 +63,26 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		// reset the color mask
 		Gdx.gl.glColorMask(true, true, true, true);
 		// reset blend function
-		batch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+	}
+	
+	private void drawBackground(SpriteBatch batch) {
+		// now that the buffer has our alpha, we simply draw the sprite with the
+		// mask applied
+		batch.setBlendFunction(GL20.GL_DST_ALPHA, GL20.GL_ONE_MINUS_DST_ALPHA);
+
+		// The scissor test is optional, but it depends
+		//Gdx.gl.glEnable(GL20.GL_SCISSOR_TEST);
+		//Gdx.gl.glScissor((int) getX(), (int) getY(), (int) Math.ceil(getWidth()), (int) Math.ceil(getHeight()));
+
+		// draw our background to be masked
+		batch.draw(background, getX(), getY(), getWidth(), getHeight());
+
+		batch.flush();
+		// disable scissor before continuing
+		//Gdx.gl.glDisable(GL20.GL_SCISSOR_TEST);
+		// reset blend function
+		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	private void drawForeground(SpriteBatch batch) {
@@ -109,10 +109,10 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		// draw the alpha mask
 		drawAlphaMask(batch);
 
-		// draw our foreground elements
+		// draw background
 		drawBackground(batch);
 
-		// draw background
+		// draw our foreground elements
 		drawForeground(batch);
 		batch.flush();
 	}

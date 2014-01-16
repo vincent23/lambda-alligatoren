@@ -131,7 +131,7 @@ public class GameController implements BoardEventListener {
 	 * Registers the amount of alligators and eggs eaten in the statisticsDelta.
 	 */
 	@Override
-	public void onEat(ColoredAlligator eater, InternalBoardObject eatenFamily) {
+	public void onEat(ColoredAlligator eater, InternalBoardObject eatenFamily, int eatenPositionInParent) {
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class GameController implements BoardEventListener {
 	 * value like this in the statistic.
 	 */
 	@Override
-	public void onAgedAlligatorVanishes(AgedAlligator alligator) {
+	public void onAgedAlligatorVanishes(AgedAlligator alligator, int positionInParent) {
 	}
 
 	/**

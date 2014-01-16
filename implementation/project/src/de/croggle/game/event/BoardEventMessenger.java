@@ -69,9 +69,9 @@ public class BoardEventMessenger {
 	 *            the family which was eaten
 	 */
 	public void notifyEat(ColoredAlligator eater,
-			InternalBoardObject eatenFamily) {
+			InternalBoardObject eatenFamily, int eatenPositionInParent) {
 		for (BoardEventListener listener : listeners) {
-			listener.onEat(eater, eatenFamily);
+			listener.onEat(eater, eatenFamily, eatenPositionInParent);
 			;
 		}
 	}
@@ -83,9 +83,9 @@ public class BoardEventMessenger {
 	 * @param alligator
 	 *            the alligator that has vanished
 	 */
-	public void notifyAgedAlligatorVanishes(AgedAlligator alligator) {
+	public void notifyAgedAlligatorVanishes(AgedAlligator alligator, int positionInPArent) {
 		for (BoardEventListener listener : listeners) {
-			listener.onAgedAlligatorVanishes(alligator);
+			listener.onAgedAlligatorVanishes(alligator, positionInPArent);
 		}
 	}
 
