@@ -4,11 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
+import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 
 import de.croggle.game.ColorController;
 import de.croggle.game.board.AgedAlligator;
@@ -24,19 +31,25 @@ import de.croggle.game.event.BoardEventListener;
  * An actor used for representing a whole board, i.e. an alligator
  * constellation.
  */
-public class BoardActor extends Group implements BoardEventListener {
+public class BoardActor extends Actor implements BoardEventListener {
 
 	private Map<InternalBoardObject, BoardObjectActor> actors;
 	private Board board;
 	private ActorLayoutConfiguration config;
+	private OrthographicCamera camera;
+	
+	private final Vector2 CAMERA_SIZE = new Vector2(1024, 600);
 	
 	private BoardActor(Board b) {
 		this.board = b;
 		actors = new HashMap<InternalBoardObject, BoardObjectActor>();
+		camera = new OrthographicCamera(CAMERA_SIZE.x, CAMERA_SIZE.y);
+		camera.position.set(CAMERA_SIZE.x / 2 - getX(), CAMERA_SIZE.y / 2 - getY(), 0);
+		camera.update();
 	}
 	
 	/**
-	 * Creates a new BoardActor.
+	 * Creates a new BoardActor with the given {@link ActorLayoutConfiguration}.
 	 * 
 	 * @param board
 	 */
@@ -46,7 +59,7 @@ public class BoardActor extends Group implements BoardEventListener {
 		actors = new HashMap<InternalBoardObject, BoardObjectActor>();
 		this.onBoardRebuilt(board);
 	}
-
+	
 	/**
 	 * Creates a new BoardActor. This is the simpler version of constructing a
 	 * BoardActor, using most of the default {@link ActorLayoutConfiguration}
@@ -57,9 +70,36 @@ public class BoardActor extends Group implements BoardEventListener {
 	 */
 	public BoardActor(Board board, ColorController controller) {
 		this(board);
-		this.config = new ActorLayoutConfiguration();
+		this.config = new ActorLayoutConfiguration(board);
 		config.setColorController(controller);
 		this.onBoardRebuilt(board);
+	}
+	
+	/**
+	 * GestureListener for the BoardActor
+	 * 
+	 */
+	private class BoardActorGestureListener extends ActorGestureListener {
+		@Override
+		public void pan(InputEvent event, float x, float y, float deltaX, float deltaY) {
+			camera.position.x -= deltaX * camera.zoom;
+			camera.position.y -= deltaY * camera.zoom;
+			camera.update();
+			//BoardActor.this.setX(getX() + deltaX);
+			//BoardActor.this.setY(getY() + deltaY);
+		}
+		
+		public void zoom(InputEvent event, float initialDistance, float distance) {
+			System.out.println("zoom: " + camera.zoom);
+			
+			/*float offset = (float) (0.02 * Math.signum(initialDistance - distance));
+			if (camera.zoom + offset > 0) {
+				camera.zoom += offset;
+			}
+			*/
+			camera.zoom *= Math.pow(1.02, (initialDistance - distance) /200);
+			camera.update();
+		}
 	}
 	
 	/**
@@ -80,19 +120,17 @@ public class BoardActor extends Group implements BoardEventListener {
 	 *            the parent's alpha value
 	 */
 	public void draw(SpriteBatch batch, float parentAlpha) {
-		for (BoardObjectActor boa : actors.values()) {
-			boa.draw(batch, parentAlpha);
+		batch.flush();
+		Matrix4 original = batch.getProjectionMatrix();
+		// set up clipping
+		clipBegin();
+		// set own camera to look through
+		batch.setProjectionMatrix(camera.combined);
+		for (BoardObjectActor child : actors.values()) {
+			child.draw(batch, parentAlpha);
 		}
-	}
-
-	/**
-	 * Updates the actor based on time.
-	 * 
-	 * @param delta
-	 *            time in seconds since the last update
-	 */
-	public void act(float delta) {
-		super.act(delta); // makes progress on every action
+		batch.setProjectionMatrix(original);
+		clipEnd();
 	}
 
 	/**
@@ -145,7 +183,6 @@ public class BoardActor extends Group implements BoardEventListener {
 
 			protected void end() {
 				for (InternalBoardObject eaten : eatenLst) {
-					removeActor(actors.get(eaten));
 					actors.remove(eaten);
 				}
 				removeObjectAnimated(eater);
@@ -175,7 +212,6 @@ public class BoardActor extends Group implements BoardEventListener {
 			}
 
 			protected void end() {
-				removeActor(actors.get(object));
 				actors.remove(object);
 				ActorLayoutFixer.fixOnRemove(object, object.getParent(), actors, config);
 			}
@@ -204,10 +240,6 @@ public class BoardActor extends Group implements BoardEventListener {
 	public void onBoardRebuilt(Board board) {
 		this.board = board;
 		this.actors = ActorLayoutBuilder.build(board, config);
-		clear();
-		for (BoardObjectActor actor : this.actors.values()) {
-			addActor(actor);
-		}
 	}
 
 	/**
@@ -222,13 +254,28 @@ public class BoardActor extends Group implements BoardEventListener {
 	@Override
 	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
 		actors.remove(replacedEgg);
-		removeActor(actors.get(replacedEgg));
-		removeActor(actors.get(replacedEgg));
 		ActorLayoutFixer.fixOnRemove(replacedEgg, replacedEgg.getParent(),
 				actors, config);
 		// still use replacedEgg's parent as bornFamily's parent might not yet
 		// have been set
 		ActorLayoutFixer.fixOnAdd(bornFamily, replacedEgg.getParent(), actors,
 				config);
+	}
+	
+	@Override
+	protected void sizeChanged() {
+		System.out.println("Size changed: " + getWidth() + ", " + getHeight());
+		// we want to always have the camera believe it shows 1024 x 600 pixels
+		//camera.viewportWidth = getWidth();
+		//camera.viewportHeight = getHeight();
+		
+		// unfortunately, getX gives us screen pixels, which are not suitable for our game-world pixels,
+		// so we must translate them first
+		float x = getX() / Gdx.graphics.getWidth() * CAMERA_SIZE.x;
+		float y = getY() / Gdx.graphics.getHeight() * CAMERA_SIZE.y;
+		camera.position.set(CAMERA_SIZE.x / 2 - x, CAMERA_SIZE.y / 2 - y, 0);
+		camera.update();
+		// use device independent camera size to display alligator world
+		this.addListener(new BoardActorGestureListener());
 	}
 }

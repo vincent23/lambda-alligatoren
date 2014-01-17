@@ -66,7 +66,12 @@ public class ActorLayoutConfiguration {
 	 */
 	public ActorLayoutConfiguration(Board b) {
 		this();
-		treeOrigin.y = CreateHeightMap.create(b, uniformObjectHeight, verticalScaleFactor).get(b);
+		if (verticalGrowth == TreeGrowth.POS_NEG) {
+			treeOrigin.y = CreateHeightMap.create(b, uniformObjectHeight, verticalScaleFactor, verticalPadding).get(b);
+		} else {
+			//TODO I guess, doing nothing is best?
+			//treeOrigin.y = -CreateHeightMap.create(b, uniformObjectHeight, verticalScaleFactor).get(b);
+		}
 	}
 
 	/**
