@@ -20,10 +20,10 @@ public class CreateHeightMapTest extends TestCase {
 		Egg e2 = new Egg(true, true, new Color(1), true);
 		b.addChild(e2);
 
-		Map<BoardObject, Integer> map = CreateHeightMap.create(b);
-		assertEquals(2, (int) map.get(b));
-		assertEquals(1, (int) map.get(a));
-		assertEquals(0, (int) map.get(e2));
-		assertEquals(0, (int) map.get(e1));
+		Map<BoardObject, Float> map = CreateHeightMap.create(b);
+		assertEquals(2.f, map.get(b));
+		assertEquals(2.f, map.get(a));
+		assertEquals(1.f, map.get(e2));
+		assertEquals(1.f, map.get(e1));
 	}
 }

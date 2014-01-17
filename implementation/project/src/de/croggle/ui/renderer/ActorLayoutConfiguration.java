@@ -3,6 +3,8 @@ package de.croggle.ui.renderer;
 import com.badlogic.gdx.math.Vector2;
 
 import de.croggle.game.ColorController;
+import de.croggle.game.board.Board;
+import de.croggle.game.board.operations.CreateHeightMap;
 
 /**
  * 
@@ -37,7 +39,7 @@ public class ActorLayoutConfiguration {
 
 		this.colorController = null;
 		this.verticalScaleFactor = .75f;
-		
+
 		this.treeOrigin = new Vector2(0, 0);
 		this.horizontalPadding = 0;
 		this.verticalPadding = 0;
@@ -47,12 +49,24 @@ public class ActorLayoutConfiguration {
 
 		agedAlligatorWidth = 150;
 		agedAlligatorHeight = 70;
-		
+
 		coloredAlligatorWidth = agedAlligatorWidth;
 		coloredAlligatorHeight = 80;
-		
+
 		this.uniformObjectWidth = 150;
 		this.uniformObjectHeight = 80;
+	}
+
+	/**
+	 * Creates a new {@link ActorLayoutConfiguration} with default layout
+	 * values, except that the given board is used for calculating a matching
+	 * {@link ActorLayoutConfiguration#setTreeOrigin(Vector2) tree origin}.
+	 * 
+	 * @param b
+	 */
+	public ActorLayoutConfiguration(Board b) {
+		this();
+		treeOrigin.y = CreateHeightMap.create(b, uniformObjectHeight, verticalScaleFactor).get(b);
 	}
 
 	/**
@@ -104,8 +118,11 @@ public class ActorLayoutConfiguration {
 		this.coloredAlligatorWidth = coloredAlligatorWidth;
 		this.coloredAlligatorHeight = coloredAlligatorHeight;
 
-		this.uniformObjectWidth = Math.max(Math.max(eggWidth, coloredAlligatorWidth), agedAlligatorWidth);
-		this.uniformObjectHeight = Math.max(Math.max(eggHeight, coloredAlligatorHeight), agedAlligatorHeight);
+		this.uniformObjectWidth = Math.max(
+				Math.max(eggWidth, coloredAlligatorWidth), agedAlligatorWidth);
+		this.uniformObjectHeight = Math.max(
+				Math.max(eggHeight, coloredAlligatorHeight),
+				agedAlligatorHeight);
 	}
 
 	/**
@@ -185,10 +202,9 @@ public class ActorLayoutConfiguration {
 	 * @param originalObjectWidth
 	 */
 	/*
-	public void setUniformObjectWidth(float originalObjectWidth) {
-		this.uniformObjectWidth = originalObjectWidth;
-	}
-	*/
+	 * public void setUniformObjectWidth(float originalObjectWidth) {
+	 * this.uniformObjectWidth = originalObjectWidth; }
+	 */
 
 	/**
 	 * 
@@ -203,10 +219,9 @@ public class ActorLayoutConfiguration {
 	 * @param originalObjectHeight
 	 */
 	/*
-	public void setUniformObjectHeight(float originalObjectHeight) {
-		this.uniformObjectHeight = originalObjectHeight;
-	}
-	*/
+	 * public void setUniformObjectHeight(float originalObjectHeight) {
+	 * this.uniformObjectHeight = originalObjectHeight; }
+	 */
 
 	/**
 	 * 
@@ -259,11 +274,11 @@ public class ActorLayoutConfiguration {
 	private void newWidth(float width) {
 		this.uniformObjectWidth = Math.max(width, uniformObjectWidth);
 	}
-	
+
 	private void newHeight(float height) {
 		this.uniformObjectHeight = Math.max(height, uniformObjectHeight);
 	}
-	
+
 	/**
 	 * 
 	 * @return
