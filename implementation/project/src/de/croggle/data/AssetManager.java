@@ -1,15 +1,16 @@
 package de.croggle.data;
 
 /**
- * Proxy class to enforce singleton pattern on libgdx' AssetManager. Will be
- * automatically initialized with a new AssetManager (standard constructor).
+ * Proxy class to enforce singleton pattern on libgdx' AssetManager. Needs to be
+ * initialized before first usage using {@link AssetManager#initialize()}. This
+ * is due to Android behaviour, leading to static variables surviving app
+ * restarts, while the AssetManager's managed assets are lost.
  */
 public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
-	/* Static initialization will cause problems on app resume
-	static {
-		assetManager = new AssetManager();
-	}
-	*/
+	/*
+	 * Static initialization will cause problems on app resume static {
+	 * assetManager = new AssetManager(); }
+	 */
 	private static AssetManager assetManager;
 
 	private AssetManager() {
@@ -24,7 +25,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	public static AssetManager getInstance() {
 		return assetManager;
 	}
-	
+
 	public static void initialize() {
 		AssetManager.assetManager = new AssetManager();
 	}
