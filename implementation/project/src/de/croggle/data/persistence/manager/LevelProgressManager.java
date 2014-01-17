@@ -152,7 +152,6 @@ public class LevelProgressManager extends TableManager {
 		
 		ContentValues values = new ContentValues();
 		
-		values.put(KEY_LEVEL_ID, levelProgress.getLevelId());
 		values.put(KEY_SOLVED, levelProgress.isSolved());
 		values.put(KEY_CURRENT_BOARD, levelProgress.getCurrentBoard());
 		values.put(KEY_USED_RESETS, levelProgress.getUsedResets());

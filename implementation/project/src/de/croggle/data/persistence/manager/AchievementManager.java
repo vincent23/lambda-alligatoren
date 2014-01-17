@@ -1,17 +1,14 @@
 package de.croggle.data.persistence.manager;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
+import android.util.SparseIntArray;
 import de.croggle.game.achievement.Achievement;
-import de.croggle.game.profile.Profile;
 
 /**
  * A concrete table manager which is responsible for managing the SQLite table
@@ -62,6 +59,29 @@ public class AchievementManager extends TableManager {
 	}
 
 	/**
+	 * Searches the table for a unlocked achievement that belongs to the profile
+	 * identified by the profile name and whose achievement ID matches the achievement ID
+	 * stored in achievement. The values of the found achievement are
+	 * overwritten by the new achievement.
+	 * 
+	 * @param profileName
+	 *            the name of the profile to which the achievement belongs
+	 * @param levelProgress
+	 *            the achievement whose values are used for overwriting the
+	 *            old achievement
+	 */
+	void updateUnlockedAchievement(String profileName, Achievement achievement) {
+		
+		ContentValues values = new ContentValues();
+		
+		values.put(KEY_PROFILE_NAME, profileName);
+		values.put(KEY_ACHIEVEMENT_INDEX, achievement.getIndex());
+		
+		database.update(TABLE_NAME, values, KEY_PROFILE_NAME + " = '" + profileName + "' and " + KEY_ACHIEVEMENT_ID + " = " + achievement.getId(),
+	            null);
+		}
+	
+	/**
 	 * Adds a new unlocked achievement to the table.
 	 * 
 	 * @param profileName
@@ -76,7 +96,7 @@ public class AchievementManager extends TableManager {
 		
 		values.put(KEY_PROFILE_NAME, profileName);
 		values.put(KEY_ACHIEVEMENT_ID, achievement.getId());
-		values.put(KEY_ACHIEVEMENT_INDEX, achievement.getId());
+		values.put(KEY_ACHIEVEMENT_INDEX, achievement.getIndex());
 		
 		database.insert(TABLE_NAME, null, values);
 		}
@@ -88,11 +108,11 @@ public class AchievementManager extends TableManager {
 	 * @param profileName
 	 *            the name of the user whose unlocked achievements are searched
 	 *            for
-	 * @return a map containing the ids and states of all achievements unlocked by the user
+	 * @return a sparseIntArray containing the ids and states of all achievements unlocked by the user
 	 */
-	Map<Integer, Integer> getUnlockedAchievements(String profileName) {
+	SparseIntArray getUnlockedAchievements(String profileName) {
 		
-		Map<Integer, Integer> unlockedAchievements = new HashMap<Integer, Integer> ();
+		SparseIntArray unlockedAchievements = new SparseIntArray ();
 		
 		String selectQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE " + KEY_PROFILE_NAME + " = '" + profileName + "'";
 		Cursor cursor = database.rawQuery(selectQuery, null);

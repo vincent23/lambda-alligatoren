@@ -3,6 +3,8 @@ package de.croggle.data.persistence.manager;
 import java.util.List;
 import java.util.Map;
 
+import android.util.SparseIntArray;
+
 
 
 
@@ -216,11 +218,11 @@ public class PersistenceManager {
 	 * @param profileName
 	 *            the name of the profile whose unlocked achievements are
 	 *            searched for
-	 * @return a map containing the ids and states of all achievements unlocked by the user
+	 * @return a sparseIntArray containing the ids and states of all achievements unlocked by the user
 	 */
 	
 	//CHANGED
-	public Map<Integer, Integer> getAllUnlockedAchievements(String profileName) {
+	public SparseIntArray getAllUnlockedAchievements(String profileName) {
 		return null;
 	}
 
