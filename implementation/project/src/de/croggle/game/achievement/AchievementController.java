@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.util.SparseIntArray;
+
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.StatisticsDeltaProcessor;
@@ -57,12 +59,18 @@ public class AchievementController implements StatisticsDeltaProcessor {
 		return null;
 	}
 
+	/**
+	 * Converts an input from the database into a list of actual achievements.
+	 * @param tupels information coming from the database
+	 * @return list of achievements represented in the input
+	 */
 	protected List<Achievement> convertInputFromDatabase(
-			HashMap<Integer, Integer> tupels) {
+			SparseIntArray tupels) {
 		List<Achievement> converted = new ArrayList<Achievement>();
-		for (int id : tupels.keySet()) {
+		for (int i = 0; i < tupels.size(); i++ ) {
+			int id = tupels.keyAt(i);
 			Achievement achievement = AchievementFactory.createAchievement(id);
-			achievement.setIndex(tupels.get(id));
+			achievement.setIndex(tupels.valueAt(i));
 			converted.add(achievement);
 		}
 		return converted;
