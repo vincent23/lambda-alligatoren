@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 import de.croggle.data.AssetManager;
 
@@ -144,6 +146,14 @@ public class StyleHelper {
 
 	public SliderStyle getSliderStyle() {
 		return skin.get(SliderStyle.class);
+	}
+
+	public TextFieldStyle getTextFieldStyle() {
+		return skin.get(TextFieldStyle.class);
+	}
+
+	public Drawable getDrawable(String path) {
+		return skin.getDrawable(path);
 	}
 
 }

@@ -26,5 +26,8 @@ com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 },
 com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
 	default: { background: widgets/slider-horizontal, knob: widgets/slider-knob }
+},
+com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+	default: { background: widgets/textfield, font: default-font, fontColor: white }
 }
 }

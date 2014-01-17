@@ -1,7 +1,14 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Array;
+
 import de.croggle.AlligatorApp;
 import de.croggle.game.profile.ProfileController;
+import de.croggle.ui.StyleHelper;
 
 /**
  * Screen which is used for both creating a new account with a given avatar as
@@ -9,6 +16,11 @@ import de.croggle.game.profile.ProfileController;
  * ``Pflichtenheft 10.5.14 / Abbildung 23''.
  */
 public class ProfileSetAvatarScreen extends AbstractScreen {
+
+	private static final int AVATARS_PER_ROW = 3;
+
+	private ProfileController profileController;
+
 	/**
 	 * Creates the screen that is shown to the player while changing his player
 	 * avatar.
@@ -19,8 +31,44 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 	 *            the profile controller, which is responsible for the currently
 	 *            selected profile
 	 */
-	public ProfileSetAvatarScreen(AlligatorApp game,
-			ProfileController controller) {
+	public ProfileSetAvatarScreen(AlligatorApp game) {
 		super(game);
+		profileController = game.getProfileController();
+
+		fillTable();
 	}
+
+	private void fillTable() {
+		StyleHelper helper = StyleHelper.getInstance();
+		Table innerTable = new Table();
+		Table leftTable = new Table();
+		Label chooseAvatar = new Label("Choose your avatar",
+				helper.getLabelStyle());
+		ImageButton confirm = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+
+		Array<AtlasRegion> list = helper.getSkin().getAtlas().getRegions();
+
+		// TODO fit this to freely add profile pics (by scrollpane etc)
+		leftTable.add(chooseAvatar).expandX().left().top().padLeft(100)
+				.space(30).height(50).colspan(AVATARS_PER_ROW);
+		leftTable.row();
+		for (AtlasRegion region : list) {
+			String path = region.name;
+			if (region.name.matches("avatar/.*")) {
+				ImageButton avatarButton = new ImageButton(
+						helper.getImageButtonStyle(path));
+				leftTable.add(avatarButton).uniform().size(150);
+			}
+		}
+
+		innerTable.setBackground(helper
+				.getDrawable("widgets/default-background"));
+		innerTable.pad(30);
+		innerTable.add(leftTable).expand().fill();
+		innerTable.add(confirm).expandY().bottom();
+
+		table.add(innerTable).width(700).height(350);
+	}
+
 }
