@@ -57,11 +57,13 @@ public class AchievementController implements StatisticsDeltaProcessor {
 		return null;
 	}
 
-	protected List<Achievement> convertInputFromDatabase(HashMap<Integer, Integer> tupels) { 
+	protected List<Achievement> convertInputFromDatabase(
+			HashMap<Integer, Integer> tupels) {
 		List<Achievement> converted = new ArrayList<Achievement>();
 		for (int id : tupels.keySet()) {
-			int stage = tupels.get(id);
-
+			Achievement achievement = AchievementFactory.createAchievement(id);
+			achievement.setIndex(tupels.get(id));
+			converted.add(achievement);
 		}
 		return converted;
 
@@ -71,20 +73,9 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * Initiates the available achievements.
 	 */
 	private void initiateAvailableAchievements() {
-		Achievement alligatorsEatenAchievement = new AlligatorsEatenAchievement();
-		Achievement alligatorsEatenPerLevelAchievement = new AlligatorsEatenPerLevelAchievement();
-		Achievement alligatorsPlacedAchievement = new AlligatorsPlacedAchievement();
-		Achievement alligatorsPlacedPerLevelAchievement = new AlligatorsPlacedPerLevelAchievement();
-		Achievement hintPerLevelAchievement = new HintPerLevelAchievement();
-		Achievement levelAchievement = new LevelAchievement();
-		Achievement timeAchievement = new TimeAchievement();
-		availableAchievements.add(alligatorsEatenAchievement);
-		availableAchievements.add(alligatorsEatenPerLevelAchievement);
-		availableAchievements.add(alligatorsPlacedAchievement);
-		availableAchievements.add(alligatorsPlacedPerLevelAchievement);
-		availableAchievements.add(hintPerLevelAchievement);
-		availableAchievements.add(levelAchievement);
-		availableAchievements.add(timeAchievement);
+		availableAchievements = AchievementFactory
+				.createListofAchievementTypes();
+		latestUnlockedAchievements.clear();
 
 		for (Achievement achievement : availableAchievements) {
 			achievement.initialize();
