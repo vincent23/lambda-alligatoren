@@ -1,6 +1,7 @@
 package de.croggle.game.board.operations;
 
 import de.croggle.game.Color;
+import de.croggle.game.ColorOverflowException;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
@@ -22,7 +23,11 @@ public class ReplaceEggsTest extends TestCase {
 		Egg e3 = new Egg(true, true, new Color(2), true);
 		a2.addChild(e3);
 
-		ReplaceEggs.replace(b, e1.getColor(), a2);
+		try {
+			ReplaceEggs.replace(b, e1.getColor(), a2);
+		} catch (ColorOverflowException e) {
+			fail();
+		}
 		assertEquals(1, a1.getChildCount());
 		assertTrue(a1.getFirstChild().match(a2));
 	}
