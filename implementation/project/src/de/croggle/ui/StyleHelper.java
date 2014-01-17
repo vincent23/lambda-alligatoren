@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.CheckBox.CheckBoxStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton.ImageTextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.SelectBox.SelectBoxStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
@@ -150,6 +151,10 @@ public class StyleHelper {
 
 	public TextFieldStyle getTextFieldStyle() {
 		return skin.get(TextFieldStyle.class);
+	}
+
+	public SelectBoxStyle getSelectBoxStyle() {
+		return skin.get(SelectBoxStyle.class);
 	}
 
 	public Drawable getDrawable(String path) {
