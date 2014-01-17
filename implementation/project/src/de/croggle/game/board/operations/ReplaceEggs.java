@@ -57,8 +57,8 @@ public class ReplaceEggs implements BoardObjectVisitor {
 		this.colorController = colorController;
 
 		if (colorController != null) {
-			boundColors = CollectBoundColors.collect(constellation);
-			freeColors = CollectFreeColors.collect(constellation);
+			boundColors = CollectBoundColors.collect(bornFamily);
+			freeColors = CollectFreeColors.collect(bornFamily);
 		}
 	}
 
