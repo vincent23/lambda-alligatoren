@@ -63,7 +63,7 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 				.create(b, config.getUniformObjectWidth(),
 						config.getVerticalScaleFactor(),
 						config.getHorizontalPadding());
-		this.currentPosition = config.getTreeOrigin();
+		this.currentPosition = config.getTreeOrigin().cpy();
 	}
 
 	/**
@@ -170,10 +170,30 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 
 	@Override
 	public void visitBoard(Board board) {
-		// prevent board from adding up to the depth
-		goHigher();
-		layoutChildren(board);
-		goDeeper();
+		Parent p = board;
+		Iterator<InternalBoardObject> it = p.iterator();
+		if (config.getHorizontalGrowth() == TreeGrowth.NEG_POS) {
+			while (it.hasNext()) {
+				InternalBoardObject child = it.next();
+				child.accept(this);
+				// don't need to apply scaling as createWidthMap already did that for us
+				currentPosition.x += widthMap.get(child);
+				if (it.hasNext()) {
+					// TODO apply scaling on padding?
+					currentPosition.x += getScaling() * config.getHorizontalPadding();
+				}
+			}
+		} else {
+			while (it.hasNext()) {
+				InternalBoardObject child = it.next();
+				child.accept(this);
+				currentPosition.x -= getScaling() * widthMap.get(child);
+				if (it.hasNext()) {
+					// TODO apply scaling on padding?
+					currentPosition.x -= getScaling() * config.getHorizontalPadding();
+				}
+			}
+		}
 	}
 
 	private float getScaling() {
