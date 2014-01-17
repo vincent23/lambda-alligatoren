@@ -32,19 +32,22 @@ public class CreateHeightMap implements BoardObjectVisitor {
 	private Map<BoardObject, Float> heightMap;
 
 	private final float depthScaleFactor;
+	private final float padding;
 	private float scale = 1;
 	private final float objectHeight;
 
 	private CreateHeightMap() {
 		objectHeight = 1;
 		depthScaleFactor = 1;
-		this.heightMap = new HashMap<BoardObject, Float>();
+		padding = 0;
+		heightMap = new HashMap<BoardObject, Float>();
 	}
 
-	private CreateHeightMap(float objectHeight, float depthScaleFactor) {
+	private CreateHeightMap(float objectHeight, float depthScaleFactor, float padding) {
 		this.objectHeight = objectHeight;
 		this.depthScaleFactor = depthScaleFactor;
-		this.heightMap = new HashMap<BoardObject, Float>();
+		this.padding = padding;
+		heightMap = new HashMap<BoardObject, Float>();
 	}
 
 	/**
@@ -90,9 +93,9 @@ public class CreateHeightMap implements BoardObjectVisitor {
 	 * @return a height map corresponding to b
 	 */
 	public static Map<BoardObject, Float> create(BoardObject b,
-			float objectHeight, float depthScaleFactor) {
+			float objectHeight, float depthScaleFactor, float padding) {
 		CreateHeightMap creator = new CreateHeightMap(objectHeight,
-				depthScaleFactor);
+				depthScaleFactor, padding);
 		b.accept(creator);
 		return creator.heightMap;
 	}
@@ -114,13 +117,17 @@ public class CreateHeightMap implements BoardObjectVisitor {
 
 	@Override
 	public void visitBoard(Board board) {
-		// prevent Board from adding up to the depth
-		goHigher();
-		visitParent(board);
-		// remove some height from Board, as it doesn't have a height on its own
-		// (=> empty boards have height 0)
-		heightMap.put(board, heightMap.get(board) - objectHeight * getScale());
-		goDeeper();
+		// Boards do not need to apply padding on children and must not add up to the depth for scaling
+		float height = 0;
+		float childHeight;
+		for (InternalBoardObject child : board) {
+			child.accept(this);
+			childHeight = heightMap.get(child);
+			if (childHeight > height) {
+				height = childHeight;
+			}
+		}
+		heightMap.put(board, height);
 	}
 
 	private void visitParent(Parent p) {
@@ -135,7 +142,7 @@ public class CreateHeightMap implements BoardObjectVisitor {
 			}
 		}
 		goHigher();
-		heightMap.put(p, height + objectHeight * getScale());
+		heightMap.put(p, height + (padding + objectHeight) * getScale());
 	}
 
 	private float getScale() {
