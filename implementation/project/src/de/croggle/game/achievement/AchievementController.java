@@ -21,10 +21,6 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	private List<Achievement> availableAchievements;
 
 	/**
-	 * A list of all achievements unlocked by the currently active user.
-	 */
-	private HashMap<Achievement, Integer> unlockedAchievements;
-	/**
 	 * list of achievements unlocked during the last level
 	 */
 	private List<Achievement> latestUnlockedAchievements;
@@ -37,19 +33,17 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	/**
 	 * Creates a new Controller. On initialization the unlocked achievements are
 	 * set to null.
+	 * 
 	 * @param game
 	 *            the backreference to the central game object
 	 */
 	public AchievementController(AlligatorApp game) {
-		this.unlockedAchievements = new HashMap<Achievement, Integer>();
 		this.availableAchievements = new ArrayList<Achievement>();
 		this.latestUnlockedAchievements = new ArrayList<Achievement>();
 		this.game = game;
 		initiateAvailableAchievements();
 
 	}
-	
-	
 
 	/**
 	 * Receives statistics delta from the just finished level and processes it.
@@ -63,12 +57,16 @@ public class AchievementController implements StatisticsDeltaProcessor {
 		return null;
 	}
 
-	protected List<Achievement> convertDb() { // TODO: wie kommt das da rein?
+	protected List<Achievement> convertInputFromDatabase(HashMap<Integer, Integer> tupels) { 
 		List<Achievement> converted = new ArrayList<Achievement>();
-		//TODO : conversion
+		for (int id : tupels.keySet()) {
+			int stage = tupels.get(id);
+
+		}
 		return converted;
-		
+
 	}
+
 	/**
 	 * Initiates the available achievements.
 	 */
@@ -90,7 +88,6 @@ public class AchievementController implements StatisticsDeltaProcessor {
 
 		for (Achievement achievement : availableAchievements) {
 			achievement.initialize();
-			unlockedAchievements.put(achievement, 0);
 		}
 
 	}
@@ -116,8 +113,14 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * 
 	 * @return a list of unlocked achievements
 	 */
-	public HashMap<Achievement, Integer> getUnlockedAchievements() {
-		return unlockedAchievements;
+	public List<Achievement> getUnlockedAchievements() {
+		final List<Achievement> unlocked = new ArrayList<Achievement>();
+		for (Achievement achievment : availableAchievements) {
+			if (achievment.getIndex() > 0) {
+				unlocked.add(achievment);
+			}
+		}
+		return unlocked;
 	}
 
 	/**
@@ -139,32 +142,31 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	public List<Achievement> getLatestUnlockedAchievements() {
 		return latestUnlockedAchievements;
 	}
-	
+
 	/**
 	 * Changes the available and unlocked achievements and returns said changes.
-	 * @param statistic 
+	 * 
+	 * @param statistic
 	 * @param statisticDelta
-	 * @return
+	 * @return a list of achievements with their stage after the change
 	 */
-	protected List<Achievement> updateAchievements(Statistic statistic, Statistic statisticDelta) {
+	protected List<Achievement> updateAchievements(Statistic statistic,
+			Statistic statisticDelta) {
 		List<Achievement> latestChanges = new ArrayList<Achievement>();
 		for (Achievement achievement : availableAchievements) {
 			int oldVal = achievement.getIndex();
-			int newVal = achievement
-					.requirementsMet(statistic, statisticDelta); // Changes
-																	// after
-																	// update of
-																	// statistic
+			int newVal = achievement.requirementsMet(statistic, statisticDelta); // Changes
+																					// after
+																					// update
+																					// of
+																					// statistic
 			if (oldVal != newVal) {
 				achievement.setIndex(newVal);
-				unlockedAchievements.remove(achievement);
-				unlockedAchievements.put(achievement, newVal);
 				latestChanges.add(achievement);
 			}
 		}
 		return latestChanges;
 	}
-	
 
 	/**
 	 * Checks whether the new statistic changes in a level cause new
@@ -179,6 +181,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	public void processDelta(Statistic statisticsDelta) {
 		latestUnlockedAchievements.clear();
 		Statistic statistic = null; // TODO: database access here?
-		latestUnlockedAchievements = updateAchievements(statistic, statisticsDelta);
+		latestUnlockedAchievements = updateAchievements(statistic,
+				statisticsDelta);
 	}
 }
