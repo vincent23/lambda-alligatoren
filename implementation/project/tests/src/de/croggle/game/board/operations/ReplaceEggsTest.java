@@ -1,11 +1,12 @@
 package de.croggle.game.board.operations;
 
+import junit.framework.TestCase;
 import de.croggle.game.Color;
+import de.croggle.game.ColorController;
 import de.croggle.game.ColorOverflowException;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
-import junit.framework.TestCase;
 
 public class ReplaceEggsTest extends TestCase {
 	public void testSimple() {
@@ -30,5 +31,30 @@ public class ReplaceEggsTest extends TestCase {
 		}
 		assertEquals(1, a1.getChildCount());
 		assertTrue(a1.getFirstChild().match(a2));
+	}
+
+	public void testSimpleRecolor() {
+		// (\x . (\y . x)) y -> \z . y
+		final Color colorX = new Color(1);
+		final Color colorY = new Color(2);
+		final ColorController colorController = new ColorController();
+		final Board board = new Board();
+		final ColoredAlligator lambdaY = new ColoredAlligator(false, false,
+				colorY, false);
+		final Egg x = new Egg(false, false, colorX, false);
+		final Egg y = new Egg(false, false, colorY, false);
+
+		board.addChild(lambdaY);
+		lambdaY.addChild(x);
+
+		try {
+			ReplaceEggs.replace(lambdaY, colorX, y, colorController);
+		} catch (ColorOverflowException e) {
+			fail();
+		}
+
+		assertEquals(1, lambdaY.getChildCount());
+		assertTrue(y.match(lambdaY.getFirstChild()));
+		assertFalse(lambdaY.getColor().equals(colorY));
 	}
 }
