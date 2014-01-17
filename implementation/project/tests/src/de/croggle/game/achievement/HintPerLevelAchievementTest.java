@@ -21,7 +21,6 @@ public class HintPerLevelAchievementTest extends TestCase {
 		backend.putString("achievement_hints_used_per_level", " used");
 		Achievement testAchievement = new HintPerLevelAchievement();
 		testAchievement.initialize();
-		assertTrue(testAchievement.getId() == -1);
 		int[] testStages = { 1, 0 };
 		assertTrue(testAchievement.getStage(0) == testStages[0]);
 		assertTrue(testAchievement.getDescription(1).endsWith("sed"));

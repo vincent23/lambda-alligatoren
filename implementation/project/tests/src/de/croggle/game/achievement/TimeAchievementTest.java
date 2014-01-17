@@ -19,7 +19,6 @@ public class TimeAchievementTest extends TestCase {
 		backend.putString("achievement_time_final", "played");
 		Achievement testAchievement = new TimeAchievement();
 		testAchievement.initialize();
-		assertTrue(testAchievement.getId() == -1);
 		int[] testStages = {0,  5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60, 120 * 60,
 				180 * 60, 300 * 60, 600 * 60, 6000 * 60 };
 		for (int i = 1; i < 11; i++) {

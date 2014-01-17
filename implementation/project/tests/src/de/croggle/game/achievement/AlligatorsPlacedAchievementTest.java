@@ -22,7 +22,6 @@ public class AlligatorsPlacedAchievementTest extends TestCase {
 		backend.putString("achievement_alligators_placed_final", "placed");
 		Achievement testAchievement = new AlligatorsPlacedAchievement();
 		testAchievement.initialize();
-		assertTrue(testAchievement.getId() == -1);
 		int[] testStages = { 0,  10, 25, 50, 100, 200, 300, 500, 750, 1000, 2000 };
 		for (int i = 1; i < 11; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);

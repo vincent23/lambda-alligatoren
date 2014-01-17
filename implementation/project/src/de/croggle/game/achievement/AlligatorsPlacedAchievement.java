@@ -39,7 +39,6 @@ public class AlligatorsPlacedAchievement extends Achievement {
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);
-		setId(-1); // TODO: IDs für alle achievements festlegen.
 		
 	}
 

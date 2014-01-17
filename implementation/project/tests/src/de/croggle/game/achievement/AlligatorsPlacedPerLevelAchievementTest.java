@@ -18,7 +18,6 @@ public class AlligatorsPlacedPerLevelAchievementTest extends TestCase {
 		backend.putString("achievement_alligators_placed_per_level_final", "placed");
 		Achievement testAchievement = new AlligatorsPlacedPerLevelAchievement();
 		testAchievement.initialize();
-		assertTrue(testAchievement.getId() == -1);
 		int[] testStages = { 0, 2, 5, 10, 15, 25};
 		for (int i = 1; i < 6; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);

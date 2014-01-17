@@ -42,7 +42,6 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);
-		setId(-1); // TODO: decide on Ids for the different Achievements. 
 		
 	}
 

@@ -37,6 +37,7 @@ public class AchievementFactory {
 			return null;
 		}
 		achievement.setId(id);
+		achievement.initialize();
 		return achievement;
 
 	}
@@ -44,7 +45,7 @@ public class AchievementFactory {
 	
 	public static List<Achievement> createListofAchievementTypes() {
 		List<Achievement> types = new ArrayList<Achievement>();
-		for( int i = 0; i < maxId; i++) {
+		for( int i = 0; i < maxId + 1; i++) {
 			types.add(createAchievement(i));
 		}
 		return types;

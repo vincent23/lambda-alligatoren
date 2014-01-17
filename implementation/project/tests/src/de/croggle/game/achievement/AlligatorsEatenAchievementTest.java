@@ -19,7 +19,7 @@ public class AlligatorsEatenAchievementTest extends TestCase {
 		backend.putString("achievement_alligators_eaten_final", " eaten");
 		Achievement testAchievement = new AlligatorsEatenAchievement();
 		testAchievement.initialize();
-		assertTrue(testAchievement.getId() == -1);
+		assertTrue(testAchievement.getId() == 0);
 		int[] testStages = {0, 5, 20, 50, 100, 175, 250,
 				500, 750, 1250, 2500 };
 		for (int i = 1; i < 11; i++) {

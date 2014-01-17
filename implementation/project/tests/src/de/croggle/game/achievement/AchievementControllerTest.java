@@ -1,5 +1,6 @@
 package de.croggle.game.achievement;
 
+import java.util.HashMap;
 import java.util.List;
 
 import de.croggle.data.LocalizationHelper;
@@ -34,7 +35,6 @@ public class AchievementControllerTest extends TestCase {
 		backend.putString("achievement_time_final", "played .");
 		AchievementController achievementController = new AchievementController(
 				null);
-
 		assertTrue(achievementController.getAvailableAchievements().size() == 7);
 		for (Achievement achievement : achievementController
 				.getAvailableAchievements()) {
@@ -66,7 +66,9 @@ public class AchievementControllerTest extends TestCase {
 		assertTrue(unlockedAchievement.isEmpty());
 		for (Achievement achievement5 : achievementController
 				.getAvailableAchievements())
-			assertTrue(achievement5.getIndex() == 0); // no achievement has left it's initiazation stage yet.
+			assertTrue(achievement5.getIndex() == 0); // no achievement has left
+														// it's initiazation
+														// stage yet.
 
 		for (Achievement achievement2 : achievementController
 				.getLatestUnlockedAchievements()) {
@@ -94,7 +96,9 @@ public class AchievementControllerTest extends TestCase {
 		}
 
 		for (Achievement achievement4 : unlockedAchievement) {
-			assertTrue(achievement4.getIndex() == 1); //every achievement has reached its first stage
+			assertTrue(achievement4.getIndex() == 1); // every achievement has
+														// reached its first
+														// stage
 		}
 
 		statistic1.setAlligatorsEaten(150000);
@@ -108,10 +112,56 @@ public class AchievementControllerTest extends TestCase {
 
 		unlockedAchievement = achievementController.updateAchievements(
 				statistic1, statistic2);
-		
-		for ( Achievement achievement6 : unlockedAchievement){
-			assertTrue(achievement6.getIndex() == achievement6.getNumberOfStages() - 1); // every achievement has reached its final stage
+
+		for (Achievement achievement6 : unlockedAchievement) {
+			assertTrue(achievement6.getIndex() == achievement6
+					.getNumberOfStages() - 1); // every achievement has reached
+												// its final stage
 		}
+	}
+	
+	public void testConvert() {
+		TestLocalizationBackend backend = new TestLocalizationBackend();
+		LocalizationHelper.setBackend(backend);
+		backend.putString("achievement_alligators_placed",
+				" Alligators placed .");
+		backend.putString("achievement_alligators_placed_final",
+				"Alligators placed .");
+		backend.putString("achievement_alligators_eaten", " alligators eaten .");
+		backend.putString("achievement_alligators_eaten_final", " eaten .");
+		backend.putString("achievement_alligators_eaten_per_level",
+				" Alligators: one level .");
+		backend.putString("achievement_alligators_eaten_per_level_final",
+				"Alligators placed: one level .");
+		backend.putString("achievement_alligators_placed_per_level",
+				"  Allgators placed per Level .");
+		backend.putString("achievement_alligators_placed_per_level_final",
+				"Alligators placed per Level .");
+		backend.putString("achievement_hints_used_per_level",
+				"fewer than one hints used .");
+		backend.putString("achievement_level_completed", " level completed .");
+		backend.putString("achievement_minutes_played", " minutes played .");
+		backend.putString("achievement_hours_played", " hours played .");
+		backend.putString("achievement_time_final", "played .");
+		AchievementController achievementController = new AchievementController(
+				null);
+		HashMap<Integer, Integer> testTupels = new HashMap<Integer, Integer>();
+		testTupels.put(0,2);
+		testTupels.put(1, 3);
+		testTupels.put(2, 5);
+		testTupels.put(3, 1);
+		testTupels.put(4, 0);
+		testTupels.put(5, 8);
+		testTupels.put(6, 6);
+		List<Achievement> converted = achievementController.convertInputFromDatabase(testTupels);
+		assertTrue(converted.get(0).getIndex() == 2);
+		assertTrue(converted.get(1).getIndex() == 3);
+		assertTrue(converted.get(2).getIndex() == 5);
+		assertTrue(converted.get(3).getIndex() == 1);
+		assertTrue(converted.get(4).getIndex() == 0);
+		assertTrue(converted.get(5).getIndex() == 8);
+		assertTrue(converted.get(6).getIndex() == 6);
+		assertTrue(converted.get(0).getStage(0) == 0);
 	}
 
 }
