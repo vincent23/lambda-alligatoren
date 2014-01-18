@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 import de.croggle.data.AssetManager;
@@ -129,7 +130,14 @@ public class StyleHelper {
 	 * @return the image text button's style
 	 */
 	public ImageTextButtonStyle getImageTextButtonStyle() {
-		return null;
+		return skin.get(ImageTextButtonStyle.class);
+	}
+
+	public ImageTextButtonStyle getImageTextButtonStyle(String icon) {
+		ImageTextButtonStyle style = new ImageTextButtonStyle(
+				getImageTextButtonStyle());
+		style.imageUp = skin.getDrawable(icon);
+		return style;
 	}
 
 	/**
@@ -155,6 +163,10 @@ public class StyleHelper {
 
 	public SelectBoxStyle getSelectBoxStyle() {
 		return skin.get(SelectBoxStyle.class);
+	}
+
+	public WindowStyle getDialogStyle() {
+		return skin.get(WindowStyle.class);
 	}
 
 	public Drawable getDrawable(String path) {
