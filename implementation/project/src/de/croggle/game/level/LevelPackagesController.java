@@ -4,11 +4,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 
-import android.content.res.AssetManager;
 import de.croggle.AlligatorApp;
+import de.croggle.data.AssetManager;
 
 /**
  * Controls the overview over the different level packages.
@@ -23,9 +26,8 @@ public class LevelPackagesController {
 	 * 
 	 * @param game
 	 *            the backreference to the central game object
-	 * @throws IOException
 	 */
-	public LevelPackagesController(AlligatorApp game) throws IOException {
+	public LevelPackagesController(AlligatorApp game){
 		this.game = game;
 		this.initialiseLevelPackages();
 	}
@@ -56,17 +58,14 @@ public class LevelPackagesController {
 	/**
 	 * Method to initialize the levelPackages from the assets.
 	 * 
-	 * @throws IOException
 	 */
-	private void initialiseLevelPackages() throws IOException {
-		AssetManager manager = game.getContext().getAssets();
-		String[] packageNames = null;
-		try {
-			packageNames = manager.list("json/levels/");
-		} catch (IOException e) {
-			// TODO
-		}
-		int numberOfPackages = packageNames.length - 1;
+	private void initialiseLevelPackages(){
+		FileHandle handle = Gdx.files.internal("json/levels");
+		FileHandle[] packageNames = handle.list();
+		int numberOfPackages = packageNames.length;
+		//TODO	
+		System.out.println(numberOfPackages);
+		
 		levelPackages = new ArrayList<LevelPackage>();
 		for (int i = 0; i < numberOfPackages; i++) {
 			levelPackages.add(this.loadPackage(i));
@@ -78,11 +77,12 @@ public class LevelPackagesController {
 	 * @param PackageIndex
 	 *            of the Level Package which should be loaded.
 	 * @return the Level Package belonging to the given index.
-	 * @throws IOException
 	 */
-	private LevelPackage loadPackage(int packageIndex) throws IOException {
-		AssetManager manager = game.getContext().getAssets();
-		InputStream stream = manager.open("json/levels/"
+	private LevelPackage loadPackage(int packageIndex){
+		//TODO
+		AssetManager manager = AssetManager.getInstance();
+		InputStream stream = null;
+		stream = manager.get("json/levels/"
 				+ String.format("%02d", packageIndex) + "/package.json");
 		JsonReader reader = new JsonReader();
 		JsonValue de_croggle = reader.parse(stream);
