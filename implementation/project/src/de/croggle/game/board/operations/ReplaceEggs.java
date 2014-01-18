@@ -30,6 +30,8 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	private Color[] boundColors;
 	private Color[] freeColors;
 
+	private ColorOverflowException colorOverflowException;
+
 	private ReplaceEggs(BoardObject constellation, Color eggColor,
 			InternalBoardObject bornFamily) {
 		this(constellation, eggColor, bornFamily, null, null);
@@ -55,8 +57,8 @@ public class ReplaceEggs implements BoardObjectVisitor {
 		this.colorController = colorController;
 
 		if (colorController != null) {
-			boundColors = CollectBoundColors.collect(constellation);
-			freeColors = CollectFreeColors.collect(constellation);
+			boundColors = CollectBoundColors.collect(bornFamily);
+			freeColors = CollectFreeColors.collect(bornFamily);
 		}
 	}
 
@@ -81,10 +83,13 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 */
 	public static void replace(BoardObject constellation, Color eggColor,
 			InternalBoardObject bornFamily, BoardEventMessenger boardMessenger,
-			ColorController colorController) {
+			ColorController colorController) throws ColorOverflowException {
 		ReplaceEggs replacer = new ReplaceEggs(constellation, eggColor,
 				bornFamily, boardMessenger, colorController);
 		constellation.accept(replacer);
+		if (replacer.colorOverflowException != null) {
+			throw replacer.colorOverflowException;
+		}
 	}
 
 	/**
@@ -103,12 +108,17 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 *            the family with which eggs are replaced
 	 * @param boardMessenger
 	 *            the messenger used for sending events when eggs are replaced
+	 * @throws ColorOverflowException
 	 */
 	public static void replace(BoardObject constellation, Color eggColor,
-			InternalBoardObject bornFamily, BoardEventMessenger boardMessenger) {
+			InternalBoardObject bornFamily, BoardEventMessenger boardMessenger)
+			throws ColorOverflowException {
 		ReplaceEggs replacer = new ReplaceEggs(constellation, eggColor,
 				bornFamily, boardMessenger);
 		constellation.accept(replacer);
+		if (replacer.colorOverflowException != null) {
+			throw replacer.colorOverflowException;
+		}
 	}
 
 	/**
@@ -130,10 +140,14 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 *             if recoloring occurs and there is no color available
 	 */
 	public static void replace(BoardObject constellation, Color eggColor,
-			InternalBoardObject bornFamily, ColorController colorController) {
+			InternalBoardObject bornFamily, ColorController colorController)
+			throws ColorOverflowException {
 		ReplaceEggs replacer = new ReplaceEggs(constellation, eggColor,
 				bornFamily, colorController);
 		constellation.accept(replacer);
+		if (replacer.colorOverflowException != null) {
+			throw replacer.colorOverflowException;
+		}
 	}
 
 	/**
@@ -151,12 +165,16 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 *            the color that the eggs to be replaced have
 	 * @param bornFamily
 	 *            the family with which eggs are replaced
+	 * @throws ColorOverflowException
 	 */
 	public static void replace(BoardObject constellation, Color eggColor,
-			InternalBoardObject bornFamily) {
+			InternalBoardObject bornFamily) throws ColorOverflowException {
 		ReplaceEggs replacer = new ReplaceEggs(constellation, eggColor,
 				bornFamily);
 		constellation.accept(replacer);
+		if (replacer.colorOverflowException != null) {
+			throw replacer.colorOverflowException;
+		}
 	}
 
 	/**
@@ -164,6 +182,9 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitEgg(Egg egg) {
+		if (colorOverflowException != null) {
+			return;
+		}
 		if (egg.getColor().equals(this.eggColor)) {
 			InternalBoardObject replacement;
 			if (this.colorController != null) {
@@ -182,7 +203,8 @@ public class ReplaceEggs implements BoardObjectVisitor {
 						ExchangeColor.recolor(constellation, color, newColor,
 								boardMessenger);
 					} catch (ColorOverflowException e) {
-						// TODO handle exception
+						colorOverflowException = e;
+						return;
 					}
 				}
 				final Set<Color> locallyBoundAndBoundColors = new HashSet<Color>();
@@ -196,7 +218,8 @@ public class ReplaceEggs implements BoardObjectVisitor {
 						ExchangeColor.recolor(replacement, color, newColor,
 								boardMessenger);
 					} catch (ColorOverflowException e) {
-						// TODO handle exception
+						colorOverflowException = e;
+						return;
 					}
 
 				}
@@ -217,7 +240,9 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
-		alligator.acceptOnChildren(this);
+		if (colorOverflowException == null) {
+			alligator.acceptOnChildren(this);
+		}
 	}
 
 	/**
@@ -225,7 +250,9 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
-		alligator.acceptOnChildren(this);
+		if (colorOverflowException == null) {
+			alligator.acceptOnChildren(this);
+		}
 	}
 
 	/**
@@ -233,7 +260,9 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitBoard(Board board) {
-		board.acceptOnChildren(this);
+		if (colorOverflowException == null) {
+			board.acceptOnChildren(this);
+		}
 	}
 
 	/**

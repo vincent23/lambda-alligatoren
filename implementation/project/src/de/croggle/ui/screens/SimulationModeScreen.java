@@ -12,6 +12,7 @@ import de.croggle.game.GameController;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.Egg;
+import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
 import de.croggle.util.convert.LambdaToAlligator;
 
@@ -80,11 +81,15 @@ public class SimulationModeScreen extends AbstractScreen {
 		a10.addChild(e10);
 		*/
 		
-		BoardActor ba = new BoardActor(b, cctrlr);
-		ba.getLayoutConfiguration().setTreeOrigin(new Vector2(50, 400));
-		ba.onBoardRebuilt(b);
+		ActorLayoutConfiguration config = new ActorLayoutConfiguration(b);
+		config.setColorController(cctrlr);
+		BoardActor ba = new BoardActor(b, config);
+		ba.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
+		//ba.setScale(.5f); // this is funny
 		
-		this.table.add(ba);
+		this.table.add(ba).prefWidth(screenWidth).prefHeight(screenHeight);
+			//.width(screenWidth * 0.5f).height(screenHeight * 0.5f);
+		return;
 	}
 	
 	public void dispose() {
