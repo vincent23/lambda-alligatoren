@@ -1,8 +1,16 @@
 package de.croggle.game;
 
+import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.AlligatorOverflowException;
 import de.croggle.game.board.Board;
+import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.IllegalBoardException;
+import de.croggle.game.board.InternalBoardObject;
+import de.croggle.game.board.Parent;
+import de.croggle.game.board.operations.CountBoardObjects;
+import de.croggle.game.board.operations.FindEating;
+import de.croggle.game.board.operations.RemoveAgedAlligators;
+import de.croggle.game.board.operations.ReplaceEggs;
 import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.util.RingBuffer;
 
@@ -16,6 +24,8 @@ public class Simulator {
 	private RingBuffer<Board> history; // 30 elements needed.
 	private ColorController colorController;
 	private BoardEventMessenger boardMessenger;
+
+	private static final int MAX_ALLIGATORS = 300;
 
 	/**
 	 * Creates a new Simulator.
@@ -32,7 +42,7 @@ public class Simulator {
 	 */
 	public Simulator(Board entranceBoard, ColorController colorController,
 			BoardEventMessenger boardMessenger) throws IllegalBoardException {
-		this.history = new RingBuffer(30);
+		this.history = new RingBuffer<Board>(30);
 		this.entranceBoard = entranceBoard;
 		this.currentBoard = entranceBoard;
 		this.colorController = colorController;
@@ -49,8 +59,28 @@ public class Simulator {
 	 *             if there are more than the max. allowed amount of
 	 *             BoardObjects on the board after the evaluation step
 	 */
-	public Board evaluate(Board currentBoard) {
-		return null;
+	public Board evaluate() throws ColorOverflowException,
+			AlligatorOverflowException {
+		final ColoredAlligator eater = FindEating.findEater(currentBoard);
+		if (eater == null) {
+			return currentBoard;
+		}
+		history.push(currentBoard);
+		currentBoard = currentBoard.copy();
+
+		final Parent parent = eater.getParent();
+		final InternalBoardObject eaten = parent.getChildAfter(eater);
+		boardMessenger.notifyEat(eater, eaten, parent.getChildPosition(eaten));
+		parent.removeChild(eaten);
+		final AgedAlligator constellation = replaceColoredWithAgedAlligator(eater);
+		ReplaceEggs.replace(constellation, eater.getColor(), eaten,
+				boardMessenger, colorController);
+
+		RemoveAgedAlligators.remove(constellation, boardMessenger);
+		if (MAX_ALLIGATORS < CountBoardObjects.count(currentBoard)) {
+			throw new AlligatorOverflowException();
+		}
+		return currentBoard;
 	}
 
 	/**
@@ -59,7 +89,12 @@ public class Simulator {
 	 * @return the board, in its status before the last evaluation step
 	 */
 	public Board undo() {
-		return null;
+		try {
+			currentBoard = history.pop();
+		} catch (Exception e) {
+			// TODO
+		}
+		return currentBoard;
 	}
 
 	/**
@@ -69,7 +104,20 @@ public class Simulator {
 	 * @return the board in said state
 	 */
 	public Board reset() {
-		return null;
+		currentBoard = entranceBoard;
+		return currentBoard;
+	}
+
+	private AgedAlligator replaceColoredWithAgedAlligator(
+			ColoredAlligator coloredAlligator) {
+		final AgedAlligator agedAlligator = new AgedAlligator(
+				coloredAlligator.isMovable(), coloredAlligator.isRemovable());
+		final Parent parent = coloredAlligator.getParent();
+		parent.replaceChild(coloredAlligator, agedAlligator);
+		for (InternalBoardObject child : coloredAlligator) {
+			agedAlligator.addChild(child);
+		}
+		return agedAlligator;
 	}
 
 }
