@@ -5,7 +5,6 @@
 bin/
 gen/
 proguard/
-.settings/
 
 local.properties
 project/assets/textures/
