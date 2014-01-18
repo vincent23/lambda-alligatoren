@@ -1,17 +1,13 @@
 package de.croggle.ui.screens;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
-import de.croggle.game.Color;
 import de.croggle.game.ColorController;
 import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
-import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
-import de.croggle.game.board.Egg;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
 import de.croggle.util.convert.LambdaToAlligator;

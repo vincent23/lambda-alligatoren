@@ -23,6 +23,7 @@ import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.ColoredBoardObject;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
+import de.croggle.game.board.operations.CreateHeightMap;
 import de.croggle.game.board.operations.FlattenTree;
 import de.croggle.game.event.BoardEventListener;
 
@@ -33,14 +34,14 @@ import de.croggle.game.event.BoardEventListener;
 public class BoardActor extends Actor implements BoardEventListener {
 
 	private Map<InternalBoardObject, BoardObjectActor> actors;
-	private Board board;
 	private ActorLayoutConfiguration config;
 	private OrthographicCamera camera;
 
 	private final Vector2 CAMERA_SIZE = new Vector2(1024, 600);
+	private float maxZoom;
+	private float minZoom;
 
-	private BoardActor(Board b) {
-		this.board = b;
+	private BoardActor() {
 		actors = new HashMap<InternalBoardObject, BoardObjectActor>();
 		camera = new OrthographicCamera(CAMERA_SIZE.x, CAMERA_SIZE.y);
 		camera.position.set(CAMERA_SIZE.x / 2 - getX(), CAMERA_SIZE.y / 2
@@ -52,11 +53,22 @@ public class BoardActor extends Actor implements BoardEventListener {
 	 * Creates a new BoardActor with the given {@link ActorLayoutConfiguration}.
 	 * 
 	 * @param board
+	 * @param config
 	 */
 	public BoardActor(Board board, ActorLayoutConfiguration config) {
-		this(board);
+		this();
 		this.config = config;
 		actors = new HashMap<InternalBoardObject, BoardObjectActor>();
+
+		// allow maximum enlargement to fit one alligator in width on the screen
+		maxZoom = config.getUniformObjectWidth() / CAMERA_SIZE.x;
+		// allow maximum the whole tree times 1.2 fitting on the screen
+		minZoom = Math.max(CreateHeightMap.create(board,
+				config.getUniformObjectHeight(),
+				config.getVerticalScaleFactor(), config.getVerticalPadding())
+				.get(board)
+				* 1.2f / CAMERA_SIZE.y, 1.f);
+
 		this.onBoardRebuilt(board);
 	}
 
@@ -67,11 +79,22 @@ public class BoardActor extends Actor implements BoardEventListener {
 	 * correctly.
 	 * 
 	 * @param board
+	 * @param controller
 	 */
 	public BoardActor(Board board, ColorController controller) {
-		this(board);
+		this();
 		this.config = new ActorLayoutConfiguration(board);
 		config.setColorController(controller);
+		
+		// allow maximum enlargement to fit one alligator in width on the screen
+		maxZoom = config.getUniformObjectWidth() / CAMERA_SIZE.x;
+		// allow maximum the whole tree times 1.2 fitting on the screen
+		minZoom = Math.max(CreateHeightMap.create(board,
+				config.getUniformObjectHeight(),
+				config.getVerticalScaleFactor(), config.getVerticalPadding())
+				.get(board)
+				* 1.2f / CAMERA_SIZE.y, 1.f);
+		
 		this.onBoardRebuilt(board);
 	}
 
@@ -98,7 +121,13 @@ public class BoardActor extends Actor implements BoardEventListener {
 			float newdistance = pointer1.dst(pointer2);
 			// totally random transfer function
 			float newzoom = (float) (camera.zoom * Math.pow(1.0002,
-					(int)(initialDistance - newdistance))); // maybe casting to int in exponent is faster
+					(int) (initialDistance - newdistance))); // maybe casting to
+																// int in
+																// exponent is
+																// faster
+			if (newzoom < maxZoom || newzoom > minZoom) {
+				return;
+			}
 
 			// the center of the zooming operation
 			Vector2 screenpoint = initialPointer1.add(initialPointer2.sub(
@@ -112,15 +141,9 @@ public class BoardActor extends Actor implements BoardEventListener {
 			float initialDy = dy / initialzoom;
 			float newDx = dx / newzoom;
 			float newDy = dy / newzoom;
-			
+
 			float offsetX = (initialDx - newDx) * newzoom;
 			float offsetY = (initialDy - newDy) * newzoom;
-
-			System.out.println("===============ZOOM================");
-			System.out.println(screenpoint);
-			System.out.println(zoompoint);
-			System.out.println("new zoom: " + newzoom);
-			System.out.println("campos: " + camera.position);
 
 			camera.position.x += offsetX;
 			camera.position.y += offsetY;
@@ -131,12 +154,15 @@ public class BoardActor extends Actor implements BoardEventListener {
 
 	private Vector2 screenToWorldCoords(Vector2 screenCoords) {
 		Vector2 result = new Vector2();
-		Vector2 screenMid = new Vector2(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+		Vector2 screenMid = new Vector2(Gdx.graphics.getWidth() / 2,
+				Gdx.graphics.getHeight() / 2);
 		Vector2 diffFromMid = screenCoords.cpy().sub(screenMid);
 		// correct differences due to resolutions and zoom
-		// TODO code assumes that aspect ratio is same
+		// TODO code assumes that aspect ratio is same between real screen and
+		// our camera
 		diffFromMid.scl(CAMERA_SIZE.x / Gdx.graphics.getWidth() * camera.zoom);
-		result = new Vector2(camera.position.x, camera.position.y).add(diffFromMid.x, diffFromMid.y);
+		result = new Vector2(camera.position.x, camera.position.y).add(
+				diffFromMid.x, diffFromMid.y);
 
 		return result;
 	}
@@ -280,7 +306,6 @@ public class BoardActor extends Actor implements BoardEventListener {
 	 */
 	@Override
 	public void onBoardRebuilt(Board board) {
-		this.board = board;
 		this.actors = ActorLayoutBuilder.build(board, config);
 	}
 
@@ -306,8 +331,6 @@ public class BoardActor extends Actor implements BoardEventListener {
 
 	@Override
 	protected void sizeChanged() {
-		System.out.println("Size changed: " + getWidth() + ", " + getHeight());
-		System.out.println("Screen size: " +  Gdx.graphics.getWidth() + ", " +  Gdx.graphics.getHeight());
 		// we want to always have the camera believe it shows 1024 x 600 pixels
 		// camera.viewportWidth = getWidth();
 		// camera.viewportHeight = getHeight();
