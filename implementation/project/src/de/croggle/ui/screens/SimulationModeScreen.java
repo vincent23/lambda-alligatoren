@@ -45,8 +45,10 @@ public class SimulationModeScreen extends AbstractScreen {
 		ColorController cctrlr = new ColorController();
 		
 		
-		Board b = LambdaToAlligator.convert("(λx.x) ((λy.y) (λz.z))");
-		for (int i = 0; i < 3; i++) {
+		Board b = LambdaToAlligator.convert("(λa.λb.λs.λz.(a s (b s z))) (λs.λz.(s (s (s z)))) (λs.λz.(s (s (s (s z)))))");
+		//Board b = LambdaToAlligator.convert("(λx.x) ((λy.y) (λz.z))");
+		//Board b = LambdaToAlligator.convert("x");
+		for (int i = 0; i < 6; i++) {
 			// tell the colorcontroller that we need some colors instantiated
 			try {
 				cctrlr.requestColor();
@@ -81,7 +83,7 @@ public class SimulationModeScreen extends AbstractScreen {
 		config.setColorController(cctrlr);
 		BoardActor ba = new BoardActor(b, config);
 		ba.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
-		//ba.setScale(.5f); // this is funny
+		//ba.setScale(.5f); // TODO test this/ get it to work later
 		
 		this.table.add(ba).prefWidth(screenWidth).prefHeight(screenHeight);
 			//.width(screenWidth * 0.5f).height(screenHeight * 0.5f);

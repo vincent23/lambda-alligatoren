@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.transition.Scene;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,6 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import de.croggle.game.ColorController;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
+import de.croggle.game.board.BoardObject;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.ColoredBoardObject;
 import de.croggle.game.board.Egg;
@@ -38,6 +41,8 @@ public class BoardActor extends Actor implements BoardEventListener {
 	private OrthographicCamera camera;
 
 	private final Vector2 CAMERA_SIZE = new Vector2(1024, 600);
+	private Vector2 cameraPosMax;
+	private Vector2 cameraPosMin;
 	private float maxZoom;
 	private float minZoom;
 
@@ -47,6 +52,26 @@ public class BoardActor extends Actor implements BoardEventListener {
 		camera.position.set(CAMERA_SIZE.x / 2 - getX(), CAMERA_SIZE.y / 2
 				- getY(), 0);
 		camera.update();
+		// TODO implement smart boundary calculation
+		cameraPosMax = new Vector2(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY);
+		cameraPosMin = new Vector2(Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY);
+	}
+
+	private void calculateZoomsAndMaximums(Board b) {
+		Map<BoardObject, Float> heightMap = CreateHeightMap.create(b);
+		float unscaledHeight = heightMap.get(b);
+		// cool formula to unroll sum function associated with heigth
+		// calculation
+		float lowestScale = (float) Math.pow(config.getVerticalScaleFactor(),
+				unscaledHeight);
+		float actualHeight = lowestScale
+				* (unscaledHeight + 1)
+				* (config.getUniformObjectHeight() + config
+						.getVerticalPadding());
+		// allow maximum enlargement to have the smallest object being displayed with half the screen size
+		maxZoom = config.getUniformObjectWidth() * 2 * lowestScale / CAMERA_SIZE.x;
+		// allow maximum the whole tree times 1.2 fitting on the screen
+		minZoom = Math.max(actualHeight * 1.2f / CAMERA_SIZE.y, 1.f);
 	}
 
 	/**
@@ -60,14 +85,7 @@ public class BoardActor extends Actor implements BoardEventListener {
 		this.config = config;
 		actors = new HashMap<InternalBoardObject, BoardObjectActor>();
 
-		// allow maximum enlargement to fit one alligator in width on the screen
-		maxZoom = config.getUniformObjectWidth() / CAMERA_SIZE.x;
-		// allow maximum the whole tree times 1.2 fitting on the screen
-		minZoom = Math.max(CreateHeightMap.create(board,
-				config.getUniformObjectHeight(),
-				config.getVerticalScaleFactor(), config.getVerticalPadding())
-				.get(board)
-				* 1.2f / CAMERA_SIZE.y, 1.f);
+		calculateZoomsAndMaximums(board);
 
 		this.onBoardRebuilt(board);
 	}
@@ -85,16 +103,9 @@ public class BoardActor extends Actor implements BoardEventListener {
 		this();
 		this.config = new ActorLayoutConfiguration(board);
 		config.setColorController(controller);
-		
-		// allow maximum enlargement to fit one alligator in width on the screen
-		maxZoom = config.getUniformObjectWidth() / CAMERA_SIZE.x;
-		// allow maximum the whole tree times 1.2 fitting on the screen
-		minZoom = Math.max(CreateHeightMap.create(board,
-				config.getUniformObjectHeight(),
-				config.getVerticalScaleFactor(), config.getVerticalPadding())
-				.get(board)
-				* 1.2f / CAMERA_SIZE.y, 1.f);
-		
+
+		calculateZoomsAndMaximums(board);
+
 		this.onBoardRebuilt(board);
 	}
 
@@ -106,10 +117,17 @@ public class BoardActor extends Actor implements BoardEventListener {
 		@Override
 		public void pan(InputEvent event, float x, float y, float deltaX,
 				float deltaY) {
-			float dx = deltaX / Gdx.graphics.getWidth() * CAMERA_SIZE.x;
-			float dy = deltaY / Gdx.graphics.getHeight() * CAMERA_SIZE.y;
-			camera.position.x -= dx * camera.zoom;
-			camera.position.y -= dy * camera.zoom;
+			float dx = screenToWorldLen(deltaX);
+			float dy = screenToWorldLen(deltaY);
+
+			if (camera.position.x - dx > cameraPosMin.x
+					&& camera.position.x - dx < cameraPosMax.x) {
+				camera.position.x -= dx;
+			}
+			if (camera.position.y - dy > cameraPosMin.y
+					&& camera.position.y - dy < cameraPosMax.y) {
+				camera.position.y -= dy;
+			}
 			camera.update();
 		}
 
@@ -150,6 +168,12 @@ public class BoardActor extends Actor implements BoardEventListener {
 			camera.zoom = newzoom;
 			camera.update();
 		}
+	}
+
+	private float screenToWorldLen(float len) {
+		// TODO code assumes aspect ratio of screen being same as aspect ratio
+		// of camera
+		return len / Gdx.graphics.getWidth() * CAMERA_SIZE.x * camera.zoom;
 	}
 
 	private Vector2 screenToWorldCoords(Vector2 screenCoords) {
@@ -332,16 +356,23 @@ public class BoardActor extends Actor implements BoardEventListener {
 	@Override
 	protected void sizeChanged() {
 		// we want to always have the camera believe it shows 1024 x 600 pixels
+		// so we don't execute the next two lines of code
 		// camera.viewportWidth = getWidth();
 		// camera.viewportHeight = getHeight();
 
 		// unfortunately, getX gives us screen pixels, which are not suitable
-		// for our game-world pixels,
-		// so we must translate them first, if we want the camera to show (0,0)
-		// in the bottom left corner
-		float x = getX() / Gdx.graphics.getWidth() * CAMERA_SIZE.x;
-		float y = getY() / Gdx.graphics.getHeight() * CAMERA_SIZE.y;
-		camera.position.set(CAMERA_SIZE.x / 2 - x, CAMERA_SIZE.y / 2 - y, 0);
+		// for our game-world pixels, so we must translate them first, if we
+		// want the camera to show config.treeOrigin as upper left corner of the
+		// actor
+
+		// upper left corner of actor in world coordinates
+		float x = screenToWorldLen(getX());
+		float y = screenToWorldLen(getY());
+		
+		float midx = CAMERA_SIZE.x / 2;
+		float midy = CAMERA_SIZE.y / 2;
+		camera.position.set(midx - x + config.getTreeOrigin().x,
+				midy - y - (CAMERA_SIZE.y - config.getTreeOrigin().y - config.getUniformObjectHeight()), 0);
 		camera.update();
 		// use device independent camera size to display alligator world
 		this.addListener(new BoardActorGestureListener());
