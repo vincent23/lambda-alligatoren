@@ -1,7 +1,6 @@
 package de.croggle.game.level;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 
 import de.croggle.AlligatorApp;
-import de.croggle.data.AssetManager;
 
 /**
  * Controls the overview over the different level packages.
@@ -79,13 +77,10 @@ public class LevelPackagesController {
 	 * @return the Level Package belonging to the given index.
 	 */
 	private LevelPackage loadPackage(int packageIndex){
-		//TODO
-		AssetManager manager = AssetManager.getInstance();
-		InputStream stream = null;
-		stream = manager.get("json/levels/"
+		FileHandle handle = Gdx.files.internal("json/levels/"
 				+ String.format("%02d", packageIndex) + "/package.json");
 		JsonReader reader = new JsonReader();
-		JsonValue de_croggle = reader.parse(stream);
+		JsonValue de_croggle = reader.parse(handle.readString());
 		JsonValue json = de_croggle.getChild("packages").get(0);
 		String animation = json.getString("animation");
 		Boolean hasAnimation = false;
