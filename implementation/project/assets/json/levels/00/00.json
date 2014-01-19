@@ -2,10 +2,11 @@
 	"de.croggle" : {
 		"levels" : [
 			{
-			"type" : "modification" ,
+			"type" : "color edit" ,
 			"description" : "Erstes Tutoriallevel, in dem das Einfärben von Elementen erklärt
 			wird." ,
 			"design" : "" ,
+			"animation" : "",
 			"abort simulation after" : "" ,
 			"hints" : [
 			],
@@ -32,14 +33,13 @@
 						}
 					]
 				},
-				"blocked colors" : [
+
+				"user colors" : [
+					0, 1, 2, 3, 4, 5
 				],
-				"blocked types" : [
-					"colored alligator",
-					"aged alligator",
-					"egg",
+				"blocked colors" : [
 				]
-				}
+				
 			}
 		]
 	}
