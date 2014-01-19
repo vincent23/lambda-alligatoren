@@ -29,12 +29,12 @@ public class ColorController {
 	 * The predefined colors mapped onto variable names source:
 	 * http://tools.medialab.sciences-po.fr/iwanthue/index.php
 	 */
-	private static final String[] colors = { "#6BD942", "#804498", "#DA4A29",
-			"#303C21", "#75DFC9", "#D3A937", "#DA979B", "#93ABDA", "#DA386D",
-			"#5B8B31", "#C9CF89", "#C956E1", "#5F2820", "#5A274E", "#6EE089",
-			"#C6D94A", "#515C92", "#CD93D3", "#CACAB8", "#537A67", "#7474DC",
-			"#C47C41", "#75672D", "#31394A", "#BA4B47", "#D54AB3", "#B64E83",
-			"#58AA74", "#8B6B6A", "#68AFC1" };
+	private static final String[] colors = { "#72DC4E", "#D94628", "#DA4381",
+			"#6ED2D4", "#545092", "#D8A03D", "#4B7842", "#DE4CDF", "#602D23",
+			"#C3957A", "#C8D282", "#D386D1", "#95A9DB", "#CFD63C", "#70D99D",
+			"#3C314A", "#343D27", "#7E6B2B", "#CB8DA5", "#CBD1C7", "#61877A",
+			"#843756", "#CC4F58", "#669E38", "#6878DB", "#CC46A9", "#B66032",
+			"#577592", "#A05FD8", "#7E397E" };
 
 	/**
 	 * Initializes the color controller with no colors blocked, no colors usable
@@ -102,7 +102,8 @@ public class ColorController {
 		}
 
 		de.croggle.game.Color c = new de.croggle.game.Color(lookup.size());
-		this.lookup.put(c, de.croggle.util.convert.Color.fromHexString(colors[c.getId()]));
+		this.lookup.put(c,
+				de.croggle.util.convert.Color.fromHexString(colors[c.getId()]));
 		return c;
 	}
 
@@ -133,7 +134,8 @@ public class ColorController {
 
 		de.croggle.game.Color c = new de.croggle.game.Color(i);
 		if (this.lookup.size() <= i) {
-			this.lookup.put(c, de.croggle.util.convert.Color.fromHexString(colors[i]));
+			this.lookup.put(c,
+					de.croggle.util.convert.Color.fromHexString(colors[i]));
 		}
 
 		return c;
