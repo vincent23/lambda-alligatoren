@@ -31,7 +31,7 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 	public void initialize() {
 		setIndex(0);
 		int[] stages = {0, 1, 2, 5, 10, 20};
-		String[] emblemPath = new String[1]; // TODO: Path to the Emblems
+		String[] emblemPath = new String[6]; // TODO: Path to the Emblems
 												// reintun.
 		String[] description = new String[6];
 		for (int i = 1; i < 5; i++) { //TODO: Fix Localization stuff. 

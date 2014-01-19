@@ -30,7 +30,7 @@ public class TimeAchievement extends Achievement {
 		setIndex(0);
 		int[] stages = { 0, 5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60,
 				120 * 60, 180 * 60, 300 * 60, 600 * 60, 6000 * 60 };
-		String[] emblemPath = new String[1]; // TODO: Path zu den Emblems
+		String[] emblemPath = new String[11]; // TODO: Path zu den Emblems
 												// reintun.
 		String[] description = new String[11];
 		for (int i = 1; i < 10; i++) {

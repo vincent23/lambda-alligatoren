@@ -28,7 +28,7 @@ public class LevelAchievement extends Achievement {
 	public void initialize() {
 		setIndex(0);
 		int[] stages = { 0, 1, 2, 4, 6, 8, 10, 12 };
-		String[] emblemPath = new String[1]; // TODO: Path zu den Emblems
+		String[] emblemPath = new String[8]; // TODO: Path zu den Emblems
 												// reintun.
 		String[] description = new String[8];
 		for (int i = 1; i < 8; i++) {

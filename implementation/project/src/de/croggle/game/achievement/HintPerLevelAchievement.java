@@ -32,7 +32,7 @@ public class HintPerLevelAchievement extends PerLevelAchievement {
 	public void initialize() {
 		setIndex(0);
 		int[] stages = { 1, 0 };
-		String[] emblemPath = new String[1]; // TODO: Path to the Emblems
+		String[] emblemPath = new String[2]; // TODO: Path to the Emblems
 												// reintun.
 		String[] description = new String[2];
 		description[0] = "initial state, do not show this stage as achievement";

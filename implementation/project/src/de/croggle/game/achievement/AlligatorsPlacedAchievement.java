@@ -28,7 +28,7 @@ public class AlligatorsPlacedAchievement extends Achievement {
 	public void initialize() {
 		setIndex(0);
 		int[] stages = {0, 10, 25, 50,  100, 200, 300, 500, 750, 1000, 2000 };
-		String[] emblemPath = new String[1]; // TODO: Path zu den Emblems
+		String[] emblemPath = new String[11]; // TODO: Path zu den Emblems
 												// reintun.
 		String[] description = new String[11];
 		for (int i = 1; i < 10; i++) {
