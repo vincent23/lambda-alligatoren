@@ -25,6 +25,12 @@ public class AlligatorsEatenAchievementTest extends TestCase {
 		for (int i = 1; i < 11; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);
 			assertTrue(testAchievement.getDescription(i).endsWith("eaten"));
+			if (i < 10) {
+				assertTrue(testAchievement.getEmblemPath(i).equals("emblems/alligatorsEaten/0" + i));
+			}
+			else {
+				assertTrue(testAchievement.getEmblemPath(i).equals("emblems/alligatorsEaten/" + i));
+			}
 		}
 	} 
 	

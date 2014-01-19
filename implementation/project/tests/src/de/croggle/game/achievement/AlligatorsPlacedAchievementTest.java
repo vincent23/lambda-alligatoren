@@ -26,6 +26,12 @@ public class AlligatorsPlacedAchievementTest extends TestCase {
 		for (int i = 1; i < 11; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);
 			assertTrue(testAchievement.getDescription(i).endsWith("placed"));
+			if (i < 10) {
+				assertTrue(testAchievement.getEmblemPath(i).equals("emblems/alligatorsPlaced/0" + i));
+			}
+			else {
+				assertTrue(testAchievement.getEmblemPath(i).equals("emblems/alligatorsPlaced/" + i));
+			}
 		}
 	}
 
