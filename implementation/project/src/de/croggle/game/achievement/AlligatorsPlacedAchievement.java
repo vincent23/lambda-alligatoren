@@ -33,9 +33,12 @@ public class AlligatorsPlacedAchievement extends Achievement {
 		String[] description = new String[11];
 		for (int i = 1; i < 10; i++) {
 			description[i] = stages[i] + _("achievement_alligators_placed");
+			emblemPath[i] = "emblems/alligatorsPlaced/0" + i;
 		}
 		description[0] = "initial state, do not show this stage as achievement";
 		description[10] = _("achievement_alligators_placed_final");
+		emblemPath[0] = null;
+		emblemPath[10] = "emblems/alligatorsPlaced/10";
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);

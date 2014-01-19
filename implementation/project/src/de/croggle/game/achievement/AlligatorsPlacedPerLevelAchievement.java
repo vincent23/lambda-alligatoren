@@ -37,9 +37,12 @@ public class AlligatorsPlacedPerLevelAchievement extends PerLevelAchievement {
 		for (int i = 1; i < 5; i++) { // TODO: Fix Localization stuff.
 			description[i] = stages[i]
 					+ _("achievement_alligators_placed_per_level");
+			emblemPath[i] = "emblems/alligatorsPlacedPerLevel/0" + i;
 		}
 		description[0] = "initial state, do not show this stage as achievement";
 		description[5] = _("achievement_alligators_placed_per_level_final");
+		emblemPath[0] = null;
+		emblemPath[5] = "emblems/alligatorsPlacedPerLevel/05";
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);

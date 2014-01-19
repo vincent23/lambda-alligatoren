@@ -41,9 +41,12 @@ public class TimeAchievement extends Achievement {
 				description[i] = stages[i] / 360
 						+ _("achievement_hours_played");
 			}
+			emblemPath[i] = "emblems/time/0" + i;
 		}
 		description[0] = "initial state, do not show this stage as achievement";
 		description[10] = _("achievement_time_final");
+		emblemPath[0] = null;
+		emblemPath[10] = "emblems/time/10";
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);

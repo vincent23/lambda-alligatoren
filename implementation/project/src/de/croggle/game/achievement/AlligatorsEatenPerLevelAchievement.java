@@ -36,9 +36,12 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 		String[] description = new String[6];
 		for (int i = 1; i < 5; i++) { //TODO: Fix Localization stuff. 
 			description[i] = stages[i] + _("achievement_alligators_eaten_per_level");
+			emblemPath[i] = "emblems/alligatorsEatenPerLevel/0" + i;
 		}
 		description[0] = "initial state, do not show this stage as achievement";
 		description[5] = _("achievement_alligators_eaten_per_level_final");
+		emblemPath[0] = null;
+		emblemPath[5] = "emblems/alligatorsEatenPerLevel/05";
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);

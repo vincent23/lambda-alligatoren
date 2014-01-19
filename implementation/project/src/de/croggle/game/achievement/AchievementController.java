@@ -43,6 +43,7 @@ public class AchievementController implements StatisticsDeltaProcessor {
 		this.availableAchievements = new ArrayList<Achievement>();
 		this.latestUnlockedAchievements = new ArrayList<Achievement>();
 		this.game = game;
+		//TODO: Texture Altas initialisieren
 		initiateAvailableAchievements();
 
 	}

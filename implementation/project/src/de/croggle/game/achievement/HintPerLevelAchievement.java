@@ -37,7 +37,8 @@ public class HintPerLevelAchievement extends PerLevelAchievement {
 		String[] description = new String[2];
 		description[0] = "initial state, do not show this stage as achievement";
 		description[1] = _("achievement_hints_used_per_level");
-
+		emblemPath[0] = null;
+		emblemPath[1] = "emblems/hintsUsedPerLevel/01";
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);

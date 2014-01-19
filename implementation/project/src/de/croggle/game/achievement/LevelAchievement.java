@@ -33,9 +33,11 @@ public class LevelAchievement extends Achievement {
 		String[] description = new String[8];
 		for (int i = 1; i < 8; i++) {
 			description[i] = stages[i] + _("achievement_level_completed");
+			emblemPath[i] = "emblems/levelCompleted/0" + i;
 
 		}
 		description[0] = "initial state, do not show this stage as achievement";
+		emblemPath[0] = null;
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);
