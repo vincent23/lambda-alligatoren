@@ -7,7 +7,7 @@
 			wird." ,
 			"design" : "" ,
 			"animation" : "",
-			"abort simulation after" : "" ,
+			"abort simulation after" : 0 ,
 			"hints" : [""
 			],
 			"data" : {

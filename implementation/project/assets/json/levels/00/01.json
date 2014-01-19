@@ -3,11 +3,10 @@
 		"levels" : [
 			{
 			"type" : "color edit" ,
-			"description" : "Zweites Tutoriallevel, in dem die β-Reduktion gezeigt wird. Benö-
-tigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
+			"description" : "Zweites Tutoriallevel, in dem die β-Reduktion gezeigt wird. Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
 			"design" : "" ,
 			"animation" : "",
-			"abort simulation after" : "" ,
+			"abort simulation after" : 0 ,
 			"hints" : [ ""
 			],
 			"data" : {
@@ -20,14 +19,16 @@ tigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
 							"color" : -1 ,
 							"recolorable" : true ,
 							"children" : [
-
+								{
 								"type" : "egg" ,
 								"movable" : false ,
 								"removable" : false ,
 								"color" : -1 ,
 								"recolorable" : true
+								}
 							]
-
+						}
+						{
 							"type" : "egg" ,
 							"movable" : false ,
 							"removable" : false ,
@@ -55,7 +56,7 @@ tigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
 				"blocked colors" : [
 					8
 				]
-				
+			}				
 			}
 		]
 	}
