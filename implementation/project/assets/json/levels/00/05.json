@@ -1,0 +1,132 @@
+{
+	"de.croggle" : {
+		"levels" : [
+			{
+			"type" : "color edit" ,
+			"description" : "Zweites Tutoriallevel, in dem die β-Reduktion gezeigt wird. Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
+			"design" : "" ,
+			"animation" : "",
+			"abort simulation after" : 5 ,
+			"hints" : [ ""
+			],
+			"data" : {
+				"initial constellation" : {
+					"families" : [
+						{
+							"type" : " colored alligator " ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : -1 ,
+							"recolorable" : true ,
+							"children" : [
+								{
+									"type" : "egg" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : -1 ,
+									"recolorable" : true
+								}
+							]
+						}
+						{
+							"type" : " colored alligator " ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : -1 ,
+							"recolorable" : true ,
+							"children" : [
+								{
+									"type" : "egg" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : -1 ,
+									"recolorable" : true
+								}
+							]
+						}
+						{
+							"type" : " colored alligator " ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : -1 ,
+							"recolorable" : true ,
+							"children" : [
+								{
+									"type" : "egg" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : -1 ,
+									"recolorable" : true
+								}
+							]
+						}
+						{
+							"type" : " colored alligator " ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : -1 ,
+							"recolorable" : true ,
+							"children" : [
+								{
+									"type" : "egg" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : -1 ,
+									"recolorable" : true
+								}
+							]
+						}
+						{
+							"type" : " colored alligator " ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : -1 ,
+							"recolorable" : true ,
+							"children" : [
+								{
+									"type" : "egg" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : -1 ,
+									"recolorable" : true
+								}
+							]
+						}
+						{
+							"type" : " colored alligator " ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : -1 ,
+							"recolorable" : true ,
+							"children" : [
+								{
+									"type" : "egg" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : -1 ,
+									"recolorable" : true
+								}
+							]
+						}
+					
+					]
+				},
+				"objective" : {
+					"families" : [
+						{
+						}
+					]
+				},
+
+				"user colors" : [
+					5, 6, 7, 8, 9, 10
+				],
+				"blocked colors" : [
+				]
+				
+			}
+			}
+		
+		]
+	}
+}
