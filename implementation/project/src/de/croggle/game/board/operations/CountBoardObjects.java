@@ -11,12 +11,21 @@ import de.croggle.game.board.Egg;
  */
 public class CountBoardObjects implements BoardObjectVisitor {
 	private int count;
+	private boolean countBoard;
+	private boolean countEgg;
+	private boolean countAgedAlligator;
+	private boolean countColoredAlligator;
 
 	/**
 	 * Initializes the BoardObject counter with 0 BoardObjects counted.
 	 */
-	private CountBoardObjects() {
+	private CountBoardObjects(boolean countBoard, boolean countEgg,
+			boolean countAgedAlligator, boolean countColoredAlligator) {
 		this.count = 0;
+		this.countBoard = countBoard;
+		this.countEgg = countEgg;
+		this.countAgedAlligator = countAgedAlligator;
+		this.countColoredAlligator = countColoredAlligator;
 	}
 
 	/**
@@ -27,7 +36,14 @@ public class CountBoardObjects implements BoardObjectVisitor {
 	 * @return the number of family members
 	 */
 	public static int count(BoardObject family) {
-		CountBoardObjects counter = new CountBoardObjects();
+		return CountBoardObjects.count(family, true, true, true, true);
+	}
+
+	public static int count(BoardObject family, boolean countBoard,
+			boolean countEgg, boolean countAgedAlligator,
+			boolean countColoredAlligator) {
+		CountBoardObjects counter = new CountBoardObjects(countBoard, countEgg,
+				countAgedAlligator, countColoredAlligator);
 		family.accept(counter);
 		return counter.count;
 	}
@@ -37,7 +53,9 @@ public class CountBoardObjects implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitEgg(Egg egg) {
-		count++;
+		if (countEgg) {
+			count++;
+		}
 	}
 
 	/**
@@ -45,7 +63,9 @@ public class CountBoardObjects implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
-		count++;
+		if (countColoredAlligator) {
+			count++;
+		}
 		alligator.acceptOnChildren(this);
 	}
 
@@ -54,7 +74,9 @@ public class CountBoardObjects implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
-		count++;
+		if (countAgedAlligator) {
+			count++;
+		}
 		alligator.acceptOnChildren(this);
 	}
 
@@ -63,7 +85,9 @@ public class CountBoardObjects implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitBoard(Board board) {
-		count++;
+		if (countBoard) {
+			count++;
+		}
 		board.acceptOnChildren(this);
 	}
 
