@@ -9,7 +9,9 @@ import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.ColoredBoardObject;
 import de.croggle.game.board.Egg;
+import de.croggle.game.board.IllegalBoardException;
 import de.croggle.game.board.InternalBoardObject;
+import de.croggle.game.board.operations.CountBoardObjects;
 import de.croggle.game.event.BoardEventListener;
 import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.game.level.Level;
@@ -45,7 +47,11 @@ public class GameController implements BoardEventListener {
 	 *            the level the GameController should work with
 	 */
 	public GameController(Level level) {
+		this.level = level;
 		this.colorController = new ColorController();
+		this.shownBoard = level.getInitialBoard();
+		this.userBoard = shownBoard;
+		this.statisticsDelta = new Statistic();
 	}
 
 	/**
@@ -56,12 +62,13 @@ public class GameController implements BoardEventListener {
 	public ColorController getColorController() {
 		return this.colorController;
 	}
-	
+
 	/**
 	 * prepare to switch game mode to placement, in which the player is able to
 	 * manipulate the board.
 	 */
 	private void enterPlacement() {
+		shownBoard = userBoard;
 	}
 
 	/**
@@ -69,6 +76,14 @@ public class GameController implements BoardEventListener {
 	 * be evaluated.
 	 */
 	private void enterSimulation() {
+		userBoard = shownBoard.copy();
+		try {
+			simulator = new Simulator(shownBoard, colorController,
+					boardEventMessenger);
+		} catch (IllegalBoardException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -79,6 +94,10 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	public void onCompletedLevel() {
+		for (StatisticsDeltaProcessor processor : statisticsDeltaProcessors) {
+			processor.processDelta(statisticsDelta);
+		}
+		statisticsDelta = new Statistic();
 	}
 
 	/**
@@ -89,6 +108,7 @@ public class GameController implements BoardEventListener {
 	 *            the listener
 	 */
 	public void register(StatisticsDeltaProcessor listener) {
+		statisticsDeltaProcessors.add(listener);
 	}
 
 	/**
@@ -98,7 +118,7 @@ public class GameController implements BoardEventListener {
 	 *            the listener
 	 */
 	public void unregister(StatisticsDeltaProcessor listener) {
-
+		statisticsDeltaProcessors.remove(listener);
 	}
 
 	/**
@@ -108,6 +128,7 @@ public class GameController implements BoardEventListener {
 	 *            the listener which should receive the events
 	 */
 	public void registerBoardEventListener(BoardEventListener listener) {
+		boardEventMessenger.register(listener);
 	}
 
 	/**
@@ -118,6 +139,7 @@ public class GameController implements BoardEventListener {
 	 *            the listener to unregister
 	 */
 	public void unregisterBoardEventListener(BoardEventListener listener) {
+		boardEventMessenger.unregister(listener);
 	}
 
 	/**
@@ -125,13 +147,19 @@ public class GameController implements BoardEventListener {
 	 */
 	@Override
 	public void onObjectRecolored(ColoredBoardObject recoloredObject) {
+		statisticsDelta.setRecolorings(statisticsDelta.getRecolorings() + 1);
 	}
 
 	/**
 	 * Registers the amount of alligators and eggs eaten in the statisticsDelta.
 	 */
 	@Override
-	public void onEat(ColoredAlligator eater, InternalBoardObject eatenFamily, int eatenPositionInParent) {
+	public void onEat(ColoredAlligator eater, InternalBoardObject eatenFamily,
+			int eatenPositionInParent) {
+		int alligatorsEaten = statisticsDelta.getAlligatorsEaten();
+		alligatorsEaten += CountBoardObjects.count(eatenFamily, false, false,
+				true, true);
+		statisticsDelta.setAlligatorsEaten(alligatorsEaten);
 	}
 
 	/**
@@ -139,7 +167,8 @@ public class GameController implements BoardEventListener {
 	 * value like this in the statistic.
 	 */
 	@Override
-	public void onAgedAlligatorVanishes(AgedAlligator alligator, int positionInParent) {
+	public void onAgedAlligatorVanishes(AgedAlligator alligator,
+			int positionInParent) {
 	}
 
 	/**
@@ -154,5 +183,6 @@ public class GameController implements BoardEventListener {
 	 */
 	@Override
 	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
+		statisticsDelta.setEggsHatched(statisticsDelta.getEggsHatched() + 1);
 	}
 }
