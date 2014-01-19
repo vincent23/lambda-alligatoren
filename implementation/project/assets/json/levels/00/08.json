@@ -3,10 +3,10 @@
 		"levels" : [
 			{
 			"type" : "color edit" ,
-			"description" : "Zweites Tutoriallevel, in dem die β-Reduktion gezeigt wird. Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
+			"description" : "" ,
 			"design" : "" ,
 			"animation" : "",
-			"abort simulation after" : 0 ,
+			"abort simulation after" : 10 ,
 			"hints" : [ ""
 			],
 			"data" : {
@@ -25,36 +25,51 @@
 								"removable" : false ,
 								"color" : -1 ,
 								"recolorable" : true
+								},
+								{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : -1 ,
+								"recolorable" : true
 								}
 							]
 						},
 						{
-							"type" : "egg" ,
+							"type" : " colored alligator " ,
 							"movable" : false ,
 							"removable" : false ,
-							"color" : 8 ,
-							"recolorable" : false
-
+							"color" : -1 ,
+							"recolorable" : true ,
+							"children" : [
+								{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : -1 ,
+								"recolorable" : true
+								},
+								{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : -1 ,
+								"recolorable" : true
+								}
+							]
 						}
+						
 					]
 				},
 				"objective" : {
 					"families" : [
-						{
-							"type" : "egg" ,
-							"movable" : false ,
-							"removable" : false ,
-							"color" : 8 ,
-							"recolorable" : false
-						}
 					]
 				},
 
 				"user colors" : [
-					0, 1, 2, 3, 6, 7
+					10, 11, 12, 13, 16, 17
 				],
 				"blocked colors" : [
-					8
 				]
 			}				
 			}

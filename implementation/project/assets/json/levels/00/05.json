@@ -3,7 +3,7 @@
 		"levels" : [
 			{
 			"type" : "color edit" ,
-			"description" : "Zweites Tutoriallevel, in dem die β-Reduktion gezeigt wird. Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
+			"description" : "Viertes Tutoriallevel, das das System der Schrittanzahllevel erklärt." ,
 			"design" : "" ,
 			"animation" : "",
 			"abort simulation after" : 5 ,
@@ -27,7 +27,7 @@
 									"recolorable" : true
 								}
 							]
-						}
+						},
 						{
 							"type" : " colored alligator " ,
 							"movable" : false ,
@@ -43,7 +43,7 @@
 									"recolorable" : true
 								}
 							]
-						}
+						},
 						{
 							"type" : " colored alligator " ,
 							"movable" : false ,
@@ -59,7 +59,7 @@
 									"recolorable" : true
 								}
 							]
-						}
+						},
 						{
 							"type" : " colored alligator " ,
 							"movable" : false ,
@@ -75,7 +75,7 @@
 									"recolorable" : true
 								}
 							]
-						}
+						},
 						{
 							"type" : " colored alligator " ,
 							"movable" : false ,
@@ -91,7 +91,7 @@
 									"recolorable" : true
 								}
 							]
-						}
+						},
 						{
 							"type" : " colored alligator " ,
 							"movable" : false ,
@@ -113,8 +113,6 @@
 				},
 				"objective" : {
 					"families" : [
-						{
-						}
 					]
 				},
 
