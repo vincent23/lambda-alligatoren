@@ -29,7 +29,7 @@ public class SelectProfileScreen extends AbstractScreen {
 		super(game);
 		profileController = game.getProfileController();
 
-		fillTable();
+		// fillTable();
 	}
 
 	private void fillTable() {

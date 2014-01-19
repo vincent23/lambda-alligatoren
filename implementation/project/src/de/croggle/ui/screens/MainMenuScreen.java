@@ -57,6 +57,8 @@ public class MainMenuScreen extends AbstractScreen {
 		Button profileButton = new Button(StyleHelper.getInstance()
 				.getButtonStyle());
 
+		play.addListener(new PackagesScreenClickListener());
+
 		play.getImageCell().pad(20);
 
 		leftTable.pad(30);

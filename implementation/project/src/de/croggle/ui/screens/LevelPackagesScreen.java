@@ -26,10 +26,9 @@ public class LevelPackagesScreen extends AbstractScreen {
 	 * @param controller
 	 *            the level package controller
 	 */
-	public LevelPackagesScreen(AlligatorApp game,
-			LevelPackagesController controller) {
+	public LevelPackagesScreen(AlligatorApp game) {
 		super(game);
-		packagesController = controller;
+		packagesController = game.getLevelPackagesController();
 
 		fillTable();
 	}
@@ -39,6 +38,8 @@ public class LevelPackagesScreen extends AbstractScreen {
 
 		ImageButton home = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/dummy-icon"));
+
+		home.addListener(new MainMenuClickListener());
 
 		// TODO
 		// packagesController.getLevelPackages();

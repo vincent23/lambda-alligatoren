@@ -1,7 +1,5 @@
 package de.croggle;
 
-import java.util.List;
-
 import android.content.Context;
 
 import com.badlogic.gdx.Game;
@@ -12,12 +10,20 @@ import de.croggle.data.persistence.SettingController;
 import de.croggle.data.persistence.StatisticController;
 import de.croggle.data.persistence.manager.PersistenceManager;
 import de.croggle.game.achievement.AchievementController;
+import de.croggle.game.level.LevelController;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
-import de.croggle.ui.screens.AbstractScreen;
+import de.croggle.ui.screens.AchievementScreen;
+import de.croggle.ui.screens.LevelPackagesScreen;
+import de.croggle.ui.screens.LevelsOverviewScreen;
 import de.croggle.ui.screens.LoadingScreen;
 import de.croggle.ui.screens.MainMenuScreen;
+import de.croggle.ui.screens.PlacementModeScreen;
+import de.croggle.ui.screens.SelectProfileScreen;
+import de.croggle.ui.screens.SettingsScreen;
+import de.croggle.ui.screens.SimulationModeScreen;
+import de.croggle.ui.screens.StatisticScreen;
 
 /**
  * The central unit controlling the game. Manages the application lifecycle and
@@ -34,7 +40,16 @@ public class AlligatorApp extends Game {
 	private SettingController settingController;
 	private LevelPackagesController levelPackagesController;
 	private PersistenceManager persistenceManager;
-	private List<AbstractScreen> screens;
+
+	private MainMenuScreen mainMenuScreen;
+	private LevelPackagesScreen levelPackagesScreen;
+	private LevelsOverviewScreen levelsOverviewScreen;
+	private PlacementModeScreen placementModeScreen;
+	private SimulationModeScreen simulationModeScreen;
+	private AchievementScreen achievementScreen;
+	private SettingsScreen settingsScreen;
+	private StatisticScreen statisticScreen;
+	private SelectProfileScreen selectProfileScreen;
 
 	public SpriteBatch batch;
 
@@ -134,7 +149,19 @@ public class AlligatorApp extends Game {
 	public void create() {
 		de.croggle.data.AssetManager.initialize();
 		this.batch = new SpriteBatch();
-		this.setScreen(new MainMenuScreen(this));
+
+		// initialize screens
+		mainMenuScreen = new MainMenuScreen(this);
+		levelPackagesScreen = new LevelPackagesScreen(this);
+		levelsOverviewScreen = new LevelsOverviewScreen(this, null);
+		placementModeScreen = new PlacementModeScreen(this, null);
+		simulationModeScreen = new SimulationModeScreen(this, null);
+		achievementScreen = new AchievementScreen(this);
+		settingsScreen = new SettingsScreen(this, null);
+		statisticScreen = new StatisticScreen(this);
+		selectProfileScreen = new SelectProfileScreen(this);
+
+		this.setScreen(mainMenuScreen);
 	}
 
 	/**
@@ -186,5 +213,17 @@ public class AlligatorApp extends Game {
 	public void dispose() {
 		batch.dispose();
 		StyleHelper.getInstance().dispose();
+	}
+
+	public void showMainMenuScreen() {
+		setScreen(mainMenuScreen);
+	}
+
+	public void showLevelPackagesScreen() {
+		setScreen(levelPackagesScreen);
+	}
+
+	public void showLevelOverviewScreen(LevelController levelController) {
+		// TODO set screens correctly
 	}
 }

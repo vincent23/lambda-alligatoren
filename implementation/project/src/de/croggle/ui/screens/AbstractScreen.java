@@ -2,16 +2,18 @@ package de.croggle.ui.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import de.croggle.data.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
+import de.croggle.data.AssetManager;
 
 /**
  * Abstract screen, with all the basic things a screen needs.
@@ -41,8 +43,6 @@ public abstract class AbstractScreen implements Screen {
 		table = new Table();
 		table.setFillParent(true);
 		stage.addActor(table);
-
-		Gdx.input.setInputProcessor(stage);
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1024, 600);
@@ -135,6 +135,8 @@ public abstract class AbstractScreen implements Screen {
 			this.setAssetsLoaded(true);
 		}
 		onShow();
+
+		Gdx.input.setInputProcessor(stage);
 	}
 
 	/**
@@ -177,5 +179,21 @@ public abstract class AbstractScreen implements Screen {
 	 */
 	public void setAssetsLoaded(boolean assetsLoaded) {
 		this.assetsLoaded = assetsLoaded;
+	}
+
+	// click listener for buttons that change to the main menu
+	protected class MainMenuClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			game.showMainMenuScreen();
+		}
+	}
+
+	// click listener for buttons that change to the level packages screen
+	protected class PackagesScreenClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			game.showLevelPackagesScreen();
+		}
 	}
 }
