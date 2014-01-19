@@ -1,0 +1,62 @@
+{
+	"de.croggle" : {
+		"levels" : [
+			{
+			"type" : "color edit" ,
+			"description" : "Zweites Tutoriallevel, in dem die β-Reduktion gezeigt wird. Benö-
+tigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
+			"design" : "" ,
+			"animation" : "",
+			"abort simulation after" : "" ,
+			"hints" : [ ""
+			],
+			"data" : {
+				"initial constellation" : {
+					"families" : [
+						{
+							"type" : " colored alligator " ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : -1 ,
+							"recolorable" : true ,
+							"children" : [
+
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : -1 ,
+								"recolorable" : true
+							]
+
+							"type" : "egg" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 8 ,
+							"recolorable" : false
+
+						}
+					]
+				},
+				"objective" : {
+					"families" : [
+						{
+							"type" : "egg" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 8 ,
+							"recolorable" : false
+						}
+					]
+				},
+
+				"user colors" : [
+					0, 1, 2, 3, 6, 7
+				],
+				"blocked colors" : [
+					8
+				]
+				
+			}
+		]
+	}
+}
