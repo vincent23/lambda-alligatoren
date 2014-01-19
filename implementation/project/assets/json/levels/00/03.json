@@ -3,7 +3,7 @@
 		"levels" : [
 			{
 			"type" : "term edit" ,
-			"description" : "Drittes Tutoriallevel, in dem das Einfügen von Elementen auf das Spielfeld erklärt wird. Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
+			"description" : "" ,
 			"design" : "" ,
 			"animation" : "",
 			"abort simulation after" : 0 ,
@@ -36,14 +36,21 @@
 							"type" : "egg" ,
 							"movable" : false ,
 							"removable" : false ,
-							"color" : 8 ,
+							"color" : 18 ,
+							"recolorable" : true
+						},
+						{
+							"type" : "egg" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 18 ,
 							"recolorable" : true
 						}
 					]
 				},
 
 				"user colors" : [
-					10, 1, 12, 3, 16, 8
+					0, 11, 2, 13, 6, 18
 				],
 				"blocked colors" : [
 				],
