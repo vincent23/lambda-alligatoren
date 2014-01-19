@@ -1,0 +1,56 @@
+{
+	"de.croggle" : {
+		"levels" : [
+			{
+			"type" : "term edit" ,
+			"description" : "Drittes Tutoriallevel, in dem das Einfügen von Elementen auf das Spielfeld erklärt wird. Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
+			"design" : "" ,
+			"animation" : "",
+			"abort simulation after" : 0 ,
+			"hints" : [ ""
+			],
+			"data" : {
+				"initial constellation" : {
+					"families" : [
+						{
+							"type" : " colored alligator " ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 20 ,
+							"recolorable" : false ,
+							"children" : [
+								{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 20 ,
+								"recolorable" : false
+								}
+							]
+						}
+					]
+				},
+				"objective" : {
+					"families" : [
+						{
+							"type" : "egg" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 8 ,
+							"recolorable" : true
+						}
+					]
+				},
+
+				"user colors" : [
+					10, 1, 12, 3, 16, 8
+				],
+				"blocked colors" : [
+				]
+				"blocked types" : [
+				]
+			}				
+			}
+		]
+	}
+}
