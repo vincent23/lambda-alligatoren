@@ -79,7 +79,7 @@ public class SimulationModeScreen extends AbstractScreen {
 		a10.addChild(e10);
 		*/
 		
-		ActorLayoutConfiguration config = new ActorLayoutConfiguration(b);
+		ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(cctrlr);
 		BoardActor ba = new BoardActor(b, config);
 		ba.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));

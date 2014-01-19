@@ -58,23 +58,6 @@ public class ActorLayoutConfiguration {
 	}
 
 	/**
-	 * Creates a new {@link ActorLayoutConfiguration} with default layout
-	 * values, except that the given board is used for calculating a matching
-	 * {@link ActorLayoutConfiguration#setTreeOrigin(Vector2) tree origin}.
-	 * 
-	 * @param b
-	 */
-	public ActorLayoutConfiguration(Board b) {
-		this();
-		if (verticalGrowth == TreeGrowth.POS_NEG) {
-			treeOrigin.y = CreateHeightMap.create(b, uniformObjectHeight, verticalScaleFactor, verticalPadding).get(b);
-		} else {
-			//TODO I guess, doing nothing is best?
-			//treeOrigin.y = -CreateHeightMap.create(b, uniformObjectHeight, verticalScaleFactor).get(b);
-		}
-	}
-
-	/**
 	 * 
 	 * @param treeOrigin
 	 * @param horizontalGrowth
@@ -142,8 +125,9 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param horizontalGrowth
 	 */
-	public void setHorizontalGrowth(TreeGrowth horizontalGrowth) {
+	public ActorLayoutConfiguration setHorizontalGrowth(TreeGrowth horizontalGrowth) {
 		this.horizontalGrowth = horizontalGrowth;
+		return this;
 	}
 
 	/**
@@ -158,8 +142,9 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param verticalGrowth
 	 */
-	public void setVerticalGrowth(TreeGrowth verticalGrowth) {
+	public ActorLayoutConfiguration setVerticalGrowth(TreeGrowth verticalGrowth) {
 		this.verticalGrowth = verticalGrowth;
+		return this;
 	}
 
 	/**
@@ -174,8 +159,9 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param colorController
 	 */
-	public void setColorController(ColorController colorController) {
+	public ActorLayoutConfiguration setColorController(ColorController colorController) {
 		this.colorController = colorController;
+		return this;
 	}
 
 	/**
@@ -190,8 +176,9 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param verticaleScaleFactor
 	 */
-	public void setVerticalScaleFactor(float verticaleScaleFactor) {
+	public ActorLayoutConfiguration setVerticalScaleFactor(float verticaleScaleFactor) {
 		this.verticalScaleFactor = verticaleScaleFactor;
+		return this;
 	}
 
 	/**
@@ -224,8 +211,10 @@ public class ActorLayoutConfiguration {
 	 * @param originalObjectHeight
 	 */
 	/*
-	 * public void setUniformObjectHeight(float originalObjectHeight) {
-	 * this.uniformObjectHeight = originalObjectHeight; }
+	 * public ActorLayoutConfiguration setUniformObjectHeight(float originalObjectHeight) {
+	 * this.uniformObjectHeight = originalObjectHeight; 
+	 * return this;
+	 * }
 	 */
 
 	/**
@@ -240,8 +229,9 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param treeOrigin
 	 */
-	public void setTreeOrigin(Vector2 treeOrigin) {
+	public ActorLayoutConfiguration setTreeOrigin(Vector2 treeOrigin) {
 		this.treeOrigin = treeOrigin;
+		return this;
 	}
 
 	/**
@@ -256,8 +246,9 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param horizontalPadding
 	 */
-	public void setHorizontalPadding(float horizontalPadding) {
+	public ActorLayoutConfiguration setHorizontalPadding(float horizontalPadding) {
 		this.horizontalPadding = horizontalPadding;
+		return this;
 	}
 
 	/**
@@ -272,8 +263,9 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param verticalPadding
 	 */
-	public void setVerticalPadding(float verticalPadding) {
+	public ActorLayoutConfiguration setVerticalPadding(float verticalPadding) {
 		this.verticalPadding = verticalPadding;
+		return this;
 	}
 
 	private void newWidth(float width) {
@@ -296,9 +288,10 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param eggWidth
 	 */
-	public void setEggWidth(float eggWidth) {
+	public ActorLayoutConfiguration setEggWidth(float eggWidth) {
 		this.eggWidth = eggWidth;
 		newWidth(eggWidth);
+		return this;
 	}
 
 	/**
@@ -313,9 +306,10 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param eggHeight
 	 */
-	public void setEggHeight(float eggHeight) {
+	public ActorLayoutConfiguration setEggHeight(float eggHeight) {
 		this.eggHeight = eggHeight;
 		newHeight(eggHeight);
+		return this;
 	}
 
 	/**
@@ -330,9 +324,10 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param agedAlligatorWidth
 	 */
-	public void setAgedAlligatorWidth(float agedAlligatorWidth) {
+	public ActorLayoutConfiguration setAgedAlligatorWidth(float agedAlligatorWidth) {
 		this.agedAlligatorWidth = agedAlligatorWidth;
 		newWidth(agedAlligatorWidth);
+		return this;
 	}
 
 	/**
@@ -347,9 +342,10 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param agedAlligatorHeight
 	 */
-	public void setAgedAlligatorHeight(float agedAlligatorHeight) {
+	public ActorLayoutConfiguration setAgedAlligatorHeight(float agedAlligatorHeight) {
 		this.agedAlligatorHeight = agedAlligatorHeight;
 		newHeight(agedAlligatorHeight);
+		return this;
 	}
 
 	/**
@@ -364,9 +360,10 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param coloredAlligatorWidth
 	 */
-	public void setColoredAlligatorWidth(float coloredAlligatorWidth) {
+	public ActorLayoutConfiguration setColoredAlligatorWidth(float coloredAlligatorWidth) {
 		this.coloredAlligatorWidth = coloredAlligatorWidth;
 		newWidth(coloredAlligatorWidth);
+		return this;
 	}
 
 	/**
@@ -381,8 +378,9 @@ public class ActorLayoutConfiguration {
 	 * 
 	 * @param coloredAlligatorHeight
 	 */
-	public void setColoredAlligatorHeight(float coloredAlligatorHeight) {
+	public ActorLayoutConfiguration setColoredAlligatorHeight(float coloredAlligatorHeight) {
 		this.coloredAlligatorHeight = coloredAlligatorHeight;
 		newHeight(coloredAlligatorHeight);
+		return this;
 	}
 }

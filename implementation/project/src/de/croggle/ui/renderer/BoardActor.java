@@ -27,6 +27,7 @@ import de.croggle.game.board.ColoredBoardObject;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.operations.CreateHeightMap;
+import de.croggle.game.board.operations.CreateWidthMap;
 import de.croggle.game.board.operations.FlattenTree;
 import de.croggle.game.event.BoardEventListener;
 
@@ -36,8 +37,7 @@ import de.croggle.game.event.BoardEventListener;
  */
 public class BoardActor extends Actor implements BoardEventListener {
 
-	private Map<InternalBoardObject, BoardObjectActor> actors;
-	private ActorLayoutConfiguration config;
+	private ActorLayout layout;
 	private OrthographicCamera camera;
 
 	private final Vector2 CAMERA_SIZE = new Vector2(1024, 600);
@@ -45,22 +45,35 @@ public class BoardActor extends Actor implements BoardEventListener {
 	private Vector2 cameraPosMin;
 	private float maxZoom;
 	private float minZoom;
+	
+	private BoardActorGestureListener gestureListener;
 
-	private BoardActor() {
-		actors = new HashMap<InternalBoardObject, BoardObjectActor>();
+	public BoardActor(Board b, ActorLayoutConfiguration config) {
+		layout = ActorLayoutBuilder.build(b, config);
 		camera = new OrthographicCamera(CAMERA_SIZE.x, CAMERA_SIZE.y);
 		camera.position.set(CAMERA_SIZE.x / 2 - getX(), CAMERA_SIZE.y / 2
 				- getY(), 0);
 		camera.update();
 		// TODO implement smart boundary calculation
-		cameraPosMax = new Vector2(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY);
-		cameraPosMin = new Vector2(Float.NEGATIVE_INFINITY, Float.NEGATIVE_INFINITY);
+		cameraPosMax = new Vector2(Float.POSITIVE_INFINITY,
+				Float.POSITIVE_INFINITY);
+		cameraPosMin = new Vector2(Float.NEGATIVE_INFINITY,
+				Float.NEGATIVE_INFINITY);
+
+		calculatePositionsAndLimits(b);
 	}
 
-	private void calculateZoomsAndMaximums(Board b) {
+	private void calculatePositionsAndLimits(Board b) {
+		// TODO not efficient
+		// TODO not dynamic
+
+		ActorLayoutConfiguration config = layout.getLayoutConfiguration();
 		Map<BoardObject, Float> heightMap = CreateHeightMap.create(b);
+		Map<BoardObject, Float> widthMap = layout.getLayoutStatistics()
+				.getWidthMap();
+
 		float unscaledHeight = heightMap.get(b);
-		// cool formula to unroll sum function associated with heigth
+		// cool formula to unroll sum function associated with height
 		// calculation
 		float lowestScale = (float) Math.pow(config.getVerticalScaleFactor(),
 				unscaledHeight);
@@ -68,26 +81,18 @@ public class BoardActor extends Actor implements BoardEventListener {
 				* (unscaledHeight + 1)
 				* (config.getUniformObjectHeight() + config
 						.getVerticalPadding());
-		// allow maximum enlargement to have the smallest object being displayed with half the screen size
-		maxZoom = config.getUniformObjectWidth() * 2 * lowestScale / CAMERA_SIZE.x;
+		// allow maximum enlargement to have the smallest object being displayed
+		// with half the screen size
+		maxZoom = config.getUniformObjectWidth() * 2 * lowestScale
+				/ CAMERA_SIZE.x;
 		// allow maximum the whole tree times 1.2 fitting on the screen
 		minZoom = Math.max(actualHeight * 1.2f / CAMERA_SIZE.y, 1.f);
-	}
 
-	/**
-	 * Creates a new BoardActor with the given {@link ActorLayoutConfiguration}.
-	 * 
-	 * @param board
-	 * @param config
-	 */
-	public BoardActor(Board board, ActorLayoutConfiguration config) {
-		this();
-		this.config = config;
-		actors = new HashMap<InternalBoardObject, BoardObjectActor>();
-
-		calculateZoomsAndMaximums(board);
-
-		this.onBoardRebuilt(board);
+		Vector2 orig = config.getTreeOrigin();
+		cameraPosMax.x = orig.x + widthMap.get(b);
+		cameraPosMin.x = orig.x;
+		cameraPosMax.y = orig.y + config.getUniformObjectHeight();
+		cameraPosMin.y = orig.y - layout.getLayoutStatistics().getHeightMap().get(layout.getBoard());
 	}
 
 	/**
@@ -100,13 +105,8 @@ public class BoardActor extends Actor implements BoardEventListener {
 	 * @param controller
 	 */
 	public BoardActor(Board board, ColorController controller) {
-		this();
-		this.config = new ActorLayoutConfiguration(board);
-		config.setColorController(controller);
-
-		calculateZoomsAndMaximums(board);
-
-		this.onBoardRebuilt(board);
+		this(board, new ActorLayoutConfiguration()
+				.setColorController(controller));
 	}
 
 	/**
@@ -119,13 +119,12 @@ public class BoardActor extends Actor implements BoardEventListener {
 				float deltaY) {
 			float dx = screenToWorldLen(deltaX);
 			float dy = screenToWorldLen(deltaY);
-
-			if (camera.position.x - dx > cameraPosMin.x
-					&& camera.position.x - dx < cameraPosMax.x) {
+			if (camera.position.x - dx >= cameraPosMin.x
+					&& camera.position.x - dx <= cameraPosMax.x) {
 				camera.position.x -= dx;
 			}
-			if (camera.position.y - dy > cameraPosMin.y
-					&& camera.position.y - dy < cameraPosMax.y) {
+			if (camera.position.y - dy >= cameraPosMin.y
+					&& camera.position.y - dy <= cameraPosMax.y) {
 				camera.position.y -= dy;
 			}
 			camera.update();
@@ -163,8 +162,14 @@ public class BoardActor extends Actor implements BoardEventListener {
 			float offsetX = (initialDx - newDx) * newzoom;
 			float offsetY = (initialDy - newDy) * newzoom;
 
-			camera.position.x += offsetX;
-			camera.position.y += offsetY;
+			if (camera.position.x + offsetX >= cameraPosMin.x
+					&& camera.position.x + offsetX <= cameraPosMax.x) {
+				camera.position.x += offsetX;
+			}
+			if (camera.position.y + offsetY >= cameraPosMin.y
+					&& camera.position.y + offsetY <= cameraPosMax.y) {
+				camera.position.y += offsetY;
+			}
 			camera.zoom = newzoom;
 			camera.update();
 		}
@@ -192,16 +197,6 @@ public class BoardActor extends Actor implements BoardEventListener {
 	}
 
 	/**
-	 * Returns this {@link BoardActor}'s {@link ActorLayoutConfiguration
-	 * configuration to layout its actors}.
-	 * 
-	 * @return this {@link BoardActor}'s {@link ActorLayoutConfiguration}
-	 */
-	public ActorLayoutConfiguration getLayoutConfiguration() {
-		return config;
-	}
-
-	/**
 	 * Draws the actor.
 	 * 
 	 * @param batch
@@ -216,7 +211,7 @@ public class BoardActor extends Actor implements BoardEventListener {
 		clipBegin();
 		// set own camera to look through
 		batch.setProjectionMatrix(camera.combined);
-		for (BoardObjectActor child : actors.values()) {
+		for (BoardObjectActor child : layout) {
 			child.draw(batch, parentAlpha);
 		}
 		batch.setProjectionMatrix(original);
@@ -231,7 +226,8 @@ public class BoardActor extends Actor implements BoardEventListener {
 	 */
 	@Override
 	public void onObjectRecolored(ColoredBoardObject recoloredObject) {
-		actors.get(recoloredObject);
+		// TODO have actor updated
+		layout.getActor(recoloredObject);
 	}
 
 	/**
@@ -246,8 +242,8 @@ public class BoardActor extends Actor implements BoardEventListener {
 	@Override
 	public void onEat(final ColoredAlligator eater,
 			final InternalBoardObject eatenFamily, int eatenParentPosition) {
-		ColoredAlligatorActor eaterActor = ((ColoredAlligatorActor) actors
-				.get(eater));
+		ColoredAlligatorActor eaterActor = ((ColoredAlligatorActor) layout
+				.getActor(eater));
 		eaterActor.enterEatingState();
 		final List<InternalBoardObject> eatenLst = FlattenTree
 				.toList(eatenFamily);
@@ -258,7 +254,7 @@ public class BoardActor extends Actor implements BoardEventListener {
 			MoveToAction action = new MoveToAction();
 			action.setPosition(eaterActor.getX(), eaterActor.getY());
 			action.setDuration(animDuration);
-			actors.get(eaten).addAction(action);
+			layout.getActor(eaten).addAction(action);
 		}
 
 		this.addAction(new TemporalAction() {
@@ -273,11 +269,8 @@ public class BoardActor extends Actor implements BoardEventListener {
 
 			protected void end() {
 				for (InternalBoardObject eaten : eatenLst) {
-					actors.remove(eaten);
+					layout.onRemoveSingle(eaten);
 				}
-				removeObjectAnimated(eater);
-				ActorLayoutFixer.fixOnRemove(eatenFamily,
-						eatenFamily.getParent(), actors, config);
 			}
 		});
 	}
@@ -302,9 +295,7 @@ public class BoardActor extends Actor implements BoardEventListener {
 			}
 
 			protected void end() {
-				actors.remove(object);
-				ActorLayoutFixer.fixOnRemove(object, object.getParent(),
-						actors, config);
+				layout.onRemoveSingle(object);
 			}
 		});
 	}
@@ -330,7 +321,8 @@ public class BoardActor extends Actor implements BoardEventListener {
 	 */
 	@Override
 	public void onBoardRebuilt(Board board) {
-		this.actors = ActorLayoutBuilder.build(board, config);
+		layout = ActorLayoutBuilder.build(board,
+				layout.getLayoutConfiguration());
 	}
 
 	/**
@@ -344,13 +336,8 @@ public class BoardActor extends Actor implements BoardEventListener {
 	 */
 	@Override
 	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
-		actors.remove(replacedEgg);
-		ActorLayoutFixer.fixOnRemove(replacedEgg, replacedEgg.getParent(),
-				actors, config);
-		// still use replacedEgg's parent as bornFamily's parent might not yet
-		// have been set
-		ActorLayoutFixer.fixOnAdd(bornFamily, replacedEgg.getParent(), actors,
-				config);
+		layout.onRemoveSingle(replacedEgg);
+		layout.onAdd(bornFamily);
 	}
 
 	@Override
@@ -360,21 +347,20 @@ public class BoardActor extends Actor implements BoardEventListener {
 		// camera.viewportWidth = getWidth();
 		// camera.viewportHeight = getHeight();
 
-		// unfortunately, getX gives us screen pixels, which are not suitable
-		// for our game-world pixels, so we must translate them first, if we
-		// want the camera to show config.treeOrigin as upper left corner of the
-		// actor
+		final float actorX = screenToWorldLen(getX());
+		final float actorY = screenToWorldLen(getY());
 
-		// upper left corner of actor in world coordinates
-		float x = screenToWorldLen(getX());
-		float y = screenToWorldLen(getY());
-		
-		float midx = CAMERA_SIZE.x / 2;
-		float midy = CAMERA_SIZE.y / 2;
-		camera.position.set(midx - x + config.getTreeOrigin().x,
-				midy - y - (CAMERA_SIZE.y - config.getTreeOrigin().y - config.getUniformObjectHeight()), 0);
+		final float treeMidX = layout.getLayoutConfiguration().getTreeOrigin().x
+				+ layout.getLayoutStatistics().getWidthMap()
+						.get(layout.getBoard()) / 2;
+		final float treeMidY = layout.getLayoutConfiguration().getTreeOrigin().y
+				- layout.getLayoutStatistics().getHeightMap()
+						.get(layout.getBoard()) / 2;
+		camera.position.set(treeMidX - actorX, treeMidY - actorY, 0);
 		camera.update();
-		// use device independent camera size to display alligator world
-		this.addListener(new BoardActorGestureListener());
+		
+		this.removeListener(gestureListener);
+		gestureListener = new BoardActorGestureListener();
+		this.addListener(gestureListener);
 	}
 }

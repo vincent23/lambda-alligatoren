@@ -15,6 +15,7 @@ import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.Parent;
 import de.croggle.game.board.operations.BoardObjectVisitor;
+import de.croggle.game.board.operations.CreateHeightMap;
 import de.croggle.game.board.operations.CreateWidthMap;
 
 /**
@@ -47,6 +48,8 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	 * The hashmap to store the result in
 	 */
 	private Map<InternalBoardObject, BoardObjectActor> actors;
+
+	private final ActorLayoutStatistics statistics;
 	/**
 	 * The current scaling of newly added BoardObjectActors
 	 */
@@ -58,11 +61,16 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 
 	private ActorLayoutBuilder(Board b, ActorLayoutConfiguration config) {
 		this.config = config;
+		this.widthMap = CreateWidthMap.create(b,
+				config.getUniformObjectWidth(),
+				config.getVerticalScaleFactor(), config.getHorizontalPadding());
+		// TODO as this is not really necessary for the build process, maybe
+		// implement it more efficiently as a byproduct?
+		Map<BoardObject, Float> heightMap = CreateHeightMap.create(b,
+				config.getUniformObjectHeight(),
+				config.getVerticalScaleFactor(), config.getVerticalPadding());
+		statistics = new ActorLayoutStatistics(widthMap, heightMap);
 		this.actors = new HashMap<InternalBoardObject, BoardObjectActor>();
-		this.widthMap = CreateWidthMap
-				.create(b, config.getUniformObjectWidth(),
-						config.getVerticalScaleFactor(),
-						config.getHorizontalPadding());
 		this.currentPosition = config.getTreeOrigin().cpy();
 	}
 
@@ -102,11 +110,10 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	 *         {@link InternalBoardObject} they represent, layouted in regard of
 	 *         the given parameters
 	 */
-	public static Map<InternalBoardObject, BoardObjectActor> build(Board b,
-			ActorLayoutConfiguration config) {
+	public static ActorLayout build(Board b, ActorLayoutConfiguration config) {
 		ActorLayoutBuilder builder = new ActorLayoutBuilder(b, config);
 		b.accept(builder);
-		return builder.actors;
+		return new ActorLayout(builder.actors, b, config, builder.statistics);
 	}
 
 	/**
@@ -132,7 +139,7 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	 * @return the map of layouted BoardObjectActors, accessible via the
 	 *         InternalBoardObject they represent
 	 */
-	public static Map<InternalBoardObject, BoardObjectActor> build(Board b, ColorController ccntrlr) {
+	public static ActorLayout build(Board b, ColorController ccntrlr) {
 		ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(ccntrlr);
 		return build(b, config);
@@ -141,20 +148,24 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	@Override
 	public void visitEgg(Egg egg) {
 		BoardObjectActor a = new EggActor(egg, config.getColorController());
-		float offsetx = (config.getUniformObjectWidth() - config.getEggWidth()) / 2 * getScaling();
-		//float offsety = (config.getUniformObjectHeight() - config.getEggWidth()) / 2 * getScaling();
+		float offsetx = (config.getUniformObjectWidth() - config.getEggWidth())
+				/ 2 * getScaling();
+		// float offsety = (config.getUniformObjectHeight() -
+		// config.getEggWidth()) / 2 * getScaling();
 		if (config.getHorizontalGrowth() == TreeGrowth.POS_NEG) {
 			offsetx *= -1;
-			//offsety *= -1;
+			// offsety *= -1;
 		}
-		a.setBounds(currentPosition.x + offsetx, currentPosition.y, config.getEggWidth()
-				* getScaling(), config.getEggHeight() * getScaling());
+		a.setBounds(currentPosition.x + offsetx, currentPosition.y,
+				config.getEggWidth() * getScaling(), config.getEggHeight()
+						* getScaling());
 		actors.put(egg, a);
 	}
 
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
-		ColoredAlligatorActor a = new ColoredAlligatorActor(alligator, config.getColorController());
+		ColoredAlligatorActor a = new ColoredAlligatorActor(alligator,
+				config.getColorController());
 		setParentActorBounds(a);
 		actors.put(alligator, a);
 		layoutChildren(alligator);
@@ -176,11 +187,12 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 			while (it.hasNext()) {
 				InternalBoardObject child = it.next();
 				child.accept(this);
-				// don't need to apply scaling as createWidthMap already did that for us
+				// don't need to apply scaling as createWidthMap already did
+				// that for us
 				currentPosition.x += widthMap.get(child);
 				if (it.hasNext()) {
-					// TODO apply scaling on padding?
-					currentPosition.x += getScaling() * config.getHorizontalPadding();
+					currentPosition.x += getScaling()
+							* config.getHorizontalPadding();
 				}
 			}
 		} else {
@@ -189,8 +201,8 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 				child.accept(this);
 				currentPosition.x -= getScaling() * widthMap.get(child);
 				if (it.hasNext()) {
-					// TODO apply scaling on padding?
-					currentPosition.x -= getScaling() * config.getHorizontalPadding();
+					currentPosition.x -= getScaling()
+							* config.getHorizontalPadding();
 				}
 			}
 		}
@@ -230,13 +242,11 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 		// move currentPosition one level down
 		float h = config.getUniformObjectHeight() * getScaling();
 		if (config.getVerticalGrowth() == TreeGrowth.NEG_POS) {
-			// TODO apply scaling on padding?
 			currentPosition.y += h + config.getVerticalPadding() * getScaling();
 		} else {
-			// TODO apply scaling on padding?
 			currentPosition.y -= h + config.getVerticalPadding() * getScaling();
 		}
-		
+
 		// used for having children still centered if smaller than parent
 		float childrenWidth = 0;
 		for (InternalBoardObject child : p) {
@@ -252,11 +262,12 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 			while (it.hasNext()) {
 				InternalBoardObject child = it.next();
 				child.accept(this);
-				// don't need to apply scaling as createWidthMap already did that for us
+				// don't need to apply scaling as createWidthMap already did
+				// that for us
 				currentPosition.x += widthMap.get(child);
 				if (it.hasNext()) {
-					// TODO apply scaling on padding?
-					currentPosition.x += getScaling() * config.getHorizontalPadding();
+					currentPosition.x += getScaling()
+							* config.getHorizontalPadding();
 				}
 			}
 		} else {
@@ -266,8 +277,8 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 				child.accept(this);
 				currentPosition.x -= getScaling() * widthMap.get(child);
 				if (it.hasNext()) {
-					// TODO apply scaling on padding?
-					currentPosition.x -= getScaling() * config.getHorizontalPadding();
+					currentPosition.x -= getScaling()
+							* config.getHorizontalPadding();
 				}
 			}
 		}
