@@ -1,0 +1,98 @@
+{
+	"de.croggle" : {
+		"levels" : [
+			{
+			"type" : "multiple choice" ,
+			"description" : "Fünftes Tutoriallevel, in dem das System der Multiple-Choice Levels erklärt wird" ,
+			"design" : "" ,
+			"animation" : "",
+			"abort simulation after" : 0 ,
+			"hints" : [ ""
+			],
+			"data" : {
+				"initial" : {
+					"families" : [
+						{
+							"type" : " colored alligator " ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 25 ,
+							"recolorable" : false ,
+							"children" : [
+								{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 25 ,
+								"recolorable" : false
+								}
+							]
+						},
+						{
+							"type" : "egg" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 5 ,
+							"recolorable" : false
+						}
+					]
+				},
+				"answers" :[
+					 {
+						"families" : [
+							{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 5 ,
+								"recolorable" : true
+							}
+						]
+					},
+					{
+						"families" : [
+							{
+								"type" : " colored alligator " ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 25 ,
+								"recolorable" : false ,
+								"children" : [
+									{
+									"type" : "egg" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : 25 ,
+									"recolorable" : false
+									}
+								]
+							}
+						]
+					},
+	 				{
+						"families" : [
+							{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 5 ,
+								"recolorable" : true
+							},
+							{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 5 ,
+								"recolorable" : true
+							}
+						]
+					}
+						
+				],
+
+				"correct answer" : 0
+			}				
+			}
+		]
+	}
+}
