@@ -1,0 +1,132 @@
+{
+	"de.croggle" : {
+		"levels" : [
+			{
+			"type" : "multiple choice" ,
+			"description" : "" ,
+			"design" : "" ,
+			"animation" : "",
+			"abort simulation after" : 0 ,
+			"hints" : [ ""
+			],
+			"data" : {
+				"initial" : {
+					"families" : [
+						{
+							"type" : " colored alligator " ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" :	29 ,
+							"recolorable" : false ,
+							"children" : [
+								{
+									"type" : "egg" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : 29 ,
+									"recolorable" : false
+								}
+							]
+						},
+						{
+							" type " : " aged alligator " ,
+							" movable " : false ,
+							" removable " : false ,
+							" children " : [
+								{
+									"type" : " colored alligator " ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : 28 ,
+									"recolorable" : false ,
+									"children" : [
+										{
+										"type" : "egg" ,
+										"movable" : false ,
+										"removable" : false ,
+										"color" : 28 ,
+										"recolorable" : false
+										}
+									]
+								},
+								{
+									"type" : " colored alligator " ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : 27 ,
+									"recolorable" : false ,
+									"children" : [
+										{
+										"type" : "egg" ,
+										"movable" : false ,
+										"removable" : false ,
+										"color" : 27 ,
+										"recolorable" : false
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+
+				"answers" :[
+					{
+						"families" : [
+							{
+								"type" : " colored alligator " ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 28 ,
+								"recolorable" : false ,
+								"children" : [
+									{
+									"type" : "egg" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : 28 ,
+									"recolorable" : false
+									}
+								]
+							}
+						]
+					},
+					{
+						"families" : [
+							{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 27 ,
+								"recolorable" : false
+							}
+						]
+					},
+	 				{
+						"families" : [
+							{
+								"type" : " colored alligator " ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 27 ,
+								"recolorable" : false ,
+								"children" : [
+									{
+									"type" : "egg" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : 27 ,
+									"recolorable" : false
+									}
+								]
+							}
+						]
+					},
+				],
+
+				"correct answer" : 3
+			}				
+			}
+		]
+	}
+}
