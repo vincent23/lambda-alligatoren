@@ -208,14 +208,15 @@ public class BoardActor extends Actor implements BoardEventListener {
 		batch.flush();
 		Matrix4 original = batch.getProjectionMatrix();
 		// set up clipping
-		clipBegin();
-		// set own camera to look through
-		batch.setProjectionMatrix(camera.combined);
-		for (BoardObjectActor child : layout) {
-			child.draw(batch, parentAlpha);
+		if(clipBegin()) {
+			// set own camera to look through
+			batch.setProjectionMatrix(camera.combined);
+			for (BoardObjectActor child : layout) {
+				child.draw(batch, parentAlpha);
+			}
+			batch.setProjectionMatrix(original);
+			clipEnd();
 		}
-		batch.setProjectionMatrix(original);
-		clipEnd();
 	}
 
 	/**
