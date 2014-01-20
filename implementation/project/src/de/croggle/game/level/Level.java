@@ -40,8 +40,8 @@ public abstract class Level {
 	 *            number of evaluation steps the simulation is aborted after
 	 */
 	public Level(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, Animation animation,
-			String hint, String description, int abortSimulationAfter) {
+			Board goalBoard, Animation animation, String hint,
+			String description, int abortSimulationAfter) {
 		this.levelIndex = levelIndex;
 		this.packageIndex = packageIndex;
 		this.initialBoard = initialBoard;
@@ -112,7 +112,7 @@ public abstract class Level {
 	 * 
 	 * @return the path to the hint of the level
 	 */
-	public String gethint() {
+	public String getHint() {
 		return hint;
 	}
 
