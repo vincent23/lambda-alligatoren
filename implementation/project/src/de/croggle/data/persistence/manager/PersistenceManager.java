@@ -249,6 +249,7 @@ public class PersistenceManager {
 		} else {
 			levelProgressManager.updateLevelProgress(profileName, levelProgress);
 		}
+		levelProgressManager.close();
 
 	}
 
