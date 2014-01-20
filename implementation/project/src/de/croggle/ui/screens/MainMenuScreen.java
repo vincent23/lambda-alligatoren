@@ -57,24 +57,25 @@ public class MainMenuScreen extends AbstractScreen {
 		Button profileButton = new Button(StyleHelper.getInstance()
 				.getButtonStyle());
 
+		// add listeners
 		play.addListener(new PackagesScreenClickListener());
+		stats.addListener(new StatisticScreenClickListener());
+		settings.addListener(new SettingsScreenClickListener());
+		achievements.addListener(new AchievementScreenClickListener());
 
 		play.getImageCell().pad(20);
 
 		leftTable.pad(30);
-		leftTable.defaults().width(screenWidth / 10).height(screenWidth / 10);
-		leftTable.add(play).expandY().colspan(3).width(screenWidth / 5)
-				.height(screenWidth / 5);
+		leftTable.defaults().size(100);
+		leftTable.add(play).expandY().colspan(3).size(200);
 		leftTable.row();
 		leftTable.add(settings).bottom().space(20);
 		leftTable.add(stats).bottom().space(20);
-		leftTable.add(achievements).right().bottom().expandX().width(150)
-				.height(150);
+		leftTable.add(achievements).right().bottom().expandX().size(150);
 
-		profileButtonTable.add(profileButton).padRight(50).width(200)
-				.height(200);
+		profileButtonTable.add(profileButton).padRight(50).size(200);
 
-		table.add(leftTable).height(screenHeight).expand().fill();
-		table.add(profileButtonTable).height(screenHeight);
+		table.add(leftTable).expand().fill();
+		table.add(profileButtonTable);
 	}
 }

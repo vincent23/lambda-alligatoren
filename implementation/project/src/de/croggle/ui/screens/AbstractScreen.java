@@ -1,6 +1,9 @@
 package de.croggle.ui.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.GL20;
@@ -30,6 +33,9 @@ public abstract class AbstractScreen implements Screen {
 	protected int screenWidth;
 	protected int screenHeight;
 
+	private InputMultiplexer inputMediator;
+	private Screen previousScreen;
+
 	/**
 	 * Superconstructor for all screens. Initializes everything they share, e.g.
 	 * their stage.
@@ -49,6 +55,9 @@ public abstract class AbstractScreen implements Screen {
 
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
+
+		// make the screen as well as the stage an input processor
+		inputMediator = new InputMultiplexer(stage, new BackButtonHandler());
 
 		table.debug(); // turn on all debug lines (table, cell, and widget)
 
@@ -142,7 +151,7 @@ public abstract class AbstractScreen implements Screen {
 		}
 		onShow();
 
-		Gdx.input.setInputProcessor(stage);
+		Gdx.input.setInputProcessor(inputMediator);
 	}
 
 	/**
@@ -184,11 +193,37 @@ public abstract class AbstractScreen implements Screen {
 		this.assetsLoaded = assetsLoaded;
 	}
 
+	public void setPreviousScreen(Screen prev) {
+		previousScreen = prev;
+	}
+
+	// an input processor
+	// mainly prevents from implementing every freakin method of InputProcessor
+	// in the screen
+	private class BackButtonHandler extends InputAdapter {
+		@Override
+		public boolean keyUp(int keycode) {
+			if (keycode == Keys.BACK && previousScreen != null) {
+				game.setScreen(previousScreen);
+				return true;
+			}
+			return false;
+		}
+
+	}
+
+	protected class BackButtonListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			game.setScreen(previousScreen);
+		}
+	}
+
 	// click listener for buttons that change to the main menu
 	protected class MainMenuClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showMainMenuScreen();
+			game.showMainMenuScreen(AbstractScreen.this);
 		}
 	}
 
@@ -196,7 +231,29 @@ public abstract class AbstractScreen implements Screen {
 	protected class PackagesScreenClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showLevelPackagesScreen();
+			game.showLevelPackagesScreen(AbstractScreen.this);
+		}
+	}
+
+	// guess what
+	protected class AchievementScreenClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			game.showAchievementScreen(AbstractScreen.this);
+		}
+	}
+
+	protected class SettingsScreenClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			game.showSettingsScreen(AbstractScreen.this);
+		}
+	}
+
+	protected class StatisticScreenClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			game.showStatisticScreen(AbstractScreen.this);
 		}
 	}
 }

@@ -3,6 +3,7 @@ package de.croggle;
 import android.content.Context;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -14,6 +15,7 @@ import de.croggle.game.level.LevelController;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.screens.AbstractScreen;
 import de.croggle.ui.screens.AchievementScreen;
 import de.croggle.ui.screens.LevelPackagesScreen;
 import de.croggle.ui.screens.LevelsOverviewScreen;
@@ -150,6 +152,9 @@ public class AlligatorApp extends Game {
 		de.croggle.data.AssetManager.initialize();
 		this.batch = new SpriteBatch();
 
+		// catch android back key
+		Gdx.input.setCatchBackKey(true);
+
 		// initialize screens
 		mainMenuScreen = new MainMenuScreen(this);
 		levelPackagesScreen = new LevelPackagesScreen(this);
@@ -213,17 +218,38 @@ public class AlligatorApp extends Game {
 	public void dispose() {
 		batch.dispose();
 		StyleHelper.getInstance().dispose();
+
+		// release catching of back key (no idea if necessary)
+		Gdx.input.setCatchBackKey(false);
 	}
 
-	public void showMainMenuScreen() {
+	public void showMainMenuScreen(AbstractScreen prev) {
+		mainMenuScreen.setPreviousScreen(prev);
 		setScreen(mainMenuScreen);
 	}
 
-	public void showLevelPackagesScreen() {
+	public void showLevelPackagesScreen(AbstractScreen prev) {
+		levelPackagesScreen.setPreviousScreen(prev);
 		setScreen(levelPackagesScreen);
 	}
 
-	public void showLevelOverviewScreen(LevelController levelController) {
+	public void showLevelOverviewScreen(AbstractScreen prev,
+			LevelController levelController) {
 		// TODO set screens correctly
+	}
+
+	public void showAchievementScreen(AbstractScreen prev) {
+		achievementScreen.setPreviousScreen(prev);
+		setScreen(achievementScreen);
+	}
+
+	public void showSettingsScreen(AbstractScreen prev) {
+		settingsScreen.setPreviousScreen(prev);
+		setScreen(settingsScreen);
+	}
+
+	public void showStatisticScreen(AbstractScreen prev) {
+		statisticScreen.setPreviousScreen(prev);
+		setScreen(statisticScreen);
 	}
 }

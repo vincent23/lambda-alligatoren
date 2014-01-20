@@ -66,6 +66,9 @@ public class SettingsScreen extends AbstractScreen {
 		TextButton editProfile = new TextButton("Edit Profile",
 				helper.getTextButtonStyle());
 
+		// add listeners
+		back.addListener(new BackButtonListener());
+
 		scrollTable.defaults().left().space(20);
 		scrollTable.add(gameplay).row();
 		scrollTable.add(zoom).expandX().padLeft(30);

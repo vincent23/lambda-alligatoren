@@ -37,6 +37,9 @@ public class AchievementScreen extends AbstractScreen {
 				helper.getImageButtonStyleRound("widgets/dummy-icon"));
 		Label achievements = new Label("Achievements", helper.getLabelStyle());
 
+		// add listeners
+		back.addListener(new BackButtonListener());
+
 		table.pad(30);
 		table.add(back);
 		table.add(achievements);
