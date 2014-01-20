@@ -104,6 +104,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		// just to make sure
+		//Gdx.gl.glEnable(GL20.GL_BLEND);
 		//batch.enableBlending();
 
 		// draw the alpha mask
@@ -114,7 +115,14 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 
 		// draw our foreground elements
 		drawForeground(batch);
+		
+		// restore alpha value that was removed by mask
+		Gdx.gl.glColorMask(false, false, false, true);
+		batch.setBlendFunction(GL20.GL_ONE, GL20.GL_ZERO);
+		batch.draw(background, getX(), getY(), getWidth(), getHeight());
 		batch.flush();
+		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		Gdx.gl.glColorMask(true, true, true, true);
 	}
 
 	/**

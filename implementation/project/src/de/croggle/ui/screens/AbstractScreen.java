@@ -3,7 +3,7 @@ package de.croggle.ui.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -82,7 +82,8 @@ public abstract class AbstractScreen implements Screen {
 	 * Called when the screen should render itself.
 	 */
 	public void render(float delta) {
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClearColor(0, 0, 0, 0);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
 		camera.update();
 
@@ -101,6 +102,11 @@ public abstract class AbstractScreen implements Screen {
 		stage.draw();
 		// draw debugging lines
 		Table.drawDebug(stage);
+		// we are done with rendering the screen, so alpha is meaningless and should hence be 1.0
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glColorMask(false, false, false, true);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glColorMask(true, true, true, true);
 	}
 
 	/**
