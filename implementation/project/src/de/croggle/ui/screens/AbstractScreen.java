@@ -155,15 +155,12 @@ public abstract class AbstractScreen implements Screen {
 	public void setBackground(String backgroundPath) {
 		AssetManager manager = de.croggle.data.AssetManager.getInstance();
 		TextureLoader.TextureParameter backgroundParams = new TextureLoader.TextureParameter();
-		// backgroundParams.minFilter = TextureFilter.MipMapLinearLinear;
-		// backgroundParams.magFilter = TextureFilter.MipMapLinearLinear;
 		backgroundParams.genMipMaps = true;
 
 		manager.load(backgroundPath, Texture.class, backgroundParams);
 		manager.finishLoading();
 		background = game.getAssetManager().get(backgroundPath, Texture.class);
-		background.setFilter(TextureFilter.MipMapLinearLinear,
-				TextureFilter.MipMapLinearLinear);
+		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 	}
 
 	/**
