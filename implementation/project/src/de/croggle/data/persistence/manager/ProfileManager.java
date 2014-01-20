@@ -145,6 +145,22 @@ public class ProfileManager extends TableManager {
 		return profileList;
 	}
 	
+	/**
+	 * Checks if there is already a stored profile with the name profileName.
+	 * @param profileName the name that is checked
+	 * @return true if there is already a profile with the name profileName, else false
+	 */
+	boolean isNameUsed(String profileName) {
+		String selectQuery = "select * from " + TABLE_NAME + " where "
+	            + KEY_PROFILE_NAME + " = " + "'" + profileName + "'";
+		
+		Cursor cursor = database.rawQuery(selectQuery, null);
+		if(cursor.moveToFirst()) {
+			return true;
+		}
+		return false;
+	}
+	
 	void clearTable() {
 		database.execSQL("delete from "+ TABLE_NAME);
 	}
