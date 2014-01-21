@@ -32,7 +32,7 @@ public class AlligatorsPlacedAchievement extends Achievement {
 												// reintun.
 		String[] description = new String[11];
 		for (int i = 1; i < 10; i++) {
-			description[i] = stages[i] + _("achievement_alligators_placed");
+			description[i] = stages[i] + " " + _("achievement_alligators_placed");
 			emblemPath[i] = "emblems/alligatorsPlaced/0" + i;
 		}
 		description[0] = "initial state, do not show this stage as achievement";

@@ -36,10 +36,10 @@ public class TimeAchievement extends Achievement {
 		for (int i = 1; i < 10; i++) {
 			if (i < 6) {
 				description[i] = stages[i] / 60
-						+ _("achievement_minutes_played");
+						+ " " + _("achievement_minutes_played");
 			} else {
 				description[i] = stages[i] / 360
-						+ _("achievement_hours_played");
+						+ " " + _("achievement_hours_played");
 			}
 			emblemPath[i] = "emblems/time/0" + i;
 		}

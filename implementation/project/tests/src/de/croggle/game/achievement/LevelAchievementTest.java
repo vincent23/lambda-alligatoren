@@ -18,9 +18,9 @@ public class LevelAchievementTest extends TestCase {
 		for (int i = 1; i < 8; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);
 			assertTrue(testAchievement.getDescription(i).endsWith("completed"));
-			assertTrue(testAchievement.getEmblemPath(i).equals("emblems/levelCompleted/0" + i));
-			
+			assertTrue(testAchievement.getEmblemPath(i).equals("emblems/levelCompleted/0" + i));	
 		}
+		
 	} 
 	
 	public void testIndexingAndIncreaseDecrease() {

@@ -32,7 +32,7 @@ public class AlligatorsEatenAchievement extends Achievement {
 		String[] emblemPath = new String[11];
 		String[] description = new String[11];
 		for (int i = 1; i < 10; i++) {
-			description[i] = stages[i]  + _("achievement_alligators_eaten");
+			description[i] = stages[i]  + " " + _("achievement_alligators_eaten");
 			emblemPath[i] = "emblems/alligatorsEaten/0" + i;
 		}
 		description[0] = "initial state, do not show this stage as achievement";

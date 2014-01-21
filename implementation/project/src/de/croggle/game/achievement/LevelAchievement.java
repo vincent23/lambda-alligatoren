@@ -32,7 +32,7 @@ public class LevelAchievement extends Achievement {
 												// reintun.
 		String[] description = new String[8];
 		for (int i = 1; i < 8; i++) {
-			description[i] = stages[i] + _("achievement_level_completed");
+			description[i] = stages[i] + " " + _("achievement_level_completed");
 			emblemPath[i] = "emblems/levelCompleted/0" + i;
 
 		}
