@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import de.croggle.game.Color;
 import de.croggle.game.ColorController;
 import de.croggle.game.board.Board;
+import de.croggle.game.board.operations.MatchWithRenaming;
 
 /**
  * A special type of level in which the player has to position and color
@@ -31,6 +32,7 @@ public class TermEditLevel extends Level {
 	 *            the path to the animation of the level
 	 * @param userColors
 	 *            the colors given to the user to color BoardObjects in
+	 * @param blockedColors Colors the user musn't use
 	 * @param hint
 	 *            the hint given to the user if he pushes the hint button
 	 * @param description
@@ -69,6 +71,23 @@ public class TermEditLevel extends Level {
 	 */
 	public ColorController getColorController(){
 		return this.colorController;
+	}
+
+	@Override
+	public boolean isLevelSolved(Board solution, int steps) {
+		boolean stepsReached = false;
+		boolean rightBoard = false;
+		
+		if(this.getAbortSimulationAfter() != 0 && this.getAbortSimulationAfter() == steps){
+			stepsReached = true;
+		}else if(this.getAbortSimulationAfter() == 0){
+			stepsReached = true;
+		}
+		
+		if(MatchWithRenaming.match(solution, this.getGoalBoard())){
+			rightBoard = true;
+		}
+		return stepsReached && rightBoard;
 	}
 
 	

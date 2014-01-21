@@ -30,8 +30,6 @@ public abstract class Level {
 	 *            the board, which have to be achieved to complete the level
 	 * @param animation
 	 *            the path to the animation of the level
-	 * @param userColors
-	 *            the colors given to the user to color BoardObjects in
 	 * @param hint
 	 *            the hint given to the user if he pushes the hint button
 	 * @param description
@@ -133,4 +131,13 @@ public abstract class Level {
 	public int getAbortSimulationAfter() {
 		return abortSimulationAfter;
 	}
+	
+	/**
+	 * Method to determine whether this level is solved or not
+	 * @param solution the current Board the user has entered after a number of evaluation steps.
+	 * @param steps the number of evaluation steps.
+	 * @return if the current level is solved or not
+	 */
+	abstract public boolean isLevelSolved(Board solution, int steps);
+	
 }

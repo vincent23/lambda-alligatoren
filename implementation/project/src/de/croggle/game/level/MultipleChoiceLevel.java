@@ -1,7 +1,9 @@
 package de.croggle.game.level;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+
 import de.croggle.game.board.Board;
+import de.croggle.game.board.operations.MatchWithRenaming;
 
 /**
  * A special type of level in which the player has to choose from several
@@ -11,7 +13,6 @@ public class MultipleChoiceLevel extends Level {
 
 	private Board[] answers;
 	private int correctAnswer;
-
 
 	/**
 	 * Creates a new level with the given parameters.
@@ -26,25 +27,27 @@ public class MultipleChoiceLevel extends Level {
 	 *            the board, which have to be achieved to complete the level
 	 * @param animation
 	 *            the path to the animation of the level
-	 * @param userColors
-	 *            the colors given to the user to color BoardObjects in
 	 * @param hint
 	 *            the hint given to the user if he pushes the hint button
 	 * @param description
 	 *            the description of the level
 	 * @param abortSimulationAfter
 	 *            number of evaluation steps the simulation is aborted after
+	 * @param answers
+	 *            an array of Boards representing the possible answers
+	 * @param correctAnswer
+	 *            the index of the correct answer
 	 */
 	public MultipleChoiceLevel(int levelIndex, int packageIndex,
-			Board initialBoard, Board goalBoard, Animation animation,  String hint, String description,
-			int abortSimulationAfter, Board[] answers, int correctAnswer) {
+			Board initialBoard, Board goalBoard, Animation animation,
+			String hint, String description, int abortSimulationAfter,
+			Board[] answers, int correctAnswer) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
 				hint, description, abortSimulationAfter);
 		this.answers = answers;
 		this.correctAnswer = correctAnswer;
 	}
 
-	
 	/**
 	 * Method to check whether the given answer was the correct one.
 	 * 
@@ -55,14 +58,26 @@ public class MultipleChoiceLevel extends Level {
 	public boolean validateAnswer(int selection) {
 		return selection == correctAnswer;
 	}
-	
+
 	/**
 	 * Method to get the answers of this level.
 	 * 
 	 * @return the possible answers of this level.
 	 */
-	public Board[] getAnswers(){
+	public Board[] getAnswers() {
 		return answers;
+	}
+
+	@Override
+	public boolean isLevelSolved(Board solution, int steps) {
+		int index = -1;
+		for (int i = 0; i < this.answers.length; i++) {
+			if (MatchWithRenaming.match(solution, answers[i])) {
+				index = i;
+			}
+		}
+
+		return index == this.correctAnswer;
 	}
 
 }
