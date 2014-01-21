@@ -3,14 +3,15 @@ package de.croggle.ui.renderer;
 import com.badlogic.gdx.math.Vector2;
 
 import de.croggle.game.ColorController;
-import de.croggle.game.board.Board;
-import de.croggle.game.board.operations.CreateHeightMap;
 
 /**
+ * A class to accumulate all different properties to be taken into consideration
+ * when layouting a tree of {@link BoardObjectActor}s.
  * 
- * WARNING: Code assumes that the given widths and heights are directed the same
- * direction as the respective TreeGrowths are set. That means, while rendering
- * the drawn textures MUST extend in the direction the TreeGrowths are set.
+ * WARNING: Layouter code will assume that the given widths and heights are
+ * directed the same direction as the respective TreeGrowths are set. That
+ * means, while rendering the drawn textures should extend in the direction the
+ * TreeGrowths are set, especially in horizontal direction.
  */
 public class ActorLayoutConfiguration {
 	private TreeGrowth horizontalGrowth;
@@ -60,20 +61,14 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param treeOrigin
+	 *            the initial position from which to grow, not to be mixed up
+	 *            with the root's coordinates
 	 * @param horizontalGrowth
 	 *            the direction the tree will grow in horizontally
 	 * @param verticalGrowth
 	 *            the direction the tree will grow in vertically
 	 * @param verticalScaleFactor
 	 *            the relative size of a child as compared to its parent.
-	 * @param originalObjectWidth
-	 *            the width that the widest type of BoardObjectActor has in
-	 *            pixels. Used to allocate space for new BoardObjectActors.
-	 *            Facilitates layouting.
-	 * @param originalObjectHeight
-	 *            the height that the highest type of BoardObjectActor has in
-	 *            pixels. Used to allocate space for new BoardObjectActors.
-	 *            Facilitates layouting.
 	 * @param horizontalPadding
 	 *            the number of pixels padding between two horizontally
 	 *            neighboring actors.
@@ -82,6 +77,25 @@ public class ActorLayoutConfiguration {
 	 *            the number of pixels padding between two vertically
 	 *            neighboring actors.
 	 * @param controller
+	 *            the {@link ColorController} used to perform color lookups, so
+	 *            the layout will be rendered correctly
+	 * @param eggWidth
+	 *            the actual width to be set on {@link EggActor}s in this layout
+	 * @param eggHeight
+	 *            the actual height to be set on {@link EggActor}s in this
+	 *            layout
+	 * @param agedAlligatorWidth
+	 *            the actual width to be set on {@link AgedAlligatorActor}s in
+	 *            this layout
+	 * @param agedAlligatorHeight
+	 *            the actual height to be set on {@link AgedAlligatorActor}s in
+	 *            this layout
+	 * @param coloredAlligatorWidth
+	 *            the actual width to be set on {@link ColoredAlligatorActor}s
+	 *            in this layout
+	 * @param coloredAlligatorHeight
+	 *            the actual height to be set on {@link ColoredAlligatorActor}s
+	 *            in this layout
 	 */
 	public ActorLayoutConfiguration(Vector2 treeOrigin,
 			TreeGrowth horizontalGrowth, TreeGrowth verticalGrowth,
@@ -115,7 +129,7 @@ public class ActorLayoutConfiguration {
 
 	/**
 	 * 
-	 * @return
+	 * @return the horizontal growth direction of the layout tree
 	 */
 	public TreeGrowth getHorizontalGrowth() {
 		return horizontalGrowth;
@@ -124,15 +138,19 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param horizontalGrowth
+	 *            the horizontal growth direction of the layout tree to be set
+	 * @return this {@link ActorLayoutConfiguration} object, to allow for
+	 *         chaining setter calls
 	 */
-	public ActorLayoutConfiguration setHorizontalGrowth(TreeGrowth horizontalGrowth) {
+	public ActorLayoutConfiguration setHorizontalGrowth(
+			TreeGrowth horizontalGrowth) {
 		this.horizontalGrowth = horizontalGrowth;
 		return this;
 	}
 
 	/**
 	 * 
-	 * @return
+	 * @return the direction into which a tree will "grow" while being layouted
 	 */
 	public TreeGrowth getVerticalGrowth() {
 		return verticalGrowth;
@@ -141,6 +159,9 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param verticalGrowth
+	 *            the vertical growth direction of the layout tree to be set
+	 * @return this {@link ActorLayoutConfiguration} object, to allow for
+	 *         chaining setter calls
 	 */
 	public ActorLayoutConfiguration setVerticalGrowth(TreeGrowth verticalGrowth) {
 		this.verticalGrowth = verticalGrowth;
@@ -149,7 +170,10 @@ public class ActorLayoutConfiguration {
 
 	/**
 	 * 
-	 * @return
+	 * @return the {@link ColorController} that is used by the
+	 *         {@link BoardObjectActor}s for transfering game internal
+	 *         {@link de.croggle.game.Color color names} into renderable
+	 *         {@link com.badlogic.gdx.graphics.Color color}s
 	 */
 	public ColorController getColorController() {
 		return colorController;
@@ -158,15 +182,22 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param colorController
+	 *            a {@link ColorController} to be used for transfering game
+	 *            internal {@link de.croggle.game.Color color names} into
+	 *            renderable {@link com.badlogic.gdx.graphics.Color color}s
+	 * @return this {@link ActorLayoutConfiguration} object, to allow for
+	 *         chaining setter calls
 	 */
-	public ActorLayoutConfiguration setColorController(ColorController colorController) {
+	public ActorLayoutConfiguration setColorController(
+			ColorController colorController) {
 		this.colorController = colorController;
 		return this;
 	}
 
 	/**
 	 * 
-	 * @return
+	 * @return the relative edge size of a child {@link BoardObjectActor actor}
+	 *         as compared to its parent
 	 */
 	public float getVerticalScaleFactor() {
 		return verticalScaleFactor;
@@ -175,23 +206,29 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param verticaleScaleFactor
+	 *            a factor to scale scale descendant {@link BoardObjectActor
+	 *            actors} relative to their direct parents
+	 * @return this {@link ActorLayoutConfiguration} object, to allow for
+	 *         chaining setter calls
 	 */
-	public ActorLayoutConfiguration setVerticalScaleFactor(float verticaleScaleFactor) {
+	public ActorLayoutConfiguration setVerticalScaleFactor(
+			float verticaleScaleFactor) {
 		this.verticalScaleFactor = verticaleScaleFactor;
 		return this;
 	}
 
 	/**
 	 * 
-	 * @return
+	 * @return the width to be assumed every node in the layout tree has
 	 */
 	public float getUniformObjectWidth() {
 		return uniformObjectWidth;
 	}
 
 	/**
+	 * This method is not part of the api as the uniform size is calculated using all actor specific bounds
 	 * 
-	 * @param originalObjectWidth
+	 * @param originalObjectWidth new value for the width to be assumed every node in the layout tree has
 	 */
 	/*
 	 * public void setUniformObjectWidth(float originalObjectWidth) {
@@ -200,21 +237,21 @@ public class ActorLayoutConfiguration {
 
 	/**
 	 * 
-	 * @return
+	 * @return the height to be assumed every node in the layout tree has
 	 */
 	public float getUniformObjectHeight() {
 		return uniformObjectHeight;
 	}
 
 	/**
+	 * This method is not part of the api as the uniform size is calculated using all actor specific bounds
 	 * 
 	 * @param originalObjectHeight
 	 */
 	/*
-	 * public ActorLayoutConfiguration setUniformObjectHeight(float originalObjectHeight) {
-	 * this.uniformObjectHeight = originalObjectHeight; 
-	 * return this;
-	 * }
+	 * public ActorLayoutConfiguration setUniformObjectHeight(float
+	 * originalObjectHeight) { this.uniformObjectHeight = originalObjectHeight;
+	 * return this; }
 	 */
 
 	/**
@@ -228,6 +265,8 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param treeOrigin
+	 * @return this {@link ActorLayoutConfiguration} object, to allow for
+	 *         chaining setter calls
 	 */
 	public ActorLayoutConfiguration setTreeOrigin(Vector2 treeOrigin) {
 		this.treeOrigin = treeOrigin;
@@ -245,6 +284,8 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param horizontalPadding
+	 * @return this {@link ActorLayoutConfiguration} object, to allow for
+	 *         chaining setter calls
 	 */
 	public ActorLayoutConfiguration setHorizontalPadding(float horizontalPadding) {
 		this.horizontalPadding = horizontalPadding;
@@ -262,6 +303,8 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param verticalPadding
+	 * @return this {@link ActorLayoutConfiguration} object, to allow for
+	 *         chaining setter calls
 	 */
 	public ActorLayoutConfiguration setVerticalPadding(float verticalPadding) {
 		this.verticalPadding = verticalPadding;
@@ -323,8 +366,11 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param agedAlligatorWidth
+	 * @return this {@link ActorLayoutConfiguration} object, to allow for
+	 *         chaining setter calls
 	 */
-	public ActorLayoutConfiguration setAgedAlligatorWidth(float agedAlligatorWidth) {
+	public ActorLayoutConfiguration setAgedAlligatorWidth(
+			float agedAlligatorWidth) {
 		this.agedAlligatorWidth = agedAlligatorWidth;
 		newWidth(agedAlligatorWidth);
 		return this;
@@ -341,8 +387,11 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param agedAlligatorHeight
+	 * @return this {@link ActorLayoutConfiguration} object, to allow for
+	 *         chaining setter calls
 	 */
-	public ActorLayoutConfiguration setAgedAlligatorHeight(float agedAlligatorHeight) {
+	public ActorLayoutConfiguration setAgedAlligatorHeight(
+			float agedAlligatorHeight) {
 		this.agedAlligatorHeight = agedAlligatorHeight;
 		newHeight(agedAlligatorHeight);
 		return this;
@@ -359,8 +408,11 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param coloredAlligatorWidth
+	 * @return this {@link ActorLayoutConfiguration} object, to allow for
+	 *         chaining setter calls
 	 */
-	public ActorLayoutConfiguration setColoredAlligatorWidth(float coloredAlligatorWidth) {
+	public ActorLayoutConfiguration setColoredAlligatorWidth(
+			float coloredAlligatorWidth) {
 		this.coloredAlligatorWidth = coloredAlligatorWidth;
 		newWidth(coloredAlligatorWidth);
 		return this;
@@ -377,8 +429,11 @@ public class ActorLayoutConfiguration {
 	/**
 	 * 
 	 * @param coloredAlligatorHeight
+	 * @return this {@link ActorLayoutConfiguration} object, to allow for
+	 *         chaining setter calls
 	 */
-	public ActorLayoutConfiguration setColoredAlligatorHeight(float coloredAlligatorHeight) {
+	public ActorLayoutConfiguration setColoredAlligatorHeight(
+			float coloredAlligatorHeight) {
 		this.coloredAlligatorHeight = coloredAlligatorHeight;
 		newHeight(coloredAlligatorHeight);
 		return this;
