@@ -33,7 +33,7 @@ public class LevelsOverviewScreen extends AbstractScreen {
 	private void fillTable() {
 		StyleHelper helper = StyleHelper.getInstance();
 		ImageButton back = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-back"));
 
 		table.pad(30);
 		table.add(back);

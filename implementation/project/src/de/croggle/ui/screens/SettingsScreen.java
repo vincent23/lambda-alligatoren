@@ -40,7 +40,7 @@ public class SettingsScreen extends AbstractScreen {
 	private void fillTable() {
 		StyleHelper helper = StyleHelper.getInstance();
 		ImageButton back = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-back"));
 
 		Table scrollTable = new Table();
 		// ScrollPane scroll = new ScrollPane(scrollTable);
@@ -77,15 +77,14 @@ public class SettingsScreen extends AbstractScreen {
 		scrollTable.add(colorBlindnessCheckBox).row();
 		scrollTable.add(sound).row();
 		scrollTable.add(music).padLeft(30);
-		scrollTable.add(musicSlider).width(screenWidth / 4).row();
+		scrollTable.add(musicSlider).width(250).row();
 		scrollTable.add(effects).padLeft(30);
-		scrollTable.add(effectsSlider).width(screenWidth / 4).row();
+		scrollTable.add(effectsSlider).width(250).row();
 		scrollTable.add(profile).row();
-		scrollTable.add(editProfile).width(screenWidth / 5);
+		scrollTable.add(editProfile).width(200).height(75);
 
-		scrollTable.pad(50).padRight(screenWidth / 5);
-		table.add(back).width(screenWidth / 10).height(screenWidth / 10).top()
-				.left();
+		scrollTable.pad(50).padRight(200);
+		table.add(back).size(100).top().left();
 		table.add(scrollTable).expand().fill();
 		table.pad(30);
 	}

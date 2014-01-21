@@ -34,14 +34,14 @@ public class AchievementScreen extends AbstractScreen {
 	private void fillTable() {
 		StyleHelper helper = StyleHelper.getInstance();
 		ImageButton back = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-back"));
 		Label achievements = new Label("Achievements", helper.getLabelStyle());
 
 		// add listeners
 		back.addListener(new BackButtonListener());
 
 		table.pad(30);
-		table.add(back);
+		table.add(back).size(100);
 		table.add(achievements);
 	}
 }

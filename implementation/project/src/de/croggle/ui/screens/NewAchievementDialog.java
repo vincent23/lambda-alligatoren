@@ -24,7 +24,7 @@ public class NewAchievementDialog extends Dialog {
 		Label description = new Label(achievement.getDescription(index),
 				helper.getLabelStyle());
 		ImageButton next = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-play"));
 
 		add(message).row();
 		add(icon).row();

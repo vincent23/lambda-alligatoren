@@ -37,7 +37,7 @@ public class LevelPackagesScreen extends AbstractScreen {
 		PagedScrollPane pager = new PagedScrollPane();
 
 		ImageButton home = new ImageButton(StyleHelper.getInstance()
-				.getImageButtonStyleRound("widgets/dummy-icon"));
+				.getImageButtonStyleRound("widgets/icon-back"));
 
 		home.addListener(new MainMenuClickListener());
 
@@ -61,7 +61,7 @@ public class LevelPackagesScreen extends AbstractScreen {
 		pager.addPage(page2);
 		pager.addPage(home);
 
-		table.add(home).expandX().left().width(screenWidth / 10);
+		table.add(home).expandX().left().size(100);
 		table.row();
 		table.add(pager).expand().fill();
 

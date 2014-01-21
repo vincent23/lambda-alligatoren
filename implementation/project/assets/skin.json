@@ -7,22 +7,22 @@ com.badlogic.gdx.graphics.Color: {
 	black: { a: 1, b: 0, g: 0, r: 0 }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
-	default: { down: widgets/dummy-button, up: widgets/dummy-button },
-	round: { down: widgets/dummy-button-round, up: widgets/dummy-button-round }
+	default: { down: widgets/button-down, up: widgets/button },
+	round: { down: widgets/button-round-down, up: widgets/button-round }
 },
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
-	default: { down: widgets/dummy-button, up: widgets/dummy-button, font: default-font, fontColor: white },
-	round: { down: widgets/dummy-button-round, up: widgets/dummy-button-round, font: default-font, fontColor: white, downFontColor: red }
+	default: { down: widgets/button-down, up: widgets/button, font: default-font, fontColor: white },
+	round: { down: widgets/button-round-down, up: widgets/button-round, font: default-font, fontColor: white, downFontColor: red }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: { font: default-font, fontColor: white }
 },
 com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
-	default: { down: widgets/dummy-button, up: widgets/dummy-button },
-	round: { down: widgets/dummy-button-round, up: widgets/dummy-button-round }
+	default: { down: widgets/button-down, up: widgets/button },
+	round: { down: widgets/button-round-down, up: widgets/button-round }
 },
 com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
-	default: { up: widgets/dummy-button, font: default-font, fontColor: white }
+	default: { up: widgets/button, font: default-font, fontColor: white }
 },
 com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 	default: { checkboxOn: widgets/check-on, checkboxOff: widgets/check-off, font: default-font, fontColor: white }

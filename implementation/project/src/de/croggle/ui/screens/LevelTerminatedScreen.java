@@ -40,7 +40,7 @@ public class LevelTerminatedScreen extends AbstractScreen {
 
 		Image image = new Image(helper.getDrawable("widgets/icon-play"));
 		ImageButton next = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-play"));
 		ImageButton levelOverview = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/dummy-icon"));
 		ImageButton replay = new ImageButton(

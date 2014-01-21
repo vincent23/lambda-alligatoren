@@ -41,7 +41,7 @@ public class ProfileSetNameScreen extends AbstractScreen {
 		Label askName = new Label("What's your name?", helper.getLabelStyle());
 		TextField nameInput = new TextField("", helper.getTextFieldStyle());
 		ImageButton next = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-play"));
 
 		innerTable.setBackground(helper
 				.getDrawable("widgets/default-background"));
@@ -50,7 +50,7 @@ public class ProfileSetNameScreen extends AbstractScreen {
 		innerTable.row();
 		innerTable.add(nameInput).width(500).height(50).space(30);
 		innerTable.row();
-		innerTable.add(next).expand().right().bottom();
+		innerTable.add(next).size(100).expand().right().bottom();
 
 		table.add(innerTable).width(700).height(350);
 	}
