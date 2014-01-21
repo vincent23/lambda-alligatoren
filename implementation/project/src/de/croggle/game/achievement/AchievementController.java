@@ -144,10 +144,10 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	}
 
 	/**
-	 * Changes the available and unlocked achievements and returns said changes.
+	 * Changes the available and (by that indirectly the unlocked) achievements and returns said changes.
 	 * 
-	 * @param statistic
-	 * @param statisticDelta
+	 * @param statistic the users alltime statistics
+	 * @param statisticDelta the change in the users statistic after the played level
 	 * @return a list of achievements with their stage after the change
 	 */
 	protected List<Achievement> updateAchievements(Statistic statistic,
