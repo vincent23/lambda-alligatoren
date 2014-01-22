@@ -35,9 +35,9 @@ public class PersistenceManagerTest extends AndroidTestCase {
 		profile.setSetting(setting);
 		profile.setStatistic(statistic);
 		
-		assertTrue(persistenceManager.isNameValid("Hans"));
+		assertFalse(persistenceManager.isNameUsed("Hans"));
 		persistenceManager.addProfile(profile);
-		assertFalse(persistenceManager.isNameValid("Hans"));
+		assertTrue(persistenceManager.isNameUsed("Hans"));
 		
 		assertTrue(profile.equals(persistenceManager.getProfile("Hans")));
 		assertTrue(profile.getSetting().equals(persistenceManager.getSetting("Hans")));
@@ -57,7 +57,7 @@ public class PersistenceManagerTest extends AndroidTestCase {
 		
 		persistenceManager.editProfile("Lea", profile2);
 		
-		assertTrue(persistenceManager.isNameValid("Lea"));
+		assertFalse(persistenceManager.isNameUsed("Lea"));
 		
 		assertTrue(persistenceManager.getProfile("Lea") == null);
 		assertTrue(persistenceManager.getSetting("Lea") == null);
@@ -67,7 +67,7 @@ public class PersistenceManagerTest extends AndroidTestCase {
 		assertTrue(persistenceManager.getSetting("Anne").equals(setting));
 		assertTrue(persistenceManager.getStatistic("Anne").equals(statistic));
 
-		assertFalse(persistenceManager.isNameValid("Anne"));
+		assertTrue(persistenceManager.isNameUsed("Anne"));
 
 	}
 	
@@ -118,10 +118,10 @@ public class PersistenceManagerTest extends AndroidTestCase {
 		Profile profile = new Profile("Tim", "test");
 	
 		persistenceManager.addProfile(profile);
-		assertFalse(persistenceManager.isNameValid("Tim"));
+		assertTrue(persistenceManager.isNameUsed("Tim"));
 		
 		persistenceManager.deleteProfile("Tim");
-		assertTrue(persistenceManager.isNameValid("Tim"));
+		assertFalse(persistenceManager.isNameUsed("Tim"));
 		assertTrue(persistenceManager.getProfile("Tim") == null);
 		assertTrue(persistenceManager.getSetting("Tim") == null);
 		assertTrue(persistenceManager.getStatistic("Tim") == null);
