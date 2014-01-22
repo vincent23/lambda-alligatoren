@@ -1,15 +1,21 @@
 package de.croggle.data.persistence.manager;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.LevelProgress;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.Statistic;
+import de.croggle.game.achievement.Achievement;
+import de.croggle.game.achievement.AlligatorsPlacedAchievement;
+import de.croggle.game.achievement.AlligatorsPlacedPerLevelAchievement;
+import de.croggle.game.achievement.TimeAchievement;
 import de.croggle.game.profile.Profile;
 
 import android.test.AndroidTestCase;
+import android.util.SparseIntArray;
 
 
 public class PersistenceManagerTest extends AndroidTestCase {
@@ -59,10 +65,23 @@ public class PersistenceManagerTest extends AndroidTestCase {
 		
 		assertFalse(persistenceManager.isNameUsed("Lea"));
 		
-		assertTrue(persistenceManager.getProfile("Lea") == null);
-		assertTrue(persistenceManager.getSetting("Lea") == null);
-		assertTrue(persistenceManager.getStatistic("Lea") == null);
-		
+		try {
+			persistenceManager.getProfile("Lea");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+		} 	try {
+			persistenceManager.getSetting("Lea");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+		} 	try {
+			persistenceManager.getStatistic("Lea");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+		}
+			
 		assertTrue(persistenceManager.getProfile("Anne").equals(profile2));
 		assertTrue(persistenceManager.getSetting("Anne").equals(setting));
 		assertTrue(persistenceManager.getStatistic("Anne").equals(statistic));
@@ -122,9 +141,23 @@ public class PersistenceManagerTest extends AndroidTestCase {
 		
 		persistenceManager.deleteProfile("Tim");
 		assertFalse(persistenceManager.isNameUsed("Tim"));
-		assertTrue(persistenceManager.getProfile("Tim") == null);
-		assertTrue(persistenceManager.getSetting("Tim") == null);
-		assertTrue(persistenceManager.getStatistic("Tim") == null);
+		try {
+			persistenceManager.getProfile("Tim");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+		} 	try {
+			persistenceManager.getSetting("Tim");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+		} 	try {
+			persistenceManager.getSetting("Tim");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+		}
+			
 		
 	}
 	
@@ -165,6 +198,37 @@ public class PersistenceManagerTest extends AndroidTestCase {
 		
 		persistenceManager.saveLevelProgress("Anne", levelProgress2);
 		assertTrue(persistenceManager.getLevelProgress("Anne", 1).equals(levelProgress2));
+	}
+	
+	public void testSaveAndLoadAchievements() {
+		
+		Profile profile = new Profile("Anne", "test");
+		persistenceManager.addProfile(profile);
+		
+		Achievement achievement1 = new TimeAchievement();
+		achievement1.setId(1);
+		achievement1.setIndex(3);
+		
+		Achievement achievement2 = new AlligatorsPlacedAchievement();
+		achievement2.setId(2);
+		achievement2.setIndex(6);
+		
+		Achievement achievement3 = new AlligatorsPlacedPerLevelAchievement();
+		achievement3.setId(10);
+		achievement3.setIndex(9);
+		
+		List<Achievement> achievements = new ArrayList<Achievement>();
+		achievements.add(achievement1);
+		achievements.add(achievement2);
+		achievements.add(achievement3);
+		persistenceManager.saveUnlockedAchievements("Anne", achievements);
+		
+		SparseIntArray sia = persistenceManager.getAllUnlockedAchievements("Anne");
+		assertTrue(sia.size() == 3);
+		
+		assertTrue(sia.get(1) == achievement1.getIndex());
+		assertTrue(sia.get(2) == achievement2.getIndex());
+		assertTrue(sia.get(10) == achievement3.getIndex());
 	}
 	
 

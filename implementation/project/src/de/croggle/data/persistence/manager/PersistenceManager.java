@@ -104,7 +104,8 @@ public class PersistenceManager {
 			List<Achievement> achievements = game.getAchievementController().getAvailableAchievements();
 			for (Achievement achievement : achievements) {
 				achievementManager.addUnlockedAchievement(profile.getName(), achievement);
-			}*/
+			}
+			achievementManager.close();*/
 		}
 
 	}
@@ -116,8 +117,12 @@ public class PersistenceManager {
 	 *            the name of the profile which is to be loaded
 	 * @return the profile which has been loaded, null if there is no profile
 	 *         with this name
+	 * @throws IllegalArgumentException if there is no stored profile referenced by profileName
 	 */
-	public Profile getProfile(String profileName) {
+	public Profile getProfile(String profileName) throws IllegalArgumentException {
+		if(!isNameUsed(profileName)) {
+			throw new IllegalArgumentException();
+		}
 		profileManager.open();
 		Profile profile = profileManager.getProfile(profileName);
 		profileManager.close();
@@ -167,6 +172,7 @@ public class PersistenceManager {
 	 * 
 	 * @param profileName
 	 *            the name of the profile to be deleted
+	 * @throws IllegalArgumentException if there is no stored profile referenced by profileName
 	 */
 	public void deleteProfile(String profileName) throws IllegalArgumentException {
 		if(!isNameUsed(profileName)) {
@@ -311,7 +317,7 @@ public class PersistenceManager {
 	 *            a list containing the values to be stored
 	 * @throws IllegalArgumentException if there is no stored profile referenced by profileName
 	 */
-	public void saveUnlockedAchievement(String profileName,
+	public void saveUnlockedAchievements(String profileName,
 			List<Achievement> achievements) throws IllegalArgumentException {
 		if(!isNameUsed(profileName)) {
 			throw new IllegalArgumentException();
