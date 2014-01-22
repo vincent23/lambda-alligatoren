@@ -1,6 +1,6 @@
 package de.croggle.game.board.operations;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import de.croggle.game.board.AgedAlligator;
@@ -19,18 +19,16 @@ import de.croggle.game.board.Parent;
 public class GetParentHierarchy implements BoardObjectVisitor {
 
 	private List<Parent> parents;
-	private boolean reversed;
 
-	private GetParentHierarchy(boolean reversed) {
-		this.parents = new LinkedList<Parent>();
-		this.reversed = reversed;
+	private GetParentHierarchy() {
+		this.parents = new ArrayList<Parent>();
 	}
 
 	/**
 	 * Iterates the tree upwards and adds all parents of the given BoardObject
-	 * to the begin of a list, that will be returned. That implicates that the
-	 * resulting list will have the topmost ancestor at its beginning. The given
-	 * BoardObject itself will NOT be part of the list, so the list's last
+	 * to the end of a list, that will be returned. That implicates that the
+	 * resulting list will have the topmost ancestor at its end. The given
+	 * BoardObject itself will NOT be part of the list, so the list's first
 	 * element will be the given BoardObject's parent.
 	 * 
 	 * The implementation currently uses a LinkedList for its better pushFront
@@ -38,11 +36,11 @@ public class GetParentHierarchy implements BoardObjectVisitor {
 	 * 
 	 * @param b
 	 *            the BoardObject whose parent hierarchy is to be determined
-	 * @return the given BoardObject's parent hierarchy beginning with the
-	 *         tree's root and ending with b's parent
+	 * @return the given BoardObject's parent hierarchy beginning with the b's
+	 *         parent and ending with tree's root
 	 */
-	public static List<Parent> get(BoardObject b, boolean reversed) {
-		GetParentHierarchy getter = new GetParentHierarchy(reversed);
+	public static List<Parent> get(BoardObject b) {
+		GetParentHierarchy getter = new GetParentHierarchy();
 		b.accept(getter);
 		return getter.parents;
 	}
@@ -58,11 +56,7 @@ public class GetParentHierarchy implements BoardObjectVisitor {
 		if (p == null) {
 			return;
 		}
-		if (reversed) {
-			parents.add(p);
-		} else {
-			parents.add(0, p);
-		}
+		parents.add(p);
 		p.accept(this);
 	}
 
