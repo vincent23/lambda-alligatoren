@@ -9,7 +9,6 @@ import de.croggle.game.board.Board;
 import de.croggle.game.board.BoardObject;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
-import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.Parent;
 
 /**
@@ -48,8 +47,7 @@ public class CollectFreeColors implements BoardObjectVisitor {
 	public void visitEgg(Egg egg) {
 		final Color eggColor = egg.getColor();
 		if (egg != family) {
-			Parent parent = egg.getParent();
-			while (true) {
+			for (Parent parent : GetParentHierarchy.get(egg, true)) {
 				// TODO find a way to remove instanceof
 				if (parent instanceof ColoredAlligator) {
 					final ColoredAlligator colored = (ColoredAlligator) parent;
@@ -57,9 +55,7 @@ public class CollectFreeColors implements BoardObjectVisitor {
 						return;
 					}
 				}
-				if (parent != family && parent instanceof InternalBoardObject) {
-					parent = ((InternalBoardObject) parent).getParent();
-				} else {
+				if (parent == family) {
 					break;
 				}
 			}

@@ -293,8 +293,7 @@ public class ReplaceEggs implements BoardObjectVisitor {
 	private Color[] findBoundColorsBelow(Egg egg, BoardObject topmost) {
 		final Set<Color> boundColors = new HashSet<Color>();
 		final Color eggColor = egg.getColor();
-		Parent parent = egg.getParent();
-		while (true) {
+		for (Parent parent : GetParentHierarchy.get(egg, true)) {
 			// TODO remove instanceof
 			if (parent instanceof ColoredAlligator) {
 				ColoredAlligator coloredAlligator = (ColoredAlligator) parent;
@@ -302,9 +301,7 @@ public class ReplaceEggs implements BoardObjectVisitor {
 					boundColors.add(eggColor);
 				}
 			}
-			if (parent != topmost && parent instanceof InternalBoardObject) {
-				parent = ((InternalBoardObject) parent).getParent();
-			} else {
+			if (parent == topmost) {
 				break;
 			}
 		}
