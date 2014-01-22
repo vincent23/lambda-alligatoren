@@ -64,14 +64,14 @@ public class ProfileController {
 			throws IllegalArgumentException {
 		
 		PersistenceManager pm = game.getPersistenceManager();
-		if(pm.isNameUsed(profileName)) {
+		if(!pm.isNameUsed(profileName)) {
 			throw new IllegalArgumentException();
 		} else {
 			currentProfile = pm.getProfile(profileName);
-			saveProfileName();
+			//saveProfileName();
 			game.getSettingController().changeCurrentSetting(profileName);
 			game.getStatisticController().changeCurrentStatistic(profileName);
-			game.getAchievementController().changeUnlockedAchievements(profileName);
+			//game.getAchievementController().changeUnlockedAchievements(profileName);
 		}
 	}
 
@@ -134,6 +134,9 @@ public class ProfileController {
 	 */
 	public void deleteCurrentProfile() {
 		game.getPersistenceManager().deleteProfile(currentProfile.getName());
+		Preferences prefs = Gdx.app.getPreferences("Profile Preferences");
+		prefs.remove("activeProfile");
+		prefs.flush();
 		currentProfile = null;
 	}
 

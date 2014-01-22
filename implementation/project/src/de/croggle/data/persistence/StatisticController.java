@@ -27,8 +27,6 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 */
 	public StatisticController(AlligatorApp game) {
 		this.game = game;
-		String profileName = game.getProfileController().getCurrentProfileName();
-		changeCurrentStatistic(profileName);
 	}
 
 	/**

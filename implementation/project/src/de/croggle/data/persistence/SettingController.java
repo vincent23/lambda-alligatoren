@@ -26,8 +26,6 @@ public class SettingController {
 	 */
 	public SettingController(AlligatorApp game) {
 		this.game = game;
-		String profileName = game.getProfileController().getCurrentProfileName();
-		changeCurrentSetting(profileName);
 	}
 
 	/**
@@ -55,7 +53,7 @@ public class SettingController {
 	 */
 	public void changeCurrentSetting(String profileName)
 			throws IllegalArgumentException {
-		currentSetting = game.getPersistenceManager().getSetting("profileName");
+		currentSetting = game.getPersistenceManager().getSetting(profileName);
 
 	}
 
