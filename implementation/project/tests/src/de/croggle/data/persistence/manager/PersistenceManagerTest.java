@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.croggle.AlligatorApp;
+import de.croggle.data.LocalizationBackend;
+import de.croggle.data.LocalizationHelper;
+import de.croggle.data.TestLocalizationBackend;
 import de.croggle.data.persistence.LevelProgress;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.Statistic;
@@ -14,17 +17,23 @@ import de.croggle.game.achievement.AlligatorsPlacedPerLevelAchievement;
 import de.croggle.game.achievement.TimeAchievement;
 import de.croggle.game.profile.Profile;
 
+import android.content.Context;
 import android.test.AndroidTestCase;
+import android.test.InstrumentationTestCase;
 import android.util.SparseIntArray;
 
 
-public class PersistenceManagerTest extends AndroidTestCase {
+public class PersistenceManagerTest extends InstrumentationTestCase {
 	
 	PersistenceManager persistenceManager;
 	
 	@Override
 	public void setUp() {
-		AlligatorApp app = new AlligatorApp(getContext());
+		
+		Context ctxt = getInstrumentation().getTargetContext();
+		AlligatorApp app = new AlligatorApp(ctxt);
+		LocalizationBackend be = new TestLocalizationBackend();
+		LocalizationHelper.setBackend(be);
 		persistenceManager = new PersistenceManager(app);
 	}
 	
@@ -65,23 +74,11 @@ public class PersistenceManagerTest extends AndroidTestCase {
 		
 		assertFalse(persistenceManager.isNameUsed("Lea"));
 		
-		try {
-			persistenceManager.getProfile("Lea");
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		} 	try {
-			persistenceManager.getSetting("Lea");
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		} 	try {
-			persistenceManager.getStatistic("Lea");
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		}
-			
+		assertTrue(	persistenceManager.getProfile("Lea") == null);
+		assertTrue(	persistenceManager.getSetting("Lea") == null);
+		assertTrue(	persistenceManager.getStatistic("Lea") == null);
+		
+
 		assertTrue(persistenceManager.getProfile("Anne").equals(profile2));
 		assertTrue(persistenceManager.getSetting("Anne").equals(setting));
 		assertTrue(persistenceManager.getStatistic("Anne").equals(statistic));
@@ -141,22 +138,11 @@ public class PersistenceManagerTest extends AndroidTestCase {
 		
 		persistenceManager.deleteProfile("Tim");
 		assertFalse(persistenceManager.isNameUsed("Tim"));
-		try {
-			persistenceManager.getProfile("Tim");
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		} 	try {
-			persistenceManager.getSetting("Tim");
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		} 	try {
-			persistenceManager.getSetting("Tim");
-			fail();
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		}
+		
+		assertTrue(persistenceManager.getProfile("Tim") == null);
+		assertTrue(persistenceManager.getSetting("Tim") == null);
+		assertTrue(persistenceManager.getStatistic("Tim") == null);
+		
 			
 		
 	}
