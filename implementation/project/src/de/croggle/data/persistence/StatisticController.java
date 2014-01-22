@@ -116,8 +116,8 @@ public class StatisticController implements StatisticsDeltaProcessor {
 		currentStatistic.setLevelsComplete(currentStatistic.getLevelsComplete() + statisticsDelta.getLevelsComplete());
 		currentStatistic.setPackagesComplete(currentStatistic.getPackagesComplete() + statisticsDelta.getPackagesComplete());
 		
-		String profileName = game.getProfileController().getCurrentProfileName();
-		game.getPersistenceManager().editStatistic(profileName, currentStatistic);
+		game.getAchievementController().processStatisticChange(statisticsDelta, currentStatistic);
+		game.getPersistenceManager().editStatistic(game.getProfileController().getCurrentProfileName(), currentStatistic);
 	}
 
 }

@@ -10,12 +10,13 @@ import android.util.SparseIntArray;
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.StatisticsDeltaProcessor;
+import de.croggle.data.persistence.manager.PersistenceManager;
 
 /**
  * Controller responsible for the achievements and for checking whether
  * achievements have been achieved.
  */
-public class AchievementController implements StatisticsDeltaProcessor {
+public class AchievementController {
 
 	/**
 	 * A list of all achievements available in the game.
@@ -98,14 +99,14 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * 
 	 * @param profileName
 	 *            the name of the user which unlocked achievements are loaded
-	 * @return true if the change was successful, false otherwise
 	 * @throws IllegalArgumentException
 	 *             whenever the string does not represent a profile in the
 	 *             database
 	 */
 	public void changeUnlockedAchievements(String profileName)
 			throws IllegalArgumentException {
-
+		PersistenceManager pm = game.getPersistenceManager();
+		latestUnlockedAchievements = convertInputFromDatabase(pm.getAllUnlockedAchievements(profileName));
 	}
 
 	/**
@@ -176,12 +177,14 @@ public class AchievementController implements StatisticsDeltaProcessor {
 	 * 
 	 * @param statisticsDelta
 	 *            the packed statistic changes
+	 * @param statistic
+	 * 			  the updated statistic
 	 */
-	@Override
-	public void processDelta(Statistic statisticsDelta) {
+	public void processStatisticChange(Statistic statisticsDelta, Statistic statistic) {
 		latestUnlockedAchievements.clear();
-		Statistic statistic = null; // TODO: database access here?
 		latestUnlockedAchievements = updateAchievements(statistic,
 				statisticsDelta);
+		PersistenceManager pm = game.getPersistenceManager();
+		pm.saveUnlockedAchievements(game.getProfileController().getCurrentProfileName(), latestUnlockedAchievements);
 	}
 }
