@@ -45,7 +45,7 @@ public class Simulator {
 			BoardEventMessenger boardMessenger) throws IllegalBoardException {
 		this.history = new RingBuffer<Board>(30);
 		this.entranceBoard = entranceBoard;
-		this.currentBoard = entranceBoard;
+		this.currentBoard = entranceBoard.copy();
 		this.colorController = colorController;
 		this.boardMessenger = boardMessenger;
 		this.steps = 0;
