@@ -5,6 +5,7 @@ import java.util.List;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.StatisticsDeltaProcessor;
 import de.croggle.game.board.AgedAlligator;
+import de.croggle.game.board.AlligatorOverflowException;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.ColoredBoardObject;
@@ -67,7 +68,7 @@ public class GameController implements BoardEventListener {
 	 * prepare to switch game mode to placement, in which the player is able to
 	 * manipulate the board.
 	 */
-	private void enterPlacement() {
+	public void enterPlacement() {
 		shownBoard = userBoard;
 	}
 
@@ -75,7 +76,7 @@ public class GameController implements BoardEventListener {
 	 * prepare to switch game mode to simulation, in which the given board can
 	 * be evaluated.
 	 */
-	private void enterSimulation() {
+	public void enterSimulation() {
 		userBoard = shownBoard.copy();
 		try {
 			simulator = new Simulator(shownBoard, colorController,
@@ -184,5 +185,19 @@ public class GameController implements BoardEventListener {
 	@Override
 	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
 		statisticsDelta.setEggsHatched(statisticsDelta.getEggsHatched() + 1);
+	}
+
+	public void evaluateStep() throws ColorOverflowException,
+			AlligatorOverflowException {
+		final Board newBoard = simulator.evaluate();
+		level.isLevelSolved(newBoard, simulator.getSteps());
+	}
+
+	public void undo() {
+		simulator.undo();
+	}
+
+	public void reset() {
+		simulator.reset();
 	}
 }

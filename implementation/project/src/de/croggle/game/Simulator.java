@@ -24,6 +24,7 @@ public class Simulator {
 	private RingBuffer<Board> history; // 30 elements needed.
 	private ColorController colorController;
 	private BoardEventMessenger boardMessenger;
+	private int steps;
 
 	private static final int MAX_ALLIGATORS = 300;
 
@@ -47,6 +48,7 @@ public class Simulator {
 		this.currentBoard = entranceBoard;
 		this.colorController = colorController;
 		this.boardMessenger = boardMessenger;
+		this.steps = 0;
 	}
 
 	/**
@@ -80,6 +82,7 @@ public class Simulator {
 		if (MAX_ALLIGATORS < CountBoardObjects.count(currentBoard)) {
 			throw new AlligatorOverflowException();
 		}
+		steps++;
 		return currentBoard;
 	}
 
@@ -91,6 +94,7 @@ public class Simulator {
 	public Board undo() {
 		try {
 			currentBoard = history.pop();
+			steps--;
 		} catch (Exception e) {
 			// TODO
 		}
@@ -105,6 +109,7 @@ public class Simulator {
 	 */
 	public Board reset() {
 		currentBoard = entranceBoard;
+		steps = 0;
 		return currentBoard;
 	}
 
@@ -118,6 +123,10 @@ public class Simulator {
 			agedAlligator.addChild(child);
 		}
 		return agedAlligator;
+	}
+
+	public int getSteps() {
+		return steps;
 	}
 
 }
