@@ -93,4 +93,5 @@ public class ColorEditLevel extends Level {
 		
 		return stepsReached && rightBoard;
 	}
+
 }

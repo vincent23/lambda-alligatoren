@@ -140,4 +140,18 @@ public abstract class Level {
 	 */
 	abstract public boolean isLevelSolved(Board solution, int steps);
 	
+	/**
+	 * Method to check if the level is still solvable according to the number of evaluation steps or not.
+	 * This method should be called after checking whether the level is solved or not.
+	 * @param steps the number of evaluation steps 
+	 * @return whether the level is still solvable or not
+	 */
+	public boolean isSolveable(int steps){
+		boolean solvable = true;
+		if(this.abortSimulationAfter < 0 && Math.abs(this.abortSimulationAfter)<= steps){
+			solvable = false;
+		}
+		return solvable;
+	}
+	
 }
