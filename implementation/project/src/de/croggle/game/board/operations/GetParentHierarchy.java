@@ -18,10 +18,10 @@ import de.croggle.game.board.Parent;
  */
 public class GetParentHierarchy implements BoardObjectVisitor {
 
-	private List<BoardObject> parents;
+	private List<Parent> parents;
 
 	private GetParentHierarchy() {
-		this.parents = new LinkedList<BoardObject>();
+		this.parents = new LinkedList<Parent>();
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class GetParentHierarchy implements BoardObjectVisitor {
 	 * @return the given BoardObject's parent hierarchy beginning with the
 	 *         tree's root and ending with b's parent
 	 */
-	public static List<BoardObject> get(BoardObject b) {
+	public static List<Parent> get(BoardObject b) {
 		GetParentHierarchy getter = new GetParentHierarchy();
 		b.accept(getter);
 		return getter.parents;
@@ -56,15 +56,8 @@ public class GetParentHierarchy implements BoardObjectVisitor {
 		if (p == null) {
 			return;
 		}
-		// just to be sure
-		if (p instanceof BoardObject) {
-			BoardObject pB = (BoardObject) p;
-			this.parents.add(0, pB);
-			pB.accept(this);
-		} else {
-			throw new IllegalArgumentException(
-					"Parent encountered, that is not itself a BoardObject");
-		}
+		parents.add(0, p);
+		p.accept(this);
 	}
 
 	@Override
