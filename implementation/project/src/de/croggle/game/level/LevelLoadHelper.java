@@ -22,13 +22,15 @@ import de.croggle.util.convert.JsonToAlligator;
  * respective JSON file. Therefore it removes a larger portion of program logic
  * from the <code>LevelController</code>, which in turn delegates requests for
  * level instantiation to this class' instantiate method.
+ * 
+ * The class is only visible inside the de.croggle.game.level package
  */
-public class LoadLevelHelper {
+class LevelLoadHelper {
 
 	//private static final int FRAME_COLS = 4;
 	//private static final int FRAME_ROWS = 3;
 
-	private LoadLevelHelper() {
+	private LevelLoadHelper() {
 	}
 
 	/**

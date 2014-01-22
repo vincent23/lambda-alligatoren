@@ -78,7 +78,7 @@ public class LevelController {
 		int numberOfLevel = levelNames.length-1;
 		levels = new ArrayList<Level>();
 		for(int i = 0; i < numberOfLevel; i++ ){
-				levels.add(LoadLevelHelper.instantiate(this.packageIndex, i, this.game));
+				levels.add(LevelLoadHelper.instantiate(this.packageIndex, i, this.game));
 		}
 		
 	}
