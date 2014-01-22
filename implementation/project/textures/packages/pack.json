@@ -12,7 +12,7 @@
         stripWhitespaceX: false,
         stripWhitespaceY: false,
         alphaThreshold: 0,
-        filterMin: Nearest,
+        filterMin: Linear,
         filterMag: Linear,
         wrapX: ClampToEdge,
         wrapY: ClampToEdge,
