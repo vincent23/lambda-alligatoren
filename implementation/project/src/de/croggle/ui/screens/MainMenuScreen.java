@@ -48,11 +48,11 @@ public class MainMenuScreen extends AbstractScreen {
 		ImageButton play = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/icon-play"));
 		ImageButton stats = new ImageButton(StyleHelper.getInstance()
-				.getImageButtonStyleRound("widgets/dummy-icon"));
+				.getImageButtonStyleRound("widgets/icon-stats"));
 		ImageButton settings = new ImageButton(StyleHelper.getInstance()
-				.getImageButtonStyleRound("widgets/dummy-icon"));
+				.getImageButtonStyleRound("widgets/icon-settings"));
 		ImageButton achievements = new ImageButton(StyleHelper.getInstance()
-				.getImageButtonStyleRound("widgets/dummy-icon"));
+				.getImageButtonStyleRound("widgets/icon-trophy"));
 		// TODO this should be a ProfileButton
 		Button profileButton = new Button(StyleHelper.getInstance()
 				.getButtonStyle());
