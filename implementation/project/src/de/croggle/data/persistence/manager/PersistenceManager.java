@@ -82,7 +82,9 @@ public class PersistenceManager {
 
 	 */
 	public void addProfile(Profile profile) throws IllegalArgumentException {
-		if(profile == null || !isNameValid(profile.getName())) {
+		if(profile == null) {
+			throw new IllegalArgumentException();
+		} else if(isNameUsed(profile.getName())) {
 			throw new IllegalArgumentException("There is already a profile with the name " + profile.getName() + ".");
 		} else {
 			profileManager.open();
@@ -136,7 +138,9 @@ public class PersistenceManager {
 	 */
 	
 	public void editProfile(String profileName, Profile profile) throws IllegalArgumentException {
-		if(profile == null || !isNameValid(profile.getName())) {
+		if(profile == null) {
+			throw new IllegalArgumentException();
+		} else if(isNameUsed(profile.getName())) {
 			throw new IllegalArgumentException("There is already a profile with the name " + profile.getName() + ".");
 		} else {
 			profileManager.open();
@@ -164,7 +168,10 @@ public class PersistenceManager {
 	 * @param profileName
 	 *            the name of the profile to be deleted
 	 */
-	public void deleteProfile(String profileName) {
+	public void deleteProfile(String profileName) throws IllegalArgumentException {
+		if(!isNameUsed(profileName)) {
+			throw new IllegalArgumentException();
+		}
 		profileManager.open();
 		profileManager.deleteProfile(profileName);
 		profileManager.close();
@@ -176,8 +183,12 @@ public class PersistenceManager {
 	 * @param profileName
 	 *            the name of the profile to which the setting belongs
 	 * @return the found setting, null if no setting is found
+	 * @throws IllegalArgumentException if there is no stored profile referenced by profileName
 	 */
-	public Setting getSetting(String profileName) {
+	public Setting getSetting(String profileName) throws IllegalArgumentException {
+		if(!isNameUsed(profileName)) {
+			throw new IllegalArgumentException();
+		}
 		settingManager.open();
 		Setting setting = settingManager.getSetting(profileName);
 		settingManager.close();
@@ -192,8 +203,12 @@ public class PersistenceManager {
 	 *            the name of the profile to which the setting belongs
 	 * @param newSetting
 	 *            contains the new values used for overwriting the old setting
+	 * @throws IllegalArgumentException if there is no stored profile referenced by profileName
 	 */
-	public void editSetting(String profileName, Setting newSetting) {
+	public void editSetting(String profileName, Setting newSetting)  throws IllegalArgumentException {
+		if(!isNameUsed(profileName)) {
+			throw new IllegalArgumentException();
+		}
 		settingManager.open();
 		settingManager.editSetting(profileName, newSetting);
 		settingManager.close();
@@ -205,8 +220,12 @@ public class PersistenceManager {
 	 * @param profileName
 	 *            the name of the profile to which the statistic belongs
 	 * @return the found statistic, null if no statistic is found
+	 * @throws IllegalArgumentException if there is no stored profile referenced by profileName
 	 */
-	public Statistic getStatistic(String profileName) {
+	public Statistic getStatistic(String profileName) throws IllegalArgumentException {
+		if(!isNameUsed(profileName)) {
+			throw new IllegalArgumentException();
+		}
 		statisticManager.open();
 		Statistic statistic = statisticManager.getStatistic(profileName);
 		statisticManager.close();
@@ -221,8 +240,12 @@ public class PersistenceManager {
 	 *            the name of the profile to which the statistic belongs
 	 * @param newStatistic
 	 *            contains the new values used for overwriting the old statistic
+	 * @throws IllegalArgumentException if there is no stored profile referenced by profileName
 	 */
-	public void editStatistic(String profileName, Statistic newStatistic) {
+	public void editStatistic(String profileName, Statistic newStatistic) throws IllegalArgumentException {
+		if(!isNameUsed(profileName)) {
+			throw new IllegalArgumentException();
+		}
 		statisticManager.open();
 		statisticManager.editStatistic(profileName, newStatistic);
 		statisticManager.close();
@@ -239,9 +262,13 @@ public class PersistenceManager {
 	 * @param levelProgress
 	 *            contains the new values used for storing the level progress or
 	 *            overwrite the old level progress
+	 * @throws IllegalArgumentException if there is no stored profile referenced by profileName
 	 */
 	public void saveLevelProgress(String profileName,
-			LevelProgress levelProgress) {
+			LevelProgress levelProgress) throws IllegalArgumentException {
+		if(!isNameUsed(profileName)) {
+			throw new IllegalArgumentException();
+		}
 		levelProgressManager.open();
 		LevelProgress lp = levelProgressManager.getLevelProgress(profileName, levelProgress.getLevelId());
 		if(lp == null) {
@@ -262,8 +289,12 @@ public class PersistenceManager {
 	 * @param levelID
 	 *            the level ID of the level progress
 	 * @return the found level progress, null if no level progress is found
+	 * @throws IllegalArgumentException if there is no stored profile referenced by profileName
 	 */
-	public LevelProgress getLevelProgress(String profileName, int levelID) {
+	public LevelProgress getLevelProgress(String profileName, int levelID) throws IllegalArgumentException{
+		if(!isNameUsed(profileName)) {
+			throw new IllegalArgumentException();
+		}
 		levelProgressManager.open();
 		LevelProgress levelProgress = levelProgressManager.getLevelProgress(profileName, levelID);
 		levelProgressManager.close();
@@ -276,13 +307,19 @@ public class PersistenceManager {
 	 * 
 	 * @param profileName
 	 *            the name of the user that unlocked the achievement
-	 * @param achievement
-	 *            contains the values to be stored
+	 * @param achievements
+	 *            a list containing the values to be stored
+	 * @throws IllegalArgumentException if there is no stored profile referenced by profileName
 	 */
 	public void saveUnlockedAchievement(String profileName,
-			Achievement achievement) {
+			List<Achievement> achievements) throws IllegalArgumentException {
+		if(!isNameUsed(profileName)) {
+			throw new IllegalArgumentException();
+		}
 		achievementManager.open();
-		achievementManager.addUnlockedAchievement(profileName, achievement);
+		for (Achievement achievement : achievements) {
+			achievementManager.addUnlockedAchievement(profileName, achievement);
+		}
 		achievementManager.close();
 
 	}
@@ -295,9 +332,13 @@ public class PersistenceManager {
 	 *            the name of the profile whose unlocked achievements are
 	 *            searched for
 	 * @return a sparseIntArray containing the ids and states of all achievements unlocked by the user
+	 * @throws IllegalArgumentException if there is no stored profile referenced by profileName
 	 */
 	
-	public SparseIntArray getAllUnlockedAchievements(String profileName) {
+	public SparseIntArray getAllUnlockedAchievements(String profileName) throws IllegalArgumentException {
+		if(!isNameUsed(profileName)) {
+			throw new IllegalArgumentException();
+		}
 		achievementManager.open();
 		SparseIntArray unlockedAchievements = achievementManager.getUnlockedAchievements(profileName);
 		achievementManager.close();
@@ -316,11 +357,11 @@ public class PersistenceManager {
 	/**
 	 * Checks if there is already a stored profile with the name profileName.
 	 * @param profileName the name that is checked
-	 * @return false if there is already a profile with the name profileName, else true is returned
+	 * @return true if there is already a profile with the name profileName, else false is returned
 	 */
-	public boolean isNameValid(String profileName) {
+	public boolean isNameUsed(String profileName) {
 		profileManager.open();
-		boolean isValid = !profileManager.isNameUsed(profileName);
+		boolean isValid = profileManager.isNameUsed(profileName);
 		profileManager.close();
 		return isValid;
 	}
