@@ -19,9 +19,11 @@ import de.croggle.game.board.Parent;
 public class GetParentHierarchy implements BoardObjectVisitor {
 
 	private List<Parent> parents;
+	private boolean reversed;
 
-	private GetParentHierarchy() {
+	private GetParentHierarchy(boolean reversed) {
 		this.parents = new LinkedList<Parent>();
+		this.reversed = reversed;
 	}
 
 	/**
@@ -39,8 +41,8 @@ public class GetParentHierarchy implements BoardObjectVisitor {
 	 * @return the given BoardObject's parent hierarchy beginning with the
 	 *         tree's root and ending with b's parent
 	 */
-	public static List<Parent> get(BoardObject b) {
-		GetParentHierarchy getter = new GetParentHierarchy();
+	public static List<Parent> get(BoardObject b, boolean reversed) {
+		GetParentHierarchy getter = new GetParentHierarchy(reversed);
 		b.accept(getter);
 		return getter.parents;
 	}
@@ -56,7 +58,11 @@ public class GetParentHierarchy implements BoardObjectVisitor {
 		if (p == null) {
 			return;
 		}
-		parents.add(0, p);
+		if (reversed) {
+			parents.add(p);
+		} else {
+			parents.add(0, p);
+		}
 		p.accept(this);
 	}
 
