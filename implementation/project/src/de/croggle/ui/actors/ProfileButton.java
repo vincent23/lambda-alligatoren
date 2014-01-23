@@ -1,8 +1,8 @@
 package de.croggle.ui.actors;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import de.croggle.game.profile.Profile;
 import de.croggle.ui.StyleHelper;
@@ -24,10 +24,18 @@ public class ProfileButton extends Button {
 	 */
 	public ProfileButton(Profile user) {
 		super(StyleHelper.getInstance().getButtonStyle());
+		StyleHelper helper = StyleHelper.getInstance();
+
 		this.user = user;
 
-		add(user.getName()).row();
-		add(new Image(new Texture(user.getPicturePath())));
+		if (user != null) {
+			Label userName = new Label(user.getName(), helper.getLabelStyle());
+			ImageButton avatar = new ImageButton(helper.getDrawable(user
+					.getPicturePath()));
 
+			add(userName).pad(30);
+			row();
+			add(avatar).fill().expand();
+		}
 	}
 }

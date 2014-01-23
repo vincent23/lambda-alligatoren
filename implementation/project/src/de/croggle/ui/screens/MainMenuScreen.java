@@ -1,19 +1,25 @@
 package de.croggle.ui.screens;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import android.util.Log;
+
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 import de.croggle.AlligatorApp;
+import de.croggle.game.profile.OnProfileChangeListener;
+import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.actors.ProfileButton;
 
 /**
  * Screen, which shows the central menu one uses to navigate into every other
  * point of the application. For reference see ``Pflichtenheft 10.5.1 /
  * Abbildung 9''.
  */
-public class MainMenuScreen extends AbstractScreen {
+public class MainMenuScreen extends AbstractScreen implements
+		OnProfileChangeListener {
+
+	private ProfileController profileController;
 
 	/**
 	 * Creates the main menu screen from whom the player can navigate into the
@@ -26,6 +32,7 @@ public class MainMenuScreen extends AbstractScreen {
 
 	public MainMenuScreen(AlligatorApp app) {
 		super(app);
+		profileController = app.getProfileController();
 
 		setBackground("textures/swamp.png");
 
@@ -34,13 +41,11 @@ public class MainMenuScreen extends AbstractScreen {
 	}
 
 	@Override
-	public void render(float delta) {
-		super.render(delta);
-	}
+	public void onProfileChange(String name) {
+		Log.d("CROGGLE", "on profile change");
+		table.clearChildren();
+		fillTable();
 
-	@Override
-	public void dispose() {
-		super.dispose();
 	}
 
 	private void fillTable() {
@@ -55,11 +60,9 @@ public class MainMenuScreen extends AbstractScreen {
 				.getImageButtonStyleRound("widgets/icon-settings"));
 		ImageButton achievements = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/icon-trophy"));
-		// TODO this should be a ProfileButton
-		
-		Button profileButton = new Button(StyleHelper.getInstance()
-				.getButtonStyle());
-		
+
+		ProfileButton profileButton = new ProfileButton(
+				profileController.getCurrentProfile());
 
 		// add listeners
 		play.addListener(new PackagesScreenClickListener());
@@ -67,7 +70,7 @@ public class MainMenuScreen extends AbstractScreen {
 		settings.addListener(new SettingsScreenClickListener());
 		achievements.addListener(new AchievementScreenClickListener());
 		profileButton.addListener(new SelectProfileScreenClickListener());
-              
+
 		play.getImageCell().pad(20);
 
 		leftTable.pad(30);
@@ -78,14 +81,10 @@ public class MainMenuScreen extends AbstractScreen {
 		leftTable.add(stats).bottom().space(20);
 		leftTable.add(achievements).right().bottom().expandX().size(150);
 
-		profileButtonTable.add(profileButton).padRight(50).size(200);
+		profileButtonTable.add(profileButton).padRight(50).width(300)
+				.height(400);
 
 		table.add(leftTable).expand().fill();
 		table.add(profileButtonTable);
-	}
-	
-	@Override
-	public void onShow() {
-		
 	}
 }

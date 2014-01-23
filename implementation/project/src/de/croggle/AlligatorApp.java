@@ -7,8 +7,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import de.croggle.data.LocalizationBackend;
-import de.croggle.data.LocalizationHelper;
 import de.croggle.data.persistence.SettingController;
 import de.croggle.data.persistence.StatisticController;
 import de.croggle.data.persistence.manager.PersistenceManager;
@@ -16,7 +14,6 @@ import de.croggle.game.achievement.AchievementController;
 import de.croggle.game.level.LevelController;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.profile.ProfileController;
-import de.croggle.game.profile.ProfileOverflowException;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.screens.AbstractScreen;
 import de.croggle.ui.screens.AchievementScreen;
@@ -71,7 +68,7 @@ public class AlligatorApp extends Game {
 	 */
 	public AlligatorApp(Context context) {
 		this.context = context;
-		
+
 	}
 
 	/**
@@ -162,18 +159,17 @@ public class AlligatorApp extends Game {
 
 		// catch android back key
 		Gdx.input.setCatchBackKey(true);
-		
+
 		// initialize Controllers
 		persistenceManager = new PersistenceManager(this);
 		statisticController = new StatisticController(this);
 		settingController = new SettingController(this);
 		profileController = new ProfileController(this);
-		
-		//Not sure how to initialize those.
-		//achievementController = new AchievementController(this);
-		//levelPackagesController = new LevelPackagesController(this);
-	
-		
+
+		// Not sure how to initialize those.
+		// achievementController = new AchievementController(this);
+		// levelPackagesController = new LevelPackagesController(this);
+
 		// initialize screens
 		mainMenuScreen = new MainMenuScreen(this);
 		levelPackagesScreen = new LevelPackagesScreen(this);
@@ -186,13 +182,16 @@ public class AlligatorApp extends Game {
 		selectProfileScreen = new SelectProfileScreen(this);
 		profileSetNameScreen = new ProfileSetNameScreen(this);
 		profileSetAvatarScreen = new ProfileSetAvatarScreen(this);
-		
+
 		// add onProfileChangeListener
 		profileController.addProfileChangeListener(settingsScreen);
 		profileController.addProfileChangeListener(selectProfileScreen);
-		
+		profileController.addProfileChangeListener(mainMenuScreen);
+
 		profileController.initializeController();
-		
+
+		// profileController.deleteAllProfiles();
+
 		this.setScreen(mainMenuScreen);
 	}
 
@@ -279,17 +278,17 @@ public class AlligatorApp extends Game {
 		statisticScreen.setPreviousScreen(prev);
 		setScreen(statisticScreen);
 	}
-	
+
 	public void showSelectProfileScreen(AbstractScreen prev) {
 		selectProfileScreen.setPreviousScreen(prev);
 		setScreen(selectProfileScreen);
 	}
-	
+
 	public void showProfileSetNameScreen(AbstractScreen prev) {
 		profileSetNameScreen.setPreviousScreen(prev);
 		setScreen(profileSetNameScreen);
 	}
-	
+
 	public void showProfileSetAvatarScreen(AbstractScreen prev, String name) {
 		profileSetAvatarScreen.setProfileName(name);
 		profileSetAvatarScreen.setPreviousScreen(prev);
