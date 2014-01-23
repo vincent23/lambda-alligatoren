@@ -79,5 +79,10 @@ public class ProfileSetNameScreen extends AbstractScreen {
 	
 	}
 	
+	@Override
+	protected void onShow() {
+		nameInput.setText("");
+	}
+	
 	
 }

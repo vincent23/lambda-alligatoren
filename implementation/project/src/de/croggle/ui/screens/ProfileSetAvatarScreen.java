@@ -115,6 +115,14 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 		table.add(innerTable).width(700).height(350);
 	}
 	
+	@Override
+	public void onShow() {
+		lastClicked.setColor(Color.GREEN);
+		defaultButton.setColor(Color.GRAY);
+		lastClicked = defaultButton;
+		picturePath = defaultButton.getName();
+	}
+	
 	public void setProfileName(String profileName) {
 		this.profileName = profileName;
 	}
