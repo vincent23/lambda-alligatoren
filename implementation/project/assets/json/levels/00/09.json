@@ -13,14 +13,14 @@
 				"initial" : {
 					"families" : [
 						{
-							"type" : " colored alligator " ,
+							"type" : "colored alligator" ,
 							"movable" : false ,
 							"removable" : false ,
 							"color" :	1 ,
 							"recolorable" : false ,
 							"children" : [
 								{
-									"type" : " colored alligator " ,
+									"type" : "colored alligator" ,
 									"movable" : false ,
 									"removable" : false ,
 									"color" : 2 ,
@@ -65,7 +65,7 @@
 					{
 						"families" : [
 							{
-								"type" : " colored alligator " ,
+								"type" : "colored alligator" ,
 								"movable" : false ,
 								"removable" : false ,
 								"color" : 2 ,
@@ -120,7 +120,7 @@
 					},
 				],
 
-				"correct answer" : 2
+				"correct answer" : 1
 			}				
 			}
 		]

@@ -13,14 +13,14 @@
 				"initial" : {
 					"families" : [
 						{
-							"type" : " colored alligator " ,
+							"type" : "colored alligator" ,
 							"movable" : false ,
 							"removable" : false ,
 							"color" :	0 ,
 							"recolorable" : false ,
 							"children" : [
 								{
-									"type" : " colored alligator " ,
+									"type" : "colored alligator" ,
 									"movable" : false ,
 									"removable" : false ,
 									"color" : 16 ,
@@ -51,7 +51,7 @@
 					{
 						"families" : [
 							{
-								"type" : " colored alligator " ,
+								"type" : "colored alligator" ,
 								"movable" : false ,
 								"removable" : false ,
 								"color" : 0 ,
@@ -71,7 +71,7 @@
 					{
 						"families" : [
 							{
-								"type" : " colored alligator " ,
+								"type" : "colored alligator" ,
 								"movable" : false ,
 								"removable" : false ,
 								"color" : 0 ,
@@ -91,7 +91,7 @@
 	 				{
 						"families" : [
 							{
-								"type" : " colored alligator " ,
+								"type" : "colored alligator" ,
 								"movable" : false ,
 								"removable" : false ,
 								"color" : 16 ,
@@ -110,7 +110,7 @@
 					},
 				],
 
-				"correct answer" : 2
+				"correct answer" : 1
 			}				
 			}
 		]

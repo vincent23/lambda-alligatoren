@@ -13,7 +13,7 @@
 				"initial constellation" : {
 					"families" : [
 						{
-							"type" : " colored alligator " ,
+							"type" : "colored alligator" ,
 							"movable" : false ,
 							"removable" : false ,
 							"color" : -1 ,
@@ -36,7 +36,7 @@
 							]
 						},
 						{
-							"type" : " colored alligator " ,
+							"type" : "colored alligator" ,
 							"movable" : false ,
 							"removable" : false ,
 							"color" : -1 ,
@@ -63,6 +63,30 @@
 				},
 				"objective" : {
 					"families" : [
+						{
+							"type" : "colored alligator" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 10 ,
+							"recolorable" : true ,
+							"children" : [
+								{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 10 ,
+								"recolorable" : true
+								},
+								{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 10 ,
+								"recolorable" : true
+								}
+							]
+						}
+					
 					]
 				},
 
