@@ -60,10 +60,7 @@ public class LevelPackagesController {
 	private void initialiseLevelPackages(){
 		FileHandle handle = Gdx.files.internal("json/levels");
 		FileHandle[] packageNames = handle.list();
-		int numberOfPackages = packageNames.length;
-		//TODO	
-		System.out.println(numberOfPackages);
-		
+		int numberOfPackages = packageNames.length;	
 		levelPackages = new ArrayList<LevelPackage>();
 		for (int i = 0; i < numberOfPackages; i++) {
 			levelPackages.add(this.loadPackage(i));
@@ -81,7 +78,7 @@ public class LevelPackagesController {
 				+ String.format("%02d", packageIndex) + "/package.json");
 		JsonReader reader = new JsonReader();
 		JsonValue de_croggle = reader.parse(handle.readString());
-		JsonValue json = de_croggle.getChild("packages").get(0);
+		JsonValue json = de_croggle.child().getChild("packages");
 		String animation = json.getString("animation");
 		Boolean hasAnimation = false;
 		if (!animation.equals("")) {
