@@ -3,6 +3,7 @@ package de.croggle.ui.screens;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 import de.croggle.AlligatorApp;
 import de.croggle.ui.StyleHelper;
@@ -22,6 +23,7 @@ public class MainMenuScreen extends AbstractScreen {
 	 *            the instance of alligator app, from which everything is
 	 *            connected
 	 */
+
 	public MainMenuScreen(AlligatorApp app) {
 		super(app);
 
@@ -54,15 +56,18 @@ public class MainMenuScreen extends AbstractScreen {
 		ImageButton achievements = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/icon-trophy"));
 		// TODO this should be a ProfileButton
+		
 		Button profileButton = new Button(StyleHelper.getInstance()
 				.getButtonStyle());
+		
 
 		// add listeners
 		play.addListener(new PackagesScreenClickListener());
 		stats.addListener(new StatisticScreenClickListener());
 		settings.addListener(new SettingsScreenClickListener());
 		achievements.addListener(new AchievementScreenClickListener());
-
+		profileButton.addListener(new SelectProfileScreenClickListener());
+              
 		play.getImageCell().pad(20);
 
 		leftTable.pad(30);
@@ -77,5 +82,10 @@ public class MainMenuScreen extends AbstractScreen {
 
 		table.add(leftTable).expand().fill();
 		table.add(profileButtonTable);
+	}
+	
+	@Override
+	public void onShow() {
+		
 	}
 }

@@ -196,7 +196,10 @@ public abstract class AbstractScreen implements Screen {
 	public void setPreviousScreen(Screen prev) {
 		previousScreen = prev;
 	}
-
+	
+	public Screen getPreviousScreen() {
+		return previousScreen;
+	}
 	// an input processor
 	// mainly prevents from implementing every freakin method of InputProcessor
 	// in the screen
@@ -254,6 +257,20 @@ public abstract class AbstractScreen implements Screen {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			game.showStatisticScreen(AbstractScreen.this);
+		}
+	}
+	
+	protected class SelectProfileScreenClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			game.showSelectProfileScreen(AbstractScreen.this);
+		}
+	}
+	
+	protected class ProfileSetNameScreenClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			game.showProfileSetNameScreen(AbstractScreen.this);
 		}
 	}
 }

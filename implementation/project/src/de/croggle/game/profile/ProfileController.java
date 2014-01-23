@@ -1,5 +1,6 @@
 package de.croggle.game.profile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -23,6 +24,8 @@ public class ProfileController {
 	 * The backreference to the central game object.
 	 */
 	private AlligatorApp game;
+	
+	private List<OnProfileChangeListener> listeners = new ArrayList<OnProfileChangeListener>();
 
 	/**
 	 * Creates a new profile controller. On initialization the active profile is
@@ -43,7 +46,7 @@ public class ProfileController {
 	public void initializeController() {
 		Preferences prefs = Gdx.app.getPreferences("Profile Preferences");
 		String profileName = prefs.getString("activeProfile", null);
-		if(profileName != null) {
+		if(profileName != null && game.getPersistenceManager().isNameUsed(profileName)) {
 			changeCurrentProfile(profileName);
 		}
 	}
@@ -68,9 +71,10 @@ public class ProfileController {
 			throw new IllegalArgumentException();
 		} else {
 			currentProfile = pm.getProfile(profileName);
-			//saveProfileName();
+			saveProfileName();
 			game.getSettingController().changeCurrentSetting(profileName);
 			game.getStatisticController().changeCurrentStatistic(profileName);
+			updateListeners(profileName);
 			//game.getAchievementController().changeUnlockedAchievements(profileName);
 		}
 	}
@@ -124,6 +128,7 @@ public class ProfileController {
 			game.getPersistenceManager().editProfile(currentProfile.getName(), profile);
 			currentProfile.setName(name);
 			currentProfile.setPicturePath(picturePath);
+		
 		}
 
 	}
@@ -169,7 +174,14 @@ public class ProfileController {
 	
 	//NEW
 	public String getCurrentProfileName() {
+		if (currentProfile == null) {
+			return "";
+		}
 		return currentProfile.getName();
+	}
+	
+	public Profile getCurrentProfile() {
+		return currentProfile;
 	}
 
 	/**
@@ -180,5 +192,22 @@ public class ProfileController {
 		prefs.putString("activeProfile", currentProfile.getName());
 		prefs.flush();
 
+	}
+	
+	public void deleteAllProfiles() {
+		game.getPersistenceManager().clearTables();
+		Preferences prefs = Gdx.app.getPreferences("Profile Preferences");
+		prefs.remove("activeProfile");
+		prefs.flush();
+	}
+	
+	public void addProfileChangeListener(OnProfileChangeListener listener) {
+		listeners.add(listener);
+	}
+	
+	private void updateListeners(String name) {
+		for (OnProfileChangeListener listener : listeners) {
+			listener.onProfileChange(name);
+		}
 	}
 }

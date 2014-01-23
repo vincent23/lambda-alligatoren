@@ -1,14 +1,20 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
+import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingController;
+import de.croggle.game.profile.OnProfileChangeListener;
 import de.croggle.ui.StyleHelper;
 
 /**
@@ -16,7 +22,12 @@ import de.croggle.ui.StyleHelper;
  * according to his will. For reference see ``Pflichtenheft 10.5.10 / Abbildung
  * 19''.
  */
-public class SettingsScreen extends AbstractScreen {
+public class SettingsScreen extends AbstractScreen implements OnProfileChangeListener {
+	
+	CheckBox zoomCheckBox;
+	CheckBox colorBlindnessCheckBox;
+	Slider musicSlider;
+	Slider effectsSlider;
 
 	private SettingController settingController;
 
@@ -30,9 +41,9 @@ public class SettingsScreen extends AbstractScreen {
 	 *            the settings controller, which is responsible for the
 	 *            currently selected profile
 	 */
-	public SettingsScreen(AlligatorApp game, SettingController controller) {
+	public SettingsScreen(AlligatorApp game) {
 		super(game);
-		settingController = controller;
+		settingController = game.getSettingController();
 
 		fillTable();
 	}
@@ -54,13 +65,13 @@ public class SettingsScreen extends AbstractScreen {
 		Label effects = new Label("Effects", helper.getLabelStyle());
 		Label profile = new Label("Profile", helper.getLabelStyle());
 
-		CheckBox zoomCheckBox = new CheckBox("", helper.getCheckBoxStyle());
-		CheckBox colorBlindnessCheckBox = new CheckBox("",
+		zoomCheckBox = new CheckBox("", helper.getCheckBoxStyle());
+		colorBlindnessCheckBox = new CheckBox("",
 				helper.getCheckBoxStyle());
 
-		Slider musicSlider = new Slider(0, 100, 1, false,
+		musicSlider = new Slider(0, 100, 1, false,
 				helper.getSliderStyle());
-		Slider effectsSlider = new Slider(0, 100, 1, false,
+		effectsSlider = new Slider(0, 100, 1, false,
 				helper.getSliderStyle());
 
 		TextButton editProfile = new TextButton("Edit Profile",
@@ -68,6 +79,22 @@ public class SettingsScreen extends AbstractScreen {
 
 		// add listeners
 		back.addListener(new BackButtonListener());
+		back.addListener(new ClickListener() {
+			
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				Setting setting = new Setting(musicSlider.getValue() / 100, effectsSlider.getValue() / 100, zoomCheckBox.isChecked(), colorBlindnessCheckBox.isChecked());
+				settingController.editCurrentSetting(setting);
+			}
+		});
+		
+		Setting setting = settingController.getCurrentSetting();
+		if (setting != null) {
+			musicSlider.setValue(setting.getVolumeMusic());
+			effectsSlider.setValue(setting.getVolumeEffects());
+			zoomCheckBox.setChecked(setting.isZoomEnabled());
+			colorBlindnessCheckBox.setChecked(setting.isColorblindEnabled());
+		}
 
 		scrollTable.defaults().left().space(20);
 		scrollTable.add(gameplay).row();
@@ -87,5 +114,19 @@ public class SettingsScreen extends AbstractScreen {
 		table.add(back).size(100).top().left();
 		table.add(scrollTable).expand().fill();
 		table.pad(30);
+		
+		
+	}
+
+	@Override
+	public void onProfileChange(String name) {
+		Setting setting = settingController.getCurrentSetting();
+		if (setting != null) {
+			musicSlider.setValue(setting.getVolumeMusic() * 100);
+			effectsSlider.setValue(setting.getVolumeEffects() * 100);
+			zoomCheckBox.setChecked(setting.isZoomEnabled());
+			colorBlindnessCheckBox.setChecked(setting.isColorblindEnabled());
+		}
+		
 	}
 }

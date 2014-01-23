@@ -1,13 +1,16 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.screens.AbstractScreen.BackButtonListener;
 
 /**
  * Screen which is used for both creating a new account with a given name as
@@ -17,6 +20,8 @@ import de.croggle.ui.StyleHelper;
 public class ProfileSetNameScreen extends AbstractScreen {
 
 	private ProfileController profileController;
+	private TextField nameInput;
+	private String profileName;
 
 	/**
 	 * Creates the screen that is shown to the player while changing his player
@@ -39,9 +44,25 @@ public class ProfileSetNameScreen extends AbstractScreen {
 		StyleHelper helper = StyleHelper.getInstance();
 		Table innerTable = new Table();
 		Label askName = new Label("What's your name?", helper.getLabelStyle());
-		TextField nameInput = new TextField("", helper.getTextFieldStyle());
+		nameInput = new TextField("", helper.getTextFieldStyle());
 		ImageButton next = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-play"));
+		ImageButton back = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-back"));
+	
+
+		// add listeners
+		back.addListener(new BackButtonListener());
+		next.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					String name = nameInput.getText();
+					//Missing dialog if name is invalid (used).
+					if(name != null && profileController.isValidUserName(name)) {
+						game.showProfileSetAvatarScreen(ProfileSetNameScreen.this, name);
+					}
+				}
+		});
 
 		innerTable.setBackground(helper
 				.getDrawable("widgets/default-background"));
@@ -50,8 +71,13 @@ public class ProfileSetNameScreen extends AbstractScreen {
 		innerTable.row();
 		innerTable.add(nameInput).width(500).height(50).space(30);
 		innerTable.row();
+		innerTable.add(back).size(100).expand().left().bottom();
 		innerTable.add(next).size(100).expand().right().bottom();
-
+	
 		table.add(innerTable).width(700).height(350);
+		
+	
 	}
+	
+	
 }

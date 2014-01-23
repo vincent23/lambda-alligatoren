@@ -1,13 +1,18 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 
 import de.croggle.AlligatorApp;
+import de.croggle.data.persistence.manager.ProfileManager;
 import de.croggle.game.profile.ProfileController;
+import de.croggle.game.profile.ProfileOverflowException;
 import de.croggle.ui.StyleHelper;
 
 /**
@@ -20,6 +25,11 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 	private static final int AVATARS_PER_ROW = 3;
 
 	private ProfileController profileController;
+	
+	private String profileName = "";
+	private String picturePath;
+	private ImageButton lastClicked;
+	private ImageButton defaultButton = null;
 
 	/**
 	 * Creates the screen that is shown to the player while changing his player
@@ -58,6 +68,25 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 			if (region.name.matches("avatar/.*")) {
 				ImageButton avatarButton = new ImageButton(
 						helper.getImageButtonStyle(path));
+				avatarButton.setName(path);
+				avatarButton.setColor(Color.GREEN);
+				avatarButton.addListener(new ClickListener(){
+					@Override
+					public void clicked(InputEvent event, float x, float y) {
+						ImageButton button = (ImageButton) event.getListenerActor();
+						picturePath = button.getName();
+						//"Highlight" the clicked button. Should be changed.
+						button.setColor(Color.GRAY);
+						lastClicked.setColor(Color.GREEN);
+						lastClicked = button;
+					};
+				});
+				if(defaultButton == null) {
+					avatarButton.setColor(Color.GRAY);
+					path = avatarButton.getName();
+					lastClicked = avatarButton;
+					defaultButton = avatarButton;
+				}
 				leftTable.add(avatarButton).uniform().size(150);
 			}
 		}
@@ -67,8 +96,27 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 		innerTable.pad(30);
 		innerTable.add(leftTable).expand().fill();
 		innerTable.add(confirm).size(100).expandY().bottom();
+		
+		confirm.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				if (!profileName.equals("")) {
+					try {
+						profileController.createNewProfile(profileName, picturePath);
+						game.showMainMenuScreen(ProfileSetAvatarScreen.this);
+					} catch (ProfileOverflowException p) {
+						//TODO
+					}
+					
+				}
+			}
+		});
 
 		table.add(innerTable).width(700).height(350);
+	}
+	
+	public void setProfileName(String profileName) {
+		this.profileName = profileName;
 	}
 
 }
