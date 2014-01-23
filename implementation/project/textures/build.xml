@@ -8,6 +8,13 @@
 	<property name="gdx.path" location="../libs/gdx.jar" />
 	<property name="gdx-tools.path" location="../tools/gdx-tools.jar" />
 
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="../tools/ant-contrib-1.0b3.jar"/>
+		</classpath>
+	</taskdef>
+
 	<!-- Deletes the existing build, docs and dist directory-->
 	<target name="clean">
 		<delete dir="${build.dir}" />
@@ -19,7 +26,7 @@
 	</target>
 
 	<!-- Runs the libgdx texturepacker2 tool -->
-	<target name="pack" depends="makedir">
+	<target name="pack" depends="makedir, textures-unchanged" unless="standalone.dir.unchanged">
 		<java classname="com.badlogic.gdx.tools.imagepacker.TexturePacker2">
 			<arg value="${pkg.dir}"/>
 			<arg value="${build.dir}"/>
@@ -28,6 +35,24 @@
 				<pathelement location="${gdx-tools.path}"/>
 			</classpath>
 		</java>
+	</target>
+	
+	<target name="textures-unchanged">
+		<path id="build.dir.path">
+			<fileset dir="${build.dir}">
+				<include name="**/*.png" />
+			</fileset>
+		</path>
+		<timestampselector property="build.dir.newest" pathref="build.dir.path"></timestampselector>
+		<path id="standalone.dir.path">
+			<fileset dir="${standalone.dir}">
+				<include name="**/*.png" />
+			</fileset>
+		</path>
+		<timestampselector property="standalone.dir.newest" pathref="standalone.dir.path"></timestampselector>
+		
+		<uptodate property="standalone.dir.unchanged" srcfile="${standalone.dir.newest}" targetfile="${build.dir.newest}">
+		</uptodate>
 	</target>
 	
 	<target name="copy" depends="makedir">
