@@ -1,5 +1,6 @@
 package de.croggle.game.board.operations;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -195,7 +196,7 @@ public class ReplaceEggs implements BoardObjectVisitor {
 				final Set<Color> locallyBoundAndFreeColors = new HashSet<Color>();
 				Collections.addAll(locallyBoundAndFreeColors,
 						locallyBoundColors);
-				Collections.addAll(locallyBoundAndFreeColors, freeColors);
+				locallyBoundAndFreeColors.retainAll(Arrays.asList(freeColors));
 				for (Color color : locallyBoundAndFreeColors) {
 					try {
 						final Color newColor = colorController
@@ -210,7 +211,8 @@ public class ReplaceEggs implements BoardObjectVisitor {
 				final Set<Color> locallyBoundAndBoundColors = new HashSet<Color>();
 				Collections.addAll(locallyBoundAndBoundColors,
 						locallyBoundColors);
-				Collections.addAll(locallyBoundAndBoundColors, boundColors);
+				locallyBoundAndBoundColors
+						.retainAll(Arrays.asList(boundColors));
 				for (Color color : locallyBoundAndBoundColors) {
 					try {
 						final Color newColor = colorController
