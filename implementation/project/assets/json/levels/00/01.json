@@ -13,7 +13,7 @@
 				"initial constellation" : {
 					"families" : [
 						{
-							"type" : " colored alligator " ,
+							"type" : "colored alligator" ,
 							"movable" : false ,
 							"removable" : false ,
 							"color" : -1 ,

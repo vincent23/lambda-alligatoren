@@ -76,7 +76,7 @@ class LevelLoadHelper {
 		JsonReader reader = new JsonReader();
 		JsonValue de_croggle = reader.parse(handle.readString());
 
-		return de_croggle.getChild("levels");
+		return de_croggle.child().child().child();
 	}
 
 	/**
@@ -100,40 +100,40 @@ class LevelLoadHelper {
 		if (leveltype.equals("multiple choice")) {
 			level = fillMultipleChoice(json, levelIndex, packageIndex, game);
 		} else if (leveltype.equals("color edit")) {
-			JsonValue data = json.getChild("data");
-			JsonValue initialBoard = data.getChild("initial constellation");
-			JsonValue goalBoard = data.getChild("objective");
-			Color[] userColors = getColorfromJson(data.getChild("user colors"));
+			JsonValue data = json.get("data");
+			JsonValue initialBoard = data.get("initial constellation");
+			JsonValue goalBoard = data.get("objective");
+			Color[] userColors = getColorfromJson(data.get("user colors"));
 			if (userColors.length != 6) {
 				throw new InvalidJsonException(
 						"The user color Array in this json file has to contain six items!");
 			}
 			Color[] blockedColors = getColorfromJson(data
-					.getChild("blocked colors"));
+					.get("blocked colors"));
 			Animation animation = getAnimationfromJson(data, game);
 
 			level = new ColorEditLevel(levelIndex, packageIndex,
 					JsonToAlligator.convertBoard(initialBoard),
 					JsonToAlligator.convertBoard(goalBoard), animation,
-					userColors, blockedColors, json.getString("hint"),
+					userColors, blockedColors, json.get("hints").getString(0),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
 		} else if (leveltype.equals("term edit")) {
-			JsonValue data = json.getChild("data");
-			JsonValue initialBoard = data.getChild("initial constellation");
-			JsonValue goalBoard = data.getChild("objective");
-			Color[] userColors = getColorfromJson(data.getChild("user colors"));
+			JsonValue data = json.get("data");
+			JsonValue initialBoard = data.get("initial constellation");
+			JsonValue goalBoard = data.get("objective");
+			Color[] userColors = getColorfromJson(data.get("user colors"));
 			if (userColors.length != 6) {
 				throw new InvalidJsonException(
 						"The user color Array in this json file has to contain six items!");
 			}
 			Color[] blockedColors = getColorfromJson(data
-					.getChild("blocked colors"));
+					.get("blocked colors"));
 			Animation animation = getAnimationfromJson(data, game);
 			level = new TermEditLevel(levelIndex, packageIndex,
 					JsonToAlligator.convertBoard(initialBoard),
 					JsonToAlligator.convertBoard(goalBoard), animation,
-					userColors, blockedColors, json.getString("hint"),
+					userColors, blockedColors,  json.get("hints").getString(0),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
 
@@ -158,14 +158,14 @@ class LevelLoadHelper {
 	 */
 	private static Level fillMultipleChoice(JsonValue json, int levelIndex,
 			int packageIndex, AlligatorApp game) throws InvalidJsonException {
-		JsonValue data = json.getChild("data");
-		JsonValue initialBoard = data.getChild("initial");
+		JsonValue data = json.get("data");
+		JsonValue initialBoard = data.get("initial");
 		int correctAnswer = data.getInt("correct answer");
-		Board[] answers = getAnswersfromJson(data.getChild("answers"));
+		Board[] answers = getAnswersfromJson(data.get("answers"));
 		Animation animation = getAnimationfromJson(data, game);
 		Level level = new MultipleChoiceLevel(levelIndex, packageIndex,
 				JsonToAlligator.convertBoard(initialBoard),
-				answers[correctAnswer], animation, json.getString("hint"),
+				answers[correctAnswer], animation,  json.get("hints").getString(0),
 				json.getString("description"),
 				json.getInt("abort simulation after"), answers, correctAnswer);
 		return level;
@@ -188,7 +188,7 @@ class LevelLoadHelper {
 					"There seems to be no answer array in this json file.");
 		} else if (size != 3) {
 			throw new InvalidJsonException(
-					"The number of naswers should be three!");
+					"The number of answers should be three!");
 		}
 		Board[] answers = new Board[size];
 		for (int i = 0; i < size; i++) {

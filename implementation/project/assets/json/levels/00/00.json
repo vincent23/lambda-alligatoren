@@ -3,12 +3,11 @@
 		"levels" : [
 			{
 			"type" : "color edit" ,
-			"description" : "Erstes Tutoriallevel, in dem das Einfärben von Elementen erklärt
-			wird." ,
+			"description" : "Erstes Tutorial Level in dem das Einfärben von Spielelementen erklärt wird." ,
 			"design" : "" ,
 			"animation" : "",
 			"abort simulation after" : 0 ,
-			"hints" : [""
+			"hints" : [ ""
 			],
 			"data" : {
 				"initial constellation" : {
@@ -18,7 +17,8 @@
 							"movable" : false ,
 							"removable" : false ,
 							"color" : -1 ,
-							"recolorable" : true
+							"recolorable" : false
+
 						}
 					]
 				},
@@ -29,17 +29,17 @@
 							"movable" : false ,
 							"removable" : false ,
 							"color" : 5 ,
-							"recolorable" : true
+							"recolorable" : false
 						}
 					]
 				},
 
 				"user colors" : [
-					0, 1, 2, 3, 4, 5
+					0, 1, 2, 3, 5, 7
 				],
 				"blocked colors" : [
 				]
-				
+			}				
 			}
 		]
 	}
