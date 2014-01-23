@@ -12,7 +12,28 @@ public class SimulatorTest extends TestCase {
 
 	public void testOmega() throws IllegalBoardException,
 			ColorOverflowException, AlligatorOverflowException {
-		inputOutputTest("(λx.x x) λx.x x", "(λx.x x) λx.x x", 5);
+		inputOutputTest("(λx.x x) λx.x x", "(λx.x x) λx.x x", 1);
+	}
+
+	public void testLevel2() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest("(λo.o) y", "y", 1);
+	}
+
+	public void testLevel8() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest("(λx.λy.x) z", "λy.z", 1);
+	}
+
+	public void testLevel10() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest("(λx.λy.x x) u v", "u u", 2);
+
+	}
+
+	public void testLevel12() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest("(λx.x)((λy.y)(λz.z))", "λz.z", 2);
 	}
 
 	private void inputOutputTest(String input, String output, int maxSteps)
