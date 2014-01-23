@@ -12,12 +12,22 @@ public class SimulatorTest extends TestCase {
 
 	public void testOmega() throws IllegalBoardException,
 			ColorOverflowException, AlligatorOverflowException {
-		final Board input = LambdaToAlligator.convert("(λx.x x) λx.x x");
-		final Simulator simulator = new Simulator(input, new ColorController(),
-				new BoardEventMessenger());
-		for (int i = 0; i < 5; i++) {
+		inputOutputTest("(λx.x x) λx.x x", "(λx.x x) λx.x x", 5);
+	}
+
+	private void inputOutputTest(String input, String output, int maxSteps)
+			throws IllegalBoardException, ColorOverflowException,
+			AlligatorOverflowException {
+		final Board inputBoard = LambdaToAlligator.convert(input);
+		final Board outputBoard = LambdaToAlligator.convert(output);
+		final Simulator simulator = new Simulator(inputBoard,
+				new ColorController(), new BoardEventMessenger());
+		for (int i = 0; i < maxSteps; i++) {
 			final Board evaluated = simulator.evaluate();
-			assertTrue(MatchWithRenaming.match(input, evaluated));
+			if (MatchWithRenaming.match(outputBoard, evaluated)) {
+				return;
+			}
 		}
+		fail();
 	}
 }
