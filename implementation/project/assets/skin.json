@@ -25,7 +25,7 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
 	default: { up: widgets/button, font: default-font, fontColor: white }
 },
 com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
-	default: { checkboxOn: widgets/check-on, checkboxOff: widgets/check-off, font: default-font, fontColor: white }
+	default: { checkboxOn: widgets/checkbox-checked, checkboxOff: widgets/checkbox, font: default-font, fontColor: white }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
 	default: { background: widgets/slider-horizontal, knob: widgets/slider-knob }

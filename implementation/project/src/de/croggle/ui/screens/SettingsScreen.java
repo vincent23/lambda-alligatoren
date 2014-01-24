@@ -1,9 +1,8 @@
 package de.croggle.ui.screens;
 
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
@@ -22,8 +21,9 @@ import de.croggle.ui.StyleHelper;
  * according to his will. For reference see ``Pflichtenheft 10.5.10 / Abbildung
  * 19''.
  */
-public class SettingsScreen extends AbstractScreen implements OnProfileChangeListener {
-	
+public class SettingsScreen extends AbstractScreen implements
+		OnProfileChangeListener {
+
 	CheckBox zoomCheckBox;
 	CheckBox colorBlindnessCheckBox;
 	Slider musicSlider;
@@ -66,13 +66,10 @@ public class SettingsScreen extends AbstractScreen implements OnProfileChangeLis
 		Label profile = new Label("Profile", helper.getLabelStyle());
 
 		zoomCheckBox = new CheckBox("", helper.getCheckBoxStyle());
-		colorBlindnessCheckBox = new CheckBox("",
-				helper.getCheckBoxStyle());
+		colorBlindnessCheckBox = new CheckBox("", helper.getCheckBoxStyle());
 
-		musicSlider = new Slider(0, 100, 1, false,
-				helper.getSliderStyle());
-		effectsSlider = new Slider(0, 100, 1, false,
-				helper.getSliderStyle());
+		musicSlider = new Slider(0, 100, 1, false, helper.getSliderStyle());
+		effectsSlider = new Slider(0, 100, 1, false, helper.getSliderStyle());
 
 		TextButton editProfile = new TextButton("Edit Profile",
 				helper.getTextButtonStyle());
@@ -80,14 +77,17 @@ public class SettingsScreen extends AbstractScreen implements OnProfileChangeLis
 		// add listeners
 		back.addListener(new BackButtonListener());
 		back.addListener(new ClickListener() {
-			
+
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				Setting setting = new Setting(musicSlider.getValue() / 100, effectsSlider.getValue() / 100, zoomCheckBox.isChecked(), colorBlindnessCheckBox.isChecked());
+				Setting setting = new Setting(musicSlider.getValue() / 100,
+						effectsSlider.getValue() / 100, zoomCheckBox
+								.isChecked(), colorBlindnessCheckBox
+								.isChecked());
 				settingController.editCurrentSetting(setting);
 			}
 		});
-		
+
 		Setting setting = settingController.getCurrentSetting();
 		if (setting != null) {
 			musicSlider.setValue(setting.getVolumeMusic());
@@ -96,17 +96,17 @@ public class SettingsScreen extends AbstractScreen implements OnProfileChangeLis
 			colorBlindnessCheckBox.setChecked(setting.isColorblindEnabled());
 		}
 
-		scrollTable.defaults().left().space(20);
+		scrollTable.defaults().left().space(10);
 		scrollTable.add(gameplay).row();
 		scrollTable.add(zoom).expandX().padLeft(30);
-		scrollTable.add(zoomCheckBox).row();
+		scrollTable.add(zoomCheckBox).size(50).row();
 		scrollTable.add(colorBlindness).expandX().padLeft(30);
-		scrollTable.add(colorBlindnessCheckBox).row();
+		scrollTable.add(colorBlindnessCheckBox).size(50).row();
 		scrollTable.add(sound).row();
 		scrollTable.add(music).padLeft(30);
-		scrollTable.add(musicSlider).width(250).row();
+		scrollTable.add(musicSlider).width(300).height(50).row();
 		scrollTable.add(effects).padLeft(30);
-		scrollTable.add(effectsSlider).width(250).row();
+		scrollTable.add(effectsSlider).width(300).height(50).row();
 		scrollTable.add(profile).row();
 		scrollTable.add(editProfile).width(200).height(75);
 
@@ -114,8 +114,6 @@ public class SettingsScreen extends AbstractScreen implements OnProfileChangeLis
 		table.add(back).size(100).top().left();
 		table.add(scrollTable).expand().fill();
 		table.pad(30);
-		
-		
 	}
 
 	@Override
@@ -127,6 +125,24 @@ public class SettingsScreen extends AbstractScreen implements OnProfileChangeLis
 			zoomCheckBox.setChecked(setting.isZoomEnabled());
 			colorBlindnessCheckBox.setChecked(setting.isColorblindEnabled());
 		}
-		
+
+	}
+
+	private class EditProfileDialog extends Dialog {
+
+		public EditProfileDialog() {
+			super("", StyleHelper.getInstance().getDialogStyle());
+
+			StyleHelper helper = StyleHelper.getInstance();
+			TextButton name = new TextButton("Rename",
+					helper.getTextButtonStyle());
+			TextButton avatar = new TextButton("Change Avatar",
+					helper.getTextButtonStyle());
+			TextButton delete = new TextButton("Delete Profile",
+					helper.getTextButtonStyle());
+
+			clear();
+
+		}
 	}
 }
