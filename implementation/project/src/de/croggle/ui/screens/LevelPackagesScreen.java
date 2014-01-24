@@ -1,10 +1,17 @@
 package de.croggle.ui.screens;
 
+import java.io.IOException;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import de.croggle.AlligatorApp;
+import de.croggle.game.level.LevelPackage;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.ui.PagedScrollPane;
 import de.croggle.ui.StyleHelper;
@@ -41,25 +48,32 @@ public class LevelPackagesScreen extends AbstractScreen {
 
 		home.addListener(new MainMenuClickListener());
 
-		// TODO
-		// packagesController.getLevelPackages();
+		for (LevelPackage pack : packagesController.getLevelPackages()) {
+			Table pageTable = new Table();
+			Image levelImage;
 
-		// just some test stuff
-		Image page1 = new Image(StyleHelper.getInstance().getSkin()
-				.getDrawable("widgets/dummy-icon"));
-		Image page2 = new Image(StyleHelper.getInstance().getSkin()
-				.getDrawable("widgets/icon-play"));
-		Table table1 = new Table();
-		table1.add(page1);
-		table1.add(page1);
-		table1.debug();
-		Table table2 = new Table();
-		table2.add(page2);
-		table2.add(page2);
-		table2.debug();
-		pager.addPage(page1);
+			try {
+				levelImage = new Image(new Texture(pack.getDesign()));
+			} catch (GdxRuntimeException ex) {
+				levelImage = new Image(new Texture("textures/swamp.png"));
+			}
+
+			levelImage.addListener(new OpenPackageListener(pack
+					.getLevelPackageId()));
+
+			pageTable.add(levelImage).height(440);
+			pager.addPage(pageTable);
+		}
+
+		// test scrolling
+		Table page2 = new Table();
+		Image image2 = new Image(new Texture("textures/swamp.png"));
+		page2.add(image2).height(400);
 		pager.addPage(page2);
-		pager.addPage(home);
+		Table page3 = new Table();
+		Image image3 = new Image(new Texture("textures/swamp.png"));
+		page3.add(image3).height(440);
+		pager.addPage(page3);
 
 		table.add(home).expandX().left().size(100);
 		table.row();
@@ -67,8 +81,29 @@ public class LevelPackagesScreen extends AbstractScreen {
 
 		table.pad(30);
 
-		pager.setFlingTime(0.1f);
-		pager.setPageSpacing(25);
+		pager.setFlingTime(0.3f);
+		pager.setPageSpacing(75);
 		pager.setWidth(screenWidth * 0.7f);
+		pager.setScrollingDisabled(false, true);
+	}
+
+	private class OpenPackageListener extends ClickListener {
+
+		private int packageId;
+
+		public OpenPackageListener(int packageId) {
+			this.packageId = packageId;
+		}
+
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO remove catch block when possible
+			try {
+				game.showLevelOverviewScreen(LevelPackagesScreen.this,
+						packagesController.getLevelController(packageId));
+			} catch (IOException ex) {
+
+			}
+		}
 	}
 }

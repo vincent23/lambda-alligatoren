@@ -165,6 +165,7 @@ public class AlligatorApp extends Game {
 		statisticController = new StatisticController(this);
 		settingController = new SettingController(this);
 		profileController = new ProfileController(this);
+		levelPackagesController = new LevelPackagesController(this);
 
 		// Not sure how to initialize those.
 		// achievementController = new AchievementController(this);
@@ -261,7 +262,10 @@ public class AlligatorApp extends Game {
 
 	public void showLevelOverviewScreen(AbstractScreen prev,
 			LevelController levelController) {
-		// TODO set screens correctly
+		AbstractScreen newScreen = new LevelsOverviewScreen(this,
+				levelController);
+		setScreen(newScreen);
+		newScreen.setPreviousScreen(prev);
 	}
 
 	public void showAchievementScreen(AbstractScreen prev) {
