@@ -1,8 +1,11 @@
 package de.croggle.ui.screens;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 import de.croggle.AlligatorApp;
+import de.croggle.game.level.Level;
 import de.croggle.game.level.LevelController;
 import de.croggle.ui.StyleHelper;
 
@@ -12,6 +15,7 @@ import de.croggle.ui.StyleHelper;
  */
 public class LevelsOverviewScreen extends AbstractScreen {
 
+	private final static int LEVELS_PER_ROW = 4;
 	private LevelController levelController;
 
 	/**
@@ -32,10 +36,25 @@ public class LevelsOverviewScreen extends AbstractScreen {
 
 	private void fillTable() {
 		StyleHelper helper = StyleHelper.getInstance();
+		Table levelTable = new Table();
 		ImageButton back = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-back"));
 
+		for (int i = 0; i < levelController.getPackageSize(); i++) {
+			Level level = levelController.getLevel(i);
+
+			TextButton levelButton = new TextButton(Integer.toString(level
+					.getLevelIndex()), helper.getTextButtonStyle());
+			levelTable.add(levelButton).size(120).space(40, 80, 40, 80);
+			if (i % LEVELS_PER_ROW == LEVELS_PER_ROW - 1) {
+				levelTable.row();
+			}
+		}
+
+		back.addListener(new BackButtonListener());
+
 		table.pad(30);
-		table.add(back);
+		table.add(back).size(100).top().left();
+		table.add(levelTable).expand().fill();
 	}
 }
