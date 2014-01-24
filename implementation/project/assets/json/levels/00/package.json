@@ -5,9 +5,9 @@
 				"_comment" : "Erstes Paket, beinhaltet alle wichtigen Tutorials zum erlenen der Spielprinzipien." ,
 				"name" : "Erstes Paket" ,
 				"description" : "Levelpaket zum Erlernen von Croggel." ,
-				"banner" : "..." ,
-				"design" : "..." ,
-				"animation" : "..." ,
+				"banner" : "" ,
+				"design" : "design/00/swamp.png" ,
+				"animation" : "" ,
 				"dependencies" : [
 				]
 			}
