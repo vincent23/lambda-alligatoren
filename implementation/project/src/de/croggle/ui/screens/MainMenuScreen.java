@@ -1,7 +1,5 @@
 package de.croggle.ui.screens;
 
-import android.util.Log;
-
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
@@ -42,7 +40,6 @@ public class MainMenuScreen extends AbstractScreen implements
 
 	@Override
 	public void onProfileChange(String name) {
-		Log.d("CROGGLE", "on profile change");
 		table.clearChildren();
 		fillTable();
 

@@ -1,6 +1,7 @@
 package de.croggle.ui.screens;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -43,7 +44,7 @@ public class SelectProfileScreen extends AbstractScreen implements
 		ImageButton newProfile = new ImageButton(
 				helper.getImageButtonStyle("widgets/icon-plus"));
 
-		newProfile.addListener(new ProfileSetNameScreenClickListener());
+		newProfile.addListener(new NewProfileClickListener());
 
 		scrollTable.defaults().width(500).height(100).space(10);
 
@@ -73,6 +74,20 @@ public class SelectProfileScreen extends AbstractScreen implements
 			TextButton target = (TextButton) event.getListenerActor();
 			profileController.changeCurrentProfile(target.getText().toString());
 			game.showMainMenuScreen(SelectProfileScreen.this);
+		}
+	}
+
+	private class NewProfileClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			// TODO make that six a constant somewhere
+			if (profileController.getAllProfiles().size() == 6) {
+				Dialog infoDialog = new NotificationDialog(
+						"You reached the max. amount of profiles.");
+				infoDialog.show(stage);
+			} else {
+				game.showProfileSetNameScreen(SelectProfileScreen.this);
+			}
 		}
 	}
 
