@@ -26,6 +26,8 @@ public class ProfileController {
 	private AlligatorApp game;
 	
 	private List<OnProfileChangeListener> listeners = new ArrayList<OnProfileChangeListener>();
+	
+	public static final int MAX_PROFILE_NUMBER = 5;
 
 	/**
 	 * Creates a new profile controller. On initialization the active profile is
@@ -97,7 +99,7 @@ public class ProfileController {
 			throws IllegalArgumentException, ProfileOverflowException {
 		if(!isValidUserName(name)) {
 			throw new IllegalArgumentException();
-		} else if (game.getPersistenceManager().getAllProfiles().size() > 5) {
+		} else if (game.getPersistenceManager().getAllProfiles().size() > MAX_PROFILE_NUMBER) {
 			throw new ProfileOverflowException();
 		} else {
 			Profile newProfile = new Profile(name, picturePath);
