@@ -16,6 +16,10 @@ public abstract class Level {
 	private String hint;
 	private String description;
 	private int abortSimulationAfter;
+	private boolean unlocked;
+	private boolean solved;
+
+
 
 	/**
 	 * Creates a new level with the given parameters.
@@ -48,6 +52,8 @@ public abstract class Level {
 		this.hint = hint;
 		this.description = description;
 		this.abortSimulationAfter = abortSimulationAfter;
+		this.solved = false;
+		this.unlocked = false;
 	}
 
 	/**
@@ -133,7 +139,23 @@ public abstract class Level {
 	}
 	
 	/**
-	 * Method to determine whether this level is solved or not
+	 * Gets whether this level is unlocked or not.
+	 * @return whether this level is unlocked or not
+	 */
+	public boolean getUnlocked(){
+		return this.unlocked;
+	}
+	
+	/**
+	 * Sets the Parameter unlocked.
+	 * @param unlocked the value unlocked should be set to.
+	 */
+	public void setUnlocked(boolean unlocked){
+		this.unlocked = unlocked;
+	}
+	
+	/**
+	 * Method to determine whether this level is solved or not during the simulation.
 	 * @param solution the current Board the user has entered after a number of evaluation steps.
 	 * @param steps the number of evaluation steps.
 	 * @return if the current level is solved or not
@@ -152,6 +174,21 @@ public abstract class Level {
 			solvable = false;
 		}
 		return solvable;
+	}
+	
+	/**
+	 * Method to return the Parameter solved.
+	 * @return if the Level is solved.
+	 */
+	protected boolean isSolved() {
+		return solved;
+	}
+
+	/**
+	 * Sets the attribute solved to true.
+	 */
+	protected void setSolvedTrue() {
+		this.solved = true;
 	}
 	
 }

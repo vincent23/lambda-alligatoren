@@ -87,6 +87,9 @@ public class TermEditLevel extends Level {
 		if(MatchWithRenaming.match(solution, this.getGoalBoard())){
 			rightBoard = true;
 		}
+		if(stepsReached && rightBoard){
+			this.setSolvedTrue();
+		}
 		return stepsReached && rightBoard;
 	}
 
