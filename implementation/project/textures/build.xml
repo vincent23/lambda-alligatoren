@@ -63,7 +63,7 @@
 		</copy>
 	</target>
 
-	<target name="main" depends="copy, pack">
+	<target name="main" depends="pack, copy">
 		<description>Main target</description>
 	</target>
 </project> 
