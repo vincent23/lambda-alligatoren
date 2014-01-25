@@ -77,20 +77,20 @@ public class RemoveAgedAlligators implements BoardObjectVisitor {
 	 */
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
+		alligator.acceptOnChildren(this);
 		int children = alligator.getChildCount();
 		if (children <= 1) {
 			int index = alligator.getParent().getChildPosition(alligator);
 			if (children == 0) {
 				alligator.getParent().removeChild(alligator);
 			} else if (children == 1) {
-				alligator.getParent().replaceChild(alligator,
-						alligator.getFirstChild());
+				boolean replaced = alligator.getParent().replaceChild(
+						alligator, alligator.getFirstChild());
 			}
 			if (this.boardMessenger != null) {
-				this.boardMessenger.notifyAgedAlligatorVanishes(alligator, index);
+				this.boardMessenger.notifyAgedAlligatorVanishes(alligator,
+						index);
 			}
-		} else {
-			alligator.acceptOnChildren(this);
 		}
 	}
 

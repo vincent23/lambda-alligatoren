@@ -79,7 +79,7 @@ public class Simulator {
 		ReplaceEggs.replace(constellation, eater.getColor(), eaten,
 				boardMessenger, colorController);
 
-		RemoveAgedAlligators.remove(constellation, boardMessenger);
+		RemoveAgedAlligators.remove(constellation.getParent(), boardMessenger);
 		if (MAX_ALLIGATORS < CountBoardObjects.count(currentBoard)) {
 			throw new AlligatorOverflowException();
 		}
