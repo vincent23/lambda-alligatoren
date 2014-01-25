@@ -73,6 +73,11 @@ public class SimulatorTest extends TestCase {
 				"λg.g ((λx.g (x x)) (λx.g (x x)))", 1);
 	}
 
+	public void testIncrementZero() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest("(λa.λs.λz.s (a s z)) (λs.λz.z)", "(λs.λz.s z)", 3);
+	}
+
 	private void inputOutputTest(String input, String output, int maxSteps)
 			throws IllegalBoardException, ColorOverflowException,
 			AlligatorOverflowException {
@@ -81,7 +86,7 @@ public class SimulatorTest extends TestCase {
 		final Simulator simulator = new Simulator(inputBoard,
 				new ColorController(), new BoardEventMessenger());
 		final RemoveUselessAgedAlligators removeVisitor = new RemoveUselessAgedAlligators();
-		Board evaluated = null;
+		Board evaluated = inputBoard;
 		for (int i = 0; i < maxSteps; i++) {
 			evaluated = simulator.evaluate();
 			evaluated.accept(removeVisitor);
