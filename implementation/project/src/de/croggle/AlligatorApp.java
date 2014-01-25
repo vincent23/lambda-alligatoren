@@ -60,7 +60,7 @@ public class AlligatorApp extends Game {
 	private SelectProfileScreen selectProfileScreen;
 	private ProfileSetNameScreen profileSetNameScreen;
 	private ProfileSetAvatarScreen profileSetAvatarScreen;
-	
+
 	private final Stack<Screen> screenStack;
 
 	public SpriteBatch batch;
@@ -255,7 +255,7 @@ public class AlligatorApp extends Game {
 		// release catching of back key (no idea if necessary)
 		Gdx.input.setCatchBackKey(false);
 	}
-	
+
 	public void showPreviousScreen() {
 		if (screenStack.isEmpty()) {
 			setScreen(new QuitGameOverlay(this, getScreen()));
@@ -311,18 +311,27 @@ public class AlligatorApp extends Game {
 		profileSetAvatarScreen.setProfileName(name);
 		setScreen(profileSetAvatarScreen);
 	}
-	
+
 	public MainMenuScreen getMainMenuScreen() {
 		return mainMenuScreen;
 	}
-	
+
 	public LevelPackagesScreen getLevelPackagesScreen() {
 		return levelPackagesScreen;
 	}
-	
+
 	private void switchScreen() {
 		if (getScreen() != null) {
 			screenStack.push(getScreen());
 		}
+	}
+
+	/**
+	 * Clears the stack of screens used to offer "showPreviousScreen". Used, for
+	 * example, if a game was won and returning to any previous screens would be
+	 * inconsistent.
+	 */
+	public void clearScreenStack() {
+		screenStack.clear();
 	}
 }
