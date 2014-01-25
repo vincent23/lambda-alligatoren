@@ -96,7 +96,7 @@ public class FindEating implements BoardObjectVisitor {
 	 * @return true, if the given alligator can eat, false otherwise
 	 */
 	private boolean canEat(ColoredAlligator alligator) {
-		return !alligator.isLastChild(alligator);
+		return !alligator.getParent().isLastChild(alligator);
 	}
 
 }
