@@ -34,14 +34,13 @@ public abstract class AbstractScreen implements Screen {
 	protected int screenHeight;
 
 	private InputMultiplexer inputMediator;
-	private Screen previousScreen;
 
 	/**
-	 * Superconstructor for all screens. Initializes everything they share, e.g.
+	 * Super constructor for all screens. Initializes everything they share, e.g.
 	 * their stage.
 	 * 
 	 * @param game
-	 *            the backreference to the central game
+	 *            the back reference to the central game
 	 */
 	public AbstractScreen(AlligatorApp game) {
 		this.game = game;
@@ -60,7 +59,6 @@ public abstract class AbstractScreen implements Screen {
 		inputMediator = new InputMultiplexer(stage, new BackButtonHandler());
 
 		table.debug(); // turn on all debug lines (table, cell, and widget)
-
 	}
 
 	/**
@@ -111,7 +109,8 @@ public abstract class AbstractScreen implements Screen {
 		stage.draw();
 		// draw debugging lines
 		Table.drawDebug(stage);
-		// we are done with rendering the screen, so alpha is meaningless and should hence be 1.0
+		// we are done with rendering the screen, so alpha is meaningless and
+		// should hence be 1.0
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glColorMask(false, false, false, true);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -145,10 +144,9 @@ public abstract class AbstractScreen implements Screen {
 	 * protected method onShow() instead.
 	 */
 	public final void show() {
-		if (!assetsLoaded()) {
-			AssetManager.getInstance().finishLoading();
-			this.setAssetsLoaded(true);
-		}
+		// if the loading screen has initialized everything, this returns
+		// instantly on its own
+		AssetManager.getInstance().finishLoading();
 		onShow();
 
 		Gdx.input.setInputProcessor(inputMediator);
@@ -167,47 +165,31 @@ public abstract class AbstractScreen implements Screen {
 		backgroundParams.genMipMaps = true;
 
 		manager.load(backgroundPath, Texture.class, backgroundParams);
+		// TODO maybe make this configurable for loading screen or so
 		manager.finishLoading();
 		background = game.getAssetManager().get(backgroundPath, Texture.class);
 		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 	}
 
 	/**
-	 * Tells, whether this screen's asset dependencies have been loaded
-	 * externally (e.g. by a {@link LoadingScreen}) or whether the screen has to
-	 * finish loading them itself.
+	 * Override this method if you want to use the LogicalPredecessorListener
+	 * and return the respective predecessor screen.
 	 * 
-	 * @return true if all assets have been loaded before
+	 * @return the logicalPredecessor of this screen, or null, if there is none
 	 */
-	public boolean assetsLoaded() {
-		return assetsLoaded;
+	protected Screen getLogicalPredecessor() {
+		return null;
 	}
 
 	/**
-	 * Sets this screen's asset dependencies' loading status.
-	 * 
-	 * @param assetsLoaded
-	 *            true, if all assets have been loaded already, false otherwise.
+	 * an input processor mainly saves us implementing every method of
+	 * InputProcessor in the screen
 	 */
-	public void setAssetsLoaded(boolean assetsLoaded) {
-		this.assetsLoaded = assetsLoaded;
-	}
-
-	public void setPreviousScreen(Screen prev) {
-		previousScreen = prev;
-	}
-	
-	public Screen getPreviousScreen() {
-		return previousScreen;
-	}
-	// an input processor
-	// mainly prevents from implementing every freakin method of InputProcessor
-	// in the screen
 	private class BackButtonHandler extends InputAdapter {
 		@Override
 		public boolean keyUp(int keycode) {
-			if (keycode == Keys.BACK && previousScreen != null) {
-				game.setScreen(previousScreen);
+			if (keycode == Keys.BACK) {
+				game.showPreviousScreen();
 				return true;
 			}
 			return false;
@@ -215,10 +197,20 @@ public abstract class AbstractScreen implements Screen {
 
 	}
 
-	protected class BackButtonListener extends ClickListener {
+	/**
+	 * Listener to return to a logical predecessor screen, e.g. if a back button
+	 * is pressed. To define the logical predecessor of a screen, you need to
+	 * overwrite the getLogicalPredecessor method of the screen. This procedure
+	 * allows to delay the definition and instantiation of the predecessor
+	 * screen up until the point where the listener is invoked.
+	 */
+	protected class LogicalPredecessorListener extends ClickListener {
+
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.setScreen(previousScreen);
+			if (getLogicalPredecessor() != null) {
+				game.setScreen(getLogicalPredecessor());
+			}
 		}
 	}
 
@@ -226,7 +218,7 @@ public abstract class AbstractScreen implements Screen {
 	protected class MainMenuClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showMainMenuScreen(AbstractScreen.this);
+			game.showMainMenuScreen();
 		}
 	}
 
@@ -234,7 +226,7 @@ public abstract class AbstractScreen implements Screen {
 	protected class PackagesScreenClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showLevelPackagesScreen(AbstractScreen.this);
+			game.showLevelPackagesScreen();
 		}
 	}
 
@@ -242,35 +234,35 @@ public abstract class AbstractScreen implements Screen {
 	protected class AchievementScreenClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showAchievementScreen(AbstractScreen.this);
+			game.showAchievementScreen();
 		}
 	}
 
 	protected class SettingsScreenClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showSettingsScreen(AbstractScreen.this);
+			game.showSettingsScreen();
 		}
 	}
 
 	protected class StatisticScreenClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showStatisticScreen(AbstractScreen.this);
+			game.showStatisticScreen();
 		}
 	}
-	
+
 	protected class SelectProfileScreenClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showSelectProfileScreen(AbstractScreen.this);
+			game.showSelectProfileScreen();
 		}
 	}
-	
+
 	protected class ProfileSetNameScreenClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showProfileSetNameScreen(AbstractScreen.this);
+			game.showProfileSetNameScreen();
 		}
 	}
 }

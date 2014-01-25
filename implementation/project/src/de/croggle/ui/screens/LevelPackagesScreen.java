@@ -2,6 +2,7 @@ package de.croggle.ui.screens;
 
 import java.io.IOException;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -99,11 +100,16 @@ public class LevelPackagesScreen extends AbstractScreen {
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO remove catch block when possible
 			try {
-				game.showLevelOverviewScreen(LevelPackagesScreen.this,
-						packagesController.getLevelController(packageId));
+				game.showLevelOverviewScreen(packagesController
+						.getLevelController(packageId));
 			} catch (IOException ex) {
 
 			}
 		}
+	}
+	
+	@Override
+	protected Screen getLogicalPredecessor() {
+		return game.getMainMenuScreen();
 	}
 }

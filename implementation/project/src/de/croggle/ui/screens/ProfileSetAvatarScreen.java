@@ -103,7 +103,7 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 				if (!profileName.equals("")) {
 					try {
 						profileController.createNewProfile(profileName, picturePath);
-						game.showMainMenuScreen(ProfileSetAvatarScreen.this);
+						game.showMainMenuScreen();
 					} catch (ProfileOverflowException p) {
 						//TODO
 					}

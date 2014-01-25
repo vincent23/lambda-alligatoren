@@ -1,5 +1,6 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -51,10 +52,15 @@ public class LevelsOverviewScreen extends AbstractScreen {
 			}
 		}
 
-		back.addListener(new BackButtonListener());
+		back.addListener(new LogicalPredecessorListener());
 
 		table.pad(30);
 		table.add(back).size(100).top().left();
 		table.add(levelTable).expand().fill();
+	}
+	
+	@Override
+	protected Screen getLogicalPredecessor() {
+		return game.getLevelPackagesScreen();
 	}
 }

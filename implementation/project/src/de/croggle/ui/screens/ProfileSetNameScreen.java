@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.croggle.AlligatorApp;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
-import de.croggle.ui.screens.AbstractScreen.BackButtonListener;
+import de.croggle.ui.screens.AbstractScreen.LogicalPredecessorListener;
 
 /**
  * Screen which is used for both creating a new account with a given name as
@@ -52,14 +52,14 @@ public class ProfileSetNameScreen extends AbstractScreen {
 	
 
 		// add listeners
-		back.addListener(new BackButtonListener());
+		back.addListener(new LogicalPredecessorListener());
 		next.addListener(new ClickListener() {
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
 					String name = nameInput.getText();
 					//Missing dialog if name is invalid (used).
 					if(name != null && profileController.isValidUserName(name)) {
-						game.showProfileSetAvatarScreen(ProfileSetNameScreen.this, name);
+						game.showProfileSetAvatarScreen(name);
 					}
 				}
 		});

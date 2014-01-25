@@ -38,7 +38,7 @@ public class AchievementScreen extends AbstractScreen {
 		Label achievements = new Label("Achievements", helper.getLabelStyle());
 
 		// add listeners
-		back.addListener(new BackButtonListener());
+		back.addListener(new LogicalPredecessorListener());
 
 		table.pad(30);
 		table.add(back).size(100);

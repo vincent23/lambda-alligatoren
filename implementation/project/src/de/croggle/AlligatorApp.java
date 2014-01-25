@@ -1,9 +1,12 @@
 package de.croggle;
 
+import java.util.Stack;
+
 import android.content.Context;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -24,6 +27,7 @@ import de.croggle.ui.screens.MainMenuScreen;
 import de.croggle.ui.screens.PlacementModeScreen;
 import de.croggle.ui.screens.ProfileSetAvatarScreen;
 import de.croggle.ui.screens.ProfileSetNameScreen;
+import de.croggle.ui.screens.QuitGameOverlay;
 import de.croggle.ui.screens.SelectProfileScreen;
 import de.croggle.ui.screens.SettingsScreen;
 import de.croggle.ui.screens.SimulationModeScreen;
@@ -56,6 +60,8 @@ public class AlligatorApp extends Game {
 	private SelectProfileScreen selectProfileScreen;
 	private ProfileSetNameScreen profileSetNameScreen;
 	private ProfileSetAvatarScreen profileSetAvatarScreen;
+	
+	private final Stack<Screen> screenStack;
 
 	public SpriteBatch batch;
 
@@ -68,7 +74,7 @@ public class AlligatorApp extends Game {
 	 */
 	public AlligatorApp(Context context) {
 		this.context = context;
-
+		screenStack = new Stack<Screen>();
 	}
 
 	/**
@@ -193,7 +199,7 @@ public class AlligatorApp extends Game {
 
 		// profileController.deleteAllProfiles();
 
-		this.setScreen(mainMenuScreen);
+		showMainMenuScreen();
 	}
 
 	/**
@@ -249,53 +255,74 @@ public class AlligatorApp extends Game {
 		// release catching of back key (no idea if necessary)
 		Gdx.input.setCatchBackKey(false);
 	}
+	
+	public void showPreviousScreen() {
+		if (screenStack.isEmpty()) {
+			setScreen(new QuitGameOverlay(this, getScreen()));
+		} else {
+			setScreen(screenStack.pop());
+		}
+	}
 
-	public void showMainMenuScreen(AbstractScreen prev) {
-		mainMenuScreen.setPreviousScreen(prev);
+	public void showMainMenuScreen() {
+		switchScreen();
 		setScreen(mainMenuScreen);
 	}
 
-	public void showLevelPackagesScreen(AbstractScreen prev) {
-		levelPackagesScreen.setPreviousScreen(prev);
+	public void showLevelPackagesScreen() {
+		switchScreen();
 		setScreen(levelPackagesScreen);
 	}
 
-	public void showLevelOverviewScreen(AbstractScreen prev,
-			LevelController levelController) {
+	public void showLevelOverviewScreen(LevelController levelController) {
+		switchScreen();
 		AbstractScreen newScreen = new LevelsOverviewScreen(this,
 				levelController);
 		setScreen(newScreen);
-		newScreen.setPreviousScreen(prev);
 	}
 
-	public void showAchievementScreen(AbstractScreen prev) {
-		achievementScreen.setPreviousScreen(prev);
+	public void showAchievementScreen() {
+		switchScreen();
 		setScreen(achievementScreen);
 	}
 
-	public void showSettingsScreen(AbstractScreen prev) {
-		settingsScreen.setPreviousScreen(prev);
+	public void showSettingsScreen() {
+		switchScreen();
 		setScreen(settingsScreen);
 	}
 
-	public void showStatisticScreen(AbstractScreen prev) {
-		statisticScreen.setPreviousScreen(prev);
+	public void showStatisticScreen() {
+		switchScreen();
 		setScreen(statisticScreen);
 	}
 
-	public void showSelectProfileScreen(AbstractScreen prev) {
-		selectProfileScreen.setPreviousScreen(prev);
+	public void showSelectProfileScreen() {
+		switchScreen();
 		setScreen(selectProfileScreen);
 	}
 
-	public void showProfileSetNameScreen(AbstractScreen prev) {
-		profileSetNameScreen.setPreviousScreen(prev);
+	public void showProfileSetNameScreen() {
+		switchScreen();
 		setScreen(profileSetNameScreen);
 	}
 
-	public void showProfileSetAvatarScreen(AbstractScreen prev, String name) {
+	public void showProfileSetAvatarScreen(String name) {
+		switchScreen();
 		profileSetAvatarScreen.setProfileName(name);
-		profileSetAvatarScreen.setPreviousScreen(prev);
 		setScreen(profileSetAvatarScreen);
+	}
+	
+	public MainMenuScreen getMainMenuScreen() {
+		return mainMenuScreen;
+	}
+	
+	public LevelPackagesScreen getLevelPackagesScreen() {
+		return levelPackagesScreen;
+	}
+	
+	private void switchScreen() {
+		if (getScreen() != null) {
+			screenStack.push(getScreen());
+		}
 	}
 }

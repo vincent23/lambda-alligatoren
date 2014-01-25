@@ -1,5 +1,6 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -75,7 +76,7 @@ public class SettingsScreen extends AbstractScreen implements
 				helper.getTextButtonStyle());
 
 		// add listeners
-		back.addListener(new BackButtonListener());
+		back.addListener(new LogicalPredecessorListener());
 		back.addListener(new ClickListener() {
 
 			@Override
@@ -144,5 +145,10 @@ public class SettingsScreen extends AbstractScreen implements
 			clear();
 
 		}
+	}
+	
+	@Override
+	protected Screen getLogicalPredecessor() {
+		return game.getMainMenuScreen();
 	}
 }
