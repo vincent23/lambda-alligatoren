@@ -11,6 +11,7 @@ import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.operations.BoardObjectVisitor;
 import de.croggle.game.board.operations.MatchWithRenaming;
 import de.croggle.game.event.BoardEventMessenger;
+import de.croggle.util.convert.AlligatorToLambda;
 import de.croggle.util.convert.LambdaToAlligator;
 
 public class SimulatorTest extends TestCase {
@@ -41,6 +42,37 @@ public class SimulatorTest extends TestCase {
 		inputOutputTest("(λx.x)((λy.y)(λz.z))", "λz.z", 2);
 	}
 
+	public void testTwoAlligators() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest("(λx.x) (λy.y)", "(λy.y)", 1);
+	}
+
+	public void testTakeFirst() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest("(λx.λy. x) a b", "a", 2);
+	}
+
+	public void testTakeSecond() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest("(λx.λy. x) a b", "b", 2);
+	}
+
+	public void testOldAlligator() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest("(λx.x) ((λy.y) (λz.z))", "λz.z", 2);
+	}
+
+	public void testColorRule() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest("(λx.λy.x) (λy.y)", "λz.(λy.y)", 1);
+	}
+
+	public void testYCombinatorOneStep() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest("λg.(λx.g (x x)) (λx.g (x x))",
+				"λg.g ((λx.g (x x)) (λx.g (x x)))", 1);
+	}
+
 	private void inputOutputTest(String input, String output, int maxSteps)
 			throws IllegalBoardException, ColorOverflowException,
 			AlligatorOverflowException {
@@ -49,14 +81,16 @@ public class SimulatorTest extends TestCase {
 		final Simulator simulator = new Simulator(inputBoard,
 				new ColorController(), new BoardEventMessenger());
 		final RemoveUselessAgedAlligators removeVisitor = new RemoveUselessAgedAlligators();
+		Board evaluated = null;
 		for (int i = 0; i < maxSteps; i++) {
-			final Board evaluated = simulator.evaluate();
+			evaluated = simulator.evaluate();
 			evaluated.accept(removeVisitor);
 			if (MatchWithRenaming.match(outputBoard, evaluated)) {
 				return;
 			}
 		}
-		fail();
+		fail("Evaluated to " + AlligatorToLambda.convert(evaluated)
+				+ ", expected " + AlligatorToLambda.convert(outputBoard));
 	}
 
 	private static class RemoveUselessAgedAlligators implements
@@ -76,8 +110,10 @@ public class SimulatorTest extends TestCase {
 			if (alligator.getParent().getFirstChild() == alligator) {
 				alligator.getParent().removeChild(alligator);
 				alligator.acceptOnChildren(this);
+				int i = 0;
 				for (InternalBoardObject child : alligator) {
-					alligator.getParent().insertChild(child, 0);
+					alligator.getParent().insertChild(child, i);
+					i++;
 				}
 			}
 		}
