@@ -78,6 +78,20 @@ public class SimulatorTest extends TestCase {
 		inputOutputTest("(λa.λs.λz.s (a s z)) (λs.λz.z)", "(λs.λz.s z)", 3);
 	}
 
+	public void testOnePlusOne() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest(
+				"(λa.λb.λs.λz.(a s (b s z))) (λs.λz.(s z)) (λs.λz.(s z))",
+				"(λs.λz.s (s z))", 6);
+	}
+
+	public void testThreePlusFour() throws IllegalBoardException,
+			ColorOverflowException, AlligatorOverflowException {
+		inputOutputTest(
+				"(λa.λb.λs.λz.(a s (b s z))) (λs.λz.(s (s (s z)))) (λs.λz.(s (s (s (s z)))))",
+				"(λs.λz.s (s (s (s (s (s(s z)))))))", 6);
+	}
+
 	private void inputOutputTest(String input, String output, int maxSteps)
 			throws IllegalBoardException, ColorOverflowException,
 			AlligatorOverflowException {
