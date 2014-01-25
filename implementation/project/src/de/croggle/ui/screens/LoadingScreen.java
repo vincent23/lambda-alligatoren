@@ -30,9 +30,9 @@ public class LoadingScreen extends AbstractScreen {
 		this.nextScreen = nextScreen;
 
 		// prepare loading bar graphics without using AssetManager
-		Texture barTexture = new Texture(Gdx.files.internal("loading-bar.png"));
+		Texture barTexture = new Texture(Gdx.files.internal("textures/loading-bar.png"));
 		Texture barEmptyTexture = new Texture(
-				Gdx.files.internal("loading-bar-empty.png"));
+				Gdx.files.internal("textures/loading-bar-empty.png"));
 		bar = new NinePatch(barTexture, 8, 8, 8, 8);
 		barEmpty = new NinePatch(barEmptyTexture, 8, 8, 8, 8);
 	}
