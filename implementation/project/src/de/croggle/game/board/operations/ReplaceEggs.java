@@ -193,6 +193,11 @@ public class ReplaceEggs implements BoardObjectVisitor {
 				final Color[] locallyBoundColors = findLocallyBoundColors(egg);
 				final Color[] globallyBoundColors = findGloballyBoundColors(egg);
 
+				final Set<Color> unusableColors = new HashSet<Color>();
+				Collections.addAll(unusableColors, globallyBoundColors);
+				Collections.addAll(unusableColors, freeColors);
+				Collections.addAll(unusableColors, boundColors);
+
 				final Set<Color> locallyBoundAndFreeColors = new HashSet<Color>();
 				Collections.addAll(locallyBoundAndFreeColors,
 						locallyBoundColors);
@@ -200,7 +205,9 @@ public class ReplaceEggs implements BoardObjectVisitor {
 				for (Color color : locallyBoundAndFreeColors) {
 					try {
 						final Color newColor = colorController
-								.requestColor(globallyBoundColors);
+								.requestColor(unusableColors
+										.toArray(new Color[unusableColors
+												.size()]));
 						ExchangeColor.recolor(constellation, color, newColor,
 								boardMessenger);
 					} catch (ColorOverflowException e) {
@@ -216,7 +223,10 @@ public class ReplaceEggs implements BoardObjectVisitor {
 				for (Color color : locallyBoundAndBoundColors) {
 					try {
 						final Color newColor = colorController
-								.requestColor(globallyBoundColors);
+								.requestColor(unusableColors
+										.toArray(new Color[unusableColors
+												.size()]));
+						unusableColors.add(newColor);
 						ExchangeColor.recolor(replacement, color, newColor,
 								boardMessenger);
 					} catch (ColorOverflowException e) {
