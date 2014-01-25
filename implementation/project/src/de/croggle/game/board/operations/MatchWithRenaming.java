@@ -49,6 +49,10 @@ public class MatchWithRenaming implements BoardObjectVisitor {
 	}
 
 	private boolean colorsMatch(Color one, Color two) {
+		if (Color.uncolored().equals(one)) {
+			return Color.uncolored().equals(two);
+		}
+		
 		if (mapping.get(one.getId()) == null) {
 			mapping.append(one.getId(), two);
 			return true;
