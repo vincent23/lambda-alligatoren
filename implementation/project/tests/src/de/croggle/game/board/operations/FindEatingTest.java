@@ -36,12 +36,18 @@ public class FindEatingTest extends TestCase {
 
 		ColoredAlligator a2 = new ColoredAlligator(true, true, new Color(0),
 				true);
-		b.addChild(a2);
+		aa.addChild(a2);
 		Egg e2 = new Egg(true, true, new Color(0), true);
 		a2.addChild(e2);
 
-		Egg e3 = new Egg(true, true, new Color(1), true);
-		b.addChild(e3);
+		ColoredAlligator a3 = new ColoredAlligator(true, true, new Color(0),
+				true);
+		b.addChild(a3);
+		Egg e3 = new Egg(true, true, new Color(0), true);
+		a3.addChild(e3);
+
+		Egg e4 = new Egg(true, true, new Color(1), true);
+		b.addChild(e4);
 
 		assertEquals(a1, FindEating.findEater(b));
 	}
