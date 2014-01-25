@@ -1,6 +1,5 @@
 package de.croggle.game.level;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,9 +37,8 @@ public class LevelPackagesController {
 	 *            the Id of the chosen LevelPackage
 	 * @return the level controller one must use to handle the levels within the
 	 *         level package
-	 * @throws IOException 
 	 */
-	public LevelController getLevelController(int packageId) throws IOException {
+	public LevelController getLevelController(int packageId){
 		return new LevelController(packageId, game);
 	}
 

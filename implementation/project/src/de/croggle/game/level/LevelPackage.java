@@ -16,6 +16,13 @@ public class LevelPackage {
 
 	/**
 	 * Creates a level package with default values.
+	 * @param levelPackageId  the id of this package
+	 * @param name the name of this package
+	 * @param description the description of this package
+	 * @param emblemPath the file path to the emblem of this package
+	 * @param hasAnimation an boolean which is true if this package has an animation
+	 * @param animation the animation of this package
+	 * @param design the file path to the desing of this package
 	 */
 	public LevelPackage(int levelPackageId, String name, String description, String emblemPath, boolean hasAnimation, Animation animation, String design){
 		this.levelPackageId = levelPackageId;
