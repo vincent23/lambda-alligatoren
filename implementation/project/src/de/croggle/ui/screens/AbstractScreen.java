@@ -173,12 +173,10 @@ public abstract class AbstractScreen implements Screen {
 
 	/**
 	 * Override this method if you want to use the LogicalPredecessorListener
-	 * and return the respective predecessor screen.
-	 * 
-	 * @return the logicalPredecessor of this screen, or null, if there is none
+	 * and set the respective predecessor screen in it.
 	 */
-	protected Screen getLogicalPredecessor() {
-		return null;
+	protected void showLogicalPredecessor() {
+		
 	}
 
 	/**
@@ -208,9 +206,7 @@ public abstract class AbstractScreen implements Screen {
 
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			if (getLogicalPredecessor() != null) {
-				game.setScreen(getLogicalPredecessor());
-			}
+			showLogicalPredecessor();
 		}
 	}
 

@@ -60,7 +60,7 @@ public class LevelsOverviewScreen extends AbstractScreen {
 	}
 	
 	@Override
-	protected Screen getLogicalPredecessor() {
-		return game.getLevelPackagesScreen();
+	protected void showLogicalPredecessor() {
+		game.showLevelPackagesScreen();
 	}
 }

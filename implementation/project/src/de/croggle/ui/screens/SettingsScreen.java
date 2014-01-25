@@ -148,7 +148,7 @@ public class SettingsScreen extends AbstractScreen implements
 	}
 	
 	@Override
-	protected Screen getLogicalPredecessor() {
-		return game.getMainMenuScreen();
+	protected void showLogicalPredecessor() {
+		game.showMainMenuScreen();
 	}
 }
