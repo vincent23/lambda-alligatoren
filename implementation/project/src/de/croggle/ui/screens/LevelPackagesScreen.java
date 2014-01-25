@@ -98,13 +98,8 @@ public class LevelPackagesScreen extends AbstractScreen {
 
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			// TODO remove catch block when possible
-			try {
-				game.showLevelOverviewScreen(packagesController
-						.getLevelController(packageId));
-			} catch (IOException ex) {
-
-			}
+			game.showLevelOverviewScreen(packagesController
+					.getLevelController(packageId));
 		}
 	}
 	
