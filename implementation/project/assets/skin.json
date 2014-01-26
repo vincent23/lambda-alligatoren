@@ -7,11 +7,11 @@ com.badlogic.gdx.graphics.Color: {
 	black: { a: 1, b: 0, g: 0, r: 0 }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
-	default: { down: widgets/button-down, up: widgets/button },
+	default: { down: widgets/button-down, up: widgets/button, disabled: widgets/button-disabled },
 	round: { down: widgets/button-round-down, up: widgets/button-round }
 },
 com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
-	default: { down: widgets/button-down, up: widgets/button, font: default-font, fontColor: white },
+	default: { down: widgets/button-down, up: widgets/button, disabled: widgets/button-disabled, font: default-font, fontColor: white },
 	round: { down: widgets/button-round-down, up: widgets/button-round, font: default-font, fontColor: white, downFontColor: red }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {

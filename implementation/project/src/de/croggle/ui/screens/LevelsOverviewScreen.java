@@ -48,8 +48,11 @@ public class LevelsOverviewScreen extends AbstractScreen {
 
 			TextButton levelButton = new TextButton(Integer.toString(level
 					.getLevelIndex()), helper.getTextButtonStyle());
+			if (!level.getUnlocked()) {
+				levelButton.setDisabled(true);
+			}else{
 			levelButton
-					.addListener(new StartGameListener(level.getLevelIndex()));
+					.addListener(new StartGameListener(level.getLevelIndex()));}
 			levelTable.add(levelButton).size(120).space(40, 80, 40, 80);
 			if (i % LEVELS_PER_ROW == LEVELS_PER_ROW - 1) {
 				levelTable.row();
