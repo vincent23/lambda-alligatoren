@@ -25,11 +25,12 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 	private static final int AVATARS_PER_ROW = 3;
 
 	private ProfileController profileController;
-	
+
 	private String profileName = "";
 	private String picturePath;
 	private ImageButton lastClicked;
 	private ImageButton defaultButton = null;
+	private boolean isInEditMode = false;
 
 	/**
 	 * Creates the screen that is shown to the player while changing his player
@@ -70,18 +71,19 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 						helper.getImageButtonStyle(path));
 				avatarButton.setName(path);
 				avatarButton.setColor(Color.GREEN);
-				avatarButton.addListener(new ClickListener(){
+				avatarButton.addListener(new ClickListener() {
 					@Override
 					public void clicked(InputEvent event, float x, float y) {
-						ImageButton button = (ImageButton) event.getListenerActor();
+						ImageButton button = (ImageButton) event
+								.getListenerActor();
 						picturePath = button.getName();
-						//"Highlight" the clicked button. Should be changed.
-						button.setColor(Color.GRAY);
+						// "Highlight" the clicked button. Should be changed.
 						lastClicked.setColor(Color.GREEN);
+						button.setColor(Color.GRAY);
 						lastClicked = button;
 					};
 				});
-				if(defaultButton == null) {
+				if (defaultButton == null) {
 					avatarButton.setColor(Color.GRAY);
 					path = avatarButton.getName();
 					lastClicked = avatarButton;
@@ -96,25 +98,33 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 		innerTable.pad(30);
 		innerTable.add(leftTable).expand().fill();
 		innerTable.add(confirm).size(100).expandY().bottom();
-		
+
 		confirm.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				if (!profileName.equals("")) {
+
+				if (isInEditMode) {
+					profileController.editCurrentProfile(
+							profileController.getCurrentProfileName(),
+							picturePath);
+					isInEditMode = false;
+					game.showSettingsScreen();
+				} else {
 					try {
-						profileController.createNewProfile(profileName, picturePath);
+						profileController.createNewProfile(profileName,
+								picturePath);
 						game.showMainMenuScreen();
 					} catch (ProfileOverflowException p) {
-						//TODO
+						// TODO
 					}
-					
 				}
+
 			}
 		});
 
 		table.add(innerTable).width(700).height(350);
 	}
-	
+
 	@Override
 	public void onShow() {
 		lastClicked.setColor(Color.GREEN);
@@ -122,9 +132,13 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 		lastClicked = defaultButton;
 		picturePath = defaultButton.getName();
 	}
-	
+
 	public void setProfileName(String profileName) {
 		this.profileName = profileName;
+	}
+
+	public void setInEditMode(boolean isInEditMode) {
+		this.isInEditMode = isInEditMode;
 	}
 
 }

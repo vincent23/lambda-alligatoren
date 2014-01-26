@@ -22,6 +22,7 @@ public class ProfileSetNameScreen extends AbstractScreen {
 	private ProfileController profileController;
 	private TextField nameInput;
 	private String profileName;
+	private boolean isInEditMode = false;
 
 	/**
 	 * Creates the screen that is shown to the player while changing his player
@@ -59,7 +60,15 @@ public class ProfileSetNameScreen extends AbstractScreen {
 					String name = nameInput.getText();
 					//Missing dialog if name is invalid (used).
 					if(name != null && profileController.isValidUserName(name)) {
-						game.showProfileSetAvatarScreen(name);
+						if (isInEditMode) {
+							profileController.editCurrentProfile(name, profileController.getCurrentProfile().getPicturePath());
+							isInEditMode = false;
+							game.showSettingsScreen();
+						} else {
+							game.showProfileSetAvatarScreen(name);
+							
+						}
+						
 					}
 				}
 		});
@@ -82,6 +91,10 @@ public class ProfileSetNameScreen extends AbstractScreen {
 	@Override
 	protected void onShow() {
 		nameInput.setText("");
+	}
+	
+	public void setIsInEditMode(boolean isInEditMode) {
+		this.isInEditMode = isInEditMode;
 	}
 	
 	

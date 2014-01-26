@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -14,7 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingController;
+import de.croggle.data.persistence.manager.ProfileManager;
 import de.croggle.game.profile.OnProfileChangeListener;
+import de.croggle.ui.ConfirmInterface;
 import de.croggle.ui.StyleHelper;
 
 /**
@@ -71,6 +74,9 @@ public class SettingsScreen extends AbstractScreen implements
 
 		musicSlider = new Slider(0, 100, 1, false, helper.getSliderStyle());
 		effectsSlider = new Slider(0, 100, 1, false, helper.getSliderStyle());
+		
+		musicSlider.setValue(50);
+		effectsSlider.setValue(50);
 
 		TextButton editProfile = new TextButton("Edit Profile",
 				helper.getTextButtonStyle());
@@ -88,14 +94,21 @@ public class SettingsScreen extends AbstractScreen implements
 				settingController.editCurrentSetting(setting);
 			}
 		});
+		
+		editProfile.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				if (game.getProfileController().getCurrentProfile() != null) {
+					Dialog dialog = new EditProfileDialog();
+					dialog.show(stage);
+				} else {
+					Dialog dialog = new NotificationDialog(
+							"You have to select a profile first!");
+					dialog.show(stage);
+				}
 
-		Setting setting = settingController.getCurrentSetting();
-		if (setting != null) {
-			musicSlider.setValue(setting.getVolumeMusic());
-			effectsSlider.setValue(setting.getVolumeEffects());
-			zoomCheckBox.setChecked(setting.isZoomEnabled());
-			colorBlindnessCheckBox.setChecked(setting.isColorblindEnabled());
-		}
+			}
+		});
 
 		scrollTable.defaults().left().space(10);
 		scrollTable.add(gameplay).row();
@@ -118,35 +131,100 @@ public class SettingsScreen extends AbstractScreen implements
 	}
 
 	@Override
-	public void onProfileChange(String name) {
+	public void onProfileChange() {
 		Setting setting = settingController.getCurrentSetting();
 		if (setting != null) {
 			musicSlider.setValue(setting.getVolumeMusic() * 100);
 			effectsSlider.setValue(setting.getVolumeEffects() * 100);
 			zoomCheckBox.setChecked(setting.isZoomEnabled());
 			colorBlindnessCheckBox.setChecked(setting.isColorblindEnabled());
+		} else {
+			musicSlider.setValue(50);
+			effectsSlider.setValue(50);
+			zoomCheckBox.setChecked(false);
+			colorBlindnessCheckBox.setChecked(false);
+			
 		}
 
 	}
 
-	private class EditProfileDialog extends Dialog {
+	private class EditProfileDialog extends Dialog implements ConfirmInterface {
 
 		public EditProfileDialog() {
 			super("", StyleHelper.getInstance().getDialogStyle());
 
 			StyleHelper helper = StyleHelper.getInstance();
+			Label message = new Label("What do you want to do?",
+					helper.getLabelStyle());
 			TextButton name = new TextButton("Rename",
 					helper.getTextButtonStyle());
 			TextButton avatar = new TextButton("Change Avatar",
 					helper.getTextButtonStyle());
 			TextButton delete = new TextButton("Delete Profile",
 					helper.getTextButtonStyle());
+			TextButton nothing = new TextButton("Nothing",
+					helper.getTextButtonStyle());
+			name.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					game.getProfileSetNameScreen().setIsInEditMode(true);
+					EditProfileDialog.this.hide();
+					game.showProfileSetNameScreen();
+				}
+			});
 
+			avatar.addListener(new ClickListener() {
+				public void clicked(InputEvent event, float x, float y) {
+					game.getProfileSetAvatarScreen().setInEditMode(true);
+					EditProfileDialog.this.hide();
+					game.showProfileSetAvatarScreen("");
+				};
+			});
+
+			delete.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					Dialog dialog = new YesNoDialog(
+							"Are you sure you want to delete the profile with the name "
+									+ game.getProfileController()
+											.getCurrentProfileName() + " ?",
+							EditProfileDialog.this);
+					dialog.show(stage);
+					EditProfileDialog.this.hide();
+
+				}
+			});
+			nothing.addListener(new ClickListener() {
+
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					EditProfileDialog.this.hide();
+				};
+
+			});
 			clear();
+			add(message).center().pad(100).colspan(4).row();
+			add(name).center().width(150).height(70).pad(10);
+			add(avatar).center().width(150).height(70).pad(10);
+			add(delete).center().width(150).height(70).pad(10);
+			add(nothing).center().width(150).height(70).pad(10);
 
 		}
-	}
+
+		@Override
+		public void yes() {
+			game.getProfileController().deleteCurrentProfile();
 	
+
+		}
+
+		@Override
+		public void no() {
+
+		}
+
+	}
+
 	@Override
 	protected void showLogicalPredecessor() {
 		game.showMainMenuScreen();
