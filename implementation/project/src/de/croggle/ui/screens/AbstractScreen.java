@@ -44,13 +44,15 @@ public abstract class AbstractScreen implements Screen {
 	 */
 	public AbstractScreen(AlligatorApp game) {
 		this.game = game;
-		stage = new Stage();
+		stage = new Stage(1024, 600, true, game.batch);
+		
 		table = new Table();
 		table.setFillParent(true);
 		stage.addActor(table);
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1024, 600);
+		stage.setCamera(camera);
 
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
@@ -104,7 +106,7 @@ public abstract class AbstractScreen implements Screen {
 			game.batch.draw(background, 0, 0);
 			game.batch.end();
 		}
-
+		
 		stage.act(delta);
 		stage.draw();
 		// draw debugging lines
@@ -128,7 +130,8 @@ public abstract class AbstractScreen implements Screen {
 	 *            the height, which the newly resized screen will have.
 	 */
 	public void resize(int width, int height) {
-		stage.setViewport(width, height, true);
+		camera.update();
+		//stage.setViewport(width, height, true);
 	}
 
 	/**
