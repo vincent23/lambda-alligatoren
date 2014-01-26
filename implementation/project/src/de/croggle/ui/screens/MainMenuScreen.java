@@ -39,7 +39,7 @@ public class MainMenuScreen extends AbstractScreen implements
 	}
 
 	@Override
-	public void onProfileChange(String name) {
+	public void onProfileChange() {
 		table.clearChildren();
 		fillTable();
 
