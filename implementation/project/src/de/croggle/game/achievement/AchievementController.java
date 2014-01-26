@@ -99,12 +99,9 @@ public class AchievementController {
 	 * 
 	 * @param profileName
 	 *            the name of the user which unlocked achievements are loaded
-	 * @throws IllegalArgumentException
-	 *             whenever the string does not represent a profile in the
-	 *             database
 	 */
 	public void changeUnlockedAchievements(String profileName)
-			throws IllegalArgumentException {
+			{
 		PersistenceManager pm = game.getPersistenceManager();
 		latestUnlockedAchievements = convertInputFromDatabase(pm.getAllUnlockedAchievements(profileName));
 	}

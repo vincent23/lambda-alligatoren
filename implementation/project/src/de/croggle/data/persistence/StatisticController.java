@@ -62,12 +62,9 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * @param profileName
 	 *            the name of the user whose statistic is loaded
 	 * 
-	 * @throws IllegalArgumentException
-	 *             whenever the string does not represent a profile in the
-	 *             database
 	 */
 	public void changeCurrentStatistic(String profileName)
-			throws IllegalArgumentException {
+			 {
 		currentStatistic = game.getPersistenceManager().getStatistic(profileName);
 	}
 
@@ -87,12 +84,8 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 * @param profileName
 	 *            the identifier of the profile whose statistic should be loaded
 	 * @return the statistic of the specified profile
-	 * @throws IllegalArgumentException
-	 *             whenever the string does not represent a profile in the
-	 *             database
 	 */
-	public Statistic getStatistic(String profileName)
-			throws IllegalArgumentException {
+	public Statistic getStatistic(String profileName) {
 		return game.getPersistenceManager().getStatistic(profileName);
 	}
 

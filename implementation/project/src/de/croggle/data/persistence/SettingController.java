@@ -1,5 +1,6 @@
 package de.croggle.data.persistence;
 
+import android.util.Log;
 import de.croggle.AlligatorApp;
 
 /**
@@ -48,13 +49,12 @@ public class SettingController {
 	 * 
 	 * @param profileName
 	 *            the name of the user whose settings are loaded
-	 * @throws IllegalArgumentException
-	 *             whenever the string does not represent a profile in the
-	 *             database
 	 */
 	public void changeCurrentSetting(String profileName)
-			throws IllegalArgumentException {
+		 {
+		
 		currentSetting = game.getPersistenceManager().getSetting(profileName);
+	
 
 	}
 
