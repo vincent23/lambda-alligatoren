@@ -1,0 +1,98 @@
+\documentclass[parskip=full]{scrreprt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage{color}
+
+% some useful packages
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage[space]{grffile}% for spaces in filenames
+
+\usepackage{enumerate}% for specifying enumeration symbols (a,b,c... 1,2,3... etc)
+\usepackage{xparse}% used for texdoclet
+\usepackage{dirtree}% directory trees
+\usepackage{listings}% for source code listings
+%\usepackage{bera} % for nicer font (decide later within the group)
+\usepackage{xcolor}% for the json formatting to work without modification
+\usepackage{needspace}
+
+\input{commands}% custom command definitions go here
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+	\begin{flushleft} \large
+		\includegraphics[height=40pt]{../../assets/kitlogo.pdf}
+	\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+	\begin{flushright} \large
+		\includegraphics[height=40pt]{../../assets/stlogo-600dpi.pdf}
+	\end{flushright}
+\end{minipage} \\[2cm]
+\end{center}
+%Title
+\begin{center}
+	{\huge \bfseries Croggle}\\[0.1cm]
+	{\large  Lernanwendung für Grundschüler}
+\end{center}
+
+
+%Subtitle
+\begin{center}
+	{\Large Implementierung}\\[0.5cm]
+\end{center}
+%Authors
+\begin{center}
+	{Lukas Böhm, Tobias Hornberger, Jonas Mehlhaus, \\ Iris Mehrbrodt, Vincent Schüßler, Lena Winter} \\[1cm]
+\end{center}
+
+%Date
+\begin{center}
+	{\large \today}
+\end{center}
+	
+	\vfill
+	
+	\begin{center}
+	\includegraphics[width=300pt]{../../assets/logo.png}
+	\end{center}
+
+
+\end{titlepage}
+
+\iffalse
+\title{Implementierung}
+\author{ 
+	Lukas Böhm\and 
+	Tobias Hornberger\and 
+	Jonas Mehlhaus\and 
+	Iris Mehrbrodt\and 
+	Vincent Schüßler \and 
+	Lena Winter
+}
+\date{\today}
+
+\maketitle
+\thispagestyle{empty}
+
+\fi
+\pagenumbering{roman}
+
+\clearpage
+\pagestyle{empty}
+\tableofcontents
+
+\clearpage
+\pagestyle{plain}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\end{document}
