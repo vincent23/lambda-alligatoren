@@ -35,12 +35,11 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 	 * @param statistics
 	 */
 	public ActorLayout(Map<InternalBoardObject, BoardObjectActor> layout,
-			Board b, ActorLayoutConfiguration config,
-			ActorLayoutStatistics statistics) {
+			Board b, ActorLayoutConfiguration config) {
 		this.layout = layout;
 		this.b = b;
 		this.config = config;
-		this.statistics = statistics;
+		statistics = new ActorLayoutStatistics(this);
 	}
 
 	/**
@@ -137,8 +136,7 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 	 *         {@link InternalBoardObject} was successfully removed
 	 */
 	public List<ActorDelta> onRemoveSingle(InternalBoardObject b) {
-		// TODO
-		return null;
+		return ActorLayoutFixer.fixRemoveSingle(this, b);
 	}
 
 	/**
@@ -154,8 +152,7 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 	 * @return
 	 */
 	public List<ActorDelta> onRemoveSingle(BoardObjectActor b) {
-		// TODO
-		return null;
+		return onRemoveSingle(getBoardObjectByActor(b));
 	}
 
 	/**

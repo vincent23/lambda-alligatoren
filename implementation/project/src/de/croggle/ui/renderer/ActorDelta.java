@@ -25,7 +25,9 @@ public class ActorDelta {
 		if (actor == null) {
 			throw new NullPointerException("Cannot instantiate ActorDeltas without an actor");
 		}
-		this.setActor(actor);
+		setActor(actor);
+		newWidth = actor.getWidth();
+		newHeight = actor.getHeight();
 	}
 	
 	/**
@@ -42,10 +44,10 @@ public class ActorDelta {
 	ActorDelta(BoardObjectActor actor, float newX, float newY, float newWidth, float newHeight) {
 		this(actor);
 		
-		this.setNewX(newX);
-		this.setNewY(newY);
-		this.setNewWidth(newWidth);
-		this.setNewHeight(newHeight);
+		setNewX(newX);
+		setNewY(newY);
+		setNewWidth(newWidth);
+		setNewHeight(newHeight);
 	}
 	
 	/**
@@ -58,14 +60,14 @@ public class ActorDelta {
 	ActorDelta(BoardObjectActor actor, float newX, float newY, Vector2 newSize) {
 		this(actor);
 		
-		this.setNewX(newX);
-		this.setNewY(newY);
+		setNewX(newX);
+		setNewY(newY);
 		if (newSize == null) {
-			this.setNewWidth(actor.getWidth());
-			this.setNewHeight(actor.getHeight());
+			setNewWidth(actor.getWidth());
+			setNewHeight(actor.getHeight());
 		} else {
-			this.setNewWidth(newSize.x);
-			this.setNewHeight(newSize.y);
+			setNewWidth(newSize.x);
+			setNewHeight(newSize.y);
 		}
 	}
 	
@@ -80,15 +82,15 @@ public class ActorDelta {
 		this(actor);
 		
 		if (newPosition == null) {
-			this.setNewX(actor.getX());
-			this.setNewY(actor.getY());
+			setNewX(actor.getX());
+			setNewY(actor.getY());
 		} else {
-			this.setNewX(newPosition.x);
-			this.setNewY(newPosition.y);
+			setNewX(newPosition.x);
+			setNewY(newPosition.y);
 		}
 		
-		this.setNewWidth(newWidth);
-		this.setNewHeight(newHeight);
+		setNewWidth(newWidth);
+		setNewHeight(newHeight);
 	}
 
 	public BoardObjectActor getActor() {
@@ -118,6 +120,9 @@ public class ActorDelta {
 	 * @param newWidth
 	 */
 	void setNewWidth(float newWidth) {
+		if (newWidth < 0) {
+			return;
+		}
 		this.newWidth = newWidth;
 	}
 
@@ -134,6 +139,9 @@ public class ActorDelta {
 	 * @param newHeight
 	 */
 	void setNewHeight(float newHeight) {
+		if (newHeight < 0) {
+			return;
+		}
 		this.newHeight = newHeight;
 	}
 
@@ -154,6 +162,7 @@ public class ActorDelta {
 	}
 
 	public float getNewY() {
+		
 		return newY;
 	}
 	

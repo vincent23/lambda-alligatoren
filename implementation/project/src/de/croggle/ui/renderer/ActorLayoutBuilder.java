@@ -49,7 +49,6 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	 */
 	private Map<InternalBoardObject, BoardObjectActor> actors;
 
-	private final ActorLayoutStatistics statistics;
 	/**
 	 * The current scaling of newly added BoardObjectActors
 	 */
@@ -64,12 +63,6 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 		this.widthMap = CreateWidthMap.create(b,
 				config.getUniformObjectWidth(),
 				config.getVerticalScaleFactor(), config.getHorizontalPadding());
-		// TODO as this is not really necessary for the build process, maybe
-		// implement it more efficiently as a byproduct?
-		Map<BoardObject, Float> heightMap = CreateHeightMap.create(b,
-				config.getUniformObjectHeight(),
-				config.getVerticalScaleFactor(), config.getVerticalPadding());
-		statistics = new ActorLayoutStatistics(widthMap, heightMap);
 		this.actors = new HashMap<InternalBoardObject, BoardObjectActor>();
 		this.currentPosition = config.getTreeOrigin().cpy();
 	}
@@ -113,7 +106,15 @@ public class ActorLayoutBuilder implements BoardObjectVisitor {
 	public static ActorLayout build(Board b, ActorLayoutConfiguration config) {
 		ActorLayoutBuilder builder = new ActorLayoutBuilder(b, config);
 		b.accept(builder);
-		return new ActorLayout(builder.actors, b, config, builder.statistics);
+		ActorLayout result = new ActorLayout(builder.actors, b, config);
+		result.getLayoutStatistics().setWidthMap(builder.widthMap);
+		// TODO as this is not really necessary for the build process, maybe
+		// implement it more efficiently as a byproduct?
+		Map<BoardObject, Float> heightMap = CreateHeightMap.create(b,
+				config.getUniformObjectHeight(),
+				config.getVerticalScaleFactor(), config.getVerticalPadding());
+		result.getLayoutStatistics().setHeightMap(heightMap);
+		return result;
 	}
 
 	/**
