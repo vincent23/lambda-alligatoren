@@ -3,6 +3,8 @@ package de.croggle.game.profile;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
@@ -27,7 +29,7 @@ public class ProfileController {
 	
 	private List<OnProfileChangeListener> listeners = new ArrayList<OnProfileChangeListener>();
 	
-	public static final int MAX_PROFILE_NUMBER = 5;
+	public static final int MAX_PROFILE_NUMBER = 6;
 
 	/**
 	 * Creates a new profile controller. On initialization the active profile is
@@ -74,10 +76,8 @@ public class ProfileController {
 		} else {
 			currentProfile = pm.getProfile(profileName);
 			saveProfileName();
-			game.getSettingController().changeCurrentSetting(profileName);
-			game.getStatisticController().changeCurrentStatistic(profileName);
-			updateListeners(profileName);
-			//game.getAchievementController().changeUnlockedAchievements(profileName);
+			updateControllers(profileName);
+			updateListeners();
 		}
 	}
 
@@ -123,13 +123,12 @@ public class ProfileController {
 	 */
 	public void editCurrentProfile(String name, String picturePath)
 			throws IllegalArgumentException {
-		if(game.getPersistenceManager().isNameUsed(name)) {
+		if(!name.equals(getCurrentProfileName()) && game.getPersistenceManager().isNameUsed(name)) {
 			throw new IllegalArgumentException();
 		} else {
 			Profile profile = new Profile(name, picturePath);
 			game.getPersistenceManager().editProfile(currentProfile.getName(), profile);
-			currentProfile.setName(name);
-			currentProfile.setPicturePath(picturePath);
+			changeCurrentProfile(name);
 		
 		}
 
@@ -145,6 +144,8 @@ public class ProfileController {
 		prefs.remove("activeProfile");
 		prefs.flush();
 		currentProfile = null;
+		updateControllers("");
+		updateListeners();
 	}
 
 	/**
@@ -207,9 +208,15 @@ public class ProfileController {
 		listeners.add(listener);
 	}
 	
-	private void updateListeners(String name) {
+	private void updateListeners() {
 		for (OnProfileChangeListener listener : listeners) {
-			listener.onProfileChange(name);
+			listener.onProfileChange();
 		}
+	}
+	
+	private void updateControllers(String profileName) {
+		game.getSettingController().changeCurrentSetting(profileName);
+		game.getStatisticController().changeCurrentStatistic(profileName);
+		game.getAchievementController().changeUnlockedAchievements(profileName);
 	}
 }
