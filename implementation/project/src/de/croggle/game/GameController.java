@@ -94,7 +94,7 @@ public class GameController implements BoardEventListener {
 	 * listeners.
 	 * 
 	 */
-	public void onCompletedLevel() {
+	private void onCompletedLevel() {
 		for (StatisticsDeltaProcessor processor : statisticsDeltaProcessors) {
 			processor.processDelta(statisticsDelta);
 		}
@@ -190,7 +190,9 @@ public class GameController implements BoardEventListener {
 	public void evaluateStep() throws ColorOverflowException,
 			AlligatorOverflowException {
 		final Board newBoard = simulator.evaluate();
-		level.isLevelSolved(newBoard, simulator.getSteps());
+		if (level.isLevelSolved(newBoard, simulator.getSteps())) {
+			onCompletedLevel();
+		}
 	}
 
 	public void undo() {
