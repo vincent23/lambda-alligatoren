@@ -63,7 +63,7 @@ public class SelectProfileScreen extends AbstractScreen implements
 	}
 
 	@Override
-	public void onProfileChange(String name) {
+	public void onProfileChange() {
 		table.clear();
 		fillTable();
 	}
@@ -81,7 +81,7 @@ public class SelectProfileScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			// TODO make that six a constant somewhere
-			if (profileController.getAllProfiles().size() == 6) {
+			if (profileController.getAllProfiles().size() == ProfileController.MAX_PROFILE_NUMBER) {
 				Dialog infoDialog = new NotificationDialog(
 						"You reached the max. amount of profiles.");
 				infoDialog.show(stage);
