@@ -1,0 +1,163 @@
+\documentclass[parskip=full]{scrreprt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage{color}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\begin{document}
+In den Anfangskonstellationen werden ungefärbte Elemente durch die Variable \strong{"'o"'} dargestellt. 
+Besondere Level wie Tutoriallevel haben hier zusätzlich eine Beschreibung um ihr Ziel zu verdeutlichen.
+Farben werden hier als Variablen dargestellt.
+
+\chapter{Levelpacket 0}
+\begin{itemize}
+	\item{Level 0} 
+		\begin{description}
+			\item[Typ:] Färbelevel 
+			\item[Anfangskonstellation:] \( o\)
+			\item[Endkonstellation:] \( x\)
+			\item[gesperrte Farben:] -  
+			\item[Beschreibung:] Erstes Tutoriallevel, in dem das Einfärben von Elementen erklärt wird.
+		\end{description}
+
+	\item{Level 1} 
+		\begin{description}
+			\item[Typ:] Färbelevel 
+			\item[Anfangskonstellation:] \((\lambda o . o ) y\)   
+			\item[Endkonstellation:] \(y\) 
+			\item[gesperrte Farben:] y 
+			\item[Beschreibung:] Zweites Tutoriallevel, in dem die \(\beta\)-Reduktion gezeigt wird.
+								Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen. 
+		\end{description}
+
+	\item{Level 2} 
+		\begin{description}
+			\item[Typ:] Einfügelevel 
+			\item[Anfangskonstellation:] \(\lambda x . x \)   
+			\item[Endkonstellation:] \(y\)
+			\item[gesperrte Farben:] -  
+			\item[Beschreibung:] Drittes Tutoriallevel, in dem das Einfügen von Elementen auf das Spielfeld erklärt wird.
+								Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen. 
+		\end{description}
+
+	\item{Level 3} 
+		\begin{description}
+			\item[Typ:] Einfügelevel
+			\item[Anfangskonstellation:] \(\lambda x . x \)    
+			\item[Endkonstellation:] \(y y\)
+			\item[gesperrte Farben:] - 
+		\end{description}
+
+	\item{Level 4} 
+		\begin{description}
+			\item[Typ:] Einfügelevel
+			\item[Anfangskonstellation:] \(x y z\)    
+			\item[Endkonstellation:]  \(x z\)
+			\item[gesperrte Farben:] x, y, z
+		\end{description}
+
+	\item{Level 5} 
+		\begin{description}
+			\item[Typ:] Einfärbelevel mit Schrittanzahl
+			\item[Schrittanzahl:] 5
+			\item[Anfangskonstellation:] \(\lambda o . o   \lambda o . o  \lambda o . o   \lambda o . o  \lambda o . o   \lambda o . o \) 
+			\item[Endkonstellation:]  -
+			\item[gesperrte Farben:] -
+			\item[Beschreibung:] Viertes Tutoriallevel, das das System der Schrittanzahllevel erklärt.
+		\end{description}
+
+	\item{Level 6} 
+		\begin{description}
+			\item[Typ:] Multiple-Choice 
+			\item[Anfangskonstellation:] \((\lambda x . x ) y\)    
+			\item[Wahlmöglichkeiten:] \hfill
+				\begin{itemize}
+					\item[1.] \(y\)
+					\item[2.] \(\lambda x . x \) 
+					\item[3.] \(y y\)
+				\end{itemize}
+			\item[Endkonstellation:] \(y\)
+			\item[Beschreibung:] Fünftes Tutoriallevel, in dem das System der Multiple-Choice Levels erklärt wird.
+		\end{description}
+
+	\item{Level 7} 
+		\begin{description}
+			\item[Typ:] Multiple-Choice 
+			\item[Anfangskonstellation:] \((\lambda x . \lambda y . x ) z\)    
+			\item[Wahlmöglichkeiten:] \hfill
+				\begin{itemize}
+					\item[1.] \( \lambda y . z\) 
+					\item[2.] \( \lambda x . x \) 
+					\item[3.] \( \lambda x . z\)
+				\end{itemize}
+			\item[Endkonstellation:]\( \lambda y . z\)
+		\end{description}
+
+	\item{Level 8} 
+		\begin{description}
+			\item[Typ:] Einfärbelevel mit Schrittanzahl
+			\item[Schrittanzahl:] 10
+			\item[Anfangskonstellation:] \(\lambda o . o o \)  \(\lambda o . o o \) 
+			\item[Endkonstellation:]  -
+			\item[gesperrte Farben:] -
+		\end{description}
+
+	\item{Level 9} 
+		\begin{description}
+			\item[Typ:] Multiple-Choice 
+			\item[Anfangskonstellation:] \((\lambda x . \lambda y . x x ) u v\)    
+			\item[Wahlmöglichkeiten:] \hfill
+				\begin{itemize}
+					\item[1.] \( u u\) 
+					\item[2.] \( v v \) 
+					\item[3.] \( \lambda y . u\)
+				\end{itemize}
+			\item[Endkonstellation:]\(u u\)
+		\end{description}
+	
+	\item{Level 10} 
+		\begin{description}
+			\item[Typ:] Einfügelevel
+			\item[Anfangskonstellation:] \(y x \)    
+			\item[Endkonstellation:] \(y y x\)
+			\item[gesperrte Farben:] y, x 
+		\end{description}
+
+	\item{Level 11} 
+		\begin{description}
+			\item[Typ:] Multiple-Choice 
+			\item[Anfangskonstellation:] \((\lambda x . x ((\lambda y . y) (\lambda z . z ) ) \)    
+			\item[Wahlmöglichkeiten:] \hfill
+				\begin{itemize}
+					\item[1.] \( \lambda y . y\) 
+					\item[2.] \( z \) 
+					\item[3.] \(\lambda z . z \)
+				\end{itemize}
+			\item[Endkonstellation:]\( \lambda z . z\)
+		\end{description}
+
+
+\end{itemize}
+\chapter{Levelpaket 1}
+\begin{itemize}
+
+	\item{Level 0}
+		\begin{description}
+			\item[Typ:] Multiple-Choice 
+			\item[Anfangskonstellation:] \((\lambda p .\lambda q . p q p ) (\lambda x . \lambda y . x ) (\lambda x . \lambda y . y )  \)    
+			\item[Wahlmöglichkeiten:] \hfill
+				\begin{itemize}
+					\item[1.] \(\lambda x . \lambda y . x \) 
+					\item[2.] \(\lambda x . \lambda y . y \)
+					\item[3.] \(\lambda y . x \)
+				\end{itemize}
+			\item[Endkonstellation:]\(\lambda x . \lambda y . y \)
+		\end{description}
+
+\end{itemize}
+\end{document}
