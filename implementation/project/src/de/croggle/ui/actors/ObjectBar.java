@@ -39,16 +39,15 @@ public class ObjectBar extends Table {
 		// new ColorController());
 
 		ImageButton startSimulation = new ImageButton(StyleHelper.getInstance()
-				.getImageButtonStyleRound("widgets/dummy-button"));
+				.getImageButtonStyleRound("widgets/icon-next"));
 		startSimulation.addListener(new StartSimulationListener());
 
-		setBackground(StyleHelper.getInstance().getDrawable(
-				"widgets/dummy-button"));
+		setBackground(StyleHelper.getInstance().getDrawable("widgets/button"));
 
 		add(coloredAlligator).row();
 		// add(agedAlligator).row();
 		// add(egg).row();
-		add(startSimulation);
+		add(startSimulation).size(200);
 	}
 
 	private class StartSimulationListener extends ClickListener {
