@@ -82,12 +82,11 @@ public class SimulationModeScreen extends AbstractScreen {
 		ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(cctrlr);
 		BoardActor ba = new BoardActor(b, config);
-		ba.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
+		//ba.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
 		//ba.setScale(.5f); // TODO test this/ get it to work later
 		
 		this.table.add(ba).fill().expand()
 			.width(getViewportWidth() * 0.5f).height(getViewportHeight() * 0.5f);
-		return;
 	}
 	
 	public void hide() {

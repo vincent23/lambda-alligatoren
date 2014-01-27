@@ -98,9 +98,8 @@ public class BoardActor extends Group implements BoardEventListener {
 		// pan limits
 		maxX = getWidth() - origin.x * scale;
 		minX = -(origin.x + boardWidth) * scale;
-		// TODO remove last summand when ready
-		maxY = getHeight() + (boardHeight - origin.y - config.getUniformObjectHeight()) * scale;
-		minY = -origin.y - config.getUniformObjectHeight() * scale;
+		maxY = getHeight() + (boardHeight - origin.y) * scale;
+		minY = -origin.y * scale;
 		System.out.println("maxX: " + maxX + ", minX: " + minX);
 		System.out.println("maxY: " + maxY + ", minY: " + minY);
 	}
@@ -112,11 +111,10 @@ public class BoardActor extends Group implements BoardEventListener {
 		Vector2 orig = config.getTreeOrigin();
 		float treeMidX = orig.x
 				+ stats.getWidthMap().get(layout.getBoard()) / 2;
-		float treeTop = orig.y
-				+ config.getUniformObjectHeight();
+		float treeTop = orig.y;
 		System.out.println("w " + getWidth() + ", h " + getHeight() + ", sx " + getScaleX() + ", sy " + getScaleY());
 		posX = -(treeMidX - getWidth() * getScaleX() / 2);
-		posY = -(treeTop - getHeight() * getScaleY() + 20); // TODO why doesn't it align to top without +20 padding?
+		posY = -(treeTop - getHeight() * getScaleY());
 		System.out.println("treeX: " + treeMidX + ", treeY: " + treeTop);
 		System.out.println("posX: " + posX + ", posY: " + posY);
 	}
