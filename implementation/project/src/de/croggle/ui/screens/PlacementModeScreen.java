@@ -49,13 +49,13 @@ public class PlacementModeScreen extends AbstractScreen {
 
 		Table leftTable = new Table();
 		ImageButton menu = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-menu"));
 		ImageButton hint = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-hint"));
 		ImageButton zoomIn = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-plus"));
 		ImageButton zoomOut = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-minus"));
 		ObjectBar objectBar = new ObjectBar(game, gameController);
 
 		leftTable.pad(30);
@@ -66,9 +66,9 @@ public class PlacementModeScreen extends AbstractScreen {
 		leftTable.add(hint).expand().size(100).top().left();
 		leftTable.row();
 		// TODO only if zoom buttons are enabled
-		leftTable.add(zoomIn).size(50).left();
+		leftTable.add(zoomIn).size(70).left();
 		leftTable.row();
-		leftTable.add(zoomOut).size(50).left();
+		leftTable.add(zoomOut).size(70).left();
 
 		final ColorController colorController = gameController
 				.getColorController();

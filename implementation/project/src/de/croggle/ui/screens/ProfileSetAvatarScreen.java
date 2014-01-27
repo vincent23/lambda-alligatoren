@@ -57,7 +57,7 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 		Label chooseAvatar = new Label(_("screen_title_set_avatar"),
 				helper.getLabelStyle());
 		ImageButton confirm = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-check"));
 
 		Array<AtlasRegion> list = helper.getSkin().getAtlas().getRegions();
 
