@@ -162,6 +162,7 @@ public class AlligatorApp extends Game {
 	@Override
 	public void create() {
 		de.croggle.data.AssetManager.initialize();
+		StyleHelper.initialize();
 		this.batch = new SpriteBatch();
 
 		// catch android back key

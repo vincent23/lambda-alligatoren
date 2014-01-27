@@ -42,7 +42,6 @@ public class MainMenuScreen extends AbstractScreen implements
 	public void onProfileChange() {
 		table.clearChildren();
 		fillTable();
-
 	}
 
 	private void fillTable() {

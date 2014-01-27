@@ -41,9 +41,18 @@ public class StyleHelper {
 	 */
 	public static StyleHelper getInstance() {
 		if (instance == null) {
-			instance = new StyleHelper();
+			throw new IllegalStateException(
+					"Stylehelper must be initialized before first usage");
 		}
 		return instance;
+	}
+
+	/**
+	 * Creates a new stylehelper that will from now on be returned by
+	 * getInstance
+	 */
+	public static void initialize() {
+		instance = new StyleHelper();
 	}
 
 	/**
