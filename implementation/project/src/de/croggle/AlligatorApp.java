@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import de.croggle.data.persistence.SettingController;
 import de.croggle.data.persistence.StatisticController;
 import de.croggle.data.persistence.manager.PersistenceManager;
+import de.croggle.game.GameController;
 import de.croggle.game.achievement.AchievementController;
 import de.croggle.game.level.LevelController;
 import de.croggle.game.level.LevelPackagesController;
@@ -195,7 +196,7 @@ public class AlligatorApp extends Game {
 		profileController.addProfileChangeListener(selectProfileScreen);
 		profileController.addProfileChangeListener(mainMenuScreen);
 		profileController.addProfileChangeListener(statisticScreen);
-		
+
 		profileController.initializeController();
 
 		// profileController.deleteAllProfiles();
@@ -313,14 +314,19 @@ public class AlligatorApp extends Game {
 		setScreen(profileSetAvatarScreen);
 	}
 
+	public void showPlacementModeScreen(GameController gameController) {
+		switchScreen();
+		setScreen(new PlacementModeScreen(this, gameController));
+	}
+
 	public MainMenuScreen getMainMenuScreen() {
 		return mainMenuScreen;
 	}
-	
+
 	public ProfileSetNameScreen getProfileSetNameScreen() {
 		return profileSetNameScreen;
 	}
-	
+
 	public ProfileSetAvatarScreen getProfileSetAvatarScreen() {
 		return profileSetAvatarScreen;
 	}

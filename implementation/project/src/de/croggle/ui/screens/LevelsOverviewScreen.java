@@ -1,11 +1,13 @@
 package de.croggle.ui.screens;
 
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
+import de.croggle.game.GameController;
 import de.croggle.game.level.Level;
 import de.croggle.game.level.LevelController;
 import de.croggle.ui.StyleHelper;
@@ -46,6 +48,8 @@ public class LevelsOverviewScreen extends AbstractScreen {
 
 			TextButton levelButton = new TextButton(Integer.toString(level
 					.getLevelIndex()), helper.getTextButtonStyle());
+			levelButton
+					.addListener(new StartGameListener(level.getLevelIndex()));
 			levelTable.add(levelButton).size(120).space(40, 80, 40, 80);
 			if (i % LEVELS_PER_ROW == LEVELS_PER_ROW - 1) {
 				levelTable.row();
@@ -58,9 +62,25 @@ public class LevelsOverviewScreen extends AbstractScreen {
 		table.add(back).size(100).top().left();
 		table.add(levelTable).expand().fill();
 	}
-	
+
 	@Override
 	protected void showLogicalPredecessor() {
 		game.showLevelPackagesScreen();
+	}
+
+	private class StartGameListener extends ClickListener {
+		private final int levelId;
+
+		public StartGameListener(int levelId) {
+			this.levelId = levelId;
+		}
+
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			super.clicked(event, x, y);
+			final GameController gameController = new GameController(
+					levelController.getLevel(levelId));
+			game.showPlacementModeScreen(gameController);
+		}
 	}
 }
