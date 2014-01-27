@@ -1,0 +1,195 @@
+{
+	"de.croggle" : {
+		"levels" : [
+			{
+			"type" : "multiple choice" ,
+			"description" : "" ,
+			"design" : "" ,
+			"animation" : "",
+			"abort simulation after" : 0 ,
+			"hints" : [ ""
+			],
+			"data" : {
+				"initial" : {
+					"families" : [
+							{
+							"type" : "colored alligator" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 0 ,
+							"recolorable" : false ,
+							"children" :[
+										{
+											"type" : "colored alligator" ,
+											"movable" : false ,
+											"removable" : false ,
+											"color" : 1 ,
+											"recolorable" : false ,
+											"children" : [
+												{
+												"type" : "egg" ,
+												"movable" : false ,
+												"removable" : false ,
+												"color" : 0 ,
+												"recolorable" : false
+												},										
+												{
+												"type" : "egg" ,
+												"movable" : false ,
+												"removable" : false ,
+												"color" : 1 ,
+												"recolorable" : false
+												},
+												{
+												"type" : "egg" ,
+												"movable" : false ,
+												"removable" : false ,
+												"color" : 0 ,
+												"recolorable" : false
+												}
+											]
+										}
+										]
+						},
+						{
+							"type" : "colored alligator" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 2 ,
+							"recolorable" : false ,
+							"children" :[
+								{
+									"type" : "colored alligator" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : 3 ,
+									"recolorable" : false ,
+									"children" :[
+										{
+											"type" : "egg" ,
+											"movable" : false ,
+											"removable" : false ,
+											"color" : 2 ,
+											"recolorable" : false
+										}
+									]
+								}
+		
+							]
+						},
+						{
+							"type" : "colored alligator" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 2 ,
+							"recolorable" : false ,
+							"children" :[
+								{
+									"type" : "colored alligator" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : 3 ,
+									"recolorable" : false ,
+									"children" :[
+										{
+											"type" : "egg" ,
+											"movable" : false ,
+											"removable" : false ,
+											"color" : 3 ,
+											"recolorable" : false
+										}
+									]
+								}
+		
+							]
+						}
+					]
+				},
+				"answers" :[
+					 {
+						"families" : [
+						{
+							"type" : "colored alligator" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 2 ,
+							"recolorable" : false ,
+							"children" :[
+								{
+									"type" : "colored alligator" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : 3 ,
+									"recolorable" : false ,
+									"children" :[
+										{
+											"type" : "egg" ,
+											"movable" : false ,
+											"removable" : false ,
+											"color" : 3 ,
+											"recolorable" : false
+										}
+									]
+								}
+		
+							]
+						}
+						]
+					},
+					{
+						"families" : [
+						{
+							"type" : "colored alligator" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 2 ,
+							"recolorable" : false ,
+							"children" :[
+								{
+									"type" : "colored alligator" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : 3 ,
+									"recolorable" : false ,
+									"children" :[
+										{
+											"type" : "egg" ,
+											"movable" : false ,
+											"removable" : false ,
+											"color" : 2 ,
+											"recolorable" : false
+										}
+									]
+								}
+		
+							]
+						}
+						]
+					},
+	 				{
+						"families" : [
+							{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 3 ,
+								"recolorable" : true
+							},
+							{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 2 ,
+								"recolorable" : true
+							}
+						]
+					}
+						
+				],
+
+				"correct answer" : 0
+			}				
+			}
+		]
+	}
+}

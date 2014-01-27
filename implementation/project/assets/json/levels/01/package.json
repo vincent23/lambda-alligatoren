@@ -1,0 +1,16 @@
+{
+	"de.croggle" : {
+		"packages" : [
+			{
+				"_comment" : "Zweites Paket" ,
+				"name" : "Zweites Paket" ,
+				"description" : "Levelpaket zum Erlernen der Prinzipien des Lambdakalküls." ,
+				"banner" : "" ,
+				"design" : "design/00/swamp.png" ,
+				"animation" : "" ,
+				"dependencies" : [
+				]
+			}
+		]
+	}
+}
