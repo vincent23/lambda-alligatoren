@@ -198,10 +198,11 @@ public abstract class AbstractScreen implements Screen {
 
 	/**
 	 * Override this method if you want to use the LogicalPredecessorListener
-	 * and set the respective predecessor screen in it.
+	 * and set the respective predecessor screen in it. On default, the
+	 * previously shown screen is used.
 	 */
 	protected void showLogicalPredecessor() {
-
+		game.showPreviousScreen();
 	}
 
 	/**

@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.croggle.AlligatorApp;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
-import de.croggle.ui.screens.AbstractScreen.LogicalPredecessorListener;
 
 /**
  * Screen which is used for both creating a new account with a given name as
@@ -47,30 +46,31 @@ public class ProfileSetNameScreen extends AbstractScreen {
 		Label askName = new Label("What's your name?", helper.getLabelStyle());
 		nameInput = new TextField("", helper.getTextFieldStyle());
 		ImageButton next = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/icon-play"));
+				helper.getImageButtonStyleRound("widgets/icon-next"));
 		ImageButton back = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-back"));
-	
 
 		// add listeners
 		back.addListener(new LogicalPredecessorListener());
 		next.addListener(new ClickListener() {
-				@Override
-				public void clicked(InputEvent event, float x, float y) {
-					String name = nameInput.getText();
-					//Missing dialog if name is invalid (used).
-					if(name != null && profileController.isValidUserName(name)) {
-						if (isInEditMode) {
-							profileController.editCurrentProfile(name, profileController.getCurrentProfile().getPicturePath());
-							isInEditMode = false;
-							game.showSettingsScreen();
-						} else {
-							game.showProfileSetAvatarScreen(name);
-							
-						}
-						
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				String name = nameInput.getText();
+				// Missing dialog if name is invalid (used).
+				if (name != null && profileController.isValidUserName(name)) {
+					if (isInEditMode) {
+						profileController.editCurrentProfile(name,
+								profileController.getCurrentProfile()
+										.getPicturePath());
+						isInEditMode = false;
+						game.showSettingsScreen();
+					} else {
+						game.showProfileSetAvatarScreen(name);
+
 					}
+
 				}
+			}
 		});
 
 		innerTable.setBackground(helper
@@ -82,20 +82,18 @@ public class ProfileSetNameScreen extends AbstractScreen {
 		innerTable.row();
 		innerTable.add(back).size(100).expand().left().bottom();
 		innerTable.add(next).size(100).expand().right().bottom();
-	
+
 		table.add(innerTable).width(700).height(350);
-		
-	
+
 	}
-	
+
 	@Override
 	protected void onShow() {
 		nameInput.setText("");
 	}
-	
+
 	public void setIsInEditMode(boolean isInEditMode) {
 		this.isInEditMode = isInEditMode;
 	}
-	
-	
+
 }
