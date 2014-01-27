@@ -29,7 +29,7 @@ public class LoadPackageTest extends InstrumentationTestCase {
 		LevelPackagesController controller = new LevelPackagesController(app);
 
 		List<LevelPackage> list = controller.getLevelPackages();
-		Assert.assertTrue(list.size() == 1);
+		Assert.assertTrue(list.size() == 2);
 	}
 	
 	public void testLoadedValues(){
@@ -38,6 +38,5 @@ public class LoadPackageTest extends InstrumentationTestCase {
 		List<LevelPackage> list = controller.getLevelPackages();
 		LevelPackage one = list.get(0);
 		 Assert.assertEquals(one.getDescription(), "Levelpaket zum Erlernen von Croggel.");
-		 System.out.println(list.size());
 	}
 }
