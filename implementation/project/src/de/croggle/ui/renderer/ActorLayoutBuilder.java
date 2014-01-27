@@ -33,7 +33,7 @@ import de.croggle.game.board.operations.CreateWidthMap;
  * responsible for the correct positioning of the child. The advantage or result
  * of this is, that the parent enforces paddings.
  */
-public class ActorLayoutBuilder implements BoardObjectVisitor {
+class ActorLayoutBuilder implements BoardObjectVisitor {
 
 	// settings
 	private final ActorLayoutConfiguration config;

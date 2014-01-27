@@ -49,6 +49,16 @@ public class BoardActor extends Group implements BoardEventListener {
 
 	private BoardActorGestureListener gestureListener;
 
+	/**
+	 * Creates a new BoardActor. The actor layout of the board's representation
+	 * will be created using the given {@link ActorLayoutConfiguration}.
+	 * 
+	 * @param b
+	 *            the board this {@link BoardActor} will represent
+	 * @param config
+	 *            an {@link ActorLayoutConfiguration} used for creating the
+	 *            actor layout
+	 */
 	public BoardActor(Board b, ActorLayoutConfiguration config) {
 		this.config = config;
 		this.point = new Vector2();
@@ -61,62 +71,6 @@ public class BoardActor extends Group implements BoardEventListener {
 
 		calculateLimits();
 		initializePosition();
-	}
-	
-	private void calculateLimits() {
-		calculateScaleLimits();
-		calculatePanLimits();
-	}
-	
-	private void calculateScaleLimits() {
-		Board b = layout.getBoard();
-		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics().getHeightMap();
-		float boardHeight = heightMap.get(b) / getScaleY();
-		
-		// zoom limits
-		float lowestScale = 0.2373046875f; // 0.75^5 TODO
-		// allow maximum enlargement to have the smallest object being displayed
-		// with half the screen size
-		maxScale = getWidth() / (config.getUniformObjectWidth() * 2 * lowestScale);
-		// allow maximum the whole tree times 1.2 fitting on the screen
-		minScale = Math.min(boardHeight * 1.2f / getHeight(), 1.f);
-		
-		System.out.println("minScale: " + minScale + ", maxScale: " + maxScale);
-	}
-	
-	private void calculatePanLimits() {
-		Board b = layout.getBoard();
-		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics().getHeightMap();
-		Map<BoardObject, Float> widthMap = layout.getLayoutStatistics().getWidthMap();
-		
-		Vector2 origin = config.getTreeOrigin();
-		float scale = getScaleX();
-		
-		float boardHeight = heightMap.get(b);
-		float boardWidth = widthMap.get(b);
-		
-		// pan limits
-		maxX = getWidth() - origin.x * scale;
-		minX = -(origin.x + boardWidth) * scale;
-		maxY = getHeight() + (boardHeight - origin.y) * scale;
-		minY = -origin.y * scale;
-		System.out.println("maxX: " + maxX + ", minX: " + minX);
-		System.out.println("maxY: " + maxY + ", minY: " + minY);
-	}
-	
-	private void initializePosition() {
-		// have the tree displayed horizontally centered and with its top at the
-		// upper edge
-		ActorLayoutStatistics stats = layout.getLayoutStatistics();
-		Vector2 orig = config.getTreeOrigin();
-		float treeMidX = orig.x
-				+ stats.getWidthMap().get(layout.getBoard()) / 2;
-		float treeTop = orig.y;
-		System.out.println("w " + getWidth() + ", h " + getHeight() + ", sx " + getScaleX() + ", sy " + getScaleY());
-		posX = -(treeMidX - getWidth() * getScaleX() / 2);
-		posY = -(treeTop - getHeight() * getScaleY());
-		System.out.println("treeX: " + treeMidX + ", treeY: " + treeTop);
-		System.out.println("posX: " + posX + ", posY: " + posY);
 	}
 
 	/**
@@ -132,27 +86,78 @@ public class BoardActor extends Group implements BoardEventListener {
 		this(board, new ActorLayoutConfiguration()
 				.setColorController(controller));
 	}
-	
+
+	private void calculateLimits() {
+		calculateScaleLimits();
+		calculatePanLimits();
+	}
+
+	private void calculateScaleLimits() {
+		Board b = layout.getBoard();
+		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics()
+				.getHeightMap();
+		float boardHeight = heightMap.get(b) / getScaleY();
+
+		// zoom limits
+		float lowestScale = 0.2373046875f; // 0.75^5 TODO
+		// allow maximum enlargement to have the smallest object being displayed
+		// with half the screen size
+		maxScale = getWidth()
+				/ (config.getUniformObjectWidth() * 2 * lowestScale);
+		// allow maximum the whole tree times 1.2 fitting on the screen
+		minScale = Math.min(boardHeight * 1.2f / getHeight(), 1.f);
+	}
+
+	private void calculatePanLimits() {
+		Board b = layout.getBoard();
+		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics()
+				.getHeightMap();
+		Map<BoardObject, Float> widthMap = layout.getLayoutStatistics()
+				.getWidthMap();
+
+		Vector2 origin = config.getTreeOrigin();
+		float scale = getScaleX();
+
+		float boardHeight = heightMap.get(b);
+		float boardWidth = widthMap.get(b);
+
+		// pan limits
+		maxX = getWidth() - origin.x * scale;
+		minX = -(origin.x + boardWidth) * scale;
+		maxY = getHeight() + (boardHeight - origin.y) * scale;
+		minY = -origin.y * scale;
+	}
+
+	private void initializePosition() {
+		// have the tree displayed horizontally centered and with its top at the
+		// upper edge
+		ActorLayoutStatistics stats = layout.getLayoutStatistics();
+		Vector2 orig = config.getTreeOrigin();
+		float treeMidX = orig.x + stats.getWidthMap().get(layout.getBoard())
+				/ 2;
+		float treeTop = orig.y;
+		posX = -(treeMidX - getWidth() * getScaleX() / 2);
+		posY = -(treeTop - getHeight() * getScaleY());
+	}
+
 	@Override
-	public void draw (SpriteBatch batch, float parentAlpha) {
+	public void draw(SpriteBatch batch, float parentAlpha) {
 		float x = getX();
 		float y = getY();
-		if(clipBegin()) {
+		if (clipBegin()) {
 			setX(x + posX);
 			setY(y + posY);
-			
+
 			super.draw(batch, parentAlpha);
-			
+
 			setX(x);
 			setY(y);
 			clipEnd();
 		}
 	}
-	
+
 	@Override
-	public Actor hit (float x, float y, boolean touchable) {
-		//System.out.println("hit: " + x + ", " + y);
-		
+	public Actor hit(float x, float y, boolean touchable) {
 		if (touchable && getTouchable() != Touchable.enabled) {
 			return null;
 		}
@@ -186,37 +191,49 @@ public class BoardActor extends Group implements BoardEventListener {
 		public void pan(InputEvent event, float x, float y, float deltaX,
 				float deltaY) {
 			Vector2 delta = new Vector2(deltaX, deltaY);
-			if (posX + delta.x >= minX
-					&& posX + delta.x <= maxX) {
+			if (posX + delta.x >= minX && posX + delta.x <= maxX) {
 				posX += delta.x;
 			}
-			if (posY + delta.y >= minY
-					&& posY + delta.y <= maxY) {
+			if (posY + delta.y >= minY && posY + delta.y <= maxY) {
 				posY += delta.y;
 			}
-			//System.out.println("position: " + posX + ", " + posY);
 		}
-		
+
 		@Override
 		public void pinch(InputEvent event, Vector2 initialPointer1,
 				Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
-			System.out.println("pinch");
 			float density = Gdx.graphics.getDensity();
 			float dist = initialPointer1.dst(initialPointer2);
 			float newdist = pointer1.dst(pointer2);
 			float delta = newdist - dist;
 			float percent = delta / density / 4;
-			float pointX = initialPointer1.x + (initialPointer2.x - initialPointer1.x)/2;
-			float pointY = initialPointer1.y + (initialPointer2.y - initialPointer1.y)/2;
+			float pointX = initialPointer1.x
+					+ (initialPointer2.x - initialPointer1.x) / 2;
+			float pointY = initialPointer1.y
+					+ (initialPointer2.y - initialPointer1.y) / 2;
 			zoomIn(percent, pointX, pointY);
-			System.out.println("delta: " + delta + ", percent: " + percent);
 		}
 	}
 
 	public boolean zoomIn(float percent) {
-		return zoomIn(percent, getWidth() / 2, getHeight()/2);
+		float scale = getScaleX();
+		return zoomIn(percent, getWidth() / 2 / scale, getHeight() / 2 / scale);
 	}
-	
+
+	/**
+	 * 
+	 * @param percent
+	 *            the percentage of how much the actor's scale is to be
+	 *            increased
+	 * @param pointX
+	 *            x coordinate of the point to be zoomed onto (actor
+	 *            coordinates)
+	 * @param pointY
+	 *            y coordinate of the point to be zoomed onto (actor
+	 *            coordinates)
+	 * @return true if zoom was successful, false if the zoom limits were
+	 *         exceeded and nothing was changed
+	 */
 	public boolean zoomIn(float percent, float pointX, float pointY) {
 		if (percent < 0) {
 			return zoomOut(-percent, pointX, pointY);
@@ -227,28 +244,33 @@ public class BoardActor extends Group implements BoardEventListener {
 		if (newScale <= maxScale) {
 			setScale(newScale);
 			calculatePanLimits();
-			
-			float newX = pointX * factor;
-			float newY = pointY * factor;
-			float dx = newX - pointX;
-			float dy = newY - pointY;
-			
-			if (posX - dx >= minX && posX - dx <= maxX) {
-				posX -= dx;
-			}
-			if (posY - dy >= minY && posY - dy <= maxY) {
-				posY -= dy;
-			}
+
+			zoomToPoint(pointX, pointY, scale, newScale);
 
 			return true;
 		}
 		return false;
 	}
-	
+
 	public boolean zoomOut(float percent) {
-		return zoomOut(percent, getWidth() / 2, getHeight()/2);
+		float scale = getScaleX();
+		return zoomOut(percent, getWidth() / 2 / scale, getHeight() / 2 / scale);
 	}
-	
+
+	/**
+	 * 
+	 * @param percent
+	 *            the percentage of how much the actor's scale is to be
+	 *            decreased
+	 * @param pointX
+	 *            x coordinate of the point to be zoomed onto (actor
+	 *            coordinates)
+	 * @param pointY
+	 *            y coordinate of the point to be zoomed onto (actor
+	 *            coordinates)
+	 * @return true if zoom was successful, false if the zoom limits were
+	 *         exceeded and nothing was changed
+	 */
 	public boolean zoomOut(float percent, float pointX, float pointY) {
 		if (percent < 0) {
 			return zoomIn(-percent, pointX, pointY);
@@ -259,24 +281,48 @@ public class BoardActor extends Group implements BoardEventListener {
 		if (newScale >= minScale) {
 			setScale(newScale);
 			calculatePanLimits();
-			
-			float newX = pointX * factor;
-			float newY = pointY * factor;
-			float dx = newX - pointX;
-			float dy = newY - pointY;
-			
-			if (posX - dx >= minX && posX - dx <= maxX) {
-				posX -= dx;
-			}
-			if (posY - dy >= minY && posY - dy <= maxY) {
-				posY -= dy;
-			}
-			
+
+			zoomToPoint(pointX, pointY, scale, newScale);
+
 			return true;
 		}
 		return false;
 	}
-	
+
+	/**
+	 * 
+	 * @param pointX
+	 *            the x coordinate to zoom onto in actor coordinates (offset,
+	 *            scaling etc)
+	 * @param pointY
+	 *            the x coordinate to zoom onto in actor coordinates (offset,
+	 *            scaling etc)
+	 * @param oldScale
+	 * @param newScale
+	 */
+	private void zoomToPoint(float pointX, float pointY, float oldScale,
+			float newScale) {
+		/* Without this method, zooming would be relative to the actor's origin
+		 * so we will have to shift it away from the actual zoom point when
+		 * zooming in and pull closer if we are zooming out
+		 */
+		System.out.println("==== scale: o " + oldScale + ", n " + newScale
+				+ " ====");
+		System.out.println("actor: " + pointX + ", " + pointY);
+		System.out.println("posX: " + posX + ", " + posY);
+
+		
+		float dx = 0;
+		float dy = 0;
+
+		if (posX + dx >= minX && posX + dx <= maxX) {
+			posX += dx;
+		}
+		if (posY + dy >= minY && posY + dy <= maxY) {
+			posY += dy;
+		}
+	}
+
 	/**
 	 * Visualizes the recoloring of an object on the board.
 	 * 
