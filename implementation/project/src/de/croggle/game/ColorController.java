@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.badlogic.gdx.graphics.Color;
+
 /**
  * The color controller manages colors in the game. It is mainly responsible for
  * mapping the virtual colors of board objects consistently on real life colors.
@@ -59,7 +61,11 @@ public class ColorController {
 	 */
 	public com.badlogic.gdx.graphics.Color getRepresentation(
 			de.croggle.game.Color color) {
-		return lookup.get(color);
+		if (color == uncolored) {
+			return de.croggle.util.convert.Color.fromHexString("#FFFFFF");
+		} else {
+			return lookup.get(color);
+		}
 	}
 
 	/**
