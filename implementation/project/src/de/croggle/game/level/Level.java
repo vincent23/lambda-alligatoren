@@ -180,7 +180,7 @@ public abstract class Level {
 	 * Method to return the Parameter solved.
 	 * @return if the Level is solved.
 	 */
-	protected boolean isSolved() {
+	public boolean isSolved() {
 		return solved;
 	}
 
