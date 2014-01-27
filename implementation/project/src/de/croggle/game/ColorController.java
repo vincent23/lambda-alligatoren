@@ -1,12 +1,7 @@
 package de.croggle.game;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import com.badlogic.gdx.graphics.Color;
 
 /**
  * The color controller manages colors in the game. It is mainly responsible for
@@ -25,18 +20,20 @@ public class ColorController {
 	private List<de.croggle.game.Color> bannedColors;
 
 	// TODO inelegant version of bidirectional map
-	private Map<de.croggle.game.Color, com.badlogic.gdx.graphics.Color> lookup;
+	// private Map<de.croggle.game.Color, com.badlogic.gdx.graphics.Color>
+	// lookup;
 
 	/*
 	 * The predefined colors mapped onto variable names source:
 	 * http://tools.medialab.sciences-po.fr/iwanthue/index.php
 	 */
-	private static final String[] colors = { "#72DC4E", "#D94628", "#DA4381",
-			"#6ED2D4", "#545092", "#D8A03D", "#4B7842", "#DE4CDF", "#602D23",
-			"#C3957A", "#C8D282", "#D386D1", "#95A9DB", "#CFD63C", "#70D99D",
-			"#3C314A", "#343D27", "#7E6B2B", "#CB8DA5", "#CBD1C7", "#61877A",
-			"#843756", "#CC4F58", "#669E38", "#6878DB", "#CC46A9", "#B66032",
-			"#577592", "#A05FD8", "#7E397E" };
+	private static final String[] colorStrings = { "#72DC4E", "#D94628",
+			"#DA4381", "#6ED2D4", "#545092", "#D8A03D", "#4B7842", "#DE4CDF",
+			"#602D23", "#C3957A", "#C8D282", "#D386D1", "#95A9DB", "#CFD63C",
+			"#70D99D", "#3C314A", "#343D27", "#7E6B2B", "#CB8DA5", "#CBD1C7",
+			"#61877A", "#843756", "#CC4F58", "#669E38", "#6878DB", "#CC46A9",
+			"#B66032", "#577592", "#A05FD8", "#7E397E" };
+	private final com.badlogic.gdx.graphics.Color[] colors;
 
 	/**
 	 * Initializes the color controller with no colors blocked, no colors usable
@@ -45,9 +42,12 @@ public class ColorController {
 	public ColorController() {
 		usableColors = new ArrayList<de.croggle.game.Color>();
 		bannedColors = new ArrayList<de.croggle.game.Color>();
-		lookup = new HashMap<de.croggle.game.Color, com.badlogic.gdx.graphics.Color>(
-				30);
 		uncolored = de.croggle.game.Color.uncolored();
+		colors = new com.badlogic.gdx.graphics.Color[colorStrings.length];
+		for (int i = 0; i < colorStrings.length; i++) {
+			colors[i] = de.croggle.util.convert.Color
+					.fromHexString(colorStrings[i]);
+		}
 	}
 
 	/**
@@ -64,7 +64,8 @@ public class ColorController {
 		if (color == uncolored) {
 			return de.croggle.util.convert.Color.fromHexString("#FFFFFF");
 		} else {
-			return lookup.get(color);
+			// return lookup.get(color);
+			return colors[color.getId()];
 		}
 	}
 
@@ -78,10 +79,16 @@ public class ColorController {
 	 */
 	public de.croggle.game.Color getAssociatedColor(
 			com.badlogic.gdx.graphics.Color color) {
-		for (Entry<de.croggle.game.Color, com.badlogic.gdx.graphics.Color> entry : lookup
-				.entrySet()) {
-			if (color.equals(entry.getValue())) {
-				return entry.getKey();
+		// for (Entry<de.croggle.game.Color, com.badlogic.gdx.graphics.Color>
+		// entry : lookup
+		// .entrySet()) {
+		// if (color.equals(entry.getValue())) {
+		// return entry.getKey();
+		// }
+		// }
+		for (int i = 0; i < colors.length; i++) {
+			if (colors[i].equals(color)) {
+				return new de.croggle.game.Color(i);
 			}
 		}
 		return null;
@@ -102,15 +109,16 @@ public class ColorController {
 	 *             if there is no color available
 	 */
 	public de.croggle.game.Color requestColor() throws ColorOverflowException {
-		if (lookup.size() >= MAX_COLORS) {
-			throw new ColorOverflowException(
-					"Exceeded maximum number of colors: " + MAX_COLORS);
-		}
-
-		de.croggle.game.Color c = new de.croggle.game.Color(lookup.size());
-		this.lookup.put(c,
-				de.croggle.util.convert.Color.fromHexString(colors[c.getId()]));
-		return c;
+		// if (lookup.size() >= MAX_COLORS) {
+		// throw new ColorOverflowException(
+		// "Exceeded maximum number of colors: " + MAX_COLORS);
+		// }
+		//
+		// de.croggle.game.Color c = new de.croggle.game.Color(lookup.size());
+		// this.lookup.put(c,
+		// de.croggle.util.convert.Color.fromHexString(colors[c.getId()]));
+		// return c;
+		return new de.croggle.game.Color(0);
 	}
 
 	/**
@@ -139,10 +147,10 @@ public class ColorController {
 		}
 
 		de.croggle.game.Color c = new de.croggle.game.Color(i);
-		if (this.lookup.size() <= i) {
-			this.lookup.put(c,
-					de.croggle.util.convert.Color.fromHexString(colors[i]));
-		}
+		// if (this.lookup.size() <= i) {
+		// this.lookup.put(c,
+		// de.croggle.util.convert.Color.fromHexString(colors[i]));
+		// }
 
 		return c;
 	}

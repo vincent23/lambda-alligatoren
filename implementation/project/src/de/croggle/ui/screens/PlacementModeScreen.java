@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
 import de.croggle.game.ColorController;
-import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.ObjectBar;
@@ -72,14 +71,6 @@ public class PlacementModeScreen extends AbstractScreen {
 
 		final ColorController colorController = gameController
 				.getColorController();
-		for (int i = 0; i < 30; i++) {
-			// tell the colorcontroller that we need some colors instantiated
-			try {
-				colorController.requestColor();
-			} catch (ColorOverflowException e) {
-				throw new RuntimeException("Test failed");
-			}
-		}
 
 		final ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(colorController);
