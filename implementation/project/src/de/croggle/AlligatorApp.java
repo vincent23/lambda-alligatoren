@@ -182,7 +182,7 @@ public class AlligatorApp extends Game {
 		mainMenuScreen = new MainMenuScreen(this);
 		levelPackagesScreen = new LevelPackagesScreen(this);
 		// levelsOverviewScreen = new LevelsOverviewScreen(this, null);
-		placementModeScreen = new PlacementModeScreen(this, null);
+		// placementModeScreen = new PlacementModeScreen(this, null);
 		simulationModeScreen = new SimulationModeScreen(this, null);
 		achievementScreen = new AchievementScreen(this);
 		settingsScreen = new SettingsScreen(this);
