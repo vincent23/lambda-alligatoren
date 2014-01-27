@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.data.LocalizationHelper._;
+
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
@@ -35,7 +37,8 @@ public class AchievementScreen extends AbstractScreen {
 		StyleHelper helper = StyleHelper.getInstance();
 		ImageButton back = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-back"));
-		Label achievements = new Label("Achievements", helper.getLabelStyle());
+		Label achievements = new Label(_("screen_title_achievements"),
+				helper.getLabelStyle());
 
 		// add listeners
 		back.addListener(new LogicalPredecessorListener());

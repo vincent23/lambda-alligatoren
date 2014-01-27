@@ -14,6 +14,43 @@
     <string name="achievement_hints_used_per_level">no hint used within a level</string>
     <string name="achievement_alligators_eaten_per_level_final"> wow. You ate a lot of alligators within one level.</string>
     <string name="achievement_level_completed"> levels solved</string>
-    
+    <string name="screen_title_achievements">Achievements</string>
+    <string name="screen_title_set_avatar">Choose your avatar</string>
+    <string name="screen_title_set_name">What\'s your name?</string>
+    <string name="warning_max_profiles">You reached the max. amount of profiles.</string>
+    <string name="settings_title_gameplay">Gameplay</string>
+    <string name="settings_title_zoom">Zoom Buttons On</string>
+    <string name="settings_title_color_blindness">Color Blindness Mode</string>
+    <string name="settings_title_sound">Sound</string>
+    <string name="settings_title_music">Music</string>
+    <string name="settings_title_effects">Effects</string>
+    <string name="settings_title_profile">Profile</string>
+    <string name="settings_button_edit_profile">Edit Profile</string>
+    <string name="warning_no_profile_selected">You have to select a profile first!</string>
+    <string name="title_edit_profile">What do you want to do?</string>
+    <string name="edit_profile_button_rename">Rename</string>
+    <string name="edit_profile_button_change_avatar">Change Avatar</string>
+    <string name="edit_profile_button_delete">Delete Profile</string>
+    <string name="edit_profile_button_nothing">Nothing</string>
+    <string name="edit_profile_delete_confirmation">Are you sure you want to delete the profile with the name %s?</string>
+    <string name="statistic_screen_selected_profile">Selected profile : </string>
+    <string name="statistic_screen_no_users">No users available yet</string>
+    <string name="statistic_tab_actions">ACTIONS</string>
+    <string name="statistic_tab_progress">PROGRESS</string>
+    <string name="statistic_tab_game">GAME</string>
+    <string name="statistic_label_action_recolorings">Recolorings done : </string>
+    <string name="statistic_label_action_resets">Resets used : </string>
+    <string name="statistic_label_action_hints">Hints used : </string>
+    <string name="statistic_label_progress_time">Time played : </string>
+    <string name="statistic_label_progress_packages">Packages complete : </string>
+    <string name="statistic_label_progress_levels">Levels complete : </string>
+    <string name="statistic_label_game_alligators_eaten">Alligators eaten : </string>
+    <string name="statistic_label_game_alligators_placed">Alligators placed : </string>
+    <string name="statistic_label_game_eggs_hatched">Eggs hatched : </string>
+    <string name="statistic_label_game_eggs_placed">Eggs placed : </string>
+    <string name="title_new_achievement">You got a new achievement!</string>
+    <string name="button_ok">Okay</string>
+    <string name="button_yes">Yes</string>
+    <string name="button_no">No</string>
 
 </resources>

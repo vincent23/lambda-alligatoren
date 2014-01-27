@@ -1,5 +1,7 @@
 package de.croggle.ui.actors;
 
+import static de.croggle.data.LocalizationHelper._;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -20,7 +22,8 @@ public class NotificationDialog extends Dialog {
 		StyleHelper helper = StyleHelper.getInstance();
 
 		Label message = new Label(msg, helper.getLabelStyle());
-		TextButton okay = new TextButton("Okay", helper.getTextButtonStyle());
+		TextButton okay = new TextButton(_("button_ok"),
+				helper.getTextButtonStyle());
 
 		okay.addListener(new ClickListener() {
 			@Override

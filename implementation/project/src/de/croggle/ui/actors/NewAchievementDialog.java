@@ -1,5 +1,7 @@
 package de.croggle.ui.actors;
 
+import static de.croggle.data.LocalizationHelper._;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -17,7 +19,7 @@ public class NewAchievementDialog extends Dialog {
 		super("", StyleHelper.getInstance().getDialogStyle());
 
 		StyleHelper helper = StyleHelper.getInstance();
-		Label message = new Label("You got a new achievement!",
+		Label message = new Label(_("title_new_achievement"),
 				helper.getLabelStyle());
 		Image icon = new Image(helper.getDrawable(achievement
 				.getEmblemPath(index)));

@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.data.LocalizationHelper._;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -43,7 +45,8 @@ public class ProfileSetNameScreen extends AbstractScreen {
 	private void fillTable() {
 		StyleHelper helper = StyleHelper.getInstance();
 		Table innerTable = new Table();
-		Label askName = new Label("What's your name?", helper.getLabelStyle());
+		Label askName = new Label(_("screen_title_set_name"),
+				helper.getLabelStyle());
 		nameInput = new TextField("", helper.getTextFieldStyle());
 		ImageButton next = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-next"));

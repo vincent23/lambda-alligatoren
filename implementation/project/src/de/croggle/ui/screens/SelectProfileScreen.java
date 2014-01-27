@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.data.LocalizationHelper._;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -84,7 +86,7 @@ public class SelectProfileScreen extends AbstractScreen implements
 			// TODO make that six a constant somewhere
 			if (profileController.getAllProfiles().size() == ProfileController.MAX_PROFILE_NUMBER) {
 				Dialog infoDialog = new NotificationDialog(
-						"You reached the max. amount of profiles.");
+						_("warning_max_profiles"));
 				infoDialog.show(stage);
 			} else {
 				game.showProfileSetNameScreen();

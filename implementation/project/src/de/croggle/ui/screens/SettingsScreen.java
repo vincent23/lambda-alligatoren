@@ -1,6 +1,7 @@
 package de.croggle.ui.screens;
 
 import com.badlogic.gdx.Screen;
+import static de.croggle.data.LocalizationHelper._;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -62,26 +63,31 @@ public class SettingsScreen extends AbstractScreen implements
 		Table scrollTable = new Table();
 		// ScrollPane scroll = new ScrollPane(scrollTable);
 
-		Label gameplay = new Label("Gameplay", helper.getLabelStyle());
-		Label zoom = new Label("Zoom Buttons On", helper.getLabelStyle());
-		Label colorBlindness = new Label("Color Blindness Mode",
+		Label gameplay = new Label(_("settings_title_gameplay"),
 				helper.getLabelStyle());
-		Label sound = new Label("Sound", helper.getLabelStyle());
-		Label music = new Label("Music", helper.getLabelStyle());
-		Label effects = new Label("Effects", helper.getLabelStyle());
-		Label profile = new Label("Profile", helper.getLabelStyle());
+		Label zoom = new Label(_("settings_title_zoom"), helper.getLabelStyle());
+		Label colorBlindness = new Label(_("settings_title_blindness"),
+				helper.getLabelStyle());
+		Label sound = new Label(_("settings_title_sound"),
+				helper.getLabelStyle());
+		Label music = new Label(_("settings_title_music"),
+				helper.getLabelStyle());
+		Label effects = new Label(_("settings_title_effects"),
+				helper.getLabelStyle());
+		Label profile = new Label(_("settings_title_profile"),
+				helper.getLabelStyle());
 
 		zoomCheckBox = new CheckBox("", helper.getCheckBoxStyle());
 		colorBlindnessCheckBox = new CheckBox("", helper.getCheckBoxStyle());
 
 		musicSlider = new Slider(0, 100, 1, false, helper.getSliderStyle());
 		effectsSlider = new Slider(0, 100, 1, false, helper.getSliderStyle());
-		
+
 		musicSlider.setValue(50);
 		effectsSlider.setValue(50);
 
-		TextButton editProfile = new TextButton("Edit Profile",
-				helper.getTextButtonStyle());
+		TextButton editProfile = new TextButton(
+				_("settings_button_edit_profile"), helper.getTextButtonStyle());
 
 		// add listeners
 		back.addListener(new LogicalPredecessorListener());
@@ -96,7 +102,7 @@ public class SettingsScreen extends AbstractScreen implements
 				settingController.editCurrentSetting(setting);
 			}
 		});
-		
+
 		editProfile.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
@@ -105,7 +111,7 @@ public class SettingsScreen extends AbstractScreen implements
 					dialog.show(stage);
 				} else {
 					Dialog dialog = new NotificationDialog(
-							"You have to select a profile first!");
+							_("warning_no_profile_selected"));
 					dialog.show(stage);
 				}
 
@@ -145,7 +151,7 @@ public class SettingsScreen extends AbstractScreen implements
 			effectsSlider.setValue(50);
 			zoomCheckBox.setChecked(false);
 			colorBlindnessCheckBox.setChecked(false);
-			
+
 		}
 
 	}
@@ -156,15 +162,17 @@ public class SettingsScreen extends AbstractScreen implements
 			super("", StyleHelper.getInstance().getDialogStyle());
 
 			StyleHelper helper = StyleHelper.getInstance();
-			Label message = new Label("What do you want to do?",
+			Label message = new Label(_("title_edit_profile"),
 					helper.getLabelStyle());
-			TextButton name = new TextButton("Rename",
+			TextButton name = new TextButton(_("edit_profile_button_rename"),
 					helper.getTextButtonStyle());
-			TextButton avatar = new TextButton("Change Avatar",
+			TextButton avatar = new TextButton(
+					_("edit_profile_button_change_avatar"),
 					helper.getTextButtonStyle());
-			TextButton delete = new TextButton("Delete Profile",
+			TextButton delete = new TextButton(_("edit_profile_button_delete"),
 					helper.getTextButtonStyle());
-			TextButton nothing = new TextButton("Nothing",
+			TextButton nothing = new TextButton(
+					_("edit_profile_button_nothing"),
 					helper.getTextButtonStyle());
 			name.addListener(new ClickListener() {
 				@Override
@@ -186,10 +194,10 @@ public class SettingsScreen extends AbstractScreen implements
 			delete.addListener(new ClickListener() {
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
-					Dialog dialog = new YesNoDialog(
-							"Are you sure you want to delete the profile with the name "
-									+ game.getProfileController()
-											.getCurrentProfileName() + " ?",
+					Dialog dialog = new YesNoDialog(String.format(
+							_("edit_profile_delete_confirmation"), game
+									.getProfileController()
+									.getCurrentProfileName()),
 							EditProfileDialog.this);
 					dialog.show(stage);
 					EditProfileDialog.this.hide();
@@ -216,7 +224,6 @@ public class SettingsScreen extends AbstractScreen implements
 		@Override
 		public void yes() {
 			game.getProfileController().deleteCurrentProfile();
-	
 
 		}
 

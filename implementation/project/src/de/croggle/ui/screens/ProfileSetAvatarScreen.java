@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.data.LocalizationHelper._;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -10,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 
 import de.croggle.AlligatorApp;
-import de.croggle.data.persistence.manager.ProfileManager;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.game.profile.ProfileOverflowException;
 import de.croggle.ui.StyleHelper;
@@ -53,7 +54,7 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 		StyleHelper helper = StyleHelper.getInstance();
 		Table innerTable = new Table();
 		Table leftTable = new Table();
-		Label chooseAvatar = new Label("Choose your avatar",
+		Label chooseAvatar = new Label(_("screen_title_set_avatar"),
 				helper.getLabelStyle());
 		ImageButton confirm = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/dummy-icon"));
