@@ -1,12 +1,15 @@
 package de.croggle.ui.screens;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
 import de.croggle.game.ColorController;
 import de.croggle.game.GameController;
 import de.croggle.game.board.Board;
+import de.croggle.ui.StyleHelper;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
 
@@ -17,6 +20,7 @@ import de.croggle.ui.renderer.BoardActor;
 public class SimulationModeScreen extends AbstractScreen {
 
 	private final GameController gameController;
+	private Table controlTable;
 
 	/**
 	 * Creates the screen of a level within the simulation mode. This is the
@@ -38,6 +42,8 @@ public class SimulationModeScreen extends AbstractScreen {
 		AssetManager assetManager = AssetManager.getInstance();
 		assetManager.load("textures/pack.atlas", TextureAtlas.class);
 		this.setBackground("textures/swamp.png");
+
+		fillTable();
 	}
 
 	protected void onShow() {
@@ -75,7 +81,8 @@ public class SimulationModeScreen extends AbstractScreen {
 		// ba.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
 		// ba.setScale(.5f); // TODO test this/ get it to work later
 
-		this.table.add(ba).fill().expand();
+		// this.table.add(ba).fill().expand();
+		table.stack(ba, controlTable).expand().fill();
 	}
 
 	public void hide() {
@@ -84,6 +91,45 @@ public class SimulationModeScreen extends AbstractScreen {
 
 	public void dispose() {
 		super.dispose();
+	}
+
+	private void fillTable() {
+		StyleHelper helper = StyleHelper.getInstance();
+
+		controlTable = new Table();
+		Table controlPanelTable = new Table();
+		Table leftTable = new Table();
+		ImageButton menu = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-menu"));
+		ImageButton zoomIn = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-plus"));
+		ImageButton zoomOut = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-minus"));
+
+		ImageButton backToPlacement = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+		ImageButton stepForward = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+		ImageButton stepBackward = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+		ImageButton play = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-next"));
+
+		controlPanelTable.setBackground(helper.getDrawable("widgets/button"));
+		controlPanelTable.add(backToPlacement).colspan(2).size(120);
+		controlPanelTable.row();
+		controlPanelTable.add(stepBackward).size(120);
+		controlPanelTable.add(stepForward).size(120);
+		controlPanelTable.row();
+		controlPanelTable.add(play).colspan(2).size(200);
+
+		leftTable.add(menu).size(100).expand().left().top().row();
+		leftTable.add(zoomIn).size(70).space(30).left().row();
+		leftTable.add(zoomOut).size(70).space(30).left();
+
+		controlTable.pad(30).padRight(0);
+		controlTable.add(leftTable).expand().fill();
+		controlTable.add(controlPanelTable);
 	}
 
 }
