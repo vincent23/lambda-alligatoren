@@ -35,6 +35,7 @@ public class PlacementModeScreen extends AbstractScreen {
 	public PlacementModeScreen(AlligatorApp game, GameController controller) {
 		super(game);
 		gameController = controller;
+		gameController.enterPlacement();
 
 		AssetManager assetManager = AssetManager.getInstance();
 		assetManager.load("textures/pack.atlas", TextureAtlas.class);
@@ -55,7 +56,7 @@ public class PlacementModeScreen extends AbstractScreen {
 				helper.getImageButtonStyleRound("widgets/dummy-icon"));
 		ImageButton zoomOut = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/dummy-icon"));
-		ObjectBar objectBar = new ObjectBar();
+		ObjectBar objectBar = new ObjectBar(game, gameController);
 
 		leftTable.pad(30);
 		leftTable.defaults().space(30);

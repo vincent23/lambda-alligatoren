@@ -184,7 +184,7 @@ public class AlligatorApp extends Game {
 		levelPackagesScreen = new LevelPackagesScreen(this);
 		// levelsOverviewScreen = new LevelsOverviewScreen(this, null);
 		// placementModeScreen = new PlacementModeScreen(this, null);
-		simulationModeScreen = new SimulationModeScreen(this, null);
+		// simulationModeScreen = new SimulationModeScreen(this, null);
 		achievementScreen = new AchievementScreen(this);
 		settingsScreen = new SettingsScreen(this);
 		statisticScreen = new StatisticScreen(this);
@@ -318,6 +318,11 @@ public class AlligatorApp extends Game {
 	public void showPlacementModeScreen(GameController gameController) {
 		switchScreen();
 		setScreen(new PlacementModeScreen(this, gameController));
+	}
+
+	public void showSimulationModeScreen(GameController gameController) {
+		switchScreen();
+		setScreen(new SimulationModeScreen(this, gameController));
 	}
 
 	public MainMenuScreen getMainMenuScreen() {
