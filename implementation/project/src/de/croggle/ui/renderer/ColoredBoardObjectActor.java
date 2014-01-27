@@ -65,22 +65,23 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		// reset blend function
 		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 	}
-	
+
 	private void drawBackground(SpriteBatch batch) {
 		// now that the buffer has our alpha, we simply draw the sprite with the
 		// mask applied
 		batch.setBlendFunction(GL20.GL_DST_ALPHA, GL20.GL_ONE_MINUS_DST_ALPHA);
 
 		// The scissor test is optional, but it depends
-		//Gdx.gl.glEnable(GL20.GL_SCISSOR_TEST);
-		//Gdx.gl.glScissor((int) getX(), (int) getY(), (int) Math.ceil(getWidth()), (int) Math.ceil(getHeight()));
+		// Gdx.gl.glEnable(GL20.GL_SCISSOR_TEST);
+		// Gdx.gl.glScissor((int) getX(), (int) getY(), (int)
+		// Math.ceil(getWidth()), (int) Math.ceil(getHeight()));
 
 		// draw our background to be masked
 		batch.draw(background, getX(), getY(), getWidth(), getHeight());
 
 		batch.flush();
 		// disable scissor before continuing
-		//Gdx.gl.glDisable(GL20.GL_SCISSOR_TEST);
+		// Gdx.gl.glDisable(GL20.GL_SCISSOR_TEST);
 		// reset blend function
 		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 	}
@@ -104,8 +105,8 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		// just to make sure
-		//Gdx.gl.glEnable(GL20.GL_BLEND);
-		//batch.enableBlending();
+		// Gdx.gl.glEnable(GL20.GL_BLEND);
+		// batch.enableBlending();
 
 		// draw the alpha mask
 		drawAlphaMask(batch);
@@ -115,7 +116,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 
 		// draw our foreground elements
 		drawForeground(batch);
-		
+
 		// restore alpha value that was removed by mask
 		Gdx.gl.glColorMask(false, false, false, true);
 		batch.setBlendFunction(GL20.GL_ONE, GL20.GL_ZERO);

@@ -202,4 +202,8 @@ public class GameController implements BoardEventListener {
 	public void reset() {
 		simulator.reset();
 	}
+
+	public Board getShownBoard() {
+		return shownBoard;
+	}
 }

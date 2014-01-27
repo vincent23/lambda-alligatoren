@@ -1,12 +1,18 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import de.croggle.AlligatorApp;
+import de.croggle.data.AssetManager;
+import de.croggle.game.ColorController;
+import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.ObjectBar;
+import de.croggle.ui.renderer.ActorLayoutConfiguration;
+import de.croggle.ui.renderer.BoardActor;
 
 /**
  * Screen within which the player can manipulate the board by moving alligators
@@ -30,7 +36,11 @@ public class PlacementModeScreen extends AbstractScreen {
 		super(game);
 		gameController = controller;
 
+		AssetManager assetManager = AssetManager.getInstance();
+		assetManager.load("textures/pack.atlas", TextureAtlas.class);
+
 		fillTable();
+		setBackground("textures/swamp.png");
 	}
 
 	private void fillTable() {
@@ -59,7 +69,29 @@ public class PlacementModeScreen extends AbstractScreen {
 		leftTable.row();
 		leftTable.add(zoomOut).size(50).left();
 
-		table.add(leftTable).expand().fill();
-		table.add(objectBar).padLeft(30);
+		final ColorController colorController = gameController
+				.getColorController();
+		for (int i = 0; i < 30; i++) {
+			// tell the colorcontroller that we need some colors instantiated
+			try {
+				colorController.requestColor();
+			} catch (ColorOverflowException e) {
+				throw new RuntimeException("Test failed");
+			}
+		}
+
+		final ActorLayoutConfiguration config = new ActorLayoutConfiguration();
+		config.setColorController(colorController);
+		final BoardActor boardActor = new BoardActor(
+				gameController.getShownBoard(), config);
+		boardActor.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
+		final Table boardTable = new Table();
+		boardTable.add(boardActor).fill().expand();
+
+		final Table controlTable = new Table();
+		controlTable.add(leftTable).expand().fill();
+		controlTable.add(objectBar).padLeft(30);
+
+		table.stack(boardTable, controlTable).fill().expand();
 	}
 }
