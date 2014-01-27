@@ -85,9 +85,13 @@ public class SimulationModeScreen extends AbstractScreen {
 		ba.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
 		//ba.setScale(.5f); // TODO test this/ get it to work later
 		
-		this.table.add(ba).fill().expand();
-			//.width(screenWidth * 0.5f).height(screenHeight * 0.5f);
+		this.table.add(ba).fill().expand()
+			.width(getViewportWidth() * 0.5f).height(getViewportHeight() * 0.5f);
 		return;
+	}
+	
+	public void hide() {
+		table.clear();
 	}
 	
 	public void dispose() {

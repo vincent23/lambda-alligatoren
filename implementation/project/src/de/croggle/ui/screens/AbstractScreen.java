@@ -81,7 +81,7 @@ public abstract class AbstractScreen implements Screen {
 	/**
 	 * Returns the sceen's camera's viewport width, i.e. the number of virtual
 	 * pixels that actors drawn onto this screen will assume the screen has
-	 * hoizontally.
+	 * horizontally.
 	 * 
 	 * @return the viewport width
 	 */
@@ -92,7 +92,7 @@ public abstract class AbstractScreen implements Screen {
 	/**
 	 * Returns the sceen's camera's viewport height, i.e. the number of virtual
 	 * pixels that actors drawn onto this screen will assume the screen has
-	 * vertilcally.
+	 * vertically.
 	 * 
 	 * @return the viewport height
 	 */

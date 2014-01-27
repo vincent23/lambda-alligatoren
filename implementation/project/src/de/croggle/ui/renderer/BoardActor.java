@@ -1,22 +1,21 @@
 package de.croggle.ui.renderer;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.transition.Scene;
-
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
 
 import de.croggle.game.ColorController;
 import de.croggle.game.board.AgedAlligator;
@@ -26,8 +25,6 @@ import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.ColoredBoardObject;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
-import de.croggle.game.board.operations.CreateHeightMap;
-import de.croggle.game.board.operations.CreateWidthMap;
 import de.croggle.game.board.operations.FlattenTree;
 import de.croggle.game.event.BoardEventListener;
 
@@ -35,64 +32,93 @@ import de.croggle.game.event.BoardEventListener;
  * An actor used for representing a whole board, i.e. an alligator
  * constellation.
  */
-public class BoardActor extends Actor implements BoardEventListener {
+public class BoardActor extends Group implements BoardEventListener {
 
 	private ActorLayout layout;
-	private OrthographicCamera camera;
 
-	private final Vector2 CAMERA_SIZE = new Vector2(1024, 600);
-	private Vector2 cameraPosMax;
-	private Vector2 cameraPosMin;
-	private float maxZoom;
-	private float minZoom;
-	
+	private final ActorLayoutConfiguration config;
+	private float posX;
+	private float posY;
+	private float maxX;
+	private float maxY;
+	private float minX;
+	private float minY;
+	private float maxScale;
+	private float minScale;
+	private final Vector2 point;
+
 	private BoardActorGestureListener gestureListener;
 
 	public BoardActor(Board b, ActorLayoutConfiguration config) {
-		layout = ActorLayoutBuilder.build(b, config);
-		camera = new OrthographicCamera(CAMERA_SIZE.x, CAMERA_SIZE.y);
-		camera.position.set(CAMERA_SIZE.x / 2 - getX(), CAMERA_SIZE.y / 2
-				- getY(), 0);
-		camera.update();
-		// TODO implement smart boundary calculation
-		cameraPosMax = new Vector2(Float.POSITIVE_INFINITY,
-				Float.POSITIVE_INFINITY);
-		cameraPosMin = new Vector2(Float.NEGATIVE_INFINITY,
-				Float.NEGATIVE_INFINITY);
+		this.config = config;
+		this.point = new Vector2();
+		onBoardRebuilt(b);
 
-		calculatePositionsAndLimits(b);
+		maxX = Float.POSITIVE_INFINITY;
+		maxY = Float.POSITIVE_INFINITY;
+		minX = Float.NEGATIVE_INFINITY;
+		minY = Float.NEGATIVE_INFINITY;
+
+		calculateLimits();
+		initializePosition();
 	}
-
-	private void calculatePositionsAndLimits(Board b) {
-		// TODO not efficient
-		// TODO not dynamic
-
-		ActorLayoutConfiguration config = layout.getLayoutConfiguration();
-		Map<BoardObject, Float> heightMap = CreateHeightMap.create(b);
-		Map<BoardObject, Float> widthMap = layout.getLayoutStatistics()
-				.getWidthMap();
-
-		float unscaledHeight = heightMap.get(b);
-		// cool formula to unroll sum function associated with height
-		// calculation
-		float lowestScale = (float) Math.pow(config.getVerticalScaleFactor(),
-				unscaledHeight);
-		float actualHeight = lowestScale
-				* (unscaledHeight + 1)
-				* (config.getUniformObjectHeight() + config
-						.getVerticalPadding());
+	
+	private void calculateLimits() {
+		calculateScaleLimits();
+		calculatePanLimits();
+	}
+	
+	private void calculateScaleLimits() {
+		Board b = layout.getBoard();
+		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics().getHeightMap();
+		float boardHeight = heightMap.get(b) / getScaleY();
+		
+		// zoom limits
+		float lowestScale = 0.2373046875f; // 0.75^5 TODO
 		// allow maximum enlargement to have the smallest object being displayed
 		// with half the screen size
-		maxZoom = config.getUniformObjectWidth() * 2 * lowestScale
-				/ CAMERA_SIZE.x;
+		maxScale = getWidth() / (config.getUniformObjectWidth() * 2 * lowestScale);
 		// allow maximum the whole tree times 1.2 fitting on the screen
-		minZoom = Math.max(actualHeight * 1.2f / CAMERA_SIZE.y, 1.f);
-
+		minScale = Math.min(boardHeight * 1.2f / getHeight(), 1.f);
+		
+		System.out.println("minScale: " + minScale + ", maxScale: " + maxScale);
+	}
+	
+	private void calculatePanLimits() {
+		Board b = layout.getBoard();
+		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics().getHeightMap();
+		Map<BoardObject, Float> widthMap = layout.getLayoutStatistics().getWidthMap();
+		
+		Vector2 origin = config.getTreeOrigin();
+		float scale = getScaleX();
+		
+		float boardHeight = heightMap.get(b);
+		float boardWidth = widthMap.get(b);
+		
+		// pan limits
+		maxX = getWidth() - origin.x * scale;
+		minX = -(origin.x + boardWidth) * scale;
+		// TODO remove last summand when ready
+		maxY = getHeight() + (boardHeight - origin.y - config.getUniformObjectHeight()) * scale;
+		minY = -origin.y - config.getUniformObjectHeight() * scale;
+		System.out.println("maxX: " + maxX + ", minX: " + minX);
+		System.out.println("maxY: " + maxY + ", minY: " + minY);
+	}
+	
+	private void initializePosition() {
+		// have the tree displayed horizontally centered and with its top at the
+		// upper edge
+		ActorLayoutStatistics stats = layout.getLayoutStatistics();
 		Vector2 orig = config.getTreeOrigin();
-		cameraPosMax.x = orig.x + widthMap.get(b);
-		cameraPosMin.x = orig.x;
-		cameraPosMax.y = orig.y + config.getUniformObjectHeight();
-		cameraPosMin.y = orig.y - layout.getLayoutStatistics().getHeightMap().get(layout.getBoard());
+		float treeMidX = orig.x
+				+ stats.getWidthMap().get(layout.getBoard()) / 2;
+		float treeTop = orig.y
+				+ config.getUniformObjectHeight();
+		System.out.println("w " + getWidth() + ", h " + getHeight() + ", sx " + getScaleX() + ", sy " + getScaleY());
+		posX = -(treeMidX - getWidth() * getScaleX() / 2);
+		posY = -(treeTop - getHeight() * getScaleY() + 20); // TODO why doesn't it align to top without +20 padding?
+		System.out.println("treeX: " + treeMidX + ", treeY: " + treeTop);
+		System.out.println("posX: " + posX + ", posY: " + posY);
 	}
 
 	/**
@@ -108,117 +134,151 @@ public class BoardActor extends Actor implements BoardEventListener {
 		this(board, new ActorLayoutConfiguration()
 				.setColorController(controller));
 	}
+	
+	@Override
+	public void draw (SpriteBatch batch, float parentAlpha) {
+		float x = getX();
+		float y = getY();
+		if(clipBegin()) {
+			setX(x + posX);
+			setY(y + posY);
+			
+			super.draw(batch, parentAlpha);
+			
+			setX(x);
+			setY(y);
+			clipEnd();
+		}
+	}
+	
+	@Override
+	public Actor hit (float x, float y, boolean touchable) {
+		//System.out.println("hit: " + x + ", " + y);
+		
+		if (touchable && getTouchable() != Touchable.enabled) {
+			return null;
+		}
+		Array<Actor> children = getChildren();
+		for (int i = children.size - 1; i >= 0; i--) {
+			Actor child = children.get(i);
+			if (!child.isVisible()) {
+				continue;
+			}
+			child.parentToLocalCoordinates(point.set(x - posX, y - posY));
+			Actor hit = child.hit(point.x, point.y, touchable);
+			if (hit != null) {
+				return hit;
+			}
+		}
+		// no child hit
+		if (x >= 0 && x < getWidth() && y >= 0 && y < getHeight()) {
+			return this;
+		} else {
+			return null;
+		}
+	}
 
 	/**
 	 * GestureListener for the BoardActor
 	 * 
 	 */
 	private class BoardActorGestureListener extends ActorGestureListener {
+
 		@Override
 		public void pan(InputEvent event, float x, float y, float deltaX,
 				float deltaY) {
-			float dx = screenToWorldLen(deltaX);
-			float dy = screenToWorldLen(deltaY);
-			if (camera.position.x - dx >= cameraPosMin.x
-					&& camera.position.x - dx <= cameraPosMax.x) {
-				camera.position.x -= dx;
+			Vector2 delta = new Vector2(deltaX, deltaY);
+			if (posX + delta.x >= minX
+					&& posX + delta.x <= maxX) {
+				posX += delta.x;
 			}
-			if (camera.position.y - dy >= cameraPosMin.y
-					&& camera.position.y - dy <= cameraPosMax.y) {
-				camera.position.y -= dy;
+			if (posY + delta.y >= minY
+					&& posY + delta.y <= maxY) {
+				posY += delta.y;
 			}
-			camera.update();
+			//System.out.println("position: " + posX + ", " + posY);
 		}
-
+		
 		@Override
 		public void pinch(InputEvent event, Vector2 initialPointer1,
 				Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
-			float initialzoom = camera.zoom;
-			float initialDistance = initialPointer1.dst(initialPointer2);
-			float newdistance = pointer1.dst(pointer2);
-			// totally random transfer function
-			float newzoom = (float) (camera.zoom * Math.pow(1.0002,
-					(int) (initialDistance - newdistance))); // maybe casting to
-																// int in
-																// exponent is
-																// faster
-			if (newzoom < maxZoom || newzoom > minZoom) {
-				return;
-			}
-
-			// the center of the zooming operation
-			Vector2 screenpoint = initialPointer1.add(initialPointer2.sub(
-					initialPointer1).div(2));
-			// translate center into game world coordinates
-			Vector2 zoompoint = screenToWorldCoords(screenpoint);
-			float dx = camera.position.x - zoompoint.x;
-			float dy = camera.position.y - zoompoint.y;
-			// offsets in real world pixels with the different zoom levels
-			float initialDx = dx / initialzoom;
-			float initialDy = dy / initialzoom;
-			float newDx = dx / newzoom;
-			float newDy = dy / newzoom;
-
-			float offsetX = (initialDx - newDx) * newzoom;
-			float offsetY = (initialDy - newDy) * newzoom;
-
-			if (camera.position.x + offsetX >= cameraPosMin.x
-					&& camera.position.x + offsetX <= cameraPosMax.x) {
-				camera.position.x += offsetX;
-			}
-			if (camera.position.y + offsetY >= cameraPosMin.y
-					&& camera.position.y + offsetY <= cameraPosMax.y) {
-				camera.position.y += offsetY;
-			}
-			camera.zoom = newzoom;
-			camera.update();
+			System.out.println("pinch");
+			float density = Gdx.graphics.getDensity();
+			float dist = initialPointer1.dst(initialPointer2);
+			float newdist = pointer1.dst(pointer2);
+			float delta = newdist - dist;
+			float percent = delta / density / 4;
+			float pointX = initialPointer1.x + (initialPointer2.x - initialPointer1.x)/2;
+			float pointY = initialPointer1.y + (initialPointer2.y - initialPointer1.y)/2;
+			zoomIn(percent, pointX, pointY);
+			System.out.println("delta: " + delta + ", percent: " + percent);
 		}
 	}
 
-	private float screenToWorldLen(float len) {
-		// TODO code assumes aspect ratio of screen being same as aspect ratio
-		// of camera
-		return len / Gdx.graphics.getWidth() * CAMERA_SIZE.x * camera.zoom;
+	public boolean zoomIn(float percent) {
+		return zoomIn(percent, getWidth() / 2, getHeight()/2);
 	}
-
-	private Vector2 screenToWorldCoords(Vector2 screenCoords) {
-		Vector2 result = new Vector2();
-		Vector2 screenMid = new Vector2(Gdx.graphics.getWidth() / 2,
-				Gdx.graphics.getHeight() / 2);
-		Vector2 diffFromMid = screenCoords.cpy().sub(screenMid);
-		// correct differences due to resolutions and zoom
-		// TODO code assumes that aspect ratio is same between real screen and
-		// our camera
-		diffFromMid.scl(CAMERA_SIZE.x / Gdx.graphics.getWidth() * camera.zoom);
-		result = new Vector2(camera.position.x, camera.position.y).add(
-				diffFromMid.x, diffFromMid.y);
-
-		return result;
-	}
-
-	/**
-	 * Draws the actor.
-	 * 
-	 * @param batch
-	 *            the sprite batch specifies where to draw into
-	 * @param parentAlpha
-	 *            the parent's alpha value
-	 */
-	public void draw(SpriteBatch batch, float parentAlpha) {
-		batch.flush();
-		Matrix4 original = batch.getProjectionMatrix();
-		// set up clipping
-		if(clipBegin()) {
-			// set own camera to look through
-			batch.setProjectionMatrix(camera.combined);
-			for (BoardObjectActor child : layout) {
-				child.draw(batch, parentAlpha);
-			}
-			batch.setProjectionMatrix(original);
-			clipEnd();
+	
+	public boolean zoomIn(float percent, float pointX, float pointY) {
+		if (percent < 0) {
+			return zoomOut(-percent, pointX, pointY);
 		}
-	}
+		float scale = getScaleX();
+		float factor = 1 + percent / 100;
+		float newScale = scale * factor;
+		if (newScale <= maxScale) {
+			setScale(newScale);
+			calculatePanLimits();
+			
+			float newX = pointX * factor;
+			float newY = pointY * factor;
+			float dx = newX - pointX;
+			float dy = newY - pointY;
+			
+			if (posX - dx >= minX && posX - dx <= maxX) {
+				posX -= dx;
+			}
+			if (posY - dy >= minY && posY - dy <= maxY) {
+				posY -= dy;
+			}
 
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean zoomOut(float percent) {
+		return zoomOut(percent, getWidth() / 2, getHeight()/2);
+	}
+	
+	public boolean zoomOut(float percent, float pointX, float pointY) {
+		if (percent < 0) {
+			return zoomIn(-percent, pointX, pointY);
+		}
+		float scale = getScaleX();
+		float factor = 1 - percent / 100;
+		float newScale = scale * factor;
+		if (newScale >= minScale) {
+			setScale(newScale);
+			calculatePanLimits();
+			
+			float newX = pointX * factor;
+			float newY = pointY * factor;
+			float dx = newX - pointX;
+			float dy = newY - pointY;
+			
+			if (posX - dx >= minX && posX - dx <= maxX) {
+				posX -= dx;
+			}
+			if (posY - dy >= minY && posY - dy <= maxY) {
+				posY -= dy;
+			}
+			
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * Visualizes the recoloring of an object on the board.
 	 * 
@@ -296,7 +356,8 @@ public class BoardActor extends Actor implements BoardEventListener {
 			}
 
 			protected void end() {
-				layout.onRemoveSingle(object);
+				List<ActorDelta> removeDeltas = layout.onRemoveSingle(object);
+				// TODO
 			}
 		});
 	}
@@ -321,9 +382,13 @@ public class BoardActor extends Actor implements BoardEventListener {
 	 *            previously
 	 */
 	@Override
-	public void onBoardRebuilt(Board board) {
-		layout = ActorLayoutBuilder.build(board,
-				layout.getLayoutConfiguration());
+	public final void onBoardRebuilt(Board board) {
+		clearChildren();
+		layout = ActorLayoutBuilder.build(board, config);
+		for (BoardObjectActor actor : layout) {
+			addActor(actor);
+		}
+		registerLayoutListeners();
 	}
 
 	/**
@@ -337,31 +402,44 @@ public class BoardActor extends Actor implements BoardEventListener {
 	 */
 	@Override
 	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
-		layout.onRemoveSingle(replacedEgg);
-		layout.onAdd(bornFamily);
+		List<ActorDelta> removeDeltas = layout.onRemoveSingle(replacedEgg);
+		List<ActorDelta> addDeltas = layout.onAdd(bornFamily);
+		// TODO
 	}
 
 	@Override
 	protected void sizeChanged() {
-		// we want to always have the camera believe it shows 1024 x 600 pixels
-		// so we don't execute the next two lines of code
-		// camera.viewportWidth = getWidth();
-		// camera.viewportHeight = getHeight();
+		calculateLimits();
+		initializePosition();
 
-		final float actorX = screenToWorldLen(getX());
-		final float actorY = screenToWorldLen(getY());
-
-		final float treeMidX = layout.getLayoutConfiguration().getTreeOrigin().x
-				+ layout.getLayoutStatistics().getWidthMap()
-						.get(layout.getBoard()) / 2;
-		final float treeMidY = layout.getLayoutConfiguration().getTreeOrigin().y
-				- layout.getLayoutStatistics().getHeightMap()
-						.get(layout.getBoard()) / 2;
-		camera.position.set(treeMidX - actorX, treeMidY - actorY, 0);
-		camera.update();
-		
 		this.removeListener(gestureListener);
 		gestureListener = new BoardActorGestureListener();
 		this.addListener(gestureListener);
+	}
+
+	private void registerLayoutListeners() {
+		for (BoardObjectActor child : layout) {
+			if (child.getBoardObject() instanceof ColoredBoardObject) {
+				ColoredBoardObject o = (ColoredBoardObject) child
+						.getBoardObject();
+				// if (o.isRecolorable()) {
+				child.addListener(new RecolorPopupListener(o));
+				// }
+			}
+		}
+	}
+
+	private class RecolorPopupListener extends ClickListener {
+		private ColoredBoardObject o;
+
+		public RecolorPopupListener(ColoredBoardObject o) {
+			this.o = o;
+		}
+
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			System.out.println("Click");
+			// TODO
+		}
 	}
 }
