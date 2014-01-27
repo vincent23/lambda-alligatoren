@@ -16,30 +16,29 @@ public class PagedScrollPane extends ScrollPane {
 
 	public PagedScrollPane() {
 		super(null);
-		content = new Table();
-		content.defaults().space(50);
-		setWidget(content);
+		init();
 	}
 
 	public PagedScrollPane(Skin skin) {
 		super(null, skin);
-		content = new Table();
-		content.defaults().space(50);
-		setWidget(content);
+		init();
 	}
 
 	public PagedScrollPane(Skin skin, String styleName) {
 		super(null, skin, styleName);
-		content = new Table();
-		content.defaults().space(50);
-		setWidget(content);
+		init();
 	}
 
 	public PagedScrollPane(Actor widget, ScrollPaneStyle style) {
 		super(null, style);
+		init();
+	}
+	
+	private final void init() {
 		content = new Table();
 		content.defaults().space(50);
 		setWidget(content);
+		setScrollingDisabled(false, true);
 	}
 
 	public void addPages(Actor... pages) {
