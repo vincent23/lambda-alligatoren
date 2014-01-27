@@ -14,26 +14,9 @@ import java.util.List;
  * the user recolor elements (usable).
  */
 public class ColorController {
-	private static final int MAX_COLORS = 30;
 	private final de.croggle.game.Color uncolored;
 	private List<de.croggle.game.Color> usableColors;
 	private List<de.croggle.game.Color> bannedColors;
-
-	// TODO inelegant version of bidirectional map
-	// private Map<de.croggle.game.Color, com.badlogic.gdx.graphics.Color>
-	// lookup;
-
-	/*
-	 * The predefined colors mapped onto variable names source:
-	 * http://tools.medialab.sciences-po.fr/iwanthue/index.php
-	 */
-	private static final String[] colorStrings = { "#72DC4E", "#D94628",
-			"#DA4381", "#6ED2D4", "#545092", "#D8A03D", "#4B7842", "#DE4CDF",
-			"#602D23", "#C3957A", "#C8D282", "#D386D1", "#95A9DB", "#CFD63C",
-			"#70D99D", "#3C314A", "#343D27", "#7E6B2B", "#CB8DA5", "#CBD1C7",
-			"#61877A", "#843756", "#CC4F58", "#669E38", "#6878DB", "#CC46A9",
-			"#B66032", "#577592", "#A05FD8", "#7E397E" };
-	private final com.badlogic.gdx.graphics.Color[] colors;
 
 	/**
 	 * Initializes the color controller with no colors blocked, no colors usable
@@ -43,11 +26,6 @@ public class ColorController {
 		usableColors = new ArrayList<de.croggle.game.Color>();
 		bannedColors = new ArrayList<de.croggle.game.Color>();
 		uncolored = de.croggle.game.Color.uncolored();
-		colors = new com.badlogic.gdx.graphics.Color[colorStrings.length];
-		for (int i = 0; i < colorStrings.length; i++) {
-			colors[i] = de.croggle.util.convert.Color
-					.fromHexString(colorStrings[i]);
-		}
 	}
 
 	/**
@@ -65,7 +43,7 @@ public class ColorController {
 			return de.croggle.util.convert.Color.fromHexString("#FFFFFF");
 		} else {
 			// return lookup.get(color);
-			return colors[color.getId()];
+			return de.croggle.game.Color.getRepresentation(color);
 		}
 	}
 
@@ -86,6 +64,7 @@ public class ColorController {
 		// return entry.getKey();
 		// }
 		// }
+		com.badlogic.gdx.graphics.Color[] colors = de.croggle.game.Color.getRepresentations();
 		for (int i = 0; i < colors.length; i++) {
 			if (colors[i].equals(color)) {
 				return new de.croggle.game.Color(i);
@@ -134,9 +113,9 @@ public class ColorController {
 	 */
 	public de.croggle.game.Color requestColor(de.croggle.game.Color[] usedColors)
 			throws ColorOverflowException {
-		if (usedColors.length >= MAX_COLORS) {
+		if (usedColors.length >= de.croggle.game.Color.MAX_COLORS) {
 			throw new ColorOverflowException(
-					"Exceeded maximum number of colors: " + MAX_COLORS);
+					"Exceeded maximum number of colors: " + de.croggle.game.Color.MAX_COLORS);
 		}
 		java.util.Arrays.sort(usedColors);
 		int i;

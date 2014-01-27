@@ -4,14 +4,35 @@ package de.croggle.game;
  * A color represents a variable name.
  */
 public class Color implements Comparable<Color> {
+	public static final int MAX_COLORS = 30;
+	
 	static {
 		uncolored = new UncoloredColor();
 	}
-
+	private static final Color uncolored;
+	/*
+	 * The predefined colors mapped onto variable names source:
+	 * http://tools.medialab.sciences-po.fr/iwanthue/index.php
+	 */
+	private static final String[] colorStrings = { "#72DC4E", "#D94628",
+			"#DA4381", "#6ED2D4", "#545092", "#D8A03D", "#4B7842", "#DE4CDF",
+			"#602D23", "#C3957A", "#C8D282", "#D386D1", "#95A9DB", "#CFD63C",
+			"#70D99D", "#3C314A", "#343D27", "#7E6B2B", "#CB8DA5", "#CBD1C7",
+			"#61877A", "#843756", "#CC4F58", "#669E38", "#6878DB", "#CC46A9",
+			"#B66032", "#577592", "#A05FD8", "#7E397E" };
+	private static final com.badlogic.gdx.graphics.Color[] representations;
+	static {
+		// assert (MAX_COLORS == colorStrings.length); // done by ColorTest unit test
+		representations = new com.badlogic.gdx.graphics.Color[MAX_COLORS];
+		for (int i = 0; i < colorStrings.length; i++) {
+			representations[i] = de.croggle.util.convert.Color
+					.fromHexString(colorStrings[i]);
+		}
+	}
+	
 	private final int id;
 
-	private static final Color uncolored;
-
+	
 	/**
 	 * Creates a color with the given id. The id needs to be between 0 and 29
 	 * and represents a certain "real" color according to the ColorController.
@@ -47,6 +68,14 @@ public class Color implements Comparable<Color> {
 	 */
 	public int getId() {
 		return this.id;
+	}
+	
+	public static com.badlogic.gdx.graphics.Color[] getRepresentations() {
+		return representations;
+	}
+	
+	public static com.badlogic.gdx.graphics.Color getRepresentation(Color c) {
+		return representations[c.id];
 	}
 
 	@Override

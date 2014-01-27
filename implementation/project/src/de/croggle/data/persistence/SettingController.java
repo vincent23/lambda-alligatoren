@@ -40,7 +40,6 @@ public class SettingController {
 		currentSetting = newSetting;
 		String profileName = game.getProfileController().getCurrentProfileName();
 		game.getPersistenceManager().editSetting(profileName, newSetting);
-		
 	}
 
 	/**
@@ -50,12 +49,8 @@ public class SettingController {
 	 * @param profileName
 	 *            the name of the user whose settings are loaded
 	 */
-	public void changeCurrentSetting(String profileName)
-		 {
-		
+	public void changeCurrentSetting(String profileName) {
 		currentSetting = game.getPersistenceManager().getSetting(profileName);
-	
-
 	}
 
 	/**

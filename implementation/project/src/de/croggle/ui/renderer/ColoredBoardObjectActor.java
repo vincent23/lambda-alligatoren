@@ -19,6 +19,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	private TextureRegion mask;
 	private TextureRegion foreground;
 	private Texture background;
+	private boolean valid = false;
 
 	public ColoredBoardObjectActor(ColoredBoardObject object,
 			ColorController controller, String foregroundPath, String maskPath) {
@@ -38,12 +39,26 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		foreground = tex.findRegion(foregroundPath);
 		this.setWidth(foreground.getRegionWidth());
 		this.setHeight(foreground.getRegionHeight());
-		// TODO find a way to manage this unmanaged PixMap (dispose, share...)
-		Pixmap bg = new Pixmap((int) getWidth(), (int) getHeight(),
-				Pixmap.Format.RGB888);
-		bg.setColor(controller.getRepresentation(object.getColor()));
-		bg.fill();
-		background = new Texture(bg);
+
+		validate();
+	}
+
+	/**
+	 * Updates the color/pattern texture of this {@link ColoredBoardObject}. The
+	 * Actor is automatically validated next time it is rendered.
+	 */
+	public void validate() {
+		background = AssetManager.getInstance().getColorTexture(
+				((ColoredBoardObject) object).getColor());
+		valid = true;
+	}
+
+	/**
+	 * Invalidates this actor, causing it to refresh its background texture
+	 * before it is rendered the next time.
+	 */
+	public void invalidate() {
+		valid = false;
 	}
 
 	private void drawAlphaMask(SpriteBatch batch) {
@@ -67,6 +82,9 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	}
 
 	private void drawBackground(SpriteBatch batch) {
+		if (!valid) {
+			validate();
+		}
 		// now that the buffer has our alpha, we simply draw the sprite with the
 		// mask applied
 		batch.setBlendFunction(GL20.GL_DST_ALPHA, GL20.GL_ONE_MINUS_DST_ALPHA);
