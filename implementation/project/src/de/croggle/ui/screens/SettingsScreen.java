@@ -19,6 +19,8 @@ import de.croggle.data.persistence.manager.ProfileManager;
 import de.croggle.game.profile.OnProfileChangeListener;
 import de.croggle.ui.ConfirmInterface;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.actors.NotificationDialog;
+import de.croggle.ui.actors.YesNoDialog;
 
 /**
  * Screen within which the player can see the chosen settings and change dem

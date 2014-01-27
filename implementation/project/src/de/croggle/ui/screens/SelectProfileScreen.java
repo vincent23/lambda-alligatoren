@@ -13,6 +13,7 @@ import de.croggle.game.profile.OnProfileChangeListener;
 import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.actors.NotificationDialog;
 
 /**
  * Screen within which the player can change the name of his profile. For

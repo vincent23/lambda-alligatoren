@@ -14,8 +14,8 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import de.croggle.AlligatorApp;
 import de.croggle.game.level.LevelPackage;
 import de.croggle.game.level.LevelPackagesController;
-import de.croggle.ui.PagedScrollPane;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.actors.PagedScrollPane;
 
 /**
  * Screen, in which one can select the levelpackage. For reference see

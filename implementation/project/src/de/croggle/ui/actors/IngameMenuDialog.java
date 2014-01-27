@@ -1,4 +1,4 @@
-package de.croggle.ui.screens;
+package de.croggle.ui.actors;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;

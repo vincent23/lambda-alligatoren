@@ -17,14 +17,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 
 
+
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.StatisticController;
 import de.croggle.game.profile.OnProfileChangeListener;
 import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileController;
-import de.croggle.ui.PagedScrollPane;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.actors.PagedScrollPane;
 
 /**
  * Screen which enables the teacher or parent to control the progress of every

@@ -1,4 +1,4 @@
-package de.croggle.ui;
+package de.croggle.ui.actors;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -69,7 +69,8 @@ public class PagedScrollPane extends ScrollPane {
 	public void setWidth(float width) {
 		super.setWidth(width);
 		if (content != null) {
-			for (Cell cell : content.getCells()) {
+			content.defaults().width(width);
+			for (Cell<?> cell : content.getCells()) {
 				cell.width(width);
 			}
 			content.invalidate();
@@ -79,7 +80,7 @@ public class PagedScrollPane extends ScrollPane {
 	public void setPageSpacing(float pageSpacing) {
 		if (content != null) {
 			content.defaults().space(pageSpacing);
-			for (Cell cell : content.getCells()) {
+			for (Cell<?> cell : content.getCells()) {
 				cell.space(pageSpacing);
 			}
 			content.invalidate();
@@ -91,8 +92,9 @@ public class PagedScrollPane extends ScrollPane {
 		final float scrollX = getScrollX();
 		final float maxX = getMaxX();
 
-		if (scrollX >= maxX || scrollX <= 0)
+		if (scrollX >= maxX || scrollX <= 0) {
 			return;
+		}
 
 		Array<Actor> pages = content.getChildren();
 		float pageX = 0;
