@@ -22,7 +22,7 @@ public class QuitGameOverlay implements Screen {
 	private ShapeRenderer shapes;
 	private final Color shade;
 	private final Screen screenBelow;
-	private final Stage stage;
+	private Stage stage;
 	private final Table table;
 	private final OrthographicCamera camera;
 	private final AlligatorApp game;
@@ -32,17 +32,15 @@ public class QuitGameOverlay implements Screen {
 		if (screenBelow == null) {
 			throw new IllegalArgumentException("Cannot overlay no screen");
 		}
-		stage = new Stage();
+		
 		this.game = game;
 		this.screenBelow = screenBelow;
 		shade = new Color(0, 0, 0, .5f);
 		table = new Table();
 		table.setFillParent(true);
-		stage.addActor(table);
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1024, 600);
 		// make the screen as well as the stage an input processor
-		inputMediator = new InputMultiplexer(stage, new BackButtonHandler());
 	}
 
 	@Override
@@ -56,8 +54,8 @@ public class QuitGameOverlay implements Screen {
 		shapes.setColor(shade);
 		shapes.rect(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		shapes.end();
-		stage.draw();
 		stage.act(delta);
+		stage.draw();
 	}
 
 	@Override
@@ -68,9 +66,13 @@ public class QuitGameOverlay implements Screen {
 
 	@Override
 	public void show() {
+		stage = new Stage(1024, 600, true, game.batch);
+		stage.addActor(table);
+		stage.setCamera(camera);
 		// TODO Auto-generated method stub
 		// stage = new Stage();
 		shapes = new ShapeRenderer();
+		inputMediator = new InputMultiplexer(stage, new BackButtonHandler());
 		Gdx.input.setInputProcessor(inputMediator);
 		camera.update();
 
@@ -113,8 +115,7 @@ public class QuitGameOverlay implements Screen {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		// stage.dispose();
+		stage.dispose();
 		shapes.dispose();
 	}
 
