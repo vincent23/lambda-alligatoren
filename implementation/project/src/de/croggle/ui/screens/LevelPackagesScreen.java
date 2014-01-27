@@ -84,7 +84,7 @@ public class LevelPackagesScreen extends AbstractScreen {
 
 		pager.setFlingTime(0.3f);
 		pager.setPageSpacing(75);
-		pager.setWidth(screenWidth * 0.7f);
+		pager.setWidth(getViewportWidth() * 0.7f);
 		pager.setScrollingDisabled(false, true);
 	}
 

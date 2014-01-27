@@ -72,7 +72,7 @@ public class StatisticScreen extends AbstractScreen implements OnProfileChangeLi
 		});
 		Table table1 = new Table();
 		table1.add(profiles).spaceRight(20);
-		table1.add(profileList).width(screenWidth / 4);
+		table1.add(profileList).width(getViewportWidth() / 4);
 			
 		PagedScrollPane pager = new PagedScrollPane();
 		actionsButton = new TextButton("ACTIONS",
@@ -95,7 +95,7 @@ public class StatisticScreen extends AbstractScreen implements OnProfileChangeLi
 	
 		pager.setFlingTime(0.9f);
 		pager.setPageSpacing(25);
-		pager.setWidth(screenWidth * 0.7f);
+		pager.setWidth(getViewportWidth() * 0.7f);
 		
 		table.pad(30);
 		table.add(table1);

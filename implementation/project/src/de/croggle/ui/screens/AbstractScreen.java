@@ -30,14 +30,14 @@ public abstract class AbstractScreen implements Screen {
 	private OrthographicCamera camera;
 	private boolean assetsLoaded = false;
 
-	protected int screenWidth;
-	protected int screenHeight;
+	// protected int screenWidth;
+	// protected int screenHeight;
 
 	private InputMultiplexer inputMediator;
 
 	/**
-	 * Super constructor for all screens. Initializes everything they share, e.g.
-	 * their stage.
+	 * Super constructor for all screens. Initializes everything they share,
+	 * e.g. their stage.
 	 * 
 	 * @param game
 	 *            the back reference to the central game
@@ -45,7 +45,7 @@ public abstract class AbstractScreen implements Screen {
 	public AbstractScreen(AlligatorApp game) {
 		this.game = game;
 		stage = new Stage(1024, 600, true, game.batch);
-		
+
 		table = new Table();
 		table.setFillParent(true);
 		stage.addActor(table);
@@ -54,8 +54,8 @@ public abstract class AbstractScreen implements Screen {
 		camera.setToOrtho(false, 1024, 600);
 		stage.setCamera(camera);
 
-		screenWidth = Gdx.graphics.getWidth();
-		screenHeight = Gdx.graphics.getHeight();
+		// screenWidth = Gdx.graphics.getWidth();
+		// screenHeight = Gdx.graphics.getHeight();
 
 		// make the screen as well as the stage an input processor
 		inputMediator = new InputMultiplexer(stage, new BackButtonHandler());
@@ -76,6 +76,28 @@ public abstract class AbstractScreen implements Screen {
 	 */
 	public void hide() {
 
+	}
+
+	/**
+	 * Returns the sceen's camera's viewport width, i.e. the number of virtual
+	 * pixels that actors drawn onto this screen will assume the screen has
+	 * hoizontally.
+	 * 
+	 * @return the viewport width
+	 */
+	public float getViewportWidth() {
+		return camera.viewportWidth;
+	}
+
+	/**
+	 * Returns the sceen's camera's viewport height, i.e. the number of virtual
+	 * pixels that actors drawn onto this screen will assume the screen has
+	 * vertilcally.
+	 * 
+	 * @return the viewport height
+	 */
+	public float getViewportHeight() {
+		return camera.viewportHeight;
 	}
 
 	/**
@@ -106,7 +128,7 @@ public abstract class AbstractScreen implements Screen {
 			game.batch.draw(background, 0, 0);
 			game.batch.end();
 		}
-		
+
 		stage.act(delta);
 		stage.draw();
 		// draw debugging lines
@@ -131,7 +153,7 @@ public abstract class AbstractScreen implements Screen {
 	 */
 	public void resize(int width, int height) {
 		camera.update();
-		//stage.setViewport(width, height, true);
+		// stage.setViewport(width, height, true);
 	}
 
 	/**
@@ -179,7 +201,7 @@ public abstract class AbstractScreen implements Screen {
 	 * and set the respective predecessor screen in it.
 	 */
 	protected void showLogicalPredecessor() {
-		
+
 	}
 
 	/**
