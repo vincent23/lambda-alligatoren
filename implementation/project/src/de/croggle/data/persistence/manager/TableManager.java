@@ -20,8 +20,6 @@ public abstract class TableManager {
 	 * The database in which the table is stored.
 	 */
 	protected SQLiteDatabase database;
-	
-	
 
 	/**
 	 * Creates a new TableManager, which manages a specific table from the
@@ -46,7 +44,7 @@ public abstract class TableManager {
 		database = databaseHelper.getWritableDatabase();
 		if (!database.isReadOnly()) {
 			database.execSQL("PRAGMA foreign_keys = ON;");
-	    }
+		}
 	}
 
 	/**
@@ -59,18 +57,18 @@ public abstract class TableManager {
 	void close() throws SQLException {
 		databaseHelper.close();
 	}
-	
+
 	/**
 	 * Clears the table.
 	 */
-	
-	//NEW
+
+	// NEW
 	abstract void clearTable();
-	
+
 	/**
 	 * Get the number of rows stored in the table
 	 */
-	//NEW
+	// NEW
 	abstract long getRowCount();
-	
+
 }

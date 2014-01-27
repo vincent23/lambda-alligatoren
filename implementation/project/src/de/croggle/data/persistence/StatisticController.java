@@ -51,7 +51,8 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 */
 	public void editCurrentStatistic(Statistic newStatistic) {
 		currentStatistic = newStatistic;
-		String profileName = game.getProfileController().getCurrentProfileName();
+		String profileName = game.getProfileController()
+				.getCurrentProfileName();
 		game.getPersistenceManager().editStatistic(profileName, newStatistic);
 	}
 
@@ -63,9 +64,9 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 *            the name of the user whose statistic is loaded
 	 * 
 	 */
-	public void changeCurrentStatistic(String profileName)
-			 {
-		currentStatistic = game.getPersistenceManager().getStatistic(profileName);
+	public void changeCurrentStatistic(String profileName) {
+		currentStatistic = game.getPersistenceManager().getStatistic(
+				profileName);
 	}
 
 	/**
@@ -95,20 +96,33 @@ public class StatisticController implements StatisticsDeltaProcessor {
 	 */
 	@Override
 	public void processDelta(Statistic statisticsDelta) {
-		
-		currentStatistic.setAlligatorsEaten(currentStatistic.getAlligatorsEaten() + statisticsDelta.getAlligatorsEaten());
-		currentStatistic.setAlligatorsPlaced(currentStatistic.getAlligatorsPlaced() + statisticsDelta.getAlligatorsPlaced());
-		currentStatistic.setEggsHatched(currentStatistic.getEggsHatched() + statisticsDelta.getEggsHatched());
-		currentStatistic.setEggsPlaced(currentStatistic.getEggsPlaced() + statisticsDelta.getEggsPlaced());
-		currentStatistic.setRecolorings(currentStatistic.getRecolorings() + statisticsDelta.getRecolorings());
-		currentStatistic.setResetsUsed(currentStatistic.getResetsUsed() + statisticsDelta.getResetsUsed());
-		currentStatistic.setUsedHints(currentStatistic.getUsedHints() + statisticsDelta.getUsedHints());
-		currentStatistic.setPlaytime(currentStatistic.getPlaytime() + statisticsDelta.getPlaytime());
-		currentStatistic.setLevelsComplete(currentStatistic.getLevelsComplete() + statisticsDelta.getLevelsComplete());
-		currentStatistic.setPackagesComplete(currentStatistic.getPackagesComplete() + statisticsDelta.getPackagesComplete());
-		
-		game.getAchievementController().processStatisticChange(statisticsDelta, currentStatistic);
-		game.getPersistenceManager().editStatistic(game.getProfileController().getCurrentProfileName(), currentStatistic);
+
+		currentStatistic.setAlligatorsEaten(currentStatistic
+				.getAlligatorsEaten() + statisticsDelta.getAlligatorsEaten());
+		currentStatistic.setAlligatorsPlaced(currentStatistic
+				.getAlligatorsPlaced() + statisticsDelta.getAlligatorsPlaced());
+		currentStatistic.setEggsHatched(currentStatistic.getEggsHatched()
+				+ statisticsDelta.getEggsHatched());
+		currentStatistic.setEggsPlaced(currentStatistic.getEggsPlaced()
+				+ statisticsDelta.getEggsPlaced());
+		currentStatistic.setRecolorings(currentStatistic.getRecolorings()
+				+ statisticsDelta.getRecolorings());
+		currentStatistic.setResetsUsed(currentStatistic.getResetsUsed()
+				+ statisticsDelta.getResetsUsed());
+		currentStatistic.setUsedHints(currentStatistic.getUsedHints()
+				+ statisticsDelta.getUsedHints());
+		currentStatistic.setPlaytime(currentStatistic.getPlaytime()
+				+ statisticsDelta.getPlaytime());
+		currentStatistic.setLevelsComplete(currentStatistic.getLevelsComplete()
+				+ statisticsDelta.getLevelsComplete());
+		currentStatistic.setPackagesComplete(currentStatistic
+				.getPackagesComplete() + statisticsDelta.getPackagesComplete());
+
+		game.getAchievementController().processStatisticChange(statisticsDelta,
+				currentStatistic);
+		game.getPersistenceManager().editStatistic(
+				game.getProfileController().getCurrentProfileName(),
+				currentStatistic);
 	}
 
 }

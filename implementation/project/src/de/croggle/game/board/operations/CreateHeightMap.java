@@ -43,7 +43,8 @@ public class CreateHeightMap implements BoardObjectVisitor {
 		heightMap = new HashMap<BoardObject, Float>();
 	}
 
-	private CreateHeightMap(float objectHeight, float depthScaleFactor, float padding) {
+	private CreateHeightMap(float objectHeight, float depthScaleFactor,
+			float padding) {
 		this.objectHeight = objectHeight;
 		this.depthScaleFactor = depthScaleFactor;
 		this.padding = padding;
@@ -53,11 +54,9 @@ public class CreateHeightMap implements BoardObjectVisitor {
 	/**
 	 * Creates a new map containing pairs of {@link BoardObject}s and their
 	 * respective child hierarchy heights - including themselves, if they are
-	 * not {@link Board}s - as keys and values.
-	 * <br/>
+	 * not {@link Board}s - as keys and values. <br/>
 	 * <strong>Note:</strong> {@link Board}s are not adding any height to an
-	 *                         alligator tree, as empty Boards are defined to
-	 *                         have zero height.
+	 * alligator tree, as empty Boards are defined to have zero height.
 	 * 
 	 * @param b
 	 *            the {@link BoardObject} to create a height map for
@@ -117,7 +116,8 @@ public class CreateHeightMap implements BoardObjectVisitor {
 
 	@Override
 	public void visitBoard(Board board) {
-		// Boards do not need to apply padding on children and must not add up to the depth for scaling
+		// Boards do not need to apply padding on children and must not add up
+		// to the depth for scaling
 		float height = 0;
 		float childHeight;
 		for (InternalBoardObject child : board) {

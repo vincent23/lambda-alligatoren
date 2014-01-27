@@ -63,9 +63,11 @@ public class Statistic {
 	public Statistic() {
 
 	}
-	
-	public Statistic(int playtime, int usedHints, int resetsUsed, int recolorings, int levelsComplete, 
-			int packagesComplete, int alligatorsEaten ,int alligatorsPlaced, int eggsHatched, int eggsPlaced) {
+
+	public Statistic(int playtime, int usedHints, int resetsUsed,
+			int recolorings, int levelsComplete, int packagesComplete,
+			int alligatorsEaten, int alligatorsPlaced, int eggsHatched,
+			int eggsPlaced) {
 		this.playtime = playtime;
 		this.usedHints = usedHints;
 		this.resetsUsed = resetsUsed;
@@ -76,7 +78,7 @@ public class Statistic {
 		this.alligatorsPlaced = alligatorsPlaced;
 		this.eggsHatched = eggsHatched;
 		this.eggsPlaced = eggsPlaced;
-		
+
 	}
 
 	/**
@@ -269,7 +271,6 @@ public class Statistic {
 		this.eggsPlaced = eggsPlaced;
 	}
 
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -301,7 +302,5 @@ public class Statistic {
 			return false;
 		return true;
 	}
-	
-	
 
 }

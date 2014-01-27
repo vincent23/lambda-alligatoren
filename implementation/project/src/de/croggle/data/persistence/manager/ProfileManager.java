@@ -34,8 +34,8 @@ public class ProfileManager extends TableManager {
 	/**
 	 * The string used for creating the profile table via a sql query.
 	 */
-	static final String CREATE_TABLE = "create table " + TABLE_NAME
-            + "(" + KEY_PROFILE_NAME + " text not null primary key, " 
+	static final String CREATE_TABLE = "create table " + TABLE_NAME + "("
+			+ KEY_PROFILE_NAME + " text not null primary key, "
 			+ KEY_PICTUREPATH + " text not null" + ")";
 
 	/**
@@ -57,10 +57,10 @@ public class ProfileManager extends TableManager {
 	 */
 	void addProfile(Profile profile) {
 		ContentValues values = new ContentValues();
-		
+
 		values.put(KEY_PROFILE_NAME, profile.getName());
 		values.put(KEY_PICTUREPATH, profile.getPicturePath());
-		
+
 		database.insert(TABLE_NAME, null, values);
 	}
 
@@ -73,21 +73,22 @@ public class ProfileManager extends TableManager {
 	 * @return the found profile, null if no profile is found
 	 */
 	Profile getProfile(String profileName) {
-		
+
 		String selectQuery = "select * from " + TABLE_NAME + " where "
-	            + KEY_PROFILE_NAME + " = " + "'" + profileName + "'";
-		
+				+ KEY_PROFILE_NAME + " = " + "'" + profileName + "'";
+
 		Cursor cursor = database.rawQuery(selectQuery, null);
-				
-		 if (cursor.moveToFirst()) {
-			 String name = cursor.getString(cursor.getColumnIndex(KEY_PROFILE_NAME));
-			 String path = cursor.getString(cursor.getColumnIndex(KEY_PICTUREPATH));
-			 return new Profile(name, path);
-		 }
-		 
-		 return null;
-		 
-	
+
+		if (cursor.moveToFirst()) {
+			String name = cursor.getString(cursor
+					.getColumnIndex(KEY_PROFILE_NAME));
+			String path = cursor.getString(cursor
+					.getColumnIndex(KEY_PICTUREPATH));
+			return new Profile(name, path);
+		}
+
+		return null;
+
 	}
 
 	/**
@@ -100,13 +101,13 @@ public class ProfileManager extends TableManager {
 	 *            contains the values used for overwriting the old entry
 	 */
 	void editProfile(String profileName, Profile profile) {
-		
+
 		ContentValues values = new ContentValues();
 		values.put(KEY_PROFILE_NAME, profile.getName());
 		values.put(KEY_PICTUREPATH, profile.getPicturePath());
-	
+
 		database.update(TABLE_NAME, values, KEY_PROFILE_NAME + " = ?",
-	            new String[] { profileName });
+				new String[] { profileName });
 
 	}
 
@@ -118,9 +119,9 @@ public class ProfileManager extends TableManager {
 	 *            the name of the user whose profile is to be deleted
 	 */
 	void deleteProfile(String profileName) {
-		
+
 		database.delete(TABLE_NAME, KEY_PROFILE_NAME + " = ?",
-	            new String[] { profileName });
+				new String[] { profileName });
 
 	}
 
@@ -130,45 +131,50 @@ public class ProfileManager extends TableManager {
 	 * @return the list of all profiles
 	 */
 	List<Profile> getAllProfiles() {
-		
+
 		List<Profile> profileList = new ArrayList<Profile>();
-		
+
 		String selectQuery = "SELECT  * FROM " + TABLE_NAME;
 		Cursor cursor = database.rawQuery(selectQuery, null);
-		 if (cursor.moveToFirst()) {
-			 do {
-				 String name = cursor.getString(cursor.getColumnIndex(KEY_PROFILE_NAME));
-				 String path = cursor.getString(cursor.getColumnIndex(KEY_PICTUREPATH));
-				 profileList.add(new Profile(name, path));
-		        } while (cursor.moveToNext());
+		if (cursor.moveToFirst()) {
+			do {
+				String name = cursor.getString(cursor
+						.getColumnIndex(KEY_PROFILE_NAME));
+				String path = cursor.getString(cursor
+						.getColumnIndex(KEY_PICTUREPATH));
+				profileList.add(new Profile(name, path));
+			} while (cursor.moveToNext());
 		}
 		return profileList;
 	}
-	
+
 	/**
 	 * Checks if there is already a stored profile with the name profileName.
-	 * @param profileName the name that is checked
-	 * @return true if there is already a profile with the name profileName, else false
+	 * 
+	 * @param profileName
+	 *            the name that is checked
+	 * @return true if there is already a profile with the name profileName,
+	 *         else false
 	 */
 	boolean isNameUsed(String profileName) {
 		String selectQuery = "select * from " + TABLE_NAME + " where "
-	            + KEY_PROFILE_NAME + " = " + "'" + profileName + "'";
-		
+				+ KEY_PROFILE_NAME + " = " + "'" + profileName + "'";
+
 		Cursor cursor = database.rawQuery(selectQuery, null);
-		if(cursor.moveToFirst()) {
+		if (cursor.moveToFirst()) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	void clearTable() {
-		database.execSQL("delete from "+ TABLE_NAME);
+		database.execSQL("delete from " + TABLE_NAME);
 	}
-	
+
 	@Override
 	long getRowCount() {
 		return DatabaseUtils.queryNumEntries(database, TABLE_NAME);
-		
+
 	}
 
 }

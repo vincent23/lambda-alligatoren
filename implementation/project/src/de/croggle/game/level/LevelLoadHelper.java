@@ -27,8 +27,8 @@ import de.croggle.util.convert.JsonToAlligator;
  */
 class LevelLoadHelper {
 
-	//private static final int FRAME_COLS = 4;
-	//private static final int FRAME_ROWS = 3;
+	// private static final int FRAME_COLS = 4;
+	// private static final int FRAME_ROWS = 3;
 
 	private LevelLoadHelper() {
 	}
@@ -68,7 +68,7 @@ class LevelLoadHelper {
 	 * @return json value with the data needed to create the requested level
 	 *         from
 	 */
-	private static JsonValue getJson(int packageIndex, int levelIndex){
+	private static JsonValue getJson(int packageIndex, int levelIndex) {
 
 		FileHandle handle = Gdx.files.internal("json/levels/"
 				+ String.format("%02d", packageIndex)
@@ -108,8 +108,7 @@ class LevelLoadHelper {
 				throw new InvalidJsonException(
 						"The user color Array in this json file has to contain six items!");
 			}
-			Color[] blockedColors = getColorfromJson(data
-					.get("blocked colors"));
+			Color[] blockedColors = getColorfromJson(data.get("blocked colors"));
 			Animation animation = getAnimationfromJson(data, game);
 
 			level = new ColorEditLevel(levelIndex, packageIndex,
@@ -127,13 +126,12 @@ class LevelLoadHelper {
 				throw new InvalidJsonException(
 						"The user color Array in this json file has to contain six items!");
 			}
-			Color[] blockedColors = getColorfromJson(data
-					.get("blocked colors"));
+			Color[] blockedColors = getColorfromJson(data.get("blocked colors"));
 			Animation animation = getAnimationfromJson(data, game);
 			level = new TermEditLevel(levelIndex, packageIndex,
 					JsonToAlligator.convertBoard(initialBoard),
 					JsonToAlligator.convertBoard(goalBoard), animation,
-					userColors, blockedColors,  json.get("hints").getString(0),
+					userColors, blockedColors, json.get("hints").getString(0),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
 
@@ -165,8 +163,8 @@ class LevelLoadHelper {
 		Animation animation = getAnimationfromJson(data, game);
 		Level level = new MultipleChoiceLevel(levelIndex, packageIndex,
 				JsonToAlligator.convertBoard(initialBoard),
-				answers[correctAnswer], animation,  json.get("hints").getString(0),
-				json.getString("description"),
+				answers[correctAnswer], animation, json.get("hints").getString(
+						0), json.getString("description"),
 				json.getInt("abort simulation after"), answers, correctAnswer);
 		return level;
 	}
@@ -243,24 +241,18 @@ class LevelLoadHelper {
 	public static Animation getAnimationfromJson(JsonValue json,
 			AlligatorApp game) {
 		/*
-		AssetManager manager = game.getAssetManager();
-		Texture animationSheet = manager.get(json.getString("animation"),
-				Texture.class);
-		TextureRegion[][] tmp = TextureRegion.split(animationSheet,
-				animationSheet.getWidth() / FRAME_COLS,
-				animationSheet.getHeight() / FRAME_ROWS);
-		TextureRegion[] animationFrames = new TextureRegion[FRAME_COLS
-				* FRAME_ROWS];
-		int index = 0;
-		for (int i = 0; i < FRAME_ROWS; i++) {
-			for (int j = 0; j < FRAME_COLS; j++) {
-				animationFrames[index++] = tmp[i][j];
-			}
-		}
-
-		// TODO passt die frametime?
-		return new Animation(0.025f, animationFrames);
-		*/
+		 * AssetManager manager = game.getAssetManager(); Texture animationSheet
+		 * = manager.get(json.getString("animation"), Texture.class);
+		 * TextureRegion[][] tmp = TextureRegion.split(animationSheet,
+		 * animationSheet.getWidth() / FRAME_COLS, animationSheet.getHeight() /
+		 * FRAME_ROWS); TextureRegion[] animationFrames = new
+		 * TextureRegion[FRAME_COLS FRAME_ROWS]; int index = 0; for (int i = 0;
+		 * i < FRAME_ROWS; i++) { for (int j = 0; j < FRAME_COLS; j++) {
+		 * animationFrames[index++] = tmp[i][j]; } }
+		 * 
+		 * // TODO passt die frametime? return new Animation(0.025f,
+		 * animationFrames);
+		 */
 		return null;
 	}
 }

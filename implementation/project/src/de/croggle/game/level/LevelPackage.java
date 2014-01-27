@@ -16,15 +16,25 @@ public class LevelPackage {
 
 	/**
 	 * Creates a level package with default values.
-	 * @param levelPackageId  the id of this package
-	 * @param name the name of this package
-	 * @param description the description of this package
-	 * @param emblemPath the file path to the emblem of this package
-	 * @param hasAnimation an boolean which is true if this package has an animation
-	 * @param animation the animation of this package
-	 * @param design the file path to the desing of this package
+	 * 
+	 * @param levelPackageId
+	 *            the id of this package
+	 * @param name
+	 *            the name of this package
+	 * @param description
+	 *            the description of this package
+	 * @param emblemPath
+	 *            the file path to the emblem of this package
+	 * @param hasAnimation
+	 *            an boolean which is true if this package has an animation
+	 * @param animation
+	 *            the animation of this package
+	 * @param design
+	 *            the file path to the desing of this package
 	 */
-	public LevelPackage(int levelPackageId, String name, String description, String emblemPath, boolean hasAnimation, Animation animation, String design){
+	public LevelPackage(int levelPackageId, String name, String description,
+			String emblemPath, boolean hasAnimation, Animation animation,
+			String design) {
 		this.levelPackageId = levelPackageId;
 		this.name = name;
 		this.description = description;
@@ -33,7 +43,6 @@ public class LevelPackage {
 		this.animation = animation;
 		this.design = design;
 	}
-
 
 	/**
 	 * Returns the unique identifier of the package, which is defined as the
@@ -81,24 +90,26 @@ public class LevelPackage {
 	public boolean hasAnimation() {
 		return hasAnimation;
 	}
-	
+
 	/**
 	 * Gets the Animation of this levelPackage if there is one.
+	 * 
 	 * @return the Animation if there is one else null is returned
 	 */
-	public Animation getAnimation(){
-		if(this.hasAnimation()){
+	public Animation getAnimation() {
+		if (this.hasAnimation()) {
 			return this.animation;
-		}else{
+		} else {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * gets the path to the design of this level.
+	 * 
 	 * @return the design of this level
 	 */
-	public String getDesign(){
+	public String getDesign() {
 		return this.design;
 	}
 }

@@ -61,7 +61,8 @@ class ActorLayoutBuilder implements BoardObjectVisitor {
 	 */
 	private Vector2 currentPosition;
 
-	private ActorLayoutBuilder(Board b, ActorLayoutConfiguration config, TreeGrowth renderDirectionX, TreeGrowth renderDirectionY) {
+	private ActorLayoutBuilder(Board b, ActorLayoutConfiguration config,
+			TreeGrowth renderDirectionX, TreeGrowth renderDirectionY) {
 		this.config = config;
 		this.renderDirectionX = renderDirectionX;
 		this.renderDirectionY = renderDirectionY;
@@ -114,7 +115,8 @@ class ActorLayoutBuilder implements BoardObjectVisitor {
 	 */
 	public static ActorLayout build(Board b, ActorLayoutConfiguration config,
 			TreeGrowth renderDirectionX, TreeGrowth renderDirectionY) {
-		ActorLayoutBuilder builder = new ActorLayoutBuilder(b, config, renderDirectionX, renderDirectionY);
+		ActorLayoutBuilder builder = new ActorLayoutBuilder(b, config,
+				renderDirectionX, renderDirectionY);
 		b.accept(builder);
 		ActorLayout result = new ActorLayout(builder.actors, b, config);
 		result.getLayoutStatistics().setWidthMap(builder.widthMap);
@@ -153,17 +155,19 @@ class ActorLayoutBuilder implements BoardObjectVisitor {
 		if (config.getHorizontalGrowth() == TreeGrowth.POS_NEG) {
 			offsetx *= -1;
 		}
-		
+
 		float h = config.getEggHeight() * getScaling();
 		float y = currentPosition.y;
-		if (config.getVerticalGrowth() == TreeGrowth.NEG_POS && renderDirectionY == TreeGrowth.POS_NEG) {
+		if (config.getVerticalGrowth() == TreeGrowth.NEG_POS
+				&& renderDirectionY == TreeGrowth.POS_NEG) {
 			y += h;
-		} else if (config.getVerticalGrowth() == TreeGrowth.POS_NEG && renderDirectionY == TreeGrowth.NEG_POS) {
+		} else if (config.getVerticalGrowth() == TreeGrowth.POS_NEG
+				&& renderDirectionY == TreeGrowth.NEG_POS) {
 			y -= h;
 		}
-		
-		a.setBounds(currentPosition.x + offsetx, y,
-				config.getEggWidth() * getScaling(), h);
+
+		a.setBounds(currentPosition.x + offsetx, y, config.getEggWidth()
+				* getScaling(), h);
 		actors.put(egg, a);
 	}
 
@@ -245,12 +249,14 @@ class ActorLayoutBuilder implements BoardObjectVisitor {
 			offset *= -1;
 		}
 		float y = currentPosition.y;
-		if (config.getVerticalGrowth() == TreeGrowth.NEG_POS && renderDirectionY == TreeGrowth.POS_NEG) {
+		if (config.getVerticalGrowth() == TreeGrowth.NEG_POS
+				&& renderDirectionY == TreeGrowth.POS_NEG) {
 			y += h;
-		} else if (config.getVerticalGrowth() == TreeGrowth.POS_NEG && renderDirectionY == TreeGrowth.NEG_POS) {
+		} else if (config.getVerticalGrowth() == TreeGrowth.POS_NEG
+				&& renderDirectionY == TreeGrowth.NEG_POS) {
 			y -= h;
 		}
-		
+
 		p.setBounds(currentPosition.x + offset, y, w, h);
 	}
 
@@ -271,14 +277,13 @@ class ActorLayoutBuilder implements BoardObjectVisitor {
 		// used for having children still centered if smaller than parent
 		float childrenWidth = 0;
 		Iterator<InternalBoardObject> it = p.iterator();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			childrenWidth += widthMap.get(it.next());
 			if (it.hasNext()) {
-				childrenWidth += getScaling()
-						* config.getHorizontalPadding();
+				childrenWidth += getScaling() * config.getHorizontalPadding();
 			}
 		}
-		
+
 		it = p.iterator();
 		if (config.getHorizontalGrowth() == TreeGrowth.NEG_POS) {
 			currentPosition.x += (widthMap.get(p) - childrenWidth) / 2;

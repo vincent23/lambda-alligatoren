@@ -10,7 +10,7 @@ public class ActorLayoutStatistics {
 	private Map<BoardObject, Float> widthMap;
 	private Map<BoardObject, Float> heightMap;
 	private final ActorLayout layout;
-	
+
 	public ActorLayoutStatistics(ActorLayout l) {
 		layout = l;
 	}
@@ -22,18 +22,22 @@ public class ActorLayoutStatistics {
 	public Map<BoardObject, Float> getHeightMap() {
 		return heightMap;
 	}
-	
+
 	void setWidthMap(Map<BoardObject, Float> widthMap) {
 		this.widthMap = widthMap;
 	}
-	
+
 	void setHeightMap(Map<BoardObject, Float> heightMap) {
 		this.heightMap = heightMap;
 	}
-	
+
 	public void rebuild() {
 		ActorLayoutConfiguration config = layout.getLayoutConfiguration();
-		widthMap = CreateWidthMap.create(layout.getBoard(), config.getUniformObjectWidth(), config.getVerticalScaleFactor(), config.getHorizontalPadding());
-		heightMap = CreateHeightMap.create(layout.getBoard(), config.getUniformObjectHeight(), config.getVerticalScaleFactor(), config.getVerticalPadding());
+		widthMap = CreateWidthMap.create(layout.getBoard(),
+				config.getUniformObjectWidth(),
+				config.getVerticalScaleFactor(), config.getHorizontalPadding());
+		heightMap = CreateHeightMap.create(layout.getBoard(),
+				config.getUniformObjectHeight(),
+				config.getVerticalScaleFactor(), config.getVerticalPadding());
 	}
 }

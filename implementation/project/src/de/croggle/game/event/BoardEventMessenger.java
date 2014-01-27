@@ -83,7 +83,8 @@ public class BoardEventMessenger {
 	 * @param alligator
 	 *            the alligator that has vanished
 	 */
-	public void notifyAgedAlligatorVanishes(AgedAlligator alligator, int positionInPArent) {
+	public void notifyAgedAlligatorVanishes(AgedAlligator alligator,
+			int positionInPArent) {
 		for (BoardEventListener listener : listeners) {
 			listener.onAgedAlligatorVanishes(alligator, positionInPArent);
 		}

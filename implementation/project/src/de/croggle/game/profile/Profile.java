@@ -127,7 +127,7 @@ public class Profile {
 	public void setStatistic(Statistic statistic) {
 		this.statistic = statistic;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

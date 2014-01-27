@@ -33,7 +33,7 @@ public class PagedScrollPane extends ScrollPane {
 		super(null, style);
 		init();
 	}
-	
+
 	private final void init() {
 		content = new Table();
 		content.defaults().space(50);

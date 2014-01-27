@@ -78,7 +78,6 @@ public class LevelProgress {
 		return solved;
 	}
 
-	
 	/**
 	 * Sets whether the level has been solved.
 	 * 
@@ -164,7 +163,7 @@ public class LevelProgress {
 	public void setUsedTime(int usedTime) {
 		this.usedTime = usedTime;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

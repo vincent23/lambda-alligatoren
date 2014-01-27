@@ -14,7 +14,7 @@ import de.croggle.game.board.AgedAlligator;
 public class AgedAlligatorActor extends BoardObjectActor {
 
 	private TextureRegion foreground;
-	
+
 	/**
 	 * Creates a new actor.
 	 * 

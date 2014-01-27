@@ -14,7 +14,7 @@ public class Setting {
 	/**
 	 * The volume of the effects used in the game.
 	 */
-	private float volumeEffects  = 0.5f;
+	private float volumeEffects = 0.5f;
 
 	/**
 	 * Determines whether the zoom button is enabled or not.
@@ -130,7 +130,6 @@ public class Setting {
 	public void setColorblindEnabled(boolean colorblindEnabled) {
 		this.colorblindEnabled = colorblindEnabled;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {

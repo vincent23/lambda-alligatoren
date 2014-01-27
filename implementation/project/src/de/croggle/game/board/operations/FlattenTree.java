@@ -16,9 +16,9 @@ import de.croggle.game.board.InternalBoardObject;
  * objects in the tree is needed to be achieved.
  */
 public class FlattenTree<T extends BoardObject> implements BoardObjectVisitor {
-	
+
 	private List<T> flattened;
-	
+
 	private FlattenTree() {
 		this.flattened = new LinkedList<T>();
 	}
@@ -35,9 +35,10 @@ public class FlattenTree<T extends BoardObject> implements BoardObjectVisitor {
 	public static BoardObject[] toArray(BoardObject tree) {
 		FlattenTree<BoardObject> flattener = new FlattenTree<BoardObject>();
 		tree.accept(flattener);
-		return flattener.flattened.toArray(new BoardObject[flattener.flattened.size()]);
+		return flattener.flattened.toArray(new BoardObject[flattener.flattened
+				.size()]);
 	}
-	
+
 	/**
 	 * Systematically travels the tree and adds each element part of it <b>one
 	 * single time</b> to the array that is returned. Useful if sequentially
@@ -50,9 +51,10 @@ public class FlattenTree<T extends BoardObject> implements BoardObjectVisitor {
 	public static InternalBoardObject[] toArray(InternalBoardObject tree) {
 		FlattenTree<InternalBoardObject> flattener = new FlattenTree<InternalBoardObject>();
 		tree.accept(flattener);
-		return flattener.flattened.toArray(new InternalBoardObject[flattener.flattened.size()]);
+		return flattener.flattened
+				.toArray(new InternalBoardObject[flattener.flattened.size()]);
 	}
-	
+
 	/**
 	 * Systematically travels the tree and adds each element part of it <b>one
 	 * single time</b> to the array that is returned. Useful if sequentially
@@ -67,7 +69,7 @@ public class FlattenTree<T extends BoardObject> implements BoardObjectVisitor {
 		tree.accept(flattener);
 		return flattener.flattened;
 	}
-	
+
 	/**
 	 * Systematically travels the tree and adds each element part of it <b>one
 	 * single time</b> to the array that is returned. Useful if sequentially

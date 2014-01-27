@@ -64,7 +64,8 @@ public class ColorController {
 		// return entry.getKey();
 		// }
 		// }
-		com.badlogic.gdx.graphics.Color[] colors = de.croggle.game.Color.getRepresentations();
+		com.badlogic.gdx.graphics.Color[] colors = de.croggle.game.Color
+				.getRepresentations();
 		for (int i = 0; i < colors.length; i++) {
 			if (colors[i].equals(color)) {
 				return new de.croggle.game.Color(i);
@@ -115,7 +116,8 @@ public class ColorController {
 			throws ColorOverflowException {
 		if (usedColors.length >= de.croggle.game.Color.MAX_COLORS) {
 			throw new ColorOverflowException(
-					"Exceeded maximum number of colors: " + de.croggle.game.Color.MAX_COLORS);
+					"Exceeded maximum number of colors: "
+							+ de.croggle.game.Color.MAX_COLORS);
 		}
 		java.util.Arrays.sort(usedColors);
 		int i;

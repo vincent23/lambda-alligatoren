@@ -19,8 +19,6 @@ public abstract class Level {
 	private boolean unlocked;
 	private boolean solved;
 
-
-
 	/**
 	 * Creates a new level with the given parameters.
 	 * 
@@ -137,47 +135,60 @@ public abstract class Level {
 	public int getAbortSimulationAfter() {
 		return abortSimulationAfter;
 	}
-	
+
 	/**
 	 * Gets whether this level is unlocked or not.
+	 * 
 	 * @return whether this level is unlocked or not
 	 */
-	public boolean getUnlocked(){
+	public boolean getUnlocked() {
 		return this.unlocked;
 	}
-	
+
 	/**
 	 * Sets the Parameter unlocked.
-	 * @param unlocked the value unlocked should be set to.
+	 * 
+	 * @param unlocked
+	 *            the value unlocked should be set to.
 	 */
-	public void setUnlocked(boolean unlocked){
+	public void setUnlocked(boolean unlocked) {
 		this.unlocked = unlocked;
 	}
-	
+
 	/**
-	 * Method to determine whether this level is solved or not during the simulation.
-	 * @param solution the current Board the user has entered after a number of evaluation steps.
-	 * @param steps the number of evaluation steps.
+	 * Method to determine whether this level is solved or not during the
+	 * simulation.
+	 * 
+	 * @param solution
+	 *            the current Board the user has entered after a number of
+	 *            evaluation steps.
+	 * @param steps
+	 *            the number of evaluation steps.
 	 * @return if the current level is solved or not
 	 */
 	abstract public boolean isLevelSolved(Board solution, int steps);
-	
+
 	/**
-	 * Method to check if the level is still solvable according to the number of evaluation steps or not.
-	 * This method should be called after checking whether the level is solved or not.
-	 * @param steps the number of evaluation steps 
+	 * Method to check if the level is still solvable according to the number of
+	 * evaluation steps or not. This method should be called after checking
+	 * whether the level is solved or not.
+	 * 
+	 * @param steps
+	 *            the number of evaluation steps
 	 * @return whether the level is still solvable or not
 	 */
-	public boolean isSolveable(int steps){
+	public boolean isSolveable(int steps) {
 		boolean solvable = true;
-		if(this.abortSimulationAfter < 0 && Math.abs(this.abortSimulationAfter)<= steps){
+		if (this.abortSimulationAfter < 0
+				&& Math.abs(this.abortSimulationAfter) <= steps) {
 			solvable = false;
 		}
 		return solvable;
 	}
-	
+
 	/**
 	 * Method to return the Parameter solved.
+	 * 
 	 * @return if the Level is solved.
 	 */
 	public boolean isSolved() {
@@ -190,5 +201,5 @@ public abstract class Level {
 	protected void setSolvedTrue() {
 		this.solved = true;
 	}
-	
+
 }

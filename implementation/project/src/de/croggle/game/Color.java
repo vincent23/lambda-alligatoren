@@ -5,7 +5,7 @@ package de.croggle.game;
  */
 public class Color implements Comparable<Color> {
 	public static final int MAX_COLORS = 30;
-	
+
 	static {
 		uncolored = new UncoloredColor();
 	}
@@ -22,17 +22,17 @@ public class Color implements Comparable<Color> {
 			"#B66032", "#577592", "#A05FD8", "#7E397E" };
 	private static final com.badlogic.gdx.graphics.Color[] representations;
 	static {
-		// assert (MAX_COLORS == colorStrings.length); // done by ColorTest unit test
+		// assert (MAX_COLORS == colorStrings.length); // done by ColorTest unit
+		// test
 		representations = new com.badlogic.gdx.graphics.Color[MAX_COLORS];
 		for (int i = 0; i < colorStrings.length; i++) {
 			representations[i] = de.croggle.util.convert.Color
 					.fromHexString(colorStrings[i]);
 		}
 	}
-	
+
 	private final int id;
 
-	
 	/**
 	 * Creates a color with the given id. The id needs to be between 0 and 29
 	 * and represents a certain "real" color according to the ColorController.
@@ -69,11 +69,11 @@ public class Color implements Comparable<Color> {
 	public int getId() {
 		return this.id;
 	}
-	
+
 	public static com.badlogic.gdx.graphics.Color[] getRepresentations() {
 		return representations;
 	}
-	
+
 	public static com.badlogic.gdx.graphics.Color getRepresentation(Color c) {
 		return representations[c.id];
 	}

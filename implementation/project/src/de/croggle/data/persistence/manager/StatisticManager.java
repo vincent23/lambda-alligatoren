@@ -76,20 +76,16 @@ public class StatisticManager extends TableManager {
 	/**
 	 * The string used for creating the statistic table via a sql query.
 	 */
-	static final String CREATE_TABLE = "create table " + TABLE_NAME
-			+ "(" + KEY_PROFILE_NAME + " text not null, "
-            + KEY_PLAYTIME + " int, "
-            + KEY_USED_HINTS + " int, "
-            + KEY_USED_RESETS + " int, "
-            + KEY_RECOLORINGS + " int, "
-            + KEY_LEVELS_COMPLETE+ " int, "
-            + KEY_PACKAGES_COMPLETE + " int, "
-            + KEY_ALLIGATORS_EATEN + " int, "
-            + KEY_ALLIGATORS_PLACED + " int, "
-            + KEY_EGGS_HATCHED + " int, "
-            + KEY_EGGS_PLACED + " int, "
-            + "FOREIGN KEY(" + KEY_PROFILE_NAME + ") REFERENCES " + ProfileManager.TABLE_NAME + "(" + ProfileManager.KEY_PROFILE_NAME + ") ON UPDATE CASCADE ON DELETE CASCADE )";
-	
+	static final String CREATE_TABLE = "create table " + TABLE_NAME + "("
+			+ KEY_PROFILE_NAME + " text not null, " + KEY_PLAYTIME + " int, "
+			+ KEY_USED_HINTS + " int, " + KEY_USED_RESETS + " int, "
+			+ KEY_RECOLORINGS + " int, " + KEY_LEVELS_COMPLETE + " int, "
+			+ KEY_PACKAGES_COMPLETE + " int, " + KEY_ALLIGATORS_EATEN
+			+ " int, " + KEY_ALLIGATORS_PLACED + " int, " + KEY_EGGS_HATCHED
+			+ " int, " + KEY_EGGS_PLACED + " int, " + "FOREIGN KEY("
+			+ KEY_PROFILE_NAME + ") REFERENCES " + ProfileManager.TABLE_NAME
+			+ "(" + ProfileManager.KEY_PROFILE_NAME
+			+ ") ON UPDATE CASCADE ON DELETE CASCADE )";
 
 	/**
 	 * Creates a new StatisticManager which manages the statistic table.
@@ -111,9 +107,9 @@ public class StatisticManager extends TableManager {
 	 *            contains the values to be stored in the table
 	 */
 	void addStatistic(String profileName, Statistic statistic) {
-		
+
 		ContentValues values = new ContentValues();
-		
+
 		values.put(KEY_PROFILE_NAME, profileName);
 		values.put(KEY_PLAYTIME, statistic.getPlaytime());
 		values.put(KEY_USED_HINTS, statistic.getUsedHints());
@@ -125,7 +121,7 @@ public class StatisticManager extends TableManager {
 		values.put(KEY_ALLIGATORS_PLACED, statistic.getAlligatorsPlaced());
 		values.put(KEY_EGGS_HATCHED, statistic.getEggsHatched());
 		values.put(KEY_EGGS_PLACED, statistic.getEggsPlaced());
-		
+
 		database.insert(TABLE_NAME, null, values);
 
 	}
@@ -141,25 +137,36 @@ public class StatisticManager extends TableManager {
 	Statistic getStatistic(String profileName) {
 
 		String selectQuery = "select * from " + TABLE_NAME + " where "
-	            + KEY_PROFILE_NAME + " = " + "'" + profileName + "'";
-		
+				+ KEY_PROFILE_NAME + " = " + "'" + profileName + "'";
+
 		Cursor cursor = database.rawQuery(selectQuery, null);
-				
-		 if (cursor.moveToFirst()) {
-			 int playtime = cursor.getInt(cursor.getColumnIndex(KEY_PLAYTIME));
-			 int usedHints = cursor.getInt(cursor.getColumnIndex(KEY_USED_HINTS));
-			 int resetsUsed = cursor.getInt(cursor.getColumnIndex(KEY_USED_RESETS));
-			 int recolorings = cursor.getInt(cursor.getColumnIndex(KEY_RECOLORINGS));
-			 int levelsComplete = cursor.getInt(cursor.getColumnIndex(KEY_LEVELS_COMPLETE));
-			 int packagesComplete = cursor.getInt(cursor.getColumnIndex(KEY_PACKAGES_COMPLETE));
-			 int alligatorsEaten = cursor.getInt(cursor.getColumnIndex(KEY_ALLIGATORS_EATEN));
-			 int alligatorsPlaced = cursor.getInt(cursor.getColumnIndex(KEY_ALLIGATORS_PLACED));
-			 int eggsHatched = cursor.getInt(cursor.getColumnIndex(KEY_EGGS_HATCHED));
-			 int eggsPlaced = cursor.getInt(cursor.getColumnIndex(KEY_EGGS_PLACED));
-			 return new Statistic(playtime, usedHints, resetsUsed, recolorings, levelsComplete, packagesComplete, alligatorsEaten, alligatorsPlaced, eggsHatched, eggsPlaced);
-		 }
-		 
-		 return null;
+
+		if (cursor.moveToFirst()) {
+			int playtime = cursor.getInt(cursor.getColumnIndex(KEY_PLAYTIME));
+			int usedHints = cursor
+					.getInt(cursor.getColumnIndex(KEY_USED_HINTS));
+			int resetsUsed = cursor.getInt(cursor
+					.getColumnIndex(KEY_USED_RESETS));
+			int recolorings = cursor.getInt(cursor
+					.getColumnIndex(KEY_RECOLORINGS));
+			int levelsComplete = cursor.getInt(cursor
+					.getColumnIndex(KEY_LEVELS_COMPLETE));
+			int packagesComplete = cursor.getInt(cursor
+					.getColumnIndex(KEY_PACKAGES_COMPLETE));
+			int alligatorsEaten = cursor.getInt(cursor
+					.getColumnIndex(KEY_ALLIGATORS_EATEN));
+			int alligatorsPlaced = cursor.getInt(cursor
+					.getColumnIndex(KEY_ALLIGATORS_PLACED));
+			int eggsHatched = cursor.getInt(cursor
+					.getColumnIndex(KEY_EGGS_HATCHED));
+			int eggsPlaced = cursor.getInt(cursor
+					.getColumnIndex(KEY_EGGS_PLACED));
+			return new Statistic(playtime, usedHints, resetsUsed, recolorings,
+					levelsComplete, packagesComplete, alligatorsEaten,
+					alligatorsPlaced, eggsHatched, eggsPlaced);
+		}
+
+		return null;
 	}
 
 	/**
@@ -176,7 +183,7 @@ public class StatisticManager extends TableManager {
 	void editStatistic(String profileName, Statistic statistic) {
 
 		ContentValues values = new ContentValues();
-		
+
 		values.put(KEY_PROFILE_NAME, profileName);
 		values.put(KEY_PLAYTIME, statistic.getPlaytime());
 		values.put(KEY_USED_HINTS, statistic.getUsedHints());
@@ -188,9 +195,9 @@ public class StatisticManager extends TableManager {
 		values.put(KEY_ALLIGATORS_PLACED, statistic.getAlligatorsPlaced());
 		values.put(KEY_EGGS_HATCHED, statistic.getEggsHatched());
 		values.put(KEY_EGGS_PLACED, statistic.getEggsPlaced());
-	
+
 		database.update(TABLE_NAME, values, KEY_PROFILE_NAME + " = ?",
-	            new String[] { profileName });
+				new String[] { profileName });
 	}
 
 	/**
@@ -203,17 +210,17 @@ public class StatisticManager extends TableManager {
 	void deleteStatistics(String profileName) {
 
 		database.delete(TABLE_NAME, KEY_PROFILE_NAME + " = ?",
-	            new String[] { profileName });
+				new String[] { profileName });
 	}
 
 	void clearTable() {
-		database.execSQL("delete from "+ TABLE_NAME);
+		database.execSQL("delete from " + TABLE_NAME);
 	}
 
 	@Override
 	long getRowCount() {
 		return DatabaseUtils.queryNumEntries(database, TABLE_NAME);
-		
+
 	}
 
 }

@@ -3,9 +3,7 @@ package de.croggle.data;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 
-import de.croggle.AlligatorApp;
 import de.croggle.game.Color;
-import de.croggle.game.ColorController;
 
 /**
  * Proxy class to enforce singleton pattern on libgdx' AssetManager. Needs to be
@@ -27,31 +25,30 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		buildColors();
 		buildPatterns();
 	}
-	
+
 	private void buildColors() {
 		com.badlogic.gdx.graphics.Color[] reps = Color.getRepresentations();
 		for (int i = 0; i < colors.length; i++) {
-			colors[i] = new Pixmap(1, 1,
-					Pixmap.Format.RGB888);
+			colors[i] = new Pixmap(1, 1, Pixmap.Format.RGB888);
 			colors[i].setColor(reps[i]);
 			colors[i].fill();
 		}
 	}
-	
+
 	private void buildPatterns() {
-		
+
 	}
-	
+
 	public Texture getColorTexture(Color c) {
 		return new Texture(colors[c.getId()]);
 	}
-	
+
 	public Texture getPatternTexture(Color c) {
 		// TODO implement buildPatterns first
 		throw new UnsupportedOperationException("Not implemented yet");
-		//return new Texture(patterns[c.getId()]);
+		// return new Texture(patterns[c.getId()]);
 	}
-	
+
 	@Override
 	public void dispose() {
 		super.dispose();

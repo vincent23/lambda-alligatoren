@@ -13,12 +13,10 @@ import de.croggle.game.board.operations.MatchWithRenaming;
  */
 public class ColorEditLevel extends Level {
 
-	
-	
 	private Color[] userColors;
 	private Color[] blockedColors;
 	private ColorController colorController;
-	
+
 	/**
 	 * Creates a new level with the given parameters.
 	 * 
@@ -34,7 +32,8 @@ public class ColorEditLevel extends Level {
 	 *            the path to the animation of the level
 	 * @param userColors
 	 *            the colors given to the user to color BoardObjects in
-	 * @param blockedColors Colors the  user musn't use
+	 * @param blockedColors
+	 *            Colors the user musn't use
 	 * @param hint
 	 *            the hint given to the user if he pushes the hint button
 	 * @param description
@@ -43,57 +42,60 @@ public class ColorEditLevel extends Level {
 	 *            number of evaluation steps the simulation is aborted after
 	 */
 	public ColorEditLevel(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, Animation animation, Color[] userColors, Color[] blockedColors,
-			String hint, String description, int abortSimulationAfter) {
+			Board goalBoard, Animation animation, Color[] userColors,
+			Color[] blockedColors, String hint, String description,
+			int abortSimulationAfter) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
 				hint, description, abortSimulationAfter);
 		this.blockedColors = blockedColors;
 		this.userColors = userColors;
 	}
-	
-	
+
 	/**
 	 * Method to get the userColors of the level.
+	 * 
 	 * @return the user colors of this level
 	 */
-	public Color[] getUserColor(){
+	public Color[] getUserColor() {
 		return this.userColors;
 	}
-	
+
 	/**
 	 * Method to get the blocked colors of the level.
+	 * 
 	 * @return the blocked colors of this level
 	 */
-	public Color[] getBlockedColor(){
+	public Color[] getBlockedColor() {
 		return this.blockedColors;
 	}
-	
+
 	/**
 	 * Method to get the ColorController of the level
+	 * 
 	 * @return the Colorcontroller of this level.
 	 */
-	public ColorController getColorController(){
+	public ColorController getColorController() {
 		return this.colorController;
 	}
-
 
 	@Override
 	public boolean isLevelSolved(Board solution, int steps) {
 		boolean stepsReached = false;
 		boolean rightBoard = false;
-		if(this.getAbortSimulationAfter() != 0 && steps == this.getAbortSimulationAfter()){
+		if (this.getAbortSimulationAfter() != 0
+				&& steps == this.getAbortSimulationAfter()) {
 			stepsReached = true;
-		}else if(this.getAbortSimulationAfter() == 0){
+		} else if (this.getAbortSimulationAfter() == 0) {
 			stepsReached = true;
 		}
-		
-		if(MatchWithRenaming.match(solution, this.getGoalBoard())){
+
+		if (MatchWithRenaming.match(solution, this.getGoalBoard())) {
 			rightBoard = true;
 		}
-		if(stepsReached && rightBoard){
+		if (stepsReached && rightBoard) {
 			this.setSolvedTrue();
 		}
-		
+
 		return stepsReached && rightBoard;
 	}
 

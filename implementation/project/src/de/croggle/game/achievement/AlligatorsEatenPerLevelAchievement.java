@@ -17,12 +17,13 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 	public int requirementsMet(Statistic statistic, Statistic statisticDelta) {
 		int index = getIndex();
 		int alligatorsEatenPerLevel = statisticDelta.getAlligatorsEaten();
-		while (index < (getNumberOfStages() - 1) && alligatorsEatenPerLevel >= getStage(index + 1)) {
+		while (index < (getNumberOfStages() - 1)
+				&& alligatorsEatenPerLevel >= getStage(index + 1)) {
 			index++;
 		}
 		// TODO: decide whether I have to correct the index of the Achievement
 		// here.
-	
+
 		return index;
 
 	}
@@ -30,12 +31,13 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 	@Override
 	public void initialize() {
 		setIndex(0);
-		int[] stages = {0, 1, 2, 5, 10, 20};
+		int[] stages = { 0, 1, 2, 5, 10, 20 };
 		String[] emblemPath = new String[6]; // TODO: Path to the Emblems
 												// reintun.
 		String[] description = new String[6];
-		for (int i = 1; i < 5; i++) { //TODO: Fix Localization stuff. 
-			description[i] = stages[i] + " " + _("achievement_alligators_eaten_per_level");
+		for (int i = 1; i < 5; i++) { // TODO: Fix Localization stuff.
+			description[i] = stages[i] + " "
+					+ _("achievement_alligators_eaten_per_level");
 			emblemPath[i] = "emblems/alligatorsEatenPerLevel/0" + i;
 		}
 		description[0] = "initial state, do not show this stage as achievement";
@@ -45,7 +47,7 @@ public class AlligatorsEatenPerLevelAchievement extends PerLevelAchievement {
 		setDescription(description);
 		setStages(stages);
 		setEmblemPath(emblemPath);
-		
+
 	}
 
 }

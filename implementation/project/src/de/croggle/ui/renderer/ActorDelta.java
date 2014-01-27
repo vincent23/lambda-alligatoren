@@ -5,12 +5,13 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
  * A class representing a set of changes made or to be made to an {@link Actor}.
- * Used for example for just finding changes to be made to an {@link ActorLayout} but leave it to the
- * caller to actually apply those changes, which allows for animating those.
+ * Used for example for just finding changes to be made to an
+ * {@link ActorLayout} but leave it to the caller to actually apply those
+ * changes, which allows for animating those.
  * 
  */
 public class ActorDelta {
-	
+
 	private BoardObjectActor actor;
 	private float newWidth;
 	private float newHeight;
@@ -23,13 +24,14 @@ public class ActorDelta {
 	 */
 	private ActorDelta(BoardObjectActor actor) {
 		if (actor == null) {
-			throw new NullPointerException("Cannot instantiate ActorDeltas without an actor");
+			throw new NullPointerException(
+					"Cannot instantiate ActorDeltas without an actor");
 		}
 		setActor(actor);
 		newWidth = actor.getWidth();
 		newHeight = actor.getHeight();
 	}
-	
+
 	/**
 	 * 
 	 * Note: This constructor does not have an explicit access modifier since
@@ -41,25 +43,27 @@ public class ActorDelta {
 	 * @param newWidth
 	 * @param newHeight
 	 */
-	ActorDelta(BoardObjectActor actor, float newX, float newY, float newWidth, float newHeight) {
+	ActorDelta(BoardObjectActor actor, float newX, float newY, float newWidth,
+			float newHeight) {
 		this(actor);
-		
+
 		setNewX(newX);
 		setNewY(newY);
 		setNewWidth(newWidth);
 		setNewHeight(newHeight);
 	}
-	
+
 	/**
 	 * 
 	 * @param actor
 	 * @param newX
 	 * @param newY
-	 * @param newSize can be null.
+	 * @param newSize
+	 *            can be null.
 	 */
 	ActorDelta(BoardObjectActor actor, float newX, float newY, Vector2 newSize) {
 		this(actor);
-		
+
 		setNewX(newX);
 		setNewY(newY);
 		if (newSize == null) {
@@ -70,17 +74,19 @@ public class ActorDelta {
 			setNewHeight(newSize.y);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param actor
-	 * @param newPosition can be null.
+	 * @param newPosition
+	 *            can be null.
 	 * @param newWidth
 	 * @param newHeight
 	 */
-	ActorDelta(BoardObjectActor actor, Vector2 newPosition, float newWidth, float newHeight) {
+	ActorDelta(BoardObjectActor actor, Vector2 newPosition, float newWidth,
+			float newHeight) {
 		this(actor);
-		
+
 		if (newPosition == null) {
 			setNewX(actor.getX());
 			setNewY(actor.getY());
@@ -88,7 +94,7 @@ public class ActorDelta {
 			setNewX(newPosition.x);
 			setNewY(newPosition.y);
 		}
-		
+
 		setNewWidth(newWidth);
 		setNewHeight(newHeight);
 	}
@@ -162,10 +168,10 @@ public class ActorDelta {
 	}
 
 	public float getNewY() {
-		
+
 		return newY;
 	}
-	
+
 	/**
 	 * 
 	 * Note: This method is only available to allow for pooling

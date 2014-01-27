@@ -22,7 +22,8 @@ public class CreateWidthMap implements BoardObjectVisitor {
 
 	private float scaling = 1;
 
-	private CreateWidthMap(float objectWidth, float depthScaleFactor, float padding) {
+	private CreateWidthMap(float objectWidth, float depthScaleFactor,
+			float padding) {
 		this.widthMap = new HashMap<BoardObject, Float>();
 		this.objectWidth = objectWidth;
 		this.scaleFactor = depthScaleFactor;
@@ -124,7 +125,7 @@ public class CreateWidthMap implements BoardObjectVisitor {
 	private void goHigher() {
 		this.scaling /= scaleFactor;
 	}
-	
+
 	private float getScaling() {
 		return scaling;
 	}

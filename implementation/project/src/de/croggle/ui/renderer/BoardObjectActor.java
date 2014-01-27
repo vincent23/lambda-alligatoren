@@ -20,7 +20,7 @@ public abstract class BoardObjectActor extends Actor {
 	public BoardObjectActor(InternalBoardObject object) {
 		this.object = object;
 	}
-	
+
 	public InternalBoardObject getBoardObject() {
 		return object;
 	}

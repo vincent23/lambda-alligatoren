@@ -16,16 +16,17 @@ public class LevelController {
 	private List<Level> levels;
 	private AlligatorApp game;
 
-
 	/**
 	 * Creates the controller with the given package index. It will manage the
 	 * levels from the level package defined by <code>packageIndex</code>.
 	 * 
 	 * @param packageIndex
 	 *            the index of the package whose levels should be controlled
-	 * @param game a instance of Alligator App, urrently used for loading Animation.
+	 * @param game
+	 *            a instance of Alligator App, urrently used for loading
+	 *            Animation.
 	 */
-	public LevelController(int packageIndex, AlligatorApp game){
+	public LevelController(int packageIndex, AlligatorApp game) {
 		this.packageIndex = packageIndex;
 		this.game = game;
 		this.getLevelFromPackage();
@@ -45,24 +46,26 @@ public class LevelController {
 	}
 
 	/**
-	 * Returns the level specified by the given index, if this level is already unlocked, else null is returned. The index must be between
-	 * 0 and <code>getPackageSize()</code> - 1.
+	 * Returns the level specified by the given index, if this level is already
+	 * unlocked, else null is returned. The index must be between 0 and
+	 * <code>getPackageSize()</code> - 1.
 	 * 
 	 * @param levelIndex
 	 *            the index of the level that should be returned
-	 * @return the desired level if it has been unlocked else null 
+	 * @return the desired level if it has been unlocked else null
 	 */
 	public Level getUnlockedLevel(int levelIndex) {
 		Level level = levels.get(levelIndex);
-		if(levelIndex > 0 && levels.get(levelIndex - 1).isSolved()){
+		if (levelIndex > 0 && levels.get(levelIndex - 1).isSolved()) {
 			level.setUnlocked(true);
 		}
-		if(level.getUnlocked()){
+		if (level.getUnlocked()) {
 			return level;
-		}else{
+		} else {
 			return null;
 		}
 	}
+
 	/**
 	 * Returns the package index of the package of the level the controller
 	 * currently holds.
@@ -82,25 +85,26 @@ public class LevelController {
 	public int getPackageSize() {
 		return levels.size();
 	}
-	
+
 	/**
-	 * Method to load the level of the package the LevelController manages. 
+	 * Method to load the level of the package the LevelController manages.
 	 */
-	private void getLevelFromPackage(){
-		AssetManager manager  = game.getContext().getAssets();
+	private void getLevelFromPackage() {
+		AssetManager manager = game.getContext().getAssets();
 		String[] levelNames = null;
 		try {
-			levelNames = manager.list("json/levels/" + String.format("%02d", this.packageIndex));
+			levelNames = manager.list("json/levels/"
+					+ String.format("%02d", this.packageIndex));
 		} catch (IOException e) {
-			// TODO 
+			// TODO
 		}
-		int numberOfLevel = levelNames.length-1;
+		int numberOfLevel = levelNames.length - 1;
 		levels = new ArrayList<Level>();
-		for(int i = 0; i < numberOfLevel; i++ ){
-				levels.add(LevelLoadHelper.instantiate(this.packageIndex, i, this.game));
+		for (int i = 0; i < numberOfLevel; i++) {
+			levels.add(LevelLoadHelper.instantiate(this.packageIndex, i,
+					this.game));
 		}
-		
-	}
 
+	}
 
 }

@@ -5,10 +5,6 @@ import java.util.List;
 import android.content.Context;
 import android.util.SparseIntArray;
 
-
-
-
-
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.LevelProgress;
 import de.croggle.data.persistence.Setting;
@@ -75,37 +71,39 @@ public class PersistenceManager {
 	 * 
 	 * @param profile
 	 *            the profile to be stored
-	 *  
+	 * 
 	 * @throws IllegalArgumentException
-	 *             when the given profile is null or its profile name contained in profile already identifies
-	 *             another profile
-
+	 *             when the given profile is null or its profile name contained
+	 *             in profile already identifies another profile
 	 */
 	public void addProfile(Profile profile) throws IllegalArgumentException {
-		if(profile == null) {
+		if (profile == null) {
 			throw new IllegalArgumentException();
-		} else if(isNameUsed(profile.getName())) {
-			throw new IllegalArgumentException("There is already a profile with the name " + profile.getName() + ".");
+		} else if (isNameUsed(profile.getName())) {
+			throw new IllegalArgumentException(
+					"There is already a profile with the name "
+							+ profile.getName() + ".");
 		} else {
 			profileManager.open();
 			profileManager.addProfile(profile);
 			profileManager.close();
-			
+
 			settingManager.open();
 			settingManager.addSetting(profile.getName(), profile.getSetting());
 			settingManager.close();
-			
+
 			statisticManager.open();
-			statisticManager.addStatistic(profile.getName(), profile.getStatistic());
+			statisticManager.addStatistic(profile.getName(),
+					profile.getStatistic());
 			statisticManager.close();
-			
+
 			/*
-			achievementManager.open();
-			List<Achievement> achievements = game.getAchievementController().getAvailableAchievements();
-			for (Achievement achievement : achievements) {
-				achievementManager.addUnlockedAchievement(profile.getName(), achievement);
-			}
-			achievementManager.close(); */
+			 * achievementManager.open(); List<Achievement> achievements =
+			 * game.getAchievementController().getAvailableAchievements(); for
+			 * (Achievement achievement : achievements) {
+			 * achievementManager.addUnlockedAchievement(profile.getName(),
+			 * achievement); } achievementManager.close();
+			 */
 		}
 
 	}
@@ -132,16 +130,17 @@ public class PersistenceManager {
 	 * @param profileName
 	 *            the string to identify the profile which is to be edited
 	 * @param profile
-	 *    contains the values used for overwriting the old profile
-	 *
+	 *            contains the values used for overwriting the old profile
+	 * 
 	 */
-	
-	public void editProfile(String profileName, Profile profile) throws IllegalArgumentException {
-		
-			profileManager.open();
-			profileManager.editProfile(profileName, profile);
-			profileManager.close();
-		
+
+	public void editProfile(String profileName, Profile profile)
+			throws IllegalArgumentException {
+
+		profileManager.open();
+		profileManager.editProfile(profileName, profile);
+		profileManager.close();
+
 	}
 
 	/**
@@ -163,7 +162,7 @@ public class PersistenceManager {
 	 * @param profileName
 	 *            the name of the profile to be deleted
 	 */
-	public void deleteProfile(String profileName)  {
+	public void deleteProfile(String profileName) {
 		profileManager.open();
 		profileManager.deleteProfile(profileName);
 		profileManager.close();
@@ -242,11 +241,13 @@ public class PersistenceManager {
 	public void saveLevelProgress(String profileName,
 			LevelProgress levelProgress) {
 		levelProgressManager.open();
-		LevelProgress lp = levelProgressManager.getLevelProgress(profileName, levelProgress.getLevelId());
-		if(lp == null) {
+		LevelProgress lp = levelProgressManager.getLevelProgress(profileName,
+				levelProgress.getLevelId());
+		if (lp == null) {
 			levelProgressManager.addLevelProgress(profileName, levelProgress);
 		} else {
-			levelProgressManager.updateLevelProgress(profileName, levelProgress);
+			levelProgressManager
+					.updateLevelProgress(profileName, levelProgress);
 		}
 		levelProgressManager.close();
 
@@ -264,7 +265,8 @@ public class PersistenceManager {
 	 */
 	public LevelProgress getLevelProgress(String profileName, int levelID) {
 		levelProgressManager.open();
-		LevelProgress levelProgress = levelProgressManager.getLevelProgress(profileName, levelID);
+		LevelProgress levelProgress = levelProgressManager.getLevelProgress(
+				profileName, levelID);
 		levelProgressManager.close();
 		return levelProgress;
 	}
@@ -295,16 +297,18 @@ public class PersistenceManager {
 	 * @param profileName
 	 *            the name of the profile whose unlocked achievements are
 	 *            searched for
-	 * @return a sparseIntArray containing the ids and states of all achievements unlocked by the user
+	 * @return a sparseIntArray containing the ids and states of all
+	 *         achievements unlocked by the user
 	 */
-	
+
 	public SparseIntArray getAllUnlockedAchievements(String profileName) {
 		achievementManager.open();
-		SparseIntArray unlockedAchievements = achievementManager.getUnlockedAchievements(profileName);
+		SparseIntArray unlockedAchievements = achievementManager
+				.getUnlockedAchievements(profileName);
 		achievementManager.close();
 		return unlockedAchievements;
 	}
-	
+
 	/**
 	 * Removes all entries form the tables.
 	 */
@@ -313,11 +317,14 @@ public class PersistenceManager {
 		profileManager.clearTable();
 		profileManager.close();
 	}
-	
+
 	/**
 	 * Checks if there is already a stored profile with the name profileName.
-	 * @param profileName the name that is checked
-	 * @return true if there is already a profile with the name profileName, else false is returned
+	 * 
+	 * @param profileName
+	 *            the name that is checked
+	 * @return true if there is already a profile with the name profileName,
+	 *         else false is returned
 	 */
 	public boolean isNameUsed(String profileName) {
 		profileManager.open();

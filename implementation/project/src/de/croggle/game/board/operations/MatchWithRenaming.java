@@ -52,7 +52,7 @@ public class MatchWithRenaming implements BoardObjectVisitor {
 		if (Color.uncolored().equals(one)) {
 			return Color.uncolored().equals(two);
 		}
-		
+
 		if (mapping.get(one.getId()) == null) {
 			mapping.append(one.getId(), two);
 			return true;
@@ -103,7 +103,8 @@ public class MatchWithRenaming implements BoardObjectVisitor {
 
 	private void visitParent(Parent thisParent, Parent compareParent) {
 		if (thisParent.getChildCount() == compareParent.getChildCount()) {
-			// just to make sure there is no inconsistency if someone executes code
+			// just to make sure there is no inconsistency if someone executes
+			// code
 			// after calling visitParent
 			BoardObject toCmp = toCompare;
 			Iterator<InternalBoardObject> thisIt = thisParent.iterator();

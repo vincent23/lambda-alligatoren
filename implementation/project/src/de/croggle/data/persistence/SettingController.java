@@ -38,7 +38,8 @@ public class SettingController {
 	 */
 	public void editCurrentSetting(Setting newSetting) {
 		currentSetting = newSetting;
-		String profileName = game.getProfileController().getCurrentProfileName();
+		String profileName = game.getProfileController()
+				.getCurrentProfileName();
 		game.getPersistenceManager().editSetting(profileName, newSetting);
 	}
 

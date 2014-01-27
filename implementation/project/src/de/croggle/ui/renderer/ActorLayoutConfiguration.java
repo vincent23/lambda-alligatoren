@@ -226,9 +226,12 @@ public class ActorLayoutConfiguration {
 	}
 
 	/**
-	 * This method is not part of the api as the uniform size is calculated using all actor specific bounds
+	 * This method is not part of the api as the uniform size is calculated
+	 * using all actor specific bounds
 	 * 
-	 * @param originalObjectWidth new value for the width to be assumed every node in the layout tree has
+	 * @param originalObjectWidth
+	 *            new value for the width to be assumed every node in the layout
+	 *            tree has
 	 */
 	/*
 	 * public void setUniformObjectWidth(float originalObjectWidth) {
@@ -244,7 +247,8 @@ public class ActorLayoutConfiguration {
 	}
 
 	/**
-	 * This method is not part of the api as the uniform size is calculated using all actor specific bounds
+	 * This method is not part of the api as the uniform size is calculated
+	 * using all actor specific bounds
 	 * 
 	 * @param originalObjectHeight
 	 */

@@ -44,7 +44,7 @@ public class AchievementController {
 		this.availableAchievements = new ArrayList<Achievement>();
 		this.latestUnlockedAchievements = new ArrayList<Achievement>();
 		this.game = game;
-		//TODO: Texture Altas initialisieren
+		// TODO: Texture Altas initialisieren
 		initiateAvailableAchievements();
 
 	}
@@ -63,13 +63,14 @@ public class AchievementController {
 
 	/**
 	 * Converts an input from the database into a list of actual achievements.
-	 * @param tupels information coming from the database
+	 * 
+	 * @param tupels
+	 *            information coming from the database
 	 * @return list of achievements represented in the input
 	 */
-	protected List<Achievement> convertInputFromDatabase(
-			SparseIntArray tupels) {
+	protected List<Achievement> convertInputFromDatabase(SparseIntArray tupels) {
 		List<Achievement> converted = new ArrayList<Achievement>();
-		for (int i = 0; i < tupels.size(); i++ ) {
+		for (int i = 0; i < tupels.size(); i++) {
 			int id = tupels.keyAt(i);
 			Achievement achievement = AchievementFactory.createAchievement(id);
 			achievement.setIndex(tupels.valueAt(i));
@@ -100,10 +101,10 @@ public class AchievementController {
 	 * @param profileName
 	 *            the name of the user which unlocked achievements are loaded
 	 */
-	public void changeUnlockedAchievements(String profileName)
-			{
+	public void changeUnlockedAchievements(String profileName) {
 		PersistenceManager pm = game.getPersistenceManager();
-		latestUnlockedAchievements = convertInputFromDatabase(pm.getAllUnlockedAchievements(profileName));
+		latestUnlockedAchievements = convertInputFromDatabase(pm
+				.getAllUnlockedAchievements(profileName));
 	}
 
 	/**
@@ -142,10 +143,13 @@ public class AchievementController {
 	}
 
 	/**
-	 * Changes the available and (by that indirectly the unlocked) achievements and returns said changes.
+	 * Changes the available and (by that indirectly the unlocked) achievements
+	 * and returns said changes.
 	 * 
-	 * @param statistic the users alltime statistics
-	 * @param statisticDelta the change in the users statistic after the played level
+	 * @param statistic
+	 *            the users alltime statistics
+	 * @param statisticDelta
+	 *            the change in the users statistic after the played level
 	 * @return a list of achievements with their stage after the change
 	 */
 	protected List<Achievement> updateAchievements(Statistic statistic,
@@ -175,13 +179,15 @@ public class AchievementController {
 	 * @param statisticsDelta
 	 *            the packed statistic changes
 	 * @param statistic
-	 * 			  the updated statistic
+	 *            the updated statistic
 	 */
-	public void processStatisticChange(Statistic statisticsDelta, Statistic statistic) {
+	public void processStatisticChange(Statistic statisticsDelta,
+			Statistic statistic) {
 		latestUnlockedAchievements.clear();
 		latestUnlockedAchievements = updateAchievements(statistic,
 				statisticsDelta);
 		PersistenceManager pm = game.getPersistenceManager();
-		pm.saveUnlockedAchievements(game.getProfileController().getCurrentProfileName(), latestUnlockedAchievements);
+		pm.saveUnlockedAchievements(game.getProfileController()
+				.getCurrentProfileName(), latestUnlockedAchievements);
 	}
 }

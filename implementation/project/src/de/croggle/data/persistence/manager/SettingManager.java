@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import de.croggle.data.persistence.Setting;
 
-
 /**
  * A concrete table manager which is responsible for managing the SQLite table
  * that stores the settings of the different profiles.
@@ -49,14 +48,13 @@ public class SettingManager extends TableManager {
 	/**
 	 * The string used for creating the setting table via a sql query.
 	 */
-	static final String CREATE_TABLE = "create table " + TABLE_NAME
-			+ "(" + KEY_PROFILE_NAME + " text not null, "
-            + KEY_VOLUME_MUSIC + " float, "
-            + KEY_VOLUME_EFFECTS + " float, "
-            + KEY_ZOOM_ENABLED + " boolean, "
-			+ KEY_COLORBLIND_ENABLED + " boolean, " + 
-			"FOREIGN KEY(" + KEY_PROFILE_NAME + ") REFERENCES " + ProfileManager.TABLE_NAME + "(" + ProfileManager.KEY_PROFILE_NAME + ") ON UPDATE CASCADE ON DELETE CASCADE )";
-	
+	static final String CREATE_TABLE = "create table " + TABLE_NAME + "("
+			+ KEY_PROFILE_NAME + " text not null, " + KEY_VOLUME_MUSIC
+			+ " float, " + KEY_VOLUME_EFFECTS + " float, " + KEY_ZOOM_ENABLED
+			+ " boolean, " + KEY_COLORBLIND_ENABLED + " boolean, "
+			+ "FOREIGN KEY(" + KEY_PROFILE_NAME + ") REFERENCES "
+			+ ProfileManager.TABLE_NAME + "(" + ProfileManager.KEY_PROFILE_NAME
+			+ ") ON UPDATE CASCADE ON DELETE CASCADE )";
 
 	/**
 	 * Creates a new SettingManager which manages the setting table.
@@ -79,13 +77,13 @@ public class SettingManager extends TableManager {
 	 */
 	void addSetting(String profileName, Setting setting) {
 		ContentValues values = new ContentValues();
-		
+
 		values.put(KEY_PROFILE_NAME, profileName);
 		values.put(KEY_VOLUME_MUSIC, setting.getVolumeMusic());
 		values.put(KEY_VOLUME_EFFECTS, setting.getVolumeEffects());
 		values.put(KEY_ZOOM_ENABLED, setting.isZoomEnabled());
 		values.put(KEY_COLORBLIND_ENABLED, setting.isColorblindEnabled());
-		
+
 		database.insert(TABLE_NAME, null, values);
 	}
 
@@ -100,20 +98,25 @@ public class SettingManager extends TableManager {
 	Setting getSetting(String profileName) {
 
 		String selectQuery = "select * from " + TABLE_NAME + " where "
-	            + KEY_PROFILE_NAME + " = " + "'" + profileName + "'";
-		
+				+ KEY_PROFILE_NAME + " = " + "'" + profileName + "'";
+
 		Cursor cursor = database.rawQuery(selectQuery, null);
-	
-		
-		 if (cursor.moveToFirst()) {
-			 float volumeMusic = cursor.getFloat(cursor.getColumnIndex(KEY_VOLUME_MUSIC));
-			 float volumeEffects = cursor.getFloat(cursor.getColumnIndex(KEY_VOLUME_EFFECTS));
-			 boolean zoomEnabled = (cursor.getInt(cursor.getColumnIndex(KEY_ZOOM_ENABLED)) == 1) ? true : false;
-			 boolean colorblindEnabled = (cursor.getInt(cursor.getColumnIndex(KEY_COLORBLIND_ENABLED)) == 1) ? true : false;
-			 return new Setting(volumeMusic, volumeEffects, zoomEnabled, colorblindEnabled);
-		 }
-		 
-		 return null;
+
+		if (cursor.moveToFirst()) {
+			float volumeMusic = cursor.getFloat(cursor
+					.getColumnIndex(KEY_VOLUME_MUSIC));
+			float volumeEffects = cursor.getFloat(cursor
+					.getColumnIndex(KEY_VOLUME_EFFECTS));
+			boolean zoomEnabled = (cursor.getInt(cursor
+					.getColumnIndex(KEY_ZOOM_ENABLED)) == 1) ? true : false;
+			boolean colorblindEnabled = (cursor.getInt(cursor
+					.getColumnIndex(KEY_COLORBLIND_ENABLED)) == 1) ? true
+					: false;
+			return new Setting(volumeMusic, volumeEffects, zoomEnabled,
+					colorblindEnabled);
+		}
+
+		return null;
 	}
 
 	/**
@@ -129,16 +132,15 @@ public class SettingManager extends TableManager {
 	 */
 	void editSetting(String profileName, Setting setting) {
 
-		
 		ContentValues values = new ContentValues();
-		
+
 		values.put(KEY_VOLUME_MUSIC, setting.getVolumeMusic());
 		values.put(KEY_VOLUME_EFFECTS, setting.getVolumeEffects());
 		values.put(KEY_ZOOM_ENABLED, setting.isZoomEnabled());
 		values.put(KEY_COLORBLIND_ENABLED, setting.isColorblindEnabled());
-	
+
 		database.update(TABLE_NAME, values, KEY_PROFILE_NAME + " = ?",
-	            new String[] { profileName });
+				new String[] { profileName });
 	}
 
 	/**
@@ -151,18 +153,18 @@ public class SettingManager extends TableManager {
 	void deleteSetting(String profileName) {
 
 		database.delete(TABLE_NAME, KEY_PROFILE_NAME + " = ?",
-	            new String[] { profileName });
-		
+				new String[] { profileName });
+
 	}
-	
+
 	void clearTable() {
-		database.execSQL("delete from "+ TABLE_NAME);
+		database.execSQL("delete from " + TABLE_NAME);
 	}
-	
+
 	@Override
 	long getRowCount() {
 		return DatabaseUtils.queryNumEntries(database, TABLE_NAME);
-		
+
 	}
 
 }

@@ -26,9 +26,9 @@ public class ProfileController {
 	 * The backreference to the central game object.
 	 */
 	private AlligatorApp game;
-	
+
 	private List<OnProfileChangeListener> listeners = new ArrayList<OnProfileChangeListener>();
-	
+
 	public static final int MAX_PROFILE_NUMBER = 6;
 
 	/**
@@ -40,17 +40,18 @@ public class ProfileController {
 	 */
 	public ProfileController(AlligatorApp game) {
 		this.game = game;
-		
-		
+
 	}
-	
+
 	/**
-	 * Loads the name of the last active profile and initializes all controllers that depend on that name.
+	 * Loads the name of the last active profile and initializes all controllers
+	 * that depend on that name.
 	 */
 	public void initializeController() {
 		Preferences prefs = Gdx.app.getPreferences("Profile Preferences");
 		String profileName = prefs.getString("activeProfile", null);
-		if(profileName != null && game.getPersistenceManager().isNameUsed(profileName)) {
+		if (profileName != null
+				&& game.getPersistenceManager().isNameUsed(profileName)) {
 			changeCurrentProfile(profileName);
 		}
 	}
@@ -69,9 +70,9 @@ public class ProfileController {
 	 */
 	public void changeCurrentProfile(String profileName)
 			throws IllegalArgumentException {
-		
+
 		PersistenceManager pm = game.getPersistenceManager();
-		if(!pm.isNameUsed(profileName)) {
+		if (!pm.isNameUsed(profileName)) {
 			throw new IllegalArgumentException();
 		} else {
 			currentProfile = pm.getProfile(profileName);
@@ -97,7 +98,7 @@ public class ProfileController {
 	 */
 	public void createNewProfile(String name, String picturePath)
 			throws IllegalArgumentException, ProfileOverflowException {
-		if(!isValidUserName(name)) {
+		if (!isValidUserName(name)) {
 			throw new IllegalArgumentException();
 		} else if (game.getPersistenceManager().getAllProfiles().size() > MAX_PROFILE_NUMBER) {
 			throw new ProfileOverflowException();
@@ -123,13 +124,15 @@ public class ProfileController {
 	 */
 	public void editCurrentProfile(String name, String picturePath)
 			throws IllegalArgumentException {
-		if(!name.equals(getCurrentProfileName()) && game.getPersistenceManager().isNameUsed(name)) {
+		if (!name.equals(getCurrentProfileName())
+				&& game.getPersistenceManager().isNameUsed(name)) {
 			throw new IllegalArgumentException();
 		} else {
 			Profile profile = new Profile(name, picturePath);
-			game.getPersistenceManager().editProfile(currentProfile.getName(), profile);
+			game.getPersistenceManager().editProfile(currentProfile.getName(),
+					profile);
 			changeCurrentProfile(name);
-		
+
 		}
 
 	}
@@ -167,22 +170,24 @@ public class ProfileController {
 	 * @return true, if new username is a valid profile name, false otherwise
 	 */
 	public boolean isValidUserName(String profileName) {
-		return (profileName.length() > 0) && !game.getPersistenceManager().isNameUsed(profileName);
+		return (profileName.length() > 0)
+				&& !game.getPersistenceManager().isNameUsed(profileName);
 	}
-	
+
 	/**
 	 * Get the name of the currently active user.
+	 * 
 	 * @return The name of the currently active user.
 	 */
-	
-	//NEW
+
+	// NEW
 	public String getCurrentProfileName() {
 		if (currentProfile == null) {
 			return "";
 		}
 		return currentProfile.getName();
 	}
-	
+
 	public Profile getCurrentProfile() {
 		return currentProfile;
 	}
@@ -196,24 +201,24 @@ public class ProfileController {
 		prefs.flush();
 
 	}
-	
+
 	public void deleteAllProfiles() {
 		game.getPersistenceManager().clearTables();
 		Preferences prefs = Gdx.app.getPreferences("Profile Preferences");
 		prefs.remove("activeProfile");
 		prefs.flush();
 	}
-	
+
 	public void addProfileChangeListener(OnProfileChangeListener listener) {
 		listeners.add(listener);
 	}
-	
+
 	private void updateListeners() {
 		for (OnProfileChangeListener listener : listeners) {
 			listener.onProfileChange();
 		}
 	}
-	
+
 	private void updateControllers(String profileName) {
 		game.getSettingController().changeCurrentSetting(profileName);
 		game.getStatisticController().changeCurrentStatistic(profileName);

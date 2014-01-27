@@ -24,7 +24,7 @@ public class LevelPackagesController {
 	 * @param game
 	 *            the backreference to the central game object
 	 */
-	public LevelPackagesController(AlligatorApp game){
+	public LevelPackagesController(AlligatorApp game) {
 		this.game = game;
 		this.initialiseLevelPackages();
 	}
@@ -38,7 +38,7 @@ public class LevelPackagesController {
 	 * @return the level controller one must use to handle the levels within the
 	 *         level package
 	 */
-	public LevelController getLevelController(int packageId){
+	public LevelController getLevelController(int packageId) {
 		return new LevelController(packageId, game);
 	}
 
@@ -55,10 +55,10 @@ public class LevelPackagesController {
 	 * Method to initialize the levelPackages from the assets.
 	 * 
 	 */
-	private void initialiseLevelPackages(){
+	private void initialiseLevelPackages() {
 		FileHandle handle = Gdx.files.internal("json/levels");
 		FileHandle[] packageNames = handle.list();
-		int numberOfPackages = packageNames.length;	
+		int numberOfPackages = packageNames.length;
 		levelPackages = new ArrayList<LevelPackage>();
 		for (int i = 0; i < numberOfPackages; i++) {
 			levelPackages.add(this.loadPackage(i));
@@ -71,7 +71,7 @@ public class LevelPackagesController {
 	 *            of the Level Package which should be loaded.
 	 * @return the Level Package belonging to the given index.
 	 */
-	private LevelPackage loadPackage(int packageIndex){
+	private LevelPackage loadPackage(int packageIndex) {
 		FileHandle handle = Gdx.files.internal("json/levels/"
 				+ String.format("%02d", packageIndex) + "/package.json");
 		JsonReader reader = new JsonReader();

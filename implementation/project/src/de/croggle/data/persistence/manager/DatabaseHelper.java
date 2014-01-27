@@ -41,9 +41,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(ProfileManager.CREATE_TABLE);
 		db.execSQL(SettingManager.CREATE_TABLE);
 		db.execSQL(StatisticManager.CREATE_TABLE);
-		
-		
-		
 
 	}
 
@@ -57,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + ProfileManager.TABLE_NAME);
 		db.execSQL("DROP TABLE IF EXISTS " + SettingManager.TABLE_NAME);
 		db.execSQL("DROP TABLE IF EXISTS " + StatisticManager.TABLE_NAME);
-		
+
 		onCreate(db);
 	}
 

@@ -77,7 +77,7 @@ public class MultipleChoiceLevel extends Level {
 			}
 		}
 
-		if(index == this.correctAnswer){
+		if (index == this.correctAnswer) {
 			this.setSolvedTrue();
 		}
 		return index == this.correctAnswer;

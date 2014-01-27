@@ -302,7 +302,8 @@ public class BoardActor extends Group implements BoardEventListener {
 	 */
 	private void zoomToPoint(float pointX, float pointY, float oldScale,
 			float newScale) {
-		/* Without this method, zooming would be relative to the actor's origin
+		/*
+		 * Without this method, zooming would be relative to the actor's origin
 		 * so we will have to shift it away from the actual zoom point when
 		 * zooming in and pull closer if we are zooming out
 		 */
@@ -311,7 +312,6 @@ public class BoardActor extends Group implements BoardEventListener {
 		System.out.println("actor: " + pointX + ", " + pointY);
 		System.out.println("posX: " + posX + ", " + posY);
 
-		
 		float dx = 0;
 		float dy = 0;
 

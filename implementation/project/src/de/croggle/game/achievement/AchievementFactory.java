@@ -6,6 +6,7 @@ import java.util.List;
 public class AchievementFactory {
 
 	private final static int maxId = 6;
+
 	/**
 	 * @param args
 	 */
@@ -41,14 +42,13 @@ public class AchievementFactory {
 		return achievement;
 
 	}
-	
-	
+
 	public static List<Achievement> createListofAchievementTypes() {
 		List<Achievement> types = new ArrayList<Achievement>();
-		for( int i = 0; i < maxId + 1; i++) {
+		for (int i = 0; i < maxId + 1; i++) {
 			types.add(createAchievement(i));
 		}
 		return types;
-		
+
 	}
 }

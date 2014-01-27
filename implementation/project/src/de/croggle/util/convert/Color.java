@@ -2,9 +2,9 @@ package de.croggle.util.convert;
 
 public class Color {
 	private Color() {
-		
+
 	}
-	
+
 	/*
 	 * Expects a hex value as integer and returns the appropriate Color object.
 	 * 
