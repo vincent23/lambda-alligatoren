@@ -46,13 +46,26 @@ public class LevelsOverviewScreen extends AbstractScreen {
 		for (int i = 0; i < levelController.getPackageSize(); i++) {
 			Level level = levelController.getLevel(i);
 
-			TextButton levelButton = new TextButton(Integer.toString(level
-					.getLevelIndex()), helper.getTextButtonStyle());
+			final TextButton levelButton = new TextButton(
+					Integer.toString(level.getLevelIndex()),
+					helper.getTextButtonStyleLevel());
 			if (!level.getUnlocked()) {
 				levelButton.setDisabled(true);
-			}else{
-			levelButton
-					.addListener(new StartGameListener(level.getLevelIndex()));}
+			} else {
+				levelButton.addListener(new StartGameListener(level
+						.getLevelIndex()));
+				// prevent button from being checked just by clicking
+				levelButton.addListener(new ClickListener() {
+					@Override
+					public void clicked(InputEvent event, float x, float y) {
+						levelButton.setChecked(false);
+					}
+				});
+			}
+			if (level.isSolved()) {
+				levelButton.setChecked(true);
+			}
+
 			levelTable.add(levelButton).size(120).space(40, 80, 40, 80);
 			if (i % LEVELS_PER_ROW == LEVELS_PER_ROW - 1) {
 				levelTable.row();

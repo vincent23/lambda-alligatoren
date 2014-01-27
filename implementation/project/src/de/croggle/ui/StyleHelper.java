@@ -79,6 +79,10 @@ public class StyleHelper {
 		return skin.get(TextButtonStyle.class);
 	}
 
+	public TextButtonStyle getTextButtonStyleLevel() {
+		return skin.get("level", TextButtonStyle.class);
+	}
+
 	/**
 	 * Gets the style of the image button.
 	 * 
