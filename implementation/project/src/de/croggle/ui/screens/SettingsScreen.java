@@ -66,7 +66,7 @@ public class SettingsScreen extends AbstractScreen implements
 		Label gameplay = new Label(_("settings_title_gameplay"),
 				helper.getLabelStyle());
 		Label zoom = new Label(_("settings_title_zoom"), helper.getLabelStyle());
-		Label colorBlindness = new Label(_("settings_title_blindness"),
+		Label colorBlindness = new Label(_("settings_title_color_blindness"),
 				helper.getLabelStyle());
 		Label sound = new Label(_("settings_title_sound"),
 				helper.getLabelStyle());

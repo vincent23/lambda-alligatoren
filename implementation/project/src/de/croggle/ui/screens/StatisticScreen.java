@@ -156,7 +156,7 @@ public class StatisticScreen extends AbstractScreen implements
 					+ statistic.getPlaytime(), style);
 			Label packages = new Label(_("statistic_label_progress_packages")
 					+ statistic.getPackagesComplete(), style);
-			Label levels = new Label("statistic_label_progress_levels"
+			Label levels = new Label(_("statistic_label_progress_levels")
 					+ statistic.getLevelsComplete(), style);
 			content.add(time).height(100).left().padLeft(10);
 			content.add().expandX();
