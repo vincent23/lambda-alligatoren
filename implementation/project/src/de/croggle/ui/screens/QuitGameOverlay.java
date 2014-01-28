@@ -32,7 +32,7 @@ public class QuitGameOverlay implements Screen {
 		if (screenBelow == null) {
 			throw new IllegalArgumentException("Cannot overlay no screen");
 		}
-		
+
 		this.game = game;
 		this.screenBelow = screenBelow;
 		shade = new Color(0, 0, 0, .5f);
@@ -52,7 +52,7 @@ public class QuitGameOverlay implements Screen {
 		shapes.setProjectionMatrix(camera.combined);
 		shapes.begin(ShapeType.Filled);
 		shapes.setColor(shade);
-		shapes.rect(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		shapes.rect(0, 0, camera.viewportWidth, camera.viewportHeight);
 		shapes.end();
 		stage.act(delta);
 		stage.draw();
@@ -60,8 +60,8 @@ public class QuitGameOverlay implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-
+		stage.setViewport(1024, 600, true);
+		camera.update();
 	}
 
 	@Override

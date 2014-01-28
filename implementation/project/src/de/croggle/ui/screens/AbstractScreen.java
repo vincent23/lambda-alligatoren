@@ -125,7 +125,8 @@ public abstract class AbstractScreen implements Screen {
 		// begin a new batch and draw the background
 		if (background != null) {
 			game.batch.begin();
-			game.batch.draw(background, 0, 0);
+			game.batch.draw(background, 0, 0, getViewportWidth(),
+					getViewportHeight());
 			game.batch.end();
 		}
 
@@ -152,8 +153,8 @@ public abstract class AbstractScreen implements Screen {
 	 *            the height, which the newly resized screen will have.
 	 */
 	public void resize(int width, int height) {
+		stage.setViewport(1024, 600, true);
 		camera.update();
-		// stage.setViewport(width, height, true);
 	}
 
 	/**
