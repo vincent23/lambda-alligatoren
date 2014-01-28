@@ -1,13 +1,17 @@
 package de.croggle.ui.screens;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
 import de.croggle.game.ColorController;
+import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
+import de.croggle.game.board.AlligatorOverflowException;
 import de.croggle.game.board.Board;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
@@ -96,6 +100,7 @@ public class SimulationModeScreen extends AbstractScreen {
 		// ba.setScale(.5f); // TODO test this/ get it to work later
 
 		// this.table.add(ba).fill().expand();
+		table.clearChildren();
 		table.stack(boardActor, controlTable).expand().fill();
 	}
 
@@ -120,8 +125,10 @@ public class SimulationModeScreen extends AbstractScreen {
 				helper.getImageButtonStyleRound("widgets/dummy-icon"));
 		ImageButton stepForward = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+		stepForward.addListener(new StepForwardListener());
 		ImageButton stepBackward = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+		stepBackward.addListener(new StepBackwardListener());
 		ImageButton play = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-next"));
 
@@ -157,6 +164,32 @@ public class SimulationModeScreen extends AbstractScreen {
 			if (!canZoom) {
 				zoomOut.setDisabled(true);
 			}
+		}
+	}
+
+	private class StepForwardListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			super.clicked(event, x, y);
+			try {
+				gameController.evaluateStep();
+			} catch (ColorOverflowException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (AlligatorOverflowException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			onShow();
+		}
+	}
+
+	private class StepBackwardListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			super.clicked(event, x, y);
+			gameController.undo();
+			onShow();
 		}
 	}
 

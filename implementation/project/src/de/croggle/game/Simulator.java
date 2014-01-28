@@ -130,4 +130,8 @@ public class Simulator {
 		return steps;
 	}
 
+	public Board getCurrentBoard() {
+		return currentBoard;
+	}
+
 }

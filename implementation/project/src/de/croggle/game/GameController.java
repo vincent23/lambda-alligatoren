@@ -1,5 +1,6 @@
 package de.croggle.game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.croggle.data.persistence.Statistic;
@@ -53,6 +54,8 @@ public class GameController implements BoardEventListener {
 		this.shownBoard = level.getInitialBoard();
 		this.userBoard = shownBoard;
 		this.statisticsDelta = new Statistic();
+		this.boardEventMessenger = new BoardEventMessenger();
+		this.statisticsDeltaProcessors = new ArrayList<StatisticsDeltaProcessor>();
 	}
 
 	/**
@@ -70,6 +73,7 @@ public class GameController implements BoardEventListener {
 	 */
 	public void enterPlacement() {
 		shownBoard = userBoard;
+		simulator = null;
 	}
 
 	/**
@@ -81,6 +85,7 @@ public class GameController implements BoardEventListener {
 		try {
 			simulator = new Simulator(shownBoard, colorController,
 					boardEventMessenger);
+			shownBoard = simulator.getCurrentBoard();
 		} catch (IllegalBoardException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -204,6 +209,10 @@ public class GameController implements BoardEventListener {
 	}
 
 	public Board getShownBoard() {
-		return shownBoard;
+		if (simulator == null) {
+			return shownBoard;
+		} else {
+			return simulator.getCurrentBoard();
+		}
 	}
 }
