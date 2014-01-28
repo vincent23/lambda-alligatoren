@@ -1,0 +1,151 @@
+{
+	"de.croggle" : {
+		"levels" : [
+			{
+			"type" : "color edit" ,
+			"description" : "Viertes Tutoriallevel, das das System der Schrittanzahllevel erklärt." ,
+			"design" : "" ,
+			"animation" : "",
+			"abort simulation after" : 5 ,
+			"hints" : [ ""
+			],
+			"data" : {
+				"initial constellation" : {
+					"families" : [
+						{
+							"type" : "colored alligator" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 6 ,
+							"recolorable" : false ,
+							"children" : [
+								{
+								"type" : "aged alligator" ,
+								"movable" : false ,
+								"removable" : false ,
+								"children" : [
+
+									{
+									"type" : "egg" ,
+									"movable" : false ,
+									"removable" : false ,
+									"color" : 6 ,
+									"recolorable" : false
+									},
+									{
+										"type" : "colored alligator" ,
+										"movable" : false ,
+										"removable" : false ,
+										"color" : 7 ,
+										"recolorable" : false ,
+										"children" : [
+
+											{
+												"type" : "colored alligator" ,
+												"movable" : false ,
+												"removable" : false ,
+												"color" : 8 ,
+												"recolorable" : false ,
+												"children" : [
+													{
+													"type" : "egg" ,
+													"movable" : false ,
+													"removable" : false ,
+													"color" : 8 ,
+													"recolorable" : false
+													},
+													{
+													"type" : "egg" ,
+													"movable" : false ,
+													"removable" : false ,
+													"color" : 8 ,
+													"recolorable" : false
+													},
+													{
+													"type" : "egg" ,
+													"movable" : false ,
+													"removable" : false ,
+													"color" : 7 ,
+													"recolorable" : false
+													},
+
+												]
+											}
+										]
+									}
+
+								]
+								}
+							]
+						},
+
+						{
+						"type" : "egg" ,
+						"movable" : false ,
+						"removable" : false ,
+						"color" : -1 ,
+						"recolorable" : true
+						},
+						{
+						"type" : "egg" ,
+						"movable" : false ,
+						"removable" : false ,
+						"color" : -1 ,
+						"recolorable" : true
+						},
+						{
+						"type" : "egg" ,
+						"movable" : false ,
+						"removable" : false ,
+						"color" : -1 ,
+						"recolorable" : true
+						}
+					
+					]
+				},
+				"objective" : {
+					"families" : [
+						{
+						"type" : "egg" ,
+						"movable" : false ,
+						"removable" : false ,
+						"color" : 10 ,
+						"recolorable" : true
+						},
+						{
+						"type" : "egg" ,
+						"movable" : false ,
+						"removable" : false ,
+						"color" : 11 ,
+						"recolorable" : true
+						},
+						{
+						"type" : "egg" ,
+						"movable" : false ,
+						"removable" : false ,
+						"color" : 11 ,
+						"recolorable" : true
+						},
+						{
+						"type" : "egg" ,
+						"movable" : false ,
+						"removable" : false ,
+						"color" : 12 ,
+						"recolorable" : true
+						}
+						
+					]
+				},
+
+				"user colors" : [
+					11, 12, 7, 8, 9, 10
+				],
+				"blocked colors" : [
+				]
+				
+			}
+			}
+		
+		]
+	}
+}
