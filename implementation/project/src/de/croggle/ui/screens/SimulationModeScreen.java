@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import android.util.Log;
+
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -8,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
+import de.croggle.data.persistence.Setting;
+import de.croggle.data.persistence.SettingChangeProcessor;
 import de.croggle.game.ColorController;
 import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
@@ -21,7 +25,7 @@ import de.croggle.ui.renderer.BoardActor;
  * Screen which is shown during the evaluation-phase of a level. For reference
  * see ``Pflichtenheft 10.5.5 / Abbildung 14''.
  */
-public class SimulationModeScreen extends AbstractScreen {
+public class SimulationModeScreen extends AbstractScreen implements SettingChangeProcessor {
 
 	private static final float ZOOM_RATE = 3f;
 
@@ -54,6 +58,8 @@ public class SimulationModeScreen extends AbstractScreen {
 		this.setBackground("textures/swamp.png");
 
 		fillTable();
+		
+		game.getSettingController().addListener(this);
 	}
 
 	@Override
@@ -99,9 +105,11 @@ public class SimulationModeScreen extends AbstractScreen {
 		// ba.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
 		// ba.setScale(.5f); // TODO test this/ get it to work later
 
-		// this.table.add(ba).fill().expand();
+		/// this.table.add(ba).fill().expand();
 		table.clearChildren();
 		table.stack(boardActor, controlTable).expand().fill();
+		
+		processSettingChange(game.getSettingController().getCurrentSetting());
 	}
 
 	public void hide() {
@@ -150,6 +158,7 @@ public class SimulationModeScreen extends AbstractScreen {
 	}
 
 	private void checkZoom() {
+		
 		if (zoomIn.isPressed() && !zoomIn.isDisabled()) {
 			zoomOut.setDisabled(false);
 			boolean canZoom = boardActor.zoomIn(ZOOM_RATE);
@@ -177,7 +186,7 @@ public class SimulationModeScreen extends AbstractScreen {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (AlligatorOverflowException e) {
-				// TODO Auto-generated catch block
+				// TODO Auto-generated catch block//
 				e.printStackTrace();
 			}
 			onShow();
@@ -191,6 +200,18 @@ public class SimulationModeScreen extends AbstractScreen {
 			gameController.undo();
 			onShow();
 		}
+	}
+
+	@Override
+	public void processSettingChange(Setting setting) {
+		if (setting.isZoomEnabled()) {
+			zoomIn.setVisible(true);
+			zoomOut.setVisible(true);
+		} else {
+			zoomIn.setVisible(false);
+			zoomOut.setVisible(false);
+		}
+		
 	}
 
 }
