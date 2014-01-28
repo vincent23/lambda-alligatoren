@@ -74,39 +74,13 @@ public class SimulationModeScreen extends AbstractScreen implements
 	protected void onShow() {
 		ColorController cctrlr = gameController.getColorController();
 
-		// Board b = LambdaToAlligator
-		// .convert("(λa.λb.λs.λz.(a s (b s z))) (λs.λz.(s (s (s z)))) (λs.λz.(s (s (s (s z)))))");
 		Board b = gameController.getShownBoard();
-		// Board b = LambdaToAlligator.convert("(λx.x) ((λy.y) (λz.z))");
-		// Board b = LambdaToAlligator.convert("x");
-		// for (int i = 0; i < 30; i++) {
-		// // tell the colorcontroller that we need some colors instantiated
-		// try {
-		// cctrlr.requestColor();
-		// } catch (ColorOverflowException e) {
-		// throw new RuntimeException("Test failed");
-		// }
-		// }
-		/*
-		 * Color c0; Color c1; try { c0 = cctrlr.requestColor(); c1 =
-		 * cctrlr.requestColor(); } catch (ColorOverflowException e) { throw new
-		 * RuntimeException("Test failed"); } ColoredAlligator a00 = new
-		 * ColoredAlligator(false, false, c0, false); ColoredAlligator a01 = new
-		 * ColoredAlligator(false, false, c0, false); ColoredAlligator a10 = new
-		 * ColoredAlligator(false, false, c1, false); Egg e00 = new Egg(false,
-		 * false, c0, false); Egg e01 = new Egg(false, false, c0, false); Egg
-		 * e10 = new Egg(false, false, c1, false); b.addChild(a00);
-		 * a00.addChild(a01); a00.addChild(a10); a01.addChild(e00);
-		 * a01.addChild(e01); a10.addChild(e10);
-		 */
 
 		ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(cctrlr);
 		BoardActor boardActor = new BoardActor(b, config);
-		// ba.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
-		// ba.setScale(.5f); // TODO test this/ get it to work later
+		gameController.registerBoardEventListener(boardActor);
 
-		// / this.table.add(ba).fill().expand();
 		table.clearChildren();
 		table.stack(boardActor, controlTable).expand().fill();
 
@@ -190,7 +164,6 @@ public class SimulationModeScreen extends AbstractScreen implements
 				// TODO Auto-generated catch block//
 				e.printStackTrace();
 			}
-			onShow();
 		}
 	}
 

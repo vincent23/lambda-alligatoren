@@ -91,84 +91,14 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 
 	/**
 	 * Calculates which actors need to be altered and in which way to restore
-	 * the layout after the given {@link BoardObjectActor} (and its
-	 * corresponding {@link InternalBoardObject}) was removed from the
-	 * {@link Board}, including its children. The method assumes that the parent
-	 * link is still set correctly. Afterwards, it returns the results of the
+	 * the layout after this layout's board has changed. Afterwards, it returns the results of the
 	 * calculation but leaves it to the caller to apply them. This allows the
 	 * code rendering this layout to apply animations on the changes to be made.
 	 * 
-	 * @param b
 	 * @return
 	 */
-	public boolean onRemoveTree(BoardObjectActor b) {
-		return onRemoveTree(b.getBoardObject());
-	}
-
-	/**
-	 * Calculates which actors need to be altered and in which way to restore
-	 * the layout after the given {@link InternalBoardObject} was removed from
-	 * the {@link Board}, including all of its children. The method assumes that
-	 * the parent link is still set correctly. Afterwards, it returns the
-	 * results of the calculation but leaves it to the caller to apply them.
-	 * This allows the code rendering this layout to apply animations on the
-	 * changes to be made.
-	 * 
-	 * @param b
-	 * @return true, if the actor representing the given
-	 *         {@link InternalBoardObject} was successfully removed
-	 */
-	public boolean onRemoveTree(InternalBoardObject b) {
-		return layout.remove(b) != null;
-	}
-
-	/**
-	 * Calculates which actors need to be altered and in which way to restore
-	 * the layout after the given {@link InternalBoardObject} was removed from
-	 * the {@link Board}, without its children. The method assumes that the
-	 * parent link is still set correctly. Afterwards, it returns the results of
-	 * the calculation but leaves it to the caller to apply them. This allows
-	 * the code rendering this layout to apply animations on the changes to be
-	 * made.
-	 * 
-	 * @param b
-	 * @return true, if the actor representing the given
-	 *         {@link InternalBoardObject} was successfully removed
-	 */
-	public List<ActorDelta> onRemoveSingle(InternalBoardObject b) {
-		return ActorLayoutFixer.fixRemoveSingle(this, b);
-	}
-
-	/**
-	 * Calculates which actors need to be altered and in which way to restore
-	 * the layout after the given {@link BoardObjectActor} (and its
-	 * corresponding {@link InternalBoardObject}) was removed from the
-	 * {@link Board}, without its children. The method assumes that the parent
-	 * link is still set correctly. Afterwards, it returns the results of the
-	 * calculation but leaves it to the caller to apply them. This allows the
-	 * code rendering this layout to apply animations on the changes to be made.
-	 * 
-	 * @param b
-	 * @return
-	 */
-	public List<ActorDelta> onRemoveSingle(BoardObjectActor b) {
-		return onRemoveSingle(getBoardObjectByActor(b));
-	}
-
-	/**
-	 * Calculates which actors need to be altered and in which way to restore
-	 * the layout after the given tree of {@link InternalBoardObject}s was added
-	 * to the {@link Board} it represents. The method assumes that the parent
-	 * link is already set. Afterwards, it returns the results of the
-	 * calculation but leaves it to the caller to apply them. This allows the
-	 * code rendering this layout to apply animations on the changes to be made.
-	 * 
-	 * @param added
-	 * @return
-	 */
-	public List<ActorDelta> onAdd(InternalBoardObject added) {
-		// TODO
-		return null;
+	public List<ActorDelta> getDeltasToFix() {
+		return ActorLayoutFixer.getDeltas(this, b);
 	}
 
 	/**

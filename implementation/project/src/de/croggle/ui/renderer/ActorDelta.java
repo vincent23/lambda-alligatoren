@@ -13,90 +13,19 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class ActorDelta {
 
 	private BoardObjectActor actor;
+	
 	private float newWidth;
 	private float newHeight;
 	private float newX;
 	private float newY;
+	private boolean xChanged;
+	private boolean yChanged;
+	private boolean widthChanged;
+	private boolean heightChanged;
+	private boolean created;
 
-	/**
-	 * 
-	 * @param actor
-	 */
-	private ActorDelta(BoardObjectActor actor) {
-		if (actor == null) {
-			throw new NullPointerException(
-					"Cannot instantiate ActorDeltas without an actor");
-		}
-		setActor(actor);
-		newWidth = actor.getWidth();
-		newHeight = actor.getHeight();
-	}
-
-	/**
-	 * 
-	 * Note: This constructor does not have an explicit access modifier since
-	 * only the renderer package is supposed to create BoardObjectActorDeltas.
-	 * 
-	 * @param actor
-	 * @param newX
-	 * @param newY
-	 * @param newWidth
-	 * @param newHeight
-	 */
-	ActorDelta(BoardObjectActor actor, float newX, float newY, float newWidth,
-			float newHeight) {
-		this(actor);
-
-		setNewX(newX);
-		setNewY(newY);
-		setNewWidth(newWidth);
-		setNewHeight(newHeight);
-	}
-
-	/**
-	 * 
-	 * @param actor
-	 * @param newX
-	 * @param newY
-	 * @param newSize
-	 *            can be null.
-	 */
-	ActorDelta(BoardObjectActor actor, float newX, float newY, Vector2 newSize) {
-		this(actor);
-
-		setNewX(newX);
-		setNewY(newY);
-		if (newSize == null) {
-			setNewWidth(actor.getWidth());
-			setNewHeight(actor.getHeight());
-		} else {
-			setNewWidth(newSize.x);
-			setNewHeight(newSize.y);
-		}
-	}
-
-	/**
-	 * 
-	 * @param actor
-	 * @param newPosition
-	 *            can be null.
-	 * @param newWidth
-	 * @param newHeight
-	 */
-	ActorDelta(BoardObjectActor actor, Vector2 newPosition, float newWidth,
-			float newHeight) {
-		this(actor);
-
-		if (newPosition == null) {
-			setNewX(actor.getX());
-			setNewY(actor.getY());
-		} else {
-			setNewX(newPosition.x);
-			setNewY(newPosition.y);
-		}
-
-		setNewWidth(newWidth);
-		setNewHeight(newHeight);
+	public ActorDelta() {
+		
 	}
 
 	public BoardObjectActor getActor() {
@@ -168,7 +97,6 @@ public class ActorDelta {
 	}
 
 	public float getNewY() {
-
 		return newY;
 	}
 
@@ -184,4 +112,55 @@ public class ActorDelta {
 		this.newY = newY;
 	}
 
+	public boolean isxChanged() {
+		return xChanged;
+	}
+
+	void setxChanged(boolean xChanged) {
+		this.xChanged = xChanged;
+	}
+
+	public boolean isyChanged() {
+		return yChanged;
+	}
+
+	void setyChanged(boolean yChanged) {
+		this.yChanged = yChanged;
+	}
+
+	public boolean isWidthChanged() {
+		return widthChanged;
+	}
+
+	void setWidthChanged(boolean widthChanged) {
+		this.widthChanged = widthChanged;
+	}
+
+	public boolean isHeightChanged() {
+		return heightChanged;
+	}
+
+	void setHeightChanged(boolean heightChanged) {
+		this.heightChanged = heightChanged;
+	}
+
+	void reset() {
+		xChanged = false;
+		yChanged = false;
+		widthChanged = false;
+		heightChanged = false;
+		created = false;
+	}
+	
+	boolean anythingChanged() {
+		return xChanged || yChanged || widthChanged || heightChanged || created;
+	}
+
+	public boolean wasCreated() {
+		return created;
+	}
+
+	public void setCreated(boolean created) {
+		this.created = created;
+	}
 }

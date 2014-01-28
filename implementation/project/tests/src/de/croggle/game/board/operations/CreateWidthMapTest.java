@@ -37,7 +37,7 @@ public class CreateWidthMapTest extends TestCase {
 	public void testCase0() {
 		// standard layout options
 		ActorLayoutConfiguration config = new ActorLayoutConfiguration(
-				new Vector2(0, 0), TreeGrowth.NEG_POS, TreeGrowth.POS_NEG, .75f, 2, 2, null, 150, 150, 150, 150, 150, 150);
+				new Vector2(0, 0), TreeGrowth.NEG_POS, TreeGrowth.POS_NEG, TreeGrowth.NEG_POS, TreeGrowth.NEG_POS, .75f, 2, 2, null, 150, 150, 150, 150, 150, 150);
 
 		Board b = LambdaToAlligator.convert("(λx.x) ((λy.y) (λz.z))");
 		Map<BoardObject, Float> map = CreateWidthMap.create(b,

@@ -63,8 +63,7 @@ public class Simulator {
 	 */
 	public Board evaluate() throws ColorOverflowException,
 			AlligatorOverflowException {
-		final Board oldBoard = currentBoard;
-		currentBoard = currentBoard.copy();
+		final Board oldBoard = currentBoard.copy();
 		final ColoredAlligator eater = FindEating.findEater(currentBoard);
 		if (eater == null) {
 			return oldBoard;
@@ -95,6 +94,7 @@ public class Simulator {
 	public Board undo() {
 		try {
 			currentBoard = history.pop();
+			boardMessenger.notifyBoardRebuilt(currentBoard);
 			steps--;
 		} catch (Exception e) {
 			// TODO

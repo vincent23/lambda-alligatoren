@@ -16,6 +16,8 @@ import de.croggle.game.ColorController;
 public class ActorLayoutConfiguration {
 	private TreeGrowth horizontalGrowth;
 	private TreeGrowth verticalGrowth;
+	private TreeGrowth renderDirectionX;
+	private TreeGrowth renderDirectionY;
 	private ColorController colorController;
 	private float verticalScaleFactor;
 	private float uniformObjectWidth;
@@ -35,13 +37,16 @@ public class ActorLayoutConfiguration {
 	 * 
 	 */
 	public ActorLayoutConfiguration() {
-		this.horizontalGrowth = TreeGrowth.NEG_POS;
-		this.verticalGrowth = TreeGrowth.POS_NEG;
-
+		this.treeOrigin = new Vector2(0, 0);
 		this.colorController = null;
 		this.verticalScaleFactor = .75f;
 
-		this.treeOrigin = new Vector2(0, 0);
+		this.horizontalGrowth = TreeGrowth.NEG_POS;
+		this.verticalGrowth = TreeGrowth.POS_NEG;
+
+		this.renderDirectionX = TreeGrowth.NEG_POS;
+		this.renderDirectionY = TreeGrowth.NEG_POS;
+
 		this.horizontalPadding = 0;
 		this.verticalPadding = 0;
 
@@ -67,6 +72,12 @@ public class ActorLayoutConfiguration {
 	 *            the direction the tree will grow in horizontally
 	 * @param verticalGrowth
 	 *            the direction the tree will grow in vertically
+	 * @param renderDirectionX
+	 *            the horizontal direction the layouted actors will be drawn
+	 *            into (usually NEG_POS)
+	 * @param renderDirectionY
+	 *            the vertical direction the layouted actors will be drawn into
+	 *            (usually NEG_POS)
 	 * @param verticalScaleFactor
 	 *            the relative size of a child as compared to its parent.
 	 * @param horizontalPadding
@@ -99,24 +110,31 @@ public class ActorLayoutConfiguration {
 	 */
 	public ActorLayoutConfiguration(Vector2 treeOrigin,
 			TreeGrowth horizontalGrowth, TreeGrowth verticalGrowth,
+			TreeGrowth renderDirectionX, TreeGrowth renderDirectionY,
 			float verticalScaleFactor, float horizontalPadding,
 			float verticalPadding, ColorController controller, float eggWidth,
 			float eggHeight, float agedAlligatorWidth,
 			float agedAlligatorHeight, float coloredAlligatorWidth,
 			float coloredAlligatorHeight) {
 		this.treeOrigin = treeOrigin;
+		this.colorController = controller;
+		this.verticalScaleFactor = verticalScaleFactor;
+
 		this.horizontalGrowth = horizontalGrowth;
 		this.verticalGrowth = verticalGrowth;
-		this.verticalScaleFactor = verticalScaleFactor;
+
+		this.renderDirectionX = renderDirectionX;
+		this.renderDirectionY = renderDirectionY;
 
 		this.horizontalPadding = horizontalPadding;
 		this.verticalPadding = verticalPadding;
-		this.colorController = controller;
 
 		this.eggWidth = eggWidth;
 		this.eggHeight = eggHeight;
+
 		this.agedAlligatorWidth = agedAlligatorWidth;
 		this.agedAlligatorHeight = agedAlligatorHeight;
+
 		this.coloredAlligatorWidth = coloredAlligatorWidth;
 		this.coloredAlligatorHeight = coloredAlligatorHeight;
 
@@ -441,5 +459,21 @@ public class ActorLayoutConfiguration {
 		this.coloredAlligatorHeight = coloredAlligatorHeight;
 		newHeight(coloredAlligatorHeight);
 		return this;
+	}
+
+	public TreeGrowth getRenderDirectionX() {
+		return renderDirectionX;
+	}
+
+	public void setRenderDirectionX(TreeGrowth renderDirectionX) {
+		this.renderDirectionX = renderDirectionX;
+	}
+
+	public TreeGrowth getRenderDirectionY() {
+		return renderDirectionY;
+	}
+
+	public void setRenderDirectionY(TreeGrowth renderDirectionY) {
+		this.renderDirectionY = renderDirectionY;
 	}
 }

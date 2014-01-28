@@ -1,6 +1,5 @@
 package de.croggle.ui.renderer;
 
-import de.croggle.game.ColorController;
 import de.croggle.game.board.Egg;
 
 /**
@@ -8,8 +7,8 @@ import de.croggle.game.board.Egg;
  */
 public class EggActor extends ColoredBoardObjectActor {
 
-	public EggActor(Egg egg, ColorController controller) {
-		super(egg, controller, "egg/foreground", "egg/background");
+	public EggActor(Egg egg) {
+		super(egg, "egg/foreground", "egg/background");
 	}
 
 	/**

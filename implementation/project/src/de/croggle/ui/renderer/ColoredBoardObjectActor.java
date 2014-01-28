@@ -9,22 +9,18 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import de.croggle.data.AssetManager;
-import de.croggle.game.ColorController;
 import de.croggle.game.board.ColoredBoardObject;
 
 public class ColoredBoardObjectActor extends BoardObjectActor {
 
-	protected final ColorController controller;
 	private TextureRegion mask;
 	private TextureRegion foreground;
 	private Texture background;
 	private boolean valid = false;
 
 	public ColoredBoardObjectActor(ColoredBoardObject object,
-			ColorController controller, String foregroundPath, String maskPath) {
+			String foregroundPath, String maskPath) {
 		super(object);
-
-		this.controller = controller;
 
 		AssetManager assetManager = AssetManager.getInstance();
 		TextureAtlas tex;
@@ -70,7 +66,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		batch.setBlendFunction(GL20.GL_ONE, GL20.GL_ZERO);
 
 		// draw alpha mask sprite(s)
-		batch.draw(mask, getX(), getY(), getWidth(), getHeight());
+		batch.draw(mask, getX(), getY(), getWidth() * getScaleX(), getHeight() * getScaleY());
 
 		// flush the batch to the GPU
 		batch.flush();
@@ -94,7 +90,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		// Math.ceil(getWidth()), (int) Math.ceil(getHeight()));
 
 		// draw our background to be masked
-		batch.draw(background, getX(), getY(), getWidth(), getHeight());
+		batch.draw(background, getX(), getY(), getWidth() * getScaleX(), getHeight() * getScaleY());
 
 		batch.flush();
 		// disable scissor before continuing
@@ -104,7 +100,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	}
 
 	private void drawForeground(SpriteBatch batch) {
-		batch.draw(foreground, getX(), getY(), getWidth(), getHeight());
+		batch.draw(foreground, getX(), getY(), getWidth() * getScaleX(), getHeight() * getScaleY());
 
 		// flush the batch to the GPU
 		batch.flush();
@@ -137,7 +133,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		// restore alpha value that was removed by mask
 		Gdx.gl.glColorMask(false, false, false, true);
 		batch.setBlendFunction(GL20.GL_ONE, GL20.GL_ZERO);
-		batch.draw(background, getX(), getY(), getWidth(), getHeight());
+		batch.draw(background, getX(), getY(), getWidth() * getScaleX(), getHeight() * getScaleY());
 		batch.flush();
 		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glColorMask(true, true, true, true);

@@ -1,6 +1,5 @@
 package de.croggle.ui.renderer;
 
-import de.croggle.game.ColorController;
 import de.croggle.game.board.ColoredAlligator;
 
 /**
@@ -8,9 +7,8 @@ import de.croggle.game.board.ColoredAlligator;
  */
 public class ColoredAlligatorActor extends ColoredBoardObjectActor {
 
-	public ColoredAlligatorActor(ColoredAlligator alligator,
-			ColorController controller) {
-		super(alligator, controller, "coloredalligator/foreground",
+	public ColoredAlligatorActor(ColoredAlligator alligator) {
+		super(alligator, "coloredalligator/foreground",
 				"coloredalligator/background");
 	}
 

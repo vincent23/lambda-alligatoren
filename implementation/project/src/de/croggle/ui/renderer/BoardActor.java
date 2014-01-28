@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
+import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -469,11 +470,14 @@ public class BoardActor extends Group implements BoardEventListener {
 
 		final float animDuration = 0.2f;
 
+		BoardObjectActor actor;
 		for (InternalBoardObject eaten : eatenLst) {
-			MoveToAction action = new MoveToAction();
-			action.setPosition(eaterActor.getX(), eaterActor.getY());
-			action.setDuration(animDuration);
-			layout.getActor(eaten).addAction(action);
+			actor = layout.getActor(eaten);
+			// automatically pooled actions, sooo convenient...
+			MoveToAction moveAction = Actions.moveTo(eaterActor.getX(), eaterActor.getY(), animDuration);
+			actor.addAction(moveAction);
+			ScaleToAction scaleAction = Actions.scaleTo(0, 0, animDuration);
+			actor.addAction(scaleAction);
 		}
 
 		this.addAction(new TemporalAction() {
@@ -488,8 +492,9 @@ public class BoardActor extends Group implements BoardEventListener {
 
 			protected void end() {
 				for (InternalBoardObject eaten : eatenLst) {
-					layout.onRemoveSingle(eaten);
+					layout.getActors().remove(layout.getActor(eaten));
 				}
+				applyDeltasAnimated(layout.getDeltasToFix());
 			}
 		});
 	}
@@ -514,8 +519,7 @@ public class BoardActor extends Group implements BoardEventListener {
 			}
 
 			protected void end() {
-				List<ActorDelta> removeDeltas = layout.onRemoveSingle(object);
-				// TODO
+				applyDeltasAnimated(layout.getDeltasToFix());
 			}
 		});
 	}
@@ -560,9 +564,12 @@ public class BoardActor extends Group implements BoardEventListener {
 	 */
 	@Override
 	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
-		List<ActorDelta> removeDeltas = layout.onRemoveSingle(replacedEgg);
-		List<ActorDelta> addDeltas = layout.onAdd(bornFamily);
-		// TODO
+		EggActor eggActor = (EggActor) layout.getActor(replacedEgg);
+		eggActor.enterHatchingState();
+	}
+	
+	private void applyDeltasAnimated(List<ActorDelta> deltas) {
+		
 	}
 
 	@Override
