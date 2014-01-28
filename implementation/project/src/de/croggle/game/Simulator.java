@@ -85,6 +85,10 @@ public class Simulator {
 		steps++;
 		return currentBoard;
 	}
+	
+	public boolean canUndo() {
+		return history.size() != 0;
+	}
 
 	/**
 	 * Reverses the last evaluation step.

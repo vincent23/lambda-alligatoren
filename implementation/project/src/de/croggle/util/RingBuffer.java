@@ -51,4 +51,7 @@ public class RingBuffer<T> {
 		return buffer[head];
 	}
 
+	public int size() {
+		return items;
+	}
 }

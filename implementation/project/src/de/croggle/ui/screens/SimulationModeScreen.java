@@ -171,8 +171,9 @@ public class SimulationModeScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			super.clicked(event, x, y);
-			gameController.undo();
-			onShow();
+			if (gameController.canUndo()) {
+				gameController.undo();
+			}
 		}
 	}
 
