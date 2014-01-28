@@ -23,7 +23,7 @@ public class IngameMenuDialog extends Dialog {
 		StyleHelper helper = StyleHelper.getInstance();
 
 		ImageTextButton continueGame = new ImageTextButton("Continue",
-				helper.getImageTextButtonStyle("widgets/dummy-icon"));
+				helper.getImageTextButtonStyle("widgets/icon-next"));
 		ImageTextButton reset = new ImageTextButton("Reset",
 				helper.getImageTextButtonStyle("widgets/dummy-icon"));
 		ImageTextButton settings = new ImageTextButton("Settings",
@@ -36,12 +36,12 @@ public class IngameMenuDialog extends Dialog {
 				helper.getImageTextButtonStyle("widgets/dummy-icon"));
 
 		// hard code ALL the stuff!
-		continueGame.getImageCell().padRight(30).padLeft(150);
-		reset.getImageCell().padRight(30).padLeft(150);
-		settings.getImageCell().padRight(30).padLeft(150);
-		levelOverview.getImageCell().padRight(30).padLeft(150);
-		achievements.getImageCell().padRight(30).padLeft(150);
-		mainMenu.getImageCell().padRight(30).padLeft(150);
+		continueGame.getImageCell().padRight(50).padLeft(100).size(80);
+		reset.getImageCell().padRight(50).padLeft(100).size(80);
+		settings.getImageCell().padRight(50).padLeft(100).size(80);
+		levelOverview.getImageCell().padRight(50).padLeft(100).size(80);
+		achievements.getImageCell().padRight(50).padLeft(100).size(80);
+		mainMenu.getImageCell().padRight(50).padLeft(100).size(80);
 
 		continueGame.getLabelCell().expandX().left();
 		reset.getLabelCell().expandX().left();
@@ -60,12 +60,12 @@ public class IngameMenuDialog extends Dialog {
 
 		clear();
 
-		defaults().width(500).height(70).padLeft(100).padRight(100);
-		add(continueGame).padTop(50).row();
+		defaults().width(500).height(90).padLeft(100).padRight(100);
+		add(continueGame).padTop(20).row();
 		add(reset).row();
 		add(settings).row();
 		add(levelOverview).row();
 		add(achievements).row();
-		add(mainMenu).padBottom(50).row();
+		add(mainMenu).padBottom(20).row();
 	}
 }
