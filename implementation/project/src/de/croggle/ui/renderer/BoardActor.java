@@ -493,10 +493,10 @@ public class BoardActor extends Group implements BoardEventListener {
 			}
 
 			protected void end() {
-				Actor eatenActor;
+				BoardObjectActor eatenActor;
 				for (InternalBoardObject eaten : eatenLst) {
 					eatenActor = layout.getActor(eaten);
-					layout.getActors().remove(eatenActor);
+					layout.removeActor(eatenActor);
 					world.removeActor(eatenActor);
 				}
 				removeObjectAnimated(eater);
@@ -525,8 +525,8 @@ public class BoardActor extends Group implements BoardEventListener {
 			}
 
 			protected void end() {
-				Actor actor = layout.getActor(object);
-				layout.getActors().remove(actor);
+				BoardObjectActor actor = layout.getActor(object);
+				layout.removeActor(actor);
 				world.removeActor(actor);
 				applyDeltasAnimated(layout.getDeltasToFix());
 			}
@@ -625,10 +625,11 @@ public class BoardActor extends Group implements BoardEventListener {
 	private void applyCreationDeltas(final List<ActorDelta> deltas) {
 		float animDuration = 0.2f;
 		
-		Actor actor;
+		BoardObjectActor actor;
 		for (ActorDelta delta : deltas) {
 			actor = delta.getActor();
 			actor.setScale(0.f);
+			layout.addActor(actor);
 			world.addActor(actor);
 			ScaleToAction scaleAction = Actions.scaleTo(1, 1, animDuration);
 			actor.addAction(scaleAction);

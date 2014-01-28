@@ -83,6 +83,17 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 	public ActorLayoutConfiguration getLayoutConfiguration() {
 		return config;
 	}
+	
+	public boolean removeActor(BoardObjectActor actor) {
+		if (actor == null) {
+			return false;
+		}
+		return layout.remove(actor.getBoardObject()) != null;
+	}
+	
+	public void addActor(BoardObjectActor actor) {
+		layout.put(actor.getBoardObject(), actor);
+	}
 
 	@Override
 	public Iterator<BoardObjectActor> iterator() {
