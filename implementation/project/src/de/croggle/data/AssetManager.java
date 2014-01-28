@@ -17,6 +17,8 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	 * assetManager = new AssetManager(); }
 	 */
 	private static AssetManager assetManager;
+	private Pixmap uncoloredColor;
+	private Pixmap uncoloredPattern;
 	private Pixmap[] colors;
 	private Pixmap[] patterns;
 
@@ -27,6 +29,10 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	}
 
 	private void buildColors() {
+		uncoloredColor = new Pixmap(1, 1, Pixmap.Format.RGB888);
+		uncoloredColor.setColor(com.badlogic.gdx.graphics.Color.WHITE);
+		uncoloredColor.fill();
+		
 		com.badlogic.gdx.graphics.Color[] reps = Color.getRepresentations();
 		for (int i = 0; i < colors.length; i++) {
 			colors[i] = new Pixmap(1, 1, Pixmap.Format.RGB888);
@@ -40,18 +46,28 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	}
 
 	public Texture getColorTexture(Color c) {
+		if (c.equals(Color.uncolored())) {
+			return new Texture(uncoloredColor);
+		}
 		return new Texture(colors[c.getId()]);
 	}
 
 	public Texture getPatternTexture(Color c) {
 		// TODO implement buildPatterns first
 		throw new UnsupportedOperationException("Not implemented yet");
-		// return new Texture(patterns[c.getId()]);
+		/*
+		if (c.equals(Color.uncolored())) {
+			return new Texture(uncolordPattern);
+		}
+		return new Texture(patterns[c.getId()]);
+		*/
 	}
 
 	@Override
 	public void dispose() {
 		super.dispose();
+		uncoloredColor.dispose();
+		uncoloredPattern.dispose();
 		for (Pixmap c : colors) {
 			c.dispose();
 		}
