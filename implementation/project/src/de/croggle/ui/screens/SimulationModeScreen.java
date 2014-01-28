@@ -1,7 +1,5 @@
 package de.croggle.ui.screens;
 
-import android.util.Log;
-
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -27,7 +25,8 @@ import de.croggle.ui.renderer.BoardActor;
  * Screen which is shown during the evaluation-phase of a level. For reference
  * see ``Pflichtenheft 10.5.5 / Abbildung 14''.
  */
-public class SimulationModeScreen extends AbstractScreen implements SettingChangeProcessor {
+public class SimulationModeScreen extends AbstractScreen implements
+		SettingChangeProcessor {
 
 	private static final float ZOOM_RATE = 3f;
 
@@ -60,7 +59,7 @@ public class SimulationModeScreen extends AbstractScreen implements SettingChang
 		this.setBackground("textures/swamp.png");
 
 		fillTable();
-		
+
 		game.getSettingController().registerSettingChangeProcessor(this);
 	}
 
@@ -107,10 +106,10 @@ public class SimulationModeScreen extends AbstractScreen implements SettingChang
 		// ba.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
 		// ba.setScale(.5f); // TODO test this/ get it to work later
 
-		/// this.table.add(ba).fill().expand();
+		// / this.table.add(ba).fill().expand();
 		table.clearChildren();
 		table.stack(boardActor, controlTable).expand().fill();
-		
+
 		processSettingChange(game.getSettingController().getCurrentSetting());
 	}
 
@@ -132,12 +131,12 @@ public class SimulationModeScreen extends AbstractScreen implements SettingChang
 				helper.getImageButtonStyleRound("widgets/icon-minus"));
 
 		ImageButton backToPlacement = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-back"));
 		ImageButton stepForward = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-step-next"));
 		stepForward.addListener(new StepForwardListener());
 		ImageButton stepBackward = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/dummy-icon"));
+				helper.getImageButtonStyleRound("widgets/icon-step-back"));
 		stepBackward.addListener(new StepBackwardListener());
 		ImageButton play = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-next"));
@@ -160,7 +159,7 @@ public class SimulationModeScreen extends AbstractScreen implements SettingChang
 	}
 
 	private void checkZoom() {
-		
+
 		if (zoomIn.isPressed() && !zoomIn.isDisabled()) {
 			zoomOut.setDisabled(false);
 			boolean canZoom = boardActor.zoomIn(ZOOM_RATE);
@@ -213,7 +212,7 @@ public class SimulationModeScreen extends AbstractScreen implements SettingChang
 			zoomIn.setVisible(false);
 			zoomOut.setVisible(false);
 		}
-		
+
 	}
 
 }
