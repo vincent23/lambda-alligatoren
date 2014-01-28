@@ -1,5 +1,8 @@
 package de.croggle.data.persistence;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.util.Log;
 import de.croggle.AlligatorApp;
 
@@ -17,6 +20,8 @@ public class SettingController {
 	 * The backreference to the central game object.
 	 */
 	private AlligatorApp game;
+	
+	private List<SettingChangeProcessor> processors = new ArrayList<SettingChangeProcessor>();
 
 	/**
 	 * Creates a new SettingController. On initialization the active setting is
@@ -41,6 +46,7 @@ public class SettingController {
 		String profileName = game.getProfileController()
 				.getCurrentProfileName();
 		game.getPersistenceManager().editSetting(profileName, newSetting);
+		updateListeners();
 	}
 
 	/**
@@ -52,6 +58,7 @@ public class SettingController {
 	 */
 	public void changeCurrentSetting(String profileName) {
 		currentSetting = game.getPersistenceManager().getSetting(profileName);
+		updateListeners();
 	}
 
 	/**
@@ -61,6 +68,17 @@ public class SettingController {
 	 */
 	public Setting getCurrentSetting() {
 		return currentSetting;
+	}
+	
+	public void addListener(SettingChangeProcessor processor) {
+		processors.add(processor);
+	}
+	
+	private void updateListeners() {
+		for (SettingChangeProcessor processor : processors) {
+			processor.processSettingChange(currentSetting);
+		}
+		
 	}
 
 }
