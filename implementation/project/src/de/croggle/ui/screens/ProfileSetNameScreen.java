@@ -3,6 +3,7 @@ package de.croggle.ui.screens;
 import static de.croggle.data.LocalizationHelper._;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.croggle.AlligatorApp;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.actors.NotificationDialog;
 
 /**
  * Screen which is used for both creating a new account with a given name as
@@ -59,8 +61,9 @@ public class ProfileSetNameScreen extends AbstractScreen {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				String name = nameInput.getText();
-				// Missing dialog if name is invalid (used).
-				if (name != null && profileController.isValidUserName(name)) {
+
+				if (name.length() != 0
+						&& profileController.isValidUserName(name)) {
 					if (isInEditMode) {
 						profileController.editCurrentProfile(name,
 								profileController.getCurrentProfile()
@@ -72,7 +75,16 @@ public class ProfileSetNameScreen extends AbstractScreen {
 
 					}
 
+				} else if (name.length() == 0) {
+					Dialog notification = new NotificationDialog(
+							"I guess your name isn't empty?");
+					notification.show(stage);
+				} else if (!profileController.isValidUserName(name)) {
+					Dialog notification = new NotificationDialog(
+							"This name is already in use");
+					notification.show(stage);
 				}
+
 			}
 		});
 
