@@ -193,10 +193,11 @@ public class AlligatorApp extends Game {
 		profileSetAvatarScreen = new ProfileSetAvatarScreen(this);
 
 		// add onProfileChangeListener
-		profileController.addProfileChangeListener(settingsScreen);
-		profileController.addProfileChangeListener(selectProfileScreen);
-		profileController.addProfileChangeListener(mainMenuScreen);
-		profileController.addProfileChangeListener(statisticScreen);
+		profileController.registerProfileChangeProcessor(settingsScreen);
+		profileController.registerProfileChangeProcessor(selectProfileScreen);
+		profileController.registerProfileChangeProcessor(mainMenuScreen);
+		profileController.registerProfileChangeProcessor(statisticScreen);
+		
 
 		profileController.initializeController();
 

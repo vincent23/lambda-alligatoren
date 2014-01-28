@@ -17,7 +17,8 @@ import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingController;
 import de.croggle.data.persistence.manager.ProfileManager;
-import de.croggle.game.profile.OnProfileChangeListener;
+import de.croggle.game.profile.Profile;
+import de.croggle.game.profile.ProfileChangeProcessor;
 import de.croggle.ui.ConfirmInterface;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.NotificationDialog;
@@ -29,7 +30,7 @@ import de.croggle.ui.actors.YesNoDialog;
  * 19''.
  */
 public class SettingsScreen extends AbstractScreen implements
-		OnProfileChangeListener {
+		ProfileChangeProcessor {
 
 	CheckBox zoomCheckBox;
 	CheckBox colorBlindnessCheckBox;
@@ -139,7 +140,7 @@ public class SettingsScreen extends AbstractScreen implements
 	}
 
 	@Override
-	public void onProfileChange() {
+	public void processProfileChange(Profile profile) {
 		Setting setting = settingController.getCurrentSetting();
 		if (setting != null) {
 			musicSlider.setValue(setting.getVolumeMusic() * 100);

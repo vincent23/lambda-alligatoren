@@ -3,6 +3,8 @@ package de.croggle.ui.screens;
 import java.util.List;
 import static de.croggle.data.LocalizationHelper._;
 
+import android.util.Log;
+
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -17,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.StatisticController;
-import de.croggle.game.profile.OnProfileChangeListener;
+import de.croggle.game.profile.ProfileChangeProcessor;
 import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
@@ -28,7 +30,7 @@ import de.croggle.ui.actors.PagedScrollPane;
  * user. For reference see ``Pflichtenheft 10.5.11 / Abbildung 20''.
  */
 public class StatisticScreen extends AbstractScreen implements
-		OnProfileChangeListener {
+		ProfileChangeProcessor {
 
 	private StatisticController statisticController;
 	private ProfileController profileController;
@@ -78,7 +80,7 @@ public class StatisticScreen extends AbstractScreen implements
 				helper.getTextButtonStyle());
 		gameButton = new TextButton(_("statistic_tab_game"),
 				helper.getTextButtonStyle());
-
+		
 		MyClickListener listener = new MyClickListener();
 		actionsButton.addListener(listener);
 		progressButton.addListener(listener);
@@ -106,7 +108,7 @@ public class StatisticScreen extends AbstractScreen implements
 	}
 
 	@Override
-	public void onProfileChange() {
+	public void processProfileChange(Profile profile) {
 		List<Profile> profiles = profileController.getAllProfiles();
 		String[] profileNames;
 		if (profiles.size() == 0) {

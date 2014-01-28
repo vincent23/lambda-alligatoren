@@ -27,7 +27,7 @@ public class ProfileController {
 	 */
 	private AlligatorApp game;
 
-	private List<OnProfileChangeListener> listeners = new ArrayList<OnProfileChangeListener>();
+	private List<ProfileChangeProcessor> processors = new ArrayList<ProfileChangeProcessor>();
 
 	public static final int MAX_PROFILE_NUMBER = 6;
 
@@ -78,7 +78,7 @@ public class ProfileController {
 			currentProfile = pm.getProfile(profileName);
 			saveProfileName();
 			updateControllers(profileName);
-			updateListeners();
+			updateProcessors();
 		}
 	}
 
@@ -148,7 +148,7 @@ public class ProfileController {
 		prefs.flush();
 		currentProfile = null;
 		updateControllers("");
-		updateListeners();
+		updateProcessors();
 	}
 
 	/**
@@ -209,13 +209,13 @@ public class ProfileController {
 		prefs.flush();
 	}
 
-	public void addProfileChangeListener(OnProfileChangeListener listener) {
-		listeners.add(listener);
+	public void registerProfileChangeProcessor(ProfileChangeProcessor listener) {
+		processors.add(listener);
 	}
 
-	private void updateListeners() {
-		for (OnProfileChangeListener listener : listeners) {
-			listener.onProfileChange();
+	private void updateProcessors() {
+		for (ProfileChangeProcessor processor : processors) {
+			processor.processProfileChange(currentProfile);
 		}
 	}
 

@@ -4,7 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import de.croggle.AlligatorApp;
-import de.croggle.game.profile.OnProfileChangeListener;
+import de.croggle.game.profile.Profile;
+import de.croggle.game.profile.ProfileChangeProcessor;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.ProfileButton;
@@ -15,7 +16,7 @@ import de.croggle.ui.actors.ProfileButton;
  * Abbildung 9''.
  */
 public class MainMenuScreen extends AbstractScreen implements
-		OnProfileChangeListener {
+		ProfileChangeProcessor {
 
 	private ProfileController profileController;
 
@@ -39,7 +40,7 @@ public class MainMenuScreen extends AbstractScreen implements
 	}
 
 	@Override
-	public void onProfileChange() {
+	public void processProfileChange(Profile profile) {
 		table.clearChildren();
 		fillTable();
 	}
