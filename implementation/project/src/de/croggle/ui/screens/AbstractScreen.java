@@ -12,11 +12,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
+import de.croggle.ui.actors.IngameMenuDialog;
 
 /**
  * Abstract screen, with all the basic things a screen needs.
@@ -286,6 +288,14 @@ public abstract class AbstractScreen implements Screen {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			game.showProfileSetNameScreen();
+		}
+	}
+
+	protected class MenuClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			Dialog menuDialog = new IngameMenuDialog(game);
+			menuDialog.show(stage);
 		}
 	}
 }

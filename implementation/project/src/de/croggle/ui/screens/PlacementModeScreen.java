@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
+import de.croggle.data.persistence.SettingController;
 import de.croggle.game.ColorController;
 import de.croggle.game.GameController;
 import de.croggle.ui.StyleHelper;
@@ -19,7 +20,14 @@ import de.croggle.ui.renderer.BoardActor;
  */
 public class PlacementModeScreen extends AbstractScreen {
 
+	private static final float ZOOM_RATE = 3f;
+
 	private GameController gameController;
+	private SettingController settingController;
+	private BoardActor boardActor;
+
+	private ImageButton zoomIn;
+	private ImageButton zoomOut;
 
 	/**
 	 * Creates the screen of a level within the placement mode. This is the
@@ -36,11 +44,19 @@ public class PlacementModeScreen extends AbstractScreen {
 		gameController = controller;
 		gameController.enterPlacement();
 
+		settingController = game.getSettingController();
+
 		AssetManager assetManager = AssetManager.getInstance();
 		assetManager.load("textures/pack.atlas", TextureAtlas.class);
 
 		fillTable();
 		setBackground("textures/swamp.png");
+	}
+
+	@Override
+	public void render(float delta) {
+		super.render(delta);
+		checkZoom();
 	}
 
 	private void fillTable() {
@@ -51,11 +67,14 @@ public class PlacementModeScreen extends AbstractScreen {
 				helper.getImageButtonStyleRound("widgets/icon-menu"));
 		ImageButton hint = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-hint"));
-		ImageButton zoomIn = new ImageButton(
+		zoomIn = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-plus"));
-		ImageButton zoomOut = new ImageButton(
+		zoomOut = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-minus"));
 		ObjectBar objectBar = new ObjectBar(game, gameController);
+
+		// add listeners
+		menu.addListener(new MenuClickListener());
 
 		leftTable.pad(30);
 		leftTable.defaults().space(30);
@@ -64,18 +83,19 @@ public class PlacementModeScreen extends AbstractScreen {
 		// TODO only activated after some time
 		leftTable.add(hint).expand().size(100).top().left();
 		leftTable.row();
-		// TODO only if zoom buttons are enabled
-		leftTable.add(zoomIn).size(70).left();
-		leftTable.row();
-		leftTable.add(zoomOut).size(70).left();
+
+		if (settingController.getCurrentSetting().isZoomEnabled()) {
+			leftTable.add(zoomIn).size(70).left();
+			leftTable.row();
+			leftTable.add(zoomOut).size(70).left();
+		}
 
 		final ColorController colorController = gameController
 				.getColorController();
 
 		final ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(colorController);
-		final BoardActor boardActor = new BoardActor(
-				gameController.getShownBoard(), config);
+		boardActor = new BoardActor(gameController.getShownBoard(), config);
 		boardActor.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
 		final Table boardTable = new Table();
 		boardTable.add(boardActor).fill().expand();
@@ -86,4 +106,23 @@ public class PlacementModeScreen extends AbstractScreen {
 
 		table.stack(boardTable, controlTable).fill().expand();
 	}
+
+	private void checkZoom() {
+		if (zoomIn.isPressed() && !zoomIn.isDisabled()) {
+			zoomOut.setDisabled(false);
+			boolean canZoom = boardActor.zoomIn(ZOOM_RATE);
+			if (!canZoom) {
+				zoomIn.setDisabled(true);
+			}
+		}
+
+		if (zoomOut.isPressed() && !zoomOut.isDisabled()) {
+			zoomIn.setDisabled(false);
+			boolean canZoom = boardActor.zoomOut(ZOOM_RATE);
+			if (!canZoom) {
+				zoomOut.setDisabled(true);
+			}
+		}
+	}
+
 }

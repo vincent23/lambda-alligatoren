@@ -1,14 +1,20 @@
 package de.croggle.ui.actors;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import de.croggle.AlligatorApp;
 import de.croggle.ui.StyleHelper;
 
 public class IngameMenuDialog extends Dialog {
 
-	public IngameMenuDialog() {
+	private AlligatorApp game;
+
+	public IngameMenuDialog(AlligatorApp game) {
 		super("", StyleHelper.getInstance().getDialogStyle());
+		this.game = game;
 
 		fillTable();
 	}
@@ -21,11 +27,11 @@ public class IngameMenuDialog extends Dialog {
 		ImageTextButton reset = new ImageTextButton("Reset",
 				helper.getImageTextButtonStyle("widgets/dummy-icon"));
 		ImageTextButton settings = new ImageTextButton("Settings",
-				helper.getImageTextButtonStyle("widgets/dummy-icon"));
+				helper.getImageTextButtonStyle("widgets/icon-settings"));
 		ImageTextButton levelOverview = new ImageTextButton("Level Overview",
 				helper.getImageTextButtonStyle("widgets/dummy-icon"));
 		ImageTextButton achievements = new ImageTextButton("Achievements",
-				helper.getImageTextButtonStyle("widgets/dummy-icon"));
+				helper.getImageTextButtonStyle("widgets/icon-trophy"));
 		ImageTextButton mainMenu = new ImageTextButton("Main Menu",
 				helper.getImageTextButtonStyle("widgets/dummy-icon"));
 
@@ -43,6 +49,14 @@ public class IngameMenuDialog extends Dialog {
 		levelOverview.getLabelCell().expandX().left();
 		achievements.getLabelCell().expandX().left();
 		mainMenu.getLabelCell().expandX().left();
+
+		// add listeners
+		continueGame.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				hide();
+			}
+		});
 
 		clear();
 

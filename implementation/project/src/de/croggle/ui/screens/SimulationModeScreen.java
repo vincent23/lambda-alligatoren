@@ -19,8 +19,14 @@ import de.croggle.ui.renderer.BoardActor;
  */
 public class SimulationModeScreen extends AbstractScreen {
 
+	private static final float ZOOM_RATE = 3f;
+
 	private final GameController gameController;
 	private Table controlTable;
+	private BoardActor boardActor;
+
+	private ImageButton zoomIn;
+	private ImageButton zoomOut;
 
 	/**
 	 * Creates the screen of a level within the simulation mode. This is the
@@ -44,6 +50,14 @@ public class SimulationModeScreen extends AbstractScreen {
 		this.setBackground("textures/swamp.png");
 
 		fillTable();
+	}
+
+	@Override
+	public void render(float delta) {
+		super.render(delta);
+		if (boardActor != null) {
+			checkZoom();
+		}
 	}
 
 	protected void onShow() {
@@ -77,20 +91,16 @@ public class SimulationModeScreen extends AbstractScreen {
 
 		ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(cctrlr);
-		BoardActor ba = new BoardActor(b, config);
+		BoardActor boardActor = new BoardActor(b, config);
 		// ba.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
 		// ba.setScale(.5f); // TODO test this/ get it to work later
 
 		// this.table.add(ba).fill().expand();
-		table.stack(ba, controlTable).expand().fill();
+		table.stack(boardActor, controlTable).expand().fill();
 	}
 
 	public void hide() {
 		table.clear();
-	}
-
-	public void dispose() {
-		super.dispose();
 	}
 
 	private void fillTable() {
@@ -101,9 +111,9 @@ public class SimulationModeScreen extends AbstractScreen {
 		Table leftTable = new Table();
 		ImageButton menu = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-menu"));
-		ImageButton zoomIn = new ImageButton(
+		zoomIn = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-plus"));
-		ImageButton zoomOut = new ImageButton(
+		zoomOut = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-minus"));
 
 		ImageButton backToPlacement = new ImageButton(
@@ -130,6 +140,24 @@ public class SimulationModeScreen extends AbstractScreen {
 		controlTable.pad(30).padRight(0);
 		controlTable.add(leftTable).expand().fill();
 		controlTable.add(controlPanelTable);
+	}
+
+	private void checkZoom() {
+		if (zoomIn.isPressed() && !zoomIn.isDisabled()) {
+			zoomOut.setDisabled(false);
+			boolean canZoom = boardActor.zoomIn(ZOOM_RATE);
+			if (!canZoom) {
+				zoomIn.setDisabled(true);
+			}
+		}
+
+		if (zoomOut.isPressed() && !zoomOut.isDisabled()) {
+			zoomIn.setDisabled(false);
+			boolean canZoom = boardActor.zoomOut(ZOOM_RATE);
+			if (!canZoom) {
+				zoomOut.setDisabled(true);
+			}
+		}
 	}
 
 }
