@@ -6,15 +6,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
+import de.croggle.game.GameController;
 import de.croggle.ui.StyleHelper;
 
 public class IngameMenuDialog extends Dialog {
 
 	private AlligatorApp game;
+	private GameController gameController;
 
-	public IngameMenuDialog(AlligatorApp game) {
+	public IngameMenuDialog(AlligatorApp game, GameController gameController) {
 		super("", StyleHelper.getInstance().getDialogStyle());
 		this.game = game;
+		this.gameController = gameController;
 
 		fillTable();
 	}
@@ -55,6 +58,39 @@ public class IngameMenuDialog extends Dialog {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				hide();
+			}
+		});
+		reset.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				// TODO notification?
+				gameController.reset();
+				game.showPlacementModeScreen(gameController);
+				hide();
+			}
+		});
+		settings.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				game.showSettingsScreen();
+			}
+		});
+		levelOverview.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				game.showLevelPackagesScreen();
+			}
+		});
+		achievements.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				game.showAchievementScreen();
+			}
+		});
+		mainMenu.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				game.showMainMenuScreen();
 			}
 		});
 

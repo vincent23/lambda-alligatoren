@@ -3,8 +3,11 @@ package de.croggle.ui.screens;
 import android.util.Log;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
@@ -14,6 +17,7 @@ import de.croggle.data.persistence.SettingController;
 import de.croggle.game.ColorController;
 import de.croggle.game.GameController;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.actors.IngameMenuDialog;
 import de.croggle.ui.actors.ObjectBar;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
@@ -143,6 +147,14 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 			zoomOut.setVisible(false);
 		}
 		
+	}
+
+	private class MenuClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			Dialog menuDialog = new IngameMenuDialog(game, gameController);
+			menuDialog.show(stage);
+		}
 	}
 
 }
