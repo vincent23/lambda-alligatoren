@@ -179,4 +179,8 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 	public Board getBoard() {
 		return b;
 	}
+	
+	public int size() {
+		return layout.size();
+	}
 }

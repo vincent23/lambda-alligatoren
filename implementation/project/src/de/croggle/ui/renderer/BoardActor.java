@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -43,9 +44,10 @@ public class BoardActor extends Group implements BoardEventListener {
 	private float maxY;
 	private float minX;
 	private float minY;
-	private float maxScale;
-	private float minScale;
-	private final Vector2 point;
+	private float maxZoom;
+	private float minZoom;
+	private final WorldPane world;
+	private Vector2 point = new Vector2();
 
 	private BoardActorGestureListener gestureListener;
 
@@ -61,7 +63,8 @@ public class BoardActor extends Group implements BoardEventListener {
 	 */
 	public BoardActor(Board b, ActorLayoutConfiguration config) {
 		this.config = config;
-		this.point = new Vector2();
+		this.world = new WorldPane();
+		super.addActor(world);
 		onBoardRebuilt(b);
 
 		maxX = Float.POSITIVE_INFINITY;
@@ -86,65 +89,19 @@ public class BoardActor extends Group implements BoardEventListener {
 		this(board, new ActorLayoutConfiguration()
 				.setColorController(controller));
 	}
-
-	private void calculateLimits() {
-		calculateScaleLimits();
-		calculatePanLimits();
-	}
-
-	private void calculateScaleLimits() {
-		Board b = layout.getBoard();
-		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics()
-				.getHeightMap();
-		float boardHeight = heightMap.get(b) / getScaleY();
-
-		// zoom limits
-		float lowestScale = 0.2373046875f; // 0.75^5 TODO
-		// allow maximum enlargement to have the smallest object being displayed
-		// with half the screen size
-		maxScale = getWidth()
-				/ (config.getUniformObjectWidth() * 2 * lowestScale);
-		// allow maximum the whole tree times 1.2 fitting on the screen
-		minScale = Math.min(boardHeight * 1.2f / getHeight(), 1.f);
-	}
-
-	private void calculatePanLimits() {
-		Board b = layout.getBoard();
-		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics()
-				.getHeightMap();
-		Map<BoardObject, Float> widthMap = layout.getLayoutStatistics()
-				.getWidthMap();
-
-		Vector2 origin = config.getTreeOrigin();
-		float scale = getScaleX();
-
-		float boardHeight = heightMap.get(b);
-		float boardWidth = widthMap.get(b);
-
-		// pan limits
-		maxX = getWidth() - origin.x * scale;
-		minX = -(origin.x + boardWidth) * scale;
-		maxY = getHeight() + (boardHeight - origin.y) * scale;
-		minY = -origin.y * scale;
-	}
-
-	private void initializePosition() {
-		// have the tree displayed horizontally centered and with its top at the
-		// upper edge
-		ActorLayoutStatistics stats = layout.getLayoutStatistics();
-		Vector2 orig = config.getTreeOrigin();
-		float treeMidX = orig.x + stats.getWidthMap().get(layout.getBoard())
-				/ 2;
-		float treeTop = orig.y;
-		posX = -(treeMidX - getWidth() * getScaleX() / 2);
-		posY = -(treeTop - getHeight() * getScaleY());
-	}
-
-	@Override
-	public void draw(SpriteBatch batch, float parentAlpha) {
-		float x = getX();
-		float y = getY();
-		if (clipBegin()) {
+	
+	/**
+	 * An inner "pane" to have the world displayed on
+	 * Only way to have the coordinate translation functions overridden at the correct place
+	 */
+	private class WorldPane extends Group {
+		private Vector2 point = new Vector2();
+		
+		@Override
+		public void draw(SpriteBatch batch, float parentAlpha) {
+			float x = getX();
+			float y = getY();
+			
 			setX(x + posX);
 			setY(y + posY);
 
@@ -152,33 +109,186 @@ public class BoardActor extends Group implements BoardEventListener {
 
 			setX(x);
 			setY(y);
+		}
+		
+		@Override
+		public Vector2 localToParentCoordinates (Vector2 localCoords) {
+			return localToParentCoordinates(localCoords, getScaleX());
+		}
+		
+		public Vector2 localToParentCoordinates (Vector2 localCoords, float scale) {
+			final float rotation = -getRotation();
+			final float scaleX = scale;
+			final float scaleY = scale;
+			final float x = getX();
+			final float y = getY();
+			if (rotation == 0) {
+				if (scaleX == 1 && scaleY == 1) {
+					localCoords.x += x;
+					localCoords.y += y;
+				} else {
+					final float originX = getOriginX();
+					final float originY = getOriginY();
+					localCoords.x = (localCoords.x - originX) * scaleX + originX + x;
+					localCoords.y = (localCoords.y - originY) * scaleY + originY + y;
+				}
+			} else {
+				final float cos = (float)Math.cos(rotation * MathUtils.degreesToRadians);
+				final float sin = (float)Math.sin(rotation * MathUtils.degreesToRadians);
+				final float originX = getOriginX();
+				final float originY = getOriginY();
+				final float tox = localCoords.x - originX;
+				final float toy = localCoords.y - originY;
+				localCoords.x = (tox * cos + toy * sin) * scaleX + originX + x;
+				localCoords.y = (tox * -sin + toy * cos) * scaleY + originY + y;
+			}
+			localCoords.x += posX;
+			localCoords.y += posY;
+			return localCoords;
+		}
+		
+		@Override		
+		public Actor hit(float x, float y, boolean touchable) {
+			if (touchable && getTouchable() == Touchable.disabled) return null;
+			Array<Actor> children = getChildren();
+			for (int i = children.size - 1; i >= 0; i--) {
+				Actor child = children.get(i);
+				if (!child.isVisible()) {
+					continue;
+				}
+				child.parentToLocalCoordinates(point.set(x, y));
+				Actor hit = child.hit(point.x, point.y, touchable);
+				if (hit != null) {
+					return hit;
+				}
+			}
+			localToParentCoordinates(point.set(x, y));
+			if (point.x <= BoardActor.this.getWidth() && point.y <= BoardActor.this.getHeight()) {
+				return this;
+			}
+			return null;
+		}
+		
+		@Override
+		public Vector2 parentToLocalCoordinates (Vector2 parentCoords) {
+			return parentToLocalCoordinates(parentCoords, getScaleX());
+		}
+		
+		public Vector2 parentToLocalCoordinates (Vector2 parentCoords, float scale) {
+			final float rotation = getRotation();
+			final float scaleX = scale;
+			final float scaleY = scale;
+			final float childX = getX();
+			final float childY = getY();
+			parentCoords.x -= posX;
+			parentCoords.y -= posY;
+			if (rotation == 0) {
+				if (scaleX == 1 && scaleY == 1) {
+					parentCoords.x -= childX;
+					parentCoords.y -= childY;
+				} else {
+					final float originX = getOriginX();
+					final float originY = getOriginY();
+					parentCoords.x = (parentCoords.x - childX - originX) / scaleX + originX;
+					parentCoords.y = (parentCoords.y - childY - originY) / scaleY + originY;
+				}
+			} else {
+				final float cos = (float)Math.cos(rotation * MathUtils.degreesToRadians);
+				final float sin = (float)Math.sin(rotation * MathUtils.degreesToRadians);
+				final float originX = getOriginX();
+				final float originY = getOriginY();
+				final float tox = parentCoords.x - childX - originX;
+				final float toy = parentCoords.y - childY - originY;
+				parentCoords.x = (tox * cos + toy * sin) / scaleX + originX;
+				parentCoords.y = (tox * -sin + toy * cos) / scaleY + originY;
+			}
+			return parentCoords;
+		}
+		
+		@Override
+		public void setScale(float s) {
+			super.setScale(s);
+			syncBounds();
+		}
+		
+		public void syncBounds() {
+			float s = getScaleX();
+			// keep the world actor bounds in sync with BoardActor
+			setWidth(BoardActor.this.getWidth() / s);
+			setHeight(BoardActor.this.getHeight() / s);
+		}
+	}
+	
+	public void draw(SpriteBatch batch, float parentAlpha) {
+		if (clipBegin()) {
+			super.draw(batch, parentAlpha);
 			clipEnd();
 		}
 	}
 
-	@Override
-	public Actor hit(float x, float y, boolean touchable) {
-		if (touchable && getTouchable() != Touchable.enabled) {
-			return null;
+	private void calculateLimits() {
+		calculateZoomLimits();
+		calculatePanLimits(getZoom());
+	}
+
+	private void calculateZoomLimits() {
+		Board b = layout.getBoard();
+		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics()
+				.getHeightMap();
+		float boardHeight = heightMap.get(b);
+
+		// zoom limits
+		float lowestScale = 0.2373046875f; // 0.75^5 TODO
+		// allow maximum enlargement to have the smallest object being displayed
+		// with half the screen size
+		maxZoom = getWidth()
+				/ (config.getUniformObjectWidth() * 2 * lowestScale);
+		// allow maximum the whole tree times 1.2 fitting on the screen
+		minZoom = Math.min(getHeight() / (boardHeight * 1.2f), 1.f);
+	}
+
+	private void calculatePanLimits(float zoom) {
+		Board b = layout.getBoard();
+		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics()
+				.getHeightMap();
+		Map<BoardObject, Float> widthMap = layout.getLayoutStatistics()
+				.getWidthMap();
+
+		Vector2 origin = config.getTreeOrigin();
+
+		float boardHeight = heightMap.get(b);
+		float boardWidth = widthMap.get(b);
+
+		// pan limits
+		maxX = getWidth() - origin.x * zoom;
+		minX = -(origin.x + boardWidth) * zoom;
+		maxY = getHeight() + (boardHeight - origin.y) * zoom;
+		minY = -origin.y * zoom;
+		
+		// prevent locking in
+		if (posX >= maxX) {
+			posX = maxX;
+		} else if (posX < minX) {
+			posX = minX;
 		}
-		Array<Actor> children = getChildren();
-		for (int i = children.size - 1; i >= 0; i--) {
-			Actor child = children.get(i);
-			if (!child.isVisible()) {
-				continue;
-			}
-			child.parentToLocalCoordinates(point.set(x - posX, y - posY));
-			Actor hit = child.hit(point.x, point.y, touchable);
-			if (hit != null) {
-				return hit;
-			}
+		if (posY >= maxY) {
+			posY = maxY;
+		} else if (posY < minY) {
+			posY = minY;
 		}
-		// no child hit
-		if (x >= 0 && x < getWidth() && y >= 0 && y < getHeight()) {
-			return this;
-		} else {
-			return null;
-		}
+	}
+
+	private void initializePosition() {
+		// have the tree displayed horizontally centered and with its top at the
+		// upper edge
+		ActorLayoutStatistics stats = layout.getLayoutStatistics();
+		Vector2 orig = config.getTreeOrigin();
+		float zoom = getZoom();
+		float treeMidX = orig.x + stats.getWidthMap().get(layout.getBoard())
+				/ 2;
+		float treeTop = orig.y;
+		posX = -(treeMidX - getWidth() * zoom / 2);
+		posY = -(treeTop - getHeight() * zoom);
 	}
 
 	/**
@@ -206,7 +316,7 @@ public class BoardActor extends Group implements BoardEventListener {
 			float dist = initialPointer1.dst(initialPointer2);
 			float newdist = pointer1.dst(pointer2);
 			float delta = newdist - dist;
-			float percent = delta / density / 4;
+			float percent = delta / density / 10;
 			float pointX = initialPointer1.x
 					+ (initialPointer2.x - initialPointer1.x) / 2;
 			float pointY = initialPointer1.y
@@ -216,14 +326,13 @@ public class BoardActor extends Group implements BoardEventListener {
 	}
 
 	public boolean zoomIn(float percent) {
-		float scale = getScaleX();
-		return zoomIn(percent, getWidth() / 2 / scale, getHeight() / 2 / scale);
+		return zoomIn(percent, getWidth() / 2, getHeight() / 2);
 	}
 
 	/**
 	 * 
 	 * @param percent
-	 *            the percentage of how much the actor's scale is to be
+	 *            the percentage of how much the actor's zoom is to be
 	 *            increased
 	 * @param pointX
 	 *            x coordinate of the point to be zoomed onto (actor
@@ -238,29 +347,24 @@ public class BoardActor extends Group implements BoardEventListener {
 		if (percent < 0) {
 			return zoomOut(-percent, pointX, pointY);
 		}
-		float scale = getScaleX();
 		float factor = 1 + percent / 100;
-		float newScale = scale * factor;
-		if (newScale <= maxScale) {
-			setScale(newScale);
-			calculatePanLimits();
-
-			zoomToPoint(pointX, pointY, scale, newScale);
-
+		float zoom = getZoom();
+		float newZoom = zoom * factor;
+		if (setZoom(newZoom, false)) {
+			zoomOnPoint(pointX, pointY, zoom, newZoom);
 			return true;
 		}
 		return false;
 	}
 
 	public boolean zoomOut(float percent) {
-		float scale = getScaleX();
-		return zoomOut(percent, getWidth() / 2 / scale, getHeight() / 2 / scale);
+		return zoomOut(percent, getWidth() / 2, getHeight() / 2);
 	}
 
 	/**
 	 * 
 	 * @param percent
-	 *            the percentage of how much the actor's scale is to be
+	 *            the percentage of how much the actor's zoom is to be
 	 *            decreased
 	 * @param pointX
 	 *            x coordinate of the point to be zoomed onto (actor
@@ -275,15 +379,11 @@ public class BoardActor extends Group implements BoardEventListener {
 		if (percent < 0) {
 			return zoomIn(-percent, pointX, pointY);
 		}
-		float scale = getScaleX();
 		float factor = 1 - percent / 100;
-		float newScale = scale * factor;
-		if (newScale >= minScale) {
-			setScale(newScale);
-			calculatePanLimits();
-
-			zoomToPoint(pointX, pointY, scale, newScale);
-
+		float zoom = getZoom();
+		float newZoom = zoom * factor;
+		if (setZoom(newZoom, false)) {
+			zoomOnPoint(pointX, pointY, zoom, newZoom);
 			return true;
 		}
 		return false;
@@ -297,30 +397,44 @@ public class BoardActor extends Group implements BoardEventListener {
 	 * @param pointY
 	 *            the x coordinate to zoom onto in actor coordinates (offset,
 	 *            scaling etc)
-	 * @param oldScale
-	 * @param newScale
+	 * @param oldZoom
+	 * @param newZoom
 	 */
-	private void zoomToPoint(float pointX, float pointY, float oldScale,
-			float newScale) {
+	private void zoomOnPoint(float pointX, float pointY, float oldZoom,
+			float newZoom) {
 		/*
 		 * Without this method, zooming would be relative to the actor's origin
 		 * so we will have to shift it away from the actual zoom point when
 		 * zooming in and pull closer if we are zooming out
 		 */
-		System.out.println("==== scale: o " + oldScale + ", n " + newScale
-				+ " ====");
-		System.out.println("actor: " + pointX + ", " + pointY);
-		System.out.println("posX: " + posX + ", " + posY);
+		point.x = pointX;
+		point.y = pointY;
+		point = world.parentToLocalCoordinates(point, oldZoom);
+		point = world.localToParentCoordinates(point, newZoom);
+		float newPointX = point.x;
+		float newPointY = point.y;
 
-		float dx = 0;
-		float dy = 0;
+		float dx = -(newPointX - pointX);
+		float dy = -(newPointY - pointY);
 
-		if (posX + dx >= minX && posX + dx <= maxX) {
-			posX += dx;
+		posX += dx;
+		posY += dy;
+		calculatePanLimits(newZoom);
+	}
+	
+	private boolean setZoom(float zoom, boolean calculatePanLimits) {
+		if (zoom > minZoom && zoom <= maxZoom) {
+			world.setScale(zoom);
+			if (calculatePanLimits) {
+				calculatePanLimits(zoom);
+			}
+			return true;
 		}
-		if (posY + dy >= minY && posY + dy <= maxY) {
-			posY += dy;
-		}
+		return false;
+	}
+	
+	private float getZoom() {
+		return world.getScaleX();
 	}
 
 	/**
@@ -385,7 +499,7 @@ public class BoardActor extends Group implements BoardEventListener {
 	 * 
 	 * @param object
 	 */
-	protected void removeObjectAnimated(final InternalBoardObject object) {
+	private void removeObjectAnimated(final InternalBoardObject object) {
 		final float fadingtime = .3f;
 		// TODO make sure, fading out even works on our custom actors
 		this.addAction(Actions.fadeOut(fadingtime));
@@ -427,10 +541,10 @@ public class BoardActor extends Group implements BoardEventListener {
 	 */
 	@Override
 	public final void onBoardRebuilt(Board board) {
-		clearChildren();
+		world.clearChildren();
 		layout = ActorLayoutBuilder.build(board, config);
 		for (BoardObjectActor actor : layout) {
-			addActor(actor);
+			world.addActor(actor);
 		}
 		registerLayoutListeners();
 	}
@@ -453,6 +567,7 @@ public class BoardActor extends Group implements BoardEventListener {
 
 	@Override
 	protected void sizeChanged() {
+		world.syncBounds();
 		calculateLimits();
 		initializePosition();
 
@@ -482,8 +597,54 @@ public class BoardActor extends Group implements BoardEventListener {
 
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			System.out.println("Click");
+			System.out.println("Click: " + x + ", " + y);
 			// TODO
 		}
+	}
+	
+	// stuff inherited from Group that is not necessary
+	/**
+	 * @deprecated
+	 */
+	public void addActor(Actor actor) {
+	}
+	/**
+	 * @deprecated
+	 */
+	public void addActorAfter(Actor a, Actor b) {
+	}
+	/**
+	 * @deprecated
+	 */
+	public void addActorAt(int index, Actor actor) {
+	}
+	/**
+	 * @deprecated
+	 */
+	public void addActorBefore(Actor a, Actor b) {
+	}
+	/**
+	 * @deprecated
+	 */
+	public void clearChildren() {
+		
+	}
+	/**
+	 * @deprecated
+	 */
+	public boolean removeActor(Actor a) {
+		return false;
+	}
+	/**
+	 * @deprecated
+	 */
+	public boolean swapActor(Actor a, Actor b) {
+		return false;
+	}
+	/**
+	 * @deprecated
+	 */
+	public boolean swapActor(int x, int y) {
+		return false;
 	}
 }
