@@ -59,7 +59,7 @@ public class SimulationModeScreen extends AbstractScreen implements SettingChang
 
 		fillTable();
 		
-		game.getSettingController().addListener(this);
+		game.getSettingController().registerSettingChangeProcessor(this);
 	}
 
 	@Override

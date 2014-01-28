@@ -56,7 +56,7 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 		fillTable();
 		setBackground("textures/swamp.png");
 		
-		game.getSettingController().addListener(this);
+		game.getSettingController().registerSettingChangeProcessor(this);
 	} 
 
 	@Override

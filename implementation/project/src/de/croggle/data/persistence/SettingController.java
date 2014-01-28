@@ -70,7 +70,7 @@ public class SettingController {
 		return currentSetting;
 	}
 	
-	public void addListener(SettingChangeProcessor processor) {
+	public void registerSettingChangeProcessor(SettingChangeProcessor processor) {
 		processors.add(processor);
 	}
 	
