@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
+import com.badlogic.gdx.scenes.scene2d.actions.SizeToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -498,6 +499,7 @@ public class BoardActor extends Group implements BoardEventListener {
 					layout.getActors().remove(eatenActor);
 					world.removeActor(eatenActor);
 				}
+				removeObjectAnimated(eater);
 				applyDeltasAnimated(layout.getDeltasToFix());
 			}
 		});
@@ -573,6 +575,7 @@ public class BoardActor extends Group implements BoardEventListener {
 	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
 		EggActor eggActor = (EggActor) layout.getActor(replacedEgg);
 		eggActor.enterHatchingState();
+		removeObjectAnimated(replacedEgg);
 	}
 	
 	private void applyDeltasAnimated(List<ActorDelta> deltas) {
@@ -580,9 +583,43 @@ public class BoardActor extends Group implements BoardEventListener {
 		for (ActorDelta delta : deltas) {
 			if (delta.isCreated()) {
 				created.add(delta);
+				continue;
 			}
+			applyDeltaAnimated(delta);
 		}
 		applyCreationDeltas(created);
+	}
+	
+	private void applyDeltaAnimated(ActorDelta delta) {
+		final float moveToDuration = 0.3f;
+		final float sizeToDuration = 0.3f;
+		
+		Actor actor = delta.getActor();
+		if (delta.isxChanged()) {
+			MoveToAction moveTo;
+			if (delta.isyChanged()) {
+				moveTo = Actions.moveTo(delta.getNewX(), delta.getNewY(), moveToDuration);
+			} else {
+				moveTo = Actions.moveTo(delta.getNewX(), actor.getY(), moveToDuration);
+			}
+			actor.addAction(moveTo);
+		} else if (delta.isyChanged()) {
+			MoveToAction moveTo = Actions.moveTo(actor.getX(), delta.getNewY(), moveToDuration);
+			actor.addAction(moveTo);
+		}
+		
+		if (delta.isWidthChanged()) {
+			SizeToAction sizeTo;
+			if (delta.isHeightChanged()) {
+				sizeTo = Actions.sizeTo(delta.getNewWidth(), delta.getNewHeight(), sizeToDuration);
+			} else {
+				sizeTo = Actions.sizeTo(delta.getNewWidth(), actor.getHeight(), sizeToDuration);
+			}
+			actor.addAction(sizeTo);
+		} else if (delta.isyChanged()) {
+			SizeToAction sizeTo = Actions.sizeTo(actor.getWidth(), delta.getNewHeight(), sizeToDuration);
+			actor.addAction(sizeTo);
+		}
 	}
 	
 	private void applyCreationDeltas(final List<ActorDelta> deltas) {
