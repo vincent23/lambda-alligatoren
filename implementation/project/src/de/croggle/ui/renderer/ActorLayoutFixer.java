@@ -95,7 +95,14 @@ class ActorLayoutFixer extends ActorLayouter {
 		}
 		if (current == null) {
 			unused.setCreated(true);
+			BoardObjectActor actor = createActor(lastProvidedFor);
+			actor.setX(newActor.getX());
+			actor.setY(newActor.getY());
+			actor.setWidth(newActor.getWidth());
+			actor.setHeight(newActor.getHeight());
+			unused.setActor(actor);
 		} else {
+			unused.setActor(current);
 			if (current.getX() != newActor.getX()) {
 				unused.setxChanged(true);
 				unused.setNewX(newActor.getX());
@@ -120,6 +127,18 @@ class ActorLayoutFixer extends ActorLayouter {
 			return result;
 		} else {
 			return null;
+		}
+	}
+	
+	private BoardObjectActor createActor(InternalBoardObject boardObject) {
+		if (boardObject.getClass() == AgedAlligator.class) {
+			return new AgedAlligatorActor((AgedAlligator) boardObject);
+		} else if (boardObject.getClass() == ColoredAlligator.class) {
+			return new ColoredAlligatorActor((ColoredAlligator) boardObject);
+		} else if (boardObject.getClass() == Egg.class) {
+			return new  EggActor((Egg) boardObject);
+		} else {
+			throw new IllegalStateException();
 		}
 	}
 }

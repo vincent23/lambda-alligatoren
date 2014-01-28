@@ -1,5 +1,6 @@
 package de.croggle.ui.renderer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -491,8 +492,11 @@ public class BoardActor extends Group implements BoardEventListener {
 			}
 
 			protected void end() {
+				Actor eatenActor;
 				for (InternalBoardObject eaten : eatenLst) {
-					layout.getActors().remove(layout.getActor(eaten));
+					eatenActor = layout.getActor(eaten);
+					layout.getActors().remove(eatenActor);
+					world.removeActor(eatenActor);
 				}
 				applyDeltasAnimated(layout.getDeltasToFix());
 			}
@@ -519,6 +523,9 @@ public class BoardActor extends Group implements BoardEventListener {
 			}
 
 			protected void end() {
+				Actor actor = layout.getActor(object);
+				layout.getActors().remove(actor);
+				world.removeActor(actor);
 				applyDeltasAnimated(layout.getDeltasToFix());
 			}
 		});
@@ -569,7 +576,26 @@ public class BoardActor extends Group implements BoardEventListener {
 	}
 	
 	private void applyDeltasAnimated(List<ActorDelta> deltas) {
+		List<ActorDelta> created = new ArrayList<ActorDelta>();
+		for (ActorDelta delta : deltas) {
+			if (delta.isCreated()) {
+				created.add(delta);
+			}
+		}
+		applyCreationDeltas(created);
+	}
+	
+	private void applyCreationDeltas(final List<ActorDelta> deltas) {
+		float animDuration = 0.2f;
 		
+		Actor actor;
+		for (ActorDelta delta : deltas) {
+			actor = delta.getActor();
+			actor.setScale(0.f);
+			world.addActor(actor);
+			ScaleToAction scaleAction = Actions.scaleTo(1, 1, animDuration);
+			actor.addAction(scaleAction);
+		}
 	}
 
 	@Override

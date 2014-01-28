@@ -156,7 +156,7 @@ public class ActorDelta {
 		return xChanged || yChanged || widthChanged || heightChanged || created;
 	}
 
-	public boolean wasCreated() {
+	public boolean isCreated() {
 		return created;
 	}
 
