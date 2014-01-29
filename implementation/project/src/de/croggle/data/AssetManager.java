@@ -53,8 +53,9 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	}
 
 	public Texture getPatternTexture(Color c) {
+		return new Texture(uncoloredColor); // for testing
 		// TODO implement buildPatterns first
-		throw new UnsupportedOperationException("Not implemented yet");
+		//throw new UnsupportedOperationException("Not implemented yet");
 		/*
 		if (c.equals(Color.uncolored())) {
 			return new Texture(uncolordPattern);

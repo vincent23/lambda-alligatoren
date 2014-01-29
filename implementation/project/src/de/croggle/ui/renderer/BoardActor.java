@@ -21,6 +21,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 
+import de.croggle.data.persistence.Setting;
+import de.croggle.data.persistence.SettingChangeListener;
 import de.croggle.game.ColorController;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
@@ -36,7 +38,7 @@ import de.croggle.game.event.BoardEventListener;
  * An actor used for representing a whole board, i.e. an alligator
  * constellation.
  */
-public class BoardActor extends Group implements BoardEventListener {
+public class BoardActor extends Group implements BoardEventListener, SettingChangeListener {
 
 	private ActorLayout layout;
 
@@ -51,6 +53,7 @@ public class BoardActor extends Group implements BoardEventListener {
 	private float minZoom;
 	private final WorldPane world;
 	private Vector2 point = new Vector2();
+	private boolean colorBlind = false;
 
 	private BoardActorGestureListener gestureListener;
 
@@ -670,6 +673,30 @@ public class BoardActor extends Group implements BoardEventListener {
 		public void clicked(InputEvent event, float x, float y) {
 			System.out.println("Click: " + x + ", " + y);
 			// TODO
+		}
+	}
+
+	public void setColorBlindEnabled(boolean enabled) {
+		if (enabled == colorBlind) {
+			return;
+		} else {
+			colorBlind = enabled;
+			for (Actor actor : world.getChildren()) {
+				if (actor instanceof ColoredBoardObjectActor) {
+					((ColoredBoardObjectActor) actor).setColorBlindEnabled(enabled);
+				}
+			}
+		}
+	}
+	
+	public boolean getColorBlindEnabled() {
+		return colorBlind;
+	}
+	
+	@Override
+	public void onSettingChange(Setting setting) {
+		if (setting.isColorblindEnabled() != colorBlind) {
+			setColorBlindEnabled(setting.isColorblindEnabled());
 		}
 	}
 	

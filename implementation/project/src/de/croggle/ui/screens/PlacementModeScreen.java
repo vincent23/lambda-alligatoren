@@ -1,7 +1,5 @@
 package de.croggle.ui.screens;
 
-import android.util.Log;
-
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -13,7 +11,6 @@ import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingChangeListener;
-import de.croggle.data.persistence.SettingController;
 import de.croggle.game.ColorController;
 import de.croggle.game.GameController;
 import de.croggle.ui.StyleHelper;
@@ -31,7 +28,6 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 	private static final float ZOOM_RATE = 3f;
 
 	private GameController gameController;
-	private SettingController settingController;
 	private BoardActor boardActor;
 
 	private ImageButton zoomIn;
@@ -51,8 +47,6 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 		super(game);
 		gameController = controller;
 		gameController.enterPlacement();
-
-		settingController = game.getSettingController();
 
 		AssetManager assetManager = AssetManager.getInstance();
 		assetManager.load("textures/pack.atlas", TextureAtlas.class);
@@ -106,7 +100,7 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 		final ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(colorController);
 		boardActor = new BoardActor(gameController.getShownBoard(), config);
-		boardActor.setColor(new com.badlogic.gdx.graphics.Color(1, 1, 1, .5f));
+		game.getSettingController().addSettingChangeListener(boardActor);
 		final Table boardTable = new Table();
 		boardTable.add(boardActor).fill().expand();
 
