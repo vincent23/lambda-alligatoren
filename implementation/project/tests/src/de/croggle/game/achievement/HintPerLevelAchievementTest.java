@@ -24,7 +24,8 @@ public class HintPerLevelAchievementTest extends TestCase {
 		int[] testStages = { 1, 0 };
 		assertTrue(testAchievement.getStage(0) == testStages[0]);
 		assertTrue(testAchievement.getDescription(1).endsWith("sed"));
-		assertTrue(testAchievement.getEmblemPath(1).equals("emblems/hintsUsedPerLevel/01"));
+		assertTrue(testAchievement.getEmblemPathachieved(1).equals("emblems/hintsUsedPerLevel/01a"));
+		assertTrue(testAchievement.getEmblemPathnotachieved(1).equals("emblems/hintsUsedPerLevel/01n"));
 	}
 
 	public void testIndexingAndIncreaseDecrease() {

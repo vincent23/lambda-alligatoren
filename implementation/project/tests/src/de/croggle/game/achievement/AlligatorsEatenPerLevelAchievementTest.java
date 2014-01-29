@@ -24,7 +24,8 @@ public class AlligatorsEatenPerLevelAchievementTest extends TestCase {
 		for (int i = 1; i < 6; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);
 			assertTrue(testAchievement.getDescription(i).endsWith("level"));
-			assertTrue(testAchievement.getEmblemPath(i).equals("emblems/alligatorsEatenPerLevel/0" + i));
+			assertTrue(testAchievement.getEmblemPathachieved(i).equals("emblems/alligatorsEatenPerLevel/0" + i + "a"));
+			assertTrue(testAchievement.getEmblemPathnotachieved(i).equals("emblems/alligatorsEatenPerLevel/0" + i + "n"));
 		}
 	}
 

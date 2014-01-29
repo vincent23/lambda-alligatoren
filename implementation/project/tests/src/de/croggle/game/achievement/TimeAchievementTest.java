@@ -25,10 +25,12 @@ public class TimeAchievementTest extends TestCase {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);
 			assertTrue(testAchievement.getDescription(i).endsWith("yed"));
 			if (i < 10) {
-				assertTrue(testAchievement.getEmblemPath(i).equals("emblems/time/0" + i));
+				assertTrue(testAchievement.getEmblemPathachieved(i).equals("emblems/time/0" + i + "a"));
+				assertTrue(testAchievement.getEmblemPathnotachieved(i).equals("emblems/time/0" + i + "n"));
 			}
 			else {
-				assertTrue(testAchievement.getEmblemPath(i).equals("emblems/time/" + i));
+				assertTrue(testAchievement.getEmblemPathachieved(i).equals("emblems/time/" + i + "a"));
+				assertTrue(testAchievement.getEmblemPathnotachieved(i).equals("emblems/time/" + i + "n"));
 			}
 		}
 	} 
