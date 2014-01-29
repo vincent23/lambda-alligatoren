@@ -100,6 +100,7 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 		final ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(colorController);
 		boardActor = new BoardActor(gameController.getShownBoard(), config);
+		boardActor.setColorBlindEnabled(game.getSettingController().getCurrentSetting().isColorblindEnabled());
 		game.getSettingController().addSettingChangeListener(boardActor);
 		final Table boardTable = new Table();
 		boardTable.add(boardActor).fill().expand();
