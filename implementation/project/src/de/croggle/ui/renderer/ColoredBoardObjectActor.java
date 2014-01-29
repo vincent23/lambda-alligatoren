@@ -20,7 +20,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	private boolean valid = false;
 	private boolean colorBlind = false;
 
-	public ColoredBoardObjectActor(ColoredBoardObject object,
+	public ColoredBoardObjectActor(ColoredBoardObject object, boolean colorBlindEnabled,
 			String foregroundPath, String maskPath) {
 		super(object);
 
@@ -34,6 +34,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		}
 		mask = tex.findRegion(maskPath);
 		foreground = tex.findRegion(foregroundPath);
+		this.colorBlind = colorBlindEnabled;
 		this.setWidth(foreground.getRegionWidth());
 		this.setHeight(foreground.getRegionHeight());
 

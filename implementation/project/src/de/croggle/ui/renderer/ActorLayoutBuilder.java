@@ -97,14 +97,14 @@ class ActorLayoutBuilder extends ActorLayouter {
 
 	@Override
 	protected ColoredAlligatorActor provideColoredAlligatorActor(ColoredAlligator alligator) {
-		ColoredAlligatorActor actor = new ColoredAlligatorActor(alligator);
+		ColoredAlligatorActor actor = new ColoredAlligatorActor(alligator, getConfig().isColorBlindEnabled());
 		actors.put(alligator, actor);
 		return actor;
 	}
 
 	@Override
 	protected EggActor provideEggActor(Egg egg) {
-		EggActor actor = new EggActor(egg);
+		EggActor actor = new EggActor(egg, getConfig().isColorBlindEnabled());
 		actors.put(egg, actor);
 		return actor;
 	}

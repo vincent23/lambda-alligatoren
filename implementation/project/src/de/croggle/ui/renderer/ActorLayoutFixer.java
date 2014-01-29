@@ -37,8 +37,8 @@ class ActorLayoutFixer extends ActorLayouter {
 		super(b, l.getLayoutConfiguration());
 		this.l = l;
 		aaaDummy = new AgedAlligatorActor(new AgedAlligator(true, true));
-		caaDummy = new ColoredAlligatorActor(new ColoredAlligator(true, true, Color.uncolored(), true));
-		eaDummy = new EggActor(new Egg(true, true, Color.uncolored(), true));
+		caaDummy = new ColoredAlligatorActor(new ColoredAlligator(true, true, Color.uncolored(), true), false);
+		eaDummy = new EggActor(new Egg(true, true, Color.uncolored(), true), false);
 		
 		deltas = new ArrayList<ActorDelta>(l.size());
 		// TODO Auto-generated constructor stub
@@ -134,9 +134,9 @@ class ActorLayoutFixer extends ActorLayouter {
 		if (boardObject.getClass() == AgedAlligator.class) {
 			return new AgedAlligatorActor((AgedAlligator) boardObject);
 		} else if (boardObject.getClass() == ColoredAlligator.class) {
-			return new ColoredAlligatorActor((ColoredAlligator) boardObject);
+			return new ColoredAlligatorActor((ColoredAlligator) boardObject, l.getLayoutConfiguration().isColorBlindEnabled());
 		} else if (boardObject.getClass() == Egg.class) {
-			return new  EggActor((Egg) boardObject);
+			return new  EggActor((Egg) boardObject, l.getLayoutConfiguration().isColorBlindEnabled());
 		} else {
 			throw new IllegalStateException();
 		}

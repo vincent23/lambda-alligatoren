@@ -14,6 +14,8 @@ import de.croggle.game.ColorController;
  * TreeGrowths are set, especially in horizontal direction.
  */
 public class ActorLayoutConfiguration {
+
+	private boolean colorBlindEnabled;
 	private TreeGrowth horizontalGrowth;
 	private TreeGrowth verticalGrowth;
 	private TreeGrowth renderDirectionX;
@@ -40,6 +42,7 @@ public class ActorLayoutConfiguration {
 		this.treeOrigin = new Vector2(0, 0);
 		this.colorController = null;
 		this.verticalScaleFactor = .75f;
+		this.colorBlindEnabled = false;
 
 		this.horizontalGrowth = TreeGrowth.NEG_POS;
 		this.verticalGrowth = TreeGrowth.POS_NEG;
@@ -90,6 +93,10 @@ public class ActorLayoutConfiguration {
 	 * @param controller
 	 *            the {@link ColorController} used to perform color lookups, so
 	 *            the layout will be rendered correctly
+	 * @param colorBlindEnabled
+	 *            whether the actors created to be used in the respective
+	 *            {@link ActorLayout}s will have color blind mode enabled
+	 *            initially or not
 	 * @param eggWidth
 	 *            the actual width to be set on {@link EggActor}s in this layout
 	 * @param eggHeight
@@ -112,13 +119,14 @@ public class ActorLayoutConfiguration {
 			TreeGrowth horizontalGrowth, TreeGrowth verticalGrowth,
 			TreeGrowth renderDirectionX, TreeGrowth renderDirectionY,
 			float verticalScaleFactor, float horizontalPadding,
-			float verticalPadding, ColorController controller, float eggWidth,
-			float eggHeight, float agedAlligatorWidth,
-			float agedAlligatorHeight, float coloredAlligatorWidth,
-			float coloredAlligatorHeight) {
+			float verticalPadding, ColorController controller,
+			boolean colorBlindEnabled, float eggWidth, float eggHeight,
+			float agedAlligatorWidth, float agedAlligatorHeight,
+			float coloredAlligatorWidth, float coloredAlligatorHeight) {
 		this.treeOrigin = treeOrigin;
 		this.colorController = controller;
 		this.verticalScaleFactor = verticalScaleFactor;
+		this.colorBlindEnabled = colorBlindEnabled;
 
 		this.horizontalGrowth = horizontalGrowth;
 		this.verticalGrowth = verticalGrowth;
@@ -475,5 +483,13 @@ public class ActorLayoutConfiguration {
 
 	public void setRenderDirectionY(TreeGrowth renderDirectionY) {
 		this.renderDirectionY = renderDirectionY;
+	}
+
+	public boolean isColorBlindEnabled() {
+		return colorBlindEnabled;
+	}
+
+	public void setColorBlindEnabled(boolean colorBlindEnabled) {
+		this.colorBlindEnabled = colorBlindEnabled;
 	}
 }

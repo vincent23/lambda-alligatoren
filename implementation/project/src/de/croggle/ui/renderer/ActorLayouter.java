@@ -73,6 +73,10 @@ abstract class ActorLayouter implements BoardObjectVisitor {
 		this.currentPosition = config.getTreeOrigin().cpy();
 	}
 	
+	protected ActorLayoutConfiguration getConfig() {
+		return config;
+	}
+	
 	/**
 	 * To be called before accessing this {@link ActorLayouter layouter's} results.
 	 */
