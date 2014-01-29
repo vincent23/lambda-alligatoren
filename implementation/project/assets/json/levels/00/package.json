@@ -6,7 +6,7 @@
 				"name" : "Erstes Paket" ,
 				"description" : "Levelpaket zum Erlernen von Croggel." ,
 				"banner" : "" ,
-				"design" : "design/00/swamp.png" ,
+				"design" : "design/egypt.png" ,
 				"animation" : "" ,
 				"dependencies" : [
 				]
