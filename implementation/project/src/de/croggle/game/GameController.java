@@ -79,17 +79,14 @@ public class GameController implements BoardEventListener {
 	/**
 	 * prepare to switch game mode to simulation, in which the given board can
 	 * be evaluated.
+	 * 
+	 * @throws IllegalBoardException
 	 */
-	public void enterSimulation() {
+	public void enterSimulation() throws IllegalBoardException {
 		userBoard = shownBoard.copy();
-		try {
-			simulator = new Simulator(shownBoard, colorController,
-					boardEventMessenger);
-			shownBoard = simulator.getCurrentBoard();
-		} catch (IllegalBoardException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		simulator = new Simulator(shownBoard, colorController,
+				boardEventMessenger);
+		shownBoard = simulator.getCurrentBoard();
 	}
 
 	/**

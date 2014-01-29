@@ -1,5 +1,7 @@
 package de.croggle.ui.actors;
 
+import android.util.Log;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.croggle.AlligatorApp;
 import de.croggle.game.GameController;
 import de.croggle.game.board.AgedAlligator;
+import de.croggle.game.board.IllegalBoardException;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.renderer.AgedAlligatorActor;
 import de.croggle.ui.renderer.ColoredAlligatorActor;
@@ -54,7 +57,11 @@ public class ObjectBar extends Table {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			super.clicked(event, x, y);
-			game.showSimulationModeScreen(gameController);
+			try {
+				game.showSimulationModeScreen(gameController);
+			} catch (IllegalBoardException e) {
+				// TODO handle invalid board
+			}
 		}
 	}
 

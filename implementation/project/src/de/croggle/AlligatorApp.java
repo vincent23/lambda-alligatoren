@@ -15,6 +15,7 @@ import de.croggle.data.persistence.StatisticController;
 import de.croggle.data.persistence.manager.PersistenceManager;
 import de.croggle.game.GameController;
 import de.croggle.game.achievement.AchievementController;
+import de.croggle.game.board.IllegalBoardException;
 import de.croggle.game.level.LevelController;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.profile.ProfileController;
@@ -331,7 +332,8 @@ public class AlligatorApp extends Game {
 		setScreen(new PlacementModeScreen(this, gameController));
 	}
 
-	public void showSimulationModeScreen(GameController gameController) {
+	public void showSimulationModeScreen(GameController gameController)
+			throws IllegalBoardException {
 		switchScreen();
 		setScreen(new SimulationModeScreen(this, gameController));
 	}

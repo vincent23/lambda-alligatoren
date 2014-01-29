@@ -1,5 +1,7 @@
 package de.croggle.game;
 
+import java.util.List;
+
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.AlligatorOverflowException;
 import de.croggle.game.board.Board;
@@ -11,6 +13,8 @@ import de.croggle.game.board.operations.CountBoardObjects;
 import de.croggle.game.board.operations.FindEating;
 import de.croggle.game.board.operations.RemoveAgedAlligators;
 import de.croggle.game.board.operations.ReplaceEggs;
+import de.croggle.game.board.operations.validation.BoardError;
+import de.croggle.game.board.operations.validation.FindBoardErrors;
 import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.util.RingBuffer;
 
@@ -49,6 +53,11 @@ public class Simulator {
 		this.colorController = colorController;
 		this.boardMessenger = boardMessenger;
 		this.steps = 0;
+
+		final List<BoardError> errors = FindBoardErrors.find(entranceBoard);
+		if (!errors.isEmpty()) {
+			throw new IllegalBoardException();
+		}
 	}
 
 	/**
@@ -85,7 +94,7 @@ public class Simulator {
 		steps++;
 		return currentBoard;
 	}
-	
+
 	public boolean canUndo() {
 		return history.size() != 0;
 	}

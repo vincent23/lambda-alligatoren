@@ -2,8 +2,6 @@ package de.croggle.ui.screens;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -18,6 +16,7 @@ import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
 import de.croggle.game.board.AlligatorOverflowException;
 import de.croggle.game.board.Board;
+import de.croggle.game.board.IllegalBoardException;
 import de.croggle.game.level.LevelPackage;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.ui.StyleHelper;
@@ -50,8 +49,10 @@ public class SimulationModeScreen extends AbstractScreen implements
 	 *            the back reference to the central game
 	 * @param controller
 	 *            the game controller, which is responsible for the played level
+	 * @throws IllegalBoardException
 	 */
-	public SimulationModeScreen(AlligatorApp game, GameController controller) {
+	public SimulationModeScreen(AlligatorApp game, GameController controller)
+			throws IllegalBoardException {
 		super(game);
 		this.gameController = controller;
 		gameController.enterSimulation();
@@ -93,7 +94,8 @@ public class SimulationModeScreen extends AbstractScreen implements
 		config.setColorController(cctrlr);
 		BoardActor boardActor = new BoardActor(b, config);
 		gameController.registerBoardEventListener(boardActor);
-		boardActor.setColorBlindEnabled(game.getSettingController().getCurrentSetting().isColorblindEnabled());
+		boardActor.setColorBlindEnabled(game.getSettingController()
+				.getCurrentSetting().isColorblindEnabled());
 		game.getSettingController().addSettingChangeListener(boardActor);
 
 		table.clearChildren();
