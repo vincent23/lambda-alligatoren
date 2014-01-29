@@ -42,7 +42,7 @@ public class AgedAlligatorActor extends BoardObjectActor {
 	 */
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
-		batch.draw(foreground, getX(), getY(), getWidth(), getHeight());
+		batch.draw(foreground, getX(), getY(), getWidth() * getScaleX(), getHeight() * getScaleY());
 	}
 
 	/**
