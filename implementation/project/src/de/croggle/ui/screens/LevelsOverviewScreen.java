@@ -74,7 +74,7 @@ public class LevelsOverviewScreen extends AbstractScreen {
 
 		back.addListener(new LogicalPredecessorListener());
 
-		table.pad(30);
+		table.pad(30, 30, 30, 30);
 		table.add(back).size(100).top().left();
 		table.add(levelTable).expand().fill();
 	}

@@ -24,6 +24,7 @@ import de.croggle.ui.StyleHelper;
  */
 public class AchievementScreen extends AbstractScreen {
 
+	private ScrollPane scrollPane;
 	private Table currentTable;
 	ArrayList<Table> block;
 	private AchievementController achievementController;
@@ -56,8 +57,7 @@ public class AchievementScreen extends AbstractScreen {
 		List<Achievement> availableAchievements = achievementController.getAvailableAchievements();
 		currentTable = new Table();
 		for( Achievement achievement : availableAchievements) {
-			currentTable.row();
-			for( int i = 0; i < achievement.getNumberOfStages(); i++) {
+			for( int i = 1; i < achievement.getNumberOfStages(); i++) {
 				ImageButton achievementButton;
 				try {
 					if (i <= achievement.getIndex()) {
@@ -71,11 +71,12 @@ public class AchievementScreen extends AbstractScreen {
 				} catch(GdxRuntimeException e) {
 					achievementButton = new ImageButton(helper.getDrawable("widgets/dummy-icon"));
 				}
-				if ( i  % 7 == 6) {
+				if ( (i - 1)  % 5 == 4) {
 					currentTable.row();
 				}
 				
 				currentTable.add(achievementButton);
+				Log.d("AchievementScreen", "Number of Stages: "+ achievement.getNumberOfStages());
 				
 			}
 			currentTable.row();
@@ -86,12 +87,12 @@ public class AchievementScreen extends AbstractScreen {
 		// add listeners
 		back.addListener(new LogicalPredecessorListener());
 
-		table.defaults().width(500).height(100).space(10);
-		table.pad(30);
-		table.add(achievements);
-		table.row();
-		ScrollPane scrollPane = new ScrollPane(currentTable);
+		scrollPane = new ScrollPane(currentTable);
+		scrollPane.setWidth(1000);
+		table.defaults().width(1000).height(800).space(50);
 		table.add(scrollPane);
+		table.pad(30);
+
 		
 		
 		
