@@ -146,7 +146,7 @@ class BoardActorBoardEventListener implements BoardEventListener {
 		for (BoardObjectActor actor : b.getLayout()) {
 			b.getWorld().addActor(actor);
 		}
-		b.registerLayoutListeners();
+		b.getUserInteractionManager().registerLayoutListeners();
 	}
 
 	/**

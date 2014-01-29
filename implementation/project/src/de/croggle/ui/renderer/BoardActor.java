@@ -4,14 +4,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingChangeListener;
 import de.croggle.game.ColorController;
 import de.croggle.game.board.Board;
-import de.croggle.game.board.ColoredBoardObject;
 import de.croggle.game.event.BoardEventListener;
 
 /**
@@ -39,6 +36,12 @@ public class BoardActor extends Group implements SettingChangeListener {
 	 * gesture listener implementation
 	 */
 	private BoardActorZoomAndPan zoomAndPan;
+
+	/*
+	 * provides functionality to add and manage user input listeners for the
+	 * BoardObjectActors in the ActorLayout representing the board
+	 */
+	private final BoardActorLayoutUserInteraction userInteraction;
 
 	/*
 	 * dedicated actor to display the game world in. Makes it easy to transform
@@ -80,6 +83,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 		super.addActor(world);
 		boardEventListener = new BoardActorBoardEventListener(this);
 		boardEventListener.onBoardRebuilt(b);
+		userInteraction = new BoardActorLayoutUserInteraction(this);
 
 		initializePosition();
 	}
@@ -154,32 +158,6 @@ public class BoardActor extends Group implements SettingChangeListener {
 		initializePosition();
 	}
 
-	void registerLayoutListeners() {
-		for (BoardObjectActor child : layout) {
-			if (child.getBoardObject() instanceof ColoredBoardObject) {
-				ColoredBoardObject o = (ColoredBoardObject) child
-						.getBoardObject();
-				// if (o.isRecolorable()) {
-				child.addListener(new RecolorPopupListener(o));
-				// }
-			}
-		}
-	}
-
-	private class RecolorPopupListener extends ClickListener {
-		private ColoredBoardObject o;
-
-		public RecolorPopupListener(ColoredBoardObject o) {
-			this.o = o;
-		}
-
-		@Override
-		public void clicked(InputEvent event, float x, float y) {
-			System.out.println("Click: " + x + ", " + y);
-			// TODO
-		}
-	}
-
 	ActorLayout getLayout() {
 		return layout;
 	}
@@ -194,6 +172,10 @@ public class BoardActor extends Group implements SettingChangeListener {
 
 	ActorLayoutConfiguration getLayoutConfiguration() {
 		return config;
+	}
+	
+	BoardActorLayoutUserInteraction getUserInteractionManager() {
+		return userInteraction;
 	}
 
 	float getWorldX() {
