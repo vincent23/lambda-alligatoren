@@ -1,5 +1,6 @@
 package de.croggle.ui.renderer;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -42,7 +43,10 @@ public class AgedAlligatorActor extends BoardObjectActor {
 	 */
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
+		Color c = batch.getColor();
+		batch.setColor(getColor());
 		batch.draw(foreground, getX(), getY(), getWidth() * getScaleX(), getHeight() * getScaleY());
+		batch.setColor(c);
 	}
 
 	/**

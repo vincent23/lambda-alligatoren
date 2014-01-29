@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
 import de.croggle.data.persistence.Setting;
-import de.croggle.data.persistence.SettingChangeProcessor;
+import de.croggle.data.persistence.SettingChangeListener;
 import de.croggle.game.ColorController;
 import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
@@ -26,7 +26,7 @@ import de.croggle.ui.renderer.BoardActor;
  * see ``Pflichtenheft 10.5.5 / Abbildung 14''.
  */
 public class SimulationModeScreen extends AbstractScreen implements
-		SettingChangeProcessor {
+		SettingChangeListener {
 
 	private static final float ZOOM_RATE = 3f;
 
@@ -60,7 +60,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 
 		fillTable();
 
-		game.getSettingController().registerSettingChangeProcessor(this);
+		game.getSettingController().addSettingChangeListener(this);
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 		table.clearChildren();
 		table.stack(boardActor, controlTable).expand().fill();
 
-		processSettingChange(game.getSettingController().getCurrentSetting());
+		onSettingChange(game.getSettingController().getCurrentSetting());
 	}
 
 	public void hide() {
@@ -178,7 +178,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 	}
 
 	@Override
-	public void processSettingChange(Setting setting) {
+	public void onSettingChange(Setting setting) {
 		if (setting.isZoomEnabled()) {
 			zoomIn.setVisible(true);
 			zoomOut.setVisible(true);

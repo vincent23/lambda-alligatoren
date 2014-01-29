@@ -21,7 +21,7 @@ public class SettingController {
 	 */
 	private AlligatorApp game;
 	
-	private List<SettingChangeProcessor> processors = new ArrayList<SettingChangeProcessor>();
+	private List<SettingChangeListener> listeners = new ArrayList<SettingChangeListener>();
 
 	/**
 	 * Creates a new SettingController. On initialization the active setting is
@@ -70,13 +70,13 @@ public class SettingController {
 		return currentSetting;
 	}
 	
-	public void registerSettingChangeProcessor(SettingChangeProcessor processor) {
-		processors.add(processor);
+	public void addSettingChangeListener(SettingChangeListener listener) {
+		listeners.add(listener);
 	}
 	
 	private void updateListeners() {
-		for (SettingChangeProcessor processor : processors) {
-			processor.processSettingChange(currentSetting);
+		for (SettingChangeListener listener : listeners) {
+			listener.onSettingChange(currentSetting);
 		}
 		
 	}

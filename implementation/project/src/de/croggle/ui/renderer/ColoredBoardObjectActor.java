@@ -1,6 +1,7 @@
 package de.croggle.ui.renderer;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,6 +18,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	private TextureRegion foreground;
 	private Texture background;
 	private boolean valid = false;
+	private boolean colorBlind = false;
 
 	public ColoredBoardObjectActor(ColoredBoardObject object,
 			String foregroundPath, String maskPath) {
@@ -43,8 +45,13 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	 * Actor is automatically validated next time it is rendered.
 	 */
 	public void validate() {
-		background = AssetManager.getInstance().getColorTexture(
-				((ColoredBoardObject) object).getColor());
+		if (colorBlind) {
+			background = AssetManager.getInstance().getPatternTexture(
+					((ColoredBoardObject) object).getColor());
+		} else {
+			background = AssetManager.getInstance().getColorTexture(
+					((ColoredBoardObject) object).getColor());
+		}
 		valid = true;
 	}
 
@@ -54,6 +61,20 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	 */
 	public void invalidate() {
 		valid = false;
+	}
+	
+	public void setColorBlindEnabled(boolean enabled) {
+		if (enabled == colorBlind) {
+			return;
+		}
+		else {
+			colorBlind = enabled;
+			invalidate();
+		}
+	}
+	
+	public boolean getColorBlindEnabled() {
+		return colorBlind;
 	}
 
 	private void drawAlphaMask(SpriteBatch batch) {
@@ -117,9 +138,8 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	 */
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
-		// just to make sure
-		// Gdx.gl.glEnable(GL20.GL_BLEND);
-		// batch.enableBlending();
+		Color c = batch.getColor();
+		batch.setColor(getColor());
 
 		// draw the alpha mask
 		drawAlphaMask(batch);
@@ -137,6 +157,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		batch.flush();
 		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glColorMask(true, true, true, true);
+		batch.setColor(c);
 	}
 
 	/**

@@ -1,7 +1,5 @@
 package de.croggle.ui.screens;
 
-import static de.croggle.data.LocalizationHelper._;
-
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -11,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import de.croggle.AlligatorApp;
 import de.croggle.data.LocalizationHelper;
 import de.croggle.ui.StyleHelper;
-import de.croggle.ui.screens.AbstractScreen.LogicalPredecessorListener;
 
 public class CreditsScreen extends AbstractScreen {
 	

@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
 import de.croggle.data.persistence.Setting;
-import de.croggle.data.persistence.SettingChangeProcessor;
+import de.croggle.data.persistence.SettingChangeListener;
 import de.croggle.data.persistence.SettingController;
 import de.croggle.game.ColorController;
 import de.croggle.game.GameController;
@@ -26,7 +26,7 @@ import de.croggle.ui.renderer.BoardActor;
  * Screen within which the player can manipulate the board by moving alligators
  * and eggs. For reference see ``Pflichtenheft 10.5.4 / Abbildungen 12 und 1''.
  */
-public class PlacementModeScreen extends AbstractScreen implements SettingChangeProcessor {
+public class PlacementModeScreen extends AbstractScreen implements SettingChangeListener {
 
 	private static final float ZOOM_RATE = 3f;
 
@@ -60,7 +60,7 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 		fillTable();
 		setBackground("textures/swamp.png");
 		
-		game.getSettingController().registerSettingChangeProcessor(this);
+		game.getSettingController().addSettingChangeListener(this);
 	} 
 
 	@Override
@@ -116,7 +116,7 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 
 		table.stack(boardTable, controlTable).fill().expand();
 		
-		processSettingChange(game.getSettingController().getCurrentSetting());
+		onSettingChange(game.getSettingController().getCurrentSetting());
 	}
 
 	private void checkZoom() {
@@ -138,7 +138,7 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 	}
 	
 	@Override
-	public void processSettingChange(Setting setting) {
+	public void onSettingChange(Setting setting) {
 		if (setting.isZoomEnabled()) {
 			zoomIn.setVisible(true);
 			zoomOut.setVisible(true);
