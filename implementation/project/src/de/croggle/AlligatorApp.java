@@ -56,8 +56,8 @@ public class AlligatorApp extends Game {
 	private MainMenuScreen mainMenuScreen;
 	private LevelPackagesScreen levelPackagesScreen;
 	// private LevelsOverviewScreen levelsOverviewScreen;
-	//private PlacementModeScreen placementModeScreen;
-	//private SimulationModeScreen simulationModeScreen;
+	// private PlacementModeScreen placementModeScreen;
+	// private SimulationModeScreen simulationModeScreen;
 	private AchievementScreen achievementScreen;
 	private SettingsScreen settingsScreen;
 	private StatisticScreen statisticScreen;
@@ -271,7 +271,7 @@ public class AlligatorApp extends Game {
 			setScreen(screenStack.pop());
 		}
 	}
-	
+
 	public void showPreviousScreen() {
 		Screen previous = screenStack.peek();
 		switchScreen();
@@ -335,7 +335,7 @@ public class AlligatorApp extends Game {
 		switchScreen();
 		setScreen(new SimulationModeScreen(this, gameController));
 	}
-	
+
 	public void showCreditsScreen() {
 		switchScreen();
 		setScreen(creditsScreen);

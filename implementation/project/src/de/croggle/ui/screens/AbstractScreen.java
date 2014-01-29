@@ -60,7 +60,9 @@ public abstract class AbstractScreen implements Screen {
 		// make the screen as well as the stage an input processor
 		inputMediator = new InputMultiplexer(stage, new BackButtonHandler());
 
-		table.debug(); // turn on all debug lines (table, cell, and widget)
+		if (AlligatorApp.DEBUG) {
+			table.debug(); // turn on all debug lines (table, cell, and widget)
+		}
 	}
 
 	/**
