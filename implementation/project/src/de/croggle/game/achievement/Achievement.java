@@ -9,7 +9,8 @@ import de.croggle.data.persistence.Statistic;
 public abstract class Achievement {
 	// Array because the different stages have different descriptions!
 	private String[] description;
-	private String[] emblemPath;
+	private String[] emblemPathachieved;
+	private String[] emblemPathnotachieved;
 	private int id;
 	/**
 	 * Array, which describes the different stages of the achievement and which
@@ -30,14 +31,25 @@ public abstract class Achievement {
 	}
 
 	/**
-	 * Returns the path to the picture that represents the achievement.
+	 * Returns the path to the picture that represents the achievement in its achieved state.
 	 * 
 	 * @param index
 	 *            the stage index for which the emblem path should be returned
 	 * @return the path leading to the emblem of the achievement
 	 */
-	public String getEmblemPath(int index) {
-		return emblemPath[index];
+	public String getEmblemPathachieved(int index) {
+		return emblemPathachieved[index];
+	}
+	
+	/**
+	 * Returns the path to the picture that represents the achievement in its unachieved state.
+	 * 
+	 * @param index
+	 *            the stage index for which the emblem path should be returned
+	 * @return the path leading to the emblem of the achievement
+	 */
+	public String getEmblemPathnotachieved(int index) {
+		return emblemPathnotachieved[index];
 	}
 
 	/**
@@ -102,10 +114,13 @@ public abstract class Achievement {
 		this.description = description;
 	}
 
-	public void setEmblemPath(String[] emblemPath) {
-		this.emblemPath = emblemPath;
+	public void setEmblemPathachieved(String[] emblemPath) {
+		this.emblemPathachieved = emblemPath;
 	}
 
+	public void setEmblemPathnotachieved(String[] emblemPath) {
+		this.emblemPathnotachieved = emblemPath;
+	}
 	public void setId(int id) {
 		this.id = id;
 	}

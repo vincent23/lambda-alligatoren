@@ -32,16 +32,20 @@ public class HintPerLevelAchievement extends PerLevelAchievement {
 	public void initialize() {
 		setIndex(0);
 		int[] stages = { 1, 0 };
-		String[] emblemPath = new String[2]; // TODO: Path to the Emblems
+		String[] emblemPathachieved = new String[2]; // TODO: Path to the Emblems
 												// reintun.
+		String[] emblemPathnotachieved = new String[2];
 		String[] description = new String[2];
 		description[0] = "initial state, do not show this stage as achievement";
 		description[1] = _("achievement_hints_used_per_level");
-		emblemPath[0] = null;
-		emblemPath[1] = "emblems/hintsUsedPerLevel/01";
+		emblemPathachieved[0] = null;
+		emblemPathnotachieved[0] = null;
+		emblemPathachieved[1] = "emblems/hintsUsedPerLevel/01a";
+		emblemPathnotachieved[1] = "emblems/hintsUsedPerLevel/01n";
 		setDescription(description);
 		setStages(stages);
-		setEmblemPath(emblemPath);
+		setEmblemPathachieved(emblemPathachieved);
+		setEmblemPathnotachieved(emblemPathnotachieved);
 
 	}
 

@@ -29,21 +29,26 @@ public class AlligatorsPlacedAchievement extends Achievement {
 	public void initialize() {
 		setIndex(0);
 		int[] stages = { 0, 10, 25, 50, 100, 200, 300, 500, 750, 1000, 2000 };
-		String[] emblemPath = new String[11]; // TODO: Path zu den Emblems
+		String[] emblemPathachieved = new String[11]; // TODO: Path zu den Emblems
 												// reintun.
+		String[] emblemPathnotachieved = new String[11];
 		String[] description = new String[11];
 		for (int i = 1; i < 10; i++) {
 			description[i] = stages[i] + " "
 					+ _("achievement_alligators_placed");
-			emblemPath[i] = "emblems/alligatorsPlaced/0" + i;
+			emblemPathachieved[i] = "emblems/alligatorsPlaced/0" + i + "a";
+			emblemPathnotachieved[i] = "emblems/alligatorsPlaced/0" + i + "n";
 		}
 		description[0] = "initial state, do not show this stage as achievement";
 		description[10] = _("achievement_alligators_placed_final");
-		emblemPath[0] = null;
-		emblemPath[10] = "emblems/alligatorsPlaced/10";
+		emblemPathachieved[0] = null;
+		emblemPathnotachieved[0] = null;
+		emblemPathachieved[10] = "emblems/alligatorsPlaced/10a";
+		emblemPathnotachieved[10] = "emblems/alligatorsPlaced/10n";
 		setDescription(description);
 		setStages(stages);
-		setEmblemPath(emblemPath);
+		setEmblemPathachieved(emblemPathachieved);
+		setEmblemPathnotachieved(emblemPathnotachieved);
 
 	}
 

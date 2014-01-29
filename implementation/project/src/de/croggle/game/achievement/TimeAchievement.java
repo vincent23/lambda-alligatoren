@@ -30,8 +30,9 @@ public class TimeAchievement extends Achievement {
 		setIndex(0);
 		int[] stages = { 0, 5 * 60, 10 * 60, 20 * 60, 45 * 60, 60 * 60,
 				120 * 60, 180 * 60, 300 * 60, 600 * 60, 6000 * 60 };
-		String[] emblemPath = new String[11]; // TODO: Path zu den Emblems
+		String[] emblemPathachieved = new String[11]; // TODO: Path zu den Emblems
 												// reintun.
+		String[] emblemPathnotachieved = new String[11];
 		String[] description = new String[11];
 		for (int i = 1; i < 10; i++) {
 			if (i < 6) {
@@ -41,15 +42,19 @@ public class TimeAchievement extends Achievement {
 				description[i] = stages[i] / 360 + " "
 						+ _("achievement_hours_played");
 			}
-			emblemPath[i] = "emblems/time/0" + i;
+			emblemPathachieved[i] = "emblems/time/0" + i + "a";
+			emblemPathnotachieved[i] = "emblems/time/0" + i + "n";
 		}
 		description[0] = "initial state, do not show this stage as achievement";
 		description[10] = _("achievement_time_final");
-		emblemPath[0] = null;
-		emblemPath[10] = "emblems/time/10";
+		emblemPathachieved[0] = null;
+		emblemPathnotachieved[0] = null;
+		emblemPathachieved[10] = "emblems/time/10a";
+		emblemPathnotachieved[10] = "emblems/time/10n";
 		setDescription(description);
 		setStages(stages);
-		setEmblemPath(emblemPath);
+		setEmblemPathachieved(emblemPathachieved);
+		setEmblemPathnotachieved(emblemPathnotachieved);
 
 	}
 

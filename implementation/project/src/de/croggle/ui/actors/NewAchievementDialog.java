@@ -22,7 +22,7 @@ public class NewAchievementDialog extends Dialog {
 		Label message = new Label(_("title_new_achievement"),
 				helper.getLabelStyle());
 		Image icon = new Image(helper.getDrawable(achievement
-				.getEmblemPath(index)));
+				.getEmblemPathachieved(index)));
 		Label description = new Label(achievement.getDescription(index),
 				helper.getLabelStyle());
 		ImageButton next = new ImageButton(
