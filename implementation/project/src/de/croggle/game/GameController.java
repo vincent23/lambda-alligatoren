@@ -203,7 +203,7 @@ public class GameController implements BoardEventListener {
 	public boolean canUndo() {
 		return simulator.canUndo();
 	}
-	
+
 	public void undo() {
 		simulator.undo();
 	}
@@ -218,5 +218,9 @@ public class GameController implements BoardEventListener {
 		} else {
 			return simulator.getCurrentBoard();
 		}
+	}
+
+	public Level getLevel() {
+		return level;
 	}
 }

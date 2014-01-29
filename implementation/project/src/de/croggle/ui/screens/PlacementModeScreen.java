@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
@@ -13,6 +14,8 @@ import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingChangeListener;
 import de.croggle.game.ColorController;
 import de.croggle.game.GameController;
+import de.croggle.game.level.LevelPackage;
+import de.croggle.game.level.LevelPackagesController;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.IngameMenuDialog;
 import de.croggle.ui.actors.ObjectBar;
@@ -23,7 +26,8 @@ import de.croggle.ui.renderer.BoardActor;
  * Screen within which the player can manipulate the board by moving alligators
  * and eggs. For reference see ``Pflichtenheft 10.5.4 / Abbildungen 12 und 1''.
  */
-public class PlacementModeScreen extends AbstractScreen implements SettingChangeListener {
+public class PlacementModeScreen extends AbstractScreen implements
+		SettingChangeListener {
 
 	private static final float ZOOM_RATE = 3f;
 
@@ -52,10 +56,18 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 		assetManager.load("textures/pack.atlas", TextureAtlas.class);
 
 		fillTable();
-		setBackground("textures/swamp.png");
-		
+		final int packageIndex = gameController.getLevel().getPackageIndex();
+		final LevelPackagesController packagesController = game
+				.getLevelPackagesController();
+		final LevelPackage pack = packagesController.getLevelPackages().get(
+				packageIndex);
+		try {
+			setBackground(pack.getDesign());
+		} catch (GdxRuntimeException ex) {
+			setBackground("textures/swamp.png");
+		}
 		game.getSettingController().addSettingChangeListener(this);
-	} 
+	}
 
 	@Override
 	public void render(float delta) {
@@ -88,11 +100,9 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 		leftTable.add(hint).expand().size(100).top().left();
 		leftTable.row();
 
-	
 		leftTable.add(zoomIn).size(70).left();
 		leftTable.row();
 		leftTable.add(zoomOut).size(70).left();
-
 
 		final ColorController colorController = gameController
 				.getColorController();
@@ -100,7 +110,8 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 		final ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(colorController);
 		boardActor = new BoardActor(gameController.getShownBoard(), config);
-		boardActor.setColorBlindEnabled(game.getSettingController().getCurrentSetting().isColorblindEnabled());
+		boardActor.setColorBlindEnabled(game.getSettingController()
+				.getCurrentSetting().isColorblindEnabled());
 		game.getSettingController().addSettingChangeListener(boardActor);
 		final Table boardTable = new Table();
 		boardTable.add(boardActor).fill().expand();
@@ -110,7 +121,6 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 		controlTable.add(objectBar).padLeft(30);
 
 		table.stack(boardTable, controlTable).fill().expand();
-		
 		onSettingChange(game.getSettingController().getCurrentSetting());
 	}
 
@@ -131,7 +141,7 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 			}
 		}
 	}
-	
+
 	@Override
 	public void onSettingChange(Setting setting) {
 		if (setting.isZoomEnabled()) {
@@ -141,7 +151,7 @@ public class PlacementModeScreen extends AbstractScreen implements SettingChange
 			zoomIn.setVisible(false);
 			zoomOut.setVisible(false);
 		}
-		
+
 	}
 
 	private class MenuClickListener extends ClickListener {

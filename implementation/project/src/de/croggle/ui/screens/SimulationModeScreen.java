@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
@@ -17,6 +18,8 @@ import de.croggle.game.ColorOverflowException;
 import de.croggle.game.GameController;
 import de.croggle.game.board.AlligatorOverflowException;
 import de.croggle.game.board.Board;
+import de.croggle.game.level.LevelPackage;
+import de.croggle.game.level.LevelPackagesController;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
@@ -56,7 +59,17 @@ public class SimulationModeScreen extends AbstractScreen implements
 		// load the texture atlas
 		AssetManager assetManager = AssetManager.getInstance();
 		assetManager.load("textures/pack.atlas", TextureAtlas.class);
-		this.setBackground("textures/swamp.png");
+
+		final int packageIndex = gameController.getLevel().getPackageIndex();
+		final LevelPackagesController packagesController = game
+				.getLevelPackagesController();
+		final LevelPackage pack = packagesController.getLevelPackages().get(
+				packageIndex);
+		try {
+			setBackground(pack.getDesign());
+		} catch (GdxRuntimeException ex) {
+			setBackground("textures/swamp.png");
+		}
 
 		fillTable();
 

@@ -67,14 +67,14 @@ public class LevelPackagesScreen extends AbstractScreen {
 		}
 
 		// test scrolling
-		Table page2 = new Table();
-		Image image2 = new Image(new Texture("textures/swamp.png"));
-		page2.add(image2).height(400);
-		pager.addPage(page2);
-		Table page3 = new Table();
-		Image image3 = new Image(new Texture("textures/swamp.png"));
-		page3.add(image3).height(440);
-		pager.addPage(page3);
+		// Table page2 = new Table();
+		// Image image2 = new Image(new Texture("textures/swamp.png"));
+		// page2.add(image2).height(400);
+		// pager.addPage(page2);
+		// Table page3 = new Table();
+		// Image image3 = new Image(new Texture("textures/swamp.png"));
+		// page3.add(image3).height(440);
+		// pager.addPage(page3);
 
 		table.add(home).expandX().left().size(100);
 		table.row();
