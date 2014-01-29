@@ -41,6 +41,8 @@ import de.croggle.ui.screens.StatisticScreen;
  */
 public class AlligatorApp extends Game {
 
+	public static final boolean DEBUG = false;
+
 	// the Android Context
 	private final Context context;
 
@@ -200,7 +202,6 @@ public class AlligatorApp extends Game {
 		profileController.registerProfileChangeProcessor(selectProfileScreen);
 		profileController.registerProfileChangeProcessor(mainMenuScreen);
 		profileController.registerProfileChangeProcessor(statisticScreen);
-		
 
 		profileController.initializeController();
 
