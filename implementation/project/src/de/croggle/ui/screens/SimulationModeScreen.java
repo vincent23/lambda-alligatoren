@@ -1,11 +1,18 @@
 package de.croggle.ui.screens;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.GdxRuntimeException;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
@@ -38,6 +45,16 @@ public class SimulationModeScreen extends AbstractScreen implements
 
 	private ImageButton zoomIn;
 	private ImageButton zoomOut;
+	private ImageButton play;
+	
+	private Timer timer;
+	private boolean isSimulating;
+	private long automaticSimulationFrequency = 3000;
+	
+	private static final long MAX_AUTOMATIC_SIMULATION_DELAY = 6000;
+	private static final long MIN_AUTOMATIC_SIMULATION_DELAY = 1000;
+	
+	private long lastSimulation = TimeUtils.millis();
 
 	/**
 	 * Creates the screen of a level within the simulation mode. This is the
@@ -123,14 +140,56 @@ public class SimulationModeScreen extends AbstractScreen implements
 
 		ImageButton backToPlacement = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-back"));
+		
+		backToPlacement.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				stopAutomaticSimulation();
+				showLogicalPredecessor();
+			}
+		});
 		ImageButton stepForward = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-step-next"));
 		stepForward.addListener(new StepForwardListener());
 		ImageButton stepBackward = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-step-back"));
 		stepBackward.addListener(new StepBackwardListener());
-		ImageButton play = new ImageButton(
+		play = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-next"));
+
+		play.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				if(isSimulating) {
+					stopAutomaticSimulation();
+				} else {
+					startAutomaticSimulation(0);
+				}
+			}
+		});
+		
+		Slider delaySlider = new Slider( MIN_AUTOMATIC_SIMULATION_DELAY, MAX_AUTOMATIC_SIMULATION_DELAY, 1000, false, helper.getSliderStyle() );
+		delaySlider.setValue(automaticSimulationFrequency);
+        delaySlider.addListener( new ChangeListener() {
+			
+	
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				Slider slider = (Slider) actor;
+				if(!slider.isDragging()) {
+					long newFrequency = (long) slider.getValue();
+					if (newFrequency != automaticSimulationFrequency) {
+						automaticSimulationFrequency = newFrequency;
+						if (isSimulating) {
+							stopAutomaticSimulation();
+							long delay = automaticSimulationFrequency - (TimeUtils.millis() - lastSimulation);
+							startAutomaticSimulation(Math.max(0, delay));
+						}
+					}
+				}
+				
+			}
+		});
 
 		controlPanelTable.setBackground(helper.getDrawable("widgets/button"));
 		controlPanelTable.add(backToPlacement).colspan(2).size(120);
@@ -143,9 +202,10 @@ public class SimulationModeScreen extends AbstractScreen implements
 		leftTable.add(menu).size(100).expand().left().top().row();
 		leftTable.add(zoomIn).size(70).space(30).left().row();
 		leftTable.add(zoomOut).size(70).space(30).left();
-
+		
 		controlTable.pad(30).padRight(0);
 		controlTable.add(leftTable).expand().fill();
+		controlTable.add(delaySlider).width(300).pad(30).bottom();
 		controlTable.add(controlPanelTable);
 	}
 
@@ -172,6 +232,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			super.clicked(event, x, y);
+			stopAutomaticSimulation();
 			try {
 				gameController.evaluateStep();
 			} catch (ColorOverflowException e) {
@@ -188,6 +249,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			super.clicked(event, x, y);
+			stopAutomaticSimulation();
 			if (gameController.canUndo()) {
 				gameController.undo();
 			}
@@ -205,5 +267,48 @@ public class SimulationModeScreen extends AbstractScreen implements
 		}
 
 	}
+	
+	private void startAutomaticSimulation(long delay) {
+		if (timer == null) {
+			//TODO image for pause button
+			play.setStyle(StyleHelper.getInstance().getImageButtonStyleRound("widgets/icon-back"));
+			timer = new Timer();
+			timer.schedule(new StepTimer(), delay, automaticSimulationFrequency);
+			isSimulating = true;
+		}
+	
+		
+	}
+	
+	private void stopAutomaticSimulation() {
+		if (timer != null) {
+			play.setStyle(StyleHelper.getInstance().getImageButtonStyleRound("widgets/icon-next"));
+			timer.cancel();
+			timer = null;
+			isSimulating = false;
+			
+		}
+		
+	}
+	
+	private class StepTimer extends TimerTask {
+
+		@Override
+		public void run() {
+			try {
+				gameController.evaluateStep();
+				lastSimulation = TimeUtils.millis();
+			} catch (ColorOverflowException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (AlligatorOverflowException e) {
+				// TODO Auto-generated catch block//
+				e.printStackTrace();
+			}			
+		}
+	}
+	
+	
+	
 
 }
