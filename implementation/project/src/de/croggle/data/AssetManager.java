@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 
 import de.croggle.game.Color;
+import de.croggle.util.PatternBuilder;
 
 /**
  * Proxy class to enforce singleton pattern on libgdx' AssetManager. Needs to be
@@ -24,6 +25,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 
 	private AssetManager() {
 		colors = new Pixmap[Color.MAX_COLORS];
+		patterns = new Pixmap[Color.MAX_COLORS];
 		buildColors();
 		buildPatterns();
 	}
@@ -32,7 +34,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		uncoloredColor = new Pixmap(1, 1, Pixmap.Format.RGB888);
 		uncoloredColor.setColor(com.badlogic.gdx.graphics.Color.WHITE);
 		uncoloredColor.fill();
-		
+
 		com.badlogic.gdx.graphics.Color[] reps = Color.getRepresentations();
 		for (int i = 0; i < colors.length; i++) {
 			colors[i] = new Pixmap(1, 1, Pixmap.Format.RGB888);
@@ -42,7 +44,19 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	}
 
 	private void buildPatterns() {
-
+		for (int i = 0; i < patterns.length; i++) {
+			switch (i % 3) {
+			case 0:
+				patterns[i] = PatternBuilder.generateHorizontalLines(40, 4);
+				break;
+			case 1:
+				patterns[i] = PatternBuilder.generateVerticalLines(40, 4);
+				break;
+			case 2:
+				patterns[i] = PatternBuilder.generateCheckerboard(48, 8);
+				break;
+			}
+		}
 	}
 
 	public Texture getColorTexture(Color c) {
@@ -53,15 +67,17 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	}
 
 	public Texture getPatternTexture(Color c) {
-		return new Texture(uncoloredColor); // for testing
+		// return new Texture(uncoloredColor); // for testing
 		// TODO implement buildPatterns first
-		//throw new UnsupportedOperationException("Not implemented yet");
-		/*
+		// throw new UnsupportedOperationException("Not implemented yet");
+
 		if (c.equals(Color.uncolored())) {
-			return new Texture(uncolordPattern);
+			return new Texture(uncoloredColor);
 		}
-		return new Texture(patterns[c.getId()]);
-		*/
+		final Texture texture = new Texture(patterns[c.getId()]);
+		// TODO results in black texture
+		// texture.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
+		return texture;
 	}
 
 	@Override
