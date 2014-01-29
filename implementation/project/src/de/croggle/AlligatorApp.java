@@ -21,6 +21,7 @@ import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.screens.AbstractScreen;
 import de.croggle.ui.screens.AchievementScreen;
+import de.croggle.ui.screens.CreditsScreen;
 import de.croggle.ui.screens.LevelPackagesScreen;
 import de.croggle.ui.screens.LevelsOverviewScreen;
 import de.croggle.ui.screens.LoadingScreen;
@@ -53,14 +54,15 @@ public class AlligatorApp extends Game {
 	private MainMenuScreen mainMenuScreen;
 	private LevelPackagesScreen levelPackagesScreen;
 	// private LevelsOverviewScreen levelsOverviewScreen;
-	private PlacementModeScreen placementModeScreen;
-	private SimulationModeScreen simulationModeScreen;
+	//private PlacementModeScreen placementModeScreen;
+	//private SimulationModeScreen simulationModeScreen;
 	private AchievementScreen achievementScreen;
 	private SettingsScreen settingsScreen;
 	private StatisticScreen statisticScreen;
 	private SelectProfileScreen selectProfileScreen;
 	private ProfileSetNameScreen profileSetNameScreen;
 	private ProfileSetAvatarScreen profileSetAvatarScreen;
+	private CreditsScreen creditsScreen;
 
 	private final Stack<Screen> screenStack;
 
@@ -191,6 +193,7 @@ public class AlligatorApp extends Game {
 		selectProfileScreen = new SelectProfileScreen(this);
 		profileSetNameScreen = new ProfileSetNameScreen(this);
 		profileSetAvatarScreen = new ProfileSetAvatarScreen(this);
+		creditsScreen = new CreditsScreen(this);
 
 		// add onProfileChangeListener
 		profileController.registerProfileChangeProcessor(settingsScreen);
@@ -324,6 +327,11 @@ public class AlligatorApp extends Game {
 	public void showSimulationModeScreen(GameController gameController) {
 		switchScreen();
 		setScreen(new SimulationModeScreen(this, gameController));
+	}
+	
+	public void showCreditsScreen() {
+		switchScreen();
+		setScreen(creditsScreen);
 	}
 
 	public MainMenuScreen getMainMenuScreen() {

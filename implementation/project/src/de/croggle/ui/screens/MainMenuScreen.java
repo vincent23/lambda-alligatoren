@@ -49,6 +49,8 @@ public class MainMenuScreen extends AbstractScreen implements
 		Table profileButtonTable = new Table();
 		Table leftTable = new Table();
 
+		ImageButton credits = new ImageButton(StyleHelper.getInstance()
+				.getImageButtonStyleRound("widgets/icon-hint"));
 		ImageButton play = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/icon-play"));
 		ImageButton stats = new ImageButton(StyleHelper.getInstance()
@@ -62,6 +64,7 @@ public class MainMenuScreen extends AbstractScreen implements
 				profileController.getCurrentProfile());
 
 		// add listeners
+		credits.addListener(new CreditsScreenClickListener());
 		play.addListener(new PackagesScreenClickListener());
 		stats.addListener(new StatisticScreenClickListener());
 		settings.addListener(new SettingsScreenClickListener());
@@ -72,6 +75,8 @@ public class MainMenuScreen extends AbstractScreen implements
 
 		leftTable.pad(30);
 		leftTable.defaults().size(100);
+		leftTable.add(credits).left();
+		leftTable.row();
 		leftTable.add(play).expandY().colspan(3).size(200);
 		leftTable.row();
 		leftTable.add(settings).bottom().space(20);

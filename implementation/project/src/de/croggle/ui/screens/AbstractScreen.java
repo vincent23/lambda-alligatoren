@@ -289,4 +289,10 @@ public abstract class AbstractScreen implements Screen {
 		}
 	}
 
+	protected class CreditsScreenClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			game.showCreditsScreen();
+		}
+	}
 }

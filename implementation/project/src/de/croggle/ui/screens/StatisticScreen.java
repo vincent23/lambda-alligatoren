@@ -3,8 +3,6 @@ package de.croggle.ui.screens;
 import java.util.List;
 import static de.croggle.data.LocalizationHelper._;
 
-import android.util.Log;
-
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -102,6 +100,7 @@ public class StatisticScreen extends AbstractScreen implements
 		table.row();
 
 		ScrollPane pane = new ScrollPane(content);
+		pane.setScrollingDisabled(true, false);
 		table.add(pane).expand().top().left().fill();
 		table.row().expandY();
 

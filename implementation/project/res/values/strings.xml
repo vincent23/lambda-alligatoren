@@ -1,6 +1,15 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <string name="app_name">Croggle</string>
+    <string name="app_credits">
+        Croggle\n
+        \n
+        Created by \n
+		Lukas Boehm, Tobias Hornberger, Jonas Mehlhaus, \n
+		Iris Mehrbrodt, Vincent Schuessler, Lena Winter\n
+		\n
+		After an idea by Bret Victor\n
+		http://worrydream.com</string>
     <string name="achievement_minutes_played"> minutes played</string>
     <string name="achievement_hours_played"> hours played</string>
     <string name="achievement_time_final"> :(  you played this game for way to long</string>
