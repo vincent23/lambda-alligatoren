@@ -20,16 +20,48 @@ import de.croggle.game.event.BoardEventListener;
  */
 public class BoardActor extends Group implements SettingChangeListener {
 
+	/*
+	 * the layout to be displayed
+	 */
 	private ActorLayout layout;
 
+	/*
+	 * the configuartion applied on the layout
+	 */
 	private final ActorLayoutConfiguration config;
+	/*
+	 * listener for board events. Responsible for updating the layout and
+	 * applying animations
+	 */
 	private final BoardActorBoardEventListener boardEventListener;
-	private float posX;
-	private float posY;
-	private final WorldPane world;
-	private boolean colorBlind;
+	/*
+	 * provides functionality to zoom and pan this actor. Comes with standard
+	 * gesture listener implementation
+	 */
+	private BoardActorZoomAndPan zoomAndPan;
 
-	private BoardActorGestureListener gestureListener;
+	/*
+	 * dedicated actor to display the game world in. Makes it easy to transform
+	 * coordinates with parentToLocal and localToParent
+	 */
+	private final WorldPane world;
+	/*
+	 * the x position of the game world's origin relative to this BoardActor's
+	 * origin and in this' coordinates/length.
+	 */
+	private float posX;
+	/*
+	 * the y position of the game world's origin relative to this BoardActor's
+	 * origin and in this' coordinates/length.
+	 */
+	private float posY;
+
+	/*
+	 * whether this actor displays the board in color blind mode or not.
+	 * Initially set to the value of isColorBlindEnabled of the
+	 * ActorLayoutConfiguration given in the constructor
+	 */
+	private boolean colorBlind;
 
 	/**
 	 * Creates a new BoardActor. The actor layout of the board's representation
@@ -49,7 +81,6 @@ public class BoardActor extends Group implements SettingChangeListener {
 		boardEventListener = new BoardActorBoardEventListener(this);
 		boardEventListener.onBoardRebuilt(b);
 
-		
 		initializePosition();
 	}
 
@@ -77,7 +108,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 	private void initializePosition() {
 		final float offsetLeft = 0;
 		final float offsetTop = 30;
-		
+
 		// have the tree displayed horizontally centered and with its top at the
 		// upper edge
 		ActorLayoutStatistics stats = layout.getLayoutStatistics();
@@ -90,21 +121,21 @@ public class BoardActor extends Group implements SettingChangeListener {
 		posX = -(treeMidX - getWidth() * zoom / 2) + offsetLeft;
 		posY = getHeight() * zoom - treeTop - offsetTop;
 	}
-	
+
 	float getZoom() {
 		return world.getScaleX();
 	}
-	
+
 	public boolean zoomIn(float percent, float pointX, float pointY) {
-		return gestureListener.zoomIn(percent, pointX, pointY);
+		return zoomAndPan.zoomIn(percent, pointX, pointY);
 	}
-	
+
 	public boolean zoomIn(float percent) {
 		return zoomIn(percent, getWidth() / 2, getHeight() / 2);
 	}
-	
+
 	public boolean zoomOut(float percent, float pointX, float pointY) {
-		return gestureListener.zoomOut(percent, pointX, pointY);
+		return zoomAndPan.zoomOut(percent, pointX, pointY);
 	}
 
 	public boolean zoomOut(float percent) {
@@ -114,12 +145,12 @@ public class BoardActor extends Group implements SettingChangeListener {
 	@Override
 	protected void sizeChanged() {
 		world.syncBounds();
-		
-		this.removeListener(gestureListener);
-		gestureListener = new BoardActorGestureListener(this);
-		this.addListener(gestureListener);
-		
-		gestureListener.calculateLimits();
+
+		this.removeListener(zoomAndPan);
+		zoomAndPan = new BoardActorZoomAndPan(this);
+		this.addListener(zoomAndPan);
+
+		zoomAndPan.calculateLimits();
 		initializePosition();
 	}
 
@@ -164,19 +195,19 @@ public class BoardActor extends Group implements SettingChangeListener {
 	ActorLayoutConfiguration getLayoutConfiguration() {
 		return config;
 	}
-	
+
 	float getWorldX() {
 		return posX;
 	}
-	
+
 	void setWorldX(float x) {
 		posX = x;
 	}
-	
+
 	float getWorldY() {
 		return posY;
 	}
-	
+
 	void setWorldY(float y) {
 		posY = y;
 	}
@@ -217,7 +248,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 		}
 	}
 
-	// stuff inherited from Group that is not necessary
+	// stuff inherited from Group that should not be used as originally intended
 	/**
 	 * @deprecated
 	 */
