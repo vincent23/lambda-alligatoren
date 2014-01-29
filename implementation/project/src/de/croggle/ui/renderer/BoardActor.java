@@ -451,8 +451,8 @@ public class BoardActor extends Group implements BoardEventListener, SettingChan
 	 */
 	@Override
 	public void onObjectRecolored(ColoredBoardObject recoloredObject) {
-		// TODO have actor updated
-		layout.getActor(recoloredObject);
+		//ColoredBoardObjectActor actor = (ColoredBoardObjectActor) layout.getActor(recoloredObject);
+		//actor.invalidate();
 	}
 
 	/**

@@ -264,12 +264,18 @@ public class AlligatorApp extends Game {
 		Gdx.input.setCatchBackKey(false);
 	}
 
-	public void showPreviousScreen() {
+	public void returnToPreviousScreen() {
 		if (screenStack.isEmpty()) {
 			setScreen(new QuitGameOverlay(this, getScreen()));
 		} else {
 			setScreen(screenStack.pop());
 		}
+	}
+	
+	public void showPreviousScreen() {
+		Screen previous = screenStack.peek();
+		switchScreen();
+		setScreen(previous);
 	}
 
 	public void showMainMenuScreen() {

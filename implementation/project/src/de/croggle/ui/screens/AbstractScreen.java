@@ -214,7 +214,7 @@ public abstract class AbstractScreen implements Screen {
 		@Override
 		public boolean keyUp(int keycode) {
 			if (keycode == Keys.BACK) {
-				game.showPreviousScreen();
+				game.returnToPreviousScreen();
 				return true;
 			}
 			return false;
