@@ -1,0 +1,33 @@
+\chapter{Package: achievement}
+
+\section{Kleinere Änderungen}
+
+	\begin{requirements}
+		\req[getNumberOfStages]
+		Hinzufügen von Methode zum einfachen erhalten der Anzahl von Achievementstufen.
+		\req[Getter und Setter]
+		Hinzufügen von Gettern und Settern für alle Attribute, die solche noch nicht hatten.
+
+	\end{requirements}
+
+\section{Schwerwiegende Änderungen}
+
+	\begin{requirements}
+		\req[Größere Vielfalt an Achievements]
+		\begin {requirements}
+			\req[AlligatorsPlaced]
+			Alligatoren auf dem Spielfeld platziert.
+			\req[AlligatorsPlacedPerLevel]
+			Alligatoren in einem Level auf dem Spielfeld plaziert.
+		\end {requirements}
+		
+		\req[requirementsMet() Parameter]	
+		Die abstrakte requirementsMet() Methode nimmt nun 2 Parameter entgegen: die finale Statistik nach dem Level und die Statistic der Änderungen im Level.		
+
+		\req[Abstrakte Methode initilize()]
+		Hinzufügen einer abstrakten Methode zum Initialisieren von erbenden Achievements.
+
+		\req[Zwei Versionen des Emblems]
+		Zwei verscheidene Versionen des Emblems. Eine für das erreichte Achievement und eine für das nicht erreichte Achievement.
+
+	\end{requirements}
