@@ -50,7 +50,6 @@ public class PlacementModeScreen extends AbstractScreen implements
 	public PlacementModeScreen(AlligatorApp game, GameController controller) {
 		super(game);
 		gameController = controller;
-		gameController.enterPlacement();
 
 		AssetManager assetManager = AssetManager.getInstance();
 		assetManager.load("textures/pack.atlas", TextureAtlas.class);
@@ -67,6 +66,10 @@ public class PlacementModeScreen extends AbstractScreen implements
 			setBackground("textures/swamp.png");
 		}
 		game.getSettingController().addSettingChangeListener(this);
+	}
+	
+	protected void onShow() {
+		gameController.enterPlacement();
 	}
 
 	@Override
