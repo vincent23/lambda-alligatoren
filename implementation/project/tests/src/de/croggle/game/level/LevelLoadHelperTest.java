@@ -91,4 +91,9 @@ public class LevelLoadHelperTest extends InstrumentationTestCase {
 		Level l = LevelLoadHelper.instantiate(1, 1, app);
 		Assert.assertTrue(l.getLevelIndex() == 1);
 	}
+	
+	public void testCase22() {
+		Level l = LevelLoadHelper.instantiate(1, 2, app);
+		Assert.assertTrue(l.getLevelIndex() == 2);
+	}
 }
