@@ -208,7 +208,7 @@ public class AlligatorApp extends Game {
 
 		// profileController.deleteAllProfiles();
 
-		showMainMenuScreen();
+		showMainMenuScreen(true);
 	}
 
 	/**
@@ -279,8 +279,10 @@ public class AlligatorApp extends Game {
 		setScreen(previous);
 	}
 
-	public void showMainMenuScreen() {
-		switchScreen();
+	public void showMainMenuScreen(boolean putOnStack) {
+		if (putOnStack) {
+			switchScreen();
+		}
 		setScreen(mainMenuScreen);
 	}
 
@@ -300,11 +302,17 @@ public class AlligatorApp extends Game {
 		switchScreen();
 		setScreen(achievementScreen);
 	}
+	
+	
 
-	public void showSettingsScreen() {
-		switchScreen();
+	public void showSettingsScreen(boolean putOnStack) {
+		if(putOnStack) {
+			switchScreen();
+		}
 		setScreen(settingsScreen);
 	}
+	
+	
 
 	public void showStatisticScreen() {
 		switchScreen();
@@ -316,13 +324,17 @@ public class AlligatorApp extends Game {
 		setScreen(selectProfileScreen);
 	}
 
-	public void showProfileSetNameScreen() {
-		switchScreen();
+	public void showProfileSetNameScreen(boolean putOnStack) {
+		if (putOnStack) {
+			switchScreen();
+		}
 		setScreen(profileSetNameScreen);
 	}
 
-	public void showProfileSetAvatarScreen(String name) {
-		switchScreen();
+	public void showProfileSetAvatarScreen(String name, boolean putOnStack) {
+		if (putOnStack) {
+			switchScreen();
+		}
 		profileSetAvatarScreen.setProfileName(name);
 		setScreen(profileSetAvatarScreen);
 	}

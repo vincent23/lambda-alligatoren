@@ -243,7 +243,7 @@ public abstract class AbstractScreen implements Screen {
 	protected class MainMenuClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showMainMenuScreen();
+			game.showMainMenuScreen(true);
 		}
 	}
 
@@ -266,7 +266,7 @@ public abstract class AbstractScreen implements Screen {
 	protected class SettingsScreenClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showSettingsScreen();
+			game.showSettingsScreen(true);
 		}
 	}
 
@@ -287,7 +287,7 @@ public abstract class AbstractScreen implements Screen {
 	protected class ProfileSetNameScreenClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			game.showProfileSetNameScreen();
+			game.showProfileSetNameScreen(true);
 		}
 	}
 

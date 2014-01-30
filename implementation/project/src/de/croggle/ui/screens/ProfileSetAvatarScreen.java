@@ -109,12 +109,12 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 							profileController.getCurrentProfileName(),
 							picturePath);
 					isInEditMode = false;
-					game.showSettingsScreen();
+					game.showSettingsScreen(false);
 				} else {
 					try {
 						profileController.createNewProfile(profileName,
 								picturePath);
-						game.showMainMenuScreen();
+						game.showMainMenuScreen(false);
 					} catch (ProfileOverflowException p) {
 						// TODO
 					}

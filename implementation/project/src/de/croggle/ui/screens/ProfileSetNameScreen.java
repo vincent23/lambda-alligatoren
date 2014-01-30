@@ -69,9 +69,9 @@ public class ProfileSetNameScreen extends AbstractScreen {
 								profileController.getCurrentProfile()
 										.getPicturePath());
 						isInEditMode = false;
-						game.showSettingsScreen();
+						game.showSettingsScreen(false);
 					} else {
-						game.showProfileSetAvatarScreen(name);
+						game.showProfileSetAvatarScreen(name, false);
 
 					}
 

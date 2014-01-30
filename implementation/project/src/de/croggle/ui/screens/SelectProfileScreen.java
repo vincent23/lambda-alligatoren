@@ -76,7 +76,7 @@ public class SelectProfileScreen extends AbstractScreen implements
 		public void clicked(InputEvent event, float x, float y) {
 			TextButton target = (TextButton) event.getListenerActor();
 			profileController.changeCurrentProfile(target.getText().toString());
-			game.showMainMenuScreen();
+			game.showMainMenuScreen(true);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class SelectProfileScreen extends AbstractScreen implements
 						_("warning_max_profiles"));
 				infoDialog.show(stage);
 			} else {
-				game.showProfileSetNameScreen();
+				game.showProfileSetNameScreen(true);
 			}
 		}
 	}

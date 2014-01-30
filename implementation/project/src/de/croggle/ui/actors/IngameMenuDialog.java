@@ -72,7 +72,7 @@ public class IngameMenuDialog extends Dialog {
 		settings.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				game.showSettingsScreen();
+				game.showSettingsScreen(true);
 			}
 		});
 		levelOverview.addListener(new ClickListener() {
@@ -90,7 +90,7 @@ public class IngameMenuDialog extends Dialog {
 		mainMenu.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				game.showMainMenuScreen();
+				game.showMainMenuScreen(true);
 			}
 		});
 

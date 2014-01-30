@@ -180,7 +180,7 @@ public class SettingsScreen extends AbstractScreen implements
 				public void clicked(InputEvent event, float x, float y) {
 					game.getProfileSetNameScreen().setIsInEditMode(true);
 					EditProfileDialog.this.hide();
-					game.showProfileSetNameScreen();
+					game.showProfileSetNameScreen(false);
 				}
 			});
 
@@ -188,7 +188,7 @@ public class SettingsScreen extends AbstractScreen implements
 				public void clicked(InputEvent event, float x, float y) {
 					game.getProfileSetAvatarScreen().setInEditMode(true);
 					EditProfileDialog.this.hide();
-					game.showProfileSetAvatarScreen("");
+					game.showProfileSetAvatarScreen("" , false);
 				};
 			});
 
