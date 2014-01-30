@@ -82,8 +82,8 @@ public class BoardActor extends Group implements SettingChangeListener {
 		this.world = new WorldPane(this);
 		super.addActor(world);
 		boardEventListener = new BoardActorBoardEventListener(this);
-		boardEventListener.onBoardRebuilt(b);
 		userInteraction = new BoardActorLayoutUserInteraction(this);
+		boardEventListener.onBoardRebuilt(b);
 
 		initializePosition();
 	}
