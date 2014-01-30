@@ -3,7 +3,6 @@ package de.croggle.data.persistence.manager;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * This class is responsible for creating and managing the database with its

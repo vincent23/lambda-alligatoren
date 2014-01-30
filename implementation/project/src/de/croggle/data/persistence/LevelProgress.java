@@ -15,8 +15,6 @@ public class LevelProgress {
 	/**
 	 * Constructs a new LevelProgress based on it's properties.
 	 * 
-	 * @param profileId
-	 *            the id of the user's profile
 	 * @param levelId
 	 *            the id of the level
 	 * @param solved

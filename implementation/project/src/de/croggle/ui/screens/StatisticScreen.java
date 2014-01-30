@@ -17,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.StatisticController;
-import de.croggle.game.profile.ProfileChangeProcessor;
+import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
@@ -28,7 +28,7 @@ import de.croggle.ui.actors.PagedScrollPane;
  * user. For reference see ``Pflichtenheft 10.5.11 / Abbildung 20''.
  */
 public class StatisticScreen extends AbstractScreen implements
-		ProfileChangeProcessor {
+		ProfileChangeListener {
 
 	private StatisticController statisticController;
 	private ProfileController profileController;
@@ -107,7 +107,7 @@ public class StatisticScreen extends AbstractScreen implements
 	}
 
 	@Override
-	public void processProfileChange(Profile profile) {
+	public void onProfileChange(Profile profile) {
 		List<Profile> profiles = profileController.getAllProfiles();
 		String[] profileNames;
 		if (profiles.size() == 0) {

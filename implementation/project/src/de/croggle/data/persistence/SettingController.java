@@ -70,6 +70,10 @@ public class SettingController {
 		return currentSetting;
 	}
 	
+	/**
+	 * Add a listener to whom the updated current setting is passed after it was changed.
+	 * @param listener the listener that receives the updated setting 
+	 */
 	public void addSettingChangeListener(SettingChangeListener listener) {
 		listeners.add(listener);
 	}

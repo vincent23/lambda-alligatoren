@@ -199,10 +199,10 @@ public class AlligatorApp extends Game {
 		creditsScreen = new CreditsScreen(this);
 
 		// add onProfileChangeListener
-		profileController.registerProfileChangeProcessor(settingsScreen);
-		profileController.registerProfileChangeProcessor(selectProfileScreen);
-		profileController.registerProfileChangeProcessor(mainMenuScreen);
-		profileController.registerProfileChangeProcessor(statisticScreen);
+		profileController.addProfileChangeListener(settingsScreen);
+		profileController.addProfileChangeListener(selectProfileScreen);
+		profileController.addProfileChangeListener(mainMenuScreen);
+		profileController.addProfileChangeListener(statisticScreen);
 
 		profileController.initializeController();
 

@@ -71,7 +71,7 @@ public class Profile {
 	/**
 	 * Get the path to where the profile's picture is stored.
 	 * 
-	 * @param name
+	 * @return
 	 *            the path to the location where the profile's picture is stored
 	 */
 	public String getPicturePath() {
@@ -81,7 +81,7 @@ public class Profile {
 	/**
 	 * Set the profile's picture path.
 	 * 
-	 * @param name
+	 * @param picturePath
 	 *            The new path to the profile's picture
 	 */
 	public void setPicturePath(String picturePath) {
@@ -91,7 +91,7 @@ public class Profile {
 	/**
 	 * Get the profile's setting.
 	 * 
-	 * @param name
+	 * @return
 	 *            the profile's setting
 	 */
 	public Setting getSetting() {
@@ -101,7 +101,7 @@ public class Profile {
 	/**
 	 * Set the profile's setting.
 	 * 
-	 * @param name
+	 * @param setting
 	 *            the new setting of the profile
 	 */
 	public void setSetting(Setting setting) {
@@ -111,8 +111,8 @@ public class Profile {
 	/**
 	 * Get the profile's statistic.
 	 * 
-	 * @param name
-	 *            the profile's statistic
+	 * @return
+	 * 		 the profile's statistic
 	 */
 	public Statistic getStatistic() {
 		return statistic;
@@ -121,8 +121,8 @@ public class Profile {
 	/**
 	 * Set the profile's statistic.
 	 * 
-	 * @param name
-	 *            the new setting of the profile
+	 * @param statistic
+	 *            the new statistic of the profile
 	 */
 	public void setStatistic(Statistic statistic) {
 		this.statistic = statistic;

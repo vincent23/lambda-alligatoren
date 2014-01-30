@@ -64,6 +64,30 @@ public class Statistic {
 
 	}
 
+	/**
+	 *  Constructs a new Statistic based on its properties.
+	 * 
+	 * @param playtime
+	 * 				the amount of time a user has played the game
+	 * @param usedHints
+	 * 				the number of used hints.
+	 * @param resetsUsed
+	 * 				the number of used resets.
+	 * @param recolorings
+	 * 				the number of recoloring actions performed
+	 * @param levelsComplete
+	 * 				the number of completed levels
+	 * @param packagesComplete
+	 * 				the number of completed packages
+	 * @param alligatorsEaten
+	 * 				the number of alligators eaten during beta reductions
+	 * @param alligatorsPlaced
+	 * 				the number of alligators placed in the placement mode
+	 * @param eggsHatched
+	 * 				the number of eggs hatched during beta reductions
+	 * @param eggsPlaced
+	 * 				the number of eggs placed in the placement mode
+	 */
 	public Statistic(int playtime, int usedHints, int resetsUsed,
 			int recolorings, int levelsComplete, int packagesComplete,
 			int alligatorsEaten, int alligatorsPlaced, int eggsHatched,

@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
-import de.croggle.game.profile.ProfileChangeProcessor;
+import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
@@ -22,7 +22,7 @@ import de.croggle.ui.actors.NotificationDialog;
  * reference see ``Pflichtenheft 10.5.12 / Abbildung 21''.
  */
 public class SelectProfileScreen extends AbstractScreen implements
-		ProfileChangeProcessor {
+		ProfileChangeListener {
 
 	private ProfileController profileController;
 
@@ -66,7 +66,7 @@ public class SelectProfileScreen extends AbstractScreen implements
 	}
 
 	@Override
-	public void processProfileChange(Profile profile) {
+	public void onProfileChange(Profile profile) {
 		table.clear();
 		fillTable();
 	}

@@ -97,13 +97,15 @@ public class PersistenceManager {
 					profile.getStatistic());
 			statisticManager.close();
 
-			/*
-			 * achievementManager.open(); List<Achievement> achievements =
-			 * game.getAchievementController().getAvailableAchievements(); for
-			 * (Achievement achievement : achievements) {
-			 * achievementManager.addUnlockedAchievement(profile.getName(),
-			 * achievement); } achievementManager.close();
-			 */
+			achievementManager.open();
+			List<Achievement> achievements = game.getAchievementController()
+					.getAvailableAchievements();
+			for (Achievement achievement : achievements) {
+				achievementManager.addUnlockedAchievement(profile.getName(),
+						achievement);
+			}
+			achievementManager.close();
+
 		}
 
 	}
@@ -134,8 +136,7 @@ public class PersistenceManager {
 	 * 
 	 */
 
-	public void editProfile(String profileName, Profile profile)
-			throws IllegalArgumentException {
+	public void editProfile(String profileName, Profile profile) {
 
 		profileManager.open();
 		profileManager.editProfile(profileName, profile);

@@ -27,8 +27,11 @@ public class ProfileController {
 	 */
 	private AlligatorApp game;
 
-	private List<ProfileChangeProcessor> processors = new ArrayList<ProfileChangeProcessor>();
+	private List<ProfileChangeListener> processors = new ArrayList<ProfileChangeListener>();
 
+	/**
+	 * Defines the max. amount of profiles that can be created.
+	 */
 	public static final int MAX_PROFILE_NUMBER = 6;
 
 	/**
@@ -188,6 +191,10 @@ public class ProfileController {
 		return currentProfile.getName();
 	}
 
+	/**
+	 * Get the currently active profile.
+	 * @return the currently active profile
+	 */
 	public Profile getCurrentProfile() {
 		return currentProfile;
 	}
@@ -202,6 +209,9 @@ public class ProfileController {
 
 	}
 
+	/**
+	 * Deletes all stored profiles and their settings, statistics, unlocked achievements and level progresses.
+	 */
 	public void deleteAllProfiles() {
 		game.getPersistenceManager().clearTables();
 		Preferences prefs = Gdx.app.getPreferences("Profile Preferences");
@@ -209,13 +219,17 @@ public class ProfileController {
 		prefs.flush();
 	}
 
-	public void registerProfileChangeProcessor(ProfileChangeProcessor listener) {
+	/**
+	 * Add a listener to whom the updated current profile is passed after it was changed.
+	 * @param listener the listener that receives the updated profile 
+	 */
+	public void addProfileChangeListener(ProfileChangeListener listener) {
 		processors.add(listener);
 	}
 
 	private void updateProcessors() {
-		for (ProfileChangeProcessor processor : processors) {
-			processor.processProfileChange(currentProfile);
+		for (ProfileChangeListener processor : processors) {
+			processor.onProfileChange(currentProfile);
 		}
 	}
 
