@@ -1,8 +1,66 @@
 <resources>
 
     <string name="app_name">Croggle</string>
+    <string name="app_credits">
+        Croggle\n
+        \n
+        erschaffen von \n
+		Lukas Boehm, Tobias Hornberger, Jonas Mehlhaus, \n
+		Iris Mehrbrodt, Vincent Schuessler, Lena Winter\n
+		\n
+		Nach einer Idee von Bret Victor\n
+		http://worrydream.com</string>
     <string name="achievement_minutes_played">Minuten gespielt</string>
     <string name="achievement_hours_played">Stunden gespielt</string>
-    <string name="achievement_time_final">Sehr gut! du hast das Spiel lange gespielt!</string>
+    <string name="achievement_time_final">Beeindruckend wie lang du dieses Spiel gespielt hast</string>
+    <string name="achievement_alligators_placed">Alligatoren platziert</string>
+    <string name="achievement_alligators_placed_final">Wow. Du hast viele Alligatoren platziert</string>
+    <string name="achievement_alligators_placed_per_level">Alligatoren in einem Level platziert</string>
+    <string name="achievement_alligator_placed_per_level_final">Wow. Du hast viele Alligatoren in einem Level platziert</string>
+    <string name="achievement_alligators_eaten">Alligatoren gefressen</string>
+    <string name="achievement_alligators_eaten_final">Wow. Es wurden sehr viele Alligatoren gefressen</string>
+    <string name="achievement_alligators_eaten_per_level">Alligatoren in einem Level gefressen</string>
+    <string name="achievement_hints_used_per_level">Ein Level ohne Hinweis gelöst</string>
+    <string name="achievement_alligators_eaten_per_level_final">Wow. Es wurden sehr viele Alligatoren in einem Level gefressen</string>
+    <string name="achievement_level_completed">Level gelöst</string>
+    <string name="screen_title_achievements">Errungenschaften</string>
+    <string name="screen_title_set_avatar">Wähle deinen Avatar</string>
+    <string name="screen_title_set_name">Wie heißt du?</string>
+    <string name="warning_max_profiles">Du hast die maximale Menge an Profilen erreicht</string>
+    <string name="settings_title_gameplay">Gameplay</string>
+    <string name="settings_title_zoom">Vergrößerungsknöpfe eingeblendet</string>
+    <string name="settings_title_color_blindness">Farbenblindmodus</string>
+    <string name="settings_title_sound">Ton</string>
+    <string name="settings_title_music">Musik</string>
+    <string name="settings_title_effects">Geräusche</string>
+    <string name="settings_title_profile">Profil</string>
+    <string name="settings_button_edit_profile">Profil bearbeiten</string>
+    <string name="warning_no_profile_selected">Du musst zuerst ein Profil auswählen!</string>
+    <string name="title_edit_profile">Was möchtest du tun?</string>
+    <string name="edit_profile_button_rename">Umbenennen</string>
+    <string name="edit_profile_button_change_avatar">Avatar ändern</string>
+    <string name="edit_profile_button_delete">Profil löschen</string>
+    <string name="edit_profile_button_nothing">Nichts</string>
+    <string name="edit_profile_delete_confirmation">Bist du sicher, dass du das Profil namens %s löschen möchtest?</string>
+    <string name="statistic_screen_selected_profile">Asugewähltes Profil : </string>
+    <string name="statistic_screen_no_users">Noch keine nutzbaren Nutzer</string>
+    <string name="statistic_tab_actions">AKTIONEN</string>
+    <string name="statistic_tab_progress">FORTSCHRITT</string>
+    <string name="statistic_tab_game">SPIEL</string>
+    <string name="statistic_label_action_recolorings">Umfärbungen durchgeführt : </string>
+    <string name="statistic_label_action_resets">Resets genutzt : </string>
+    <string name="statistic_label_action_hints">Hinweiße genutzt : </string>
+    <string name="statistic_label_progress_time">Zeit gespielt : </string>
+    <string name="statistic_label_progress_packages">Packete abgeschlossen : </string>
+    <string name="statistic_label_progress_levels">Levels abgeschlossen : </string>
+    <string name="statistic_label_game_alligators_eaten">Alligatoren gefressen : </string>
+    <string name="statistic_label_game_alligators_placed">Alligatoren platziert : </string>
+    <string name="statistic_label_game_eggs_hatched">Eier geschlüpft : </string>
+    <string name="statistic_label_game_eggs_placed">Eier platziert : </string>
+    <string name="title_new_achievement">Du hast eine neue Errungenschaft!</string>
+    <string name="button_ok">Okay</string>
+    <string name="button_yes">Ja</string>
+    <string name="button_no">Nein</string>
+
 
 </resources>
