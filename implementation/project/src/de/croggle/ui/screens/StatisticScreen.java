@@ -1,7 +1,8 @@
 package de.croggle.ui.screens;
 
-import java.util.List;
 import static de.croggle.data.LocalizationHelper._;
+
+import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -11,14 +12,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.StatisticController;
-import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.game.profile.Profile;
+import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.PagedScrollPane;
@@ -32,8 +34,9 @@ public class StatisticScreen extends AbstractScreen implements
 
 	private StatisticController statisticController;
 	private ProfileController profileController;
+
 	private SelectBox profileList;
-	private Table content = new Table();
+	private Table content;
 
 	private TextButton actionsButton;
 	private TextButton progressButton;
@@ -57,6 +60,8 @@ public class StatisticScreen extends AbstractScreen implements
 	private void fillTable() {
 		StyleHelper helper = StyleHelper.getInstance();
 
+		content = new Table();
+
 		Label profiles = new Label(_("statistic_screen_selected_profile"),
 				helper.getLabelStyle());
 		String[] items = { _("statistic_screen_no_users") };
@@ -67,43 +72,38 @@ public class StatisticScreen extends AbstractScreen implements
 				showProgressStatistic();
 			}
 		});
-		Table table1 = new Table();
-		table1.add(profiles).spaceRight(20);
-		table1.add(profileList).width(getViewportWidth() / 4);
 
 		PagedScrollPane pager = new PagedScrollPane();
-		actionsButton = new TextButton(_("statistic_tab_actions"),
-				helper.getTextButtonStyle());
+		TextButtonStyle buttonStyle = helper.getTextButtonStyleSquare();
+		actionsButton = new TextButton(_("statistic_tab_actions"), buttonStyle);
 		progressButton = new TextButton(_("statistic_tab_progress"),
-				helper.getTextButtonStyle());
-		gameButton = new TextButton(_("statistic_tab_game"),
-				helper.getTextButtonStyle());
-		
-		MyClickListener listener = new MyClickListener();
+				buttonStyle);
+		gameButton = new TextButton(_("statistic_tab_game"), buttonStyle);
+
+		ChangeTabClickListener listener = new ChangeTabClickListener();
 		actionsButton.addListener(listener);
 		progressButton.addListener(listener);
 		gameButton.addListener(listener);
 
-		pager.addPage(progressButton);
-		pager.addPage(actionsButton);
-		pager.addPage(gameButton);
-
-		pager.setFlingTime(0.9f);
-		pager.setPageSpacing(25);
-		pager.setWidth(getViewportWidth() * 0.7f);
+		Table tabBarTable = new Table();
+		tabBarTable.defaults().size(350, 100);
+		tabBarTable.add(progressButton);
+		tabBarTable.add(actionsButton);
+		tabBarTable.add(gameButton);
+		ScrollPane tabBar = new ScrollPane(tabBarTable);
+		tabBar.setScrollingDisabled(false, true);
 
 		table.pad(30);
-		table.add(table1);
+		table.add(profiles).height(70).padRight(20).padLeft(200).right();
+		table.add(profileList).height(70).width(300).expandX().left();
 
 		table.row();
-		table.add(pager).fillX().top();
+		table.add(tabBar).colspan(2).height(100);
 		table.row();
 
 		ScrollPane pane = new ScrollPane(content);
 		pane.setScrollingDisabled(true, false);
-		table.add(pane).expand().top().left().fill();
-		table.row().expandY();
-
+		table.add(pane).expand().fill().colspan(2);
 	}
 
 	@Override
@@ -136,14 +136,13 @@ public class StatisticScreen extends AbstractScreen implements
 					+ statistic.getResetsUsed(), style);
 			Label hints = new Label(_("statistic_label_action_hints")
 					+ statistic.getUsedHints(), style);
-			content.add(recolorings).height(100).left().padLeft(10);
-			content.add().expandX();
+
+			content.defaults().height(100).expandX().left().padLeft(10);
+			content.add(recolorings);
 			content.row();
-			content.add(resets).height(100).left().padLeft(10);
+			content.add(resets);
 			content.row();
-			content.add(hints).height(100).left().padLeft(10);
-			content.row();
-			content.add().expandY();
+			content.add(hints);
 		}
 	}
 
@@ -159,14 +158,13 @@ public class StatisticScreen extends AbstractScreen implements
 					+ statistic.getPackagesComplete(), style);
 			Label levels = new Label(_("statistic_label_progress_levels")
 					+ statistic.getLevelsComplete(), style);
-			content.add(time).height(100).left().padLeft(10);
-			content.add().expandX();
+
+			content.defaults().height(100).expandX().left().padLeft(10);
+			content.add(time);
 			content.row();
-			content.add(packages).height(100).left().padLeft(10);
+			content.add(packages);
 			content.row();
-			content.add(levels).height(100).left().padLeft(10);
-			content.row();
-			content.add().expandY();
+			content.add(levels);
 		}
 
 	}
@@ -189,23 +187,20 @@ public class StatisticScreen extends AbstractScreen implements
 			Label eggsPlaced = new Label(_("statistic_label_game_eggs_placed")
 					+ statistic.getEggsPlaced(), style);
 
-			content.add(alligatorsEaten).height(100).left().padLeft(10);
-			content.add().expandX();
+			content.defaults().height(100).expandX().left().padLeft(10);
+			content.add(alligatorsEaten);
 			content.row();
-			content.add(alligatorsPlaced).height(100).left().padLeft(10);
+			content.add(alligatorsPlaced);
 			content.row();
-			content.add(eggsHatched).height(100).left().padLeft(10);
+			content.add(eggsHatched);
 			content.row();
-			content.add(eggsPlaced).height(100).left().padLeft(10);
-			content.row();
-
-			content.add().expandY();
+			content.add(eggsPlaced);
 
 		}
 
 	}
 
-	private class MyClickListener extends ClickListener {
+	private class ChangeTabClickListener extends ClickListener {
 
 		@Override
 		public void clicked(InputEvent event, float x, float y) {

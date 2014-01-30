@@ -25,14 +25,14 @@ public class StyleHelper {
 	private static StyleHelper instance;
 	private Skin skin;
 	private TextureAtlas atlas;
-	
+
 	public StyleHelper() {
 		AssetManager manager = AssetManager.getInstance();
 		manager.load("textures/pack.atlas", TextureAtlas.class);
 		manager.finishLoading();
 		atlas = manager.get("textures/pack.atlas", TextureAtlas.class);
 		skin = new Skin(Gdx.files.internal("skin.json"), atlas);
-		
+
 	}
 
 	/**
@@ -91,6 +91,10 @@ public class StyleHelper {
 
 	public TextButtonStyle getTextButtonStyleLevel() {
 		return skin.get("level", TextButtonStyle.class);
+	}
+
+	public TextButtonStyle getTextButtonStyleSquare() {
+		return skin.get("square", TextButtonStyle.class);
 	}
 
 	/**
@@ -162,10 +166,12 @@ public class StyleHelper {
 	public LabelStyle getLabelStyle() {
 		return skin.get(LabelStyle.class);
 	}
-	
-	/*public LabelStyle getLabelStyle(int size) {
-		
-	}*/
+
+	/*
+	 * public LabelStyle getLabelStyle(int size) {
+	 * 
+	 * }
+	 */
 
 	public CheckBoxStyle getCheckBoxStyle() {
 		return skin.get(CheckBoxStyle.class);
