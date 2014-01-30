@@ -45,12 +45,14 @@ public class TimeAchievement extends Achievement {
 			emblemPathachieved[i] = "emblems/time/0" + i + "a";
 			emblemPathnotachieved[i] = "emblems/time/0" + i + "n";
 		}
+		for( int j = 1; j < stages.length; j++) {
+			emblemPathachieved[j] = "emblems/time/" + String.format("%02d", j) + "a";
+			emblemPathnotachieved[j] = "emblems/time/" + String.format("%02d", j) + "n";
+		}
 		description[0] = "initial state, do not show this stage as achievement";
 		description[10] = _("achievement_time_final");
 		emblemPathachieved[0] = null;
 		emblemPathnotachieved[0] = null;
-		emblemPathachieved[10] = "emblems/time/10a";
-		emblemPathnotachieved[10] = "emblems/time/10n";
 		setDescription(description);
 		setStages(stages);
 		setEmblemPathachieved(emblemPathachieved);

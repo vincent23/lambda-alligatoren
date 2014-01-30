@@ -35,15 +35,16 @@ public class AlligatorsEatenAchievement extends Achievement {
 		for (int i = 1; i < 10; i++) {
 			description[i] = stages[i] + " "
 					+ _("achievement_alligators_eaten");
-			emblemPathachieved[i] = "emblems/alligatorsEaten/0" + i + "a";
-			emblemPathnotachieved[i] = "emblems/alligatorsEaten/0" + i + "n";
 		}
+		for( int j = 1; j < stages.length; j++) {
+			emblemPathachieved[j] = "emblems/alligatorsEaten/" + String.format("%02d", j) + "a";
+			emblemPathnotachieved[j] = "emblems/alligatorsEaten/" + String.format("%02d", j) + "n";
+		}
+		
 		description[0] = "initial state, do not show this stage as achievement";
 		description[10] = _("achievement_alligators_eaten_final");
 		emblemPathachieved[0] = null;
 		emblemPathnotachieved[0] = null;
-		emblemPathachieved[10] = "emblems/alligatorsEaten/10a";
-		emblemPathnotachieved[10] = "emblems/alligatorsEaten/10n";
 		setDescription(description);
 		setStages(stages);
 		setEmblemPathachieved(emblemPathachieved);
