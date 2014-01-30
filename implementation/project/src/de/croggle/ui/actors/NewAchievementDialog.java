@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import de.croggle.game.achievement.Achievement;
 import de.croggle.ui.StyleHelper;
@@ -15,24 +16,35 @@ import de.croggle.ui.StyleHelper;
 public class NewAchievementDialog extends Dialog {
 
 	public NewAchievementDialog(Achievement achievement, int index,
-			boolean hasCloseButton) {
+			boolean isNew) {
 		super("", StyleHelper.getInstance().getDialogStyle());
 
 		StyleHelper helper = StyleHelper.getInstance();
 		Label message = new Label(_("title_new_achievement"),
 				helper.getLabelStyle());
-		Image icon = new Image(helper.getDrawable(achievement
-				.getEmblemPathachieved(index)));
+
+		Image icon;
+		try {
+			icon = new Image(helper.getDrawable(achievement
+					.getEmblemPathachieved(index)));
+		} catch (IllegalArgumentException ex) {
+			icon = new Image(helper.getDrawable("widgets/icon-trophy"));
+		} catch (GdxRuntimeException ex) {
+			icon = new Image(helper.getDrawable("widgets/icon-trophy"));
+		}
 		Label description = new Label(achievement.getDescription(index),
 				helper.getLabelStyle());
 		ImageButton next = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-play"));
 
-		add(message).row();
-		add(icon).row();
-		add(description).row();
+		clear();
+		if (isNew) {
+			add(message).pad(30).row();
+		}
+		add(icon).size(300).pad(0, 100, 0, 100).row();
+		add(description).pad(30).row();
 
-		if (hasCloseButton) {
+		if (isNew) {
 			add(next);
 			next.addListener(new DisposeListener());
 		} else {
@@ -43,7 +55,7 @@ public class NewAchievementDialog extends Dialog {
 	private class DisposeListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			NewAchievementDialog.this.cancel();
+			NewAchievementDialog.this.hide();
 		}
 	}
 
