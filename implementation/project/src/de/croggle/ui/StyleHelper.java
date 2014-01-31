@@ -28,17 +28,17 @@ public class StyleHelper {
 	private static StyleHelper instance;
 	private Skin skin;
 	private TextureAtlas atlas;
+	private FreeTypeFontGenerator generator;
 
-	public StyleHelper() {
+	private StyleHelper() {
 		AssetManager manager = AssetManager.getInstance();
 		manager.load("textures/pack.atlas", TextureAtlas.class);
 		manager.finishLoading();
 		atlas = manager.get("textures/pack.atlas", TextureAtlas.class);
 		skin = new Skin(Gdx.files.internal("skin.json"), atlas);
-		final FreeTypeFontGenerator generator = new FreeTypeFontGenerator(
+		generator = new FreeTypeFontGenerator(
 				Gdx.files.internal("fonts/rawengulk_sans.otf"));
 		generateFonts(generator, skin);
-		generator.dispose();
 	}
 
 	/**
@@ -75,6 +75,7 @@ public class StyleHelper {
 		if (skin != null) {
 			skin.dispose();
 		}
+		generator.dispose();
 	}
 
 	/**
@@ -184,11 +185,11 @@ public class StyleHelper {
 		return skin.get(LabelStyle.class);
 	}
 
-	/*
-	 * public LabelStyle getLabelStyle(int size) {
-	 * 
-	 * }
-	 */
+	public LabelStyle getLabelStyle(int size) {
+		LabelStyle style = new LabelStyle(getLabelStyle());
+		style.font = generateFont(size);
+		return style;
+	}
 
 	public CheckBoxStyle getCheckBoxStyle() {
 		return skin.get(CheckBoxStyle.class);
@@ -218,17 +219,26 @@ public class StyleHelper {
 		return skin.getDrawable(path);
 	}
 
-	private BitmapFont generateFont(FreeTypeFontGenerator generator, int size) {
-		final BitmapFont font = generator.generateFont(20);
+	private BitmapFont generateFont(int size) {
+		final BitmapFont font = generator.generateFont(size);
 		font.getRegion().getTexture()
 				.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		return font;
 	}
 
 	private void generateFonts(FreeTypeFontGenerator generator, Skin skin) {
-		final BitmapFont labelFont = generateFont(generator, 20);
-		skin.get("default",
-				com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle.class).font = labelFont;
+		final BitmapFont labelFont = generateFont(30);
+		skin.get(LabelStyle.class).font = labelFont;
+		skin.get(TextFieldStyle.class).font = labelFont;
+		skin.get(SelectBoxStyle.class).font = labelFont;
+		for (TextButtonStyle style : skin.getAll(TextButtonStyle.class)
+				.values()) {
+			style.font = labelFont;
+		}
+		for (ImageTextButtonStyle style : skin.getAll(
+				ImageTextButtonStyle.class).values()) {
+			style.font = labelFont;
+		}
 	}
 
 }
