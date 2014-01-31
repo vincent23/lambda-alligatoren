@@ -1,7 +1,10 @@
 package de.croggle.ui;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox.CheckBoxStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
@@ -32,7 +35,10 @@ public class StyleHelper {
 		manager.finishLoading();
 		atlas = manager.get("textures/pack.atlas", TextureAtlas.class);
 		skin = new Skin(Gdx.files.internal("skin.json"), atlas);
-
+		final FreeTypeFontGenerator generator = new FreeTypeFontGenerator(
+				Gdx.files.internal("fonts/rawengulk_sans.otf"));
+		generateFonts(generator, skin);
+		generator.dispose();
 	}
 
 	/**
@@ -195,6 +201,19 @@ public class StyleHelper {
 
 	public Drawable getDrawable(String path) {
 		return skin.getDrawable(path);
+	}
+
+	private BitmapFont generateFont(FreeTypeFontGenerator generator, int size) {
+		final BitmapFont font = generator.generateFont(20);
+		font.getRegion().getTexture()
+				.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		return font;
+	}
+
+	private void generateFonts(FreeTypeFontGenerator generator, Skin skin) {
+		final BitmapFont labelFont = generateFont(generator, 20);
+		skin.get("default",
+				com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle.class).font = labelFont;
 	}
 
 }
