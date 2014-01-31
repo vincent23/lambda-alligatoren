@@ -213,10 +213,10 @@ public class SettingsScreen extends AbstractScreen implements
 			});
 			clear();
 			add(message).center().pad(100).colspan(4).row();
-			add(name).center().width(150).height(70).pad(10);
-			add(avatar).center().width(150).height(70).pad(10);
-			add(delete).center().width(150).height(70).pad(10);
-			add(nothing).center().width(150).height(70).pad(10);
+			add(name).minWidth(150).height(70).pad(10);
+			add(avatar).minWidth(150).height(70).pad(10);
+			add(delete).minWidth(150).height(70).pad(10);
+			add(nothing).minWidth(150).height(70).pad(10);
 
 		}
 

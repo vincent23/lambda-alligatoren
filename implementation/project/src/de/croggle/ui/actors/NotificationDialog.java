@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.ui.StyleHelper;
@@ -22,6 +23,9 @@ public class NotificationDialog extends Dialog {
 		StyleHelper helper = StyleHelper.getInstance();
 
 		Label message = new Label(msg, helper.getLabelStyle());
+		message.setWrap(true);
+		message.setAlignment(Align.center);
+
 		TextButton okay = new TextButton(_("button_ok"),
 				helper.getTextButtonStyle());
 
@@ -33,8 +37,9 @@ public class NotificationDialog extends Dialog {
 		});
 
 		clear();
-		add(message).center().pad(100).row();
+		add(message).width(500).center().pad(100).row();
 		add(okay).center().width(300).height(70);
+		layout();
 	}
 
 }

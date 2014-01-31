@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.ui.ConfirmInterface;
@@ -22,6 +23,9 @@ public class YesNoDialog extends Dialog {
 		StyleHelper helper = StyleHelper.getInstance();
 
 		Label message = new Label(msg, helper.getLabelStyle());
+		message.setWrap(true);
+		message.setAlignment(Align.center);
+
 		TextButton yes = new TextButton(_("button_yes"),
 				helper.getTextButtonStyle());
 		TextButton no = new TextButton(_("button_no"),
@@ -45,10 +49,12 @@ public class YesNoDialog extends Dialog {
 		});
 
 		clear();
-		add(message).center().pad(100).colspan(2).row();
+		add(message).width(500).pad(100).colspan(2).expand();
+		row();
 		add(yes).center().width(300).height(70).pad(10);
 		add(no).center().width(300).height(70).pad(10);
-
+		// no idea why this is necessary, but it is
+		layout();
 	}
 
 }

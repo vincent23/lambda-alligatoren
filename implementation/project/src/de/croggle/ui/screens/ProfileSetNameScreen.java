@@ -55,6 +55,9 @@ public class ProfileSetNameScreen extends AbstractScreen {
 		ImageButton back = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-back"));
 
+		// any longer name won't fit on the profile button
+		nameInput.setMaxLength(20);
+
 		// add listeners
 		back.addListener(new LogicalPredecessorListener());
 		next.addListener(new ClickListener() {

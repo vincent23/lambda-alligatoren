@@ -3,6 +3,7 @@ package de.croggle.ui.actors;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 import de.croggle.game.profile.Profile;
 import de.croggle.ui.StyleHelper;
@@ -30,13 +31,16 @@ public class ProfileButton extends Button {
 
 		if (user != null) {
 			Label userName = new Label(user.getName(), helper.getLabelStyle(50));
-			// userName.setWrap(true);
+			userName.setWrap(true);
+			userName.setAlignment(Align.center);
+
 			ImageButton avatar = new ImageButton(helper.getDrawable(user
 					.getPicturePath()));
 
-			add(userName).pad(30);
+			add(userName).width(280).pad(30);
 			row();
 			add(avatar).fill().expand();
+			layout();
 		}
 	}
 }
