@@ -29,7 +29,8 @@ public class ProfileButton extends Button {
 		this.user = user;
 
 		if (user != null) {
-			Label userName = new Label(user.getName(), helper.getLabelStyle());
+			Label userName = new Label(user.getName(), helper.getLabelStyle(50));
+			// userName.setWrap(true);
 			ImageButton avatar = new ImageButton(helper.getDrawable(user
 					.getPicturePath()));
 

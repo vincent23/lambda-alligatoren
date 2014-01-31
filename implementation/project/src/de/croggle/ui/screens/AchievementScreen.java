@@ -55,7 +55,7 @@ public class AchievementScreen extends AbstractScreen {
 		ImageButton back = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-back"));
 		Label achievements = new Label(_("screen_title_achievements"),
-				helper.getLabelStyle());
+				helper.getLabelStyle(50));
 		ImageButton next = new ImageButton(
 				helper.getDrawable("widgets/icon-next"));
 		ImageButton previous = new ImageButton(

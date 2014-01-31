@@ -231,6 +231,7 @@ public class StyleHelper {
 		skin.get(LabelStyle.class).font = labelFont;
 		skin.get(TextFieldStyle.class).font = labelFont;
 		skin.get(SelectBoxStyle.class).font = labelFont;
+		skin.get(SelectBoxStyle.class).listStyle.font = labelFont;
 		for (TextButtonStyle style : skin.getAll(TextButtonStyle.class)
 				.values()) {
 			style.font = labelFont;

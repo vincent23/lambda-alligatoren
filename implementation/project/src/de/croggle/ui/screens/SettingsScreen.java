@@ -1,13 +1,12 @@
 package de.croggle.ui.screens;
 
-import com.badlogic.gdx.Screen;
 import static de.croggle.data.LocalizationHelper._;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -16,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingController;
-import de.croggle.data.persistence.manager.ProfileManager;
 import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.ui.ConfirmInterface;
@@ -65,18 +63,18 @@ public class SettingsScreen extends AbstractScreen implements
 		// ScrollPane scroll = new ScrollPane(scrollTable);
 
 		Label gameplay = new Label(_("settings_title_gameplay"),
-				helper.getLabelStyle());
+				helper.getLabelStyle(40));
 		Label zoom = new Label(_("settings_title_zoom"), helper.getLabelStyle());
 		Label colorBlindness = new Label(_("settings_title_color_blindness"),
 				helper.getLabelStyle());
 		Label sound = new Label(_("settings_title_sound"),
-				helper.getLabelStyle());
+				helper.getLabelStyle(40));
 		Label music = new Label(_("settings_title_music"),
 				helper.getLabelStyle());
 		Label effects = new Label(_("settings_title_effects"),
 				helper.getLabelStyle());
 		Label profile = new Label(_("settings_title_profile"),
-				helper.getLabelStyle());
+				helper.getLabelStyle(40));
 
 		zoomCheckBox = new CheckBox("", helper.getCheckBoxStyle());
 		colorBlindnessCheckBox = new CheckBox("", helper.getCheckBoxStyle());
@@ -122,16 +120,16 @@ public class SettingsScreen extends AbstractScreen implements
 		scrollTable.defaults().left().space(10);
 		scrollTable.add(gameplay).row();
 		scrollTable.add(zoom).expandX().padLeft(30);
-		scrollTable.add(zoomCheckBox).size(50).row();
+		scrollTable.add(zoomCheckBox).size(50).center().row();
 		scrollTable.add(colorBlindness).expandX().padLeft(30);
-		scrollTable.add(colorBlindnessCheckBox).size(50).row();
+		scrollTable.add(colorBlindnessCheckBox).size(50).center().row();
 		scrollTable.add(sound).row();
 		scrollTable.add(music).padLeft(30);
 		scrollTable.add(musicSlider).width(300).height(50).row();
 		scrollTable.add(effects).padLeft(30);
 		scrollTable.add(effectsSlider).width(300).height(50).row();
 		scrollTable.add(profile).row();
-		scrollTable.add(editProfile).width(200).height(75);
+		scrollTable.add(editProfile).width(300).height(75);
 
 		scrollTable.pad(50).padRight(200);
 		table.add(back).size(100).top().left();
@@ -188,7 +186,7 @@ public class SettingsScreen extends AbstractScreen implements
 				public void clicked(InputEvent event, float x, float y) {
 					game.getProfileSetAvatarScreen().setInEditMode(true);
 					EditProfileDialog.this.hide();
-					game.showProfileSetAvatarScreen("" , false);
+					game.showProfileSetAvatarScreen("", false);
 				};
 			});
 
@@ -234,6 +232,5 @@ public class SettingsScreen extends AbstractScreen implements
 		}
 
 	}
-
 
 }
