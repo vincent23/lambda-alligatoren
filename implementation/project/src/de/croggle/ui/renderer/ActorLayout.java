@@ -124,4 +124,40 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 	public int size() {
 		return layout.size();
 	}
+	
+	public float getHeightInPixels() {
+		if (statistics == null) {
+			throw new IllegalStateException("Cannot calculate height without statistics");
+		}
+		return statistics.getHeightMap().get(getBoard());
+	}
+	
+	public int getHeightInActors() {
+		// variables: 
+		// h = board height
+		// u = uniform object height
+		// p = vertical padding
+		// s = vertical scale factor
+		// Initial formula: boardHeight = sum i=1 to n ((uniformheight + verticalpadding) * scale^i)
+		// Wolfram Alpha: h = s * (s^n - 1) * (u + p) / (s - 1)
+		// => n = log (h * (s - 1) / (s * (u + p)) + 1) / log(s)
+		float h = getHeightInPixels();
+		float s = config.getVerticalScaleFactor();
+		float u = config.getUniformObjectHeight();
+		float p = config.getVerticalPadding();
+		return (int) Math.round(Math.log(h * (s - 1) / (s * (u + p)) + 1) / Math.log(s));
+	}
+	
+	/**
+	 * Calculates and returns the scale that was applied on a board actor.
+	 * @return
+	 */
+	public float getMinimumScale() {
+		// see getHeightInActors for formula explanation
+		float h = getHeightInPixels();
+		float s = config.getVerticalScaleFactor();
+		float u = config.getUniformObjectHeight();
+		float p = config.getVerticalPadding();
+		return h * (s - 1.f) / (s * (u + p)) + 1.f;
+	}
 }
