@@ -2,13 +2,16 @@ package de.croggle.ui.renderer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
+import de.croggle.game.board.BoardObject;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
+import de.croggle.game.board.operations.CreateHeightMap;
 
 /**
  * A helper class providing functionality to fix {@link ActorLayout}s when the
@@ -57,6 +60,14 @@ class ActorLayoutFixer extends ActorLayouter {
 			Board b) {
 		ActorLayoutFixer fixer = new ActorLayoutFixer(l, b);
 		fixer.doLayout();
+		l.getLayoutStatistics().setWidthMap(fixer.widthMap);
+		// TODO as this is not really necessary for the fix process, maybe
+		// implement it more efficiently as a byproduct?
+		ActorLayoutConfiguration config = l.getLayoutConfiguration();
+		Map<BoardObject, Float> heightMap = CreateHeightMap.create(b,
+				config.getUniformObjectHeight(),
+				config.getVerticalScaleFactor(), config.getVerticalPadding());
+		l.getLayoutStatistics().setHeightMap(heightMap);
 		return fixer.deltas;
 	}
 
