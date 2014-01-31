@@ -46,11 +46,13 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	}
 
 	private void buildPatterns() {
-		patterns[0] = PatternBuilder.generateHorizontalLines(8, 4);
-		patterns[1] = PatternBuilder.generateVerticalLines(8, 4);
-		patterns[2] = PatternBuilder.generateCheckerboard(16, 8);
-		patterns[3] = PatternBuilder.generateCircle(128);
-		for (int i = 4; i < patterns.length; i++) {
+		int n = 0;
+		patterns[n++] = PatternBuilder.generateHorizontalLines(8, 4);
+		patterns[n++] = PatternBuilder.generateVerticalLines(8, 4);
+		patterns[n++] = PatternBuilder.generateCheckerboard(16, 8);
+		patterns[n++] = PatternBuilder.generateCircle(256);
+		patterns[n++] = PatternBuilder.generateRhombus(256, 160, 200);
+		for (int i = n; i < patterns.length; i++) {
 			patterns[i] = PatternBuilder.generateHorizontalLines(8, 4);
 		}
 	}

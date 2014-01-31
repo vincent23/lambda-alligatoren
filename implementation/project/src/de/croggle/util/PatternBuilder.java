@@ -1,6 +1,7 @@
 package de.croggle.util;
 
 import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Pixmap.Blending;
 
 public class PatternBuilder {
 
@@ -50,6 +51,22 @@ public class PatternBuilder {
 						* tileWidth, tileWidth, tileWidth);
 			}
 		}
+		return pattern;
+	}
+
+	public static Pixmap generateRhombus(int width, int rhombusWidth,
+			int rhombusHeight) {
+		final Pixmap pattern = generateEmpty(width);
+		pattern.setColor(0, 0, 0, alpha);
+		final int center = width / 2;
+		final int rhombusWidth2 = rhombusWidth / 2;
+		final int rhombusHeight2 = rhombusHeight / 2;
+		Pixmap.setBlending(Blending.None);
+		pattern.fillTriangle(center - rhombusWidth2, center, center
+				+ rhombusWidth2, center, center, center - rhombusHeight2);
+		pattern.fillTriangle(center - rhombusWidth2, center, center
+				+ rhombusWidth2, center, center, center + rhombusHeight2);
+		Pixmap.setBlending(Blending.SourceOver);
 		return pattern;
 	}
 
