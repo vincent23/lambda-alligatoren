@@ -65,6 +65,8 @@ public class BoardActor extends Group implements SettingChangeListener {
 	 * ActorLayoutConfiguration given in the constructor
 	 */
 	private boolean colorBlind;
+	
+	private boolean zoomAndPanEnabled = false;
 
 	/**
 	 * Creates a new BoardActor. The actor layout of the board's representation
@@ -80,6 +82,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 		this.config = config;
 		colorBlind = config.isColorBlindEnabled();
 		this.world = new WorldPane(this);
+		setZoomAndPanEnabled(true);
 		super.addActor(world);
 		boardEventListener = new BoardActorBoardEventListener(this);
 		userInteraction = new BoardActorLayoutUserInteraction(this);
@@ -149,10 +152,6 @@ public class BoardActor extends Group implements SettingChangeListener {
 	@Override
 	protected void sizeChanged() {
 		world.syncBounds();
-
-		this.removeListener(zoomAndPan);
-		zoomAndPan = new BoardActorZoomAndPan(this);
-		this.addListener(zoomAndPan);
 
 		zoomAndPan.calculateLimits();
 		initializePosition();
@@ -281,5 +280,21 @@ public class BoardActor extends Group implements SettingChangeListener {
 	 */
 	public boolean swapActor(int x, int y) {
 		return false;
+	}
+
+	public boolean isZoomAndPanEnabled() {
+		return zoomAndPanEnabled;
+	}
+
+	public void setZoomAndPanEnabled(boolean zoomAndPanEnabled) {
+		if (zoomAndPanEnabled != this.zoomAndPanEnabled) {
+			this.zoomAndPanEnabled = zoomAndPanEnabled;
+			if (zoomAndPanEnabled) {
+				zoomAndPan = new BoardActorZoomAndPan(this);
+				this.addListener(zoomAndPan);
+			} else {
+				this.removeListener(zoomAndPan);
+			}
+		}
 	}
 }

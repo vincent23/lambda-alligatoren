@@ -12,7 +12,7 @@ import de.croggle.game.board.BoardObject;
 
 class BoardActorZoomAndPan extends ActorGestureListener {
 	private final BoardActor b;
-	
+
 	private float maxX;
 	private float maxY;
 	private float minX;
@@ -20,7 +20,7 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 	private float maxZoom;
 	private float minZoom;
 	private Vector2 point = new Vector2();
-	
+
 	public BoardActorZoomAndPan(BoardActor b) {
 		this.b = b;
 		maxX = Float.POSITIVE_INFINITY;
@@ -30,12 +30,15 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 
 		calculateLimits();
 	}
-	
+
 	@Override
 	public void pan(InputEvent event, float x, float y, float deltaX,
 			float deltaY) {
+		pan(deltaX, deltaY);
+	}
+
+	public void pan(float deltaX, float deltaY) {
 		Vector2 delta = new Vector2(deltaX, deltaY);
-		
 		float posX = b.getWorldX();
 		if (posX + delta.x >= minX && posX + delta.x <= maxX) {
 			b.setWorldX(posX + delta.x);
@@ -60,7 +63,7 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 				+ (initialPointer2.y - initialPointer1.y) / 2;
 		zoomIn(percent, pointX, pointY);
 	}
-	
+
 	void calculateLimits() {
 		calculateZoomLimits();
 		calculatePanLimits(getZoom());
@@ -69,14 +72,15 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 	private void calculateZoomLimits() {
 		ActorLayout layout = this.b.getLayout();
 		ActorLayoutConfiguration config = layout.getLayoutConfiguration();
-		
+
 		Board b = layout.getBoard();
 		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics()
 				.getHeightMap();
 		float boardHeight = heightMap.get(b);
 
 		// zoom limits
-		float lowestScale = 0.2373046875f; // 0.75^5 TODO
+		float lowestScale = layout.getMinimumScale();
+		System.out.println("lowestScale: " + lowestScale);
 		// allow maximum enlargement to have the smallest object being displayed
 		// with half the screen size
 		maxZoom = this.b.getWidth()
@@ -88,7 +92,7 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 	private void calculatePanLimits(float zoom) {
 		ActorLayout layout = this.b.getLayout();
 		ActorLayoutConfiguration config = layout.getLayoutConfiguration();
-		
+
 		Board b = layout.getBoard();
 		Map<BoardObject, Float> heightMap = layout.getLayoutStatistics()
 				.getHeightMap();
@@ -118,11 +122,11 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 			this.b.setWorldY(minY);
 		}
 	}
-	
+
 	private float getZoom() {
 		return b.getZoom();
 	}
-	
+
 	/**
 	 * 
 	 * @param percent
@@ -149,7 +153,7 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 
 	 * @param percent
@@ -187,7 +191,7 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 
 	 * @param pointX
@@ -215,7 +219,7 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 
 		float dx = -(newPointX - pointX);
 		float dy = -(newPointY - pointY);
-		
+
 		float posX = b.getWorldX();
 		float posY = b.getWorldY();
 		b.setWorldX(posX + dx);
