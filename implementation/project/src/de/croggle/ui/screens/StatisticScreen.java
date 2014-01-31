@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -23,7 +24,6 @@ import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
-import de.croggle.ui.actors.PagedScrollPane;
 
 /**
  * Screen which enables the teacher or parent to control the progress of every
@@ -73,7 +73,6 @@ public class StatisticScreen extends AbstractScreen implements
 			}
 		});
 
-		PagedScrollPane pager = new PagedScrollPane();
 		TextButtonStyle buttonStyle = helper.getTextButtonStyleSquare();
 		actionsButton = new TextButton(_("statistic_tab_actions"), buttonStyle);
 		progressButton = new TextButton(_("statistic_tab_progress"),
@@ -84,6 +83,12 @@ public class StatisticScreen extends AbstractScreen implements
 		actionsButton.addListener(listener);
 		progressButton.addListener(listener);
 		gameButton.addListener(listener);
+
+		// set up button group for always having at most one tab checked
+		ButtonGroup group = new ButtonGroup(actionsButton, progressButton,
+				gameButton);
+		group.setMaxCheckCount(1);
+		group.setUncheckLast(true);
 
 		Table tabBarTable = new Table();
 		tabBarTable.defaults().size(350, 100);

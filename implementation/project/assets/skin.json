@@ -15,7 +15,7 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 	round: { down: widgets/button-round-down, up: widgets/button-round, font: default-font, fontColor: white, downFontColor: red },
 	level: { down: widgets/button-blue-down, up: widgets/button-blue, checked: widgets/button, disabled: widgets/button-disabled,
 			 font: default-font, fontColor: white },
-	square: { up: widgets/button-square, font: default-font, fontColor: white }
+	square: { up: widgets/button-square, checked: widgets/button-square-checked, font: default-font, fontColor: white }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: { font: default-font, fontColor: white }
