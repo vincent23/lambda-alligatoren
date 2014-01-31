@@ -16,7 +16,7 @@ public class PatternBuilder {
 	public static Pixmap generateCircle(int width) {
 		final Pixmap pattern = generateEmpty(width);
 		pattern.setColor(0, 0, 0, 1);
-		pattern.fillCircle(width / 2, width / 2, width / 3);
+		pattern.fillCircle(width / 2, width / 2, (int) (.35 * width));
 		return pattern;
 	}
 
