@@ -65,8 +65,10 @@ public class BoardActor extends Group implements SettingChangeListener {
 	 * ActorLayoutConfiguration given in the constructor
 	 */
 	private boolean colorBlind;
-	
+
 	private boolean zoomAndPanEnabled = false;
+
+	private boolean userInteractionEnabled = false;
 
 	/**
 	 * Creates a new BoardActor. The actor layout of the board's representation
@@ -81,13 +83,24 @@ public class BoardActor extends Group implements SettingChangeListener {
 	public BoardActor(Board b, ActorLayoutConfiguration config) {
 		this.config = config;
 		colorBlind = config.isColorBlindEnabled();
+
+		// initialize world pane
 		this.world = new WorldPane(this);
-		setZoomAndPanEnabled(true);
 		super.addActor(world);
+
+		// initialize layout by calling onBoardRebuilt. Needs world to add
+		// actors to.
 		boardEventListener = new BoardActorBoardEventListener(this);
-		userInteraction = new BoardActorLayoutUserInteraction(this);
 		boardEventListener.onBoardRebuilt(b);
 
+		// initialize zoom and pan. Needs layout to derive limits from.
+		zoomAndPan = new BoardActorZoomAndPan(this);
+		setZoomAndPanEnabled(true);
+		
+		// initialize user interaction listeners on layout
+		userInteraction = new BoardActorLayoutUserInteraction(this);
+		setUserLayoutInteractionEnabled(true);
+		
 		initializePosition();
 	}
 
@@ -165,16 +178,45 @@ public class BoardActor extends Group implements SettingChangeListener {
 		this.layout = layout;
 	}
 
-	WorldPane getWorld() {
-		return world;
+	public Vector2 boardActorToWorldCoordinates(Vector2 coords, float scale) {
+		return world.parentToLocalCoordinates(coords, scale);
+	}
+
+	public Vector2 worldToBoardActorCoordinates(Vector2 coords, float scale) {
+		return world.localToParentCoordinates(coords, scale);
+	}
+
+	/**
+	 * Unsafe zoom method. Used by {@link BoardActorZoomAndPan}. Use
+	 * {@link BoardActorZoomAndPan} methods for better safety.
+	 * 
+	 * @param zoom
+	 */
+	void setZoom(float zoom) {
+		world.setScale(zoom);
+	}
+	
+	void clearWorld() {
+		world.clearChildren();
+	}
+	
+	void addToWorld(Actor actor) {
+		world.addActor(actor);
+	}
+	
+	void removeFromWorld(Actor actor) {
+		world.removeActor(actor);
+	}
+	
+	void updateUserLayoutInteraction() {
+		if (userInteractionEnabled) {
+			userInteraction.unregisterLayoutListeners();
+			userInteraction.registerLayoutListeners();
+		}
 	}
 
 	ActorLayoutConfiguration getLayoutConfiguration() {
 		return config;
-	}
-	
-	BoardActorLayoutUserInteraction getUserInteractionManager() {
-		return userInteraction;
 	}
 
 	float getWorldX() {
@@ -290,10 +332,25 @@ public class BoardActor extends Group implements SettingChangeListener {
 		if (zoomAndPanEnabled != this.zoomAndPanEnabled) {
 			this.zoomAndPanEnabled = zoomAndPanEnabled;
 			if (zoomAndPanEnabled) {
-				zoomAndPan = new BoardActorZoomAndPan(this);
+				//zoomAndPan = new BoardActorZoomAndPan(this);
 				this.addListener(zoomAndPan);
 			} else {
 				this.removeListener(zoomAndPan);
+			}
+		}
+	}
+
+	public boolean isUserLayoutInteractionEnabled() {
+		return userInteractionEnabled;
+	}
+
+	public void setUserLayoutInteractionEnabled(boolean userInteractionEnabled) {
+		if (userInteractionEnabled != this.userInteractionEnabled) {
+			this.userInteractionEnabled = userInteractionEnabled;
+			if (userInteractionEnabled) {
+				userInteraction.registerLayoutListeners();
+			} else {
+				userInteraction.unregisterLayoutListeners();
 			}
 		}
 	}

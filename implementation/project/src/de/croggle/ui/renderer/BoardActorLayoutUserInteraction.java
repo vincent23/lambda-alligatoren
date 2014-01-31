@@ -23,10 +23,16 @@ class BoardActorLayoutUserInteraction {
 			if (child.getBoardObject() instanceof ColoredBoardObject) {
 				ColoredBoardObject o = (ColoredBoardObject) child
 						.getBoardObject();
-				// if (o.isRecolorable()) {
-				child.addListener(new RecolorPopupListener(o));
-				// }
+				if (o.isRecolorable()) {
+					child.addListener(new RecolorPopupListener(o));
+				}
 			}
+		}
+	}
+	
+	void unregisterLayoutListeners() {
+		for (BoardObjectActor actor : b.getLayout()) {
+			actor.clearListeners();
 		}
 	}
 

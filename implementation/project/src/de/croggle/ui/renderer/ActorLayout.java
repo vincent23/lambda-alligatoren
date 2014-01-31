@@ -138,14 +138,15 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 		// u = uniform object height
 		// p = vertical padding
 		// s = vertical scale factor
-		// Initial formula: boardHeight = sum i=1 to n ((uniformheight + verticalpadding) * scale^i)
-		// Wolfram Alpha: h = s * (s^n - 1) * (u + p) / (s - 1)
-		// => n = log (h * (s - 1) / (s * (u + p)) + 1) / log(s)
+		// Initial formula: h = sum i=0 to (n-1) ((u + p) * s^i)
+		// Wolfram Alpha: h = (s^n - 1) * (u + p) / (s - 1)
+		// => n = log (h * (s - 1) / (u + p) + 1) / log(s)
 		float h = getHeightInPixels();
 		float s = config.getVerticalScaleFactor();
 		float u = config.getUniformObjectHeight();
 		float p = config.getVerticalPadding();
-		return (int) Math.round(Math.log(h * (s - 1) / (s * (u + p)) + 1) / Math.log(s));
+		float result = Math.round(Math.log(h * (s - 1) / (u + p) + 1) / Math.log(s));
+		return (int) result;
 	}
 	
 	/**
@@ -153,11 +154,20 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 	 * @return
 	 */
 	public float getMinimumScale() {
-		// see getHeightInActors for formula explanation
+		// variables: 
+		// h = board height
+		// u = uniform object height
+		// p = vertical padding
+		// s = vertical scale factor
+		// Initial formula: h = sum i=0 to (n-1) ((u + p) * s^i)
+		// Wolfram Alpha: h = (s^n - 1) * (u + p) / (s - 1)
+		// => s^n = h * (s - 1) / (u + p) + 1
 		float h = getHeightInPixels();
 		float s = config.getVerticalScaleFactor();
 		float u = config.getUniformObjectHeight();
 		float p = config.getVerticalPadding();
-		return h * (s - 1.f) / (s * (u + p)) + 1.f;
+		float result = h * (s - 1.f) / (u + p) + 1.f;
+		getHeightInActors();
+		return result;
 	}
 }

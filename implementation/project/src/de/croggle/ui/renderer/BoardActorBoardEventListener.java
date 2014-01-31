@@ -84,7 +84,7 @@ class BoardActorBoardEventListener implements BoardEventListener {
 				for (InternalBoardObject eaten : eatenLst) {
 					eatenActor = b.getLayout().getActor(eaten);
 					b.getLayout().removeActor(eatenActor);
-					b.getWorld().removeActor(eatenActor);
+					b.removeFromWorld(eatenActor);
 				}
 				removeObjectAnimated(eater);
 				applyDeltasAnimated(b.getLayout().getDeltasToFix());
@@ -114,7 +114,7 @@ class BoardActorBoardEventListener implements BoardEventListener {
 			protected void end() {
 				BoardObjectActor actor = b.getLayout().getActor(object);
 				b.getLayout().removeActor(actor);
-				b.getWorld().removeActor(actor);
+				b.removeFromWorld(actor);
 				applyDeltasAnimated(b.getLayout().getDeltasToFix());
 			}
 		});
@@ -141,12 +141,12 @@ class BoardActorBoardEventListener implements BoardEventListener {
 	 */
 	@Override
 	public final void onBoardRebuilt(Board board) {
-		b.getWorld().clearChildren();
+		b.clearWorld();
 		b.setLayout(ActorLayoutBuilder.build(board, b.getLayoutConfiguration()));
 		for (BoardObjectActor actor : b.getLayout()) {
-			b.getWorld().addActor(actor);
+			b.addToWorld(actor);
 		}
-		b.getUserInteractionManager().registerLayoutListeners();
+		b.updateUserLayoutInteraction();
 	}
 
 	/**
@@ -217,7 +217,7 @@ class BoardActorBoardEventListener implements BoardEventListener {
 			actor = delta.getActor();
 			actor.setScale(0.f);
 			b.getLayout().addActor(actor);
-			b.getWorld().addActor(actor);
+			b.addToWorld(actor);
 			ScaleToAction scaleAction = Actions.scaleTo(1, 1, animDuration);
 			actor.addAction(scaleAction);
 		}

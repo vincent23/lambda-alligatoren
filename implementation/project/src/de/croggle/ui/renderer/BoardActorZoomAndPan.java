@@ -80,7 +80,6 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 
 		// zoom limits
 		float lowestScale = layout.getMinimumScale();
-		System.out.println("lowestScale: " + lowestScale);
 		// allow maximum enlargement to have the smallest object being displayed
 		// with half the screen size
 		maxZoom = this.b.getWidth()
@@ -183,7 +182,7 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 
 	private boolean setZoom(float zoom, boolean calculatePanLimits) {
 		if (zoom > minZoom && zoom <= maxZoom) {
-			b.getWorld().setScale(zoom);
+			b.setZoom(zoom);
 			if (calculatePanLimits) {
 				calculatePanLimits(zoom);
 			}
@@ -212,8 +211,8 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 		 */
 		point.x = pointX;
 		point.y = pointY;
-		point = b.getWorld().parentToLocalCoordinates(point, oldZoom);
-		point = b.getWorld().localToParentCoordinates(point, newZoom);
+		point = b.boardActorToWorldCoordinates(point, oldZoom);
+		point = b.worldToBoardActorCoordinates(point, newZoom);
 		float newPointX = point.x;
 		float newPointY = point.y;
 
