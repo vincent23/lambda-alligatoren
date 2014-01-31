@@ -28,25 +28,27 @@ public class IngameMenuDialog extends Dialog {
 		ImageTextButton continueGame = new ImageTextButton("Continue",
 				helper.getImageTextButtonStyleTransparent("widgets/icon-next"));
 		ImageTextButton reset = new ImageTextButton("Reset",
-				helper.getImageTextButtonStyleTransparent("widgets/dummy-icon"));
+				helper.getImageTextButtonStyleTransparent("widgets/icon-reset"));
 		ImageTextButton settings = new ImageTextButton(
 				"Settings",
 				helper.getImageTextButtonStyleTransparent("widgets/icon-settings"));
-		ImageTextButton levelOverview = new ImageTextButton("Level Overview",
-				helper.getImageTextButtonStyleTransparent("widgets/dummy-icon"));
+		ImageTextButton levelOverview = new ImageTextButton(
+				"Level Overview",
+				helper.getImageTextButtonStyleTransparent("widgets/icon-levels"));
 		ImageTextButton achievements = new ImageTextButton(
 				"Achievements",
 				helper.getImageTextButtonStyleTransparent("widgets/icon-trophy"));
 		ImageTextButton mainMenu = new ImageTextButton("Main Menu",
-				helper.getImageTextButtonStyleTransparent("widgets/dummy-icon"));
+				helper.getImageTextButtonStyleTransparent("widgets/icon-home"));
 
-		// hard code ALL the stuff!
-		continueGame.getImageCell().padRight(50).padLeft(100).size(80);
-		reset.getImageCell().padRight(50).padLeft(100).size(80);
-		settings.getImageCell().padRight(50).padLeft(100).size(80);
-		levelOverview.getImageCell().padRight(50).padLeft(100).size(80);
-		achievements.getImageCell().padRight(50).padLeft(100).size(80);
-		mainMenu.getImageCell().padRight(50).padLeft(100).size(80);
+		// hard code ALL the stuff! (force buttons to look like they are
+		// supposed to look)
+		continueGame.getImageCell().padRight(50).padLeft(100).size(100);
+		reset.getImageCell().padRight(50).padLeft(100).size(100);
+		settings.getImageCell().padRight(50).padLeft(100).size(100);
+		levelOverview.getImageCell().padRight(50).padLeft(100).size(100);
+		achievements.getImageCell().padRight(50).padLeft(100).size(100);
+		mainMenu.getImageCell().padRight(50).padLeft(100).size(100);
 
 		continueGame.getLabelCell().expandX().left();
 		reset.getLabelCell().expandX().left();
