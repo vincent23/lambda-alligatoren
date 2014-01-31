@@ -46,25 +46,29 @@ public class MainMenuScreen extends AbstractScreen implements
 	}
 
 	private void fillTable() {
+		StyleHelper helper = StyleHelper.getInstance();
+
 		Table profileButtonTable = new Table();
 		Table leftTable = new Table();
 
-		ImageButton credits = new ImageButton(StyleHelper.getInstance()
-				.getImageButtonStyleRound("widgets/icon-hint"));
-		ImageButton play = new ImageButton(StyleHelper.getInstance()
-				.getImageButtonStyleRound("widgets/icon-play"));
-		ImageButton stats = new ImageButton(StyleHelper.getInstance()
-				.getImageButtonStyleRound("widgets/icon-stats"));
-		ImageButton settings = new ImageButton(StyleHelper.getInstance()
-				.getImageButtonStyleRound("widgets/icon-settings"));
-		ImageButton achievements = new ImageButton(StyleHelper.getInstance()
-				.getImageButtonStyleRound("widgets/icon-trophy"));
+		ImageButton title = new ImageButton(helper.getDrawable("widgets/title"));
+		// ImageButton credits = new ImageButton(
+		// helper.getImageButtonStyleRound("widgets/icon-hint"));
+		ImageButton play = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-play"));
+		ImageButton stats = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-stats"));
+		ImageButton settings = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-settings"));
+		ImageButton achievements = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-trophy"));
 
 		ProfileButton profileButton = new ProfileButton(
 				profileController.getCurrentProfile());
 
 		// add listeners
-		credits.addListener(new CreditsScreenClickListener());
+		title.addListener(new CreditsScreenClickListener());
+		// credits.addListener(new CreditsScreenClickListener());
 		play.addListener(new PackagesScreenClickListener());
 		stats.addListener(new StatisticScreenClickListener());
 		settings.addListener(new SettingsScreenClickListener());
@@ -75,7 +79,8 @@ public class MainMenuScreen extends AbstractScreen implements
 
 		leftTable.pad(30);
 		leftTable.defaults().size(100);
-		leftTable.add(credits).left();
+		// leftTable.add(credits).left();
+		leftTable.add(title).colspan(3).size(700, 150);
 		leftTable.row();
 		leftTable.add(play).expandY().colspan(3).size(200);
 		leftTable.row();
@@ -83,7 +88,7 @@ public class MainMenuScreen extends AbstractScreen implements
 		leftTable.add(stats).bottom().space(20);
 		leftTable.add(achievements).right().bottom().expandX().size(150);
 
-		profileButtonTable.add(profileButton).padRight(50).width(300)
+		profileButtonTable.add(profileButton).padRight(30).width(300)
 				.height(400);
 
 		table.add(leftTable).expand().fill();
