@@ -20,8 +20,8 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	private boolean valid = false;
 	private boolean colorBlind = false;
 
-	public ColoredBoardObjectActor(ColoredBoardObject object, boolean colorBlindEnabled,
-			String foregroundPath, String maskPath) {
+	public ColoredBoardObjectActor(ColoredBoardObject object,
+			boolean colorBlindEnabled, String foregroundPath, String maskPath) {
 		super(object);
 
 		AssetManager assetManager = AssetManager.getInstance();
@@ -63,17 +63,16 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	public void invalidate() {
 		valid = false;
 	}
-	
+
 	public void setColorBlindEnabled(boolean enabled) {
 		if (enabled == colorBlind) {
 			return;
-		}
-		else {
+		} else {
 			colorBlind = enabled;
 			invalidate();
 		}
 	}
-	
+
 	public boolean getColorBlindEnabled() {
 		return colorBlind;
 	}
@@ -88,7 +87,8 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		batch.setBlendFunction(GL20.GL_ONE, GL20.GL_ZERO);
 
 		// draw alpha mask sprite(s)
-		batch.draw(mask, getX(), getY(), getWidth() * getScaleX(), getHeight() * getScaleY());
+		batch.draw(mask, getX(), getY(), getWidth() * getScaleX(), getHeight()
+				* getScaleY());
 
 		// flush the batch to the GPU
 		batch.flush();
@@ -112,7 +112,11 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		// Math.ceil(getWidth()), (int) Math.ceil(getHeight()));
 
 		// draw our background to be masked
-		batch.draw(background, getX(), getY(), getWidth() * getScaleX(), getHeight() * getScaleY());
+		final float width = getWidth() * getScaleX();
+		final float height = getHeight() * getScaleY();
+		final int n = 10;
+		batch.draw(background, getX(), getY(), width, height, 0, 0, n, n
+				* height / width);
 
 		batch.flush();
 		// disable scissor before continuing
@@ -122,7 +126,8 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	}
 
 	private void drawForeground(SpriteBatch batch) {
-		batch.draw(foreground, getX(), getY(), getWidth() * getScaleX(), getHeight() * getScaleY());
+		batch.draw(foreground, getX(), getY(), getWidth() * getScaleX(),
+				getHeight() * getScaleY());
 
 		// flush the batch to the GPU
 		batch.flush();
@@ -154,7 +159,8 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		// restore alpha value that was removed by mask
 		Gdx.gl.glColorMask(false, false, false, true);
 		batch.setBlendFunction(GL20.GL_ONE, GL20.GL_ZERO);
-		batch.draw(background, getX(), getY(), getWidth() * getScaleX(), getHeight() * getScaleY());
+		batch.draw(background, getX(), getY(), getWidth() * getScaleX(),
+				getHeight() * getScaleY());
 		batch.flush();
 		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glColorMask(true, true, true, true);

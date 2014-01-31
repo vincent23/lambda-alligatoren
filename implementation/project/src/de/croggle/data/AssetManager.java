@@ -2,6 +2,8 @@ package de.croggle.data;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.Texture.TextureWrap;
 
 import de.croggle.game.Color;
 import de.croggle.util.PatternBuilder;
@@ -47,13 +49,13 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		for (int i = 0; i < patterns.length; i++) {
 			switch (i % 3) {
 			case 0:
-				patterns[i] = PatternBuilder.generateHorizontalLines(40, 4);
+				patterns[i] = PatternBuilder.generateHorizontalLines(8, 4);
 				break;
 			case 1:
-				patterns[i] = PatternBuilder.generateVerticalLines(40, 4);
+				patterns[i] = PatternBuilder.generateVerticalLines(8, 4);
 				break;
 			case 2:
-				patterns[i] = PatternBuilder.generateCheckerboard(48, 8);
+				patterns[i] = PatternBuilder.generateCheckerboard(16, 8);
 				break;
 			}
 		}
@@ -67,16 +69,14 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	}
 
 	public Texture getPatternTexture(Color c) {
-		// return new Texture(uncoloredColor); // for testing
-		// TODO implement buildPatterns first
-		// throw new UnsupportedOperationException("Not implemented yet");
-
 		if (c.equals(Color.uncolored())) {
 			return new Texture(uncoloredColor);
 		}
-		final Texture texture = new Texture(patterns[c.getId()]);
-		// TODO results in black texture
-		// texture.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
+		final Texture texture = new Texture(patterns[c.getId()], true);
+		// apparently texture size has to be a power of two for this to work
+		texture.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
+		texture.setFilter(TextureFilter.MipMapLinearLinear,
+				TextureFilter.MipMapLinearLinear);
 		return texture;
 	}
 
