@@ -7,22 +7,31 @@ public class PatternBuilder {
 
 	private final static float alpha = .8f;
 
-	public static Pixmap generateEmpty(int width) {
+	public static Pixmap generateEmpty(int width, boolean inverted) {
 		final Pixmap pattern = new Pixmap(width, width, Pixmap.Format.RGB888);
-		pattern.setColor(1, 1, 1, 1);
+		if (inverted) {
+			pattern.setColor(0, 0, 0, 1);
+		} else {
+			pattern.setColor(1, 1, 1, 1);
+		}
 		pattern.fill();
 		return pattern;
 	}
 
-	public static Pixmap generateCircle(int width) {
-		final Pixmap pattern = generateEmpty(width);
-		pattern.setColor(0, 0, 0, 1);
+	public static Pixmap generateCircle(int width, boolean inverted) {
+		final Pixmap pattern = generateEmpty(width, inverted);
+		if (inverted) {
+			pattern.setColor(1, 1, 1, alpha);
+		} else {
+			pattern.setColor(0, 0, 0, alpha);
+		}
+		final int center = width / 2;
 		pattern.fillCircle(width / 2, width / 2, (int) (.35 * width));
 		return pattern;
 	}
 
 	public static Pixmap generateVerticalLines(int width, int lineWidth) {
-		final Pixmap pattern = generateEmpty(width);
+		final Pixmap pattern = generateEmpty(width, false);
 		final int n = width / (lineWidth * 2);
 		pattern.setColor(0, 0, 0, alpha);
 		for (int i = 0; i < n; i++) {
@@ -32,7 +41,7 @@ public class PatternBuilder {
 	}
 
 	public static Pixmap generateHorizontalLines(int width, int lineWidth) {
-		final Pixmap pattern = generateEmpty(width);
+		final Pixmap pattern = generateEmpty(width, false);
 		final int n = width / (lineWidth * 2);
 		pattern.setColor(0, 0, 0, alpha);
 		for (int i = 0; i < n; i++) {
@@ -42,7 +51,7 @@ public class PatternBuilder {
 	}
 
 	public static Pixmap generateCheckerboard(int width, int tileWidth) {
-		final Pixmap pattern = generateEmpty(width);
+		final Pixmap pattern = generateEmpty(width, false);
 		final int n = width / (tileWidth * 2);
 		pattern.setColor(0, 0, 0, alpha);
 		for (int y = 0; y < 2 * n; y++) {
@@ -55,9 +64,13 @@ public class PatternBuilder {
 	}
 
 	public static Pixmap generateRhombus(int width, int rhombusWidth,
-			int rhombusHeight) {
-		final Pixmap pattern = generateEmpty(width);
-		pattern.setColor(0, 0, 0, alpha);
+			int rhombusHeight, boolean inverted) {
+		final Pixmap pattern = generateEmpty(width, inverted);
+		if (inverted) {
+			pattern.setColor(1, 1, 1, alpha);
+		} else {
+			pattern.setColor(0, 0, 0, 1);
+		}
 		final int center = width / 2;
 		final int rhombusWidth2 = rhombusWidth / 2;
 		final int rhombusHeight2 = rhombusHeight / 2;
