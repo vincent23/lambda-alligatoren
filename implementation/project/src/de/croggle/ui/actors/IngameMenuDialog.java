@@ -26,17 +26,19 @@ public class IngameMenuDialog extends Dialog {
 		StyleHelper helper = StyleHelper.getInstance();
 
 		ImageTextButton continueGame = new ImageTextButton("Continue",
-				helper.getImageTextButtonStyle("widgets/icon-next"));
+				helper.getImageTextButtonStyleTransparent("widgets/icon-next"));
 		ImageTextButton reset = new ImageTextButton("Reset",
-				helper.getImageTextButtonStyle("widgets/dummy-icon"));
-		ImageTextButton settings = new ImageTextButton("Settings",
-				helper.getImageTextButtonStyle("widgets/icon-settings"));
+				helper.getImageTextButtonStyleTransparent("widgets/dummy-icon"));
+		ImageTextButton settings = new ImageTextButton(
+				"Settings",
+				helper.getImageTextButtonStyleTransparent("widgets/icon-settings"));
 		ImageTextButton levelOverview = new ImageTextButton("Level Overview",
-				helper.getImageTextButtonStyle("widgets/dummy-icon"));
-		ImageTextButton achievements = new ImageTextButton("Achievements",
-				helper.getImageTextButtonStyle("widgets/icon-trophy"));
+				helper.getImageTextButtonStyleTransparent("widgets/dummy-icon"));
+		ImageTextButton achievements = new ImageTextButton(
+				"Achievements",
+				helper.getImageTextButtonStyleTransparent("widgets/icon-trophy"));
 		ImageTextButton mainMenu = new ImageTextButton("Main Menu",
-				helper.getImageTextButtonStyle("widgets/dummy-icon"));
+				helper.getImageTextButtonStyleTransparent("widgets/dummy-icon"));
 
 		// hard code ALL the stuff!
 		continueGame.getImageCell().padRight(50).padLeft(100).size(80);

@@ -25,7 +25,8 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 	round: { down: widgets/button-round-down, up: widgets/button-round }
 },
 com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
-	default: { up: widgets/button, font: default-font, fontColor: white }
+	default: { up: widgets/button, font: default-font, fontColor: white },
+	transparent: { down: widgets/button-transparent-checked, font: default-font, fontColor: white }
 },
 com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 	default: { checkboxOn: widgets/checkbox-checked, checkboxOff: widgets/checkbox, font: default-font, fontColor: white }
@@ -34,10 +35,11 @@ com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
 	default: { background: widgets/slider-horizontal, knob: widgets/slider-knob }
 },
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
-	default: { background: widgets/textfield, font: default-font, fontColor: white }
+	default: { background: widgets/textfield, font: default-font, fontColor: black }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
-	default: { titleFont: default-font, background: widgets/default-background, titleFontColor: white }
+	default: { titleFont: default-font, background: widgets/default-background, titleFontColor: white },
+	dialog: { titleFont: default-font, background: widgets/dialog-background, titleFontColor: white }
 },
 com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
 	default: {

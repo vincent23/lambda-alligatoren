@@ -157,9 +157,20 @@ public class StyleHelper {
 		return skin.get(ImageTextButtonStyle.class);
 	}
 
+	public ImageTextButtonStyle getImageTextButtonStyleTransparent() {
+		return skin.get("transparent", ImageTextButtonStyle.class);
+	}
+
 	public ImageTextButtonStyle getImageTextButtonStyle(String icon) {
 		ImageTextButtonStyle style = new ImageTextButtonStyle(
 				getImageTextButtonStyle());
+		style.imageUp = skin.getDrawable(icon);
+		return style;
+	}
+
+	public ImageTextButtonStyle getImageTextButtonStyleTransparent(String icon) {
+		ImageTextButtonStyle style = new ImageTextButtonStyle(
+				getImageTextButtonStyleTransparent());
 		style.imageUp = skin.getDrawable(icon);
 		return style;
 	}
@@ -196,6 +207,10 @@ public class StyleHelper {
 	}
 
 	public WindowStyle getDialogStyle() {
+		return skin.get("dialog", WindowStyle.class);
+	}
+
+	public WindowStyle getWindowStyle() {
 		return skin.get(WindowStyle.class);
 	}
 
