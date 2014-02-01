@@ -23,8 +23,7 @@ public class HintPerLevelAchievement extends PerLevelAchievement {
 			// instead of >
 			index++;
 		}
-		// TODO: decide whether I have to correct the index of the Achievement
-		// here.
+		
 		return index;
 	}
 
@@ -32,8 +31,7 @@ public class HintPerLevelAchievement extends PerLevelAchievement {
 	public void initialize() {
 		setIndex(0);
 		int[] stages = { 1, 0 };
-		String[] emblemPathachieved = new String[2]; // TODO: Path to the Emblems
-												// reintun.
+		String[] emblemPathachieved = new String[2]; 
 		String[] emblemPathnotachieved = new String[2];
 		String[] description = new String[2];
 		description[0] = "initial state, do not show this stage as achievement";

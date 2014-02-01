@@ -20,8 +20,7 @@ public class AlligatorsEatenAchievement extends Achievement {
 				&& alligatorsEaten >= getStage(index + 1)) {
 			index++;
 		}
-		// TODO: decide whether I have to correct the index of the Achievement
-		// here.: I did: I ll do it
+		// done: decision against updating index 
 		return index;
 	}
 

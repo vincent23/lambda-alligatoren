@@ -19,8 +19,6 @@ public class LevelAchievement extends Achievement {
 				&& newLevelsComplete >= getStage(index + 1)) {
 			index++;
 		}
-		// TODO: decide whether I have to correct the index of the Achievement
-		// here.
 		return index;
 	}
 
@@ -28,8 +26,7 @@ public class LevelAchievement extends Achievement {
 	public void initialize() {
 		setIndex(0);
 		int[] stages = { 0, 1, 2, 4, 6, 8, 10, 12 };
-		String[] emblemPathachieved = new String[8]; // TODO: Path zu den Emblems
-												// reintun.
+		String[] emblemPathachieved = new String[8];
 		String[] emblemPathnotachieved = new String[8];
 		String[] description = new String[8];
 		for (int i = 1; i < 8; i++) {

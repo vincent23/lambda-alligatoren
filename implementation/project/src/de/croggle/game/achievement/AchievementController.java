@@ -44,7 +44,6 @@ public class AchievementController {
 		this.availableAchievements = new ArrayList<Achievement>();
 		this.latestUnlockedAchievements = new ArrayList<Achievement>();
 		this.game = game;
-		// TODO: Texture Altas initialisieren
 		initiateAvailableAchievements();
 
 	}

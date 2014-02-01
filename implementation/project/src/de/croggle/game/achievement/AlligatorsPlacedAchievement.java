@@ -20,8 +20,6 @@ public class AlligatorsPlacedAchievement extends Achievement {
 				&& alligatorsPlaced >= getStage(index + 1)) {
 			index++;
 		}
-		// TODO: decide whether I have to correct the index of the Achievement
-		// here.
 		return index;
 	}
 
@@ -29,8 +27,7 @@ public class AlligatorsPlacedAchievement extends Achievement {
 	public void initialize() {
 		setIndex(0);
 		int[] stages = { 0, 10, 25, 50, 100, 200, 300, 500, 750, 1000, 2000 };
-		String[] emblemPathachieved = new String[11]; // TODO: Path zu den Emblems
-												// reintun.
+		String[] emblemPathachieved = new String[11]; 
 		String[] emblemPathnotachieved = new String[11];
 		String[] description = new String[11];
 		for (int i = 1; i < 10; i++) {
