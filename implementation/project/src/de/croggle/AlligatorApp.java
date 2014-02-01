@@ -18,6 +18,7 @@ import de.croggle.game.achievement.AchievementController;
 import de.croggle.game.board.IllegalBoardException;
 import de.croggle.game.level.LevelController;
 import de.croggle.game.level.LevelPackagesController;
+import de.croggle.game.level.MultipleChoiceLevel;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.screens.AbstractScreen;
@@ -28,6 +29,7 @@ import de.croggle.ui.screens.LevelsOverviewScreen;
 import de.croggle.ui.screens.LoadingScreen;
 import de.croggle.ui.screens.MainMenuScreen;
 import de.croggle.ui.screens.PlacementModeScreen;
+import de.croggle.ui.screens.PlacementModeScreenMC;
 import de.croggle.ui.screens.ProfileSetAvatarScreen;
 import de.croggle.ui.screens.ProfileSetNameScreen;
 import de.croggle.ui.screens.QuitGameOverlay;
@@ -341,7 +343,11 @@ public class AlligatorApp extends Game {
 
 	public void showPlacementModeScreen(GameController gameController) {
 		switchScreen();
-		setScreen(new PlacementModeScreen(this, gameController));
+		if(gameController.getLevel() instanceof MultipleChoiceLevel){
+			setScreen(new PlacementModeScreenMC(this, gameController));
+		}else{
+			setScreen(new PlacementModeScreen(this, gameController));
+		}
 	}
 
 	public void showSimulationModeScreen(GameController gameController)
