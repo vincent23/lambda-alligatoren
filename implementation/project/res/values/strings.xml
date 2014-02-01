@@ -10,6 +10,12 @@
 		\n
 		After an idea by Bret Victor\n
 		http://worrydream.com</string>
+	<string name="ingame_menu_continue">Continue</string>
+	<string name="ingame_menu_reset">Reset</string>
+	<string name="ingame_menu_main_menu">Main Menu</string>
+	<string name="ingame_menu_settings">Settings</string>
+	<string name="ingame_menu_level_overview">Level Overview</string>
+	<string name="ingame_menu_achievements">Achievements</string>
     <string name="achievement_minutes_played">minutes played</string>
     <string name="achievement_hours_played">hours played</string>
     <string name="achievement_time_final">:(  you played this game for way to long</string>

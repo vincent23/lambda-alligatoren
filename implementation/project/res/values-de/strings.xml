@@ -10,6 +10,12 @@
 		\n
 		Nach einer Idee von Bret Victor\n
 		http://worrydream.com</string>
+	<string name="ingame_menu_continue">Fortsetzen</string>
+	<string name="ingame_menu_reset">Rücksetzen</string>
+	<string name="ingame_menu_main_menu">Hauptmenü</string>
+	<string name="ingame_menu_settings">Einstellungen</string>
+	<string name="ingame_menu_level_overview">Levelübersicht</string>
+	<string name="ingame_menu_achievements">Errungenschaften</string>
     <string name="achievement_minutes_played">Minuten gespielt</string>
     <string name="achievement_hours_played">Stunden gespielt</string>
     <string name="achievement_time_final">Beeindruckend wie lang du dieses Spiel gespielt hast</string>

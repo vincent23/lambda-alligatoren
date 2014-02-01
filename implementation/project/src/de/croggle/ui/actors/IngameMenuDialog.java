@@ -9,6 +9,8 @@ import de.croggle.AlligatorApp;
 import de.croggle.game.GameController;
 import de.croggle.ui.StyleHelper;
 
+import static de.croggle.data.LocalizationHelper._;
+
 public class IngameMenuDialog extends Dialog {
 
 	private AlligatorApp game;
@@ -25,20 +27,20 @@ public class IngameMenuDialog extends Dialog {
 	private void fillTable() {
 		StyleHelper helper = StyleHelper.getInstance();
 
-		ImageTextButton continueGame = new ImageTextButton("Continue",
+		ImageTextButton continueGame = new ImageTextButton(_("ingame_menu_continue"),
 				helper.getImageTextButtonStyleTransparent("widgets/icon-next"));
-		ImageTextButton reset = new ImageTextButton("Reset",
+		ImageTextButton reset = new ImageTextButton(_("ingame_menu_reset"),
 				helper.getImageTextButtonStyleTransparent("widgets/icon-reset"));
 		ImageTextButton settings = new ImageTextButton(
-				"Settings",
+				_("ingame_menu_settings"),
 				helper.getImageTextButtonStyleTransparent("widgets/icon-settings"));
 		ImageTextButton levelOverview = new ImageTextButton(
-				"Level Overview",
+				_("ingame_menu_level_overview"),
 				helper.getImageTextButtonStyleTransparent("widgets/icon-levels"));
 		ImageTextButton achievements = new ImageTextButton(
-				"Achievements",
+				_("ingame_menu_achievements"),
 				helper.getImageTextButtonStyleTransparent("widgets/icon-trophy"));
-		ImageTextButton mainMenu = new ImageTextButton("Main Menu",
+		ImageTextButton mainMenu = new ImageTextButton(_("ingame_menu_main_menu"),
 				helper.getImageTextButtonStyleTransparent("widgets/icon-home"));
 
 		// hard code ALL the stuff! (force buttons to look like they are
