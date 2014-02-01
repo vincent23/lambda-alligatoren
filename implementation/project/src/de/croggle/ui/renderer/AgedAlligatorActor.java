@@ -44,8 +44,10 @@ public class AgedAlligatorActor extends BoardObjectActor {
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		Color c = batch.getColor();
-		batch.setColor(getColor());
+		Color n = getColor();
+		batch.setColor(n.r, n.g, n.b, n.a * parentAlpha);
 		batch.draw(foreground, getX(), getY(), getWidth() * getScaleX(), getHeight() * getScaleY());
+		batch.flush();
 		batch.setColor(c);
 	}
 
