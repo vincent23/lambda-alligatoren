@@ -2,6 +2,7 @@ package de.croggle.game;
 
 import java.util.List;
 
+import de.croggle.AlligatorApp;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.AlligatorOverflowException;
 import de.croggle.game.board.Board;
@@ -55,7 +56,7 @@ public class Simulator {
 		this.steps = 0;
 
 		final List<BoardError> errors = FindBoardErrors.find(entranceBoard);
-		if (!errors.isEmpty()) {
+		if (!errors.isEmpty() || AlligatorApp.DEBUG) {
 			throw new IllegalBoardException();
 		}
 	}

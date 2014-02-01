@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
-
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
 import de.croggle.data.persistence.Setting;
@@ -25,7 +24,10 @@ import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.IngameMenuDialog;
 import de.croggle.ui.actors.PagedScrollPane;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
+import de.croggle.ui.renderer.AgedAlligatorActor;
 import de.croggle.ui.renderer.BoardActor;
+import de.croggle.ui.renderer.ColoredAlligatorActor;
+import de.croggle.ui.renderer.EggActor;
 
 /**
  * Screen which the player sees when entering Multiple choice levels.

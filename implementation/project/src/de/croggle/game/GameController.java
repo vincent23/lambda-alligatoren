@@ -38,10 +38,12 @@ public class GameController implements BoardEventListener {
 	private ColorController colorController;
 	private Level level;
 	private Statistic statisticsDelta; // changes during the current Level.
-	private BoardEventMessenger boardEventMessenger;
+	private BoardEventMessenger simulationMessenger;
+	private BoardEventMessenger placementMessenger;
 	// listeners of the statisticsDelta
 	private List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
-	//TODO find better solution to determine whether level is an Multiple Choice level
+	// TODO find better solution to determine whether level is an Multiple
+	// Choice level
 	private boolean isMC;
 	private boolean answerMcIsValid;
 	private int answerMC;
@@ -58,7 +60,8 @@ public class GameController implements BoardEventListener {
 		this.shownBoard = level.getInitialBoard();
 		this.userBoard = shownBoard;
 		this.statisticsDelta = new Statistic();
-		this.boardEventMessenger = new BoardEventMessenger();
+		this.simulationMessenger = new BoardEventMessenger();
+		this.placementMessenger = new BoardEventMessenger();
 		this.statisticsDeltaProcessors = new ArrayList<StatisticsDeltaProcessor>();
 	}
 
@@ -87,9 +90,8 @@ public class GameController implements BoardEventListener {
 	 * @throws IllegalBoardException
 	 */
 	public void enterSimulation() throws IllegalBoardException {
-		userBoard = shownBoard.copy();
-		simulator = new Simulator(shownBoard, colorController,
-				boardEventMessenger);
+		simulator = new Simulator(shownBoard.copy(), colorController,
+				simulationMessenger);
 		shownBoard = simulator.getCurrentBoard();
 	}
 
@@ -134,8 +136,8 @@ public class GameController implements BoardEventListener {
 	 * @param listener
 	 *            the listener which should receive the events
 	 */
-	public void registerBoardEventListener(BoardEventListener listener) {
-		boardEventMessenger.register(listener);
+	public void registerSimulationBoardEventListener(BoardEventListener listener) {
+		simulationMessenger.register(listener);
 	}
 
 	/**
@@ -145,8 +147,32 @@ public class GameController implements BoardEventListener {
 	 * @param listener
 	 *            the listener to unregister
 	 */
-	public void unregisterBoardEventListener(BoardEventListener listener) {
-		boardEventMessenger.unregister(listener);
+	public void unregisterSimulationBoardEventListener(
+			BoardEventListener listener) {
+		simulationMessenger.unregister(listener);
+	}
+
+	/**
+	 * Registers a listener to which board events should be sent on board
+	 * changes during placement.
+	 * 
+	 * @param listener
+	 *            the listener which should receive the events
+	 */
+	public void registerPlacementBoardEventListener(BoardEventListener listener) {
+		placementMessenger.register(listener);
+	}
+
+	/**
+	 * Unregisters a board event listener so that it won't receive future events
+	 * fired during placement.
+	 * 
+	 * @param listener
+	 *            the listener to unregister
+	 */
+	public void unregisterPlacementBoardEventListener(
+			BoardEventListener listener) {
+		placementMessenger.unregister(listener);
 	}
 
 	/**
@@ -209,11 +235,27 @@ public class GameController implements BoardEventListener {
 		simulator.undo();
 	}
 
+	/**
+	 * Resets the game. That means, while in placement mode, the board is reset
+	 * to the level's initial board. In simulation mode, the simulator will
+	 * reset the currently shown board with the state the board had when the
+	 * user entered simulation.
+	 */
 	public void reset() {
-		simulator.reset();
+		// TODO maybe keep track of state (placement/simulation) in dedicated
+		// variable?
+		if (simulator != null) {
+			simulator.reset();
+		} else {
+			userBoard = level.getInitialBoard();
+			placementMessenger.notifyBoardRebuilt(userBoard);
+		}
+
 	}
 
 	public Board getShownBoard() {
+		// TODO maybe keep track of state (placement/simulation) in dedicated
+		// variable?
 		if (simulator == null) {
 			return shownBoard;
 		} else {
@@ -224,37 +266,38 @@ public class GameController implements BoardEventListener {
 	public Level getLevel() {
 		return level;
 	}
-	
-	//TODO
-	public void setMCSelection( boolean answers[]){
+
+	// TODO
+	public void setMCSelection(boolean answers[]) {
 		boolean set = false;
-		for(int i = 0 ; i < answers.length; i++){
-			if(answers[i]){
-				if(set){
+		for (int i = 0; i < answers.length; i++) {
+			if (answers[i]) {
+				if (set) {
 					this.answerMcIsValid = false;
 					break;
-				}else{
+				} else {
 					this.answerMC = i;
 					this.answerMcIsValid = true;
 					set = true;
 				}
 			}
 		}
-		
+
 	}
-	
-	public void setMCtrue(){
+
+	public void setMCtrue() {
 		this.isMC = true;
 	}
-	public boolean getIsMC(){
+
+	public boolean getIsMC() {
 		return this.isMC;
 	}
-	
-	public boolean getAnswerMcIsValid(){
+
+	public boolean getAnswerMcIsValid() {
 		return this.answerMcIsValid;
 	}
-	
-	public int getAnswerMC(){
+
+	public int getAnswerMC() {
 		return this.answerMC;
 	}
 }

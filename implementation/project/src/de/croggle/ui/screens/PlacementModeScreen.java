@@ -116,6 +116,8 @@ public class PlacementModeScreen extends AbstractScreen implements
 		boardActor.setColorBlindEnabled(game.getSettingController()
 				.getCurrentSetting().isColorblindEnabled());
 		game.getSettingController().addSettingChangeListener(boardActor);
+		// used to make resetting the board via game controller possible
+		gameController.registerPlacementBoardEventListener(boardActor.getBoardEventListener());
 		final Table boardTable = new Table();
 		boardTable.add(boardActor).fill().expand();
 

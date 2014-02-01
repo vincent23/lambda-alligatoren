@@ -112,7 +112,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 		ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(cctrlr);
 		BoardActor boardActor = new BoardActor(b, config);
-		gameController.registerBoardEventListener(boardActor
+		gameController.registerSimulationBoardEventListener(boardActor
 				.getBoardEventListener());
 		boardActor.setColorBlindEnabled(game.getSettingController()
 				.getCurrentSetting().isColorblindEnabled());
