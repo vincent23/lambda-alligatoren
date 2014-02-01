@@ -19,10 +19,10 @@ import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.operations.FlattenTree;
 import de.croggle.game.event.BoardEventListener;
 
-class BoardActorBoardEventListener implements BoardEventListener {
+class BoardActorBoardChangeAnimator implements BoardEventListener {
 	private final BoardActor b;
 	
-	public BoardActorBoardEventListener(BoardActor b) {
+	public BoardActorBoardChangeAnimator(BoardActor b) {
 		this.b = b;
 	}
 	
