@@ -182,21 +182,7 @@ public class PlacementModeScreenMC extends AbstractScreen implements
 	}
 
 	private void checkZoom() {
-		if (zoomIn.isPressed() && !zoomIn.isDisabled()) {
-			zoomOut.setDisabled(false);
-			boolean canZoom = boardActor.zoomIn(ZOOM_RATE);
-			if (!canZoom) {
-				zoomIn.setDisabled(true);
-			}
-		}
-
-		if (zoomOut.isPressed() && !zoomOut.isDisabled()) {
-			zoomIn.setDisabled(false);
-			boolean canZoom = boardActor.zoomOut(ZOOM_RATE);
-			if (!canZoom) {
-				zoomOut.setDisabled(true);
-			}
-		}
+		//In a MC Level there is no zoom function
 	}
 
 	@Override
