@@ -1,36 +1,28 @@
 package de.croggle.ui.screens;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
-import android.util.Log;
-import de.croggle.ui.renderer.AgedAlligatorActor;
-import de.croggle.ui.renderer.ColoredAlligatorActor;
-import de.croggle.ui.renderer.EggActor;
+
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingChangeListener;
 import de.croggle.game.ColorController;
 import de.croggle.game.GameController;
-import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.IllegalBoardException;
-import de.croggle.game.level.Level;
 import de.croggle.game.level.LevelPackage;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.level.MultipleChoiceLevel;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.IngameMenuDialog;
-import de.croggle.ui.actors.ObjectBar;
 import de.croggle.ui.actors.PagedScrollPane;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
@@ -41,8 +33,6 @@ import de.croggle.ui.renderer.BoardActor;
  */
 public class PlacementModeScreenMC extends AbstractScreen implements
 		SettingChangeListener {
-
-	private static final float ZOOM_RATE = 3f;
 
 	private GameController gameController;
 	private BoardActor boardActor;
@@ -129,32 +119,29 @@ public class PlacementModeScreenMC extends AbstractScreen implements
 		
 		MultipleChoiceLevel level = (MultipleChoiceLevel)gameController.getLevel();
 		
-		final Table pagerTable = new Table();
-		
-		
 		PagedScrollPane pager = new PagedScrollPane();
 		
 		checkboxes = new CheckBox[3];
-		
+		boardActor = new BoardActor(level.getInitialBoard(), config);
+		boardActor.setColorBlindEnabled(game.getSettingController()
+				.getCurrentSetting().isColorblindEnabled());
+		game.getSettingController().addSettingChangeListener(boardActor);
+		boardActor.setZoomAndPanEnabled(false);
+		Table boardTable = new Table();
+		boardTable.add(boardActor).expand().fill();
+		pager.addPage(boardTable);
 		
 		for(int i = 0; i < level.getAnswers().length; i++){
 			Board answer = level.getAnswers()[i];
-			Table boardTable = new Table();
+			boardTable = new Table();
 			Table pageTable = new Table();
 			checkboxes[i] = new CheckBox("", helper.getCheckBoxStyle());
 			boardActor = new BoardActor(answer, config);
 			boardActor.setColorBlindEnabled(game.getSettingController()
 					.getCurrentSetting().isColorblindEnabled());
 			game.getSettingController().addSettingChangeListener(boardActor);
-//			ImageButton hint2 = new ImageButton(
-//					helper.getImageButtonStyleRound("widgets/icon-hint"));
-//			
-//			hint2.addListener(new ChooseAnswerListener(i));
-//			
-			//boardActor.addListener(new ChooseAnswerListener(i));
-			boardActor.clearListeners();
+			boardActor.setZoomAndPanEnabled(false);
 			boardTable.add(boardActor).expand().fill();
-//			boardTable.add(hint2).size(100).center();
 			pageTable.add(checkboxes[i]).top().center();
 			pageTable.row();
 			pageTable.add(boardTable).center().expand().fill();
@@ -164,20 +151,15 @@ public class PlacementModeScreenMC extends AbstractScreen implements
 			
 			
 		}
-
-		//final Table controlTable = new Table();
 		table.add(leftTable).expand().fill();
 		table.add(pager).expand().fill();
 		table.add(objectBar).padLeft(30);
-		
-		
 
-		//table.stack(controlTable,pager).fill().expand();
 		onSettingChange(game.getSettingController().getCurrentSetting());
 		
 		pager.setFlingTime(0.3f);
 		pager.setPageSpacing(75);
-		pager.setWidth(getViewportWidth() * 0.5f);
+		pager.setWidth(getViewportWidth() * 0.7f);
 		pager.setScrollingDisabled(false, true);
 	}
 
@@ -205,24 +187,6 @@ public class PlacementModeScreenMC extends AbstractScreen implements
 		}
 	}
 	
-	
-//	private class ChooseAnswerListener extends ClickListener{
-//		private int answerId;
-//
-//		public ChooseAnswerListener(int answerId) {
-//			this.answerId = answerId;
-//		}
-//		
-//		
-//		@Override
-//		public void clicked(InputEvent event, float x, float y) {
-//			try {
-//				game.showSimulationModeScreen(gameController);
-//			} catch (IllegalBoardException e) {
-//				// TODO 
-//			}
-//		}
-//	}
 
 
 	/**
@@ -230,9 +194,6 @@ public class PlacementModeScreenMC extends AbstractScreen implements
 	 **/
 	private class ObjectBarMC extends Table {
 
-		private AgedAlligatorActor agedAlligator;
-		private ColoredAlligatorActor coloredAlligator;
-		private EggActor egg;
 		private GameController gameController;
 		private AlligatorApp game;
 
@@ -243,22 +204,12 @@ public class PlacementModeScreenMC extends AbstractScreen implements
 	private ObjectBarMC(AlligatorApp game, GameController gameController) {
 			this.game = game;
 			this.gameController = gameController;
-			agedAlligator = new AgedAlligatorActor(new AgedAlligator(true, false));
-			// coloredAlligator = new ColoredAlligatorActor(new
-			// ColoredAlligator(true,
-			// false, new Color(1), false), new ColorController());
-			// egg = new EggActor(new Egg(true, false, new Color(1), false),
-			// new ColorController());
 
 			ImageButton startSimulation = new ImageButton(StyleHelper.getInstance()
 					.getImageButtonStyleRound("widgets/icon-next"));
 			startSimulation.addListener(new StartSimulationListener());
 
 			setBackground(StyleHelper.getInstance().getDrawable("widgets/button"));
-
-			add(coloredAlligator).row();
-			// add(agedAlligator).row();
-			// add(egg).row();
 			add(startSimulation).size(200);
 		}
 
