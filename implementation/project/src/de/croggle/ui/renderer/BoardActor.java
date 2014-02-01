@@ -96,11 +96,11 @@ public class BoardActor extends Group implements SettingChangeListener {
 		// initialize zoom and pan. Needs layout to derive limits from.
 		zoomAndPan = new BoardActorZoomAndPan(this);
 		setZoomAndPanEnabled(true);
-		
+
 		// initialize user interaction listeners on layout
 		userInteraction = new BoardActorLayoutUserInteraction(this);
 		setUserLayoutInteractionEnabled(true);
-		
+
 		initializePosition();
 	}
 
@@ -195,19 +195,19 @@ public class BoardActor extends Group implements SettingChangeListener {
 	void setZoom(float zoom) {
 		world.setScale(zoom);
 	}
-	
+
 	void clearWorld() {
 		world.clearChildren();
 	}
-	
+
 	void addToWorld(Actor actor) {
 		world.addActor(actor);
 	}
-	
+
 	void removeFromWorld(Actor actor) {
 		world.removeActor(actor);
 	}
-	
+
 	void updateUserLayoutInteraction() {
 		if (userInteractionEnabled) {
 			userInteraction.unregisterLayoutListeners();
@@ -324,6 +324,17 @@ public class BoardActor extends Group implements SettingChangeListener {
 		return false;
 	}
 
+	/**
+	 * Removes all listeners added by the user but will maintain actor managed
+	 * listeners like e.g. zoomAndPan
+	 */
+	public void clearListeners() {
+		super.clearListeners();
+		if (zoomAndPanEnabled) {
+			super.addListener(zoomAndPan);
+		}
+	}
+
 	public boolean isZoomAndPanEnabled() {
 		return zoomAndPanEnabled;
 	}
@@ -332,10 +343,10 @@ public class BoardActor extends Group implements SettingChangeListener {
 		if (zoomAndPanEnabled != this.zoomAndPanEnabled) {
 			this.zoomAndPanEnabled = zoomAndPanEnabled;
 			if (zoomAndPanEnabled) {
-				//zoomAndPan = new BoardActorZoomAndPan(this);
-				this.addListener(zoomAndPan);
+				// zoomAndPan = new BoardActorZoomAndPan(this);
+				super.addListener(zoomAndPan);
 			} else {
-				this.removeListener(zoomAndPan);
+				super.removeListener(zoomAndPan);
 			}
 		}
 	}
