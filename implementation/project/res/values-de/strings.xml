@@ -5,8 +5,8 @@
         Croggle\n
         \n
         erschaffen von \n
-		Lukas Boehm, Tobias Hornberger, Jonas Mehlhaus, \n
-		Iris Mehrbrodt, Vincent Schuessler, Lena Winter\n
+		Lukas Böhm, Tobias Hornberger, Jonas Mehlhaus, \n
+		Iris Mehrbrodt, Vincent Schüßler, Lena Winter\n
 		\n
 		Nach einer Idee von Bret Victor\n
 		http://worrydream.com</string>
@@ -18,7 +18,7 @@
 	<string name="ingame_menu_achievements">Errungenschaften</string>
     <string name="achievement_minutes_played">Minuten gespielt</string>
     <string name="achievement_hours_played">Stunden gespielt</string>
-    <string name="achievement_time_final">Beeindruckend wie lang du dieses Spiel gespielt hast</string>
+    <string name="achievement_time_final">Beeindruckend, wie lange du dieses Spiel gespielt hast</string>
     <string name="achievement_alligators_placed">Alligatoren platziert</string>
     <string name="achievement_alligators_placed_final">Wow. Du hast viele Alligatoren platziert</string>
     <string name="achievement_alligators_placed_per_level">Alligatoren in einem Level platziert</string>
@@ -48,16 +48,16 @@
     <string name="edit_profile_button_delete">Profil löschen</string>
     <string name="edit_profile_button_nothing">Nichts</string>
     <string name="edit_profile_delete_confirmation">Bist du sicher, dass du das Profil namens %s löschen möchtest?</string>
-    <string name="statistic_screen_selected_profile">Asugewähltes Profil : </string>
+    <string name="statistic_screen_selected_profile">Ausgewähltes Profil : </string>
     <string name="statistic_screen_no_users">Noch keine nutzbaren Nutzer</string>
     <string name="statistic_tab_actions">AKTIONEN</string>
     <string name="statistic_tab_progress">FORTSCHRITT</string>
     <string name="statistic_tab_game">SPIEL</string>
     <string name="statistic_label_action_recolorings">Umfärbungen durchgeführt : </string>
     <string name="statistic_label_action_resets">Resets genutzt : </string>
-    <string name="statistic_label_action_hints">Hinweiße genutzt : </string>
+    <string name="statistic_label_action_hints">Hinweise genutzt : </string>
     <string name="statistic_label_progress_time">Zeit gespielt : </string>
-    <string name="statistic_label_progress_packages">Packete abgeschlossen : </string>
+    <string name="statistic_label_progress_packages">Pakete abgeschlossen : </string>
     <string name="statistic_label_progress_levels">Levels abgeschlossen : </string>
     <string name="statistic_label_game_alligators_eaten">Alligatoren gefressen : </string>
     <string name="statistic_label_game_alligators_placed">Alligatoren platziert : </string>
