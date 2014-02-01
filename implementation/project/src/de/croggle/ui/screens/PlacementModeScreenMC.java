@@ -11,12 +11,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
+import android.util.Log;
+import de.croggle.ui.renderer.AgedAlligatorActor;
+import de.croggle.ui.renderer.ColoredAlligatorActor;
+import de.croggle.ui.renderer.EggActor;
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingChangeListener;
 import de.croggle.game.ColorController;
 import de.croggle.game.GameController;
+import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.IllegalBoardException;
 import de.croggle.game.level.Level;
@@ -99,7 +104,7 @@ public class PlacementModeScreenMC extends AbstractScreen implements
 				helper.getImageButtonStyleRound("widgets/icon-plus"));
 		zoomOut = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-minus"));
-		ObjectBar objectBar = new ObjectBar(game, gameController);
+		ObjectBarMC objectBar = new ObjectBarMC(game, gameController);
 
 		// add listeners
 		menu.addListener(new MenuClickListener());
@@ -135,6 +140,7 @@ public class PlacementModeScreenMC extends AbstractScreen implements
 		for(int i = 0; i < level.getAnswers().length; i++){
 			Board answer = level.getAnswers()[i];
 			Table boardTable = new Table();
+			Table pageTable = new Table();
 			checkboxes[i] = new CheckBox("", helper.getCheckBoxStyle());
 			boardActor = new BoardActor(answer, config);
 			boardActor.setColorBlindEnabled(game.getSettingController()
@@ -146,16 +152,18 @@ public class PlacementModeScreenMC extends AbstractScreen implements
 //			hint2.addListener(new ChooseAnswerListener(i));
 //			
 			//boardActor.addListener(new ChooseAnswerListener(i));
+			boardActor.clearListeners();
 			boardTable.add(boardActor).expand().fill();
-			boardTable.row();
-			boardTable.add(checkboxes[i]);
 //			boardTable.add(hint2).size(100).center();
-			pager.addPage(boardTable);
+			pageTable.add(checkboxes[i]).top().center();
+			pageTable.row();
+			pageTable.add(boardTable).center().expand().fill();
+
+			pager.addPage(pageTable);
 			
 			
 			
 		}
-
 
 		//final Table controlTable = new Table();
 		table.add(leftTable).expand().fill();
@@ -231,4 +239,62 @@ public class PlacementModeScreenMC extends AbstractScreen implements
 //	}
 
 
+	/**
+	 * The bar to drag alligators and eggs from onto the screen.
+	 **/
+	private class ObjectBarMC extends Table {
+
+		private AgedAlligatorActor agedAlligator;
+		private ColoredAlligatorActor coloredAlligator;
+		private EggActor egg;
+		private GameController gameController;
+		private AlligatorApp game;
+
+		/**
+		 * Creates an object bar with the ui elements the user can drag to the
+		 * screen per default.
+		 */
+	private ObjectBarMC(AlligatorApp game, GameController gameController) {
+			this.game = game;
+			this.gameController = gameController;
+			agedAlligator = new AgedAlligatorActor(new AgedAlligator(true, false));
+			// coloredAlligator = new ColoredAlligatorActor(new
+			// ColoredAlligator(true,
+			// false, new Color(1), false), new ColorController());
+			// egg = new EggActor(new Egg(true, false, new Color(1), false),
+			// new ColorController());
+
+			ImageButton startSimulation = new ImageButton(StyleHelper.getInstance()
+					.getImageButtonStyleRound("widgets/icon-next"));
+			startSimulation.addListener(new StartSimulationListener());
+
+			setBackground(StyleHelper.getInstance().getDrawable("widgets/button"));
+
+			add(coloredAlligator).row();
+			// add(agedAlligator).row();
+			// add(egg).row();
+			add(startSimulation).size(200);
+		}
+
+		private class StartSimulationListener extends ClickListener {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				super.clicked(event, x, y);
+				boolean[] answer = new boolean[3];
+				for(int i = 0; i < checkboxes.length; i++ ){
+					answer[i] = checkboxes[i].isChecked();
+				}
+				gameController.setMCSelection(answer);
+				
+				if( gameController.getAnswerMcIsValid()){
+					try {
+						game.showSimulationModeScreen(gameController);
+					} catch (IllegalBoardException e) {
+						// TODO handle invalid board
+					}
+				}
+			}
+		}
+
+	}
 }

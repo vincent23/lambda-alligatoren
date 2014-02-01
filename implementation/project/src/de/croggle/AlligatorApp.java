@@ -344,6 +344,7 @@ public class AlligatorApp extends Game {
 	public void showPlacementModeScreen(GameController gameController) {
 		switchScreen();
 		if(gameController.getLevel() instanceof MultipleChoiceLevel){
+			gameController.setMCtrue();
 			setScreen(new PlacementModeScreenMC(this, gameController));
 		}else{
 			setScreen(new PlacementModeScreen(this, gameController));

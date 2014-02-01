@@ -41,6 +41,10 @@ public class GameController implements BoardEventListener {
 	private BoardEventMessenger boardEventMessenger;
 	// listeners of the statisticsDelta
 	private List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
+	//TODO find better solution to determine whether level is an Multiple Choice level
+	private boolean isMC;
+	private boolean answerMcIsValid;
+	private int answerMC;
 
 	/**
 	 * Creates a new game controller for the given level.
@@ -219,5 +223,38 @@ public class GameController implements BoardEventListener {
 
 	public Level getLevel() {
 		return level;
+	}
+	
+	//TODO
+	public void setMCSelection( boolean answers[]){
+		boolean set = false;
+		for(int i = 0 ; i < answers.length; i++){
+			if(answers[i]){
+				if(set){
+					this.answerMcIsValid = false;
+					break;
+				}else{
+					this.answerMC = i;
+					this.answerMcIsValid = true;
+					set = true;
+				}
+			}
+		}
+		
+	}
+	
+	public void setMCtrue(){
+		this.isMC = true;
+	}
+	public boolean getIsMC(){
+		return this.isMC;
+	}
+	
+	public boolean getAnswerMcIsValid(){
+		return this.answerMcIsValid;
+	}
+	
+	public int getAnswerMC(){
+		return this.answerMC;
 	}
 }
