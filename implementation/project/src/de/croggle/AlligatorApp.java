@@ -29,7 +29,7 @@ import de.croggle.ui.screens.LevelsOverviewScreen;
 import de.croggle.ui.screens.LoadingScreen;
 import de.croggle.ui.screens.MainMenuScreen;
 import de.croggle.ui.screens.PlacementModeScreen;
-import de.croggle.ui.screens.PlacementModeScreenMC;
+import de.croggle.ui.screens.MultipleChoiceScreen;
 import de.croggle.ui.screens.ProfileSetAvatarScreen;
 import de.croggle.ui.screens.ProfileSetNameScreen;
 import de.croggle.ui.screens.QuitGameOverlay;
@@ -345,7 +345,7 @@ public class AlligatorApp extends Game {
 		switchScreen();
 		if(gameController.getLevel() instanceof MultipleChoiceLevel){
 			gameController.setMCtrue();
-			setScreen(new PlacementModeScreenMC(this, gameController));
+			setScreen(new MultipleChoiceScreen(this, gameController));
 		}else{
 			setScreen(new PlacementModeScreen(this, gameController));
 		}
