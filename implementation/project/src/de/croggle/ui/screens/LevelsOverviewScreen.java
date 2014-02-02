@@ -47,7 +47,7 @@ public class LevelsOverviewScreen extends AbstractScreen {
 			Level level = levelController.getLevel(i);
 
 			final TextButton levelButton = new TextButton(
-					Integer.toString(level.getLevelIndex()),
+					Integer.toString(level.getLevelIndex() + 1),
 					helper.getTextButtonStyleLevel());
 			if (!level.getUnlocked() && !AlligatorApp.DEBUG) {
 				levelButton.setDisabled(true);
