@@ -80,11 +80,11 @@ public class AchievementScreen extends AbstractScreen {
 								.addListener(new AchievementDetailViewListener(
 										achievement, i));
 					} else {
-						// achievementButton = new ImageButton(
-						// helper.getDrawable(achievement
-						// .getEmblemPathnotachieved(i)));
-						achievementButton = new ImageButton(
-								helper.getDrawable("widgets/button-blue"));
+						 achievementButton = new ImageButton(
+						 helper.getDrawable(achievement
+						 .getEmblemPathnotachieved(i)));
+						//achievementButton = new ImageButton(
+						//		helper.getDrawable("widgets/button-blue"));
 
 						// because it must be final for usage in inner class
 						final int index = i;
