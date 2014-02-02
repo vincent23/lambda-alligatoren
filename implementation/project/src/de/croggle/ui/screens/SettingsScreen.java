@@ -176,7 +176,7 @@ public class SettingsScreen extends AbstractScreen implements
 
 			StyleHelper helper = StyleHelper.getInstance();
 			Label message = new Label(_("title_edit_profile"),
-					helper.getLabelStyle());
+					helper.getBlackLabelStyle());
 			TextButton name = new TextButton(_("edit_profile_button_rename"),
 					helper.getTextButtonStyle());
 			TextButton avatar = new TextButton(

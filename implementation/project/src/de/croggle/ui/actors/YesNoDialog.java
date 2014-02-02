@@ -22,7 +22,7 @@ public class YesNoDialog extends Dialog {
 		this.ci = confirm;
 		StyleHelper helper = StyleHelper.getInstance();
 
-		Label message = new Label(msg, helper.getLabelStyle());
+		Label message = new Label(msg, helper.getBlackLabelStyle());
 		message.setWrap(true);
 		message.setAlignment(Align.center);
 

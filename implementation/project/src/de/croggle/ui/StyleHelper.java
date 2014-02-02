@@ -184,6 +184,12 @@ public class StyleHelper {
 	public LabelStyle getLabelStyle() {
 		return skin.get(LabelStyle.class);
 	}
+	
+	public LabelStyle getBlackLabelStyle() {
+		LabelStyle style = new LabelStyle(getLabelStyle());
+		style.fontColor = skin.getColor("black");
+		return style;
+	}
 
 	public LabelStyle getLabelStyle(int size) {
 		LabelStyle style = new LabelStyle(getLabelStyle());
