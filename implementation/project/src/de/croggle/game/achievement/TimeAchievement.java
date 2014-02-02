@@ -37,7 +37,7 @@ public class TimeAchievement extends Achievement {
 				description[i] = stages[i] / 60 + " "
 						+ _("achievement_minutes_played");
 			} else {
-				description[i] = stages[i] / 360 + " "
+				description[i] = stages[i] / 3600 + " "
 						+ _("achievement_hours_played");
 			}
 			emblemPathachieved[i] = "emblems/time/0" + i + "a";
