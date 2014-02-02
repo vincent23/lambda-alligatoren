@@ -56,7 +56,7 @@ public class Simulator {
 		this.steps = 0;
 
 		final List<BoardError> errors = FindBoardErrors.find(entranceBoard);
-		if (!errors.isEmpty() || AlligatorApp.DEBUG) {
+		if (!errors.isEmpty() && !AlligatorApp.DEBUG) {
 			throw new IllegalBoardException();
 		}
 	}
