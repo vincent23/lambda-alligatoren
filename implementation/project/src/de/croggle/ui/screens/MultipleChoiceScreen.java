@@ -94,7 +94,15 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 				helper.getImageButtonStyleRound("widgets/icon-plus"));
 		zoomOut = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-minus"));
-		ObjectBarMC objectBar = new ObjectBarMC(game, gameController);
+
+		
+		Table rightTable = new Table();
+		ImageButton startSimulation = new ImageButton(StyleHelper.getInstance()
+				.getImageButtonStyleRound("widgets/icon-next"));
+		startSimulation.addListener(new StartSimulationListener());
+
+		rightTable.setBackground(StyleHelper.getInstance().getDrawable("widgets/button"));
+		rightTable.add(startSimulation).size(200);
 
 		// add listeners
 		menu.addListener(new MenuClickListener());
@@ -153,8 +161,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		}
 		table.add(leftTable).expand().fill();
 		table.add(pager).expand().fill();
-		table.add(objectBar).padLeft(30);
-
+		table.add(rightTable).padLeft(30);
 		onSettingChange(game.getSettingController().getCurrentSetting());
 		
 		pager.setFlingTime(0.3f);
@@ -189,31 +196,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 	
 
 
-	/**
-	 * The bar to drag alligators and eggs from onto the screen.
-	 **/
-	private class ObjectBarMC extends Table {
-
-		private GameController gameController;
-		private AlligatorApp game;
-
-		/**
-		 * Creates an object bar with the ui elements the user can drag to the
-		 * screen per default.
-		 */
-	private ObjectBarMC(AlligatorApp game, GameController gameController) {
-			this.game = game;
-			this.gameController = gameController;
-
-			ImageButton startSimulation = new ImageButton(StyleHelper.getInstance()
-					.getImageButtonStyleRound("widgets/icon-next"));
-			startSimulation.addListener(new StartSimulationListener());
-
-			setBackground(StyleHelper.getInstance().getDrawable("widgets/button"));
-			add(startSimulation).size(200);
-		}
-
-		private class StartSimulationListener extends ClickListener {
+	private class StartSimulationListener extends ClickListener {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
@@ -233,5 +216,5 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 			}
 		}
 
-	}
 }
+
