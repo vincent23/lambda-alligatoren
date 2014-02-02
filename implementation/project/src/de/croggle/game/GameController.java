@@ -81,6 +81,9 @@ public class GameController implements BoardEventListener {
 	public void enterPlacement() {
 		shownBoard = userBoard;
 		simulator = null;
+		// TODO not sure if both messengers should be notified
+		placementMessenger.notifyBoardRebuilt(shownBoard);
+		simulationMessenger.notifyBoardRebuilt(shownBoard);
 	}
 
 	/**
@@ -93,6 +96,9 @@ public class GameController implements BoardEventListener {
 		simulator = new Simulator(shownBoard.copy(), colorController,
 				simulationMessenger);
 		shownBoard = simulator.getCurrentBoard();
+		// TODO not sure if both messengers should be notified
+		placementMessenger.notifyBoardRebuilt(shownBoard);
+		simulationMessenger.notifyBoardRebuilt(shownBoard);
 	}
 
 	/**

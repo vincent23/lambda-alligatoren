@@ -125,6 +125,7 @@ public class Simulator {
 	public Board reset() {
 		currentBoard = entranceBoard.copy();
 		steps = 0;
+		boardMessenger.notifyBoardRebuilt(currentBoard);
 		return currentBoard;
 	}
 
