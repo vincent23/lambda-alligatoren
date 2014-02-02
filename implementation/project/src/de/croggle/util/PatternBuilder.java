@@ -84,7 +84,21 @@ public class PatternBuilder {
 	}
 
 	public static Pixmap generateFilled(int width) {
-		final Pixmap pattern = generateEmpty(width, true);
+		return generateEmpty(width, true);
+	}
+
+	public static Pixmap generateTriangleStrip(int width, int n) {
+		final Pixmap pattern = generateEmpty(width, false);
+		final int triangleWidth = width / n;
+		pattern.setColor(0, 0, 0, alpha);
+		for (int y = 0; y < n; y++) {
+			for (int x = 0; x < n; x++) {
+				pattern.fillTriangle(x * triangleWidth, y * triangleWidth, x
+						* triangleWidth + triangleWidth / 2, (y + 1)
+						* triangleWidth, (x + 1) * triangleWidth, y
+						* triangleWidth);
+			}
+		}
 		return pattern;
 	}
 
