@@ -29,7 +29,7 @@
     <string name="achievement_hints_used_per_level">Ein Level ohne Hinweis gelöst</string>
     <string name="achievement_alligators_eaten_per_level_final">Wow. Es wurden sehr viele Alligatoren in einem Level gefressen</string>
     <string name="achievement_level_completed">Level gelöst</string>
-    <string name="screen_title_achievements">Errungenschaften</string>
+    <string name="screen_title_achievements">Erfolge</string>
     <string name="screen_title_set_avatar">Wähle deinen Avatar</string>
     <string name="screen_title_set_name">Wie heißt du?</string>
     <string name="warning_max_profiles">Du hast die maximale Menge an Profilen erreicht</string>
