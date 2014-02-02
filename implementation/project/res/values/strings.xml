@@ -69,5 +69,7 @@
     <string name="button_no">No</string>
     <string name="multiple_choice_dialog">Choose exactly one of the possible answers.</string>
     <string name="invalid_board_dialog">Please dye every alligator and egg.</string>
+    <string name="achievement_dialog_standard">to unlock this,  you have to reach \n</string>
+    <string name="achievement_dialog_last">the final stage! \n</string>
 
 </resources>
