@@ -146,7 +146,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		for (BoardObjectActor actor : b.getLayout()) {
 			b.addToWorld(actor);
 		}
-		b.updateUserLayoutInteraction();
+		b.updateListeners();
 	}
 
 	/**

@@ -14,11 +14,11 @@ import com.badlogic.gdx.utils.Array;
  */
 class WorldPane extends Group {
 	private final BoardActor b;
-	
+
 	WorldPane(BoardActor b) {
 		this.b = b;
 	}
-	
+
 	private Vector2 point = new Vector2();
 
 	@Override
@@ -53,10 +53,10 @@ class WorldPane extends Group {
 			} else {
 				final float originX = getOriginX();
 				final float originY = getOriginY();
-				localCoords.x = (localCoords.x - originX) * scaleX
-						+ originX + x;
-				localCoords.y = (localCoords.y - originY) * scaleY
-						+ originY + y;
+				localCoords.x = (localCoords.x - originX) * scaleX + originX
+						+ x;
+				localCoords.y = (localCoords.y - originY) * scaleY + originY
+						+ y;
 			}
 		} else {
 			final float cos = (float) Math.cos(rotation
@@ -77,6 +77,8 @@ class WorldPane extends Group {
 
 	@Override
 	public Actor hit(float x, float y, boolean touchable) {
+		// TODO custom implementation still necessary with bug free coordination
+		// converter methods?
 		if (touchable && getTouchable() == Touchable.disabled)
 			return null;
 		Array<Actor> children = getChildren();
@@ -92,8 +94,7 @@ class WorldPane extends Group {
 			}
 		}
 		localToParentCoordinates(point.set(x, y));
-		if (point.x <= this.b.getWidth()
-				&& point.y <= this.b.getHeight()) {
+		if (point.x <= this.b.getWidth() && point.y <= this.b.getHeight()) {
 			return this;
 		}
 		return null;
@@ -104,8 +105,7 @@ class WorldPane extends Group {
 		return parentToLocalCoordinates(parentCoords, getScaleX());
 	}
 
-	public Vector2 parentToLocalCoordinates(Vector2 parentCoords,
-			float scale) {
+	public Vector2 parentToLocalCoordinates(Vector2 parentCoords, float scale) {
 		final float rotation = getRotation();
 		final float scaleX = scale;
 		final float scaleY = scale;
@@ -120,10 +120,10 @@ class WorldPane extends Group {
 			} else {
 				final float originX = getOriginX();
 				final float originY = getOriginY();
-				parentCoords.x = (parentCoords.x - childX - originX)
-						/ scaleX + originX;
-				parentCoords.y = (parentCoords.y - childY - originY)
-						/ scaleY + originY;
+				parentCoords.x = (parentCoords.x - childX - originX) / scaleX
+						+ originX;
+				parentCoords.y = (parentCoords.y - childY - originY) / scaleY
+						+ originY;
 			}
 		} else {
 			final float cos = (float) Math.cos(rotation

@@ -10,6 +10,7 @@ import de.croggle.data.persistence.SettingChangeListener;
 import de.croggle.game.ColorController;
 import de.croggle.game.board.Board;
 import de.croggle.game.event.BoardEventListener;
+import de.croggle.game.event.BoardEventMessenger;
 
 /**
  * An actor used for representing a whole board, i.e. an alligator
@@ -35,13 +36,13 @@ public class BoardActor extends Group implements SettingChangeListener {
 	 * provides functionality to zoom and pan this actor. Comes with standard
 	 * gesture listener implementation
 	 */
-	private BoardActorZoomAndPan zoomAndPan;
+	private final BoardActorZoomAndPan zoomAndPan;
 
 	/*
 	 * provides functionality to add and manage user input listeners for the
 	 * BoardObjectActors in the ActorLayout representing the board
 	 */
-	private final BoardActorLayoutUserInteraction userInteraction;
+	private BoardActorLayoutEditing layoutEditing;
 
 	/*
 	 * dedicated actor to display the game world in. Makes it easy to transform
@@ -68,7 +69,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 
 	private boolean zoomAndPanEnabled = false;
 
-	private boolean userInteractionEnabled = false;
+	private boolean layoutEditingEnabled = false;
 
 	/**
 	 * Creates a new BoardActor. The actor layout of the board's representation
@@ -97,10 +98,6 @@ public class BoardActor extends Group implements SettingChangeListener {
 		zoomAndPan = new BoardActorZoomAndPan(this);
 		setZoomAndPanEnabled(true);
 
-		// initialize user interaction listeners on layout
-		userInteraction = new BoardActorLayoutUserInteraction(this);
-		setUserLayoutInteractionEnabled(true);
-
 		initializePosition();
 	}
 
@@ -118,6 +115,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 				.setColorController(controller));
 	}
 
+	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		if (clipBegin()) {
 			super.draw(batch, parentAlpha);
@@ -207,18 +205,26 @@ public class BoardActor extends Group implements SettingChangeListener {
 		world.clearChildren();
 	}
 
+	void addToActor(Actor actor) {
+		super.addActor(actor);
+	}
+
+	boolean removeFromActor(Actor actor) {
+		return super.removeActor(actor);
+	}
+
 	void addToWorld(Actor actor) {
 		world.addActor(actor);
 	}
 
-	void removeFromWorld(Actor actor) {
-		world.removeActor(actor);
+	boolean removeFromWorld(Actor actor) {
+		return world.removeActor(actor);
 	}
 
-	void updateUserLayoutInteraction() {
-		if (userInteractionEnabled && userInteraction != null) {
-			userInteraction.unregisterLayoutListeners();
-			userInteraction.registerLayoutListeners();
+	void updateListeners() {
+		if (layoutEditingEnabled) {
+			layoutEditing.unregisterLayoutListeners();
+			layoutEditing.registerLayoutListeners();
 		}
 	}
 
@@ -277,11 +283,12 @@ public class BoardActor extends Group implements SettingChangeListener {
 			setColorBlindEnabled(setting.isColorblindEnabled());
 		}
 	}
-	
+
 	/**
 	 * Removes all listeners added by the user but will maintain actor managed
 	 * listeners like e.g. zoomAndPan
 	 */
+	@Override
 	public void clearListeners() {
 		super.clearListeners();
 		if (zoomAndPanEnabled) {
@@ -306,48 +313,62 @@ public class BoardActor extends Group implements SettingChangeListener {
 	}
 
 	public boolean isUserLayoutInteractionEnabled() {
-		return userInteractionEnabled;
+		return layoutEditingEnabled;
 	}
 
-	public void setUserLayoutInteractionEnabled(boolean userInteractionEnabled) {
-		if (userInteractionEnabled != this.userInteractionEnabled) {
-			this.userInteractionEnabled = userInteractionEnabled;
-			if (userInteractionEnabled) {
-				userInteraction.registerLayoutListeners();
-			} else {
-				userInteraction.unregisterLayoutListeners();
-			}
+	public void enableLayoutEditing(BoardEventMessenger m) {
+		if (layoutEditingEnabled == false) {
+			// initialize user interaction listeners on layout
+			layoutEditing = new BoardActorLayoutEditing(this, m);
+			layoutEditing.registerLayoutListeners();
+			layoutEditingEnabled = true;
 		}
+	}
+
+	public void disableLayoutEditing() {
+		layoutEditing.unregisterLayoutListeners();
+		layoutEditing = null;
+		layoutEditingEnabled = false;
 	}
 
 	// stuff inherited from Group that should not be used as originally intended
 	/**
 	 * @deprecated
 	 */
+	@Deprecated
+	@Override
 	public void addActor(Actor actor) {
 	}
 
 	/**
 	 * @deprecated
 	 */
+	@Deprecated
+	@Override
 	public void addActorAfter(Actor a, Actor b) {
 	}
 
 	/**
 	 * @deprecated
 	 */
+	@Deprecated
+	@Override
 	public void addActorAt(int index, Actor actor) {
 	}
 
 	/**
 	 * @deprecated
 	 */
+	@Deprecated
+	@Override
 	public void addActorBefore(Actor a, Actor b) {
 	}
 
 	/**
 	 * @deprecated
 	 */
+	@Deprecated
+	@Override
 	public void clearChildren() {
 
 	}
@@ -355,6 +376,8 @@ public class BoardActor extends Group implements SettingChangeListener {
 	/**
 	 * @deprecated
 	 */
+	@Deprecated
+	@Override
 	public boolean removeActor(Actor a) {
 		return false;
 	}
@@ -362,6 +385,8 @@ public class BoardActor extends Group implements SettingChangeListener {
 	/**
 	 * @deprecated
 	 */
+	@Deprecated
+	@Override
 	public boolean swapActor(Actor a, Actor b) {
 		return false;
 	}
@@ -369,6 +394,8 @@ public class BoardActor extends Group implements SettingChangeListener {
 	/**
 	 * @deprecated
 	 */
+	@Deprecated
+	@Override
 	public boolean swapActor(int x, int y) {
 		return false;
 	}
