@@ -71,20 +71,11 @@
 					{
 						"families" : [
 							{
-								"type" : "colored alligator" ,
+								"type" : "egg" ,
 								"movable" : false ,
 								"removable" : false ,
-								"color" : 0 ,
-								"recolorable" : false ,
-								"children" : [
-									{
-									"type" : "egg" ,
-									"movable" : false ,
-									"removable" : false ,
-									"color" : 28 ,
-									"recolorable" : false
-									}
-								]
+								"color" : 28 ,
+								"recolorable" : false
 							}
 						]
 					},

@@ -82,7 +82,7 @@
 								"type" : "egg" ,
 								"movable" : false ,
 								"removable" : false ,
-								"color" : 5 ,
+								"color" : 25 ,
 								"recolorable" : true
 							}
 						]

@@ -23,7 +23,7 @@
 									"type" : "colored alligator" ,
 									"movable" : false ,
 									"removable" : false ,
-									"color" : 2 ,
+									"color" : 15 ,
 									"recolorable" : false ,
 									"children" : [
 										{
@@ -55,7 +55,7 @@
 							"type" : "egg" ,
 							"movable" : false ,
 							"removable" : false ,
-							"color" : 12 ,
+							"color" : 8 ,
 							"recolorable" : false
 						}
 					]
@@ -68,7 +68,7 @@
 								"type" : "colored alligator" ,
 								"movable" : false ,
 								"removable" : false ,
-								"color" : 2 ,
+								"color" : 15 ,
 								"recolorable" : false ,
 								"children" : [
 									{
@@ -106,14 +106,14 @@
 							"type" : "egg" ,
 							"movable" : false ,
 							"removable" : false ,
-							"color" : 12 ,
+							"color" : 11 ,
 							"recolorable" : false
 						},
 						{
 							"type" : "egg" ,
 							"movable" : false ,
 							"removable" : false ,
-							"color" : 12 ,
+							"color" : 8 ,
 							"recolorable" : false
 						}
 						]
