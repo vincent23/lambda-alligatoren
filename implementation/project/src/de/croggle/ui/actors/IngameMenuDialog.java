@@ -84,7 +84,7 @@ public class IngameMenuDialog extends Dialog {
 		levelOverview.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				game.showLevelPackagesScreen();
+				game.showLevelOverviewScreen(game.getLevelPackagesController().getLevelController(gameController.getLevel().getPackageIndex()));
 			}
 		});
 		achievements.addListener(new ClickListener() {
