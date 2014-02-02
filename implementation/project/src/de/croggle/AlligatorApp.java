@@ -20,6 +20,8 @@ import de.croggle.game.level.LevelController;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.level.MultipleChoiceLevel;
 import de.croggle.game.profile.ProfileController;
+import de.croggle.game.sound.SoundController;
+import de.croggle.game.sound.SoundHelper;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.screens.AbstractScreen;
 import de.croggle.ui.screens.AchievementScreen;
@@ -54,6 +56,7 @@ public class AlligatorApp extends Game {
 	private StatisticController statisticController;
 	private SettingController settingController;
 	private LevelPackagesController levelPackagesController;
+	private SoundController soundController;
 	private PersistenceManager persistenceManager;
 
 	private MainMenuScreen mainMenuScreen;
@@ -132,6 +135,15 @@ public class AlligatorApp extends Game {
 	public StatisticController getStatisticController() {
 		return statisticController;
 	}
+	
+	/**
+	 * Returns the sound controller which is used to play sounds and music.
+	 * 
+	 * @return the sound controller
+	 */
+	public SoundController getSoundController() {
+		return soundController;
+	}
 
 	/**
 	 * Returns the persistence manager which is responsible for all database
@@ -170,6 +182,7 @@ public class AlligatorApp extends Game {
 	public void create() {
 		de.croggle.data.AssetManager.initialize();
 		StyleHelper.initialize();
+		SoundHelper.initialize();
 		this.batch = new SpriteBatch();
 
 		// catch android back key
@@ -180,6 +193,7 @@ public class AlligatorApp extends Game {
 		statisticController = new StatisticController(this);
 		settingController = new SettingController(this);
 		profileController = new ProfileController(this);
+		soundController = new SoundController();
 		levelPackagesController = new LevelPackagesController(this);
 
 		// Not sure how to initialize those.
@@ -201,12 +215,16 @@ public class AlligatorApp extends Game {
 		creditsScreen = new CreditsScreen(this);
 
 		// add onProfileChangeListener
+		settingController.addSettingChangeListener(soundController);
 		profileController.addProfileChangeListener(settingsScreen);
 		profileController.addProfileChangeListener(selectProfileScreen);
 		profileController.addProfileChangeListener(mainMenuScreen);
 		profileController.addProfileChangeListener(statisticScreen);
 
 		profileController.initializeController();
+		
+		soundController.addToPlaylist("music1.mp3");
+		soundController.startPlaylist();
 
 		// profileController.deleteAllProfiles();
 

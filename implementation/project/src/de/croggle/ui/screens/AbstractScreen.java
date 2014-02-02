@@ -235,6 +235,7 @@ public abstract class AbstractScreen implements Screen {
 
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
+			game.getSoundController().playSound("buttonSound1.mp3");
 			showLogicalPredecessor();
 		}
 	}
