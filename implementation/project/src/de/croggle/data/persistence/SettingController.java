@@ -14,7 +14,7 @@ public class SettingController {
 	/**
 	 * The currently active setting.
 	 */
-	private Setting currentSetting;
+	private Setting currentSetting = new Setting();
 
 	/**
 	 * The backreference to the central game object.
