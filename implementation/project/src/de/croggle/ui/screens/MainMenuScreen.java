@@ -1,13 +1,17 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import static de.croggle.data.LocalizationHelper._;
 import de.croggle.AlligatorApp;
 import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.actors.NotificationDialog;
 import de.croggle.ui.actors.ProfileButton;
 
 /**
@@ -69,7 +73,7 @@ public class MainMenuScreen extends AbstractScreen implements
 		// add listeners
 		title.addListener(new CreditsScreenClickListener());
 		// credits.addListener(new CreditsScreenClickListener());
-		play.addListener(new PackagesScreenClickListener());
+		play.addListener(new PlayClickListener());
 		stats.addListener(new StatisticScreenClickListener());
 		settings.addListener(new SettingsScreenClickListener());
 		achievements.addListener(new AchievementScreenClickListener());
@@ -93,5 +97,18 @@ public class MainMenuScreen extends AbstractScreen implements
 
 		table.add(leftTable).expand().fill();
 		table.add(profileButtonTable);
+	}
+	
+	private class PlayClickListener extends ClickListener {
+		
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			if (game.getProfileController().getCurrentProfile() == null) {
+				NotificationDialog dialog = new NotificationDialog(_("warning_no_profile_selected"));
+				dialog.show(stage);
+			} else {
+				game.showLevelPackagesScreen();
+			}
+		}
 	}
 }
