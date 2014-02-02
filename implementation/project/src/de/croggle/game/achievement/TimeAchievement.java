@@ -1,5 +1,6 @@
 package de.croggle.game.achievement;
 
+import android.util.Log;
 import de.croggle.data.persistence.Statistic;
 import static de.croggle.data.LocalizationHelper._;
 
@@ -45,6 +46,7 @@ public class TimeAchievement extends Achievement {
 		for( int j = 1; j < stages.length; j++) {
 			emblemPathachieved[j] = "emblems/time/" + String.format("%02d", j) + "a";
 			emblemPathnotachieved[j] = "emblems/time/" + String.format("%02d", j) + "n";
+			Log.d("test", "that works");
 		}
 		description[0] = "initial state, do not show this stage as achievement";
 		description[10] = _("achievement_time_final");

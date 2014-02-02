@@ -67,14 +67,14 @@ public class AchievementScreen extends AbstractScreen {
 		for (final Achievement achievement : availableAchievements) {
 			for (int i = 1; i < achievement.getNumberOfStages(); i++) {
 				ImageButton achievementButton;
-				achievement.setIndex(1);// TODO debugging
+				achievement.setIndex(3);// TODO debugging
 				try {
 					if (i <= achievement.getIndex()) {
-						// achievementButton = new ImageButton(
-						// helper.getDrawable(achievement
-						// .getEmblemPathachieved(i)));
-						achievementButton = new ImageButton(
-								helper.getDrawable("widgets/button"));
+						 achievementButton = new ImageButton(
+						 helper.getDrawable(achievement
+						 .getEmblemPathachieved(i)));
+						//achievementButton = new ImageButton(
+						//		helper.getDrawable("widgets/button"));
 
 						achievementButton
 								.addListener(new AchievementDetailViewListener(
