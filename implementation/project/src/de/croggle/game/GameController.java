@@ -17,6 +17,7 @@ import de.croggle.game.board.operations.CountBoardObjects;
 import de.croggle.game.event.BoardEventListener;
 import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.game.level.Level;
+import de.croggle.game.level.MultipleChoiceLevel;
 
 /**
  * Central controller within which the actual playing of the level is
@@ -309,5 +310,14 @@ public class GameController implements BoardEventListener {
 
 	public int getAnswerMC() {
 		return this.answerMC;
+	}
+	
+	public boolean isLevelWon(){
+		if(isMC){
+			return ((MultipleChoiceLevel)level).validateAnswer(answerMC);
+		}else{
+			//TODO
+			return false;
+		}
 	}
 }

@@ -21,7 +21,7 @@ public class NewAchievementDialog extends Dialog {
 
 		StyleHelper helper = StyleHelper.getInstance();
 		Label message = new Label(_("title_new_achievement"),
-				helper.getLabelStyle());
+				helper.getBlackLabelStyle());
 
 		Image icon;
 		try {
@@ -33,7 +33,7 @@ public class NewAchievementDialog extends Dialog {
 			icon = new Image(helper.getDrawable("widgets/icon-trophy"));
 		}
 		Label description = new Label(achievement.getDescription(index),
-				helper.getLabelStyle());
+				helper.getBlackLabelStyle());
 		ImageButton next = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-play"));
 
