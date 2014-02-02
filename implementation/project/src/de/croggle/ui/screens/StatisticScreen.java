@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -24,6 +25,7 @@ import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.screens.AbstractScreen.LogicalPredecessorListener;
 
 /**
  * Screen which enables the teacher or parent to control the progress of every
@@ -78,11 +80,14 @@ public class StatisticScreen extends AbstractScreen implements
 		progressButton = new TextButton(_("statistic_tab_progress"),
 				buttonStyle);
 		gameButton = new TextButton(_("statistic_tab_game"), buttonStyle);
+		ImageButton back = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-back"));
 
 		ChangeTabClickListener listener = new ChangeTabClickListener();
 		actionsButton.addListener(listener);
 		progressButton.addListener(listener);
 		gameButton.addListener(listener);
+		back.addListener(new LogicalPredecessorListener());
 
 		// set up button group for always having at most one tab checked
 		ButtonGroup group = new ButtonGroup(actionsButton, progressButton,
@@ -99,16 +104,19 @@ public class StatisticScreen extends AbstractScreen implements
 		tabBar.setScrollingDisabled(false, true);
 
 		table.pad(30);
+		table.add(back).size(100).top().left();
 		table.add(profiles).height(70).padRight(20).padLeft(200).right();
 		table.add(profileList).height(70).width(300).expandX().left();
 
 		table.row();
-		table.add(tabBar).colspan(2).height(100);
+		table.add(tabBar).colspan(3).height(100);
 		table.row();
 
 		ScrollPane pane = new ScrollPane(content);
 		pane.setScrollingDisabled(true, false);
-		table.add(pane).expand().fill().colspan(2);
+		table.add(pane).expand().fill().colspan(3);
+		
+		onProfileChange(null);
 	}
 
 	@Override
@@ -125,6 +133,10 @@ public class StatisticScreen extends AbstractScreen implements
 			}
 		}
 		profileList.setItems(profileNames);
+		if (profile != null) {
+			profileList.setSelection(profile.getName());
+			showProgressStatistic();
+		}
 
 	}
 
