@@ -68,5 +68,6 @@
     <string name="button_yes">Ja</string>
     <string name="button_no">Nein</string>
     <string name="multiple_choice_dialog">Wähle genau eine mögliche Antwort aus.</string>
+    <string name="invalid_board_dialog">Bitte färbe alle Alligatoren und Eier ein.</string>
 
 </resources>

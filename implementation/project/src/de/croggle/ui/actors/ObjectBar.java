@@ -1,8 +1,10 @@
 package de.croggle.ui.actors;
 
+import static de.croggle.data.LocalizationHelper._;
 import android.util.Log;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -60,7 +62,8 @@ public class ObjectBar extends Table {
 			try {
 				game.showSimulationModeScreen(gameController);
 			} catch (IllegalBoardException e) {
-				// TODO handle invalid board
+				Dialog dialog =  new NotificationDialog(_("invalid_board_dialog"));
+				dialog.show(getStage());
 			}
 		}
 	}
