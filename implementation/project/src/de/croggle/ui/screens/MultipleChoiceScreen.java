@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.data.LocalizationHelper._;
+
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
@@ -22,6 +24,7 @@ import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.level.MultipleChoiceLevel;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.IngameMenuDialog;
+import de.croggle.ui.actors.NotificationDialog;
 import de.croggle.ui.actors.PagedScrollPane;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.AgedAlligatorActor;
@@ -196,6 +199,9 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 					} catch (IllegalBoardException e) {
 						//This can't happen in a MC Level
 					}
+				}else{
+					Dialog dialog =  new NotificationDialog(_("multiple_choice_dialog"));
+					dialog.show(stage);
 				}
 			}
 		}
