@@ -1,0 +1,67 @@
+\chapter{Package: ui/renderer}
+
+Für das "`renderer"' Paket wurde während der Entwurfsphase nur ein oberflächliches Konzept erstellt.
+Daher kam es zu umfangreichen Erweiterungen und teilweise auch zu Änderungen am Entwurf.
+
+\section{Änderungen gegenüber dem Entwurf}
+
+Die wichtigste Änderung am Entwurf betrifft die Vererbungshierarchie der BoardActors. 
+Während der Entwurf noch einen ParentActor vorsah, empfahl es sich während der Implementierung eine gemeinsame Oberklasse für gefärbte BoardObjects zu haben.
+Dies liegt an der ähnlichen vorgehensweise beim Zeichnen der unterschiedlichen Farben.
+An die Stelle des ParentActors tritt somit der ColoredBoardObjectActor.
+
+\section{Neuerungen gegenüber dem Entwurf}
+
+Das Erstellen und die Synchronhaltung einer Repräsentation zu einem Board ist ein komplexes Thema, welches im Entwurf noch nicht detailliert beachtet wurde.
+Für den hierfür erforderlichen Code wurde daher nachträglich die mit dem Präfix ActorLayout versehenen Klassen angelegt.
+Diese werden hier kurz erläutert:
+
+\begin{description}
+\item[ActorLayout]
+	Kapselt die für die Darstellung benötigten Actors. 
+	Beinhaltet zudem Methoden für den Lookup BoardObject $\leftrightarrow$ BoardObjectActor, die Konfiguration, mit der es erstellt wurde und gecachete Statistiken zu dem Layout.
+\item[ActorLayouter]
+	Stark konfigurierbare, abstrakte Elternklasse, um die Daten eines Layouts zu generieren.
+	Dies sind vor allem Positionen und Größen von BoardObjectActors.
+	Durch das Anbieten von Schablonenmethoden und Callbacks kann der gleiche Code genutzt werden, um Layouts zu kreieren, als auch, um sie an Änderungen im Board anzupassen.
+\item[ActorLayoutConfiguration]
+	Kapselt alle Informationen, die der ActorLayouter zum Erstellen der Informationen benötigt. Dazu gehören z.B. Paddings, der vertikale Skalierungsfaktor etc.
+\item[ActorLayoutStatistics]
+	Ort, um Statistiken eines Layouts zu cachen, wie z.B. die Breitenkarte (width map), die jedem Actor die Breite des von ihm bewurzelten Unterbaumes zuweist.
+\item[ActorLayoutBuilder]
+	Helferklasse, um zu einem gegebenen Board ein Layout zu erstellen.
+	Der Hauptteil des dafür benötigten Codes wird von ActorLayouter geerbt.
+	Lediglich Schablonenmethoden zum Erzeugen von zu layoutenden BoardObjectActors werden implementiert.
+\item[ActorLayoutFixer]
+	Helferklasse, um eine Sammlung von ActorDeltas zu produzieren, die angewandt werden müssen, um ein gegebenes Layout an ein gegebenes Board anzupassen.
+	Die Deltas können anschließend leicht animiert und umgesetzt werden (siehe hierzu BoardActorBoardChangeAnimator)
+	Der Hauptteil des dafür benötigten Codes wird von ActorLayouter geerbt.
+	In der Schablonenmethode zur Erzeugung von zu layoutenden BoardObjectActors werden immer wieder die gleichen Actors übergeben.
+	Danach müssen in einer callback Methode lediglich Deltas zu den bereits im Layout vorhandenen Actors gebildet werden.
+\item[ActorDelta]
+	Fasst Änderungen an einem Actor zusammen.
+	Diese werden vom BoardActorBoardChangeAnimator benutzt, um das Layout an den Zustand des Boards anzupassen.
+\end{description}
+
+Desweiteren ist anzumerken, dass der BoardActor zu einer hoch integrierten grafischen Komponente gewachsen ist.
+Zu seinem Funktionsumfang gehören:
+\begin{description}
+\item[BoardActorZoomAndPan] Zooming und Panning Funktionalitäten für das dargestellte Layout
+\item[BoardActorLayoutEditing] Boardbearbeitungsfunktionalitäten, wie z.B. Farbauswahl Popups für ungefärbte Actos oder Drag and Drop.
+\item[BoardActorBoardChangeAnimator] Animationen bei eingehenden BoardEvents
+\end{description}
+
+Alle diese Funktionen sind jedoch gesondert in Module gekapselt ohne sich gegenseitig direkt zu referenzieren.
+Dazu bietet der BoardActor ein erweitertes Interface, welches aber nur im Paket "`renderer"` zur Verfügung steht.
+
+
+Zum Schluss seien noch die verbliebenen, nicht im Entwurf enthaltenen Klassen genannt und kurz erklärt:
+\begin{description}
+\item[ColorSelectorPopup]
+	Dedizierte grafische Komponente, mit der BoardActorLayoutEditing dem Nutzer Eingabemöglichkeiten zur Änderung von Farben von ColoredBoardObjects bereitstellt.
+\item[TreeGrowth]
+	Enum (Aufzählung) von Richtungen, in die im Allgemeinen `"gewachsen"' werden kann. 
+	Wird hauptsächlich zur Angabe verwendet, in welche Richtung der Layout Baum wachsen soll.
+\item[WorldPane]
+	Paketsichtbare, grafische Komponente, mit der der BoardActor eine Übersetzung von Bildschirm- bzw. Szenenkoordinaten in die Koordinaten der gezoomten und verschobenen Layout-Welt realisiert.
+\end{description}
