@@ -33,8 +33,6 @@ public class AlligatorsPlacedAchievement extends Achievement {
 		for (int i = 1; i < 10; i++) {
 			description[i] = stages[i] + " "
 					+ _("achievement_alligators_placed");
-			//emblemPathachieved[i] = "emblems/alligatorsPlaced/0" + i + "a";
-			//emblemPathnotachieved[i] = "emblems/alligatorsPlaced/0" + i + "n";
 		}
 		for( int j = 1; j < stages.length; j++) {
 			emblemPathachieved[j] = "emblems/alligatorsPlaced/" + String.format("%02d", j) + "a";
