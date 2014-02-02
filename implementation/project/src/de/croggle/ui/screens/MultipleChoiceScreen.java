@@ -88,14 +88,11 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		ImageButton hint = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-hint"));
 
-		
-		Table rightTable = new Table();
+	
 		ImageButton startSimulation = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/icon-next"));
 		startSimulation.addListener(new StartSimulationListener());
 
-		rightTable.setBackground(StyleHelper.getInstance().getDrawable("widgets/button"));
-		rightTable.add(startSimulation).size(200);
 
 		// add listeners
 		menu.addListener(new MenuClickListener());
@@ -107,6 +104,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		// TODO only activated after some time
 		leftTable.add(hint).expand().size(100).top().left();
 		leftTable.row();
+		leftTable.add(startSimulation).size(200).center().right();
 
 
 		final ColorController colorController = gameController
@@ -149,9 +147,10 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 			
 			
 		}
-//		table.add(leftTable).expand().fill();
+		
 		table.stack(pager,leftTable).expand().fill();
-//		table.add(rightTable).padLeft(30);
+		
+//		TODO remove Simulationbutton and checkboxes and add simulationbutton on each page.
 		onSettingChange(game.getSettingController().getCurrentSetting());
 		
 		pager.setFlingTime(0.3f);
