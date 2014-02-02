@@ -48,7 +48,7 @@ public class ProfileSetNameScreen extends AbstractScreen {
 		StyleHelper helper = StyleHelper.getInstance();
 		Table innerTable = new Table();
 		Label askName = new Label(_("screen_title_set_name"),
-				helper.getLabelStyle());
+				helper.getBlackLabelStyle());
 		nameInput = new TextField("", helper.getTextFieldStyle());
 		ImageButton next = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-next"));

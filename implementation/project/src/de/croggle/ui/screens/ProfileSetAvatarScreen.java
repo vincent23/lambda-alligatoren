@@ -55,7 +55,7 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 		Table innerTable = new Table();
 		Table leftTable = new Table();
 		Label chooseAvatar = new Label(_("screen_title_set_avatar"),
-				helper.getLabelStyle());
+				helper.getBlackLabelStyle());
 		ImageButton confirm = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-check"));
 
