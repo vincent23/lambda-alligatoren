@@ -2,6 +2,7 @@ package de.croggle.ui.screens;
 
 import static de.croggle.data.LocalizationHelper._;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
@@ -84,23 +86,21 @@ public class SettingsScreen extends AbstractScreen implements
 
 		musicSlider.setValue(50);
 		effectsSlider.setValue(50);
-
+		
 		TextButton editProfile = new TextButton(
 				_("settings_button_edit_profile"), helper.getTextButtonStyle());
 
 		// add listeners
 		back.addListener(new LogicalPredecessorListener());
-		back.addListener(new ClickListener() {
-
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				Setting setting = new Setting(musicSlider.getValue() / 100,
-						effectsSlider.getValue() / 100, zoomCheckBox
-								.isChecked(), colorBlindnessCheckBox
-								.isChecked());
-				settingController.editCurrentSetting(setting);
-			}
-		});
+		
+		SettingListener settingListener = new SettingListener();
+		
+		zoomCheckBox.addListener(settingListener);
+		colorBlindnessCheckBox.addListener(settingListener);
+		
+		musicSlider.addListener(settingListener);
+		effectsSlider.addListener(settingListener);
+	
 
 		editProfile.addListener(new ClickListener() {
 			@Override
@@ -154,8 +154,22 @@ public class SettingsScreen extends AbstractScreen implements
 		}
 
 	}
+	
+	private class SettingListener extends ChangeListener {
+		
+		@Override
+		public void changed(ChangeEvent event, Actor actor) {
+			if (! (actor instanceof Slider) || !((Slider) actor).isDragging() ) {
+				Setting setting = new Setting(musicSlider.getValue() / 100,
+							effectsSlider.getValue() / 100, zoomCheckBox
+									.isChecked(), colorBlindnessCheckBox
+									.isChecked());
+					settingController.editCurrentSetting(setting);
+				}
+			}
+	}
 
-	private class EditProfileDialog extends Dialog implements ConfirmInterface {
+	private class EditProfileDialog extends Dialog {
 
 		public EditProfileDialog() {
 			super("", StyleHelper.getInstance().getDialogStyle());
@@ -197,7 +211,21 @@ public class SettingsScreen extends AbstractScreen implements
 							_("edit_profile_delete_confirmation"), game
 									.getProfileController()
 									.getCurrentProfileName()),
-							EditProfileDialog.this);
+							new ConfirmInterface(
+									) {
+								
+								@Override
+								public void yes() {
+									game.getProfileController().deleteCurrentProfile();
+									
+								}
+								
+								@Override
+								public void no() {
+									// TODO Auto-generated method stub
+									
+								}
+							});
 					dialog.show(stage);
 					EditProfileDialog.this.hide();
 
@@ -220,17 +248,9 @@ public class SettingsScreen extends AbstractScreen implements
 
 		}
 
-		@Override
-		public void yes() {
-			game.getProfileController().deleteCurrentProfile();
-
-		}
-
-		@Override
-		public void no() {
-
-		}
 
 	}
+
+	
 
 }
