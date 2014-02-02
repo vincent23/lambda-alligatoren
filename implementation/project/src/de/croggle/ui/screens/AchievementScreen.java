@@ -79,6 +79,23 @@ public class AchievementScreen extends AbstractScreen {
 						achievementButton
 								.addListener(new AchievementDetailViewListener(
 										achievement, i));
+					} else if (i == achievement.getNumberOfStages() - 1) {
+						achievementButton = new ImageButton(
+								 helper.getDrawable(achievement
+								 .getEmblemPathnotachieved(i)));
+						final int index = i;
+						achievementButton.addListener(new ClickListener() {
+							@Override
+							public void clicked(InputEvent event, float x,
+									float y) {
+								Dialog dialog = new NotificationDialog(
+										_("achievement_dialog_last")
+												+ achievement
+														.getDescription(index));
+								dialog.show(stage);
+							}
+						});
+						
 					} else {
 						 achievementButton = new ImageButton(
 						 helper.getDrawable(achievement
@@ -93,7 +110,7 @@ public class AchievementScreen extends AbstractScreen {
 							public void clicked(InputEvent event, float x,
 									float y) {
 								Dialog dialog = new NotificationDialog(
-										"To unlock this, achieve the following:\n"
+										_("achievement_dialog_standard")
 												+ achievement
 														.getDescription(index));
 								dialog.show(stage);
