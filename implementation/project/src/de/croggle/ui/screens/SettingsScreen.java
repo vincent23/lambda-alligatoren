@@ -217,6 +217,7 @@ public class SettingsScreen extends AbstractScreen implements
 								@Override
 								public void yes() {
 									game.getProfileController().deleteCurrentProfile();
+									game.showSelectProfileScreen();
 									
 								}
 								
