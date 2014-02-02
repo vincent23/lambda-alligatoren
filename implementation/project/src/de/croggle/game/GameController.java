@@ -35,13 +35,13 @@ public class GameController implements BoardEventListener {
 	 */
 	private Board userBoard;
 	private Simulator simulator;
-	private ColorController colorController;
-	private Level level;
+	private final ColorController colorController;
+	private final Level level;
 	private Statistic statisticsDelta; // changes during the current Level.
-	private BoardEventMessenger simulationMessenger;
-	private BoardEventMessenger placementMessenger;
+	private final BoardEventMessenger simulationMessenger;
+	private final BoardEventMessenger placementMessenger;
 	// listeners of the statisticsDelta
-	private List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
+	private final List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
 	// TODO find better solution to determine whether level is an Multiple
 	// Choice level
 	private boolean isMC;
@@ -173,6 +173,10 @@ public class GameController implements BoardEventListener {
 	public void unregisterPlacementBoardEventListener(
 			BoardEventListener listener) {
 		placementMessenger.unregister(listener);
+	}
+
+	public BoardEventMessenger getPlacmentBoardEventListener() {
+		return placementMessenger;
 	}
 
 	/**

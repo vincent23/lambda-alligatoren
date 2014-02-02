@@ -31,7 +31,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 	private static final float ZOOM_RATE = 3f;
 
-	private GameController gameController;
+	private final GameController gameController;
 	private BoardActor boardActor;
 
 	private ImageButton zoomIn;
@@ -67,7 +67,8 @@ public class PlacementModeScreen extends AbstractScreen implements
 		}
 		game.getSettingController().addSettingChangeListener(this);
 	}
-	
+
+	@Override
 	protected void onShow() {
 		gameController.enterPlacement();
 	}
@@ -115,9 +116,12 @@ public class PlacementModeScreen extends AbstractScreen implements
 		boardActor = new BoardActor(gameController.getShownBoard(), config);
 		boardActor.setColorBlindEnabled(game.getSettingController()
 				.getCurrentSetting().isColorblindEnabled());
+		boardActor.enableLayoutEditing(gameController
+				.getPlacmentBoardEventListener());
 		game.getSettingController().addSettingChangeListener(boardActor);
 		// used to make resetting the board via game controller possible
-		gameController.registerPlacementBoardEventListener(boardActor.getBoardEventListener());
+		gameController.registerPlacementBoardEventListener(boardActor
+				.getBoardEventListener());
 		final Table boardTable = new Table();
 		boardTable.add(boardActor).fill().expand();
 
