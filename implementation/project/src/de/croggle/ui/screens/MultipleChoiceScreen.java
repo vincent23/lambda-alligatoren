@@ -37,9 +37,6 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 
 	private GameController gameController;
 	private BoardActor boardActor;
-
-	private ImageButton zoomIn;
-	private ImageButton zoomOut;
 	private CheckBox checkboxes[];
 
 	/**
@@ -90,10 +87,6 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 				helper.getImageButtonStyleRound("widgets/icon-menu"));
 		ImageButton hint = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-hint"));
-		zoomIn = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/icon-plus"));
-		zoomOut = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/icon-minus"));
 
 		
 		Table rightTable = new Table();
@@ -115,9 +108,6 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		leftTable.add(hint).expand().size(100).top().left();
 		leftTable.row();
 
-		leftTable.add(zoomIn).size(70).left();
-		leftTable.row();
-		leftTable.add(zoomOut).size(70).left();
 
 		final ColorController colorController = gameController
 				.getColorController();
@@ -176,13 +166,8 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 
 	@Override
 	public void onSettingChange(Setting setting) {
-		if (setting.isZoomEnabled()) {
-			zoomIn.setVisible(true);
-			zoomOut.setVisible(true);
-		} else {
-			zoomIn.setVisible(false);
-			zoomOut.setVisible(false);
-		}
+		// In a MC Level there is no zoom function
+
 
 	}
 
@@ -210,7 +195,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 					try {
 						game.showSimulationModeScreen(gameController);
 					} catch (IllegalBoardException e) {
-						// TODO handle invalid board
+						//This can't happen in a MC Level
 					}
 				}
 			}
