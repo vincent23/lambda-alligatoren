@@ -54,6 +54,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		patterns[n++] = PatternBuilder.generateRhombus(256, 160, 200, false);
 		patterns[n++] = PatternBuilder.generateCircle(256, true);
 		patterns[n++] = PatternBuilder.generateRhombus(256, 160, 200, true);
+		patterns[n++] = PatternBuilder.generateFilled(1);
 		for (int i = n; i < patterns.length; i++) {
 			patterns[i] = PatternBuilder.generateHorizontalLines(8, 4);
 		}

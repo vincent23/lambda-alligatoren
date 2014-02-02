@@ -9,19 +9,19 @@ public class PatternBuilder {
 
 	public static Pixmap generateEmpty(int width, boolean inverted) {
 		final Pixmap pattern = new Pixmap(width, width, Pixmap.Format.RGB888);
-		if (inverted) {
-			pattern.setColor(0, 0, 0, 1);
-		} else {
-			pattern.setColor(1, 1, 1, 1);
-		}
+		pattern.setColor(1, 1, 1, 1);
 		pattern.fill();
+		if (inverted) {
+			pattern.setColor(0, 0, 0, alpha);
+			pattern.fillRectangle(0, 0, width, width);
+		}
 		return pattern;
 	}
 
 	public static Pixmap generateCircle(int width, boolean inverted) {
 		final Pixmap pattern = generateEmpty(width, inverted);
 		if (inverted) {
-			pattern.setColor(1, 1, 1, alpha);
+			pattern.setColor(1, 1, 1, 1);
 		} else {
 			pattern.setColor(0, 0, 0, alpha);
 		}
@@ -67,7 +67,7 @@ public class PatternBuilder {
 			int rhombusHeight, boolean inverted) {
 		final Pixmap pattern = generateEmpty(width, inverted);
 		if (inverted) {
-			pattern.setColor(1, 1, 1, alpha);
+			pattern.setColor(1, 1, 1, 1);
 		} else {
 			pattern.setColor(0, 0, 0, 1);
 		}
@@ -80,6 +80,11 @@ public class PatternBuilder {
 		pattern.fillTriangle(center - rhombusWidth2, center, center
 				+ rhombusWidth2, center, center, center + rhombusHeight2);
 		Pixmap.setBlending(Blending.SourceOver);
+		return pattern;
+	}
+
+	public static Pixmap generateFilled(int width) {
+		final Pixmap pattern = generateEmpty(width, true);
 		return pattern;
 	}
 
