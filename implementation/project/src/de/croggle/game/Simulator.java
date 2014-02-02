@@ -123,7 +123,7 @@ public class Simulator {
 	 * @return the board in said state
 	 */
 	public Board reset() {
-		currentBoard = entranceBoard;
+		currentBoard = entranceBoard.copy();
 		steps = 0;
 		return currentBoard;
 	}
