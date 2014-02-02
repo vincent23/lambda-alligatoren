@@ -149,14 +149,14 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 			
 			
 		}
-		table.add(leftTable).expand().fill();
-		table.add(pager).expand().fill();
-		table.add(rightTable).padLeft(30);
+//		table.add(leftTable).expand().fill();
+		table.stack(pager,leftTable).expand().fill();
+//		table.add(rightTable).padLeft(30);
 		onSettingChange(game.getSettingController().getCurrentSetting());
 		
 		pager.setFlingTime(0.3f);
-		pager.setPageSpacing(75);
-		pager.setWidth(getViewportWidth() * 0.7f);
+		pager.setPageSpacing(5);
+		pager.setWidth(getViewportWidth());
 		pager.setScrollingDisabled(false, true);
 	}
 
