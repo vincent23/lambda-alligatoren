@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.SnapshotArray;
 
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingChangeListener;
@@ -49,6 +52,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 	 * coordinates with parentToLocal and localToParent
 	 */
 	private final WorldPane world;
+
 	/*
 	 * the x position of the game world's origin relative to this BoardActor's
 	 * origin and in this' coordinates/length.
@@ -86,7 +90,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 		colorBlind = config.isColorBlindEnabled();
 
 		// initialize world pane
-		this.world = new WorldPane(this);
+		world = new WorldPane(this);
 		super.addActor(world);
 
 		// initialize layout by calling onBoardRebuilt. Needs world to add
@@ -205,20 +209,25 @@ public class BoardActor extends Group implements SettingChangeListener {
 		world.clearChildren();
 	}
 
-	void addToActor(Actor actor) {
-		super.addActor(actor);
-	}
-
-	boolean removeFromActor(Actor actor) {
-		return super.removeActor(actor);
-	}
-
 	void addToWorld(Actor actor) {
 		world.addActor(actor);
 	}
 
 	boolean removeFromWorld(Actor actor) {
 		return world.removeActor(actor);
+	}
+
+	void clearActor() {
+		super.clearChildren();
+		super.addActor(world);
+	}
+
+	void addToActor(Actor actor) {
+		super.addActor(actor);
+	}
+
+	boolean removeFromActor(Actor actor) {
+		return super.removeActor(actor);
 	}
 
 	void updateListeners() {
@@ -331,13 +340,55 @@ public class BoardActor extends Group implements SettingChangeListener {
 		layoutEditingEnabled = false;
 	}
 
+	@Override
+	public Actor hit(float x, float y, boolean touchable) {
+		if (touchable && getTouchable() == Touchable.disabled) {
+			return null;
+		}
+		Vector2 point = new Vector2();
+		Array<Actor> children = super.getChildren();
+		Actor hit;
+		// look first for hits NOT being world
+		for (int i = children.size - 1; i >= 0; i--) {
+			Actor child = children.get(i);
+			if (!child.isVisible()) {
+				continue;
+			}
+			child.parentToLocalCoordinates(point.set(x, y));
+			hit = child.hit(point.x, point.y, touchable);
+			if (hit != null) {
+				if (hit == world) {
+					continue;
+				}
+				return hit;
+			}
+		}
+
+		// consider elements in world as hit targets
+		world.parentToLocalCoordinates(point.set(x, y));
+		hit = world.hit(point.x, point.y, touchable);
+		if (hit != world) {
+			return hit;
+		}
+
+		// if the actor was hit, but none of the children, return this
+		if (x >= 0 && x < getWidth() && y >= 0 && y < getHeight()) {
+			return this;
+		}
+
+		return null;
+	}
+
 	// stuff inherited from Group that should not be used as originally intended
+	// still performing their tasks as there are some back and forth
+	// dependencies in actors
 	/**
 	 * @deprecated
 	 */
 	@Deprecated
 	@Override
 	public void addActor(Actor actor) {
+		super.addActor(actor);
 	}
 
 	/**
@@ -346,6 +397,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 	@Deprecated
 	@Override
 	public void addActorAfter(Actor a, Actor b) {
+		super.addActorAfter(a, b);
 	}
 
 	/**
@@ -354,6 +406,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 	@Deprecated
 	@Override
 	public void addActorAt(int index, Actor actor) {
+		super.addActorAt(index, actor);
 	}
 
 	/**
@@ -362,6 +415,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 	@Deprecated
 	@Override
 	public void addActorBefore(Actor a, Actor b) {
+		super.addActorBefore(a, b);
 	}
 
 	/**
@@ -379,7 +433,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 	@Deprecated
 	@Override
 	public boolean removeActor(Actor a) {
-		return false;
+		return super.removeActor(a);
 	}
 
 	/**
@@ -388,7 +442,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 	@Deprecated
 	@Override
 	public boolean swapActor(Actor a, Actor b) {
-		return false;
+		return super.swapActor(a, b);
 	}
 
 	/**
@@ -397,6 +451,15 @@ public class BoardActor extends Group implements SettingChangeListener {
 	@Deprecated
 	@Override
 	public boolean swapActor(int x, int y) {
-		return false;
+		return super.swapActor(x, y);
+	}
+
+	/**
+	 * @deprecated
+	 */
+	@Deprecated
+	@Override
+	public SnapshotArray<Actor> getChildren() {
+		return super.getChildren();
 	}
 }

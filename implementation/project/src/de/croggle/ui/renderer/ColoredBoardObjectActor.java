@@ -14,8 +14,8 @@ import de.croggle.game.board.ColoredBoardObject;
 
 public class ColoredBoardObjectActor extends BoardObjectActor {
 
-	private TextureRegion mask;
-	private TextureRegion foreground;
+	private final TextureRegion mask;
+	private final TextureRegion foreground;
 	private Texture background;
 	private boolean valid = false;
 	private boolean colorBlind = false;
@@ -145,7 +145,8 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		Color c = batch.getColor();
-		batch.setColor(getColor());
+		Color col = getColor();
+		batch.setColor(col.r, col.g, col.b, col.a * parentAlpha);
 
 		// draw the alpha mask
 		drawAlphaMask(batch);
@@ -178,6 +179,7 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 		super.act(delta);
 	}
 
+	@Override
 	protected void sizeChanged() {
 	}
 }

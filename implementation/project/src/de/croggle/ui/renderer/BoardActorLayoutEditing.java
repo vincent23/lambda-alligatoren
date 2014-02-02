@@ -40,6 +40,14 @@ class BoardActorLayoutEditing {
 		}
 	}
 
+	ActorLayout getLayout() {
+		return b.getLayout();
+	}
+
+	BoardEventMessenger getMessenger() {
+		return messenger;
+	}
+
 	private class RecolorPopupListener extends ClickListener {
 		private final ColoredBoardObject o;
 
@@ -49,8 +57,14 @@ class BoardActorLayoutEditing {
 
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			System.out.println("Click: " + x + ", " + y);
-			// TODO
+			ColorSelectorPopup popup = new ColorSelectorPopup(
+					BoardActorLayoutEditing.this, o);
+			popup.setX((b.getWidth() - popup.getWidth()) / 2);
+			popup.setY((b.getHeight() - popup.getHeight()) / 2);
+
+			b.addListener(popup.new AutomaticCloseListener());
+
+			b.addToActor(popup);
 		}
 	}
 }
