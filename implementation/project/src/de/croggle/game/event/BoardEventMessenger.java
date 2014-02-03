@@ -18,7 +18,7 @@ import de.croggle.game.board.InternalBoardObject;
  */
 public class BoardEventMessenger {
 
-	private List<BoardEventListener> listeners;
+	private final List<BoardEventListener> listeners;
 
 	public BoardEventMessenger() {
 		listeners = new ArrayList<BoardEventListener>();
@@ -111,9 +111,15 @@ public class BoardEventMessenger {
 	 * @param bornFamily
 	 *            the family that hatched out of the egg
 	 */
-	public void notifyReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
+	public void notifyHatched(Egg replacedEgg, InternalBoardObject bornFamily) {
 		for (BoardEventListener listener : listeners) {
-			listener.onReplace(replacedEgg, bornFamily);
+			listener.onHatched(replacedEgg, bornFamily);
+		}
+	}
+
+	public void notifyAlligatorAged(ColoredAlligator colored, AgedAlligator aged) {
+		for (BoardEventListener listener : listeners) {
+			listener.onAge(colored, aged);
 		}
 	}
 }

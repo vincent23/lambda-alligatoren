@@ -242,7 +242,7 @@ public class ReplaceEggs implements BoardObjectVisitor {
 			egg.getParent().replaceChild(egg, replacement);
 
 			if (this.boardMessenger != null) {
-				this.boardMessenger.notifyReplace(egg, replacement);
+				this.boardMessenger.notifyHatched(egg, replacement);
 			}
 		}
 	}

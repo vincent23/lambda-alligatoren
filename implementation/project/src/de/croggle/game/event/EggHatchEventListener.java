@@ -5,7 +5,7 @@ import de.croggle.game.board.InternalBoardObject;
 
 /**
  * 
- * Interface for listeners specifically listening to the onReplace event. This
+ * Interface for listeners specifically listening to the onHatched event. This
  * event is produced after a simulator has realized the end of the eating rule.
  * That is, when a copy of a subtree (an alligator with its family or
  * alternatively just an egg) "hatched out" of an egg.
@@ -14,7 +14,7 @@ import de.croggle.game.board.InternalBoardObject;
  * place. That means, that bornFamily has its new parent set and the replacedEgg
  * is not in the list of children of its parent any more.
  */
-public interface ReplaceEventListener {
+public interface EggHatchEventListener {
 
 	/**
 	 * Receive an object replaced event for further processing. E.g. the
@@ -26,6 +26,6 @@ public interface ReplaceEventListener {
 	 * @param bornFamily
 	 *            the family which will emerge from an egg
 	 */
-	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily);
+	public void onHatched(Egg replacedEgg, InternalBoardObject bornFamily);
 
 }

@@ -89,7 +89,8 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 					b.getLayout().removeActor(eatenActor);
 					b.removeFromWorld(eatenActor);
 				}
-				removeObjectAnimated(eater);
+				// the Aged event is responsible for this now
+				// removeObjectAnimated(eater);
 				applyDeltasAnimated(b.getLayout().getDeltasToFix());
 			}
 		});
@@ -164,7 +165,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	 *            the family that hatches from that egg
 	 */
 	@Override
-	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
+	public void onHatched(Egg replacedEgg, InternalBoardObject bornFamily) {
 		EggActor eggActor = (EggActor) b.getLayout().getActor(replacedEgg);
 		eggActor.enterHatchingState();
 		removeObjectAnimated(replacedEgg);
@@ -232,6 +233,21 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 			ScaleToAction scaleAction = Actions.scaleTo(1, 1, animDuration);
 			actor.addAction(scaleAction);
 		}
+	}
+
+	@Override
+	public void onAge(ColoredAlligator colored, AgedAlligator aged) {
+		final float animationDuration = 0.3f;
+
+		BoardObjectActor coloredActor = b.getLayout().getActor(colored);
+		AgedAlligatorActor agedActor = new AgedAlligatorActor(aged);
+		agedActor.setSize(coloredActor.getWidth(), coloredActor.getHeight());
+		agedActor.setPosition(coloredActor.getX(), coloredActor.getY());
+		agedActor.setColor(1.f, 1.f, 1.f, 0.f);
+		agedActor.addAction(Actions.alpha(1.f, animationDuration));
+		b.getLayout().addActor(agedActor);
+		b.addToWorld(agedActor);
+		removeObjectAnimated(colored);
 	}
 
 }

@@ -24,11 +24,11 @@ import de.croggle.util.RingBuffer;
  * also undo steps done in the evaluation process.
  */
 public class Simulator {
-	private Board entranceBoard;
+	private final Board entranceBoard;
 	private Board currentBoard;
-	private RingBuffer<Board> history; // 30 elements needed.
-	private ColorController colorController;
-	private BoardEventMessenger boardMessenger;
+	private final RingBuffer<Board> history; // 30 elements needed.
+	private final ColorController colorController;
+	private final BoardEventMessenger boardMessenger;
 	private int steps;
 
 	private static final int MAX_ALLIGATORS = 300;
@@ -135,9 +135,11 @@ public class Simulator {
 				coloredAlligator.isMovable(), coloredAlligator.isRemovable());
 		final Parent parent = coloredAlligator.getParent();
 		parent.replaceChild(coloredAlligator, agedAlligator);
+
 		for (InternalBoardObject child : coloredAlligator) {
 			agedAlligator.addChild(child);
 		}
+		boardMessenger.notifyAlligatorAged(coloredAlligator, agedAlligator);
 		return agedAlligator;
 	}
 

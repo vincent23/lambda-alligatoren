@@ -36,7 +36,7 @@ public class GameController implements BoardEventListener {
 	 */
 	private Board userBoard;
 	private Simulator simulator;
-	private final ColorController colorController;
+	private ColorController colorController;
 	private final Level level;
 	private Statistic statisticsDelta; // changes during the current Level.
 	private final BoardEventMessenger simulationMessenger;
@@ -57,13 +57,18 @@ public class GameController implements BoardEventListener {
 	 */
 	public GameController(Level level) {
 		this.level = level;
-		this.colorController = new ColorController();
+		setupColorController();
 		this.shownBoard = level.getInitialBoard();
 		this.userBoard = shownBoard;
 		this.statisticsDelta = new Statistic();
 		this.simulationMessenger = new BoardEventMessenger();
 		this.placementMessenger = new BoardEventMessenger();
 		this.statisticsDeltaProcessors = new ArrayList<StatisticsDeltaProcessor>();
+	}
+
+	private void setupColorController() {
+		this.colorController = new ColorController();
+		// TODO fill with level's user colors
 	}
 
 	/**
@@ -226,8 +231,12 @@ public class GameController implements BoardEventListener {
 	 * Registers the hatched egg and the born family in the statisticsDelta.
 	 */
 	@Override
-	public void onReplace(Egg replacedEgg, InternalBoardObject bornFamily) {
+	public void onHatched(Egg replacedEgg, InternalBoardObject bornFamily) {
 		statisticsDelta.setEggsHatched(statisticsDelta.getEggsHatched() + 1);
+	}
+
+	@Override
+	public void onAge(ColoredAlligator colored, AgedAlligator aged) {
 	}
 
 	public void evaluateStep() throws ColorOverflowException,
@@ -258,6 +267,7 @@ public class GameController implements BoardEventListener {
 		if (simulator != null) {
 			simulator.reset();
 		} else {
+			setupColorController();
 			userBoard = level.getInitialBoard();
 			placementMessenger.notifyBoardRebuilt(userBoard);
 		}
@@ -311,12 +321,12 @@ public class GameController implements BoardEventListener {
 	public int getAnswerMC() {
 		return this.answerMC;
 	}
-	
-	public boolean isLevelWon(){
-		if(isMC){
-			return ((MultipleChoiceLevel)level).validateAnswer(answerMC);
-		}else{
-			//TODO
+
+	public boolean isLevelWon() {
+		if (isMC) {
+			return ((MultipleChoiceLevel) level).validateAnswer(answerMC);
+		} else {
+			// TODO
 			return false;
 		}
 	}
