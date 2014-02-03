@@ -9,7 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SizeToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
+import de.croggle.data.AssetManager;
+import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.ColoredAlligator;
@@ -34,9 +37,15 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	 */
 	@Override
 	public void onObjectRecolored(ColoredBoardObject recoloredObject) {
-		// ColoredBoardObjectActor actor = (ColoredBoardObjectActor)
-		// layout.getActor(recoloredObject);
-		// actor.invalidate();
+		BoardObjectActor actor = b.getLayout().getActor(recoloredObject);
+		if (actor != null) {
+			/*
+			 * TODO if unnecessary if recolor events were fired at the right
+			 * moment
+			 */
+			ColoredBoardObjectActor cboa = (ColoredBoardObjectActor) actor;
+			cboa.invalidate();
+		}
 	}
 
 	/**
@@ -89,7 +98,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 					b.getLayout().removeActor(eatenActor);
 					b.removeFromWorld(eatenActor);
 				}
-				// the Aged event is responsible for this now
+				// the onAged event is responsible for this now
 				// removeObjectAnimated(eater);
 				applyDeltasAnimated(b.getLayout().getDeltasToFix());
 			}
@@ -147,6 +156,15 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	 */
 	@Override
 	public final void onBoardRebuilt(Board board) {
+		// TODO dirrrty
+		Image flash = new Image(AssetManager.getInstance().getColorTexture(
+				Color.uncolored()));
+		flash.setFillParent(true);
+		b.addToActor(flash);
+		flash.validate();
+		flash.addAction(Actions.alpha(0.f, 0.4f));
+		flash.addAction(Actions.delay(0.4f, Actions.removeActor()));
+
 		b.clearWorld();
 		b.setLayout(ActorLayoutBuilder.build(board, b.getLayoutConfiguration()));
 		for (BoardObjectActor actor : b.getLayout()) {
