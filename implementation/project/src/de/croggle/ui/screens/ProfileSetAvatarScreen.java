@@ -95,7 +95,7 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 		}
 
 		innerTable.setBackground(helper
-				.getDrawable("widgets/default-background"));
+				.getDrawable("widgets/dialog-background"));
 		innerTable.pad(30);
 		innerTable.add(leftTable).expand().fill();
 		innerTable.add(confirm).size(100).expandY().bottom();

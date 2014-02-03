@@ -92,7 +92,7 @@ public class ProfileSetNameScreen extends AbstractScreen {
 		});
 
 		innerTable.setBackground(helper
-				.getDrawable("widgets/default-background"));
+				.getDrawable("widgets/dialog-background"));
 		innerTable.pad(30);
 		innerTable.add(askName).left().padLeft(100).height(50);
 		innerTable.row();

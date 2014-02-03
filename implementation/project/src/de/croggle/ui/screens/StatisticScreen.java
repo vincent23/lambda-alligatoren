@@ -7,9 +7,9 @@ import java.util.List;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -25,7 +25,6 @@ import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
-import de.croggle.ui.screens.AbstractScreen.LogicalPredecessorListener;
 
 /**
  * Screen which enables the teacher or parent to control the progress of every
@@ -72,6 +71,7 @@ public class StatisticScreen extends AbstractScreen implements
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				showProgressStatistic();
+				progressButton.setChecked(true);
 			}
 		});
 
@@ -115,7 +115,7 @@ public class StatisticScreen extends AbstractScreen implements
 		ScrollPane pane = new ScrollPane(content);
 		pane.setScrollingDisabled(true, false);
 		table.add(pane).expand().fill().colspan(3);
-		
+
 		onProfileChange(null);
 	}
 
@@ -235,6 +235,7 @@ public class StatisticScreen extends AbstractScreen implements
 	@Override
 	protected void onShow() {
 		showProgressStatistic();
+		progressButton.setChecked(true);
 		super.onShow();
 	}
 
