@@ -174,7 +174,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 	protected void sizeChanged() {
 		world.syncBounds();
 		if (zoomAndPan != null) {
-			zoomAndPan.calculateLimits();
+			zoomAndPan.validate();
 		}
 		initializePosition();
 	}

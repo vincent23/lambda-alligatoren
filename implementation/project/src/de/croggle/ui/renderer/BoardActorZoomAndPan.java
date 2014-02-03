@@ -28,7 +28,7 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 		minX = Float.NEGATIVE_INFINITY;
 		minY = Float.NEGATIVE_INFINITY;
 
-		calculateLimits();
+		validate();
 	}
 
 	@Override
@@ -38,14 +38,18 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 	}
 
 	public void pan(float deltaX, float deltaY) {
-		Vector2 delta = new Vector2(deltaX, deltaY);
-		float posX = b.getWorldX();
-		if (posX + delta.x >= minX && posX + delta.x <= maxX) {
-			b.setWorldX(posX + delta.x);
-		}
-		float posY = b.getWorldY();
-		if (posY + delta.y >= minY && posY + delta.y <= maxY) {
-			b.setWorldY(posY + delta.y);
+		// TODO quick fix for libgdx continuing to delegate events after
+		// listeners have been removed
+		if (b.isZoomAndPanEnabled()) {
+			Vector2 delta = new Vector2(deltaX, deltaY);
+			float posX = b.getWorldX();
+			if (posX + delta.x >= minX && posX + delta.x <= maxX) {
+				b.setWorldX(posX + delta.x);
+			}
+			float posY = b.getWorldY();
+			if (posY + delta.y >= minY && posY + delta.y <= maxY) {
+				b.setWorldY(posY + delta.y);
+			}
 		}
 	}
 
@@ -64,7 +68,7 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 		zoomIn(percent, pointX, pointY);
 	}
 
-	void calculateLimits() {
+	public void validate() {
 		calculateZoomLimits();
 		calculatePanLimits(getZoom());
 	}
