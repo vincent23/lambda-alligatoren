@@ -64,7 +64,7 @@
 							"movable" : false ,
 							"removable" : false ,
 							"color" : -1 ,
-							"recolorable" : false
+							"recolorable" : true
 						}				
 					
 					]
