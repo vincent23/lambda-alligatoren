@@ -17,21 +17,21 @@
 							"movable" : false ,
 							"removable" : false ,
 							"color" : 20 ,
-							"recolorable" : true
+							"recolorable" : false
 						},
 						{
 							"type" : "egg" ,
 							"movable" : false ,
 							"removable" : false ,
 							"color" : 21 ,
-							"recolorable" : true
+							"recolorable" : false
 						},
 						{
 							"type" : "egg" ,
 							"movable" : false ,
 							"removable" : false ,
 							"color" : 22 ,
-							"recolorable" : true
+							"recolorable" : false
 						}
 					]
 				},
