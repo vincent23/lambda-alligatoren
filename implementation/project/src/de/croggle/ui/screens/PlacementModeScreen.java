@@ -17,6 +17,7 @@ import de.croggle.game.GameController;
 import de.croggle.game.level.LevelPackage;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.actors.HintDialog;
 import de.croggle.ui.actors.IngameMenuDialog;
 import de.croggle.ui.actors.ObjectBar;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
@@ -95,6 +96,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 		// add listeners
 		menu.addListener(new MenuClickListener());
+		hint.addListener(new HintClickListener());
 
 		leftTable.pad(30);
 		leftTable.defaults().space(30);
@@ -168,6 +170,14 @@ public class PlacementModeScreen extends AbstractScreen implements
 		public void clicked(InputEvent event, float x, float y) {
 			Dialog menuDialog = new IngameMenuDialog(game, gameController);
 			menuDialog.show(stage);
+		}
+	}
+	
+	private class HintClickListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			Dialog dialog = new HintDialog(gameController.getLevel());
+			dialog.show(stage);
 		}
 	}
 
