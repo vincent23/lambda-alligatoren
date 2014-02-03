@@ -27,7 +27,7 @@ import de.croggle.ui.actors.NotificationDialog;
  */
 public class AchievementScreen extends AbstractScreen {
 
-	private static final int ICONS_PER_ROW = 6;
+	private static final int ICONS_PER_ROW = 5;
 
 	private ScrollPane scrollPane;
 	private Table currentTable;
