@@ -1,11 +1,6 @@
 package de.croggle.ui.screens;
 
-import java.io.IOException;
-
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -15,6 +10,7 @@ import de.croggle.AlligatorApp;
 import de.croggle.game.level.LevelPackage;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.actors.MaskedImage;
 import de.croggle.ui.actors.PagedScrollPane;
 
 /**
@@ -51,12 +47,14 @@ public class LevelPackagesScreen extends AbstractScreen {
 
 		for (LevelPackage pack : packagesController.getLevelPackages()) {
 			Table pageTable = new Table();
-			Image levelImage;
+			MaskedImage levelImage;
 
 			try {
-				levelImage = new Image(new Texture(pack.getDesign()));
+				levelImage = new MaskedImage(pack.getDesign(),
+						"textures/package-mask.png");
 			} catch (GdxRuntimeException ex) {
-				levelImage = new Image(new Texture("textures/swamp.png"));
+				levelImage = new MaskedImage("textures/swamp.png",
+						"textures/package-mask.png");
 			}
 
 			levelImage.addListener(new OpenPackageListener(pack
@@ -65,16 +63,6 @@ public class LevelPackagesScreen extends AbstractScreen {
 			pageTable.add(levelImage).height(440);
 			pager.addPage(pageTable);
 		}
-
-		// test scrolling
-		// Table page2 = new Table();
-		// Image image2 = new Image(new Texture("textures/swamp.png"));
-		// page2.add(image2).height(400);
-		// pager.addPage(page2);
-		// Table page3 = new Table();
-		// Image image3 = new Image(new Texture("textures/swamp.png"));
-		// page3.add(image3).height(440);
-		// pager.addPage(page3);
 
 		table.add(home).expandX().left().size(100);
 		table.row();
@@ -90,7 +78,7 @@ public class LevelPackagesScreen extends AbstractScreen {
 
 	private class OpenPackageListener extends ClickListener {
 
-		private int packageId;
+		private final int packageId;
 
 		public OpenPackageListener(int packageId) {
 			this.packageId = packageId;
