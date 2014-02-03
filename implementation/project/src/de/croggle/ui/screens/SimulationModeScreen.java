@@ -125,6 +125,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 	}
 
 	public void hide() {
+		stopAutomaticSimulation();
 		table.clear();
 	}
 
