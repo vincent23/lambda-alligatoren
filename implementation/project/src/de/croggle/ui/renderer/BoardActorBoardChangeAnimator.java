@@ -21,11 +21,10 @@ import de.croggle.game.event.BoardEventListener;
 
 class BoardActorBoardChangeAnimator implements BoardEventListener {
 	private final BoardActor b;
-	
+
 	public BoardActorBoardChangeAnimator(BoardActor b) {
 		this.b = b;
 	}
-	
 
 	/**
 	 * Visualizes the recoloring of an object on the board.
@@ -35,8 +34,9 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	 */
 	@Override
 	public void onObjectRecolored(ColoredBoardObject recoloredObject) {
-		//ColoredBoardObjectActor actor = (ColoredBoardObjectActor) layout.getActor(recoloredObject);
-		//actor.invalidate();
+		// ColoredBoardObjectActor actor = (ColoredBoardObjectActor)
+		// layout.getActor(recoloredObject);
+		// actor.invalidate();
 	}
 
 	/**
@@ -51,8 +51,8 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	@Override
 	public void onEat(final ColoredAlligator eater,
 			final InternalBoardObject eatenFamily, int eatenParentPosition) {
-		ColoredAlligatorActor eaterActor = ((ColoredAlligatorActor) b.getLayout()
-				.getActor(eater));
+		ColoredAlligatorActor eaterActor = ((ColoredAlligatorActor) b
+				.getLayout().getActor(eater));
 		eaterActor.enterEatingState();
 		final List<InternalBoardObject> eatenLst = FlattenTree
 				.toList(eatenFamily);
@@ -63,13 +63,15 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		for (InternalBoardObject eaten : eatenLst) {
 			actor = b.getLayout().getActor(eaten);
 			// automatically pooled actions, sooo convenient...
-			MoveToAction moveAction = Actions.moveTo(eaterActor.getX(), eaterActor.getY(), animDuration);
+			MoveToAction moveAction = Actions.moveTo(eaterActor.getX(),
+					eaterActor.getY(), animDuration);
 			actor.addAction(moveAction);
 			ScaleToAction scaleAction = Actions.scaleTo(0, 0, animDuration);
 			actor.addAction(scaleAction);
 		}
 
 		b.addAction(new TemporalAction() {
+			@Override
 			protected void begin() {
 				setDuration(animDuration);
 			}
@@ -79,6 +81,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 				// do nothing
 			}
 
+			@Override
 			protected void end() {
 				BoardObjectActor eatenActor;
 				for (InternalBoardObject eaten : eatenLst) {
@@ -99,9 +102,10 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	 */
 	private void removeObjectAnimated(final InternalBoardObject object) {
 		final float fadingtime = .3f;
-		// TODO make sure, fading out even works on our custom actors
-		b.addAction(Actions.fadeOut(fadingtime));
+		BoardObjectActor ba = b.getLayout().getActor(object);
+		ba.addAction(Actions.fadeOut(fadingtime));
 		b.addAction(new TemporalAction() {
+			@Override
 			protected void begin() {
 				setDuration(fadingtime);
 			}
@@ -111,6 +115,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 				// do nothing
 			}
 
+			@Override
 			protected void end() {
 				BoardObjectActor actor = b.getLayout().getActor(object);
 				b.getLayout().removeActor(actor);
@@ -164,7 +169,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		eggActor.enterHatchingState();
 		removeObjectAnimated(replacedEgg);
 	}
-	
+
 	private void applyDeltasAnimated(List<ActorDelta> deltas) {
 		List<ActorDelta> created = new ArrayList<ActorDelta>();
 		for (ActorDelta delta : deltas) {
@@ -176,42 +181,48 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		}
 		applyCreationDeltas(created);
 	}
-	
+
 	private void applyDeltaAnimated(ActorDelta delta) {
 		final float moveToDuration = 0.3f;
 		final float sizeToDuration = 0.3f;
-		
+
 		Actor actor = delta.getActor();
 		if (delta.isxChanged()) {
 			MoveToAction moveTo;
 			if (delta.isyChanged()) {
-				moveTo = Actions.moveTo(delta.getNewX(), delta.getNewY(), moveToDuration);
+				moveTo = Actions.moveTo(delta.getNewX(), delta.getNewY(),
+						moveToDuration);
 			} else {
-				moveTo = Actions.moveTo(delta.getNewX(), actor.getY(), moveToDuration);
+				moveTo = Actions.moveTo(delta.getNewX(), actor.getY(),
+						moveToDuration);
 			}
 			actor.addAction(moveTo);
 		} else if (delta.isyChanged()) {
-			MoveToAction moveTo = Actions.moveTo(actor.getX(), delta.getNewY(), moveToDuration);
+			MoveToAction moveTo = Actions.moveTo(actor.getX(), delta.getNewY(),
+					moveToDuration);
 			actor.addAction(moveTo);
 		}
-		
+
 		if (delta.isWidthChanged()) {
 			SizeToAction sizeTo;
 			if (delta.isHeightChanged()) {
-				sizeTo = Actions.sizeTo(delta.getNewWidth(), delta.getNewHeight(), sizeToDuration);
+				sizeTo = Actions.sizeTo(delta.getNewWidth(),
+						delta.getNewHeight(), sizeToDuration);
 			} else {
-				sizeTo = Actions.sizeTo(delta.getNewWidth(), actor.getHeight(), sizeToDuration);
+				sizeTo = Actions.sizeTo(delta.getNewWidth(), actor.getHeight(),
+						sizeToDuration);
 			}
 			actor.addAction(sizeTo);
 		} else if (delta.isyChanged()) {
-			SizeToAction sizeTo = Actions.sizeTo(actor.getWidth(), delta.getNewHeight(), sizeToDuration);
+			SizeToAction sizeTo = Actions.sizeTo(actor.getWidth(),
+					delta.getNewHeight(), sizeToDuration);
 			actor.addAction(sizeTo);
 		}
 	}
-	
+
 	private void applyCreationDeltas(final List<ActorDelta> deltas) {
 		float animDuration = 0.2f;
-		
+
 		BoardObjectActor actor;
 		for (ActorDelta delta : deltas) {
 			actor = delta.getActor();
