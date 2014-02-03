@@ -12,7 +12,7 @@ import de.croggle.game.board.operations.MatchWithRenaming;
  * alligators and eggs into a constellation that evaluates into the given goal
  * term.
  */
-public class TermEditLevel extends Level {
+public class TermEditLevel extends EditLevel {
 
 	private Color[] userColors;
 	private Color[] blockedColors;

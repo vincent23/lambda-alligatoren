@@ -11,7 +11,7 @@ import de.croggle.game.board.operations.MatchWithRenaming;
  * A special type of level in which the player has to change the color of the
  * given elements in order for the simulation to reach a certain outcome.
  */
-public class ColorEditLevel extends Level {
+public class ColorEditLevel extends EditLevel {
 
 	private Color[] userColors;
 	private Color[] blockedColors;
