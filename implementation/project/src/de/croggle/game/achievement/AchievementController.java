@@ -1,15 +1,12 @@
 package de.croggle.game.achievement;
 
-import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import android.util.SparseIntArray;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
-import de.croggle.data.persistence.StatisticsDeltaProcessor;
 import de.croggle.data.persistence.manager.PersistenceManager;
 
 /**
@@ -46,18 +43,6 @@ public class AchievementController {
 		this.game = game;
 		initiateAvailableAchievements();
 
-	}
-
-	/**
-	 * Receives statistics delta from the just finished level and processes it.
-	 * 
-	 * @param statisticsDelta
-	 *            changes within the statistic of an account which occured
-	 *            during the completion of a level
-	 * @return list of achieved achievements (might be empty)
-	 */
-	public List<Achievement> processStatisticsDelta(Statistic statisticsDelta) {
-		return null;
 	}
 
 	/**
@@ -101,9 +86,14 @@ public class AchievementController {
 	 *            the name of the user which unlocked achievements are loaded
 	 */
 	public void changeUnlockedAchievements(String profileName) {
+		initiateAvailableAchievements();
 		PersistenceManager pm = game.getPersistenceManager();
-		latestUnlockedAchievements = convertInputFromDatabase(pm
-				.getAllUnlockedAchievements(profileName));
+		SparseIntArray unlockedAchievements = pm.getAllUnlockedAchievements(profileName);
+		for (Achievement achievement : availableAchievements) {
+			achievement.setIndex(unlockedAchievements.get(achievement.getId()));
+		}
+	
+		
 	}
 
 	/**
@@ -156,11 +146,7 @@ public class AchievementController {
 		List<Achievement> latestChanges = new ArrayList<Achievement>();
 		for (Achievement achievement : availableAchievements) {
 			int oldVal = achievement.getIndex();
-			int newVal = achievement.requirementsMet(statistic, statisticDelta); // Changes
-																					// after
-																					// update
-																					// of
-																					// statistic
+			int newVal = achievement.requirementsMet(statistic, statisticDelta); 
 			if (oldVal != newVal) {
 				achievement.setIndex(newVal);
 				latestChanges.add(achievement);
@@ -168,7 +154,7 @@ public class AchievementController {
 		}
 		return latestChanges;
 	}
-
+	
 	/**
 	 * Checks whether the new statistic changes in a level cause new
 	 * achievements to get unlocked. In this case it sets them as unlocked; the
@@ -188,5 +174,6 @@ public class AchievementController {
 		PersistenceManager pm = game.getPersistenceManager();
 		pm.saveUnlockedAchievements(game.getProfileController()
 				.getCurrentProfileName(), latestUnlockedAchievements);
+
 	}
 }

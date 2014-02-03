@@ -101,13 +101,14 @@ public class PersistenceManager {
 			List<Achievement> achievements = game.getAchievementController()
 					.getAvailableAchievements();
 			for (Achievement achievement : achievements) {
+				achievement.setIndex(0);
 				achievementManager.addUnlockedAchievement(profile.getName(),
 						achievement);
 			}
 			achievementManager.close();
 
 		}
-
+		
 	}
 
 	/**
