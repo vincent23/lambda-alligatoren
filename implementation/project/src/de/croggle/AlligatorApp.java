@@ -198,7 +198,7 @@ public class AlligatorApp extends Game {
 		achievementController = new AchievementController(this);
 		levelPackagesController = new LevelPackagesController(this);
 
-		// initialize screens
+		/// initialize screens
 		mainMenuScreen = new MainMenuScreen(this);
 		levelPackagesScreen = new LevelPackagesScreen(this);
 		// levelsOverviewScreen = new LevelsOverviewScreen(this, null);
@@ -221,7 +221,12 @@ public class AlligatorApp extends Game {
 
 		profileController.initializeController();
 
-		setScreen(new LoadingScreen(this, mainMenuScreen));
+		if (profileController.getAllProfiles().isEmpty()) {
+			setScreen(new LoadingScreen(this, profileSetNameScreen));
+		} else {
+			setScreen(new LoadingScreen(this, mainMenuScreen));
+		}
+		
 	}
 
 	/**

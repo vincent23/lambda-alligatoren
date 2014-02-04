@@ -26,6 +26,7 @@ public class ProfileSetNameScreen extends AbstractScreen {
 	private TextField nameInput;
 	private String profileName;
 	private boolean isInEditMode = false;
+	
 
 	/**
 	 * Creates the screen that is shown to the player while changing his player
@@ -56,14 +57,12 @@ public class ProfileSetNameScreen extends AbstractScreen {
 		nameInput = new TextField("", helper.getTextFieldStyle());
 		ImageButton next = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-next"));
-		ImageButton back = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/icon-back"));
+		
 
 		// any longer name won't fit on the profile button
 		nameInput.setMaxLength(20);
 
 		// add listeners
-		back.addListener(new LogicalPredecessorListener());
 		next.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
@@ -102,7 +101,7 @@ public class ProfileSetNameScreen extends AbstractScreen {
 		innerTable.row();
 		innerTable.add(nameInput).width(500).height(50).space(30);
 		innerTable.row();
-		innerTable.add(back).size(100).expand().left().bottom();
+	
 		innerTable.add(next).size(100).expand().right().bottom();
 
 		table.add(innerTable).width(700).height(350);
@@ -117,5 +116,7 @@ public class ProfileSetNameScreen extends AbstractScreen {
 	public void setIsInEditMode(boolean isInEditMode) {
 		this.isInEditMode = isInEditMode;
 	}
+	
+	
 
 }
