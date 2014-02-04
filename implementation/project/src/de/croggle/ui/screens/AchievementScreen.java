@@ -30,7 +30,7 @@ public class AchievementScreen extends AbstractScreen {
 	private static final int ICONS_PER_ROW = 5;
 
 	private ScrollPane scrollPane;
-	private Table currentTable;
+	private Table achievementTable = new Table();
 	ArrayList<Table> block;
 	private AchievementController achievementController;
 
@@ -54,101 +54,111 @@ public class AchievementScreen extends AbstractScreen {
 		super.initializeWidgets();
 		fillTable();
 	}
+	
 
-	private void fillTable() {
-		StyleHelper helper = StyleHelper.getInstance();
-		ImageButton back = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/icon-back"));
-		Label achievements = new Label(_("screen_title_achievements"),
-				helper.getLabelStyle(50));
-		ImageButton next = new ImageButton(
-				helper.getDrawable("widgets/icon-next"));
-		ImageButton previous = new ImageButton(
-				helper.getDrawable("widgets/icon-back"));
-
-		List<Achievement> availableAchievements = achievementController
-				.getAvailableAchievements();
-		currentTable = new Table();
-		for (final Achievement achievement : availableAchievements) {
-			for (int i = 1; i < achievement.getNumberOfStages(); i++) {
-				ImageButton achievementButton;
-				achievement.setIndex(3);// TODO debugging
-				try {
-					if (i <= achievement.getIndex()) {
-						achievementButton = new ImageButton(
-								helper.getDrawable(achievement
-										.getEmblemPathachieved(i)));
-						// achievementButton = new ImageButton(
-						// helper.getDrawable("widgets/button"));
-
-						achievementButton
-								.addListener(new AchievementDetailViewListener(
-										achievement, i));
-					} else if (i == achievement.getNumberOfStages() - 1) {
-						achievementButton = new ImageButton(
-								helper.getDrawable(achievement
-										.getEmblemPathnotachieved(i)));
-						final int index = i;
-						achievementButton.addListener(new ClickListener() {
-							@Override
-							public void clicked(InputEvent event, float x,
-									float y) {
-								Dialog dialog = new NotificationDialog(
-										_("achievement_dialog_last")
-												+  "???");
-								dialog.show(stage);
-							}
-						});
-
-					} else {
-						achievementButton = new ImageButton(
-								helper.getDrawable(achievement
-										.getEmblemPathnotachieved(i)));
-						// achievementButton = new ImageButton(
-						// helper.getDrawable("widgets/button-blue"));
-
-						// because it must be final for usage in inner class
-						final int index = i;
-						achievementButton.addListener(new ClickListener() {
-							@Override
-							public void clicked(InputEvent event, float x,
-									float y) {
-								Dialog dialog = new NotificationDialog(
-										_("achievement_dialog_standard")
-												+ achievement
-														.getDescription(index));
-								dialog.show(stage);
-							}
-						});
-					}
-				} catch (IllegalArgumentException e) {
-					achievementButton = new ImageButton(
-							helper.getDrawable("widgets/button"));
-				} catch (GdxRuntimeException e) {
-					achievementButton = new ImageButton(
-							helper.getDrawable("widgets/button"));
-				}
-
-				currentTable.add(achievementButton).size(120).space(50);
-				if ((i - 1) % ICONS_PER_ROW == ICONS_PER_ROW - 1) {
-					currentTable.row();
-				}
-
-			}
-			currentTable.row();
+		@Override
+		protected void onShow() {
+			displayAchievements();
+			super.onShow();
 		}
 
-		// add listeners
-		back.addListener(new LogicalPredecessorListener());
+		private void displayAchievements() {
+			achievementTable.clear();
+			StyleHelper helper = StyleHelper.getInstance();
 
-		scrollPane = new ScrollPane(currentTable);
-		table.add(back).size(100).spaceRight(30);
-		table.add(achievements).height(100).expandX().left();
-		table.row();
-		table.add(scrollPane).expand().fill().colspan(2);
-		table.pad(30, 30, 0, 30);
+			List<Achievement> availableAchievements = achievementController
+					.getAvailableAchievements();
+		
+		
+			
+			for (final Achievement achievement : availableAchievements) {
+				System.out.println(achievement.getIndex());
+				for (int i = 1; i < achievement.getNumberOfStages(); i++) {
+					ImageButton achievementButton;
+				
+					try {
+						if (i <= achievement.getIndex()) {
+							achievementButton = new ImageButton(
+									helper.getDrawable(achievement
+											.getEmblemPathachieved(i)));
+							achievementButton
+									.addListener(new AchievementDetailViewListener(
+											achievement, i));
+						} else if (i == achievement.getNumberOfStages() - 1) {
+							achievementButton = new ImageButton(
+									helper.getDrawable(achievement
+											.getEmblemPathnotachieved(i)));
+							final int index = i;
+							achievementButton.addListener(new ClickListener() {
+								@Override
+								public void clicked(InputEvent event, float x,
+										float y) {
+									Dialog dialog = new NotificationDialog(
+											_("achievement_dialog_last")
+													+ achievement
+															.getDescription(index));
+									dialog.show(stage);
+								}
+							});
+
+						} else {
+							achievementButton = new ImageButton(
+									helper.getDrawable(achievement
+											.getEmblemPathnotachieved(i)));
+							final int index = i;
+							achievementButton.addListener(new ClickListener() {
+								@Override
+								public void clicked(InputEvent event, float x,
+										float y) {
+									Dialog dialog = new NotificationDialog(
+											_("achievement_dialog_standard")
+													+ achievement
+															.getDescription(index));
+									dialog.show(stage);
+								}
+							});
+						}
+					} catch (IllegalArgumentException e) {
+						achievementButton = new ImageButton(
+								helper.getDrawable("widgets/button"));
+					} catch (GdxRuntimeException e) {
+						achievementButton = new ImageButton(
+								helper.getDrawable("widgets/button"));
+					}
+
+					achievementTable.add(achievementButton).size(120).space(50);
+					if ((i - 1) % ICONS_PER_ROW == ICONS_PER_ROW - 1) {
+						achievementTable.row();
+					}
+
+				}
+				achievementTable.row();
+			}
+		}
+
+		private void fillTable() {
+			StyleHelper helper = StyleHelper.getInstance();
+			ImageButton back = new ImageButton(
+					helper.getImageButtonStyleRound("widgets/icon-back"));
+			Label achievements = new Label(_("screen_title_achievements"),
+					helper.getLabelStyle(50));
+		
+			back.addListener(new LogicalPredecessorListener());
+			
+			displayAchievements();
+
+			scrollPane = new ScrollPane(achievementTable);
+			table.add(back).size(100).spaceRight(30);
+			table.add(achievements).height(100).expandX().left();
+			table.row();
+			table.add(scrollPane).expand().fill().colspan(2);
+			table.pad(30, 30, 0, 30);
+
 
 	}
+
+
+	
 
 	private class AchievementDetailViewListener extends ClickListener {
 
