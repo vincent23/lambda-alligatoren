@@ -2,6 +2,7 @@ package de.croggle.game.level;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 
+import de.croggle.game.MultipleChoiceGameController;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.operations.MatchWithRenaming;
 
@@ -81,6 +82,11 @@ public class MultipleChoiceLevel extends Level {
 			this.setSolvedTrue();
 		}
 		return index == this.correctAnswer;
+	}
+
+	@Override
+	public MultipleChoiceGameController createGameController() {
+		return new MultipleChoiceGameController(this);
 	}
 
 }

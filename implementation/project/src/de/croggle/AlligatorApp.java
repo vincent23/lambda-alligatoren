@@ -14,6 +14,7 @@ import de.croggle.data.persistence.SettingController;
 import de.croggle.data.persistence.StatisticController;
 import de.croggle.data.persistence.manager.PersistenceManager;
 import de.croggle.game.GameController;
+import de.croggle.game.MultipleChoiceGameController;
 import de.croggle.game.achievement.AchievementController;
 import de.croggle.game.board.IllegalBoardException;
 import de.croggle.game.level.LevelController;
@@ -30,8 +31,8 @@ import de.croggle.ui.screens.LevelPackagesScreen;
 import de.croggle.ui.screens.LevelsOverviewScreen;
 import de.croggle.ui.screens.LoadingScreen;
 import de.croggle.ui.screens.MainMenuScreen;
-import de.croggle.ui.screens.PlacementModeScreen;
 import de.croggle.ui.screens.MultipleChoiceScreen;
+import de.croggle.ui.screens.PlacementModeScreen;
 import de.croggle.ui.screens.ProfileSetAvatarScreen;
 import de.croggle.ui.screens.ProfileSetNameScreen;
 import de.croggle.ui.screens.QuitGameOverlay;
@@ -135,7 +136,7 @@ public class AlligatorApp extends Game {
 	public StatisticController getStatisticController() {
 		return statisticController;
 	}
-	
+
 	/**
 	 * Returns the sound controller which is used to play sounds and music.
 	 * 
@@ -222,7 +223,7 @@ public class AlligatorApp extends Game {
 		profileController.addProfileChangeListener(statisticScreen);
 
 		profileController.initializeController();
-		
+
 		soundController.addToPlaylist("music1.mp3");
 		soundController.startPlaylist();
 
@@ -322,17 +323,13 @@ public class AlligatorApp extends Game {
 		switchScreen();
 		setScreen(achievementScreen);
 	}
-	
-	
 
 	public void showSettingsScreen(boolean putOnStack) {
-		if(putOnStack) {
+		if (putOnStack) {
 			switchScreen();
 		}
 		setScreen(settingsScreen);
 	}
-	
-	
 
 	public void showStatisticScreen() {
 		switchScreen();
@@ -361,12 +358,7 @@ public class AlligatorApp extends Game {
 
 	public void showPlacementModeScreen(GameController gameController) {
 		switchScreen();
-		if(gameController.getLevel() instanceof MultipleChoiceLevel){
-			gameController.setMCtrue();
-			setScreen(new MultipleChoiceScreen(this, gameController));
-		}else{
-			setScreen(new PlacementModeScreen(this, gameController));
-		}
+		setScreen(gameController.createPlacementScreen(this));
 	}
 
 	public void showSimulationModeScreen(GameController gameController)

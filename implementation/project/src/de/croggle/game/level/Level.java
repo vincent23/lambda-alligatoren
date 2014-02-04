@@ -1,6 +1,8 @@
 package de.croggle.game.level;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+
+import de.croggle.game.GameController;
 import de.croggle.game.board.Board;
 
 /**
@@ -200,6 +202,10 @@ public abstract class Level {
 	 */
 	protected void setSolvedTrue() {
 		this.solved = true;
+	}
+
+	public GameController createGameController() {
+		return new GameController(this);
 	}
 
 }

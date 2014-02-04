@@ -16,7 +16,7 @@ import de.croggle.data.AssetManager;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingChangeListener;
 import de.croggle.game.ColorController;
-import de.croggle.game.GameController;
+import de.croggle.game.MultipleChoiceGameController;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.IllegalBoardException;
 import de.croggle.game.level.LevelPackage;
@@ -28,10 +28,7 @@ import de.croggle.ui.actors.IngameMenuDialog;
 import de.croggle.ui.actors.NotificationDialog;
 import de.croggle.ui.actors.PagedScrollPane;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
-import de.croggle.ui.renderer.AgedAlligatorActor;
 import de.croggle.ui.renderer.BoardActor;
-import de.croggle.ui.renderer.ColoredAlligatorActor;
-import de.croggle.ui.renderer.EggActor;
 
 /**
  * Screen which the player sees when entering Multiple choice levels.
@@ -39,7 +36,7 @@ import de.croggle.ui.renderer.EggActor;
 public class MultipleChoiceScreen extends AbstractScreen implements
 		SettingChangeListener {
 
-	private GameController gameController;
+	private MultipleChoiceGameController gameController;
 	private BoardActor boardActor;
 	private CheckBox checkboxes[];
 
@@ -52,7 +49,8 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 	 * @param controller
 	 *            the game controller responsible for the multiple choice level
 	 */
-	public MultipleChoiceScreen(AlligatorApp game, GameController controller) {
+	public MultipleChoiceScreen(AlligatorApp game,
+			MultipleChoiceGameController controller) {
 		super(game);
 		gameController = controller;
 
@@ -183,26 +181,28 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			super.clicked(event, x, y);
-			boolean[] answer = new boolean[3];
+			int answer = -1;
 			for (int i = 0; i < checkboxes.length; i++) {
-				answer[i] = checkboxes[i].isChecked();
-			}
-			gameController.setMCSelection(answer);
-
-			if (gameController.getAnswerMcIsValid()) {
-				try {
-					game.showSimulationModeScreen(gameController);
-				} catch (IllegalBoardException e) {
-					// This can't happen in a MC Level
+				if (checkboxes[i].isChecked()) {
+					if (answer == -1) {
+						answer = i;
+					} else {
+						Dialog dialog = new NotificationDialog(
+								_("multiple_choice_dialog"));
+						dialog.show(stage);
+						return;
+					}
 				}
-			} else {
-				Dialog dialog = new NotificationDialog(
-						_("multiple_choice_dialog"));
-				dialog.show(stage);
+			}
+			gameController.setSelection(answer);
+			try {
+				game.showSimulationModeScreen(gameController);
+			} catch (IllegalBoardException e) {
+				// This can't happen in a MC Level
 			}
 		}
 	}
-	
+
 	private class HintClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {

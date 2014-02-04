@@ -3,6 +3,9 @@ package de.croggle.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.Screen;
+
+import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.StatisticsDeltaProcessor;
 import de.croggle.game.board.AgedAlligator;
@@ -17,7 +20,7 @@ import de.croggle.game.board.operations.CountBoardObjects;
 import de.croggle.game.event.BoardEventListener;
 import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.game.level.Level;
-import de.croggle.game.level.MultipleChoiceLevel;
+import de.croggle.ui.screens.PlacementModeScreen;
 
 /**
  * Central controller within which the actual playing of the level is
@@ -43,11 +46,6 @@ public class GameController implements BoardEventListener {
 	private final BoardEventMessenger placementMessenger;
 	// listeners of the statisticsDelta
 	private final List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
-	// TODO find better solution to determine whether level is an Multiple
-	// Choice level
-	private boolean isMC;
-	private boolean answerMcIsValid;
-	private int answerMC;
 
 	/**
 	 * Creates a new game controller for the given level.
@@ -288,46 +286,7 @@ public class GameController implements BoardEventListener {
 		return level;
 	}
 
-	// TODO
-	public void setMCSelection(boolean answers[]) {
-		boolean set = false;
-		for (int i = 0; i < answers.length; i++) {
-			if (answers[i]) {
-				if (set) {
-					this.answerMcIsValid = false;
-					break;
-				} else {
-					this.answerMC = i;
-					this.answerMcIsValid = true;
-					set = true;
-				}
-			}
-		}
-
-	}
-
-	public void setMCtrue() {
-		this.isMC = true;
-	}
-
-	public boolean getIsMC() {
-		return this.isMC;
-	}
-
-	public boolean getAnswerMcIsValid() {
-		return this.answerMcIsValid;
-	}
-
-	public int getAnswerMC() {
-		return this.answerMC;
-	}
-
-	public boolean isLevelWon() {
-		if (isMC) {
-			return ((MultipleChoiceLevel) level).validateAnswer(answerMC);
-		} else {
-			// TODO
-			return false;
-		}
+	public Screen createPlacementScreen(AlligatorApp app) {
+		return new PlacementModeScreen(app, this);
 	}
 }
