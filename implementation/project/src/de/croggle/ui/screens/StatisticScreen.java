@@ -99,6 +99,7 @@ public class StatisticScreen extends AbstractScreen implements
 				gameButton);
 		group.setMaxCheckCount(1);
 		group.setUncheckLast(true);
+		progressButton.setChecked(true);
 
 		Table tabBarTable = new Table();
 		tabBarTable.defaults().size(325, 100);
@@ -122,6 +123,7 @@ public class StatisticScreen extends AbstractScreen implements
 		table.add(pane).expand().fill().colspan(3);
 
 		onProfileChange(null);
+		
 	}
 
 	@Override
@@ -138,12 +140,9 @@ public class StatisticScreen extends AbstractScreen implements
 			}
 		}
 		profileList.setItems(profileNames);
-		if (profile != null) {
-			profileList.setSelection(profile.getName());
-		}
-
 	}
 	
+
 	private void showCategory(Category category) {
 		content.clear();
 		LabelStyle style = StyleHelper.getInstance().getLabelStyle();
@@ -152,8 +151,7 @@ public class StatisticScreen extends AbstractScreen implements
 		if (statistic != null) {
 			switch(category) {
 			case PROGRESS :
-				lastCategory = Category.PROGRESS;
-				
+										
 				Label time = new Label(_("statistic_label_progress_time")
 						+ statistic.getPlaytime(), style);
 				Label packages = new Label(_("statistic_label_progress_packages")
@@ -169,8 +167,7 @@ public class StatisticScreen extends AbstractScreen implements
 				content.add(levels);
 				break;
 			case ACTION:
-				lastCategory = Category.ACTION;
-				
+								
 				Label recolorings = new Label(
 						_("statistic_label_action_recolorings")
 								+ statistic.getRecolorings(), style);
@@ -187,8 +184,7 @@ public class StatisticScreen extends AbstractScreen implements
 				content.add(hints);
 				break;
 			case GAME:
-				lastCategory = Category.GAME;
-				
+						
 				Label alligatorsEaten = new Label(
 						_("statistic_label_game_alligators_eaten")
 								+ statistic.getAlligatorsEaten(), style);
@@ -222,10 +218,13 @@ public class StatisticScreen extends AbstractScreen implements
 		public void clicked(InputEvent event, float x, float y) {
 			TextButton source = (TextButton) event.getListenerActor();
 			if (source == actionsButton) {
+				lastCategory = Category.ACTION;
 				showCategory(Category.ACTION);
 			} else if (source == gameButton) {
+				lastCategory = Category.GAME;
 				showCategory(Category.GAME);
 			} else if (source == progressButton) {
+				lastCategory = Category.PROGRESS;
 				showCategory(Category.PROGRESS);
 			}
 		}
