@@ -38,6 +38,12 @@ public class StatisticScreen extends AbstractScreen implements
 
 	private SelectBox profileList;
 	private Table content;
+	
+	private enum Category {
+		ACTION, PROGRESS, GAME
+	}
+	
+	private Category lastCategory = Category.PROGRESS;
 
 	private TextButton actionsButton;
 	private TextButton progressButton;
@@ -70,8 +76,7 @@ public class StatisticScreen extends AbstractScreen implements
 		profileList.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				showProgressStatistic();
-				progressButton.setChecked(true);
+				showCategory(lastCategory);
 			}
 		});
 
@@ -135,87 +140,81 @@ public class StatisticScreen extends AbstractScreen implements
 		profileList.setItems(profileNames);
 		if (profile != null) {
 			profileList.setSelection(profile.getName());
-			showProgressStatistic();
 		}
 
 	}
-
-	private void showActionStatistics() {
+	
+	private void showCategory(Category category) {
 		content.clear();
 		LabelStyle style = StyleHelper.getInstance().getLabelStyle();
 		Statistic statistic = statisticController.getStatistic(profileList
 				.getSelection());
 		if (statistic != null) {
-			Label recolorings = new Label(
-					_("statistic_label_action_recolorings")
-							+ statistic.getRecolorings(), style);
-			Label resets = new Label(_("statistic_label_action_resets")
-					+ statistic.getResetsUsed(), style);
-			Label hints = new Label(_("statistic_label_action_hints")
-					+ statistic.getUsedHints(), style);
+			switch(category) {
+			case PROGRESS :
+				lastCategory = Category.PROGRESS;
+				
+				Label time = new Label(_("statistic_label_progress_time")
+						+ statistic.getPlaytime(), style);
+				Label packages = new Label(_("statistic_label_progress_packages")
+						+ statistic.getPackagesComplete(), style);
+				Label levels = new Label(_("statistic_label_progress_levels")
+						+ statistic.getLevelsComplete(), style);
 
-			content.defaults().height(100).expandX().left().padLeft(10);
-			content.add(recolorings);
-			content.row();
-			content.add(resets);
-			content.row();
-			content.add(hints);
+				content.defaults().height(100).expandX().left().padLeft(10);
+				content.add(time);
+				content.row();
+				content.add(packages);
+				content.row();
+				content.add(levels);
+				break;
+			case ACTION:
+				lastCategory = Category.ACTION;
+				
+				Label recolorings = new Label(
+						_("statistic_label_action_recolorings")
+								+ statistic.getRecolorings(), style);
+				Label resets = new Label(_("statistic_label_action_resets")
+						+ statistic.getResetsUsed(), style);
+				Label hints = new Label(_("statistic_label_action_hints")
+						+ statistic.getUsedHints(), style);
+
+				content.defaults().height(100).expandX().left().padLeft(10);
+				content.add(recolorings);
+				content.row();
+				content.add(resets);
+				content.row();
+				content.add(hints);
+				break;
+			case GAME:
+				lastCategory = Category.GAME;
+				
+				Label alligatorsEaten = new Label(
+						_("statistic_label_game_alligators_eaten")
+								+ statistic.getAlligatorsEaten(), style);
+				Label alligatorsPlaced = new Label(
+						_("statistic_label_game_alligators_placed")
+								+ statistic.getAlligatorsPlaced(), style);
+				Label eggsHatched = new Label(
+						_("statistic_label_game_eggs_hatched")
+								+ statistic.getEggsHatched(), style);
+				Label eggsPlaced = new Label(_("statistic_label_game_eggs_placed")
+						+ statistic.getEggsPlaced(), style);
+
+				content.defaults().height(100).expandX().left().padLeft(10);
+				content.add(alligatorsEaten);
+				content.row();
+				content.add(alligatorsPlaced);
+				content.row();
+				content.add(eggsHatched);
+				content.row();
+				content.add(eggsPlaced);
+				break;
+			}
 		}
 	}
 
-	private void showProgressStatistic() {
-		content.clear();
-		LabelStyle style = StyleHelper.getInstance().getLabelStyle();
-		Statistic statistic = statisticController.getStatistic(profileList
-				.getSelection());
-		if (statistic != null) {
-			Label time = new Label(_("statistic_label_progress_time")
-					+ statistic.getPlaytime(), style);
-			Label packages = new Label(_("statistic_label_progress_packages")
-					+ statistic.getPackagesComplete(), style);
-			Label levels = new Label(_("statistic_label_progress_levels")
-					+ statistic.getLevelsComplete(), style);
-
-			content.defaults().height(100).expandX().left().padLeft(10);
-			content.add(time);
-			content.row();
-			content.add(packages);
-			content.row();
-			content.add(levels);
-		}
-
-	}
-
-	private void showGameStatistics() {
-		content.clear();
-		LabelStyle style = StyleHelper.getInstance().getLabelStyle();
-		Statistic statistic = statisticController.getStatistic(profileList
-				.getSelection());
-		if (statistic != null) {
-			Label alligatorsEaten = new Label(
-					_("statistic_label_game_alligators_eaten")
-							+ statistic.getAlligatorsEaten(), style);
-			Label alligatorsPlaced = new Label(
-					_("statistic_label_game_alligators_placed")
-							+ statistic.getAlligatorsPlaced(), style);
-			Label eggsHatched = new Label(
-					_("statistic_label_game_eggs_hatched")
-							+ statistic.getEggsHatched(), style);
-			Label eggsPlaced = new Label(_("statistic_label_game_eggs_placed")
-					+ statistic.getEggsPlaced(), style);
-
-			content.defaults().height(100).expandX().left().padLeft(10);
-			content.add(alligatorsEaten);
-			content.row();
-			content.add(alligatorsPlaced);
-			content.row();
-			content.add(eggsHatched);
-			content.row();
-			content.add(eggsPlaced);
-
-		}
-
-	}
+	
 
 	private class ChangeTabClickListener extends ClickListener {
 
@@ -223,20 +222,14 @@ public class StatisticScreen extends AbstractScreen implements
 		public void clicked(InputEvent event, float x, float y) {
 			TextButton source = (TextButton) event.getListenerActor();
 			if (source == actionsButton) {
-				showActionStatistics();
+				showCategory(Category.ACTION);
 			} else if (source == gameButton) {
-				showGameStatistics();
+				showCategory(Category.GAME);
 			} else if (source == progressButton) {
-				showProgressStatistic();
+				showCategory(Category.PROGRESS);
 			}
 		}
 	}
 
-	@Override
-	protected void onShow() {
-		showProgressStatistic();
-		progressButton.setChecked(true);
-		super.onShow();
-	}
 
 }
