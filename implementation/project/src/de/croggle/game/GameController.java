@@ -69,6 +69,9 @@ public class GameController implements BoardEventListener {
 		this.simulationMessenger = new BoardEventMessenger();
 		this.placementMessenger = new BoardEventMessenger();
 		this.statisticsDeltaProcessors = new ArrayList<StatisticsDeltaProcessor>();
+		
+		simulationMessenger.register(this);
+		placementMessenger.register(this);
 	}
 
 	protected void setupColorController() {

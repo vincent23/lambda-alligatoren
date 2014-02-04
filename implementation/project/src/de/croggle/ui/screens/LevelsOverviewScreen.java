@@ -97,6 +97,7 @@ public class LevelsOverviewScreen extends AbstractScreen {
 			final Level level = levelController.getLevel(levelId);
 			final GameController gameController = level
 					.createGameController(game);
+			gameController.register(game.getStatisticController());
 			game.showPlacementModeScreen(gameController);
 		}
 	}
