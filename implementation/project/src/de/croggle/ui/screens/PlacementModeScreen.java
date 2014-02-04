@@ -1,10 +1,14 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.data.LocalizationHelper._;
+
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
@@ -20,6 +24,7 @@ import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.HintDialog;
 import de.croggle.ui.actors.IngameMenuDialog;
 import de.croggle.ui.actors.ObjectBar;
+import de.croggle.ui.actors.ShowGoalDialog;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
 
@@ -37,6 +42,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 	private ImageButton zoomIn;
 	private ImageButton zoomOut;
+	private final Dialog dialog;
 
 	/**
 	 * Creates the screen of a level within the placement mode. This is the
@@ -54,6 +60,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 		AssetManager assetManager = AssetManager.getInstance();
 		assetManager.load("textures/pack.atlas", TextureAtlas.class);
+		dialog = new Dialog("", StyleHelper.getInstance().getDialogStyle());
 
 		fillTable();
 		final int packageIndex = gameController.getLevel().getPackageIndex();
@@ -92,6 +99,8 @@ public class PlacementModeScreen extends AbstractScreen implements
 				helper.getImageButtonStyleRound("widgets/icon-plus"));
 		zoomOut = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-minus"));
+		Button goal = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-trophy"));
 		ObjectBar objectBar = new ObjectBar(game, gameController);
 
 		// add listeners
@@ -104,6 +113,8 @@ public class PlacementModeScreen extends AbstractScreen implements
 		leftTable.row();
 		// TODO only activated after some time
 		leftTable.add(hint).expand().size(100).top().left();
+		leftTable.row();
+		leftTable.add(goal).expand().size(100).top().left();
 		leftTable.row();
 
 		leftTable.add(zoomIn).size(70).left();
@@ -130,9 +141,26 @@ public class PlacementModeScreen extends AbstractScreen implements
 		final Table controlTable = new Table();
 		controlTable.add(leftTable).expand().fill();
 		controlTable.add(objectBar).padLeft(30);
-
 		table.stack(boardTable, controlTable).fill().expand();
 		onSettingChange(game.getSettingController().getCurrentSetting());
+
+		BoardActor goalBoard = new BoardActor(gameController.getLevel()
+				.getGoalBoard(), config);
+		goalBoard.setZoomAndPanEnabled(false);
+		Table goalTable = new Table();
+		goalTable.add(goalBoard).size(getViewportHeight());
+		goal.addListener(new GoalClickListener());
+
+		dialog.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				dialog.hide();
+			}
+		});
+
+		dialog.add(goalTable).width(getViewportWidth() - 250)
+				.height(getViewportHeight());
+
 	}
 
 	private void checkZoom() {
@@ -172,11 +200,19 @@ public class PlacementModeScreen extends AbstractScreen implements
 			menuDialog.show(stage);
 		}
 	}
-	
+
 	private class HintClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			Dialog dialog = new HintDialog(gameController.getLevel());
+			dialog.show(stage);
+		}
+	}
+
+	private class GoalClickListener extends ClickListener {
+
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
 			dialog.show(stage);
 		}
 	}
