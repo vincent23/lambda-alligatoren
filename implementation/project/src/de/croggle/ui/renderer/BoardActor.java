@@ -143,6 +143,12 @@ public class BoardActor extends Group implements SettingChangeListener {
 				+ offsetTop);
 	}
 
+	public void panActorCoords(float deltaX, float deltaY) {
+		if (zoomAndPan != null) {
+			zoomAndPan.panActorCoords(deltaX, deltaY);
+		}
+	}
+
 	public boolean zoomIn(float percent, float pointX, float pointY) {
 		if (zoomAndPan != null) {
 			return zoomAndPan.zoomIn(percent, pointX, pointY);

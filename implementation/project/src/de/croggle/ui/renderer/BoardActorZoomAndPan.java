@@ -34,21 +34,22 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 	@Override
 	public void pan(InputEvent event, float x, float y, float deltaX,
 			float deltaY) {
-		pan(deltaX, deltaY);
+		if (b.isZoomAndPanEnabled()) {
+			panActorCoords(deltaX, deltaY);
+		}
 	}
 
-	public void pan(float deltaX, float deltaY) {
+	public void panActorCoords(float deltaX, float deltaY) {
 		// TODO quick fix for libgdx continuing to delegate events after
 		// listeners have been removed
-		if (b.isZoomAndPanEnabled()) {
-			Vector2 delta = new Vector2(deltaX, deltaY);
-			float posX = b.getWorldX();
-			b.setWorldX(posX + delta.x);
-			float posY = b.getWorldY();
-			b.setWorldY(posY + delta.y);
 
-			clampPosition();
-		}
+		Vector2 delta = new Vector2(deltaX, deltaY);
+		float posX = b.getWorldX();
+		b.setWorldX(posX + delta.x);
+		float posY = b.getWorldY();
+		b.setWorldY(posY + delta.y);
+
+		clampPosition();
 	}
 
 	@Override

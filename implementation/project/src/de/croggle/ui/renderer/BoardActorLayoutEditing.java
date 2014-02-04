@@ -2,6 +2,7 @@ package de.croggle.ui.renderer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputEvent.Type;
@@ -50,6 +51,9 @@ class BoardActorLayoutEditing {
 
 	private final float fadeDuration = 0.4f;
 
+	private float autoPanBorderWidth;
+	private float autoPanBorderHeight;
+
 	public BoardActorLayoutEditing(BoardActor b, BoardEventMessenger messenger) {
 		this.b = b;
 		this.messenger = messenger;
@@ -57,31 +61,49 @@ class BoardActorLayoutEditing {
 
 		boolean colorBlind = b.getLayout().getLayoutConfiguration()
 				.isColorBlindEnabled();
-		coloredPayload = new ColoredAlligatorActor(new ColoredAlligator(false,
-				false, Color.uncolored(), false), colorBlind);
-		eggPayload = new EggActor(new Egg(false, false, Color.uncolored(),
-				false), colorBlind);
-		agedPayload = new AgedAlligatorActor(new AgedAlligator(false, false));
+		{
+			coloredPayload = new ColoredAlligatorActor(new ColoredAlligator(
+					false, false, Color.uncolored(), false), colorBlind);
+			coloredPayload.addAction(new AutoPanAction());
+			eggPayload = new EggActor(new Egg(false, false, Color.uncolored(),
+					false), colorBlind);
+			eggPayload.addAction(new AutoPanAction());
+			agedPayload = new AgedAlligatorActor(
+					new AgedAlligator(false, false));
+			agedPayload.addAction(new AutoPanAction());
+		}
 
-		coloredValidPayload = new ColoredAlligatorActor(new ColoredAlligator(
-				false, false, Color.uncolored(), false), colorBlind);
-		coloredValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
-		eggValidPayload = new EggActor(new Egg(false, false, Color.uncolored(),
-				false), colorBlind);
-		eggValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
-		agedValidPayload = new AgedAlligatorActor(new AgedAlligator(false,
-				false));
-		agedValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
+		{
+			coloredValidPayload = new ColoredAlligatorActor(
+					new ColoredAlligator(false, false, Color.uncolored(), false),
+					colorBlind);
+			coloredValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
+			coloredValidPayload.addAction(new AutoPanAction());
+			eggValidPayload = new EggActor(new Egg(false, false,
+					Color.uncolored(), false), colorBlind);
+			eggValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
+			eggValidPayload.addAction(new AutoPanAction());
+			agedValidPayload = new AgedAlligatorActor(new AgedAlligator(false,
+					false));
+			agedValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
+			agedValidPayload.addAction(new AutoPanAction());
+		}
 
-		coloredInvalidPayload = new ColoredAlligatorActor(new ColoredAlligator(
-				false, false, Color.uncolored(), false), colorBlind);
-		coloredInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
-		eggInvalidPayload = new EggActor(new Egg(false, false,
-				Color.uncolored(), false), colorBlind);
-		eggInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
-		agedInvalidPayload = new AgedAlligatorActor(new AgedAlligator(false,
-				false));
-		agedInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
+		{
+			coloredInvalidPayload = new ColoredAlligatorActor(
+					new ColoredAlligator(false, false, Color.uncolored(), false),
+					colorBlind);
+			coloredInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
+			coloredInvalidPayload.addAction(new AutoPanAction());
+			eggInvalidPayload = new EggActor(new Egg(false, false,
+					Color.uncolored(), false), colorBlind);
+			eggInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
+			eggInvalidPayload.addAction(new AutoPanAction());
+			agedInvalidPayload = new AgedAlligatorActor(new AgedAlligator(
+					false, false));
+			agedInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
+			agedInvalidPayload.addAction(new AutoPanAction());
+		}
 	}
 
 	void registerLayoutListeners() {
@@ -153,12 +175,15 @@ class BoardActorLayoutEditing {
 
 			Gdx.input.vibrate(100);
 
+			autoPanBorderWidth = Math.min(b.getWidth() / 2, 150);
+			autoPanBorderHeight = Math.min(b.getHeight() / 2, 100);
+
 			boolean zoomEnabled = b.isZoomAndPanEnabled();
 			b.setZoomAndPanEnabled(false);
 
 			dnd.addSource(new ActorSource(actor, zoomEnabled));
-			dnd.setDragActorPosition(-actor.getWidth() / 2,
-					actor.getHeight() / 2);
+			dnd.setDragActorPosition(-actor.getWidth() / 2 * b.getZoom(),
+					actor.getHeight() / 2 * b.getZoom());
 			for (BoardObjectActor layoutActor : b.getLayout()) {
 				if (layoutActor.getBoardObject() instanceof Parent) {
 					dnd.addTarget(new ActorTarget(layoutActor));
@@ -314,8 +339,6 @@ class BoardActorLayoutEditing {
 
 		@Override
 		public Payload dragStart(InputEvent event, float x, float y, int pointer) {
-			System.out.println("Drag start!");
-
 			Payload payload = new Payload();
 			payload.setObject(this.getActor());
 
@@ -331,7 +354,6 @@ class BoardActorLayoutEditing {
 		@Override
 		public void dragStop(InputEvent event, float x, float y, int pointer,
 				Target target) {
-			System.out.println("Drag stop!");
 			if (reenableZoom) {
 				b.setZoomAndPanEnabled(true);
 			}
@@ -362,5 +384,53 @@ class BoardActorLayoutEditing {
 
 		}
 
+	}
+
+	private class AutoPanAction extends Action {
+
+		// only act once in %divider% milliseconds
+		private final float divider = 0.01f;
+
+		private final float xDistance = 2;
+		private final float yDistance = 2;
+
+		private float timePassed;
+
+		@Override
+		public boolean act(float delta) {
+			if (timePassed >= divider) {
+				timePassed = 0;
+				Actor a = getActor();
+				float x = a.getX();
+				float y = a.getY();
+				float maxx = x + a.getWidth();
+				float maxy = y + a.getHeight();
+				float w = b.getWidth();
+				float h = b.getHeight();
+				Vector2 pMin = new Vector2(x, y);
+				Vector2 pMax = new Vector2(maxx, maxy);
+				pMin = b.stageToLocalCoordinates(pMin);
+				pMax = b.stageToLocalCoordinates(pMax);
+				if (pMin.x <= autoPanBorderWidth) {
+					if (pMax.x < w - autoPanBorderWidth) {
+						b.panActorCoords(xDistance, 0);
+					}
+				} else if (pMax.x >= w - autoPanBorderWidth) {
+					b.panActorCoords(-xDistance, 0);
+				}
+
+				if (pMin.y <= autoPanBorderHeight) {
+					if (pMax.y < h - autoPanBorderHeight) {
+						b.panActorCoords(0, yDistance);
+					}
+				} else if (pMax.y >= h - autoPanBorderHeight) {
+					b.panActorCoords(0, -yDistance);
+				}
+			}
+			timePassed += delta;
+
+			// never end
+			return false;
+		}
 	}
 }
