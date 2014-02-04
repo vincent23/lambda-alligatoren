@@ -234,5 +234,10 @@ public class StatisticScreen extends AbstractScreen implements
 			}
 		}
 	}
+	
+	@Override
+	protected void onShow() {
+		showCategory(lastCategory);
+	}
 
 }
