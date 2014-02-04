@@ -50,7 +50,8 @@ public class SelectProfileScreen extends AbstractScreen implements
 		newProfile.addListener(new NewProfileClickListener());
 
 		scrollTable.defaults().width(500).height(100).space(10);
-
+		
+		scrollTable.padTop(30);
 		for (Profile profile : profileController.getAllProfiles()) {
 			TextButton profileButton = new TextButton(profile.getName(),
 					helper.getTextButtonStyle());
@@ -59,8 +60,10 @@ public class SelectProfileScreen extends AbstractScreen implements
 			profileButton.addListener(new ChangeProfileClickListener());
 		}
 
+		
 		scrollTable.add(newProfile);
 
+		scrollTable.padBottom(15);
 		ScrollPane scrollPane = new ScrollPane(scrollTable);
 		table.add(scrollPane).expand().fill();
 	}
