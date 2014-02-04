@@ -24,7 +24,6 @@ import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.HintDialog;
 import de.croggle.ui.actors.IngameMenuDialog;
 import de.croggle.ui.actors.ObjectBar;
-import de.croggle.ui.actors.ShowGoalDialog;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
 
