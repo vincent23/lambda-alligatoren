@@ -77,6 +77,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 	@Override
 	protected void onShow() {
+		gameController.setTimeStamp();
 		gameController.enterPlacement();
 	}
 
@@ -178,6 +179,11 @@ public class PlacementModeScreen extends AbstractScreen implements
 				zoomOut.setDisabled(true);
 			}
 		}
+	}
+	public void hide() {
+		super.hide();
+		gameController.updateTime();
+		gameController.setTimeStamp();
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
@@ -38,6 +39,8 @@ public class GameController implements BoardEventListener {
 	 * applied to it. Used to return from simulation to placement mode.
 	 */
 	private Board userBoard;
+	private int elapsedTime;
+	private long timeStamp;
 	private Simulator simulator;
 	protected ColorController colorController;
 	private final Level level;
@@ -57,6 +60,8 @@ public class GameController implements BoardEventListener {
 	public GameController(AlligatorApp app, Level level) {
 		this.app = app;
 		this.level = level;
+		this.elapsedTime = 0;
+		this.timeStamp = TimeUtils.millis();
 		setupColorController();
 		this.shownBoard = level.getInitialBoard();
 		this.userBoard = shownBoard;
@@ -73,7 +78,7 @@ public class GameController implements BoardEventListener {
 	protected ColorController createColorController() {
 		return new ColorController();
 	}
-
+	
 	/**
 	 * Returns the gam's ColorController.
 	 * 
@@ -118,6 +123,7 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	private void onCompletedLevel() {
+		statisticsDelta.setPlaytime(elapsedTime);
 		for (StatisticsDeltaProcessor processor : statisticsDeltaProcessors) {
 			processor.processDelta(statisticsDelta);
 		}
@@ -286,6 +292,27 @@ public class GameController implements BoardEventListener {
 		} else {
 			return simulator.getCurrentBoard();
 		}
+	}
+	
+	public int getElapsedTime() {
+		return elapsedTime;
+	}
+	public long getTimeStamp() {
+		return timeStamp;
+	}
+	
+	public void setElapsedTime( int elapsedTime) {
+		this.elapsedTime = elapsedTime;
+	}
+	
+	public void updateTime() {
+		long timeNow = TimeUtils.millis();
+		int timeAddition = (int)(timeNow - timeStamp);
+		elapsedTime += timeAddition;
+	}
+	
+	public void setTimeStamp() {
+		this.timeStamp = TimeUtils.millis();
 	}
 
 	public Level getLevel() {

@@ -3,6 +3,8 @@ package de.croggle.ui.screens;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.util.Log;
+
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -106,7 +108,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 
 	protected void onShow() {
 		ColorController cctrlr = gameController.getColorController();
-
+		gameController.setTimeStamp();
 		Board b = gameController.getShownBoard();
 
 		ActorLayoutConfiguration config = new ActorLayoutConfiguration();
@@ -126,6 +128,9 @@ public class SimulationModeScreen extends AbstractScreen implements
 
 	public void hide() {
 		stopAutomaticSimulation();
+		gameController.updateTime();
+		gameController.setTimeStamp();
+		Log.d("check time", "elapsedTime: " + gameController.getElapsedTime());
 		table.clear();
 	}
 
