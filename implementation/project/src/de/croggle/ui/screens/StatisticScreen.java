@@ -101,12 +101,12 @@ public class StatisticScreen extends AbstractScreen implements
 		group.setUncheckLast(true);
 
 		Table tabBarTable = new Table();
-		tabBarTable.defaults().size(350, 100);
+		tabBarTable.defaults().size(325, 100);
 		tabBarTable.add(progressButton);
 		tabBarTable.add(actionsButton);
 		tabBarTable.add(gameButton);
 		ScrollPane tabBar = new ScrollPane(tabBarTable);
-		tabBar.setScrollingDisabled(false, true);
+		tabBar.setScrollingDisabled(true, true);
 
 		table.pad(30);
 		table.add(back).size(100).top().left();
