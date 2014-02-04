@@ -201,6 +201,13 @@ public class StyleHelper {
 		return style;
 	}
 
+	public LabelStyle getBlackLabelStyle(int size) {
+		LabelStyle style = new LabelStyle(getLabelStyle());
+		style.fontColor = skin.getColor("black");
+		style.font = generateFont(size);
+		return style;
+	}
+
 	public CheckBoxStyle getCheckBoxStyle() {
 		return skin.get(CheckBoxStyle.class);
 	}
