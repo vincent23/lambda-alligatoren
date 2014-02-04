@@ -157,6 +157,8 @@ class BoardActorLayoutEditing {
 			b.setZoomAndPanEnabled(false);
 
 			dnd.addSource(new ActorSource(actor, zoomEnabled));
+			dnd.setDragActorPosition(-actor.getWidth() / 2,
+					actor.getHeight() / 2);
 			for (BoardObjectActor layoutActor : b.getLayout()) {
 				if (layoutActor.getBoardObject() instanceof Parent) {
 					dnd.addTarget(new ActorTarget(layoutActor));
