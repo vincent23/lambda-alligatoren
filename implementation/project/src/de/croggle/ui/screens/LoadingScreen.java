@@ -58,8 +58,10 @@ public class LoadingScreen extends AbstractScreen {
 		game.batch.begin();
 		float w = getViewportWidth();
 		float h = getViewportHeight();
+		float barWidth = Math.max(bar.getTotalWidth(), w * 8 * percent / 10);
+
 		barEmpty.draw(game.batch, w / 10, h / 6, w * 8 / 10, h / 5);
-		bar.draw(game.batch, w / 10, h / 6, w * 8 * percent / 10, h / 5);
+		bar.draw(game.batch, w / 10, h / 6, barWidth, h / 5);
 		game.batch.end();
 
 		// Show the loading screen
