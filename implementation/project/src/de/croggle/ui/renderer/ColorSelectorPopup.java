@@ -30,8 +30,8 @@ public class ColorSelectorPopup extends Table {
 	private final ColorController cctrl;
 	private final boolean colorBlindEnabled;
 
-	private final float width = 150;
-	private final float height = 200;
+	private final float width = 210;
+	private final float height = 280;
 
 	/**
 	 * Creates a new popup to offer the possibility to recolor a certain
@@ -87,9 +87,12 @@ public class ColorSelectorPopup extends Table {
 		int i = 0;
 		final int colorsPerRow = 2;
 		for (Color c : cctrl.getUsableColors()) {
+			Button bt = new Button(StyleHelper.getInstance().getDrawable(
+					"widgets/button"));
 			ColorButton btn = new ColorButton(c);
 			btn.addListener(new ColorButtonListener());
-			this.add(btn).size(70, 70);
+			bt.add(btn).size(60, 60).center();
+			this.add(bt).size(76, 76).pad(6);
 			i++;
 			if (i % colorsPerRow == 0) {
 				this.row();
