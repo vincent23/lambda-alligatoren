@@ -1,5 +1,6 @@
 package de.croggle.ui.screens;
 
+import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
@@ -28,13 +30,13 @@ public abstract class AbstractScreen implements Screen {
 	protected final Table table;
 	private Texture background;
 	private String backgroundPath;
-	private OrthographicCamera camera;
+	private final OrthographicCamera camera;
 	private boolean widgetsInitialized = false;
 
 	// protected int screenWidth;
 	// protected int screenHeight;
 
-	private InputMultiplexer inputMediator;
+	private final InputMultiplexer inputMediator;
 
 	/**
 	 * Super constructor for all screens. Initializes everything they share,
@@ -69,6 +71,7 @@ public abstract class AbstractScreen implements Screen {
 	/**
 	 * Called in order to cause the screen to release all resources held.
 	 */
+	@Override
 	public void dispose() {
 		stage.dispose();
 		background.dispose();
@@ -77,6 +80,7 @@ public abstract class AbstractScreen implements Screen {
 	/**
 	 * Called when this screen should no longer be the game's current screen.
 	 */
+	@Override
 	public void hide() {
 
 	}
@@ -108,6 +112,7 @@ public abstract class AbstractScreen implements Screen {
 	 * destroyed, when the user pressed the Home button or e.g. an incoming call
 	 * happens.
 	 */
+	@Override
 	public void pause() {
 
 	}
@@ -115,6 +120,7 @@ public abstract class AbstractScreen implements Screen {
 	/**
 	 * Called when the screen should render itself.
 	 */
+	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -158,6 +164,7 @@ public abstract class AbstractScreen implements Screen {
 	 * @param height
 	 *            the height, which the newly resized screen will have.
 	 */
+	@Override
 	public void resize(int width, int height) {
 		stage.setViewport(1024, 600, true);
 		camera.update();
@@ -166,6 +173,7 @@ public abstract class AbstractScreen implements Screen {
 	/**
 	 * Called in order to move the screen back from its paused state.
 	 */
+	@Override
 	public void resume() {
 	}
 
@@ -175,6 +183,7 @@ public abstract class AbstractScreen implements Screen {
 	 * overridden. If you want to add code to be called on show, override the
 	 * protected method onShow() instead.
 	 */
+	@Override
 	public void show() {
 		// if the loading screen has initialized everything, this returns
 		// instantly on its own
@@ -203,6 +212,11 @@ public abstract class AbstractScreen implements Screen {
 	}
 
 	public void setBackground(String backgroundPath) {
+		try {
+			Gdx.files.getFileHandle(backgroundPath, FileType.Internal);
+		} catch (GdxRuntimeException ex) {
+			setBackground("textures/swamp.png");
+		}
 		AssetManager manager = de.croggle.data.AssetManager.getInstance();
 		TextureLoader.TextureParameter backgroundParams = new TextureLoader.TextureParameter();
 		backgroundParams.genMipMaps = true;

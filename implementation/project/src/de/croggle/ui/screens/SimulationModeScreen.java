@@ -14,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.TimeUtils;
 
 import de.croggle.AlligatorApp;
@@ -87,11 +86,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 				.getLevelPackagesController();
 		final LevelPackage pack = packagesController.getLevelPackages().get(
 				packageIndex);
-		try {
-			setBackground(pack.getDesign());
-		} catch (GdxRuntimeException ex) {
-			setBackground("textures/swamp.png");
-		}
+		setBackground(pack.getDesign());
 
 		fillTable();
 
@@ -106,6 +101,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 		}
 	}
 
+	@Override
 	protected void onShow() {
 		ColorController cctrlr = gameController.getColorController();
 		gameController.setTimeStamp();
@@ -126,6 +122,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 		onSettingChange(game.getSettingController().getCurrentSetting());
 	}
 
+	@Override
 	public void hide() {
 		stopAutomaticSimulation();
 		gameController.updateTime();
