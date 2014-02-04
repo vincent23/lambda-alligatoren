@@ -90,8 +90,7 @@ public class AchievementScreen extends AbstractScreen {
 									float y) {
 								Dialog dialog = new NotificationDialog(
 										_("achievement_dialog_last")
-												+ achievement
-														.getDescription(index));
+												+  "???");
 								dialog.show(stage);
 							}
 						});
