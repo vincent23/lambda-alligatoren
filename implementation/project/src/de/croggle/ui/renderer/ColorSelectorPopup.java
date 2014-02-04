@@ -71,14 +71,16 @@ public class ColorSelectorPopup extends Table {
 		public void clicked(InputEvent event, float x, float y) {
 			Vector2 point = new Vector2(x, y);
 			Group g = (Group) event.getListenerActor();
-			point = g.localToDescendantCoordinates(ColorSelectorPopup.this,
-					point);
-
-			if (ColorSelectorPopup.this.getParent() != null
-					&& ColorSelectorPopup.this.hit(point.x, point.y, true) == null) {
-				((BoardActor) (ColorSelectorPopup.this.getParent()))
-						.removeFromActor(ColorSelectorPopup.this);
-				event.getListenerActor().removeListener(this);
+			if(g.isAscendantOf(ColorSelectorPopup.this)){
+				point = g.localToDescendantCoordinates(ColorSelectorPopup.this,
+						point);
+	
+				if (ColorSelectorPopup.this.getParent() != null
+						&& ColorSelectorPopup.this.hit(point.x, point.y, true) == null) {
+					((BoardActor) (ColorSelectorPopup.this.getParent()))
+							.removeFromActor(ColorSelectorPopup.this);
+					event.getListenerActor().removeListener(this);
+				}
 			}
 		}
 	}
