@@ -143,10 +143,6 @@ public class BoardActor extends Group implements SettingChangeListener {
 				+ offsetTop);
 	}
 
-	float getZoom() {
-		return world.getScaleX();
-	}
-
 	public boolean zoomIn(float percent, float pointX, float pointY) {
 		if (zoomAndPan != null) {
 			return zoomAndPan.zoomIn(percent, pointX, pointY);
@@ -176,14 +172,6 @@ public class BoardActor extends Group implements SettingChangeListener {
 			zoomAndPan.validate();
 		}
 		initializePosition();
-	}
-
-	ActorLayout getLayout() {
-		return layout;
-	}
-
-	void setLayout(ActorLayout layout) {
-		this.layout = layout;
 	}
 
 	public Vector2 boardActorToWorldCoordinates(Vector2 coords) {
@@ -218,68 +206,6 @@ public class BoardActor extends Group implements SettingChangeListener {
 	 */
 	public Vector2 worldToBoardActorCoordinates(Vector2 coords, float scale) {
 		return world.localToParentCoordinates(coords, scale);
-	}
-
-	/**
-	 * Unsafe zoom method. Used by {@link BoardActorZoomAndPan}. Use
-	 * {@link BoardActorZoomAndPan} methods for better safety.
-	 * 
-	 * @param zoom
-	 */
-	void setZoom(float zoom) {
-		world.setScale(zoom);
-	}
-
-	void clearWorld() {
-		world.clearChildren();
-	}
-
-	void addToWorld(Actor actor) {
-		world.addActor(actor);
-	}
-
-	boolean removeFromWorld(Actor actor) {
-		return world.removeActor(actor);
-	}
-
-	void clearActor() {
-		super.clearChildren();
-		super.addActor(world);
-	}
-
-	void addToActor(Actor actor) {
-		super.addActor(actor);
-	}
-
-	boolean removeFromActor(Actor actor) {
-		return super.removeActor(actor);
-	}
-
-	void updateListeners() {
-		if (layoutEditingEnabled) {
-			layoutEditing.unregisterLayoutListeners();
-			layoutEditing.registerLayoutListeners();
-		}
-	}
-
-	ActorLayoutConfiguration getLayoutConfiguration() {
-		return config;
-	}
-
-	float getWorldX() {
-		return posX;
-	}
-
-	void setWorldX(float x) {
-		posX = x;
-	}
-
-	float getWorldY() {
-		return posY;
-	}
-
-	void setWorldY(float y) {
-		posY = y;
 	}
 
 	/**
@@ -367,6 +293,8 @@ public class BoardActor extends Group implements SettingChangeListener {
 
 	@Override
 	public Actor hit(float x, float y, boolean touchable) {
+		// TODO questionable if necessary. Maybe a good point to throw out
+		// superfluous code
 		if (touchable && getTouchable() == Touchable.disabled) {
 			return null;
 		}
@@ -402,6 +330,84 @@ public class BoardActor extends Group implements SettingChangeListener {
 		}
 
 		return null;
+	}
+
+	/*
+	 * Package internal api
+	 */
+
+	float getZoom() {
+		return world.getScaleX();
+	}
+
+	ActorLayout getLayout() {
+		return layout;
+	}
+
+	void setLayout(ActorLayout layout) {
+		this.layout = layout;
+	}
+
+	/**
+	 * Unsafe zoom method. Used by {@link BoardActorZoomAndPan}. Use
+	 * {@link BoardActorZoomAndPan} methods for better safety.
+	 * 
+	 * @param zoom
+	 */
+	void setZoom(float zoom) {
+		world.setScale(zoom);
+	}
+
+	void clearWorld() {
+		world.clearChildren();
+	}
+
+	void addToWorld(Actor actor) {
+		world.addActor(actor);
+	}
+
+	boolean removeFromWorld(Actor actor) {
+		return world.removeActor(actor);
+	}
+
+	void clearActor() {
+		super.clearChildren();
+		super.addActor(world);
+	}
+
+	void addToActor(Actor actor) {
+		super.addActor(actor);
+	}
+
+	boolean removeFromActor(Actor actor) {
+		return super.removeActor(actor);
+	}
+
+	void updateListeners() {
+		if (layoutEditingEnabled) {
+			layoutEditing.unregisterLayoutListeners();
+			layoutEditing.registerLayoutListeners();
+		}
+	}
+
+	ActorLayoutConfiguration getLayoutConfiguration() {
+		return config;
+	}
+
+	float getWorldX() {
+		return posX;
+	}
+
+	void setWorldX(float x) {
+		posX = x;
+	}
+
+	float getWorldY() {
+		return posY;
+	}
+
+	void setWorldY(float y) {
+		posY = y;
 	}
 
 	// stuff inherited from Group that should not be used as originally intended

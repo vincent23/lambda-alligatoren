@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputEvent.Type;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop;
@@ -13,10 +13,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 
+import de.croggle.game.Color;
+import de.croggle.game.board.AgedAlligator;
+import de.croggle.game.board.Board;
+import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.ColoredBoardObject;
+import de.croggle.game.board.Egg;
+import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.Parent;
+import de.croggle.game.board.operations.BoardObjectVisitor;
 import de.croggle.game.event.BoardEventMessenger;
-import de.croggle.ui.StyleHelper;
 
 /**
  * Class containing different input listeners adding functionality to the
@@ -30,10 +36,52 @@ class BoardActorLayoutEditing {
 	private final BoardEventMessenger messenger;
 	private final DragAndDrop dnd;
 
+	private final ColoredAlligatorActor coloredPayload;
+	private final EggActor eggPayload;
+	private final AgedAlligatorActor agedPayload;
+
+	private final ColoredAlligatorActor coloredValidPayload;
+	private final EggActor eggValidPayload;
+	private final AgedAlligatorActor agedValidPayload;
+
+	private final ColoredAlligatorActor coloredInvalidPayload;
+	private final EggActor eggInvalidPayload;
+	private final AgedAlligatorActor agedInvalidPayload;
+
+	private final float fadeDuration = 0.4f;
+
 	public BoardActorLayoutEditing(BoardActor b, BoardEventMessenger messenger) {
 		this.b = b;
 		this.messenger = messenger;
 		this.dnd = new DragAndDrop();
+
+		boolean colorBlind = b.getLayout().getLayoutConfiguration()
+				.isColorBlindEnabled();
+		coloredPayload = new ColoredAlligatorActor(new ColoredAlligator(false,
+				false, Color.uncolored(), false), colorBlind);
+		eggPayload = new EggActor(new Egg(false, false, Color.uncolored(),
+				false), colorBlind);
+		agedPayload = new AgedAlligatorActor(new AgedAlligator(false, false));
+
+		coloredValidPayload = new ColoredAlligatorActor(new ColoredAlligator(
+				false, false, Color.uncolored(), false), colorBlind);
+		coloredValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
+		eggValidPayload = new EggActor(new Egg(false, false, Color.uncolored(),
+				false), colorBlind);
+		eggValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
+		agedValidPayload = new AgedAlligatorActor(new AgedAlligator(false,
+				false));
+		agedValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
+
+		coloredInvalidPayload = new ColoredAlligatorActor(new ColoredAlligator(
+				false, false, Color.uncolored(), false), colorBlind);
+		coloredInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
+		eggInvalidPayload = new EggActor(new Egg(false, false,
+				Color.uncolored(), false), colorBlind);
+		eggInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
+		agedInvalidPayload = new AgedAlligatorActor(new AgedAlligator(false,
+				false));
+		agedInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
 	}
 
 	void registerLayoutListeners() {
@@ -86,17 +134,22 @@ class BoardActorLayoutEditing {
 		}
 	}
 
+	private static boolean areSiblings(InternalBoardObject a,
+			InternalBoardObject b) {
+		return a.getParent() == b.getParent();
+	}
+
 	private class EnableDraggingListener extends ActorGestureListener {
 		public EnableDraggingListener() {
-			/*
-			 * halfTapSquareSize, tapCountInterval, longPressDuration
-			 * maxFlingDelay
-			 */
-			super(20, 0.4f, 1.1f, 0.15f);
+			getGestureDetector().setLongPressSeconds(0.8f);
 		}
 
 		@Override
 		public boolean longPress(Actor actor, float x, float y) {
+			if (!(actor instanceof BoardObjectActor)) {
+				throw new IllegalArgumentException(
+						"Cannot drag actors other than BoardObjectActors");
+			}
 
 			Gdx.input.vibrate(100);
 
@@ -110,27 +163,136 @@ class BoardActorLayoutEditing {
 				}
 			}
 
+			actor.addAction(Actions.alpha(0.5f, fadeDuration));
+
 			/*
 			 * fake some events to immediately start dragging
 			 */
-			InputEvent ev = new InputEvent();
-			ev.setListenerActor(actor);
-			ev.setStage(actor.getStage());
-			Vector2 point = new Vector2();
-			actor.localToStageCoordinates(point);
-			ev.setStageX(point.x);
-			ev.setStageY(point.y);
-			ev.setTarget(actor);
-			ev.setButton(0);
+			{
+				InputEvent ev = new InputEvent();
+				ev.setListenerActor(actor);
+				ev.setStage(actor.getStage());
+				Vector2 point = new Vector2();
+				actor.localToStageCoordinates(point);
+				ev.setStageX(point.x);
+				ev.setStageY(point.y);
+				ev.setTarget(actor);
+				ev.setButton(0);
 
-			ev.setType(Type.touchDown);
-			actor.notify(ev, true);
+				ev.setType(Type.touchDown);
+				actor.notify(ev, true);
 
-			ev.setType(Type.touchDragged);
-			actor.notify(ev, true);
+				ev.setType(Type.touchDragged);
+				actor.notify(ev, true);
+			}
 
 			return false;
 		}
+	}
+
+	private BoardObjectActor getPayloadFor(final BoardObjectActor a) {
+		// WOOOOOAAAAAHHHH sooooo hacky
+		final BoardObjectActor result[] = new BoardObjectActor[1];
+		BoardObjectVisitor visitor = new BoardObjectVisitor() {
+			@Override
+			public void visitEgg(Egg egg) {
+				((Egg) eggPayload.getBoardObject()).setColor(egg.getColor());
+				eggPayload.validate();
+				eggPayload.setSize(a.getWidth(), a.getHeight());
+				result[0] = eggPayload;
+			}
+
+			@Override
+			public void visitColoredAlligator(ColoredAlligator alligator) {
+				((ColoredAlligator) coloredPayload.getBoardObject())
+						.setColor(alligator.getColor());
+				coloredPayload.validate();
+				coloredPayload.setSize(a.getWidth(), a.getHeight());
+				result[0] = coloredPayload;
+			}
+
+			@Override
+			public void visitBoard(Board board) {
+				// Just ignore
+			}
+
+			@Override
+			public void visitAgedAlligator(AgedAlligator alligator) {
+				result[0] = agedPayload;
+			}
+		};
+		a.getBoardObject().accept(visitor);
+		return result[0];
+	}
+
+	private BoardObjectActor getValidPayloadFor(final BoardObjectActor a) {
+		final BoardObjectActor result[] = new BoardObjectActor[1];
+		BoardObjectVisitor visitor = new BoardObjectVisitor() {
+			@Override
+			public void visitEgg(Egg egg) {
+				((Egg) eggValidPayload.getBoardObject()).setColor(egg
+						.getColor());
+				eggValidPayload.validate();
+				eggValidPayload.setSize(a.getWidth(), a.getHeight());
+				result[0] = eggValidPayload;
+			}
+
+			@Override
+			public void visitColoredAlligator(ColoredAlligator alligator) {
+				((ColoredAlligator) coloredValidPayload.getBoardObject())
+						.setColor(alligator.getColor());
+				coloredValidPayload.validate();
+				coloredValidPayload.setSize(a.getWidth(), a.getHeight());
+				result[0] = coloredValidPayload;
+			}
+
+			@Override
+			public void visitBoard(Board board) {
+				// Just ignore
+			}
+
+			@Override
+			public void visitAgedAlligator(AgedAlligator alligator) {
+				result[0] = agedValidPayload;
+			}
+		};
+		a.getBoardObject().accept(visitor);
+		return result[0];
+	}
+
+	private BoardObjectActor getInvalidPayloadFor(final BoardObjectActor a) {
+		final BoardObjectActor result[] = new BoardObjectActor[1];
+		BoardObjectVisitor visitor = new BoardObjectVisitor() {
+			@Override
+			public void visitEgg(Egg egg) {
+				((Egg) eggInvalidPayload.getBoardObject()).setColor(egg
+						.getColor());
+				eggInvalidPayload.validate();
+				eggInvalidPayload.setSize(a.getWidth(), a.getHeight());
+				result[0] = eggInvalidPayload;
+			}
+
+			@Override
+			public void visitColoredAlligator(ColoredAlligator alligator) {
+				((ColoredAlligator) coloredInvalidPayload.getBoardObject())
+						.setColor(alligator.getColor());
+				coloredInvalidPayload.validate();
+				coloredInvalidPayload.setSize(a.getWidth(), a.getHeight());
+				result[0] = coloredInvalidPayload;
+			}
+
+			@Override
+			public void visitBoard(Board board) {
+				// Just ignore
+			}
+
+			@Override
+			public void visitAgedAlligator(AgedAlligator alligator) {
+				result[0] = agedInvalidPayload;
+			}
+		};
+		a.getBoardObject().accept(visitor);
+		return result[0];
 	}
 
 	private class ActorSource extends Source {
@@ -147,20 +309,13 @@ class BoardActorLayoutEditing {
 			System.out.println("Drag start!");
 
 			Payload payload = new Payload();
-			payload.setObject("Some payload!");
+			payload.setObject(this.getActor());
 
-			payload.setDragActor(new Label("Some payload!", StyleHelper
-					.getInstance().getLabelStyle()));
+			payload.setDragActor(getPayloadFor((BoardObjectActor) getActor()));
 
-			Label validLabel = new Label("Some payload!", StyleHelper
-					.getInstance().getLabelStyle());
-			validLabel.setColor(0, 1, 0, 1);
-			payload.setValidDragActor(validLabel);
+			payload.setValidDragActor(getValidPayloadFor((BoardObjectActor) getActor()));
 
-			Label invalidLabel = new Label("Some payload!", StyleHelper
-					.getInstance().getLabelStyle());
-			invalidLabel.setColor(1, 0, 0, 1);
-			payload.setInvalidDragActor(invalidLabel);
+			payload.setInvalidDragActor(getInvalidPayloadFor((BoardObjectActor) getActor()));
 
 			return payload;
 		}
@@ -172,6 +327,7 @@ class BoardActorLayoutEditing {
 			if (reenableZoom) {
 				b.setZoomAndPanEnabled(true);
 			}
+			getActor().addAction(Actions.fadeIn(fadeDuration));
 			dnd.removeSource(this);
 		}
 
