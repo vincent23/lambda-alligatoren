@@ -1,12 +1,12 @@
 package de.croggle.ui.screens;
 
-import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -213,9 +213,18 @@ public abstract class AbstractScreen implements Screen {
 
 	public void setBackground(String backgroundPath) {
 		try {
-			Gdx.files.getFileHandle(backgroundPath, FileType.Internal);
+			// stupid libgdx (docu), calling getFileHandle would already throw
+			// an exception
+			FileHandle h = Gdx.files.internal(backgroundPath);
+			if (!h.exists()) {
+				System.err.println("Libgdx promise not fulfilled");
+				throw new GdxRuntimeException("Background not found");
+			}
 		} catch (GdxRuntimeException ex) {
+			System.err.println("Couldn't load background \"" + backgroundPath
+					+ "\". Falling back to standard.");
 			setBackground("textures/swamp.png");
+			return;
 		}
 		AssetManager manager = de.croggle.data.AssetManager.getInstance();
 		TextureLoader.TextureParameter backgroundParams = new TextureLoader.TextureParameter();

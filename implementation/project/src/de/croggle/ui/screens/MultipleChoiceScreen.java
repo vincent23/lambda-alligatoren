@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
@@ -36,7 +35,7 @@ import de.croggle.ui.renderer.BoardActor;
 public class MultipleChoiceScreen extends AbstractScreen implements
 		SettingChangeListener {
 
-	private MultipleChoiceGameController gameController;
+	private final MultipleChoiceGameController gameController;
 	private BoardActor boardActor;
 	private CheckBox checkboxes[];
 
@@ -63,14 +62,11 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 				.getLevelPackagesController();
 		final LevelPackage pack = packagesController.getLevelPackages().get(
 				packageIndex);
-		try {
-			setBackground(pack.getDesign());
-		} catch (GdxRuntimeException ex) {
-			setBackground("textures/swamp.png");
-		}
+		setBackground(pack.getDesign());
 		game.getSettingController().addSettingChangeListener(this);
 	}
 
+	@Override
 	protected void onShow() {
 		gameController.enterPlacement();
 	}

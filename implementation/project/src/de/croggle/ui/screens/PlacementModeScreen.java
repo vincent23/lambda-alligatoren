@@ -1,16 +1,12 @@
 package de.croggle.ui.screens;
 
-import static de.croggle.data.LocalizationHelper._;
-
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
@@ -67,11 +63,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 				.getLevelPackagesController();
 		final LevelPackage pack = packagesController.getLevelPackages().get(
 				packageIndex);
-		try {
-			setBackground(pack.getDesign());
-		} catch (GdxRuntimeException ex) {
-			setBackground("textures/swamp.png");
-		}
+		setBackground(pack.getDesign());
 		game.getSettingController().addSettingChangeListener(this);
 	}
 
@@ -180,6 +172,8 @@ public class PlacementModeScreen extends AbstractScreen implements
 			}
 		}
 	}
+
+	@Override
 	public void hide() {
 		super.hide();
 		gameController.updateTime();
