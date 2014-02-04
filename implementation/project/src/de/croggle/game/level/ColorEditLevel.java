@@ -3,7 +3,6 @@ package de.croggle.game.level;
 import com.badlogic.gdx.graphics.g2d.Animation;
 
 import de.croggle.game.Color;
-import de.croggle.game.ColorController;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.operations.MatchWithRenaming;
 
@@ -12,10 +11,6 @@ import de.croggle.game.board.operations.MatchWithRenaming;
  * given elements in order for the simulation to reach a certain outcome.
  */
 public class ColorEditLevel extends EditLevel {
-
-	private Color[] userColors;
-	private Color[] blockedColors;
-	private ColorController colorController;
 
 	/**
 	 * Creates a new level with the given parameters.
@@ -46,36 +41,8 @@ public class ColorEditLevel extends EditLevel {
 			Color[] blockedColors, String hint, String description,
 			int abortSimulationAfter) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
-				hint, description, abortSimulationAfter);
-		this.blockedColors = blockedColors;
-		this.userColors = userColors;
-	}
-
-	/**
-	 * Method to get the userColors of the level.
-	 * 
-	 * @return the user colors of this level
-	 */
-	public Color[] getUserColor() {
-		return this.userColors;
-	}
-
-	/**
-	 * Method to get the blocked colors of the level.
-	 * 
-	 * @return the blocked colors of this level
-	 */
-	public Color[] getBlockedColor() {
-		return this.blockedColors;
-	}
-
-	/**
-	 * Method to get the ColorController of the level
-	 * 
-	 * @return the Colorcontroller of this level.
-	 */
-	public ColorController getColorController() {
-		return this.colorController;
+				userColors, blockedColors, hint, description,
+				abortSimulationAfter);
 	}
 
 	@Override

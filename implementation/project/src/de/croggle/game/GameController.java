@@ -39,7 +39,7 @@ public class GameController implements BoardEventListener {
 	 */
 	private Board userBoard;
 	private Simulator simulator;
-	private ColorController colorController;
+	protected ColorController colorController;
 	private final Level level;
 	private Statistic statisticsDelta; // changes during the current Level.
 	private final BoardEventMessenger simulationMessenger;
@@ -64,9 +64,12 @@ public class GameController implements BoardEventListener {
 		this.statisticsDeltaProcessors = new ArrayList<StatisticsDeltaProcessor>();
 	}
 
-	private void setupColorController() {
-		this.colorController = new ColorController();
-		// TODO fill with level's user colors
+	protected void setupColorController() {
+		colorController = createColorController();
+	}
+
+	protected ColorController createColorController() {
+		return new ColorController();
 	}
 
 	/**
