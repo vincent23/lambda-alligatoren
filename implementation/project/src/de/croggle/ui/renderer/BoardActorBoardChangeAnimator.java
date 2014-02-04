@@ -24,6 +24,7 @@ import de.croggle.game.event.BoardEventListener;
 
 class BoardActorBoardChangeAnimator implements BoardEventListener {
 	private final BoardActor b;
+	private boolean firstRebuild = true;
 
 	public BoardActorBoardChangeAnimator(BoardActor b) {
 		this.b = b;
@@ -40,8 +41,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		BoardObjectActor actor = b.getLayout().getActor(recoloredObject);
 		if (actor != null) {
 			/*
-			 * TODO if unnecessary if recolor events were fired at the right
-			 * moment
+			 * TODO unnecessary if recolor events were fired at the right moment
 			 */
 			ColoredBoardObjectActor cboa = (ColoredBoardObjectActor) actor;
 			cboa.invalidate();
@@ -156,14 +156,18 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	 */
 	@Override
 	public final void onBoardRebuilt(Board board) {
-		// TODO dirrrty
-		Image flash = new Image(AssetManager.getInstance().getColorTexture(
-				Color.uncolored()));
-		flash.setFillParent(true);
-		b.addToActor(flash);
-		flash.validate();
-		flash.addAction(Actions.alpha(0.f, 0.4f));
-		flash.addAction(Actions.delay(0.4f, Actions.removeActor()));
+		if (firstRebuild) {
+			firstRebuild = false;
+		} else {
+			// TODO dirrrty
+			Image flash = new Image(AssetManager.getInstance().getColorTexture(
+					Color.uncolored()));
+			flash.setFillParent(true);
+			b.addToActor(flash);
+			flash.validate();
+			flash.addAction(Actions.alpha(0.f, 0.4f));
+			flash.addAction(Actions.delay(0.4f, Actions.removeActor()));
+		}
 
 		b.clearWorld();
 		b.setLayout(ActorLayoutBuilder.build(board, b.getLayoutConfiguration()));

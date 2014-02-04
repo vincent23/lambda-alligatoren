@@ -34,7 +34,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 	 * listener for board events. Responsible for updating the layout and
 	 * applying animations
 	 */
-	private final BoardActorBoardChangeAnimator boardEventListener;
+	private final BoardActorBoardChangeAnimator boardAnimator;
 	/*
 	 * provides functionality to zoom and pan this actor. Comes with standard
 	 * gesture listener implementation
@@ -95,8 +95,8 @@ public class BoardActor extends Group implements SettingChangeListener {
 
 		// initialize layout by calling onBoardRebuilt. Needs world to add
 		// actors to.
-		boardEventListener = new BoardActorBoardChangeAnimator(this);
-		boardEventListener.onBoardRebuilt(b);
+		boardAnimator = new BoardActorBoardChangeAnimator(this);
+		boardAnimator.onBoardRebuilt(b);
 
 		// initialize zoom and pan. Needs layout to derive limits from.
 		zoomAndPan = new BoardActorZoomAndPan(this);
@@ -215,7 +215,7 @@ public class BoardActor extends Group implements SettingChangeListener {
 	 *         changes.
 	 */
 	public BoardEventListener getBoardEventListener() {
-		return boardEventListener;
+		return boardAnimator;
 	}
 
 	public void setColorBlindEnabled(boolean enabled) {
