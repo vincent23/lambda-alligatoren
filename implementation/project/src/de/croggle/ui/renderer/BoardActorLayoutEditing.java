@@ -198,7 +198,8 @@ class BoardActorLayoutEditing {
 			public void visitEgg(Egg egg) {
 				((Egg) eggPayload.getBoardObject()).setColor(egg.getColor());
 				eggPayload.validate();
-				eggPayload.setSize(a.getWidth(), a.getHeight());
+				eggPayload.setSize(a.getWidth() * b.getZoom(), a.getHeight()
+						* b.getZoom());
 				result[0] = eggPayload;
 			}
 
@@ -207,7 +208,8 @@ class BoardActorLayoutEditing {
 				((ColoredAlligator) coloredPayload.getBoardObject())
 						.setColor(alligator.getColor());
 				coloredPayload.validate();
-				coloredPayload.setSize(a.getWidth(), a.getHeight());
+				coloredPayload.setSize(a.getWidth() * b.getZoom(),
+						a.getHeight() * b.getZoom());
 				result[0] = coloredPayload;
 			}
 
@@ -233,7 +235,8 @@ class BoardActorLayoutEditing {
 				((Egg) eggValidPayload.getBoardObject()).setColor(egg
 						.getColor());
 				eggValidPayload.validate();
-				eggValidPayload.setSize(a.getWidth(), a.getHeight());
+				eggValidPayload.setSize(a.getWidth() * b.getZoom(),
+						a.getHeight() * b.getZoom());
 				result[0] = eggValidPayload;
 			}
 
@@ -242,7 +245,8 @@ class BoardActorLayoutEditing {
 				((ColoredAlligator) coloredValidPayload.getBoardObject())
 						.setColor(alligator.getColor());
 				coloredValidPayload.validate();
-				coloredValidPayload.setSize(a.getWidth(), a.getHeight());
+				coloredValidPayload.setSize(a.getWidth() * b.getZoom(),
+						a.getHeight() * b.getZoom());
 				result[0] = coloredValidPayload;
 			}
 
@@ -268,7 +272,8 @@ class BoardActorLayoutEditing {
 				((Egg) eggInvalidPayload.getBoardObject()).setColor(egg
 						.getColor());
 				eggInvalidPayload.validate();
-				eggInvalidPayload.setSize(a.getWidth(), a.getHeight());
+				eggInvalidPayload.setSize(a.getWidth() * b.getZoom(),
+						a.getHeight() * b.getZoom());
 				result[0] = eggInvalidPayload;
 			}
 
@@ -277,7 +282,8 @@ class BoardActorLayoutEditing {
 				((ColoredAlligator) coloredInvalidPayload.getBoardObject())
 						.setColor(alligator.getColor());
 				coloredInvalidPayload.validate();
-				coloredInvalidPayload.setSize(a.getWidth(), a.getHeight());
+				coloredInvalidPayload.setSize(a.getWidth() * b.getZoom(),
+						a.getHeight() * b.getZoom());
 				result[0] = coloredInvalidPayload;
 			}
 
