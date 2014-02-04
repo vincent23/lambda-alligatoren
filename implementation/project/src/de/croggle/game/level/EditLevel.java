@@ -2,6 +2,7 @@ package de.croggle.game.level;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 
+import de.croggle.AlligatorApp;
 import de.croggle.game.Color;
 import de.croggle.game.EditLevelGameController;
 import de.croggle.game.board.Board;
@@ -46,8 +47,8 @@ public abstract class EditLevel extends Level {
 	}
 
 	@Override
-	public EditLevelGameController createGameController() {
-		return new EditLevelGameController(this);
+	public EditLevelGameController createGameController(AlligatorApp app) {
+		return new EditLevelGameController(app, this);
 	}
 
 }

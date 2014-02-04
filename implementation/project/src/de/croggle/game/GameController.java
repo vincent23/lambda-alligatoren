@@ -46,6 +46,7 @@ public class GameController implements BoardEventListener {
 	private final BoardEventMessenger placementMessenger;
 	// listeners of the statisticsDelta
 	private final List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
+	private AlligatorApp app;
 
 	/**
 	 * Creates a new game controller for the given level.
@@ -53,7 +54,8 @@ public class GameController implements BoardEventListener {
 	 * @param level
 	 *            the level the GameController should work with
 	 */
-	public GameController(Level level) {
+	public GameController(AlligatorApp app, Level level) {
+		this.app = app;
 		this.level = level;
 		setupColorController();
 		this.shownBoard = level.getInitialBoard();
@@ -120,6 +122,7 @@ public class GameController implements BoardEventListener {
 			processor.processDelta(statisticsDelta);
 		}
 		statisticsDelta = new Statistic();
+		app.showLevelTerminatedScreen(this);
 	}
 
 	/**

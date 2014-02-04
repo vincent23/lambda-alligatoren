@@ -10,8 +10,9 @@ public class MultipleChoiceGameController extends GameController {
 	private final MultipleChoiceLevel level;
 	private int selection;
 
-	public MultipleChoiceGameController(MultipleChoiceLevel level) {
-		super(level);
+	public MultipleChoiceGameController(AlligatorApp app,
+			MultipleChoiceLevel level) {
+		super(app, level);
 		this.level = level;
 	}
 

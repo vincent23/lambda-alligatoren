@@ -2,6 +2,7 @@ package de.croggle.game.level;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 
+import de.croggle.AlligatorApp;
 import de.croggle.game.MultipleChoiceGameController;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.operations.MatchWithRenaming;
@@ -85,8 +86,8 @@ public class MultipleChoiceLevel extends Level {
 	}
 
 	@Override
-	public MultipleChoiceGameController createGameController() {
-		return new MultipleChoiceGameController(this);
+	public MultipleChoiceGameController createGameController(AlligatorApp app) {
+		return new MultipleChoiceGameController(app, this);
 	}
 
 }

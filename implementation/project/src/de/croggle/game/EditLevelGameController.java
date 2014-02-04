@@ -1,12 +1,13 @@
 package de.croggle.game;
 
+import de.croggle.AlligatorApp;
 import de.croggle.game.level.EditLevel;
 
 public class EditLevelGameController extends GameController {
 	private EditLevel level;
 
-	public EditLevelGameController(EditLevel level) {
-		super(level);
+	public EditLevelGameController(AlligatorApp app, EditLevel level) {
+		super(app, level);
 		this.level = level;
 		setupColorController();
 	}

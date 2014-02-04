@@ -2,6 +2,7 @@ package de.croggle.game.level;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 
+import de.croggle.AlligatorApp;
 import de.croggle.game.GameController;
 import de.croggle.game.board.Board;
 
@@ -204,8 +205,8 @@ public abstract class Level {
 		this.solved = true;
 	}
 
-	public GameController createGameController() {
-		return new GameController(this);
+	public GameController createGameController(AlligatorApp app) {
+		return new GameController(app, this);
 	}
 
 }

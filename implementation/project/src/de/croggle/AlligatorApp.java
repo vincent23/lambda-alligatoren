@@ -14,12 +14,10 @@ import de.croggle.data.persistence.SettingController;
 import de.croggle.data.persistence.StatisticController;
 import de.croggle.data.persistence.manager.PersistenceManager;
 import de.croggle.game.GameController;
-import de.croggle.game.MultipleChoiceGameController;
 import de.croggle.game.achievement.AchievementController;
 import de.croggle.game.board.IllegalBoardException;
 import de.croggle.game.level.LevelController;
 import de.croggle.game.level.LevelPackagesController;
-import de.croggle.game.level.MultipleChoiceLevel;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.game.sound.SoundController;
 import de.croggle.game.sound.SoundHelper;
@@ -28,11 +26,10 @@ import de.croggle.ui.screens.AbstractScreen;
 import de.croggle.ui.screens.AchievementScreen;
 import de.croggle.ui.screens.CreditsScreen;
 import de.croggle.ui.screens.LevelPackagesScreen;
+import de.croggle.ui.screens.LevelTerminatedScreen;
 import de.croggle.ui.screens.LevelsOverviewScreen;
 import de.croggle.ui.screens.LoadingScreen;
 import de.croggle.ui.screens.MainMenuScreen;
-import de.croggle.ui.screens.MultipleChoiceScreen;
-import de.croggle.ui.screens.PlacementModeScreen;
 import de.croggle.ui.screens.ProfileSetAvatarScreen;
 import de.croggle.ui.screens.ProfileSetNameScreen;
 import de.croggle.ui.screens.QuitGameOverlay;
@@ -370,6 +367,11 @@ public class AlligatorApp extends Game {
 	public void showCreditsScreen() {
 		switchScreen();
 		setScreen(creditsScreen);
+	}
+
+	public void showLevelTerminatedScreen(GameController gameController) {
+		switchScreen();
+		setScreen(new LevelTerminatedScreen(this, gameController));
 	}
 
 	public MainMenuScreen getMainMenuScreen() {
