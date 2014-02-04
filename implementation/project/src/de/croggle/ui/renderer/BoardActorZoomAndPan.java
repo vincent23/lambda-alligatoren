@@ -43,13 +43,11 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 		if (b.isZoomAndPanEnabled()) {
 			Vector2 delta = new Vector2(deltaX, deltaY);
 			float posX = b.getWorldX();
-			if (posX + delta.x >= minX && posX + delta.x <= maxX) {
-				b.setWorldX(posX + delta.x);
-			}
+			b.setWorldX(posX + delta.x);
 			float posY = b.getWorldY();
-			if (posY + delta.y >= minY && posY + delta.y <= maxY) {
-				b.setWorldY(posY + delta.y);
-			}
+			b.setWorldY(posY + delta.y);
+
+			clampPosition();
 		}
 	}
 
@@ -71,6 +69,48 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 	public void validate() {
 		calculateZoomLimits();
 		calculatePanLimits(getZoom());
+	}
+
+	/**
+	 * Centers the board actor's camera onto a given point of the layout world
+	 * 
+	 * @param x
+	 *            horizontal coordinate inside the layout world
+	 * @param y
+	 *            vertical coordinate in the layout world
+	 */
+	public void centerOntoWorldPoint(float x, float y) {
+		point.x = x;
+		point.y = y;
+		b.worldToBoardActorCoordinates(point);
+		float dx = point.x - b.getWidth() / 2;
+		float dy = point.y - b.getHeight() / 2;
+
+		float wx = b.getWorldX();
+		float wy = b.getWorldY();
+
+		b.setWorldX(wx - dx);
+		b.setWorldY(wy - dy);
+		clampPosition();
+	}
+
+	/**
+	 * Makes sure the world coordinates do not go out of bounds
+	 */
+	private void clampPosition() {
+		// prevent locking in
+		float wx = b.getWorldX();
+		float wy = b.getWorldY();
+		if (wx > maxX) {
+			this.b.setWorldX(maxX);
+		} else if (wx < minX) {
+			this.b.setWorldX(minX);
+		}
+		if (wy > maxY) {
+			this.b.setWorldY(maxY);
+		} else if (wy < minY) {
+			this.b.setWorldY(minY);
+		}
 	}
 
 	private void calculateZoomLimits() {
@@ -113,17 +153,7 @@ class BoardActorZoomAndPan extends ActorGestureListener {
 		maxY = this.b.getHeight() + (boardHeight - origin.y) * zoom;
 		minY = -origin.y * zoom;
 
-		// prevent locking in
-		if (this.b.getWorldX() >= maxX) {
-			this.b.setWorldX(maxX);
-		} else if (this.b.getWorldX() < minX) {
-			this.b.setWorldX(minX);
-		}
-		if (this.b.getWorldY() >= maxY) {
-			this.b.setWorldY(maxY);
-		} else if (this.b.getWorldY() < minY) {
-			this.b.setWorldY(minY);
-		}
+		clampPosition();
 	}
 
 	private float getZoom() {

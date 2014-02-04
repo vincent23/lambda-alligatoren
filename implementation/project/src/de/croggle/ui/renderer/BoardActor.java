@@ -129,19 +129,18 @@ public class BoardActor extends Group implements SettingChangeListener {
 
 	private void initializePosition() {
 		final float offsetLeft = 0;
-		final float offsetTop = 30;
+		final float offsetTop = -(getHeight() / 2 - 40);
 
-		// have the tree displayed horizontally centered and with its top at the
-		// upper edge
+		// have the tree displayed horizontally centered and with its top
+		// offsetTop pixels below (negative = above) the screen mid
 		ActorLayoutStatistics stats = layout.getLayoutStatistics();
 		Vector2 orig = config.getTreeOrigin();
-		float zoom = getZoom();
-		// TODO don't think, this is generally correct
 		float treeMidX = orig.x + stats.getWidthMap().get(layout.getBoard())
 				/ 2;
 		float treeTop = orig.y;
-		posX = -(treeMidX - getWidth() * zoom / 2) + offsetLeft;
-		posY = getHeight() * zoom - treeTop - offsetTop;
+
+		zoomAndPan.centerOntoWorldPoint(treeMidX + offsetLeft, treeTop
+				+ offsetTop);
 	}
 
 	float getZoom() {
@@ -187,10 +186,36 @@ public class BoardActor extends Group implements SettingChangeListener {
 		this.layout = layout;
 	}
 
+	public Vector2 boardActorToWorldCoordinates(Vector2 coords) {
+		return world.parentToLocalCoordinates(coords);
+	}
+
+	public Vector2 worldToBoardActorCoordinates(Vector2 coords) {
+		return world.localToParentCoordinates(coords);
+	}
+
+	/**
+	 * 
+	 * @param coords
+	 * @param scale
+	 *            the scale to be assumed the worldPane has. Useful if you want
+	 *            to compare the position of a BoardActor coordinate with
+	 *            different scales applied (e.g., before and after zoom)
+	 * @return
+	 */
 	public Vector2 boardActorToWorldCoordinates(Vector2 coords, float scale) {
 		return world.parentToLocalCoordinates(coords, scale);
 	}
 
+	/**
+	 * 
+	 * @param coords
+	 * @param scale
+	 *            the scale to be assumed the worldPane has. Useful if you want
+	 *            to compare the position of a WorldPane coordinate with
+	 *            different scales applied (e.g., before and after zoom)
+	 * @return
+	 */
 	public Vector2 worldToBoardActorCoordinates(Vector2 coords, float scale) {
 		return world.localToParentCoordinates(coords, scale);
 	}
