@@ -52,7 +52,11 @@ public class SettingsScreen extends AbstractScreen implements
 	public SettingsScreen(AlligatorApp game) {
 		super(game);
 		settingController = game.getSettingController();
+	}
 
+	@Override
+	protected void initializeWidgets() {
+		super.initializeWidgets();
 		fillTable();
 	}
 
@@ -86,21 +90,20 @@ public class SettingsScreen extends AbstractScreen implements
 
 		musicSlider.setValue(50);
 		effectsSlider.setValue(50);
-		
+
 		TextButton editProfile = new TextButton(
 				_("settings_button_edit_profile"), helper.getTextButtonStyle());
 
 		// add listeners
 		back.addListener(new LogicalPredecessorListener());
-		
+
 		SettingListener settingListener = new SettingListener();
-		
+
 		zoomCheckBox.addListener(settingListener);
 		colorBlindnessCheckBox.addListener(settingListener);
-		
+
 		musicSlider.addListener(settingListener);
 		effectsSlider.addListener(settingListener);
-	
 
 		editProfile.addListener(new ClickListener() {
 			@Override
@@ -140,12 +143,12 @@ public class SettingsScreen extends AbstractScreen implements
 	@Override
 	public void onProfileChange(Profile profile) {
 		Setting setting = settingController.getCurrentSetting();
-		if (setting != null) {
+		if (setting != null && areWidgetsInitialized()) {
 			musicSlider.setValue(setting.getVolumeMusic() * 100);
 			effectsSlider.setValue(setting.getVolumeEffects() * 100);
 			zoomCheckBox.setChecked(setting.isZoomEnabled());
 			colorBlindnessCheckBox.setChecked(setting.isColorblindEnabled());
-		} else {
+		} else if (areWidgetsInitialized()) {
 			musicSlider.setValue(50);
 			effectsSlider.setValue(50);
 			zoomCheckBox.setChecked(false);
@@ -154,19 +157,19 @@ public class SettingsScreen extends AbstractScreen implements
 		}
 
 	}
-	
+
 	private class SettingListener extends ChangeListener {
-		
+
 		@Override
 		public void changed(ChangeEvent event, Actor actor) {
-			if (! (actor instanceof Slider) || !((Slider) actor).isDragging() ) {
+			if (!(actor instanceof Slider) || !((Slider) actor).isDragging()) {
 				Setting setting = new Setting(musicSlider.getValue() / 100,
-							effectsSlider.getValue() / 100, zoomCheckBox
-									.isChecked(), colorBlindnessCheckBox
-									.isChecked());
-					settingController.editCurrentSetting(setting);
-				}
+						effectsSlider.getValue() / 100,
+						zoomCheckBox.isChecked(),
+						colorBlindnessCheckBox.isChecked());
+				settingController.editCurrentSetting(setting);
 			}
+		}
 	}
 
 	private class EditProfileDialog extends Dialog {
@@ -211,20 +214,20 @@ public class SettingsScreen extends AbstractScreen implements
 							_("edit_profile_delete_confirmation"), game
 									.getProfileController()
 									.getCurrentProfileName()),
-							new ConfirmInterface(
-									) {
-								
+							new ConfirmInterface() {
+
 								@Override
 								public void yes() {
-									game.getProfileController().deleteCurrentProfile();
+									game.getProfileController()
+											.deleteCurrentProfile();
 									game.showSelectProfileScreen();
-									
+
 								}
-								
+
 								@Override
 								public void no() {
 									// TODO Auto-generated method stub
-									
+
 								}
 							});
 					dialog.show(stage);
@@ -249,9 +252,6 @@ public class SettingsScreen extends AbstractScreen implements
 
 		}
 
-
 	}
-
-	
 
 }

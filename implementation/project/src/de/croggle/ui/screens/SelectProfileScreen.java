@@ -11,8 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
-import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.game.profile.Profile;
+import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.NotificationDialog;
@@ -36,7 +36,11 @@ public class SelectProfileScreen extends AbstractScreen implements
 	public SelectProfileScreen(AlligatorApp game) {
 		super(game);
 		profileController = game.getProfileController();
+	}
 
+	@Override
+	protected void initializeWidgets() {
+		super.initializeWidgets();
 		fillTable();
 	}
 
@@ -70,8 +74,10 @@ public class SelectProfileScreen extends AbstractScreen implements
 
 	@Override
 	public void onProfileChange(Profile profile) {
-		table.clear();
-		fillTable();
+		if (areWidgetsInitialized()) {
+			table.clear();
+			fillTable();
+		}
 	}
 
 	private class ChangeProfileClickListener extends ClickListener {

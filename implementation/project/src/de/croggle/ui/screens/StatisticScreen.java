@@ -38,11 +38,11 @@ public class StatisticScreen extends AbstractScreen implements
 
 	private SelectBox profileList;
 	private Table content;
-	
+
 	private enum Category {
 		ACTION, PROGRESS, GAME
 	}
-	
+
 	private Category lastCategory = Category.PROGRESS;
 
 	private TextButton actionsButton;
@@ -60,7 +60,11 @@ public class StatisticScreen extends AbstractScreen implements
 		super(game);
 		statisticController = game.getStatisticController();
 		profileController = game.getProfileController();
+	}
 
+	@Override
+	protected void initializeWidgets() {
+		super.initializeWidgets();
 		fillTable();
 	}
 
@@ -123,7 +127,7 @@ public class StatisticScreen extends AbstractScreen implements
 		table.add(pane).expand().fill().colspan(3);
 
 		onProfileChange(null);
-		
+
 	}
 
 	@Override
@@ -139,9 +143,10 @@ public class StatisticScreen extends AbstractScreen implements
 				profileNames[i] = profileName;
 			}
 		}
-		profileList.setItems(profileNames);
+		if (areWidgetsInitialized()) {
+			profileList.setItems(profileNames);
+		}
 	}
-	
 
 	private void showCategory(Category category) {
 		content.clear();
@@ -149,13 +154,14 @@ public class StatisticScreen extends AbstractScreen implements
 		Statistic statistic = statisticController.getStatistic(profileList
 				.getSelection());
 		if (statistic != null) {
-			switch(category) {
-			case PROGRESS :
-										
+			switch (category) {
+			case PROGRESS:
+
 				Label time = new Label(_("statistic_label_progress_time")
 						+ statistic.getPlaytime(), style);
-				Label packages = new Label(_("statistic_label_progress_packages")
-						+ statistic.getPackagesComplete(), style);
+				Label packages = new Label(
+						_("statistic_label_progress_packages")
+								+ statistic.getPackagesComplete(), style);
 				Label levels = new Label(_("statistic_label_progress_levels")
 						+ statistic.getLevelsComplete(), style);
 
@@ -167,7 +173,7 @@ public class StatisticScreen extends AbstractScreen implements
 				content.add(levels);
 				break;
 			case ACTION:
-								
+
 				Label recolorings = new Label(
 						_("statistic_label_action_recolorings")
 								+ statistic.getRecolorings(), style);
@@ -184,7 +190,7 @@ public class StatisticScreen extends AbstractScreen implements
 				content.add(hints);
 				break;
 			case GAME:
-						
+
 				Label alligatorsEaten = new Label(
 						_("statistic_label_game_alligators_eaten")
 								+ statistic.getAlligatorsEaten(), style);
@@ -194,8 +200,9 @@ public class StatisticScreen extends AbstractScreen implements
 				Label eggsHatched = new Label(
 						_("statistic_label_game_eggs_hatched")
 								+ statistic.getEggsHatched(), style);
-				Label eggsPlaced = new Label(_("statistic_label_game_eggs_placed")
-						+ statistic.getEggsPlaced(), style);
+				Label eggsPlaced = new Label(
+						_("statistic_label_game_eggs_placed")
+								+ statistic.getEggsPlaced(), style);
 
 				content.defaults().height(100).expandX().left().padLeft(10);
 				content.add(alligatorsEaten);
@@ -209,8 +216,6 @@ public class StatisticScreen extends AbstractScreen implements
 			}
 		}
 	}
-
-	
 
 	private class ChangeTabClickListener extends ClickListener {
 
@@ -229,6 +234,5 @@ public class StatisticScreen extends AbstractScreen implements
 			}
 		}
 	}
-
 
 }

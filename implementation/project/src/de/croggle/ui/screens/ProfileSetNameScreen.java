@@ -40,7 +40,11 @@ public class ProfileSetNameScreen extends AbstractScreen {
 	public ProfileSetNameScreen(AlligatorApp game) {
 		super(game);
 		profileController = game.getProfileController();
+	}
 
+	@Override
+	protected void initializeWidgets() {
+		super.initializeWidgets();
 		fillTable();
 	}
 

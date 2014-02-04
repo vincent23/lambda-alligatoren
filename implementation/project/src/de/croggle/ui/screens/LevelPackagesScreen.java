@@ -33,7 +33,11 @@ public class LevelPackagesScreen extends AbstractScreen {
 	public LevelPackagesScreen(AlligatorApp game) {
 		super(game);
 		packagesController = game.getLevelPackagesController();
+	}
 
+	@Override
+	protected void initializeWidgets() {
+		super.initializeWidgets();
 		fillTable();
 	}
 

@@ -47,6 +47,11 @@ public class AchievementScreen extends AbstractScreen {
 		super(game);
 		achievementController = game.getAchievementController();
 		block = new ArrayList<Table>();
+	}
+
+	@Override
+	protected void initializeWidgets() {
+		super.initializeWidgets();
 		fillTable();
 	}
 
@@ -70,19 +75,19 @@ public class AchievementScreen extends AbstractScreen {
 				achievement.setIndex(3);// TODO debugging
 				try {
 					if (i <= achievement.getIndex()) {
-						 achievementButton = new ImageButton(
-						 helper.getDrawable(achievement
-						 .getEmblemPathachieved(i)));
-						//achievementButton = new ImageButton(
-						//		helper.getDrawable("widgets/button"));
+						achievementButton = new ImageButton(
+								helper.getDrawable(achievement
+										.getEmblemPathachieved(i)));
+						// achievementButton = new ImageButton(
+						// helper.getDrawable("widgets/button"));
 
 						achievementButton
 								.addListener(new AchievementDetailViewListener(
 										achievement, i));
 					} else if (i == achievement.getNumberOfStages() - 1) {
 						achievementButton = new ImageButton(
-								 helper.getDrawable(achievement
-								 .getEmblemPathnotachieved(i)));
+								helper.getDrawable(achievement
+										.getEmblemPathnotachieved(i)));
 						final int index = i;
 						achievementButton.addListener(new ClickListener() {
 							@Override
@@ -94,13 +99,13 @@ public class AchievementScreen extends AbstractScreen {
 								dialog.show(stage);
 							}
 						});
-						
+
 					} else {
-						 achievementButton = new ImageButton(
-						 helper.getDrawable(achievement
-						 .getEmblemPathnotachieved(i)));
-						//achievementButton = new ImageButton(
-						//		helper.getDrawable("widgets/button-blue"));
+						achievementButton = new ImageButton(
+								helper.getDrawable(achievement
+										.getEmblemPathnotachieved(i)));
+						// achievementButton = new ImageButton(
+						// helper.getDrawable("widgets/button-blue"));
 
 						// because it must be final for usage in inner class
 						final int index = i;

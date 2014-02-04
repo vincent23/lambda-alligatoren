@@ -27,8 +27,9 @@ public abstract class AbstractScreen implements Screen {
 	protected final Stage stage;
 	protected final Table table;
 	private Texture background;
+	private String backgroundPath;
 	private OrthographicCamera camera;
-	private boolean assetsLoaded = false;
+	private boolean widgetsInitialized = false;
 
 	// protected int screenWidth;
 	// protected int screenHeight;
@@ -125,8 +126,11 @@ public abstract class AbstractScreen implements Screen {
 		game.batch.setProjectionMatrix(camera.combined);
 
 		// begin a new batch and draw the background
-		if (background != null) {
+		if (backgroundPath != null) {
 			game.batch.begin();
+			background = game.getAssetManager().get(backgroundPath,
+					Texture.class);
+			background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 			game.batch.draw(background, 0, 0, getViewportWidth(),
 					getViewportHeight());
 			game.batch.end();
@@ -171,10 +175,13 @@ public abstract class AbstractScreen implements Screen {
 	 * overridden. If you want to add code to be called on show, override the
 	 * protected method onShow() instead.
 	 */
-	public final void show() {
+	public void show() {
 		// if the loading screen has initialized everything, this returns
 		// instantly on its own
 		AssetManager.getInstance().finishLoading();
+		if (!widgetsInitialized) {
+			initializeWidgets();
+		}
 		onShow();
 
 		Gdx.input.setInputProcessor(inputMediator);
@@ -187,16 +194,22 @@ public abstract class AbstractScreen implements Screen {
 
 	}
 
+	protected void initializeWidgets() {
+		widgetsInitialized = true;
+	}
+
+	protected boolean areWidgetsInitialized() {
+		return widgetsInitialized;
+	}
+
 	public void setBackground(String backgroundPath) {
 		AssetManager manager = de.croggle.data.AssetManager.getInstance();
 		TextureLoader.TextureParameter backgroundParams = new TextureLoader.TextureParameter();
 		backgroundParams.genMipMaps = true;
 
 		manager.load(backgroundPath, Texture.class, backgroundParams);
-		// TODO maybe make this configurable for loading screen or so
-		manager.finishLoading();
-		background = game.getAssetManager().get(backgroundPath, Texture.class);
-		background.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		this.backgroundPath = backgroundPath;
+
 	}
 
 	/**

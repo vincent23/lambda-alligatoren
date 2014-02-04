@@ -221,12 +221,17 @@ public class AlligatorApp extends Game {
 
 		profileController.initializeController();
 
+		setScreen(new LoadingScreen(this, mainMenuScreen));
+	}
+
+	/**
+	 * Is called after create() is done, means after the asset manager is done
+	 * loading. TODO is called by the loading screen, which is ugly
+	 */
+	public void created() {
 		soundController.addToPlaylist("music1.mp3");
 		soundController.startPlaylist();
 
-		// profileController.deleteAllProfiles();
-
-		showMainMenuScreen(true);
 	}
 
 	/**

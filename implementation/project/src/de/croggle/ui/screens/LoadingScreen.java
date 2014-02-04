@@ -43,8 +43,10 @@ public class LoadingScreen extends AbstractScreen {
 		// Clear the screen
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-		if (AssetManager.getInstance().update()) { // Load some, will return
-													// true if done loading
+		// Load some, will return
+		// true if done loading
+		if (AssetManager.getInstance().update()) {
+			game.created();
 			game.setScreen(nextScreen);
 		}
 
@@ -66,7 +68,7 @@ public class LoadingScreen extends AbstractScreen {
 	}
 
 	@Override
-	public void hide() {
+	public void show() {
 
 	}
 

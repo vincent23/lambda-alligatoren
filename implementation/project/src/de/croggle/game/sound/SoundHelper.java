@@ -1,7 +1,5 @@
 package de.croggle.game.sound;
 
-
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,57 +10,54 @@ import com.badlogic.gdx.files.FileHandle;
 
 import de.croggle.data.AssetManager;
 
-
 /**
  * Singleton to manage sounds.
- *
+ * 
  */
 public class SoundHelper {
-	
+
 	private static SoundHelper instance;
-	
+
 	private static final String pathMusic = "sound/music";
 	private static final String pathEffects = "sound/effects";
-	
+
 	private Map<String, Sound> effects = new HashMap<String, Sound>();
 	private Map<String, Music> music = new HashMap<String, Music>();
-	
+
 	private SoundHelper() {
-		
 		AssetManager manager = AssetManager.getInstance();
 		FileHandle folder = Gdx.files.internal(pathMusic);
 		for (FileHandle entry : folder.list()) {
 			manager.load(pathMusic + "/" + entry.name(), Music.class);
-			manager.finishLoading();
-			music.put(entry.name(), manager.get(pathMusic + "/" + entry.name(), Music.class));
 		}
 		folder = Gdx.files.internal(pathEffects);
 		for (FileHandle entry : folder.list()) {
 			manager.load(pathEffects + "/" + entry.name(), Sound.class);
-			manager.finishLoading();
-			effects.put(entry.name(), manager.get(pathEffects + "/" + entry.name(), Sound.class));
 		}
-		
 	}
 
 	/**
 	 * Returns a sound that is stored in "assets/sound/music".
-	 * @param name the name of the effect
+	 * 
+	 * @param name
+	 *            the name of the effect
 	 * @return the music
 	 */
 	public Music getMusic(String name) {
 		return music.get(name);
 	}
-	
+
 	/**
 	 * Returns a sound that is stored in "assets/sound/effects".
-	 * @param name the name of the effect
+	 * 
+	 * @param name
+	 *            the name of the effect
 	 * @return the sound
 	 */
 	public Sound getEffect(String name) {
 		return effects.get(name);
 	}
-	
+
 	/**
 	 * Gets the current instance.
 	 * 
@@ -72,6 +67,20 @@ public class SoundHelper {
 		if (instance == null) {
 			throw new IllegalStateException(
 					"SoundHelper must be initialized before first usage");
+		}
+		if (instance.effects.size() == 0 || instance.music.size() == 0) {
+			AssetManager manager = AssetManager.getInstance();
+			manager.finishLoading();
+			FileHandle folder = Gdx.files.internal(pathMusic);
+			for (FileHandle entry : folder.list()) {
+				instance.music.put(entry.name(), manager.get(pathMusic + "/"
+						+ entry.name(), Music.class));
+			}
+			folder = Gdx.files.internal(pathEffects);
+			for (FileHandle entry : folder.list()) {
+				instance.effects.put(entry.name(), manager.get(pathEffects
+						+ "/" + entry.name(), Sound.class));
+			}
 		}
 		return instance;
 	}
@@ -83,8 +92,5 @@ public class SoundHelper {
 	public static void initialize() {
 		instance = new SoundHelper();
 	}
-		
-	
-
 
 }

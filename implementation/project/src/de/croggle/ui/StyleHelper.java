@@ -33,12 +33,7 @@ public class StyleHelper {
 	private StyleHelper() {
 		AssetManager manager = AssetManager.getInstance();
 		manager.load("textures/pack.atlas", TextureAtlas.class);
-		manager.finishLoading();
-		atlas = manager.get("textures/pack.atlas", TextureAtlas.class);
-		skin = new Skin(Gdx.files.internal("skin.json"), atlas);
-		generator = new FreeTypeFontGenerator(
-				Gdx.files.internal("fonts/rawengulk_sans.otf"));
-		generateFonts(generator, skin);
+
 	}
 
 	/**
@@ -50,6 +45,15 @@ public class StyleHelper {
 		if (instance == null) {
 			throw new IllegalStateException(
 					"Stylehelper must be initialized before first usage");
+		}
+		if (instance.skin == null) {
+			instance.atlas = AssetManager.getInstance().get(
+					"textures/pack.atlas", TextureAtlas.class);
+			instance.skin = new Skin(Gdx.files.internal("skin.json"),
+					instance.atlas);
+			instance.generator = new FreeTypeFontGenerator(
+					Gdx.files.internal("fonts/rawengulk_sans.otf"));
+			instance.generateFonts(instance.generator, instance.skin);
 		}
 		return instance;
 	}
@@ -184,7 +188,7 @@ public class StyleHelper {
 	public LabelStyle getLabelStyle() {
 		return skin.get(LabelStyle.class);
 	}
-	
+
 	public LabelStyle getBlackLabelStyle() {
 		LabelStyle style = new LabelStyle(getLabelStyle());
 		style.fontColor = skin.getColor("black");

@@ -46,7 +46,11 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 	public ProfileSetAvatarScreen(AlligatorApp game) {
 		super(game);
 		profileController = game.getProfileController();
+	}
 
+	@Override
+	protected void initializeWidgets() {
+		super.initializeWidgets();
 		fillTable();
 	}
 
