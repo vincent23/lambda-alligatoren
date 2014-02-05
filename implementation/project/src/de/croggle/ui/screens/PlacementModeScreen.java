@@ -139,6 +139,9 @@ public class PlacementModeScreen extends AbstractScreen implements
 		BoardActor goalBoard = new BoardActor(gameController.getLevel()
 				.getGoalBoard(), config);
 		goalBoard.setZoomAndPanEnabled(false);
+		goalBoard.setColorBlindEnabled(game.getSettingController()
+				.getCurrentSetting().isColorblindEnabled());
+		game.getSettingController().addSettingChangeListener(goalBoard);
 		Table goalTable = new Table();
 		goalTable.add(goalBoard).size(getViewportHeight());
 		goal.addListener(new GoalClickListener());
