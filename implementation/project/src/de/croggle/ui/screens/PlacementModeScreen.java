@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.data.LocalizationHelper._;
+
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -14,14 +16,16 @@ import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingChangeListener;
 import de.croggle.game.ColorController;
 import de.croggle.game.GameController;
+import de.croggle.game.board.IllegalBoardException;
 import de.croggle.game.level.LevelPackage;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.HintDialog;
 import de.croggle.ui.actors.IngameMenuDialog;
-import de.croggle.ui.actors.ObjectBar;
+import de.croggle.ui.actors.NotificationDialog;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
+import de.croggle.ui.renderer.ObjectBar;
 
 /**
  * Screen within which the player can manipulate the board by moving alligators
@@ -93,7 +97,11 @@ public class PlacementModeScreen extends AbstractScreen implements
 				helper.getImageButtonStyleRound("widgets/icon-minus"));
 		Button goal = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-trophy"));
-		ObjectBar objectBar = new ObjectBar(game, gameController);
+		ObjectBar objectBar = new ObjectBar(game.getSettingController()
+				.getCurrentSetting().isColorblindEnabled());
+		ImageButton startSimulation = new ImageButton(StyleHelper.getInstance()
+				.getImageButtonStyleRound("widgets/icon-next"));
+		startSimulation.addListener(new StartSimulationListener());
 
 		// add listeners
 		menu.addListener(new MenuClickListener());
@@ -121,8 +129,8 @@ public class PlacementModeScreen extends AbstractScreen implements
 		boardActor = new BoardActor(gameController.getShownBoard(), config);
 		boardActor.setColorBlindEnabled(game.getSettingController()
 				.getCurrentSetting().isColorblindEnabled());
-		boardActor.enableLayoutEditing(gameController
-				.getPlacmentBoardEventListener());
+		boardActor.enableLayoutEditing(
+				gameController.getPlacmentBoardEventListener(), objectBar);
 		game.getSettingController().addSettingChangeListener(boardActor);
 		// used to make resetting the board via game controller possible
 		gameController.registerPlacementBoardEventListener(boardActor
@@ -132,6 +140,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 		final Table controlTable = new Table();
 		controlTable.add(leftTable).expand().fill();
+		objectBar.add(startSimulation).size(200);
 		controlTable.add(objectBar).padLeft(30);
 		table.stack(boardTable, controlTable).fill().expand();
 		onSettingChange(game.getSettingController().getCurrentSetting());
@@ -216,6 +225,20 @@ public class PlacementModeScreen extends AbstractScreen implements
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
 			dialog.show(stage);
+		}
+	}
+
+	private class StartSimulationListener extends ClickListener {
+		@Override
+		public void clicked(InputEvent event, float x, float y) {
+			super.clicked(event, x, y);
+			try {
+				game.showSimulationModeScreen(gameController);
+			} catch (IllegalBoardException e) {
+				Dialog dialog = new NotificationDialog(
+						_("invalid_board_dialog"));
+				dialog.show(stage);
+			}
 		}
 	}
 

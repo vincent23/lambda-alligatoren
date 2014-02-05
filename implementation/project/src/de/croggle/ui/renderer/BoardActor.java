@@ -282,10 +282,20 @@ public class BoardActor extends Group implements SettingChangeListener {
 		return layoutEditingEnabled;
 	}
 
-	public void enableLayoutEditing(BoardEventMessenger m) {
+	/**
+	 * Enables editing functionality of the BoardActor (Color editing and drag
+	 * and drop moving)
+	 * 
+	 * @param m
+	 *            messenger to notify other listeners on {@link Board} changes
+	 *            made by the user
+	 * @param objectBar
+	 *            can be null if for example only recoloring is to be used
+	 */
+	public void enableLayoutEditing(BoardEventMessenger m, ObjectBar objectBar) {
 		if (layoutEditingEnabled == false) {
 			// initialize user interaction listeners on layout
-			layoutEditing = new BoardActorLayoutEditing(this, m);
+			layoutEditing = new BoardActorLayoutEditing(this, m, objectBar);
 			layoutEditing.registerLayoutListeners();
 			layoutEditingEnabled = true;
 		}

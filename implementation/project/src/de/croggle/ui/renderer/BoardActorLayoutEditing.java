@@ -36,6 +36,7 @@ class BoardActorLayoutEditing {
 	private final BoardActor b;
 	private final BoardEventMessenger messenger;
 	private final DragAndDrop dnd;
+	private final ObjectBar obar;
 
 	private final ColoredAlligatorActor coloredPayload;
 	private final EggActor eggPayload;
@@ -54,10 +55,12 @@ class BoardActorLayoutEditing {
 	private float autoPanBorderWidth;
 	private float autoPanBorderHeight;
 
-	public BoardActorLayoutEditing(BoardActor b, BoardEventMessenger messenger) {
+	public BoardActorLayoutEditing(BoardActor b, BoardEventMessenger messenger,
+			ObjectBar obar) {
 		this.b = b;
 		this.messenger = messenger;
 		this.dnd = new DragAndDrop();
+		this.obar = obar;
 
 		boolean colorBlind = b.getLayout().getLayoutConfiguration()
 				.isColorBlindEnabled();
