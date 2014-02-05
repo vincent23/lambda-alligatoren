@@ -1,7 +1,12 @@
 package de.croggle.game;
 
+import android.util.Log;
 import de.croggle.AlligatorApp;
+import de.croggle.data.persistence.LevelProgress;
+import de.croggle.game.board.Board;
 import de.croggle.game.level.EditLevel;
+import de.croggle.util.convert.AlligatorToJson;
+import de.croggle.util.convert.JsonToAlligator;
 
 public class EditLevelGameController extends GameController {
 	private EditLevel level;
@@ -10,6 +15,23 @@ public class EditLevelGameController extends GameController {
 		super(app, level);
 		this.level = level;
 		setupColorController();
+	}
+
+	@Override
+	protected void onAfterLoadProgress(LevelProgress progress) {
+		final String serializedBoard = progress.getCurrentBoard();
+		if (serializedBoard == null) {
+			Log.d("GameController", "No previous board");
+			return;
+		}
+		final Board previousBoard = JsonToAlligator
+				.convertBoard(serializedBoard);
+		setUserBoard(previousBoard);
+	}
+
+	@Override
+	protected void onBeforeSaveProgress(LevelProgress progress) {
+		progress.setCurrentBoard(AlligatorToJson.convert(getUserBoard()));
 	}
 
 	@Override

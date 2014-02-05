@@ -3,12 +3,15 @@ package de.croggle.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
+
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 
 import de.croggle.AlligatorApp;
+import de.croggle.data.persistence.LevelProgress;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.StatisticsDeltaProcessor;
 import de.croggle.game.board.AgedAlligator;
@@ -44,7 +47,7 @@ public class GameController implements BoardEventListener {
 	private int elapsedTime;
 	private long timeStamp;
 	private Simulator simulator;
-	protected ColorController colorController;
+	private ColorController colorController;
 	private final Level level;
 	private Statistic statisticsDelta; // changes during the current Level.
 	private final BoardEventMessenger simulationMessenger;
@@ -76,6 +79,7 @@ public class GameController implements BoardEventListener {
 
 		simulationMessenger.register(this);
 		placementMessenger.register(this);
+		loadProgress();
 	}
 
 	protected void setupColorController() {
@@ -223,6 +227,7 @@ public class GameController implements BoardEventListener {
 	@Override
 	public void onObjectRecolored(ColoredBoardObject recoloredObject) {
 		statisticsDelta.setRecolorings(statisticsDelta.getRecolorings() + 1);
+		saveProgress();
 	}
 
 	/**
@@ -255,14 +260,17 @@ public class GameController implements BoardEventListener {
 
 	@Override
 	public void onObjectPlaced(InternalBoardObject placed) {
+		saveProgress();
 	}
 
 	@Override
 	public void onObjectRemoved(InternalBoardObject removed) {
+		saveProgress();
 	}
 
 	@Override
 	public void onObjectMoved(InternalBoardObject moved) {
+		saveProgress();
 	}
 
 	/**
@@ -364,5 +372,42 @@ public class GameController implements BoardEventListener {
 
 	protected void setSolved(boolean solved) {
 		this.solved = solved;
+	}
+
+	protected void setUserBoard(Board userBoard) {
+		this.userBoard = userBoard;
+		placementMessenger.notifyBoardRebuilt(userBoard);
+	}
+
+	protected void onBeforeSaveProgress(LevelProgress progress) {
+	}
+
+	protected void onAfterLoadProgress(LevelProgress progress) {
+	}
+
+	private void saveProgress() {
+		final String profileName = app.getProfileController()
+				.getCurrentProfileName();
+		// TODO insert statistics values
+		final LevelProgress progress = new LevelProgress(level.getLevelId(),
+				solved, null, 0, 0, 0);
+		onBeforeSaveProgress(progress);
+		app.getPersistenceManager().saveLevelProgress(profileName, progress);
+	}
+
+	private void loadProgress() {
+		final String profileName = app.getProfileController()
+				.getCurrentProfileName();
+		final LevelProgress previousProgress = app.getPersistenceManager()
+				.getLevelProgress(profileName, level.getLevelId());
+		if (previousProgress == null) {
+			Log.d("GameController", "No previous progress");
+			return;
+		}
+		onAfterLoadProgress(previousProgress);
+	}
+
+	protected Board getUserBoard() {
+		return userBoard;
 	}
 }
