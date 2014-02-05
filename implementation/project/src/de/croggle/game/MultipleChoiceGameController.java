@@ -16,12 +16,9 @@ public class MultipleChoiceGameController extends GameController {
 		this.level = level;
 	}
 
-	public boolean isLevelWon() {
-		return level.validateAnswer(selection);
-	}
-
 	public void setSelection(int selection) {
 		this.selection = selection;
+		setSolved(level.validateAnswer(selection));
 	}
 
 	@Override

@@ -50,6 +50,7 @@ public class GameController implements BoardEventListener {
 	// listeners of the statisticsDelta
 	private final List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
 	private final AlligatorApp app;
+	private boolean solved;
 
 	/**
 	 * Creates a new game controller for the given level.
@@ -69,6 +70,7 @@ public class GameController implements BoardEventListener {
 		this.simulationMessenger = new BoardEventMessenger();
 		this.placementMessenger = new BoardEventMessenger();
 		this.statisticsDeltaProcessors = new ArrayList<StatisticsDeltaProcessor>();
+		this.solved = false;
 
 		simulationMessenger.register(this);
 		placementMessenger.register(this);
@@ -126,6 +128,7 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	private void onCompletedLevel(boolean won) {
+		setSolved(won);
 		statisticsDelta.setPlaytime(elapsedTime / 1000); // time in
 															// statisticDelta is
 															// in sec,
@@ -338,5 +341,13 @@ public class GameController implements BoardEventListener {
 
 	public Screen createPlacementScreen(AlligatorApp app) {
 		return new PlacementModeScreen(app, this);
+	}
+
+	public boolean isSolved() {
+		return solved;
+	}
+
+	protected void setSolved(boolean solved) {
+		this.solved = solved;
 	}
 }
