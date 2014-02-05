@@ -156,9 +156,16 @@ public class StatisticScreen extends AbstractScreen implements
 		if (statistic != null) {
 			switch (category) {
 			case PROGRESS:
-
-				Label time = new Label(_("statistic_label_progress_time")
-						+ statistic.getPlaytime(), style);
+				int sec = statistic.getPlaytime(); 
+				int hours = sec / 3600;
+				sec = sec % 3600;
+				int min = sec / 60;
+				sec = sec % 60; 
+				
+				Label time = new Label(_("statistic_label_progress_time")+" "
+						+  hours + " h  " + String.format("%02d", min) + " min  " + String.format("%02d", sec) + " s" , style);
+//				Label time = new Label(_("statistic_label_progress_time")+" "
+//				+ sec  , style);
 				Label packages = new Label(
 						_("statistic_label_progress_packages")
 								+ statistic.getPackagesComplete(), style);
