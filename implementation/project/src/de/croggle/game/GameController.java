@@ -290,7 +290,11 @@ public class GameController implements BoardEventListener {
 			
 		} else if (!evaluated
 				|| simulator.getSteps() >= level.getAbortSimulationAfter()) {
-			onCompletedLevel(false);
+			Timer timer = new Timer();
+			timer.scheduleTask(new Task(){
+			    public void run() {
+			        onCompletedLevel(false);
+			    } }, 2.0f);
 		}
 	}
 
