@@ -219,8 +219,6 @@ public class AlligatorApp extends Game {
 		profileController.addProfileChangeListener(mainMenuScreen);
 		profileController.addProfileChangeListener(statisticScreen);
 
-		profileController.initializeController();
-
 		if (profileController.getAllProfiles().isEmpty()) {
 			setScreen(new LoadingScreen(this, profileSetNameScreen));
 		} else {
@@ -236,6 +234,8 @@ public class AlligatorApp extends Game {
 	public void created() {
 		soundController.addToPlaylist("music1.mp3");
 		soundController.startPlaylist();
+		
+		profileController.loadLastActiveProfile();
 
 	}
 

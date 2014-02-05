@@ -50,7 +50,7 @@ public class ProfileController {
 	 * Loads the name of the last active profile and initializes all controllers
 	 * that depend on that name.
 	 */
-	public void initializeController() {
+	public void loadLastActiveProfile() {
 		Preferences prefs = Gdx.app.getPreferences("Profile Preferences");
 		String profileName = prefs.getString("activeProfile", null);
 		if (profileName != null

@@ -138,6 +138,8 @@ public class SettingsScreen extends AbstractScreen implements
 		table.add(back).size(100).top().left();
 		table.add(scrollTable).expand().fill();
 		table.pad(30);
+		
+		onProfileChange(null);
 	}
 
 	@Override
