@@ -15,7 +15,7 @@ import de.croggle.ui.renderer.ColoredAlligatorActor;
  * place. That means, that aged has its new parent set and the colored alligator
  * is not in the list of children of its parent any more.
  */
-public interface AlligatorAgesEvent {
+public interface AlligatorAgesListener {
 
 	/**
 	 * Receive an alligator aged event for further processing. E.g. the renderer

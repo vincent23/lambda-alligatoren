@@ -7,5 +7,6 @@ package de.croggle.game.event;
  */
 public interface BoardEventListener extends EggHatchEventListener,
 		ObjectRecoloredListener, EatEventListener, BoardRebuiltEventListener,
-		AgedAlligatorVanishesListener, AlligatorAgesEvent {
+		AgedAlligatorVanishesListener, AlligatorAgesListener,
+		BoardEditedListener {
 }

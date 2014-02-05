@@ -122,4 +122,44 @@ public class BoardEventMessenger {
 			listener.onAge(colored, aged);
 		}
 	}
+
+	/**
+	 * Needs only to be notified if there was user interaction (not simulation)
+	 * causing a BoardObject to be added to the tree.
+	 * 
+	 * @param placed
+	 *            the {@link InternalBoardObject} added by the user
+	 */
+	public void notifyObjectPlaced(InternalBoardObject placed) {
+		for (BoardEventListener listener : listeners) {
+			listener.onObjectPlaced(placed);
+			;
+		}
+	}
+
+	/**
+	 * Needs only to be notified if there was user interaction (not simulation)
+	 * causing a BoardObject to be removed from the tree.
+	 * 
+	 * @param removed
+	 *            the {@link InternalBoardObject} removed by the user
+	 */
+	public void notifyObjectRemoved(InternalBoardObject removed) {
+		for (BoardEventListener listener : listeners) {
+			listener.onObjectRemoved(removed);
+		}
+	}
+
+	/**
+	 * Needs only to be notified if there was user interaction (not simulation)
+	 * causing a BoardObject to be moved in tree.
+	 * 
+	 * @param moved
+	 *            the {@link InternalBoardObject} moved by the user
+	 */
+	public void notifyObjectMoved(InternalBoardObject moved) {
+		for (BoardEventListener listener : listeners) {
+			listener.onObjectMoved(moved);
+		}
+	}
 }

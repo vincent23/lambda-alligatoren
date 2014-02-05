@@ -272,4 +272,22 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		removeObjectAnimated(colored);
 	}
 
+	@Override
+	public void onObjectPlaced(InternalBoardObject placed) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onObjectRemoved(InternalBoardObject removed) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onObjectMoved(InternalBoardObject moved) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

@@ -49,7 +49,7 @@ public class GameController implements BoardEventListener {
 	private final BoardEventMessenger placementMessenger;
 	// listeners of the statisticsDelta
 	private final List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
-	private AlligatorApp app;
+	private final AlligatorApp app;
 
 	/**
 	 * Creates a new game controller for the given level.
@@ -69,7 +69,7 @@ public class GameController implements BoardEventListener {
 		this.simulationMessenger = new BoardEventMessenger();
 		this.placementMessenger = new BoardEventMessenger();
 		this.statisticsDeltaProcessors = new ArrayList<StatisticsDeltaProcessor>();
-		
+
 		simulationMessenger.register(this);
 		placementMessenger.register(this);
 	}
@@ -81,7 +81,7 @@ public class GameController implements BoardEventListener {
 	protected ColorController createColorController() {
 		return new ColorController();
 	}
-	
+
 	/**
 	 * Returns the gam's ColorController.
 	 * 
@@ -240,6 +240,18 @@ public class GameController implements BoardEventListener {
 	public void onBoardRebuilt(Board board) {
 	}
 
+	@Override
+	public void onObjectPlaced(InternalBoardObject placed) {
+	}
+
+	@Override
+	public void onObjectRemoved(InternalBoardObject removed) {
+	}
+
+	@Override
+	public void onObjectMoved(InternalBoardObject moved) {
+	}
+
 	/**
 	 * Registers the hatched egg and the born family in the statisticsDelta.
 	 */
@@ -296,24 +308,25 @@ public class GameController implements BoardEventListener {
 			return simulator.getCurrentBoard();
 		}
 	}
-	
+
 	public int getElapsedTime() {
 		return elapsedTime;
 	}
+
 	public long getTimeStamp() {
 		return timeStamp;
 	}
-	
-	public void setElapsedTime( int elapsedTime) {
+
+	public void setElapsedTime(int elapsedTime) {
 		this.elapsedTime = elapsedTime;
 	}
-	
+
 	public void updateTime() {
 		long timeNow = TimeUtils.millis();
-		int timeAddition = (int)(timeNow - timeStamp);
+		int timeAddition = (int) (timeNow - timeStamp);
 		elapsedTime += timeAddition;
 	}
-	
+
 	public void setTimeStamp() {
 		this.timeStamp = TimeUtils.millis();
 	}
