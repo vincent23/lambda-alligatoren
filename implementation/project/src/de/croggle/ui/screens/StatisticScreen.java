@@ -164,8 +164,6 @@ public class StatisticScreen extends AbstractScreen implements
 				
 				Label time = new Label(_("statistic_label_progress_time")+" "
 						+  hours + " h  " + String.format("%02d", min) + " min  " + String.format("%02d", sec) + " s" , style);
-//				Label time = new Label(_("statistic_label_progress_time")+" "
-//				+ sec  , style);
 				Label packages = new Label(
 						_("statistic_label_progress_packages")
 								+ statistic.getPackagesComplete(), style);
