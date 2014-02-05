@@ -64,6 +64,8 @@ public class LevelTerminatedScreen extends AbstractScreen {
 				helper.getImageButtonStyleRound("widgets/icon-levels"));
 		ImageButton replay = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-reset"));
+		ImageButton home = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-home"));
 		ImageButton achievements = new ImageButton(
 				helper.getDrawable("widgets/icon-trophy"));
 
@@ -71,6 +73,12 @@ public class LevelTerminatedScreen extends AbstractScreen {
 		next.addListener(new NextLevelClickListener());
 		replay.addListener(new ReplayLevelClickListener());
 		achievements.addListener(new ShowNewAchievementsListener());
+		home.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				game.showMainMenuScreen(true);
+			}
+		});
 
 		// fit icons that are too large
 		replay.getImageCell().pad(5);
@@ -88,6 +96,7 @@ public class LevelTerminatedScreen extends AbstractScreen {
 
 		table.add(replay).size(100).bottom().space(30).expandX().right();
 		table.add(levelOverview).size(100).bottom().space(30);
+		table.add(home).size(100).bottom().space(30);
 		table.add(next).size(150);
 	}
 
