@@ -91,13 +91,6 @@
 						"removable" : false ,
 						"color" : 8 ,
 						"recolorable" : true
-						},
-						{
-						"type" : "egg" ,
-						"movable" : false ,
-						"removable" : false ,
-						"color" : 8 ,
-						"recolorable" : true
 						}
 						
 					]
