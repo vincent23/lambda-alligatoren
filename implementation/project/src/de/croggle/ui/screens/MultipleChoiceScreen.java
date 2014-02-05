@@ -139,7 +139,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 			game.getSettingController().addSettingChangeListener(boardActor);
 			boardActor.setZoomAndPanEnabled(false);
 			boardTable.add(boardActor).expand().fill();
-			pageTable.add(checkboxes[i]).top().center();
+			pageTable.add(checkboxes[i]).top().center().pad(20, 0, 5, 0);
 			pageTable.row();
 			pageTable.add(boardTable).center().expand().fill();
 
