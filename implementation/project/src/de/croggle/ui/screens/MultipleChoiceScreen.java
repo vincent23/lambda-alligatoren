@@ -79,7 +79,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		super.hide();
 		gameController.updateTime();
 		gameController.setTimeStamp();
-		Log.d("check time", "elapsedTime: " + gameController.getElapsedTime() + " ms");
+		//Log.d("check time", "elapsedTime: " + gameController.getElapsedTime() + " ms");
 	}
 
 	@Override
