@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
@@ -280,7 +282,12 @@ public class GameController implements BoardEventListener {
 		final boolean evaluated = simulator.evaluate();
 		if (level.isLevelSolved(simulator.getCurrentBoard(),
 				simulator.getSteps())) {
-			onCompletedLevel(true);
+			Timer timer = new Timer();
+			timer.scheduleTask(new Task(){
+			    public void run() {
+			        onCompletedLevel(true);
+			    } }, 2.0f);
+			
 		} else if (!evaluated
 				|| simulator.getSteps() >= level.getAbortSimulationAfter()) {
 			onCompletedLevel(false);
