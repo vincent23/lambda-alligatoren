@@ -130,7 +130,7 @@ public class ProfileController {
 		if (!name.equals(getCurrentProfileName())
 				&& game.getPersistenceManager().isNameUsed(name)) {
 			throw new IllegalArgumentException();
-		} else {
+		} else if (!name.equals(getCurrentProfileName()) || !(currentProfile != null && picturePath.equals(currentProfile.getPicturePath()))) {
 			Profile profile = new Profile(name, picturePath);
 			game.getPersistenceManager().editProfile(currentProfile.getName(),
 					profile);
