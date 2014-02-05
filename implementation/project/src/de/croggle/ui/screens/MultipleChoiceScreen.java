@@ -1,11 +1,11 @@
 package de.croggle.ui.screens;
 
 import static de.croggle.data.LocalizationHelper._;
-
 import android.util.Log;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -40,6 +40,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 	private final MultipleChoiceGameController gameController;
 	private BoardActor boardActor;
 	private CheckBox checkboxes[];
+	private Dialog dialog;
 
 	/**
 	 * Creates the base screen of a multiple choice level, which is shown to the
@@ -57,6 +58,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 
 		AssetManager assetManager = AssetManager.getInstance();
 		assetManager.load("textures/pack.atlas", TextureAtlas.class);
+		dialog = new Dialog("", StyleHelper.getInstance().getDialogStyle());
 
 		fillTable();
 		final int packageIndex = gameController.getLevel().getPackageIndex();
@@ -94,8 +96,8 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		Table leftTable = new Table();
 		ImageButton menu = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-menu"));
-		ImageButton hint = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/icon-hint"));
+		Button goal = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-trophy"));
 
 		ImageButton startSimulation = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/icon-next"));
@@ -103,14 +105,12 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 
 		// add listeners
 		menu.addListener(new MenuClickListener());
-		hint.addListener(new HintClickListener());
 
 		leftTable.pad(30);
 		leftTable.defaults().space(30);
 		leftTable.add(menu).size(100).top().left();
 		leftTable.row();
-		// TODO only activated after some time
-		leftTable.add(hint).expand().size(100).top().left();
+		leftTable.add(goal).expand().size(100).top().left();
 		leftTable.row();
 		leftTable.add(startSimulation).size(200).center().right();
 
@@ -126,18 +126,11 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		PagedScrollPane pager = new PagedScrollPane();
 
 		checkboxes = new CheckBox[3];
-		boardActor = new BoardActor(level.getInitialBoard(), config);
-		boardActor.setColorBlindEnabled(game.getSettingController()
-				.getCurrentSetting().isColorblindEnabled());
-		game.getSettingController().addSettingChangeListener(boardActor);
-		boardActor.setZoomAndPanEnabled(false);
-		Table boardTable = new Table();
-		boardTable.add(boardActor).expand().fill();
-		pager.addPage(boardTable);
+
 
 		for (int i = 0; i < level.getAnswers().length; i++) {
 			Board answer = level.getAnswers()[i];
-			boardTable = new Table();
+			Table boardTable = new Table();
 			Table pageTable = new Table();
 			checkboxes[i] = new CheckBox("", helper.getCheckBoxStyle());
 			boardActor = new BoardActor(answer, config);
@@ -162,8 +155,29 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 
 		pager.setFlingTime(0.3f);
 		pager.setPageSpacing(5);
-		pager.setWidth(getViewportWidth());
+		pager.setWidth(getViewportWidth() * 0.5f);
 		pager.setScrollingDisabled(false, true);
+		
+		
+		BoardActor goalBoard = new BoardActor(gameController.getLevel()
+				.getInitialBoard(), config);
+		goalBoard.setZoomAndPanEnabled(false);
+		goalBoard.setColorBlindEnabled(game.getSettingController()
+				.getCurrentSetting().isColorblindEnabled());
+		game.getSettingController().addSettingChangeListener(goalBoard);
+		Table goalTable = new Table();
+		goalTable.add(goalBoard).size(getViewportHeight());
+		goal.addListener(new GoalClickListener());
+
+		dialog.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				dialog.hide();
+			}
+		});
+
+		dialog.add(goalTable).width(getViewportWidth() - 250)
+				.height(getViewportHeight());
 	}
 
 	private void checkZoom() {
@@ -210,10 +224,12 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		}
 	}
 
-	private class HintClickListener extends ClickListener {
+
+	
+	private class GoalClickListener extends ClickListener {
+
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			Dialog dialog = new HintDialog(gameController.getLevel());
 			dialog.show(stage);
 		}
 	}
