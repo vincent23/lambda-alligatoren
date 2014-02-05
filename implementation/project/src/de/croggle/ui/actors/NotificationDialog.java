@@ -39,6 +39,7 @@ public class NotificationDialog extends Dialog {
 		clear();
 		add(message).width(500).center().pad(100).row();
 		add(okay).center().width(300).height(70);
+		padBottom(30);
 		layout();
 	}
 

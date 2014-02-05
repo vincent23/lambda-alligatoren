@@ -93,7 +93,7 @@ public class AchievementScreen extends AbstractScreen {
 								public void clicked(InputEvent event, float x,
 										float y) {
 									Dialog dialog = new NotificationDialog(
-											_("achievement_dialog_last")
+											_("achievement_dialog_last") 
 													+ "???");
 									dialog.show(stage);
 								}
