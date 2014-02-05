@@ -20,6 +20,9 @@ public class NewAchievementDialog extends Dialog {
 		super("", StyleHelper.getInstance().getDialogStyle());
 
 		StyleHelper helper = StyleHelper.getInstance();
+
+		setBackground(helper.getDrawable("widgets/background-blue"));
+
 		Label message = new Label(_("title_new_achievement"),
 				helper.getBlackLabelStyle());
 
@@ -35,17 +38,17 @@ public class NewAchievementDialog extends Dialog {
 		Label description = new Label(achievement.getDescription(index),
 				helper.getBlackLabelStyle());
 		ImageButton next = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/icon-play"));
+				helper.getImageButtonStyleRound("widgets/icon-next"));
 
 		clear();
 		if (isNew) {
-			add(message).pad(30).row();
+			add(message).height(75).padTop(10).row();
 		}
-		add(icon).size(300).pad(50, 100, 0, 100).row();
-		add(description).pad(30).row();
+		add(icon).size(200).pad(0, 200, 0, 200).row();
+		add(description).height(75).padTop(10).row();
 
 		if (isNew) {
-			add(next);
+			add(next).size(100).padBottom(10).padRight(10).right();
 			next.addListener(new DisposeListener());
 		} else {
 			this.addListener(new DisposeListener());
