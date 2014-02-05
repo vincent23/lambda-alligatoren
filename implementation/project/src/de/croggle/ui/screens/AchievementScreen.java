@@ -72,7 +72,6 @@ public class AchievementScreen extends AbstractScreen {
 		
 			
 			for (final Achievement achievement : availableAchievements) {
-				System.out.println(achievement.getIndex());
 				for (int i = 1; i < achievement.getNumberOfStages(); i++) {
 					ImageButton achievementButton;
 				
