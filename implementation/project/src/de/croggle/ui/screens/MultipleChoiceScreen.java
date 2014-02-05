@@ -161,12 +161,12 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		
 		BoardActor goalBoard = new BoardActor(gameController.getLevel()
 				.getInitialBoard(), config);
-		goalBoard.setZoomAndPanEnabled(false);
+		goalBoard.setZoomAndPanEnabled(true);
 		goalBoard.setColorBlindEnabled(game.getSettingController()
 				.getCurrentSetting().isColorblindEnabled());
 		game.getSettingController().addSettingChangeListener(goalBoard);
 		Table goalTable = new Table();
-		goalTable.add(goalBoard).size(getViewportHeight());
+		goalTable.add(goalBoard).size(getViewportWidth()*1.5f, getViewportHeight());
 		goal.addListener(new GoalClickListener());
 
 		dialog.addListener(new ClickListener() {
