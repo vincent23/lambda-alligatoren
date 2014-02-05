@@ -127,7 +127,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 		stopAutomaticSimulation();
 		gameController.updateTime();
 		gameController.setTimeStamp();
-		Log.d("check time", "elapsedTime: " + gameController.getElapsedTime());
+		Log.d("check time", "elapsedTime: " + gameController.getElapsedTime() + " ms");
 		table.clear();
 	}
 

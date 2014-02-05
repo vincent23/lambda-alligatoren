@@ -2,6 +2,8 @@ package de.croggle.ui.screens;
 
 import static de.croggle.data.LocalizationHelper._;
 
+import android.util.Log;
+
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
@@ -68,7 +70,16 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 
 	@Override
 	protected void onShow() {
+		gameController.setTimeStamp();
 		gameController.enterPlacement();
+	}
+	
+	@Override
+	public void hide() {
+		super.hide();
+		gameController.updateTime();
+		gameController.setTimeStamp();
+		Log.d("check time", "elapsedTime: " + gameController.getElapsedTime() + " ms");
 	}
 
 	@Override
