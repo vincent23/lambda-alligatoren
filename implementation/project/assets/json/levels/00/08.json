@@ -85,6 +85,29 @@
 								"recolorable" : true
 								}
 							]
+						},
+						{
+							"type" : "colored alligator" ,
+							"movable" : false ,
+							"removable" : false ,
+							"color" : 16 ,
+							"recolorable" : true ,
+							"children" : [
+								{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 16 ,
+								"recolorable" : true
+								},
+								{
+								"type" : "egg" ,
+								"movable" : false ,
+								"removable" : false ,
+								"color" : 16 ,
+								"recolorable" : true
+								}
+							]
 						}
 					
 					]
