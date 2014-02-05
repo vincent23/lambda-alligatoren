@@ -209,4 +209,16 @@ public abstract class Level {
 		return new GameController(app, this);
 	}
 
+	/**
+	 * Get a unique identifier for this level.
+	 * 
+	 * @return A unique value to identify this level, e.g. in the database
+	 */
+	public int getLevelId() {
+		final int index = getLevelIndex();
+		final int pack = getPackageIndex();
+		// TODO 100 level / package limit
+		return pack * 100 + index;
+	}
+
 }
