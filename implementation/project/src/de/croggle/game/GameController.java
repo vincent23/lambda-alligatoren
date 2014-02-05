@@ -63,7 +63,7 @@ public class GameController implements BoardEventListener {
 		this.elapsedTime = 0;
 		this.timeStamp = TimeUtils.millis();
 		setupColorController();
-		this.shownBoard = level.getInitialBoard();
+		this.shownBoard = level.getInitialBoard().copy();
 		this.userBoard = shownBoard;
 		this.statisticsDelta = new Statistic();
 		this.simulationMessenger = new BoardEventMessenger();
@@ -126,7 +126,11 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	private void onCompletedLevel() {
-		statisticsDelta.setPlaytime(elapsedTime/1000); //time in statisticDelta is in sec, elapsedTime in millisec.
+		statisticsDelta.setPlaytime(elapsedTime / 1000); // time in
+															// statisticDelta is
+															// in sec,
+															// elapsedTime in
+															// millisec.
 		for (StatisticsDeltaProcessor processor : statisticsDeltaProcessors) {
 			processor.processDelta(statisticsDelta);
 		}
@@ -287,16 +291,9 @@ public class GameController implements BoardEventListener {
 	 * user entered simulation.
 	 */
 	public void reset() {
-		// TODO maybe keep track of state (placement/simulation) in dedicated
-		// variable?
-		if (simulator != null) {
-			simulator.reset();
-		} else {
-			setupColorController();
-			userBoard = level.getInitialBoard();
-			placementMessenger.notifyBoardRebuilt(userBoard);
-		}
-
+		setupColorController();
+		userBoard = level.getInitialBoard().copy();
+		placementMessenger.notifyBoardRebuilt(userBoard);
 	}
 
 	public Board getShownBoard() {
