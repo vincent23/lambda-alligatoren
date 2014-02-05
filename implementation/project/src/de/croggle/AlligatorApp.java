@@ -220,6 +220,7 @@ public class AlligatorApp extends Game {
 		profileController.addProfileChangeListener(statisticScreen);
 
 		if (profileController.getAllProfiles().isEmpty()) {
+			profileSetNameScreen.showBackButton(false);
 			setScreen(new LoadingScreen(this, profileSetNameScreen));
 		} else {
 			setScreen(new LoadingScreen(this, mainMenuScreen));
