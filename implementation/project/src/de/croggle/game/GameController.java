@@ -291,18 +291,20 @@ public class GameController implements BoardEventListener {
 		if (level.isLevelSolved(simulator.getCurrentBoard(),
 				simulator.getSteps())) {
 			Timer timer = new Timer();
-			timer.scheduleTask(new Task(){
-			    public void run() {
-			        onCompletedLevel(true);
-			    } }, 2.0f);
-			
+			timer.scheduleTask(new Task() {
+				public void run() {
+					onCompletedLevel(true);
+				}
+			}, 2.0f);
+
 		} else if (!evaluated
 				|| simulator.getSteps() >= level.getAbortSimulationAfter()) {
 			Timer timer = new Timer();
-			timer.scheduleTask(new Task(){
-			    public void run() {
-			        onCompletedLevel(false);
-			    } }, 2.0f);
+			timer.scheduleTask(new Task() {
+				public void run() {
+					onCompletedLevel(false);
+				}
+			}, 2.0f);
 		}
 	}
 
@@ -324,6 +326,7 @@ public class GameController implements BoardEventListener {
 		setupColorController();
 		userBoard = level.getInitialBoard().copy();
 		placementMessenger.notifyBoardRebuilt(userBoard);
+		saveProgress();
 	}
 
 	public Board getShownBoard() {
