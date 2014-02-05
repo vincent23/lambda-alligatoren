@@ -126,7 +126,7 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	private void onCompletedLevel() {
-		statisticsDelta.setPlaytime(elapsedTime);
+		statisticsDelta.setPlaytime(elapsedTime/1000); //time in statisticDelta is in sec, elapsedTime in millisec.
 		for (StatisticsDeltaProcessor processor : statisticsDeltaProcessors) {
 			processor.processDelta(statisticsDelta);
 		}
