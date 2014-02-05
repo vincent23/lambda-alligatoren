@@ -64,20 +64,20 @@ public class Simulator {
 	/**
 	 * Evaluates one step in the Lambda Calculus.
 	 * 
-	 * @return the board after said step
+	 * @return true if an evaluation step has happened, false otherwise
 	 * @throws ColorOverflowException
 	 *             if recoloring occurs and there is no color available
 	 * @throws AlligatorOverflowException
 	 *             if there are more than the max. allowed amount of
 	 *             BoardObjects on the board after the evaluation step
 	 */
-	public Board evaluate() throws ColorOverflowException,
+	public boolean evaluate() throws ColorOverflowException,
 			AlligatorOverflowException {
-		final Board oldBoard = currentBoard.copy();
 		final ColoredAlligator eater = FindEating.findEater(currentBoard);
 		if (eater == null) {
-			return oldBoard;
+			return false;
 		}
+		final Board oldBoard = currentBoard.copy();
 		history.push(oldBoard);
 
 		final Parent parent = eater.getParent();
@@ -93,7 +93,7 @@ public class Simulator {
 			throw new AlligatorOverflowException();
 		}
 		steps++;
-		return currentBoard;
+		return true;
 	}
 
 	public boolean canUndo() {

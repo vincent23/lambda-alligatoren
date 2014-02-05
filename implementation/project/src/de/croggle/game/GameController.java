@@ -125,7 +125,7 @@ public class GameController implements BoardEventListener {
 	 * listeners.
 	 * 
 	 */
-	private void onCompletedLevel() {
+	private void onCompletedLevel(boolean won) {
 		statisticsDelta.setPlaytime(elapsedTime / 1000); // time in
 															// statisticDelta is
 															// in sec,
@@ -270,9 +270,13 @@ public class GameController implements BoardEventListener {
 
 	public void evaluateStep() throws ColorOverflowException,
 			AlligatorOverflowException {
-		final Board newBoard = simulator.evaluate();
-		if (level.isLevelSolved(newBoard, simulator.getSteps())) {
-			onCompletedLevel();
+		final boolean evaluated = simulator.evaluate();
+		if (!evaluated
+				|| simulator.getSteps() >= level.getAbortSimulationAfter()) {
+			onCompletedLevel(false);
+		} else if (level.isLevelSolved(simulator.getCurrentBoard(),
+				simulator.getSteps())) {
+			onCompletedLevel(true);
 		}
 	}
 
