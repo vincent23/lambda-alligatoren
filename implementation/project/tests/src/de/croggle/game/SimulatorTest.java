@@ -1,15 +1,11 @@
 package de.croggle.game;
 
 import junit.framework.TestCase;
-import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.AlligatorOverflowException;
 import de.croggle.game.board.Board;
-import de.croggle.game.board.ColoredAlligator;
-import de.croggle.game.board.Egg;
 import de.croggle.game.board.IllegalBoardException;
-import de.croggle.game.board.InternalBoardObject;
-import de.croggle.game.board.operations.BoardObjectVisitor;
 import de.croggle.game.board.operations.MatchWithRenaming;
+import de.croggle.game.board.operations.RemoveUselessAgedAlligators;
 import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.util.convert.AlligatorToLambda;
 import de.croggle.util.convert.LambdaToAlligator;
@@ -99,48 +95,16 @@ public class SimulatorTest extends TestCase {
 		final Board outputBoard = LambdaToAlligator.convert(output);
 		final Simulator simulator = new Simulator(inputBoard,
 				new ColorController(), new BoardEventMessenger());
-		final RemoveUselessAgedAlligators removeVisitor = new RemoveUselessAgedAlligators();
 		Board evaluated = simulator.getCurrentBoard();
 		for (int i = 0; i < maxSteps; i++) {
 			simulator.evaluate();
-			evaluated.accept(removeVisitor);
+			RemoveUselessAgedAlligators.remove(evaluated,
+					new BoardEventMessenger());
 			if (MatchWithRenaming.match(outputBoard, evaluated)) {
 				return;
 			}
 		}
 		fail("Evaluated to " + AlligatorToLambda.convert(evaluated)
 				+ ", expected " + AlligatorToLambda.convert(outputBoard));
-	}
-
-	private static class RemoveUselessAgedAlligators implements
-			BoardObjectVisitor {
-
-		@Override
-		public void visitEgg(Egg egg) {
-		}
-
-		@Override
-		public void visitColoredAlligator(ColoredAlligator alligator) {
-			alligator.acceptOnChildren(this);
-		}
-
-		@Override
-		public void visitAgedAlligator(AgedAlligator alligator) {
-			if (alligator.getParent().getFirstChild() == alligator) {
-				alligator.getParent().removeChild(alligator);
-				alligator.acceptOnChildren(this);
-				int i = 0;
-				for (InternalBoardObject child : alligator) {
-					alligator.getParent().insertChild(child, i);
-					i++;
-				}
-			}
-		}
-
-		@Override
-		public void visitBoard(Board board) {
-			board.acceptOnChildren(this);
-		}
-
 	}
 }
