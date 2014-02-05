@@ -6,7 +6,7 @@
 			"description" : "Erstes Tutorial Level in dem das Einfärben von Spielelementen erklärt wird." ,
 			"design" : "" ,
 			"animation" : "",
-			"abort simulation after" : 0 ,
+			"abort simulation after" : 111 ,
 			"hints" : [ ""
 			],
 			"data" : {

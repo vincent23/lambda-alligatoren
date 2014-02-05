@@ -6,7 +6,7 @@
 			"description" : "" ,
 			"design" : "" ,
 			"animation" : "",
-			"abort simulation after" : 0 ,
+			"abort simulation after" : 111 ,
 			"hints" : [ ""
 			],
 			"data" : {

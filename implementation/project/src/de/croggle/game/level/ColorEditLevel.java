@@ -49,10 +49,10 @@ public class ColorEditLevel extends EditLevel {
 	public boolean isLevelSolved(Board solution, int steps) {
 		boolean stepsReached = false;
 		boolean rightBoard = false;
-		if (this.getAbortSimulationAfter() != 0
+		if (this.getAbortSimulationAfter() != 111
 				&& steps == this.getAbortSimulationAfter()) {
 			stepsReached = true;
-		} else if (this.getAbortSimulationAfter() == 0) {
+		} else if (this.getAbortSimulationAfter() == 111) {
 			stepsReached = true;
 		}
 

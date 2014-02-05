@@ -51,10 +51,10 @@ public class TermEditLevel extends EditLevel {
 		boolean stepsReached = false;
 		boolean rightBoard = false;
 
-		if (this.getAbortSimulationAfter() != 0
+		if (this.getAbortSimulationAfter() != 111
 				&& this.getAbortSimulationAfter() == steps) {
 			stepsReached = true;
-		} else if (this.getAbortSimulationAfter() == 0) {
+		} else if (this.getAbortSimulationAfter() == 111) {
 			stepsReached = true;
 		}
 
