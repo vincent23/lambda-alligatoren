@@ -278,12 +278,12 @@ public class GameController implements BoardEventListener {
 	public void evaluateStep() throws ColorOverflowException,
 			AlligatorOverflowException {
 		final boolean evaluated = simulator.evaluate();
-		if (!evaluated
-				|| simulator.getSteps() >= level.getAbortSimulationAfter()) {
-			onCompletedLevel(false);
-		} else if (level.isLevelSolved(simulator.getCurrentBoard(),
+		if (level.isLevelSolved(simulator.getCurrentBoard(),
 				simulator.getSteps())) {
 			onCompletedLevel(true);
+		} else if (!evaluated
+				|| simulator.getSteps() >= level.getAbortSimulationAfter()) {
+			onCompletedLevel(false);
 		}
 	}
 
