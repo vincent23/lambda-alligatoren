@@ -55,8 +55,9 @@ public class LevelTerminatedScreen extends AbstractScreen {
 
 		ImageButton image = new ImageButton(
 				helper.getDrawable("widgets/icon-trophy"));
-		Label message = new Label("Yeah! You solved the level!",
-				helper.getBlackLabelStyle(50));
+		Label message = new Label(
+				gameController.isSolved() ? "Yeah! You solved the level!"
+						: "Level failed.", helper.getBlackLabelStyle(50));
 		ImageButton next = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-next"));
 		ImageButton levelOverview = new ImageButton(
