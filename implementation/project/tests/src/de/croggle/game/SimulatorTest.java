@@ -100,9 +100,9 @@ public class SimulatorTest extends TestCase {
 		final Simulator simulator = new Simulator(inputBoard,
 				new ColorController(), new BoardEventMessenger());
 		final RemoveUselessAgedAlligators removeVisitor = new RemoveUselessAgedAlligators();
-		Board evaluated = inputBoard;
+		Board evaluated = simulator.getCurrentBoard();
 		for (int i = 0; i < maxSteps; i++) {
-			evaluated = simulator.evaluate();
+			simulator.evaluate();
 			evaluated.accept(removeVisitor);
 			if (MatchWithRenaming.match(outputBoard, evaluated)) {
 				return;
