@@ -42,7 +42,7 @@ public class ColorEditLevel extends EditLevel {
 			int abortSimulationAfter) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
 				userColors, blockedColors, hint, description,
-				abortSimulationAfter);
+				abortSimulationAfter, false);
 	}
 
 	@Override

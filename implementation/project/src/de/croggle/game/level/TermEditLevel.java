@@ -43,7 +43,7 @@ public class TermEditLevel extends EditLevel {
 			int abortSimulationAfter) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
 				userColors, blockedColors, hint, description,
-				abortSimulationAfter);
+				abortSimulationAfter, true);
 	}
 
 	@Override

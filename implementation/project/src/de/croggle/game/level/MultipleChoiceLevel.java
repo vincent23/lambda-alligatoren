@@ -45,7 +45,7 @@ public class MultipleChoiceLevel extends Level {
 			String hint, String description, int abortSimulationAfter,
 			Board[] answers, int correctAnswer) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
-				hint, description, abortSimulationAfter);
+				hint, description, abortSimulationAfter, false);
 		this.answers = answers;
 		this.correctAnswer = correctAnswer;
 	}

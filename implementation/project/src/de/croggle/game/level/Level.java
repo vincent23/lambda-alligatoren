@@ -21,6 +21,7 @@ public abstract class Level {
 	private int abortSimulationAfter;
 	private boolean unlocked;
 	private boolean solved;
+	private boolean showObjectBar;
 
 	/**
 	 * Creates a new level with the given parameters.
@@ -44,7 +45,7 @@ public abstract class Level {
 	 */
 	public Level(int levelIndex, int packageIndex, Board initialBoard,
 			Board goalBoard, Animation animation, String hint,
-			String description, int abortSimulationAfter) {
+			String description, int abortSimulationAfter, boolean showObjectBar) {
 		this.levelIndex = levelIndex;
 		this.packageIndex = packageIndex;
 		this.initialBoard = initialBoard;
@@ -55,6 +56,7 @@ public abstract class Level {
 		this.abortSimulationAfter = abortSimulationAfter;
 		this.solved = false;
 		this.unlocked = false;
+		this.showObjectBar = showObjectBar;
 	}
 
 	/**
@@ -219,6 +221,10 @@ public abstract class Level {
 		final int pack = getPackageIndex();
 		// TODO 100 level / package limit
 		return pack * 100 + index;
+	}
+	
+	public boolean getShowObjectBar(){
+		return this.showObjectBar;
 	}
 
 }
