@@ -99,8 +99,6 @@ public class PlacementModeScreen extends AbstractScreen implements
 				helper.getImageButtonStyleRound("widgets/icon-trophy"));
 		ImageButton startSimulation = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/icon-next"));
-		ObjectBar objectBar = new ObjectBar(game.getSettingController()
-				.getCurrentSetting().isColorblindEnabled());
 		startSimulation.addListener(new StartSimulationListener());
 
 		// add listeners
@@ -129,8 +127,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 		boardActor = new BoardActor(gameController.getShownBoard(), config);
 		boardActor.setColorBlindEnabled(game.getSettingController()
 				.getCurrentSetting().isColorblindEnabled());
-		boardActor.enableLayoutEditing(
-				gameController.getPlacmentBoardEventListener(), objectBar);
+
 		game.getSettingController().addSettingChangeListener(boardActor);
 		// used to make resetting the board via game controller possible
 		gameController.registerPlacementBoardEventListener(boardActor
@@ -141,13 +138,18 @@ public class PlacementModeScreen extends AbstractScreen implements
 		final Table controlTable = new Table();
 		controlTable.add(leftTable).expand().fill();
 
-		if(gameController.getLevel().getShowObjectBar()){
+		if (gameController.getLevel().getShowObjectBar()) {
+			ObjectBar objectBar = new ObjectBar(boardActor);
 			objectBar.add(startSimulation).size(200);
 			controlTable.add(objectBar).padLeft(30);
-			
-		}else{
-			controlTable.add(startSimulation).bottom().right().size(200).pad(30);
+			boardActor.enableLayoutEditing(
+					gameController.getPlacmentBoardEventListener(), objectBar);
+
+		} else {
+			controlTable.add(startSimulation).bottom().right().size(200)
+					.pad(30);
 		}
+
 		table.stack(boardTable, controlTable).fill().expand();
 		onSettingChange(game.getSettingController().getCurrentSetting());
 

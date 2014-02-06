@@ -2,7 +2,6 @@ package de.croggle.ui.renderer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputEvent.Type;
@@ -14,15 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 
-import de.croggle.game.Color;
-import de.croggle.game.board.AgedAlligator;
-import de.croggle.game.board.Board;
-import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.ColoredBoardObject;
-import de.croggle.game.board.Egg;
 import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.Parent;
-import de.croggle.game.board.operations.BoardObjectVisitor;
 import de.croggle.game.event.BoardEventMessenger;
 
 /**
@@ -37,76 +30,17 @@ class BoardActorLayoutEditing {
 	private final BoardEventMessenger messenger;
 	private final DragAndDrop dnd;
 	private final ObjectBar obar;
-
-	private final ColoredAlligatorActor coloredPayload;
-	private final EggActor eggPayload;
-	private final AgedAlligatorActor agedPayload;
-
-	private final ColoredAlligatorActor coloredValidPayload;
-	private final EggActor eggValidPayload;
-	private final AgedAlligatorActor agedValidPayload;
-
-	private final ColoredAlligatorActor coloredInvalidPayload;
-	private final EggActor eggInvalidPayload;
-	private final AgedAlligatorActor agedInvalidPayload;
+	private final BoardObjectActorDragging dragging;
 
 	private final float fadeDuration = 0.4f;
-
-	private float autoPanBorderWidth;
-	private float autoPanBorderHeight;
 
 	public BoardActorLayoutEditing(BoardActor b, BoardEventMessenger messenger,
 			ObjectBar obar) {
 		this.b = b;
+		this.dragging = new BoardObjectActorDragging(b);
 		this.messenger = messenger;
 		this.dnd = new DragAndDrop();
 		this.obar = obar;
-
-		boolean colorBlind = b.getLayout().getLayoutConfiguration()
-				.isColorBlindEnabled();
-		{
-			coloredPayload = new ColoredAlligatorActor(new ColoredAlligator(
-					false, false, Color.uncolored(), false), colorBlind);
-			coloredPayload.addAction(new AutoPanAction());
-			eggPayload = new EggActor(new Egg(false, false, Color.uncolored(),
-					false), colorBlind);
-			eggPayload.addAction(new AutoPanAction());
-			agedPayload = new AgedAlligatorActor(
-					new AgedAlligator(false, false));
-			agedPayload.addAction(new AutoPanAction());
-		}
-
-		{
-			coloredValidPayload = new ColoredAlligatorActor(
-					new ColoredAlligator(false, false, Color.uncolored(), false),
-					colorBlind);
-			coloredValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
-			coloredValidPayload.addAction(new AutoPanAction());
-			eggValidPayload = new EggActor(new Egg(false, false,
-					Color.uncolored(), false), colorBlind);
-			eggValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
-			eggValidPayload.addAction(new AutoPanAction());
-			agedValidPayload = new AgedAlligatorActor(new AgedAlligator(false,
-					false));
-			agedValidPayload.setColor(0.f, 1.f, 0.f, 1.f);
-			agedValidPayload.addAction(new AutoPanAction());
-		}
-
-		{
-			coloredInvalidPayload = new ColoredAlligatorActor(
-					new ColoredAlligator(false, false, Color.uncolored(), false),
-					colorBlind);
-			coloredInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
-			coloredInvalidPayload.addAction(new AutoPanAction());
-			eggInvalidPayload = new EggActor(new Egg(false, false,
-					Color.uncolored(), false), colorBlind);
-			eggInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
-			eggInvalidPayload.addAction(new AutoPanAction());
-			agedInvalidPayload = new AgedAlligatorActor(new AgedAlligator(
-					false, false));
-			agedInvalidPayload.setColor(1.f, 0.f, 0.f, 1.f);
-			agedInvalidPayload.addAction(new AutoPanAction());
-		}
 	}
 
 	void registerLayoutListeners() {
@@ -126,6 +60,7 @@ class BoardActorLayoutEditing {
 	}
 
 	void unregisterLayoutListeners() {
+		// TODO make this more elegant
 		for (BoardObjectActor actor : b.getLayout()) {
 			actor.clearListeners();
 		}
@@ -178,9 +113,6 @@ class BoardActorLayoutEditing {
 
 			Gdx.input.vibrate(100);
 
-			autoPanBorderWidth = Math.min(b.getWidth() / 2, 150);
-			autoPanBorderHeight = Math.min(b.getHeight() / 2, 100);
-
 			boolean zoomEnabled = b.isZoomAndPanEnabled();
 			b.setZoomAndPanEnabled(false);
 
@@ -189,7 +121,7 @@ class BoardActorLayoutEditing {
 					actor.getHeight() / 2 * b.getZoom());
 			for (BoardObjectActor layoutActor : b.getLayout()) {
 				if (layoutActor.getBoardObject() instanceof Parent) {
-					dnd.addTarget(new ActorTarget(layoutActor));
+					dnd.addTarget(new ParentTarget(layoutActor));
 				}
 			}
 
@@ -220,117 +152,6 @@ class BoardActorLayoutEditing {
 		}
 	}
 
-	private BoardObjectActor getPayloadFor(final BoardObjectActor a) {
-		// WOOOOOAAAAAHHHH sooooo hacky
-		final BoardObjectActor result[] = new BoardObjectActor[1];
-		BoardObjectVisitor visitor = new BoardObjectVisitor() {
-			@Override
-			public void visitEgg(Egg egg) {
-				((Egg) eggPayload.getBoardObject()).setColor(egg.getColor());
-				eggPayload.validate();
-				eggPayload.setSize(a.getWidth() * b.getZoom(), a.getHeight()
-						* b.getZoom());
-				result[0] = eggPayload;
-			}
-
-			@Override
-			public void visitColoredAlligator(ColoredAlligator alligator) {
-				((ColoredAlligator) coloredPayload.getBoardObject())
-						.setColor(alligator.getColor());
-				coloredPayload.validate();
-				coloredPayload.setSize(a.getWidth() * b.getZoom(),
-						a.getHeight() * b.getZoom());
-				result[0] = coloredPayload;
-			}
-
-			@Override
-			public void visitBoard(Board board) {
-				// Just ignore
-			}
-
-			@Override
-			public void visitAgedAlligator(AgedAlligator alligator) {
-				result[0] = agedPayload;
-			}
-		};
-		a.getBoardObject().accept(visitor);
-		return result[0];
-	}
-
-	private BoardObjectActor getValidPayloadFor(final BoardObjectActor a) {
-		final BoardObjectActor result[] = new BoardObjectActor[1];
-		BoardObjectVisitor visitor = new BoardObjectVisitor() {
-			@Override
-			public void visitEgg(Egg egg) {
-				((Egg) eggValidPayload.getBoardObject()).setColor(egg
-						.getColor());
-				eggValidPayload.validate();
-				eggValidPayload.setSize(a.getWidth() * b.getZoom(),
-						a.getHeight() * b.getZoom());
-				result[0] = eggValidPayload;
-			}
-
-			@Override
-			public void visitColoredAlligator(ColoredAlligator alligator) {
-				((ColoredAlligator) coloredValidPayload.getBoardObject())
-						.setColor(alligator.getColor());
-				coloredValidPayload.validate();
-				coloredValidPayload.setSize(a.getWidth() * b.getZoom(),
-						a.getHeight() * b.getZoom());
-				result[0] = coloredValidPayload;
-			}
-
-			@Override
-			public void visitBoard(Board board) {
-				// Just ignore
-			}
-
-			@Override
-			public void visitAgedAlligator(AgedAlligator alligator) {
-				result[0] = agedValidPayload;
-			}
-		};
-		a.getBoardObject().accept(visitor);
-		return result[0];
-	}
-
-	private BoardObjectActor getInvalidPayloadFor(final BoardObjectActor a) {
-		final BoardObjectActor result[] = new BoardObjectActor[1];
-		BoardObjectVisitor visitor = new BoardObjectVisitor() {
-			@Override
-			public void visitEgg(Egg egg) {
-				((Egg) eggInvalidPayload.getBoardObject()).setColor(egg
-						.getColor());
-				eggInvalidPayload.validate();
-				eggInvalidPayload.setSize(a.getWidth() * b.getZoom(),
-						a.getHeight() * b.getZoom());
-				result[0] = eggInvalidPayload;
-			}
-
-			@Override
-			public void visitColoredAlligator(ColoredAlligator alligator) {
-				((ColoredAlligator) coloredInvalidPayload.getBoardObject())
-						.setColor(alligator.getColor());
-				coloredInvalidPayload.validate();
-				coloredInvalidPayload.setSize(a.getWidth() * b.getZoom(),
-						a.getHeight() * b.getZoom());
-				result[0] = coloredInvalidPayload;
-			}
-
-			@Override
-			public void visitBoard(Board board) {
-				// Just ignore
-			}
-
-			@Override
-			public void visitAgedAlligator(AgedAlligator alligator) {
-				result[0] = agedInvalidPayload;
-			}
-		};
-		a.getBoardObject().accept(visitor);
-		return result[0];
-	}
-
 	private class ActorSource extends Source {
 
 		private final boolean reenableZoom;
@@ -345,11 +166,14 @@ class BoardActorLayoutEditing {
 			Payload payload = new Payload();
 			payload.setObject(this.getActor());
 
-			payload.setDragActor(getPayloadFor((BoardObjectActor) getActor()));
+			payload.setDragActor(dragging
+					.getDragActor((BoardObjectActor) getActor()));
 
-			payload.setValidDragActor(getValidPayloadFor((BoardObjectActor) getActor()));
+			payload.setValidDragActor(dragging
+					.getValidDragActor((BoardObjectActor) getActor()));
 
-			payload.setInvalidDragActor(getInvalidPayloadFor((BoardObjectActor) getActor()));
+			payload.setInvalidDragActor(dragging
+					.getInvalidDragActor((BoardObjectActor) getActor()));
 
 			return payload;
 		}
@@ -363,12 +187,11 @@ class BoardActorLayoutEditing {
 			getActor().addAction(Actions.fadeIn(fadeDuration));
 			dnd.removeSource(this);
 		}
-
 	}
 
-	private class ActorTarget extends Target {
+	private class ParentTarget extends Target {
 
-		public ActorTarget(BoardObjectActor actor) {
+		public ParentTarget(BoardObjectActor actor) {
 			super(actor);
 			// TODO Auto-generated constructor stub
 		}
@@ -386,54 +209,49 @@ class BoardActorLayoutEditing {
 			// TODO Auto-generated method stub
 
 		}
-
 	}
 
-	private class AutoPanAction extends Action {
+	private class SiblingTarget extends Target {
 
-		// only act once in %divider% milliseconds
-		private final float divider = 0.01f;
-
-		private final float xDistance = 2;
-		private final float yDistance = 2;
-
-		private float timePassed;
+		public SiblingTarget(BoardObjectActor actor) {
+			super(actor);
+			// TODO Auto-generated constructor stub
+		}
 
 		@Override
-		public boolean act(float delta) {
-			if (timePassed >= divider) {
-				timePassed = 0;
-				Actor a = getActor();
-				float x = a.getX();
-				float y = a.getY();
-				float maxx = x + a.getWidth();
-				float maxy = y + a.getHeight();
-				float w = b.getWidth();
-				float h = b.getHeight();
-				Vector2 pMin = new Vector2(x, y);
-				Vector2 pMax = new Vector2(maxx, maxy);
-				pMin = b.stageToLocalCoordinates(pMin);
-				pMax = b.stageToLocalCoordinates(pMax);
-				if (pMin.x <= autoPanBorderWidth) {
-					if (pMax.x < w - autoPanBorderWidth) {
-						b.panActorCoords(xDistance, 0);
-					}
-				} else if (pMax.x >= w - autoPanBorderWidth) {
-					b.panActorCoords(-xDistance, 0);
-				}
+		public boolean drag(Source source, Payload payload, float x, float y,
+				int pointer) {
+			// TODO Auto-generated method stub
+			return true;
+		}
 
-				if (pMin.y <= autoPanBorderHeight) {
-					if (pMax.y < h - autoPanBorderHeight) {
-						b.panActorCoords(0, yDistance);
-					}
-				} else if (pMax.y >= h - autoPanBorderHeight) {
-					b.panActorCoords(0, -yDistance);
-				}
-			}
-			timePassed += delta;
+		@Override
+		public void drop(Source source, Payload payload, float x, float y,
+				int pointer) {
+			// TODO Auto-generated method stub
 
-			// never end
-			return false;
+		}
+	}
+
+	private class BoardActorTarget extends Target {
+
+		public BoardActorTarget(BoardObjectActor actor) {
+			super(actor);
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public boolean drag(Source source, Payload payload, float x, float y,
+				int pointer) {
+			// TODO Auto-generated method stub
+			return true;
+		}
+
+		@Override
+		public void drop(Source source, Payload payload, float x, float y,
+				int pointer) {
+			// TODO Auto-generated method stub
+
 		}
 	}
 }
