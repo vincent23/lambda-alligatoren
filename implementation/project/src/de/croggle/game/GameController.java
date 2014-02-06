@@ -293,7 +293,9 @@ public class GameController implements BoardEventListener {
 			Timer timer = new Timer();
 			timer.scheduleTask(new Task() {
 				public void run() {
-					onCompletedLevel(true);
+					if (isInSimulationMode()) {
+						onCompletedLevel(true);
+					}
 				}
 			}, 2.0f);
 
@@ -302,10 +304,16 @@ public class GameController implements BoardEventListener {
 			Timer timer = new Timer();
 			timer.scheduleTask(new Task() {
 				public void run() {
-					onCompletedLevel(false);
+					if (isInSimulationMode()) {
+						onCompletedLevel(false);
+					}
 				}
 			}, 2.0f);
 		}
+	}
+	
+	public boolean isInSimulationMode() {
+		return (simulator != null);
 	}
 
 	public boolean canUndo() {
