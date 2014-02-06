@@ -6,6 +6,7 @@ import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputEvent.Type;
@@ -184,6 +185,22 @@ class BoardActorLayoutEditing {
 			Gdx.input.vibrate(100);
 
 			dnd.addSource(new ExistingActorSource((BoardObjectActor) actor));
+			final float zoomAmount = 8f;
+			final float zoomDelay = .2f;
+			b.zoomOut(zoomAmount);
+			actor.addAction(Actions.delay(zoomDelay, new Action() {
+				private boolean done = false;
+
+				@Override
+				public boolean act(float delta) {
+					if (!done) {
+						done = true;
+						b.zoomIn(100 - 100 / (1 + zoomAmount / 100));
+					}
+					return true;
+				}
+
+			}));
 			actor.addAction(Actions.alpha(0.5f, fadeDuration));
 
 			/*
