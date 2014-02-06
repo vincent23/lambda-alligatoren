@@ -85,9 +85,9 @@ public class LevelTerminatedScreen extends AbstractScreen {
 		levelOverview.getImageCell().pad(7);
 
 		table.pad(30);
-		table.add(image).colspan(4).size(300).expand();
+		table.add(image).colspan(5).size(300).expand();
 		table.row();
-		table.add(message).colspan(4);
+		table.add(message).colspan(5);
 		table.row();
 
 		if (!achievementController.getLatestUnlockedAchievements().isEmpty()) {
