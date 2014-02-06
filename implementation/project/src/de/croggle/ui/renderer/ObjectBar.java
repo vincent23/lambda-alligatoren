@@ -32,11 +32,12 @@ public class ObjectBar extends Table {
 
 	/**
 	 * Creates an object bar with the ui elements the user can drag to the
-	 * screen per default.
+	 * screen per default. Only BoardActorLayoutEditing should be allowed to
+	 * instantiate ObjectBars
 	 * 
-	 * @param colorBlind
+	 * @param b
 	 */
-	public ObjectBar(BoardActor b) {
+	ObjectBar(BoardActor b) {
 		this.colorBlind = b.getLayoutConfiguration().isColorBlindEnabled();
 
 		this.dragging = new BoardObjectActorDragging(b);
@@ -99,14 +100,14 @@ public class ObjectBar extends Table {
 			Payload payload = new Payload();
 			payload.setObject(getPlacedActor((BoardObjectActor) this.getActor()));
 
-			// payload.setDragActor(getPayloadFor((BoardObjectActor)
-			// getActor()));
+			payload.setDragActor(dragging
+					.getDragActor((BoardObjectActor) getActor()));
 
-			// payload.setValidDragActor(getValidPayloadFor((BoardObjectActor)
-			// getActor()));
+			payload.setValidDragActor(dragging
+					.getValidDragActor((BoardObjectActor) getActor()));
 
-			// payload.setInvalidDragActor(getInvalidPayloadFor((BoardObjectActor)
-			// getActor()));
+			payload.setInvalidDragActor(dragging
+					.getInvalidDragActor((BoardObjectActor) getActor()));
 
 			return payload;
 		}

@@ -290,14 +290,29 @@ public class BoardActor extends Group implements SettingChangeListener {
 	 *            messenger to notify other listeners on {@link Board} changes
 	 *            made by the user
 	 * @param objectBar
-	 *            can be null if for example only recoloring is to be used
+	 *            whether to create an object bar or not
 	 */
-	public void enableLayoutEditing(BoardEventMessenger m, ObjectBar objectBar) {
+	public void enableLayoutEditing(BoardEventMessenger m, boolean objectBar) {
 		if (layoutEditingEnabled == false) {
 			// initialize user interaction listeners on layout
 			layoutEditing = new BoardActorLayoutEditing(this, m, objectBar);
 			layoutEditing.registerLayoutListeners();
 			layoutEditingEnabled = true;
+		}
+	}
+
+	/**
+	 * 
+	 * 
+	 * @return ObjectBar to be used with this BoardActor, or null if layout
+	 *         editing i s disabled or no ObjectBar was created at
+	 *         enableLayoutEditing
+	 */
+	public ObjectBar getObjectBar() {
+		if (layoutEditing != null) {
+			return layoutEditing.getObjectBar();
+		} else {
+			return null;
 		}
 	}
 

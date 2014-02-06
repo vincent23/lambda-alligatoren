@@ -35,12 +35,20 @@ class BoardActorLayoutEditing {
 	private final float fadeDuration = 0.4f;
 
 	public BoardActorLayoutEditing(BoardActor b, BoardEventMessenger messenger,
-			ObjectBar obar) {
+			boolean objectBar) {
 		this.b = b;
 		this.dragging = new BoardObjectActorDragging(b);
 		this.messenger = messenger;
 		this.dnd = new DragAndDrop();
-		this.obar = obar;
+		if (objectBar) {
+			this.obar = new ObjectBar(b);
+		} else {
+			this.obar = null;
+		}
+	}
+
+	ObjectBar getObjectBar() {
+		return obar;
 	}
 
 	void registerLayoutListeners() {

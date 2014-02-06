@@ -139,13 +139,16 @@ public class PlacementModeScreen extends AbstractScreen implements
 		controlTable.add(leftTable).expand().fill();
 
 		if (gameController.getLevel().getShowObjectBar()) {
-			ObjectBar objectBar = new ObjectBar(boardActor);
+
+			boardActor.enableLayoutEditing(
+					gameController.getPlacmentBoardEventListener(), true);
+			ObjectBar objectBar = boardActor.getObjectBar();
 			objectBar.add(startSimulation).size(200);
 			controlTable.add(objectBar).padLeft(30);
-			boardActor.enableLayoutEditing(
-					gameController.getPlacmentBoardEventListener(), objectBar);
 
 		} else {
+			boardActor.enableLayoutEditing(
+					gameController.getPlacmentBoardEventListener(), false);
 			controlTable.add(startSimulation).bottom().right().size(200)
 					.pad(30);
 		}
