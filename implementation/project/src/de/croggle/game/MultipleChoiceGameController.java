@@ -18,7 +18,7 @@ public class MultipleChoiceGameController extends GameController {
 
 	public void setSelection(int selection) {
 		this.selection = selection;
-		setSolved(level.validateAnswer(selection));
+		getProgress().setSolved(level.validateAnswer(selection));
 	}
 
 	@Override

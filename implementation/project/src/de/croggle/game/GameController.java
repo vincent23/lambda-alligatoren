@@ -55,7 +55,7 @@ public class GameController implements BoardEventListener {
 	// listeners of the statisticsDelta
 	private final List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
 	private final AlligatorApp app;
-	private boolean solved;
+	private LevelProgress progress;
 
 	/**
 	 * Creates a new game controller for the given level.
@@ -75,7 +75,6 @@ public class GameController implements BoardEventListener {
 		this.simulationMessenger = new BoardEventMessenger();
 		this.placementMessenger = new BoardEventMessenger();
 		this.statisticsDeltaProcessors = new ArrayList<StatisticsDeltaProcessor>();
-		this.solved = false;
 
 		simulationMessenger.register(this);
 		placementMessenger.register(this);
@@ -134,7 +133,8 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	private void onCompletedLevel(boolean won) {
-		setSolved(won);
+		progress.setSolved(won);
+		saveProgress();
 		if (won) {
 			statisticsDelta.setPlaytime(elapsedTime / 1000); // time in
 																// statisticDelta
@@ -311,7 +311,7 @@ public class GameController implements BoardEventListener {
 			}, 2.0f);
 		}
 	}
-	
+
 	public boolean isInSimulationMode() {
 		return (simulator != null);
 	}
@@ -334,6 +334,7 @@ public class GameController implements BoardEventListener {
 		setupColorController();
 		userBoard = level.getInitialBoard().copy();
 		placementMessenger.notifyBoardRebuilt(userBoard);
+		getProgress().setUsedResets(getProgress().getUsedResets() + 1);
 		saveProgress();
 	}
 
@@ -357,12 +358,17 @@ public class GameController implements BoardEventListener {
 
 	public void setElapsedTime(int elapsedTime) {
 		this.elapsedTime = elapsedTime;
+		progress.setUsedTime(elapsedTime);
+		saveProgress();
 	}
 
 	public void updateTime() {
 		long timeNow = TimeUtils.millis();
 		int timeAddition = (int) (timeNow - timeStamp);
 		elapsedTime += timeAddition;
+		// TODO is this a good place?
+		progress.setUsedTime(elapsedTime);
+		saveProgress();
 	}
 
 	public void setTimeStamp() {
@@ -378,11 +384,11 @@ public class GameController implements BoardEventListener {
 	}
 
 	public boolean isSolved() {
-		return solved;
+		return getProgress().isSolved();
 	}
 
-	protected void setSolved(boolean solved) {
-		this.solved = solved;
+	protected LevelProgress getProgress() {
+		return progress;
 	}
 
 	protected void setUserBoard(Board userBoard) {
@@ -399,9 +405,6 @@ public class GameController implements BoardEventListener {
 	private void saveProgress() {
 		final String profileName = app.getProfileController()
 				.getCurrentProfileName();
-		// TODO insert statistics values
-		final LevelProgress progress = new LevelProgress(level.getLevelId(),
-				solved, null, 0, 0, 0);
 		onBeforeSaveProgress(progress);
 		app.getPersistenceManager().saveLevelProgress(profileName, progress);
 	}
@@ -413,12 +416,20 @@ public class GameController implements BoardEventListener {
 				.getLevelProgress(profileName, level.getLevelId());
 		if (previousProgress == null) {
 			Log.d("GameController", "No previous progress");
+			progress = new LevelProgress(level.getLevelId(), false, "", 0, 0, 0);
 			return;
 		}
 		onAfterLoadProgress(previousProgress);
+		progress = previousProgress;
 	}
 
 	protected Board getUserBoard() {
 		return userBoard;
+	}
+
+	// TODO call this somewhere
+	public void onUsedHint() {
+		getProgress().setUsedHints(getProgress().getUsedHints() + 1);
+		saveProgress();
 	}
 }
