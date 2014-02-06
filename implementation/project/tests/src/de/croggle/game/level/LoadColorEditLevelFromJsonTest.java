@@ -27,14 +27,14 @@ public class LoadColorEditLevelFromJsonTest extends InstrumentationTestCase {
 		Level l = LevelLoadHelper.instantiate(0, 0, app);
 		Assert.assertTrue(l.getDescription().equals("Erstes Tutorial Level in dem das Einfärben von Spielelementen erklärt wird."));
 		Assert.assertFalse(l.hasAnimation());
-		Assert.assertTrue(l.getAbortSimulationAfter() == 0);
+		Assert.assertTrue(l.getAbortSimulationAfter() == 111);
 	}
 	
 	public void testCase1() {
 		Level l = LevelLoadHelper.instantiate(0, 1, app);
 		Assert.assertTrue(l.getDescription().equals("Zweites Tutoriallevel, in dem die β-Reduktion gezeigt wird. Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen."));
 		Assert.assertFalse(l.hasAnimation());
-		Assert.assertTrue(l.getAbortSimulationAfter() == 0);
+		Assert.assertTrue(l.getAbortSimulationAfter() == 111);
 	}
 	
 	public void testCase5() {
