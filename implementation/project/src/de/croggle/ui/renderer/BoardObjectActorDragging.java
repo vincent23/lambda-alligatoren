@@ -30,8 +30,8 @@ class BoardObjectActorDragging {
 	protected final EggActor eggInvalidDragActor;
 	protected final AgedAlligatorActor agedInvalidDragActor;
 
-	public BoardObjectActorDragging(BoardActor b) {
-		this.b = b;
+	public BoardObjectActorDragging(BoardActorLayoutEditing editing) {
+		this.b = editing.getBoardActor();
 
 		// TODO maybe bind the value somehow to BoardActor size changes
 		autoPanBorderWidth = Math.min(b.getWidth() / 2, 150);
@@ -166,6 +166,10 @@ class BoardObjectActorDragging {
 			}
 		};
 		a.getBoardObject().accept(visitor);
+
+		result[0].setSize(a.getWidth(), a.getHeight());
+		result[0].setScale(b.getZoom());
+
 		return result[0];
 	}
 
@@ -203,6 +207,10 @@ class BoardObjectActorDragging {
 			}
 		};
 		a.getBoardObject().accept(visitor);
+
+		result[0].setSize(a.getWidth(), a.getHeight());
+		result[0].setScale(b.getZoom());
+
 		return result[0];
 	}
 
@@ -240,6 +248,10 @@ class BoardObjectActorDragging {
 			}
 		};
 		a.getBoardObject().accept(visitor);
+
+		result[0].setSize(a.getWidth(), a.getHeight());
+		result[0].setScale(b.getZoom());
+
 		return result[0];
 	}
 }

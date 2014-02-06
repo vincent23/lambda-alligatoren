@@ -1,5 +1,7 @@
 package de.croggle.ui.renderer;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
 
+import de.croggle.data.AssetManager;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingChangeListener;
 import de.croggle.game.ColorController;
@@ -64,6 +67,9 @@ public class BoardActor extends Group implements SettingChangeListener {
 	 */
 	private float posY;
 
+	private Texture background;
+	private Color backgroundColor;
+
 	/*
 	 * whether this actor displays the board in color blind mode or not.
 	 * Initially set to the value of isColorBlindEnabled of the
@@ -102,6 +108,11 @@ public class BoardActor extends Group implements SettingChangeListener {
 		zoomAndPan = new BoardActorZoomAndPan(this);
 		setZoomAndPanEnabled(true);
 
+		// set transparent but existing background
+		background = AssetManager.getInstance().getColorTexture(
+				de.croggle.game.Color.uncolored());
+		setBackgroundColor(new Color(1.f, 1.f, 1.f, 0.f));
+
 		initializePosition();
 	}
 
@@ -122,6 +133,14 @@ public class BoardActor extends Group implements SettingChangeListener {
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 		if (clipBegin()) {
+			if (batch != null) {
+				Color c = batch.getColor();
+				Color bc = getBackgroundColor();
+				batch.setColor(bc.r, bc.g, bc.b, bc.a * parentAlpha);
+				batch.draw(background, getX(), getY(),
+						getWidth() * getScaleX(), getHeight() * getScaleY());
+				batch.setColor(c);
+			}
 			super.draw(batch, parentAlpha);
 			clipEnd();
 		}
@@ -141,6 +160,14 @@ public class BoardActor extends Group implements SettingChangeListener {
 
 		zoomAndPan.centerOntoWorldPoint(treeMidX + offsetLeft, treeTop
 				+ offsetTop);
+	}
+
+	public Color getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(Color c) {
+		backgroundColor = c;
 	}
 
 	public void panActorCoords(float deltaX, float deltaY) {
@@ -237,6 +264,10 @@ public class BoardActor extends Group implements SettingChangeListener {
 				}
 			}
 		}
+	}
+
+	public void setBackground(Texture bg) {
+		this.background = bg;
 	}
 
 	public boolean getColorBlindEnabled() {

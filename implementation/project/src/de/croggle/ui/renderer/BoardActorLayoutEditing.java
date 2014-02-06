@@ -1,6 +1,10 @@
 package de.croggle.ui.renderer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -31,20 +35,78 @@ class BoardActorLayoutEditing {
 	private final DragAndDrop dnd;
 	private final ObjectBar obar;
 	private final BoardObjectActorDragging dragging;
+	private final List<Target> temporaryTargets;
+	private Source temporarySource;
+
+	/*
+	 * TODO fix libgdx' DragAndDrop so it uses the highest target instead of the
+	 * first
+	 */
+	private BoardActorTarget boardActorTarget;
+
+	private boolean permanentRegistered = false;
 
 	private final float fadeDuration = 0.4f;
 
 	public BoardActorLayoutEditing(BoardActor b, BoardEventMessenger messenger,
 			boolean objectBar) {
 		this.b = b;
-		this.dragging = new BoardObjectActorDragging(b);
+		this.dragging = new BoardObjectActorDragging(this);
 		this.messenger = messenger;
+		this.temporaryTargets = new ArrayList<Target>();
+
 		this.dnd = new DragAndDrop();
+
 		if (objectBar) {
-			this.obar = new ObjectBar(b);
+			this.obar = new ObjectBar(this);
 		} else {
 			this.obar = null;
 		}
+
+		addPermanentSourcesAndTargets();
+	}
+
+	BoardActor getBoardActor() {
+		return b;
+	}
+
+	private void addPermanentSourcesAndTargets() {
+		if (!permanentRegistered) {
+			permanentRegistered = true;
+		} else {
+			throw new IllegalStateException(
+					"Must not register permanent sources and targets more than once");
+		}
+
+		boardActorTarget = new BoardActorTarget(b);
+		dnd.addTarget(boardActorTarget);
+		if (obar != null) {
+			dnd.addTarget(obar.new RemoveObjectTarget());
+			dnd.addSource(obar.new BarAgedAlligatorSource());
+			dnd.addSource(obar.new BarColoredAlligatorSource());
+			dnd.addSource(obar.new BarEggSource());
+		}
+	}
+
+	private void addTemporaryTargets(BoardObjectActor dragged) {
+		for (BoardObjectActor actor : b.getLayout()) {
+			if (areSiblings(actor.getBoardObject(), dragged.getBoardObject())) {
+				SiblingTarget target = new SiblingTarget(actor);
+				temporaryTargets.add(target);
+				dnd.addTarget(target);
+			} else if (actor.getBoardObject() instanceof Parent) {
+				ParentTarget target = new ParentTarget(actor);
+				temporaryTargets.add(target);
+				dnd.addTarget(target);
+			}
+		}
+	}
+
+	private void removeTemporaryTargets() {
+		for (Target t : temporaryTargets) {
+			dnd.removeTarget(t);
+		}
+		temporaryTargets.clear();
 	}
 
 	ObjectBar getObjectBar() {
@@ -121,18 +183,7 @@ class BoardActorLayoutEditing {
 
 			Gdx.input.vibrate(100);
 
-			boolean zoomEnabled = b.isZoomAndPanEnabled();
-			b.setZoomAndPanEnabled(false);
-
-			dnd.addSource(new ActorSource(actor, zoomEnabled));
-			dnd.setDragActorPosition(-actor.getWidth() / 2 * b.getZoom(),
-					actor.getHeight() / 2 * b.getZoom());
-			for (BoardObjectActor layoutActor : b.getLayout()) {
-				if (layoutActor.getBoardObject() instanceof Parent) {
-					dnd.addTarget(new ParentTarget(layoutActor));
-				}
-			}
-
+			dnd.addSource(new ExistingActorSource((BoardObjectActor) actor));
 			actor.addAction(Actions.alpha(0.5f, fadeDuration));
 
 			/*
@@ -160,17 +211,71 @@ class BoardActorLayoutEditing {
 		}
 	}
 
-	private class ActorSource extends Source {
+	public abstract static class LayoutEditingSource extends Source {
+		private final BoardActorLayoutEditing layoutEditing;
+		private boolean reenableZoom;
 
-		private final boolean reenableZoom;
-
-		public ActorSource(Actor actor, boolean reenableZoom) {
+		public LayoutEditingSource(BoardObjectActor actor,
+				BoardActorLayoutEditing layoutEditing) {
 			super(actor);
-			this.reenableZoom = reenableZoom;
+			this.layoutEditing = layoutEditing;
 		}
 
 		@Override
-		public Payload dragStart(InputEvent event, float x, float y, int pointer) {
+		final public Payload dragStart(InputEvent event, float x, float y,
+				int pointer) {
+			reenableZoom = layoutEditing.b.isZoomAndPanEnabled();
+			layoutEditing.b.setZoomAndPanEnabled(false);
+			layoutEditing.addTemporaryTargets((BoardObjectActor) getActor());
+
+			/*
+			 * TODO same problem with BoardActorTarget as above
+			 */
+			layoutEditing.dnd.removeTarget(layoutEditing.boardActorTarget);
+			layoutEditing.dnd.addTarget(layoutEditing.boardActorTarget);
+
+			Payload p = onDragStart(event, x, y, pointer);
+
+			layoutEditing.dnd.setDragActorPosition(
+					-p.getDragActor().getWidth() / 2, p.getDragActor()
+							.getHeight() / 2);
+
+			return p;
+		}
+
+		@Override
+		public final void dragStop(InputEvent event, float x, float y,
+				int pointer, Target target) {
+			if (reenableZoom) {
+				layoutEditing.b.setZoomAndPanEnabled(true);
+			}
+			layoutEditing.removeTemporaryTargets();
+			onDragStop(event, x, y, pointer, target);
+		}
+
+		public void onDragStop(InputEvent event, float x, float y, int pointer,
+				Target target) {
+
+		}
+
+		abstract Payload onDragStart(InputEvent event, float x, float y,
+				int pointer);
+	}
+
+	private class ExistingActorSource extends LayoutEditingSource {
+
+		public ExistingActorSource(BoardObjectActor actor) {
+			super(actor, BoardActorLayoutEditing.this);
+			if (temporarySource != null) {
+				throw new IllegalStateException(
+						"There can only be one temporary source at a time");
+			}
+			temporarySource = this;
+		}
+
+		@Override
+		public Payload onDragStart(InputEvent event, float x, float y,
+				int pointer) {
 			Payload payload = new Payload();
 			payload.setObject(this.getActor());
 
@@ -187,13 +292,12 @@ class BoardActorLayoutEditing {
 		}
 
 		@Override
-		public void dragStop(InputEvent event, float x, float y, int pointer,
+		public void onDragStop(InputEvent event, float x, float y, int pointer,
 				Target target) {
-			if (reenableZoom) {
-				b.setZoomAndPanEnabled(true);
-			}
+
 			getActor().addAction(Actions.fadeIn(fadeDuration));
-			dnd.removeSource(this);
+			dnd.removeSource(temporarySource); // == this
+			temporarySource = null;
 		}
 	}
 
@@ -208,6 +312,7 @@ class BoardActorLayoutEditing {
 		public boolean drag(Source source, Payload payload, float x, float y,
 				int pointer) {
 			// TODO Auto-generated method stub
+			System.out.println("I am not a board, though dragged over");
 			return true;
 		}
 
@@ -243,7 +348,7 @@ class BoardActorLayoutEditing {
 
 	private class BoardActorTarget extends Target {
 
-		public BoardActorTarget(BoardObjectActor actor) {
+		public BoardActorTarget(BoardActor actor) {
 			super(actor);
 			// TODO Auto-generated constructor stub
 		}
@@ -251,8 +356,13 @@ class BoardActorLayoutEditing {
 		@Override
 		public boolean drag(Source source, Payload payload, float x, float y,
 				int pointer) {
-			// TODO Auto-generated method stub
+			b.setBackgroundColor(new Color(0.f, 1.f, 0.f, .5f));
 			return true;
+		}
+
+		@Override
+		public void reset(Source source, Payload payload) {
+			b.setBackgroundColor(new Color(1.f, 1.f, 1.f, 0.f));
 		}
 
 		@Override

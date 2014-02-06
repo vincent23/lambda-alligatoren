@@ -1,6 +1,5 @@
 package de.croggle.ui.renderer;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
@@ -17,6 +16,8 @@ import de.croggle.ui.StyleHelper;
  * The bar to drag alligators and eggs from onto the screen.
  **/
 public class ObjectBar extends Table {
+
+	private final BoardActorLayoutEditing editing;
 
 	private final boolean colorBlind;
 
@@ -37,10 +38,12 @@ public class ObjectBar extends Table {
 	 * 
 	 * @param b
 	 */
-	ObjectBar(BoardActor b) {
-		this.colorBlind = b.getLayoutConfiguration().isColorBlindEnabled();
+	ObjectBar(BoardActorLayoutEditing editing) {
+		this.editing = editing;
+		this.colorBlind = editing.getBoardActor().getLayoutConfiguration()
+				.isColorBlindEnabled();
 
-		this.dragging = new BoardObjectActorDragging(b);
+		this.dragging = new BoardObjectActorDragging(editing);
 
 		agedAlligator = new AgedAlligatorActor(new AgedAlligator(false, false));
 		coloredAlligator = new ColoredAlligatorActor(new ColoredAlligator(
@@ -89,14 +92,16 @@ public class ObjectBar extends Table {
 		}
 	}
 
-	class ObjectBarSource extends Source {
+	private class ObjectBarSource extends
+			BoardActorLayoutEditing.LayoutEditingSource {
 
-		public ObjectBarSource(Actor actor, boolean reenableZoom) {
-			super(actor);
+		public ObjectBarSource(BoardObjectActor actor) {
+			super(actor, editing);
 		}
 
 		@Override
-		public Payload dragStart(InputEvent event, float x, float y, int pointer) {
+		public Payload onDragStart(InputEvent event, float x, float y,
+				int pointer) {
 			Payload payload = new Payload();
 			payload.setObject(getPlacedActor((BoardObjectActor) this.getActor()));
 
@@ -113,17 +118,35 @@ public class ObjectBar extends Table {
 		}
 
 		@Override
-		public void dragStop(InputEvent event, float x, float y, int pointer,
+		public void onDragStop(InputEvent event, float x, float y, int pointer,
 				Target target) {
 			// TODO buffer getObject if stopped on illegal target
 		}
 
 	}
 
-	private class RemoveObjectTarget extends Target {
+	class BarColoredAlligatorSource extends ObjectBarSource {
+		public BarColoredAlligatorSource() {
+			super(coloredAlligator);
+		}
+	}
 
-		public RemoveObjectTarget(BoardObjectActor actor) {
-			super(actor);
+	class BarAgedAlligatorSource extends ObjectBarSource {
+		public BarAgedAlligatorSource() {
+			super(agedAlligator);
+		}
+	}
+
+	class BarEggSource extends ObjectBarSource {
+		public BarEggSource() {
+			super(eggActor);
+		}
+	}
+
+	class RemoveObjectTarget extends Target {
+
+		public RemoveObjectTarget() {
+			super(ObjectBar.this);
 			// TODO Auto-generated constructor stub
 		}
 
@@ -131,7 +154,7 @@ public class ObjectBar extends Table {
 		public boolean drag(Source source, Payload payload, float x, float y,
 				int pointer) {
 			// TODO Auto-generated method stub
-			return true;
+			return false;
 		}
 
 		@Override
