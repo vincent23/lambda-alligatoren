@@ -90,21 +90,21 @@
 							"type" : "colored alligator" ,
 							"movable" : false ,
 							"removable" : false ,
-							"color" : 16 ,
+							"color" : 10 ,
 							"recolorable" : true ,
 							"children" : [
 								{
 								"type" : "egg" ,
 								"movable" : false ,
 								"removable" : false ,
-								"color" : 16 ,
+								"color" : 10 ,
 								"recolorable" : true
 								},
 								{
 								"type" : "egg" ,
 								"movable" : false ,
 								"removable" : false ,
-								"color" : 16 ,
+								"color" : 10 ,
 								"recolorable" : true
 								}
 							]
