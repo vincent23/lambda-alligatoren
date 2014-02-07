@@ -1,11 +1,13 @@
 package de.croggle.game.level;
 
+import java.util.HashMap;
+
 import com.badlogic.gdx.graphics.g2d.Animation;
 
 import de.croggle.AlligatorApp;
+import de.croggle.game.Color;
 import de.croggle.game.MultipleChoiceGameController;
 import de.croggle.game.board.Board;
-import de.croggle.game.board.operations.MatchWithRenaming;
 
 /**
  * A special type of level in which the player has to choose from several
@@ -74,7 +76,8 @@ public class MultipleChoiceLevel extends Level {
 	public boolean isLevelSolved(Board solution, int steps) {
 		int index = -1;
 		for (int i = 0; i < this.answers.length; i++) {
-			if (MatchWithRenaming.match(solution, answers[i])) {
+			if (solution.matchWithRecoloring(answers[i],
+					new HashMap<Color, Color>())) {
 				index = i;
 			}
 		}

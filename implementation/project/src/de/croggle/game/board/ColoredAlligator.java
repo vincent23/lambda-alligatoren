@@ -1,5 +1,7 @@
 package de.croggle.game.board;
 
+import java.util.Map;
+
 import de.croggle.game.Color;
 import de.croggle.game.board.operations.BoardObjectVisitor;
 
@@ -132,5 +134,31 @@ public class ColoredAlligator extends Alligator implements ColoredBoardObject {
 																		// for
 																		// child
 																		// comparison
+	}
+
+	@Override
+	public boolean matchWithRecoloring(BoardObject other,
+			Map<Color, Color> recoloring) {
+		if (other == null) {
+			return false;
+		}
+		if (other.getClass() != ColoredAlligator.class) {
+			return false;
+		}
+
+		final ColoredAlligator otherAlligator = (ColoredAlligator) other;
+		if (recoloring.containsValue(otherAlligator.color)) {
+			return false;
+		} else {
+			if (this.color.equals(otherAlligator.color)) {
+				return super.matchWithRecoloring(otherAlligator, recoloring);
+			} else {
+				recoloring.put(otherAlligator.color, this.color);
+				final boolean equal = super.matchWithRecoloring(otherAlligator,
+						recoloring);
+				recoloring.remove(otherAlligator.color);
+				return false;
+			}
+		}
 	}
 }

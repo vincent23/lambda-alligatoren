@@ -1,5 +1,12 @@
 package de.croggle.util.convert;
 
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import de.croggle.game.Color;
 import de.croggle.game.ColorController;
 import de.croggle.game.ColorOverflowException;
@@ -13,13 +20,6 @@ import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.Parent;
 import de.croggle.game.board.operations.BoardObjectVisitor;
 import de.croggle.game.board.operations.RemoveAgedAlligators;
-
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * A helper class to allow for parsing lambda terms and build their alligator
@@ -515,6 +515,12 @@ public class LambdaToAlligator {
 
 		@Override
 		public boolean match(BoardObject b) {
+			throw new UnsupportedOperationException("Not supported yet.");
+		}
+
+		@Override
+		public boolean matchWithRecoloring(BoardObject other,
+				Map<Color, Color> recoloring) {
 			throw new UnsupportedOperationException("Not supported yet.");
 		}
 

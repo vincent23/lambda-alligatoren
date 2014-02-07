@@ -1,5 +1,8 @@
 package de.croggle.game.board;
 
+import java.util.Map;
+
+import de.croggle.game.Color;
 import de.croggle.game.board.operations.BoardObjectVisitor;
 
 /**
@@ -31,4 +34,6 @@ public interface BoardObject {
 	 * @return true if both board objects match/are equal, false otherwise
 	 */
 	boolean match(BoardObject b);
+
+	boolean matchWithRecoloring(BoardObject b, Map<Color, Color> recoloring);
 }

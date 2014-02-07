@@ -1,5 +1,7 @@
 package de.croggle.game.board;
 
+import java.util.Map;
+
 import de.croggle.game.Color;
 import de.croggle.game.board.operations.BoardObjectVisitor;
 
@@ -170,5 +172,24 @@ public class Egg implements InternalBoardObject, ColoredBoardObject {
 
 		Egg oEgg = (Egg) o;
 		return oEgg.color.equals(this.color);
+	}
+
+	@Override
+	public boolean matchWithRecoloring(BoardObject other,
+			Map<Color, Color> recoloring) {
+		if (other == null) {
+			return false;
+		}
+		if (other.getClass() != Egg.class) {
+			return false;
+		}
+
+		final Egg otherEgg = (Egg) other;
+		if (recoloring.containsKey(otherEgg.color)) {
+			final Color recoloredColor = recoloring.get(otherEgg.color);
+			return recoloredColor.equals(this.color);
+		} else {
+			return otherEgg.color.equals(this.color);
+		}
 	}
 }

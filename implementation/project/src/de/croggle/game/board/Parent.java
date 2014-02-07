@@ -3,7 +3,9 @@ package de.croggle.game.board;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import de.croggle.game.Color;
 import de.croggle.game.board.operations.BoardObjectVisitor;
 
 /**
@@ -215,5 +217,29 @@ public abstract class Parent implements Iterable<InternalBoardObject>,
 			equal &= this.children.get(i).match(oParent.children.get(i));
 		}
 		return equal;
+	}
+
+	@Override
+	public boolean matchWithRecoloring(BoardObject other,
+			Map<Color, Color> recoloring) {
+		if (other == null) {
+			return false;
+		}
+		if (other.getClass() != this.getClass()) {
+			return false;
+		}
+
+		final Parent otherParent = (Parent) other;
+		if (this.children.size() != otherParent.children.size()) {
+			return false;
+		}
+
+		for (int i = 0; i < this.children.size(); i++) {
+			if (!this.children.get(i).matchWithRecoloring(
+					otherParent.children.get(i), recoloring)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

@@ -1,10 +1,11 @@
 package de.croggle.game.level;
 
+import java.util.HashMap;
+
 import com.badlogic.gdx.graphics.g2d.Animation;
 
 import de.croggle.game.Color;
 import de.croggle.game.board.Board;
-import de.croggle.game.board.operations.MatchWithRenaming;
 
 /**
  * A special type of level in which the player has to position and color
@@ -58,7 +59,8 @@ public class TermEditLevel extends EditLevel {
 			stepsReached = true;
 		}
 
-		if (MatchWithRenaming.match(solution, this.getGoalBoard())) {
+		if (solution.matchWithRecoloring(this.getGoalBoard(),
+				new HashMap<Color, Color>())) {
 			rightBoard = true;
 		}
 		if (stepsReached && rightBoard) {

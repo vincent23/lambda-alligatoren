@@ -4,7 +4,6 @@ import junit.framework.TestCase;
 import de.croggle.game.board.AlligatorOverflowException;
 import de.croggle.game.board.Board;
 import de.croggle.game.board.IllegalBoardException;
-import de.croggle.game.board.operations.MatchWithRenaming;
 import de.croggle.game.board.operations.RemoveUselessAgedAlligators;
 import de.croggle.game.event.BoardEventMessenger;
 import de.croggle.util.convert.AlligatorToLambda;
