@@ -1,7 +1,5 @@
 package de.croggle.game.level;
 
-import java.util.HashMap;
-
 import com.badlogic.gdx.graphics.g2d.Animation;
 
 import de.croggle.game.Color;
@@ -45,28 +43,6 @@ public class TermEditLevel extends EditLevel {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
 				userColors, blockedColors, hint, description,
 				abortSimulationAfter, true);
-	}
-
-	@Override
-	public boolean isLevelSolved(Board solution, int steps) {
-		boolean stepsReached = false;
-		boolean rightBoard = false;
-
-		if (this.getAbortSimulationAfter() != 111
-				&& this.getAbortSimulationAfter() == steps) {
-			stepsReached = true;
-		} else if (this.getAbortSimulationAfter() == 111) {
-			stepsReached = true;
-		}
-
-		if (solution.matchWithRecoloring(this.getGoalBoard(),
-				new HashMap<Color, Color>())) {
-			rightBoard = true;
-		}
-		if (stepsReached && rightBoard) {
-			this.setSolvedTrue();
-		}
-		return stepsReached && rightBoard;
 	}
 
 }

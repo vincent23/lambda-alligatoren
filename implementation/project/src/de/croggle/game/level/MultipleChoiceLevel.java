@@ -74,18 +74,12 @@ public class MultipleChoiceLevel extends Level {
 
 	@Override
 	public boolean isLevelSolved(Board solution, int steps) {
-		int index = -1;
-		for (int i = 0; i < this.answers.length; i++) {
-			if (solution.matchWithRecoloring(answers[i],
-					new HashMap<Color, Color>())) {
-				index = i;
-			}
+		if (solution.matchWithRecoloring(answers[correctAnswer],
+				new HashMap<Color, Color>())) {
+			return true;
+		} else {
+			return false;
 		}
-
-		if (index == this.correctAnswer) {
-			this.setSolvedTrue();
-		}
-		return index == this.correctAnswer;
 	}
 
 	@Override

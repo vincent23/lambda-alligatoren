@@ -299,8 +299,7 @@ public class GameController implements BoardEventListener {
 				}
 			}, 2.0f);
 
-		} else if (!evaluated
-				|| simulator.getSteps() >= level.getAbortSimulationAfter()) {
+		} else if (!evaluated || !level.isSolveable(simulator.getSteps())) {
 			Timer timer = new Timer();
 			timer.scheduleTask(new Task() {
 				public void run() {
