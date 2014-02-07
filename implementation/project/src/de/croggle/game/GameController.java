@@ -56,6 +56,7 @@ public class GameController implements BoardEventListener {
 	private final List<StatisticsDeltaProcessor> statisticsDeltaProcessors;
 	private final AlligatorApp app;
 	private LevelProgress progress;
+	private boolean simulationPaused;
 
 	/**
 	 * Creates a new game controller for the given level.
@@ -75,6 +76,7 @@ public class GameController implements BoardEventListener {
 		this.simulationMessenger = new BoardEventMessenger();
 		this.placementMessenger = new BoardEventMessenger();
 		this.statisticsDeltaProcessors = new ArrayList<StatisticsDeltaProcessor>();
+		this.simulationPaused = false;
 
 		simulationMessenger.register(this);
 		placementMessenger.register(this);
@@ -103,6 +105,7 @@ public class GameController implements BoardEventListener {
 	 * manipulate the board.
 	 */
 	public void enterPlacement() {
+		simulationPaused = false;
 		shownBoard = userBoard;
 		simulator = null;
 		// TODO not sure if both messengers should be notified
@@ -117,6 +120,7 @@ public class GameController implements BoardEventListener {
 	 * @throws IllegalBoardException
 	 */
 	public void enterSimulation() throws IllegalBoardException {
+		simulationPaused = false;
 		simulator = new Simulator(shownBoard.copy(), colorController,
 				simulationMessenger);
 		shownBoard = simulator.getCurrentBoard();
@@ -149,6 +153,7 @@ public class GameController implements BoardEventListener {
 		}
 		statisticsDelta = new Statistic();
 		app.showLevelTerminatedScreen(this);
+		simulationPaused = false;
 	}
 
 	protected void onFinishedSimulation() {
@@ -290,10 +295,14 @@ public class GameController implements BoardEventListener {
 
 	public void evaluateStep() throws ColorOverflowException,
 			AlligatorOverflowException {
+		if (simulationPaused) {
+			return;
+		}
 		final boolean evaluated = simulator.evaluate();
 		if (level.isLevelSolved(simulator.getCurrentBoard(),
 				simulator.getSteps())) {
 			Timer timer = new Timer();
+			simulationPaused = true;
 			timer.scheduleTask(new Task() {
 				public void run() {
 					if (isInSimulationMode()) {
@@ -304,6 +313,7 @@ public class GameController implements BoardEventListener {
 
 		} else if (!evaluated || !level.isSolveable(simulator.getSteps())) {
 			Timer timer = new Timer();
+			simulationPaused = true;
 			timer.scheduleTask(new Task() {
 				public void run() {
 					if (isInSimulationMode()) {
