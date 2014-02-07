@@ -25,4 +25,8 @@ public class MultipleChoiceGameController extends GameController {
 	public Screen createPlacementScreen(AlligatorApp app) {
 		return new MultipleChoiceScreen(app, this);
 	}
+
+	@Override
+	protected void onFinishedSimulation() {
+	}
 }

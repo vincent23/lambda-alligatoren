@@ -50,4 +50,9 @@ public class EditLevelGameController extends GameController {
 		return colorController;
 	}
 
+	@Override
+	protected void onFinishedSimulation() {
+		getProgress().setSolved(true);
+	}
+
 }

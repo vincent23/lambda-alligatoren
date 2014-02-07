@@ -133,9 +133,9 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	private void onCompletedLevel(boolean won) {
-		progress.setSolved(won);
+		onFinishedSimulation();
 		saveProgress();
-		if (won) {
+		if (progress.isSolved()) {
 			statisticsDelta.setPlaytime(elapsedTime / 1000); // time in
 																// statisticDelta
 																// is
@@ -149,6 +149,9 @@ public class GameController implements BoardEventListener {
 		}
 		statisticsDelta = new Statistic();
 		app.showLevelTerminatedScreen(this);
+	}
+
+	protected void onFinishedSimulation() {
 	}
 
 	/**
