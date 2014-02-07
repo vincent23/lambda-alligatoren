@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import de.croggle.AlligatorApp;
@@ -168,8 +169,9 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		Table goalTable = new Table();
 		goalTable.add(goalBoard).size(getViewportWidth()*1.5f, getViewportHeight());
 		goal.addListener(new GoalClickListener());
-
-		dialog.addListener(new ClickListener() {
+		TextButton okay = new TextButton(_("button_ok"),
+				helper.getTextButtonStyle());
+		okay.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				dialog.hide();
@@ -178,6 +180,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 
 		dialog.add(goalTable).width(getViewportWidth() - 250)
 				.height(getViewportHeight());
+		dialog.stack(okay).center().bottom().width(300).height(70).pad(20);
 	}
 
 	private void checkZoom() {
