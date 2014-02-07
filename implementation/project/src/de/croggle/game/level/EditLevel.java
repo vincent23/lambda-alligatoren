@@ -49,7 +49,7 @@ public abstract class EditLevel extends Level {
 
 	@Override
 	public boolean isLevelSolved(Board solution, int steps) {
-		if (steps <= getAbortSimulationAfter()
+		if ((getAbortSimulationAfter() > 0 && getAbortSimulationAfter() <= steps)
 				|| solution.matchWithRecoloring(this.getGoalBoard(),
 						new HashMap<Color, Color>())) {
 			setSolvedTrue();
