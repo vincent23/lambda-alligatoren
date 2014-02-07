@@ -68,7 +68,7 @@ Farben werden hier als Variablen dargestellt.
 				\begin{itemize}
 					\item[1.] \(y\)
 					\item[2.] \(\lambda x . x \) 
-					\item[3.] \(y y\)
+					\item[3.] \(y x\)
 				\end{itemize}
 			\item[Endkonstellation:] \(y\)
 			\item[Beschreibung:] Fünftes Tutoriallevel, in dem das System der Multiple-Choice Levels erklärt wird.
@@ -80,9 +80,9 @@ Farben werden hier als Variablen dargestellt.
 			\item[Anfangskonstellation:] \((\lambda x . \lambda y . x ) z\)    
 			\item[Wahlmöglichkeiten:] \hfill
 				\begin{itemize}
-					\item[1.] \( \lambda y . z\) 
-					\item[2.] \( \lambda x . x \) 
-					\item[3.] \( \lambda x . z\)
+					\item[1.] \( \lambda x . x\) 
+					\item[2.] \( z \) 
+					\item[3.] \( \lambda y . z\)
 				\end{itemize}
 			\item[Endkonstellation:]\( \lambda y . z\)
 		\end{description}
@@ -92,7 +92,7 @@ Farben werden hier als Variablen dargestellt.
 			\item[Typ:] Einfärbelevel mit Schrittanzahl
 			\item[Schrittanzahl:] 10
 			\item[Anfangskonstellation:] \(\lambda o . o o \)  \(\lambda o . o o \) 
-			\item[Endkonstellation:]  -
+			\item[Endkonstellation:]  \(\lambda x . x x \)  \(\lambda x . x x \) 
 			\item[gesperrte Farben:] -
 		\end{description}
 
@@ -102,9 +102,9 @@ Farben werden hier als Variablen dargestellt.
 			\item[Anfangskonstellation:] \((\lambda x . \lambda y . x x ) u v\)    
 			\item[Wahlmöglichkeiten:] \hfill
 				\begin{itemize}
-					\item[1.] \( u u\) 
-					\item[2.] \( v v \) 
-					\item[3.] \( \lambda y . u\)
+					\item[1.] \( \lambda y . u\) 
+					\item[2.] \( u u \) 
+					\item[3.] \( u v \)
 				\end{itemize}
 			\item[Endkonstellation:]\(u u\)
 		\end{description}
@@ -123,7 +123,7 @@ Farben werden hier als Variablen dargestellt.
 			\item[Anfangskonstellation:] \((\lambda x . x ((\lambda y . y) (\lambda z . z ) ) \)    
 			\item[Wahlmöglichkeiten:] \hfill
 				\begin{itemize}
-					\item[1.] \( \lambda y . y\) 
+					\item[1.] \( \lambda y . z\) 
 					\item[2.] \( z \) 
 					\item[3.] \(\lambda z . z \)
 				\end{itemize}
@@ -143,7 +143,7 @@ Farben werden hier als Variablen dargestellt.
 				\begin{itemize}
 					\item[1.] \(\lambda x . \lambda y . x \) 
 					\item[2.] \(\lambda x . \lambda y . y \)
-					\item[3.] \(\lambda y . x \)
+					\item[3.] \( y x \)
 				\end{itemize}
 			\item[Endkonstellation:]\(\lambda x . \lambda y . y \)
 		\end{description}
@@ -162,7 +162,7 @@ Farben werden hier als Variablen dargestellt.
 		\begin{description}
 			\item[Typ:] Färbelevel
 			\item[Anfangskonstellation:] \( \lambda x . ( o o ) \lambda y . ( o o ) o \)    
-			\item[Endkonstellation:] \(z z z z\)
+			\item[Endkonstellation:] \(z z z\)
 			\item[gesperrte Farben:] -
 		\end{description}
 
@@ -174,7 +174,7 @@ Farben werden hier als Variablen dargestellt.
 				\begin{itemize}
 					\item[1.] \(\lambda x . \lambda y . x \) 
 					\item[2.] \(\lambda x . \lambda y . y \)
-					\item[3.] \(\lambda y . x \)
+					\item[3.] \( y  x \)
 				\end{itemize}
 			\item[Endkonstellation:]\(\lambda x . \lambda y . x \)
 		\end{description}
@@ -186,7 +186,7 @@ Farben werden hier als Variablen dargestellt.
 				\begin{itemize}
 					\item[1.] \(\lambda x . \lambda y . x \) 
 					\item[2.] \(\lambda x . \lambda y . y \)
-					\item[3.] \(\lambda y . x \)
+					\item[3.] \(y  x \)
 				\end{itemize}
 			\item[Endkonstellation:]\(\lambda x . \lambda y . y \)
 		\end{description}
