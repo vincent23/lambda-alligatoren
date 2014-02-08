@@ -105,10 +105,12 @@ public class LevelController {
 		}
 		
 		for(int i = 0; i < levels.size(); i++){
-			if(game.getPersistenceManager().getLevelProgress(game.getProfileController().getCurrentProfileName(), i).isSolved()){
-				levels.get(i).setSolvedTrue();
-				if(i+1 < levels.size()){
-					levels.get(i+1).setUnlocked(true);
+			if(!(game.getPersistenceManager().getLevelProgress(game.getProfileController().getCurrentProfileName(), i) == null)){
+				if(game.getPersistenceManager().getLevelProgress(game.getProfileController().getCurrentProfileName(), i).isSolved()){
+					levels.get(i).setSolvedTrue();
+					if(i+1 < levels.size()){
+						levels.get(i+1).setUnlocked(true);
+					}
 				}
 			}
 		}
