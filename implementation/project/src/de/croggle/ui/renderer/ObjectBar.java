@@ -10,12 +10,16 @@ import de.croggle.game.Color;
 import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
+import de.croggle.game.board.InternalBoardObject;
+import de.croggle.game.board.Parent;
 import de.croggle.ui.StyleHelper;
 
 /**
  * The bar to drag alligators and eggs from onto the screen.
  **/
 public class ObjectBar extends Table {
+	private final static com.badlogic.gdx.graphics.Color trashColor = new com.badlogic.gdx.graphics.Color(
+			1.f, 0.f, 0.f, .5f);
 
 	private final BoardActorLayoutEditing editing;
 
@@ -146,6 +150,8 @@ public class ObjectBar extends Table {
 
 	class RemoveObjectTarget extends Target {
 
+		private com.badlogic.gdx.graphics.Color tempColor;
+
 		public RemoveObjectTarget() {
 			super(ObjectBar.this);
 			// TODO Auto-generated constructor stub
@@ -154,14 +160,46 @@ public class ObjectBar extends Table {
 		@Override
 		public boolean drag(Source source, Payload payload, float x, float y,
 				int pointer) {
-			// TODO Auto-generated method stub
-			return false;
+			if (tempColor == null) {
+				tempColor = payload.getValidDragActor().getColor().cpy();
+				payload.getValidDragActor().setColor(trashColor);
+			}
+
+			return true;
+		}
+
+		@Override
+		public void reset(Source source, Payload payload) {
+			if (tempColor != null) {
+				payload.getValidDragActor().setColor(tempColor);
+				tempColor = null;
+			}
 		}
 
 		@Override
 		public void drop(Source source, Payload payload, float x, float y,
 				int pointer) {
-			System.out.println("Pu, I still get called");
+			BoardObjectActor payloadActor = (BoardObjectActor) payload
+					.getObject();
+			InternalBoardObject payloadObject = payloadActor.getBoardObject();
+			if (payloadObject.getParent() != null) {
+				Parent objParent = payloadObject.getParent();
+				int objectPos = objParent.getChildPosition(payloadObject);
+				objParent.removeChild(payloadObject);
+
+				if (payloadObject instanceof Parent) {
+					// sift up children
+					Parent objAsParent = (Parent) payloadObject;
+					// careful not to reverse the children order
+					for (int i = 0; i < objAsParent.getChildCount(); i++) {
+						InternalBoardObject child = objAsParent
+								.getChildAtPosition(i);
+						objParent.insertChild(child, objectPos + i);
+					}
+					objAsParent.clearChildren();
+				}
+			}
+			editing.getMessenger().notifyObjectRemoved(payloadObject);
 		}
 	}
 }

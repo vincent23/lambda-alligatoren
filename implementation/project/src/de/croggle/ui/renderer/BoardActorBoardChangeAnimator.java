@@ -282,6 +282,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		BoardObjectActor removedActor = b.getLayout().getActor(removed);
 		b.removeFromWorld(removedActor);
 		b.getLayout().removeActor(removedActor);
+		applyDeltasAnimated(b.getLayout().getDeltasToFix());
 	}
 
 	@Override

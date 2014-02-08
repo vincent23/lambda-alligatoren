@@ -451,7 +451,6 @@ class BoardActorLayoutEditing {
 			} else {
 				messenger.notifyObjectMoved(payloadObject);
 			}
-
 		}
 	}
 }
