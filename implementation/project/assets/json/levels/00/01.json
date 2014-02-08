@@ -7,7 +7,7 @@
 			"design" : "" ,
 			"animation" : "",
 			"abort simulation after" : 111 ,
-			"hints" : [ "hints/testHint"
+			"hints" : [ "hints/0001"
 			],
 			"data" : {
 				"initial constellation" : {

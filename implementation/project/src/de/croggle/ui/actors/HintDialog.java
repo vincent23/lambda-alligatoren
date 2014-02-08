@@ -37,7 +37,7 @@ public class HintDialog extends Dialog {
 		});
 		
 		clear();
-		add(hint).pad(50, 50, 30, 50);
+		add(hint).pad(50, 100, 20, 100);
 		row();
 		add(okay).center().width(300).height(70).pad(30, 30, 50, 30);
 		
