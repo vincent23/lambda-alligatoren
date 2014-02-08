@@ -12,9 +12,6 @@ import de.croggle.AlligatorApp;
 import de.croggle.game.Color;
 import de.croggle.game.board.Board;
 import de.croggle.util.convert.JsonToAlligator;
-//import com.badlogic.gdx.assets.AssetManager;
-//import com.badlogic.gdx.graphics.Texture;
-//import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 //TODO Animation setzen!
 
@@ -166,8 +163,8 @@ class LevelLoadHelper {
 		Animation animation = getAnimationfromJson(data, game);
 		Level level = new MultipleChoiceLevel(levelIndex, packageIndex,
 				JsonToAlligator.convertBoard(initialBoard),
-				answers[correctAnswer], json.getString("animation"), json.get("hints").getString(
-						0), json.getString("description"),
+				answers[correctAnswer], json.getString("animation"), json.get(
+						"hints").getString(0), json.getString("description"),
 				json.getInt("abort simulation after"), answers, correctAnswer);
 		return level;
 	}

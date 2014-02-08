@@ -1,5 +1,7 @@
 package de.croggle.game.level;
 
+import java.util.HashMap;
+
 import com.badlogic.gdx.graphics.g2d.Animation;
 
 import de.croggle.AlligatorApp;
@@ -21,7 +23,7 @@ public abstract class EditLevel extends Level {
 		this.userColors = userColors;
 		this.blockedColors = blockedColors;
 	}
-	
+
 	public EditLevel(int levelIndex, int packageIndex, Board initialBoard,
 			Board goalBoard, String animationPath, Color[] userColors,
 			Color[] blockedColors, String hint, String description,
@@ -30,12 +32,6 @@ public abstract class EditLevel extends Level {
 				hint, description, abortSimulationAfter, showObjectBar);
 		this.userColors = userColors;
 		this.blockedColors = blockedColors;
-	}
-
-	@Override
-	public boolean isLevelSolved(Board solution, int steps) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	/**
@@ -59,6 +55,18 @@ public abstract class EditLevel extends Level {
 	@Override
 	public EditLevelGameController createGameController(AlligatorApp app) {
 		return new EditLevelGameController(app, this);
+	}
+
+	@Override
+	public boolean isLevelSolved(Board solution, int steps) {
+		if ((getAbortSimulationAfter() > 0 && getAbortSimulationAfter() <= steps)
+				|| solution.matchWithRecoloring(this.getGoalBoard(),
+						new HashMap<Color, Color>())) {
+			setSolvedTrue();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
