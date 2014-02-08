@@ -52,7 +52,9 @@ public class EditLevelGameController extends GameController {
 
 	@Override
 	protected void onFinishedSimulation() {
-		getProgress().setSolved(true);
+		getProgress().setSolved(
+				level.isLevelSolved(getSimulator().getCurrentBoard(),
+						getSimulator().getSteps()));
 	}
 
 }

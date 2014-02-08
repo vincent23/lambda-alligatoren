@@ -444,4 +444,8 @@ public class GameController implements BoardEventListener {
 		getProgress().setUsedHints(getProgress().getUsedHints() + 1);
 		saveProgress();
 	}
+
+	protected Simulator getSimulator() {
+		return simulator;
+	}
 }
