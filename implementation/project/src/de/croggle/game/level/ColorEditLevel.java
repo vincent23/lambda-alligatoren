@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 
 import de.croggle.game.Color;
 import de.croggle.game.board.Board;
-import de.croggle.game.board.operations.MatchWithRenaming;
 
 /**
  * A special type of level in which the player has to change the color of the
@@ -44,7 +43,7 @@ public class ColorEditLevel extends EditLevel {
 				userColors, blockedColors, hint, description,
 				abortSimulationAfter, false);
 	}
-	
+
 	public ColorEditLevel(int levelIndex, int packageIndex, Board initialBoard,
 			Board goalBoard, String animationPath, Color[] userColors,
 			Color[] blockedColors, String hint, String description,
