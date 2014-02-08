@@ -121,7 +121,7 @@ public class GameController implements BoardEventListener {
 	 */
 	public void enterSimulation() throws IllegalBoardException {
 		simulationPaused = false;
-		simulator = new Simulator(shownBoard.copy(), colorController,
+		simulator = new Simulator(userBoard, colorController,
 				simulationMessenger);
 		shownBoard = simulator.getCurrentBoard();
 		// TODO not sure if both messengers should be notified
