@@ -1,12 +1,10 @@
 package de.croggle.game.level;
 
 import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
-//import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.files.FileHandle;
-//import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-//import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 
@@ -14,6 +12,9 @@ import de.croggle.AlligatorApp;
 import de.croggle.game.Color;
 import de.croggle.game.board.Board;
 import de.croggle.util.convert.JsonToAlligator;
+//import com.badlogic.gdx.assets.AssetManager;
+//import com.badlogic.gdx.graphics.Texture;
+//import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 //TODO Animation setzen!
 
@@ -113,8 +114,9 @@ class LevelLoadHelper {
 
 			level = new ColorEditLevel(levelIndex, packageIndex,
 					JsonToAlligator.convertBoard(initialBoard),
-					JsonToAlligator.convertBoard(goalBoard), animation,
-					userColors, blockedColors, json.get("hints").getString(0),
+					JsonToAlligator.convertBoard(goalBoard),
+					json.getString("animation"), userColors, blockedColors,
+					json.get("hints").getString(0),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
 		} else if (leveltype.equals("term edit")) {
@@ -130,8 +132,9 @@ class LevelLoadHelper {
 			Animation animation = getAnimationfromJson(data, game);
 			level = new TermEditLevel(levelIndex, packageIndex,
 					JsonToAlligator.convertBoard(initialBoard),
-					JsonToAlligator.convertBoard(goalBoard), animation,
-					userColors, blockedColors, json.get("hints").getString(0),
+					JsonToAlligator.convertBoard(goalBoard),
+					json.getString("animation"), userColors, blockedColors,
+					json.get("hints").getString(0),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
 
@@ -163,7 +166,7 @@ class LevelLoadHelper {
 		Animation animation = getAnimationfromJson(data, game);
 		Level level = new MultipleChoiceLevel(levelIndex, packageIndex,
 				JsonToAlligator.convertBoard(initialBoard),
-				answers[correctAnswer], animation, json.get("hints").getString(
+				answers[correctAnswer], json.getString("animation"), json.get("hints").getString(
 						0), json.getString("description"),
 				json.getInt("abort simulation after"), answers, correctAnswer);
 		return level;

@@ -16,6 +16,7 @@ public abstract class Level {
 	private Board initialBoard;
 	private Board goalBoard;
 	private Animation animation;
+	private String animationPath;
 	private String hint;
 	private String description;
 	private int abortSimulationAfter;
@@ -51,6 +52,22 @@ public abstract class Level {
 		this.initialBoard = initialBoard;
 		this.goalBoard = goalBoard;
 		this.animation = animation;
+		this.hint = hint;
+		this.description = description;
+		this.abortSimulationAfter = abortSimulationAfter;
+		this.solved = false;
+		this.unlocked = false;
+		this.showObjectBar = showObjectBar;
+	}
+
+	public Level(int levelIndex, int packageIndex, Board initialBoard,
+			Board goalBoard, String animationPath, String hint,
+			String description, int abortSimulationAfter, boolean showObjectBar) {
+		this.levelIndex = levelIndex;
+		this.packageIndex = packageIndex;
+		this.initialBoard = initialBoard;
+		this.goalBoard = goalBoard;
+		this.animationPath = animationPath;
 		this.hint = hint;
 		this.description = description;
 		this.abortSimulationAfter = abortSimulationAfter;
@@ -102,7 +119,7 @@ public abstract class Level {
 	 * @return true if the level has a simulation, otherwise false
 	 */
 	public boolean hasAnimation() {
-		return animation != null;
+		return animation != null || (animationPath != null && animationPath.length() >0);
 	}
 
 	/**
@@ -112,6 +129,10 @@ public abstract class Level {
 	 */
 	public Animation getAnimation() {
 		return animation;
+	}
+
+	public String getAnimationPath() {
+		return animationPath;
 	}
 
 	/**
@@ -222,8 +243,8 @@ public abstract class Level {
 		// TODO 100 level / package limit
 		return pack * 100 + index;
 	}
-	
-	public boolean getShowObjectBar(){
+
+	public boolean getShowObjectBar() {
 		return this.showObjectBar;
 	}
 

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 
 import de.croggle.game.Color;
 import de.croggle.game.board.Board;
+import de.croggle.game.board.operations.MatchWithRenaming;
 
 /**
  * A special type of level in which the player has to change the color of the
@@ -42,6 +43,36 @@ public class ColorEditLevel extends EditLevel {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
 				userColors, blockedColors, hint, description,
 				abortSimulationAfter, false);
+	}
+	
+	public ColorEditLevel(int levelIndex, int packageIndex, Board initialBoard,
+			Board goalBoard, String animationPath, Color[] userColors,
+			Color[] blockedColors, String hint, String description,
+			int abortSimulationAfter) {
+		super(levelIndex, packageIndex, initialBoard, goalBoard, animationPath,
+				userColors, blockedColors, hint, description,
+				abortSimulationAfter, false);
+	}
+
+	@Override
+	public boolean isLevelSolved(Board solution, int steps) {
+		boolean stepsReached = false;
+		boolean rightBoard = false;
+		if (this.getAbortSimulationAfter() != 111
+				&& steps == this.getAbortSimulationAfter()) {
+			stepsReached = true;
+		} else if (this.getAbortSimulationAfter() == 111) {
+			stepsReached = true;
+		}
+
+		if (MatchWithRenaming.match(solution, this.getGoalBoard())) {
+			rightBoard = true;
+		}
+		if (stepsReached && rightBoard) {
+			this.setSolvedTrue();
+		}
+
+		return stepsReached && rightBoard;
 	}
 
 }

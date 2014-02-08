@@ -1,13 +1,11 @@
 package de.croggle.game.level;
 
-import java.util.HashMap;
-
 import com.badlogic.gdx.graphics.g2d.Animation;
 
 import de.croggle.AlligatorApp;
-import de.croggle.game.Color;
 import de.croggle.game.MultipleChoiceGameController;
 import de.croggle.game.board.Board;
+import de.croggle.game.board.operations.MatchWithRenaming;
 
 /**
  * A special type of level in which the player has to choose from several
@@ -51,6 +49,16 @@ public class MultipleChoiceLevel extends Level {
 		this.answers = answers;
 		this.correctAnswer = correctAnswer;
 	}
+	
+	public MultipleChoiceLevel(int levelIndex, int packageIndex,
+			Board initialBoard, Board goalBoard, String animationPath,
+			String hint, String description, int abortSimulationAfter,
+			Board[] answers, int correctAnswer) {
+		super(levelIndex, packageIndex, initialBoard, goalBoard, animationPath,
+				hint, description, abortSimulationAfter, false);
+		this.answers = answers;
+		this.correctAnswer = correctAnswer;
+	}
 
 	/**
 	 * Method to check whether the given answer was the correct one.
@@ -74,12 +82,17 @@ public class MultipleChoiceLevel extends Level {
 
 	@Override
 	public boolean isLevelSolved(Board solution, int steps) {
-		if (solution.matchWithRecoloring(answers[correctAnswer],
-				new HashMap<Color, Color>())) {
-			return true;
-		} else {
-			return false;
+		int index = -1;
+		for (int i = 0; i < this.answers.length; i++) {
+			if (MatchWithRenaming.match(solution, answers[i])) {
+				index = i;
+			}
 		}
+
+		if (index == this.correctAnswer) {
+			this.setSolvedTrue();
+		}
+		return index == this.correctAnswer;
 	}
 
 	@Override

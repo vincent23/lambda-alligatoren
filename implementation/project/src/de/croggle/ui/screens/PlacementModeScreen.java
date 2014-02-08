@@ -2,13 +2,17 @@ package de.croggle.ui.screens;
 
 import static de.croggle.data.LocalizationHelper._;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
@@ -41,7 +45,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 	private ImageButton zoomIn;
 	private ImageButton zoomOut;
-	private final Dialog dialog;
+	private final Dialog goalDialog;
 
 	/**
 	 * Creates the screen of a level within the placement mode. This is the
@@ -59,7 +63,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 		AssetManager assetManager = AssetManager.getInstance();
 		assetManager.load("textures/pack.atlas", TextureAtlas.class);
-		dialog = new Dialog("", StyleHelper.getInstance().getDialogStyle());
+		goalDialog = new Dialog("", StyleHelper.getInstance().getDialogStyle());
 
 		fillTable();
 		final int packageIndex = gameController.getLevel().getPackageIndex();
@@ -69,12 +73,22 @@ public class PlacementModeScreen extends AbstractScreen implements
 				packageIndex);
 		setBackground(pack.getDesign());
 		game.getSettingController().addSettingChangeListener(this);
+
+		// load graphics for animation/tutorial
+		if (gameController.getLevel().hasAnimation()) {
+			assetManager.load(gameController.getLevel().getAnimationPath(),
+					Texture.class);
+		}
 	}
 
 	@Override
 	protected void onShow() {
 		gameController.setTimeStamp();
 		gameController.enterPlacement();
+
+		if (gameController.getLevel().hasAnimation()) {
+			buildTutorialDialog();
+		}
 	}
 
 	@Override
@@ -166,16 +180,46 @@ public class PlacementModeScreen extends AbstractScreen implements
 		goalTable.add(goalBoard).size(getViewportHeight());
 		goal.addListener(new GoalClickListener());
 
-		dialog.addListener(new ClickListener() {
+		goalDialog.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				dialog.hide();
+				goalDialog.hide();
 			}
 		});
 
-		dialog.add(goalTable).width(getViewportWidth() - 250)
+		goalDialog.add(goalTable).width(getViewportWidth() - 250)
 				.height(getViewportHeight());
 
+	}
+
+	private void buildTutorialDialog() {
+		AssetManager manager = AssetManager.getInstance();
+		StyleHelper helper = StyleHelper.getInstance();
+
+		final Dialog tutorial = new Dialog("", StyleHelper.getInstance()
+				.getDialogStyle());
+		tutorial.clear();
+		tutorial.fadeDuration=0f;
+
+		Table buttonTable = new Table();
+		Drawable drawable = new TextureRegionDrawable(new TextureRegion(
+				manager.get(gameController.getLevel().getAnimationPath(),
+						Texture.class)));
+		// used image button here because it keeps the ratio of the texture
+		ImageButton tutorialImage = new ImageButton(drawable);
+		ImageButton okay = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-check"));
+
+		okay.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				tutorial.hide();
+			}
+		});
+
+		buttonTable.add(okay).size(100).bottom().right().expand().pad(30);
+		tutorial.stack(tutorialImage, buttonTable).height(500).width(800);
+		tutorial.show(stage);
 	}
 
 	private void checkZoom() {
@@ -235,7 +279,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
-			dialog.show(stage);
+			goalDialog.show(stage);
 		}
 	}
 
