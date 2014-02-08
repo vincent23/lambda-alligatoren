@@ -44,26 +44,6 @@ public class LevelController {
 		return levels.get(levelIndex);
 	}
 
-	/**
-	 * Returns the level specified by the given index, if this level is already
-	 * unlocked, else null is returned. The index must be between 0 and
-	 * <code>getPackageSize()</code> - 1.
-	 * 
-	 * @param levelIndex
-	 *            the index of the level that should be returned
-	 * @return the desired level if it has been unlocked else null
-	 */
-	public Level getUnlockedLevel(int levelIndex) {
-		Level level = levels.get(levelIndex);
-		if (levelIndex > 0 && levels.get(levelIndex - 1).isSolved()) {
-			level.setUnlocked(true);
-		}
-		if (level.getUnlocked()) {
-			return level;
-		} else {
-			return null;
-		}
-	}
 
 	/**
 	 * Returns the package index of the package of the level the controller
