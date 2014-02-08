@@ -1,7 +1,6 @@
 package de.croggle.ui.screens;
 
 import static de.croggle.data.LocalizationHelper._;
-import android.util.Log;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -25,7 +24,6 @@ import de.croggle.game.level.LevelPackage;
 import de.croggle.game.level.LevelPackagesController;
 import de.croggle.game.level.MultipleChoiceLevel;
 import de.croggle.ui.StyleHelper;
-import de.croggle.ui.actors.HintDialog;
 import de.croggle.ui.actors.IngameMenuDialog;
 import de.croggle.ui.actors.NotificationDialog;
 import de.croggle.ui.actors.PagedScrollPane;
@@ -76,13 +74,14 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		gameController.setTimeStamp();
 		gameController.enterPlacement();
 	}
-	
+
 	@Override
 	public void hide() {
 		super.hide();
 		gameController.updateTime();
 		gameController.setTimeStamp();
-		//Log.d("check time", "elapsedTime: " + gameController.getElapsedTime() + " ms");
+		// Log.d("check time", "elapsedTime: " + gameController.getElapsedTime()
+		// + " ms");
 	}
 
 	@Override
@@ -98,7 +97,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		ImageButton menu = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-menu"));
 		Button goal = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/icon-trophy"));
+				helper.getImageButtonStyleRound("widgets/icon-goal"));
 
 		ImageButton startSimulation = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/icon-next"));
@@ -127,7 +126,6 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		PagedScrollPane pager = new PagedScrollPane();
 
 		checkboxes = new CheckBox[3];
-
 
 		for (int i = 0; i < level.getAnswers().length; i++) {
 			Board answer = level.getAnswers()[i];
@@ -158,8 +156,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		pager.setPageSpacing(5);
 		pager.setWidth(getViewportWidth() * 0.5f);
 		pager.setScrollingDisabled(false, true);
-		
-		
+
 		BoardActor goalBoard = new BoardActor(gameController.getLevel()
 				.getInitialBoard(), config);
 		goalBoard.setZoomAndPanEnabled(true);
@@ -167,7 +164,8 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 				.getCurrentSetting().isColorblindEnabled());
 		game.getSettingController().addSettingChangeListener(goalBoard);
 		Table goalTable = new Table();
-		goalTable.add(goalBoard).size(getViewportWidth()*1.5f, getViewportHeight());
+		goalTable.add(goalBoard).size(getViewportWidth() * 1.5f,
+				getViewportHeight());
 		goal.addListener(new GoalClickListener());
 		TextButton okay = new TextButton(_("button_ok"),
 				helper.getTextButtonStyle());
@@ -227,8 +225,6 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		}
 	}
 
-
-	
 	private class GoalClickListener extends ClickListener {
 
 		@Override
