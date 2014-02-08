@@ -402,7 +402,6 @@ class BoardActorLayoutEditing {
 
 		public BoardActorTarget(BoardActor actor) {
 			super(actor);
-			// TODO Auto-generated constructor stub
 		}
 
 		@Override
@@ -420,7 +419,38 @@ class BoardActorLayoutEditing {
 		@Override
 		public void drop(Source source, Payload payload, float x, float y,
 				int pointer) {
-			// TODO Auto-generated method stub
+			Parent p = (((BoardActor) getActor()).getLayout().getBoard());
+			BoardObjectActor payloadActor = (BoardObjectActor) payload
+					.getObject();
+			InternalBoardObject payloadObject = payloadActor.getBoardObject();
+			if (payloadObject.getParent() != null) {
+				Parent objParent = payloadObject.getParent();
+				int objectPos = objParent.getChildPosition(payloadObject);
+				objParent.removeChild(payloadObject);
+
+				if (payloadObject instanceof Parent) {
+					// sift up children
+					Parent objAsParent = (Parent) payloadObject;
+					// careful not to reverse the children order
+					for (int i = 0; i < objAsParent.getChildCount(); i++) {
+						InternalBoardObject child = objAsParent
+								.getChildAtPosition(i);
+						objParent.insertChild(child, objectPos + i);
+					}
+					objAsParent.clearChildren();
+				}
+
+			}
+			p.addChild(payloadObject);
+			if (!b.getLayout().hasActor(payloadActor)) {
+				b.getLayout().addActor(payloadActor);
+				b.addToWorld(payloadActor);
+				registerLayoutListeners(payloadActor);
+
+				messenger.notifyObjectPlaced(payloadObject);
+			} else {
+				messenger.notifyObjectMoved(payloadObject);
+			}
 
 		}
 	}
