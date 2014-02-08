@@ -44,6 +44,7 @@ public class NewAchievementDialog extends Dialog {
 		if (isNew) {
 			add(message).height(75).padTop(10).row();
 		}
+		padTop(40);
 		add(icon).size(200).pad(0, 200, 0, 200).row();
 		add(description).height(75).padTop(10).row();
 
