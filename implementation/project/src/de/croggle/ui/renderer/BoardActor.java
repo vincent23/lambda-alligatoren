@@ -207,6 +207,12 @@ public class BoardActor extends Group implements SettingChangeListener {
 		initializePosition();
 	}
 
+	void boardSizeChanged() {
+		if (zoomAndPan != null) {
+			zoomAndPan.validate();
+		}
+	}
+
 	public Vector2 boardActorToWorldCoordinates(Vector2 coords) {
 		return world.parentToLocalCoordinates(coords);
 	}

@@ -112,12 +112,15 @@ public class ObjectBar extends Table {
 
 			payload.setDragActor(dragging
 					.getDragActor((BoardObjectActor) getActor()));
+			payload.getDragActor().setScale(1.f);
 
 			payload.setValidDragActor(dragging
 					.getValidDragActor((BoardObjectActor) getActor()));
+			payload.getValidDragActor().setScale(1.f);
 
 			payload.setInvalidDragActor(dragging
 					.getInvalidDragActor((BoardObjectActor) getActor()));
+			payload.getInvalidDragActor().setScale(1.f);
 
 			return payload;
 		}
@@ -200,6 +203,7 @@ public class ObjectBar extends Table {
 				}
 			}
 			editing.getMessenger().notifyObjectRemoved(payloadObject);
+			editing.getBoardActor().boardSizeChanged();
 		}
 	}
 }

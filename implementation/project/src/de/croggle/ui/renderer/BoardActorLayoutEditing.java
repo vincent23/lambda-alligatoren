@@ -373,6 +373,7 @@ class BoardActorLayoutEditing {
 			} else {
 				messenger.notifyObjectMoved(payloadObject);
 			}
+			b.boardSizeChanged();
 		}
 	}
 
@@ -451,6 +452,7 @@ class BoardActorLayoutEditing {
 			} else {
 				messenger.notifyObjectMoved(payloadObject);
 			}
+			b.boardSizeChanged();
 		}
 	}
 }
