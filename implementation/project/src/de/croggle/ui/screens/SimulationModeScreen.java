@@ -277,9 +277,8 @@ public class SimulationModeScreen extends AbstractScreen implements
 
 	private void startAutomaticSimulation(long delay) {
 		if (timer == null) {
-			// TODO image for pause button
 			play.setStyle(StyleHelper.getInstance().getImageButtonStyleRound(
-					"widgets/icon-back"));
+					"widgets/icon-pause"));
 			timer = new Timer();
 			timer.schedule(new StepTimer(), delay, automaticSimulationFrequency);
 			isSimulating = true;
