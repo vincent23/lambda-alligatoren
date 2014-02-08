@@ -44,7 +44,7 @@ import de.croggle.ui.screens.StatisticScreen;
  */
 public class AlligatorApp extends Game {
 
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 
 	// the Android Context
 	private final Context context;
