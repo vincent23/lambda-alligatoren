@@ -71,5 +71,7 @@
     <string name="invalid_board_dialog">Bitte färbe alle Alligatoren und Eier ein.</string>
     <string name="achievement_dialog_standard">Für dieses Achievement braucht man: \n</string>
     <string name="achievement_dialog_last">Die allerhöchste Stufe: \n</string>
+    <string name="level_solved">Yeah! Du hast das Level gelöst!</string>
+    <string name="level_failed">Level verloren.</string>
 
 </resources>
