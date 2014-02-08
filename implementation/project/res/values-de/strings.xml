@@ -68,7 +68,7 @@
     <string name="button_yes">Ja</string>
     <string name="button_no">Nein</string>
     <string name="multiple_choice_dialog">Wähle genau eine mögliche Antwort aus.</string>
-    <string name="invalid_board_dialog">Bitte färbe alle Alligatoren und Eier ein.</string>
+    <string name="invalid_board_dialog">Bitte achte darauf, dass alle Alligatoren Kinder haben und färbe sie ein.</string>
     <string name="achievement_dialog_standard">Für dieses Achievement braucht man: \n</string>
     <string name="achievement_dialog_last">Die allerhöchste Stufe: \n</string>
     <string name="level_solved">Yeah! Du hast das Level gelöst!</string>
