@@ -84,8 +84,9 @@ public class ObjectBar extends Table {
 				bufferedEgg = null;
 				return egg;
 			} else {
-				return new ColoredAlligatorActor(new ColoredAlligator(true,
-						true, Color.uncolored(), true), colorBlind);
+				return new EggActor(
+						new Egg(true, true, Color.uncolored(), true),
+						colorBlind);
 			}
 		} else {
 			throw new IllegalStateException();
@@ -160,8 +161,7 @@ public class ObjectBar extends Table {
 		@Override
 		public void drop(Source source, Payload payload, float x, float y,
 				int pointer) {
-			// TODO Auto-generated method stub
-
+			System.out.println("Pu, I still get called");
 		}
 	}
 }

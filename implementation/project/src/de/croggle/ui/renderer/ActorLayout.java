@@ -83,16 +83,33 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 	public ActorLayoutConfiguration getLayoutConfiguration() {
 		return config;
 	}
-	
+
 	public boolean removeActor(BoardObjectActor actor) {
 		if (actor == null) {
 			return false;
 		}
 		return layout.remove(actor.getBoardObject()) != null;
 	}
-	
-	public void addActor(BoardObjectActor actor) {
-		layout.put(actor.getBoardObject(), actor);
+
+	public boolean hasActor(BoardObjectActor actor) {
+		return layout.get(actor.getBoardObject()) == actor;
+	}
+
+	/**
+	 * 
+	 * @param actor
+	 * @return true, if the actor was added using its associated BoardObject as
+	 *         key, false if it wasn't added due to a previous mapping of a
+	 *         {@link BoardObjectActor} to the associated
+	 *         {@link InternalBoardObject}
+	 */
+	public boolean addActor(BoardObjectActor actor) {
+		if (getActor(actor.getBoardObject()) == null) {
+			layout.put(actor.getBoardObject(), actor);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -102,9 +119,10 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 
 	/**
 	 * Calculates which actors need to be altered and in which way to restore
-	 * the layout after this layout's board has changed. Afterwards, it returns the results of the
-	 * calculation but leaves it to the caller to apply them. This allows the
-	 * code rendering this layout to apply animations on the changes to be made.
+	 * the layout after this layout's board has changed. Afterwards, it returns
+	 * the results of the calculation but leaves it to the caller to apply them.
+	 * This allows the code rendering this layout to apply animations on the
+	 * changes to be made.
 	 * 
 	 * @return
 	 */
@@ -120,20 +138,21 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 	public Board getBoard() {
 		return b;
 	}
-	
+
 	public int size() {
 		return layout.size();
 	}
-	
+
 	public float getHeightInPixels() {
 		if (statistics == null) {
-			throw new IllegalStateException("Cannot calculate height without statistics");
+			throw new IllegalStateException(
+					"Cannot calculate height without statistics");
 		}
 		return statistics.getHeightMap().get(getBoard());
 	}
-	
+
 	public int getHeightInActors() {
-		// variables: 
+		// variables:
 		// h = board height
 		// u = uniform object height
 		// p = vertical padding
@@ -145,16 +164,18 @@ public class ActorLayout implements Iterable<BoardObjectActor> {
 		float s = config.getVerticalScaleFactor();
 		float u = config.getUniformObjectHeight();
 		float p = config.getVerticalPadding();
-		float result = Math.round(Math.log(h * (s - 1) / (u + p) + 1) / Math.log(s));
+		float result = Math.round(Math.log(h * (s - 1) / (u + p) + 1)
+				/ Math.log(s));
 		return (int) result;
 	}
-	
+
 	/**
 	 * Calculates and returns the scale that was applied on a board actor.
+	 * 
 	 * @return
 	 */
 	public float getMinimumScale() {
-		// variables: 
+		// variables:
 		// h = board height
 		// u = uniform object height
 		// p = vertical padding

@@ -16,7 +16,7 @@ import de.croggle.game.board.operations.BoardObjectVisitor;
 public abstract class Parent implements Iterable<InternalBoardObject>,
 		BoardObject {
 
-	private List<InternalBoardObject> children;
+	private final List<InternalBoardObject> children;
 
 	/**
 	 * Superconstructor of all parents. Creates a parent with no children.
@@ -76,10 +76,24 @@ public abstract class Parent implements Iterable<InternalBoardObject>,
 	 * 
 	 * @param child
 	 *            the child whose position is to be obtained
-	 * @return the position of child
+	 * @return the position of child, or -1 if this Parent holds no reference to
+	 *         child
 	 */
 	public int getChildPosition(InternalBoardObject child) {
 		return this.children.indexOf(child);
+	}
+
+	/**
+	 * Returns the child of the parent at the given position
+	 * 
+	 * @param pos
+	 *            the position at which to look for a child
+	 * @return the child at the given position
+	 * @throws IndexOutOfBoundsException
+	 *             if pos < 0 || pos >= getChildCount()
+	 */
+	public InternalBoardObject getChildAtPosition(int pos) {
+		return children.get(pos);
 	}
 
 	/**
@@ -145,10 +159,19 @@ public abstract class Parent implements Iterable<InternalBoardObject>,
 	}
 
 	/**
+	 * Removes all references to children from this parent. Does NOT unset the
+	 * children's reference to the parent.
+	 */
+	public void clearChildren() {
+		children.clear();
+	}
+
+	/**
 	 * Returns an iterator for the children list.
 	 * 
 	 * @return the iterator
 	 */
+	@Override
 	public Iterator<InternalBoardObject> iterator() {
 		return children.iterator();
 	}
@@ -202,6 +225,7 @@ public abstract class Parent implements Iterable<InternalBoardObject>,
 		}
 	}
 
+	@Override
 	public boolean match(BoardObject o) {
 		if (o == null)
 			return false;

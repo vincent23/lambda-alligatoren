@@ -116,17 +116,20 @@ class BoardActorLayoutEditing {
 
 	void registerLayoutListeners() {
 		for (BoardObjectActor child : b.getLayout()) {
-			if (child.getBoardObject() instanceof ColoredBoardObject) {
-				ColoredBoardObject o = (ColoredBoardObject) child
-						.getBoardObject();
-				if (o.isRecolorable()) {
-					child.addListener(new RecolorPopupListener(o));
-				}
-			}
+			registerLayoutListeners(child);
+		}
+	}
 
-			if (child.getBoardObject().isMovable()) {
-				child.addListener(new EnableDraggingListener());
+	private void registerLayoutListeners(BoardObjectActor actor) {
+		if (actor.getBoardObject() instanceof ColoredBoardObject) {
+			ColoredBoardObject o = (ColoredBoardObject) actor.getBoardObject();
+			if (o.isRecolorable()) {
+				actor.addListener(new RecolorPopupListener(o));
 			}
+		}
+
+		if (actor.getBoardObject().isMovable()) {
+			actor.addListener(new EnableDraggingListener());
 		}
 	}
 
@@ -322,22 +325,54 @@ class BoardActorLayoutEditing {
 
 		public ParentTarget(BoardObjectActor actor) {
 			super(actor);
-			// TODO Auto-generated constructor stub
+			if (!(actor.getBoardObject() instanceof Parent)) {
+				throw new IllegalArgumentException(
+						"ParentTargets only work on parents");
+			}
 		}
 
 		@Override
 		public boolean drag(Source source, Payload payload, float x, float y,
 				int pointer) {
-			// TODO Auto-generated method stub
-			System.out.println("I am not a board, though dragged over");
 			return true;
 		}
 
 		@Override
 		public void drop(Source source, Payload payload, float x, float y,
 				int pointer) {
-			// TODO Auto-generated method stub
+			Parent p = ((Parent) ((BoardObjectActor) getActor())
+					.getBoardObject());
+			BoardObjectActor payloadActor = (BoardObjectActor) payload
+					.getObject();
+			InternalBoardObject payloadObject = payloadActor.getBoardObject();
+			if (payloadObject.getParent() != null) {
+				Parent objParent = payloadObject.getParent();
+				int objectPos = objParent.getChildPosition(payloadObject);
+				objParent.removeChild(payloadObject);
 
+				if (payloadObject instanceof Parent) {
+					// sift up children
+					Parent objAsParent = (Parent) payloadObject;
+					// careful not to reverse the children order
+					for (int i = 0; i < objAsParent.getChildCount(); i++) {
+						InternalBoardObject child = objAsParent
+								.getChildAtPosition(i);
+						objParent.insertChild(child, objectPos + i);
+					}
+					objAsParent.clearChildren();
+				}
+
+			}
+			p.addChild(payloadObject);
+			if (!b.getLayout().hasActor(payloadActor)) {
+				b.getLayout().addActor(payloadActor);
+				b.addToWorld(payloadActor);
+				registerLayoutListeners(payloadActor);
+
+				messenger.notifyObjectPlaced(payloadObject);
+			} else {
+				messenger.notifyObjectMoved(payloadObject);
+			}
 		}
 	}
 

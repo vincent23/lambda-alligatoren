@@ -274,20 +274,19 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 
 	@Override
 	public void onObjectPlaced(InternalBoardObject placed) {
-		// TODO Auto-generated method stub
-
+		applyDeltasAnimated(b.getLayout().getDeltasToFix());
 	}
 
 	@Override
 	public void onObjectRemoved(InternalBoardObject removed) {
-		// TODO Auto-generated method stub
-
+		BoardObjectActor removedActor = b.getLayout().getActor(removed);
+		b.removeFromWorld(removedActor);
+		b.getLayout().removeActor(removedActor);
 	}
 
 	@Override
 	public void onObjectMoved(InternalBoardObject moved) {
-		// TODO Auto-generated method stub
-
+		applyDeltasAnimated(b.getLayout().getDeltasToFix());
 	}
 
 }
