@@ -96,7 +96,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 		zoomOut = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-minus"));
 		Button goal = new ImageButton(
-				helper.getImageButtonStyleRound("widgets/icon-trophy"));
+				helper.getImageButtonStyleRound("widgets/icon-goal"));
 		ImageButton startSimulation = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/icon-next"));
 		startSimulation.addListener(new StartSimulationListener());
