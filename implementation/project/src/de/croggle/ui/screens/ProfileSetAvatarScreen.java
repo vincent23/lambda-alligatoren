@@ -2,6 +2,8 @@ package de.croggle.ui.screens;
 
 import static de.croggle.data.LocalizationHelper._;
 
+import android.util.Log;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -12,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 
 import de.croggle.AlligatorApp;
+import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.game.profile.ProfileOverflowException;
 import de.croggle.ui.StyleHelper;
@@ -118,6 +121,10 @@ public class ProfileSetAvatarScreen extends AbstractScreen {
 					try {
 						profileController.createNewProfile(profileName,
 								picturePath);
+						Log.d("statistic trace", "Statistic in ProfileSetAvatar: Playtime:" + profileController.getCurrentProfile().getStatistic().getPlaytime()); // TODO remove debug code
+						Log.d("statistic trace", "Statistic in ProfileSetAvatar: Alligators Eaten " + profileController.getCurrentProfile().getStatistic().getAlligatorsEaten() );
+						Log.d("statistic trace", "Statistic in ProfileSetAvatar: Alligators placed " + profileController.getCurrentProfile().getStatistic().getAlligatorsPlaced() );
+						Log.d("statistic trace", "Statistic in ProfileSetAvatar: LevelsCompleted " + profileController.getCurrentProfile().getStatistic().getLevelsComplete() );
 						game.showMainMenuScreen(false);
 					} catch (ProfileOverflowException p) {
 						// TODO

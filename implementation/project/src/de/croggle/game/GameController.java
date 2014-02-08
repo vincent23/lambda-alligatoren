@@ -147,6 +147,10 @@ public class GameController implements BoardEventListener {
 																// elapsedTime
 																// in
 																// millisec.
+			Log.d("statistic trace", "Statistic: Playtime:" + statisticsDelta.getPlaytime()); // TODO remove debug code
+			Log.d("statistic trace", "Statistic: Alligators Eaten " + statisticsDelta.getAlligatorsEaten() );
+			Log.d("statistic trace", "Statistic: Alligators placed " + statisticsDelta.getAlligatorsPlaced() );
+			Log.d("statistic trace", "Statistic: LevelsCompleted " + statisticsDelta.getLevelsComplete() );
 			for (StatisticsDeltaProcessor processor : statisticsDeltaProcessors) {
 				processor.processDelta(statisticsDelta);
 			}

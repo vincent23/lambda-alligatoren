@@ -3,6 +3,7 @@ package de.croggle.game.achievement;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
 import android.util.SparseIntArray;
 
 import de.croggle.AlligatorApp;
@@ -143,6 +144,10 @@ public class AchievementController {
 	 */
 	protected List<Achievement> updateAchievements(Statistic statistic,
 			Statistic statisticDelta) {
+		Log.d("statistic trace", "Statistic: Playtime:" + statistic.getPlaytime());
+		Log.d("statistic trace", "Statistic: Alligators Eaten " + statistic.getAlligatorsEaten() );
+		Log.d("statistic trace", "Statistic: Alligators placed " + statistic.getAlligatorsPlaced() );
+		Log.d("statistic trace", "Statistic: LevelsCompleted " + statistic.getLevelsComplete() );
 		List<Achievement> latestChanges = new ArrayList<Achievement>();
 		for (Achievement achievement : availableAchievements) {
 			int oldVal = achievement.getIndex();
@@ -168,6 +173,10 @@ public class AchievementController {
 	 */
 	public void processStatisticChange(Statistic statisticsDelta,
 			Statistic statistic) {
+		Log.d("statistic trace", "Statistic in AchievementController: Playtime:" + statisticsDelta.getPlaytime()); // TODO remove Debug code
+		Log.d("statistic trace", "Statistic in AchievementController: Alligators Eaten " + statisticsDelta.getAlligatorsEaten() );
+		Log.d("statistic trace", "Statistic in AchievementController: Alligators placed " + statisticsDelta.getAlligatorsPlaced() );
+		Log.d("statistic trace", "Statistic in AchievementController: LevelsCompleted " + statisticsDelta.getLevelsComplete() );
 		latestUnlockedAchievements.clear();
 		latestUnlockedAchievements = updateAchievements(statistic,
 				statisticsDelta);

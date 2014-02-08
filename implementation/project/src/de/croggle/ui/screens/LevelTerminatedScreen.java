@@ -1,6 +1,7 @@
 package de.croggle.ui.screens;
 
 import java.util.List;
+import static de.croggle.data.LocalizationHelper._;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -56,8 +57,8 @@ public class LevelTerminatedScreen extends AbstractScreen {
 		ImageButton image = new ImageButton(
 				helper.getDrawable("widgets/icon-trophy"));
 		Label message = new Label(
-				gameController.isSolved() ? "Yeah! You solved the level!"
-						: "Level failed.", helper.getBlackLabelStyle(50));
+				gameController.isSolved() ? _("level_solved")
+						: _("level_failed"), helper.getBlackLabelStyle(50));
 		ImageButton next = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-next"));
 		ImageButton levelOverview = new ImageButton(

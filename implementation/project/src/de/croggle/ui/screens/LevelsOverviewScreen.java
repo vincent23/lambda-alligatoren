@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import android.util.Log;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -98,6 +100,10 @@ public class LevelsOverviewScreen extends AbstractScreen {
 			final GameController gameController = level
 					.createGameController(game);
 			gameController.register(game.getStatisticController());
+			Log.d("statistic trace", "Statistic in LevelsOverview: Playtime:" + game.getStatisticController().getCurrentStatistic().getPlaytime());
+			Log.d("statistic trace", "Statistic in LevelsOverview: Alligators Eaten " + game.getStatisticController().getCurrentStatistic().getAlligatorsEaten() );
+			Log.d("statistic trace", "Statistic in LevelsOverview: Alligators placed " + game.getStatisticController().getCurrentStatistic().getAlligatorsPlaced() );
+			Log.d("statistic trace", "Statistic in LevelsOverview: LevelsCompleted " + game.getStatisticController().getCurrentStatistic().getLevelsComplete() );
 			game.showPlacementModeScreen(gameController);
 		}
 	}
