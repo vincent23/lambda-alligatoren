@@ -3,27 +3,57 @@
 
 \section{Musskriterien}
 
+% TODO
+Alle Musskriterien konnten vollständig implementiert werden. Zur besseren Übersicht ist hier die Art und Weise der Umsetzung kurz zusammengefasst.
+
 \subsection{Erstellung und Auswertung von Alligatorenkonstellationen}
+
+% TODO mal schauen wie weit das mit dem drag & drop noch wird
+Es können vorgegebene Alligatorenkonstellationen, je nach Leveltyp, entweder nur umgefärbt, oder durch weitere Objekte vom Spieler ergänzt werden.
+Die so erstellten Konstellationen können im Simulationsmodus schrittweise ausgewertet werden.
 
 \subsection{Kontrolle des Lernfortschritts durch Eltern oder Lehrer}
 
+Über die erfassten Statistiken können Eltern und Lehrer den Lernfortschritt der Spieler einsehen.
+
 \subsection{Interaktive Einführung und Erklärung der Regeln}
+
+% TODO lol, das haben wir irgendwie vergessen, oder?
+Ähh jaaa\dots
 
 \subsection{Bedienung über ein Tablet mit Toucheingabe}
 
+Die Applikation ist vollständig über Toucheingabe bedienbar, wobei sowohl Multi-Touch-Gesten implementiert wurden, aber ebenso eine Single-Touch-Bedienung möglich ist.
+Zudem ist die Applikation auf aktuellen Android Tablets gemäß der Spezifikation im Pflichtenheft lauffähig.
+
 \subsection{Langzeitmotivation des Spielers wird aufrechterhalten}
+
+Über das Achievementsystem und die einfache Erweiterung um neue Level wird eine Langzeitmotivation gewährleistet.
 
 
 \section{Umgesetzte Wunschkriterien}
 
+Folgende Wunschkriterien konnten implementiert werden.
+
 \subsection{Speicherung mehrerer Spielstände für verschiedene Benutzer}
+
+Die Applikation unterstützt das Anlegen von sechs verschiedenen Benutzern und den Wechsel zwischen diesen.
+Statistiken, Achievements und Levelfortschritt werden für diese Benutzer jeweils separat gespeichert und erlauben so eine Trennung der Spielerprofile.
 
 \subsection{Verschiedene Leveltypen zur Verdeutlichung unterschiedlicher Aspekte des \(\lambda\)-Kalküls}
 
+% TODO haben wir das überhaupt richtig umgesetzt?
+% war mit mehreren leveltypen auch multiple-choice etc. gemeint oder so dinge wie church numerals etc.?
+
 \subsection{Unterstützung mehrerer Sprachen}
+
+Bei der Implementierung wurde auf eine einfache Lokalisierbarkeit geachtet.
+Bisher ist eine englische und eine deutsche Version vorhanden, Erweiterung um weitere Sprachen erfordert jedoch nur die Erstellung einer weiteren Sprachdatei.
 
 \subsection{Hilfestellungen für Farbenblinde}
 
+Die Anwendung erlaubt die Aktivierung eines "'Farbenblindmodus"`, wodurch die Farben der Alligatoren und Eier durch zweifarbige, kontrastreiche Muster ersetzt werden.
+Hierbei fehlt noch eine vollständige Abdeckung aller 30 Farben, jedoch können weitere Muster einfach hinzugefügt werden.
 
 \section{Nicht umgesetzte Wunschkriterien}
 
