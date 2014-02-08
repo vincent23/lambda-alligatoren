@@ -1,16 +1,16 @@
-\chapter{Package: ui/renderer}
+\section{Package: ui/renderer}
 
 Für das "`renderer"' Paket wurde während der Entwurfsphase nur ein oberflächliches Konzept erstellt.
 Daher kam es zu umfangreichen Erweiterungen und teilweise auch zu Änderungen am Entwurf.
 
-\section{Änderungen gegenüber dem Entwurf}
+\subsection{Änderungen gegenüber dem Entwurf}
 
 Die wichtigste Änderung am Entwurf betrifft die Vererbungshierarchie der BoardActors. 
 Während der Entwurf noch einen ParentActor vorsah, empfahl es sich während der Implementierung eine gemeinsame Oberklasse für gefärbte BoardObjects zu haben.
 Dies liegt an der ähnlichen vorgehensweise beim Zeichnen der unterschiedlichen Farben.
 An die Stelle des ParentActors tritt somit der ColoredBoardObjectActor.
 
-\section{Neuerungen gegenüber dem Entwurf}
+\subsection{Neuerungen gegenüber dem Entwurf}
 
 Das Erstellen und die Synchronhaltung einer Repräsentation zu einem Board ist ein komplexes Thema, welches im Entwurf noch nicht detailliert beachtet wurde.
 Für den hierfür erforderlichen Code wurde daher nachträglich die mit dem Präfix ActorLayout versehenen Klassen angelegt.
