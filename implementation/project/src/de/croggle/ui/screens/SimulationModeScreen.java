@@ -96,9 +96,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 	@Override
 	public void render(float delta) {
 		super.render(delta);
-		if (boardActor != null) {
-			checkZoom();
-		}
+		checkZoom();
 	}
 
 	@Override
@@ -109,7 +107,7 @@ public class SimulationModeScreen extends AbstractScreen implements
 
 		ActorLayoutConfiguration config = new ActorLayoutConfiguration();
 		config.setColorController(cctrlr);
-		BoardActor boardActor = new BoardActor(b, config);
+		boardActor = new BoardActor(b, config);
 		gameController.registerSimulationBoardEventListener(boardActor
 				.getBoardEventListener());
 		boardActor.setColorBlindEnabled(game.getSettingController()
@@ -127,7 +125,8 @@ public class SimulationModeScreen extends AbstractScreen implements
 		stopAutomaticSimulation();
 		gameController.updateTime();
 		gameController.setTimeStamp();
-		Log.d("check time", "elapsedTime: " + gameController.getElapsedTime() + " ms");
+		Log.d("check time", "elapsedTime: " + gameController.getElapsedTime()
+				+ " ms");
 		table.clear();
 	}
 
