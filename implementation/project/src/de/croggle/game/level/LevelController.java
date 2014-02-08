@@ -15,7 +15,6 @@ public class LevelController {
 	private int packageIndex;
 	private List<Level> levels;
 	private AlligatorApp game;
-
 	/**
 	 * Creates the controller with the given package index. It will manage the
 	 * levels from the level package defined by <code>packageIndex</code>.
@@ -103,6 +102,15 @@ public class LevelController {
 		for (int i = 0; i < numberOfLevel; i++) {
 			levels.add(LevelLoadHelper.instantiate(this.packageIndex, i,
 					this.game));
+		}
+		
+		for(int i = 0; i < levels.size(); i++){
+			if(game.getPersistenceManager().getLevelProgress(game.getProfileController().getCurrentProfileName(), i).isSolved()){
+				levels.get(i).setSolvedTrue();
+				if(i+1 < levels.size()){
+					levels.get(i+1).setUnlocked(true);
+				}
+			}
 		}
 
 	}
