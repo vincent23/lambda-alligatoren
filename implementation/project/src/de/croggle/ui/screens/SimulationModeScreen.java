@@ -173,17 +173,17 @@ public class SimulationModeScreen extends AbstractScreen implements
 			}
 		});
 
-		Slider delaySlider = new Slider(MIN_AUTOMATIC_SIMULATION_DELAY,
-				MAX_AUTOMATIC_SIMULATION_DELAY, 1000, false,
+		Slider delaySlider = new Slider(-MAX_AUTOMATIC_SIMULATION_DELAY,
+				-MIN_AUTOMATIC_SIMULATION_DELAY, 1000, false,
 				helper.getSliderStyle());
-		delaySlider.setValue(automaticSimulationFrequency);
+		delaySlider.setValue(-automaticSimulationFrequency);
 		delaySlider.addListener(new ChangeListener() {
 
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				Slider slider = (Slider) actor;
 				if (!slider.isDragging()) {
-					long newFrequency = (long) slider.getValue();
+					long newFrequency = (long) -slider.getValue();
 					if (newFrequency != automaticSimulationFrequency) {
 						automaticSimulationFrequency = newFrequency;
 						if (isSimulating) {
