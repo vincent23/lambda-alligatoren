@@ -1,1 +1,44 @@
 \section{Package: game.board.operations.validation}
+\subsection{FindBoardErrorsTest}
+	\begin{description}
+		\item[testUncoloredEgg] Testet, ob ein ungefärbtes Ei auf einem \emph{Board} auch als ein solches erkannt und 
+			behandelt wird und eine dementsprechende Warnung auftritt.
+		\item[testUncoloredalligator] Testet, ob ein ungefärbter \emph{ColoredAlligator} auf einem \emph{Board} auch als 
+			ein solcher erkannt und behandelt wird und eine dementsprechende Warnung auftritt.
+		\item[testEmptyAgedAlligator] Testet, ob ein \emph{AgedAlligator} ohne Kinder auf einem \emph{Board} auch als 
+			ein solcher erkannt und behandelt wird und eine dementsprechende Warnung auftritt.
+		\item[testEmptyBoard] Testet, ob ein leeres \emph{Board} auch als ein solches erkannt und behandelt wird.
+		\item[testEmptyColoredAlligator] Testet, ob ein \emph{ColoredAlligator} ohne Kinder auf einem \emph{Board} auch 
+			als ein solcher erkannt und behandelt wird und eine dementsprechende Warnung auftritt.
+		\item[testNoUncolored] Testet, ob ein gültiges \emph{Board} mit eingefärbten Objekten auch als gültig erkannt 
+			wird und eine dementsprechende Warnung auftritt.
+		\item[testNoEmptyAgedAlligator] Testet, ob ein gültiges \emph{Board} mit einem \emph{AgedAlligator} mit Kindern 
+			auch als gültig erkannt wird und eine dementsprechende Warnung auftritt.
+		\item[testNoEmptyBoard] Testet, ob ein nicht leeres gültiges \emph{Board} auch als ein solches erkannt und 
+			behandelt wird und eine dementsprechende Warnung auftritt.
+		\item[testEmptyNoColoredAlligator] Testet, ob ein \emph{ColoredAlligator} mit Kindern auf einem \emph{Board} 
+			auch als gültig erkannt und behandelt wird und eine dementsprechende Warnung auftritt.
+		\item[testMultipleErrors] Testet ob die richtge Anzahl an Warnungen gegeben wird, sollten mehrere Fehler 
+			auftreten, die ein \emph{Board} ungültig werden lassen.
+	\end{description}
+
+\subsection{ValidateConstellationTest}
+	\begin{description}
+		\item[testUncoloredEgg] Testet, ob ein ungefärbtes Ei auf einem \emph{Board} auch als ein solches erkannt und 
+			behandelt wird.
+		\item[testUncoloredalligator] Testet, ob ein ungefärbter \emph{ColoredAlligator} auf einem \emph{Board} auch als 
+			ein solcher erkannt und behandelt wird.
+		\item[testEmptyAgedAlligator] Testet, ob ein \emph{AgedAlligator} ohne Kinder auf einem \emph{Board} auch als 
+			ein solcher erkannt und behandelt wird.
+		\item[testEmptyBoard] Testet, ob ein leeres \emph{Board} auch als ein solches erkannt und behandelt wird.
+		\item[testEmptyColoredAlligator] Testet, ob ein \emph{ColoredAlligator} ohne Kinder auf einem \emph{Board} auch 
+			als ein solcher erkannt und behandelt wird.
+		\item[testNoUncolored] Testet, ob ein gültiges \emph{Board} mit eingefärbten Objekten auch als gültig erkannt 
+			wird.
+		\item[testNoEmptyAgedAlligator] Testet, ob ein gültiges \emph{Board} mit einem \emph{AgedAlligator} mit Kindern 
+			auch als gültig erkannt wird.
+		\item[testNoEmptyBoard] Testet, ob ein nicht leeres gültiges \emph{Board} auch als ein solches erkannt und 
+			behandelt wird.
+		\item[testEmptyNoColoredAlligator] Testet, ob ein \emph{ColoredAlligator} mit Kindern auf einem \emph{Board} 
+			auch als gültig erkannt und behandelt wird.
+	\end{description}
