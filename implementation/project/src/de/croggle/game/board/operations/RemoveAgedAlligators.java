@@ -5,6 +5,8 @@ import de.croggle.game.board.Board;
 import de.croggle.game.board.BoardObject;
 import de.croggle.game.board.ColoredAlligator;
 import de.croggle.game.board.Egg;
+import de.croggle.game.board.InternalBoardObject;
+import de.croggle.game.board.Parent;
 import de.croggle.game.event.BoardEventMessenger;
 
 /**
@@ -13,7 +15,7 @@ import de.croggle.game.event.BoardEventMessenger;
  * 
  */
 public class RemoveAgedAlligators implements BoardObjectVisitor {
-	private BoardEventMessenger boardMessenger;
+	private final BoardEventMessenger boardMessenger;
 
 	/**
 	 * 
@@ -70,6 +72,7 @@ public class RemoveAgedAlligators implements BoardObjectVisitor {
 	@Override
 	public void visitColoredAlligator(ColoredAlligator alligator) {
 		alligator.acceptOnChildren(this);
+		checkChildren(alligator);
 	}
 
 	/**
@@ -78,20 +81,7 @@ public class RemoveAgedAlligators implements BoardObjectVisitor {
 	@Override
 	public void visitAgedAlligator(AgedAlligator alligator) {
 		alligator.acceptOnChildren(this);
-		int children = alligator.getChildCount();
-		if (children <= 1) {
-			int index = alligator.getParent().getChildPosition(alligator);
-			if (children == 0) {
-				alligator.getParent().removeChild(alligator);
-			} else if (children == 1) {
-				boolean replaced = alligator.getParent().replaceChild(
-						alligator, alligator.getFirstChild());
-			}
-			if (this.boardMessenger != null) {
-				this.boardMessenger.notifyAgedAlligatorVanishes(alligator,
-						index);
-			}
-		}
+		checkChildren(alligator);
 	}
 
 	/**
@@ -100,6 +90,31 @@ public class RemoveAgedAlligators implements BoardObjectVisitor {
 	@Override
 	public void visitBoard(Board board) {
 		board.acceptOnChildren(this);
+		checkChildren(board);
+	}
+
+	private void checkChildren(Parent p) {
+		for (int i = 0; i < p.getChildCount();) {
+			InternalBoardObject child = p.getChildAtPosition(i);
+			if (child.getClass() == AgedAlligator.class
+					&& ((AgedAlligator) child).getChildCount() <= 1) {
+				AgedAlligator aged = (AgedAlligator) child;
+				if (aged.getChildCount() == 0) {
+					p.removeChild(child);
+					if (boardMessenger != null) {
+						boardMessenger.notifyAgedAlligatorVanishes(aged, i);
+					}
+				} else {
+					p.replaceChild(child, aged.getFirstChild());
+					if (boardMessenger != null) {
+						boardMessenger.notifyAgedAlligatorVanishes(aged, i);
+					}
+					i++;
+				}
+			} else {
+				i++;
+			}
+		}
 	}
 
 }
