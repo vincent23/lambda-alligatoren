@@ -9,8 +9,19 @@
 		\item[testBoundColorsMultipleOccurences]Überprüft, ob Anzahl und Farbe der Farben richtig erkannt wird, wenn mehrere 
 			Farben mehrmals im \emph{Board} vorkommen. 
 	\end{description}
+
 \subsection{CollectFreeColorsTest}
-\subsection{CountBoardObjectsTest}
+	\begin{description}
+		\item[testSimpleFreeColor] Überprüft die Erkennung eines frei stehenden gefärbten Eis und dessen Farbe.
+		\item[testSimpleNonFreeColor] Überprüft ob nicht alleine stehende Eier als solche erkannt werden.
+		\item[testRootFreeColor]Überprüft, dass das \emph{Board} nicht als alleine stehendes Ei erkannt wird.
+		\item[testFreeColorWithParent] Überprüft die Erkennung eines anders als sein Parent gefärbten Eis und dessen Farbe.
+		\item[testMultipleFreeColors] Überprüft die Erkennung von mehreren anders als die jeweiligen Parents gefärbten Eiern 
+			und deren Farbe.
+		\item[testFreeColorMultipleOccurences]Überprüft die Erkennung von mehreren anders als die jeweiligen Parents gefärbten 
+			Eiern und deren Farbe, auch wenn diese mehrmals auftritt.
+	\end{description}
+
 \subsection{CreateDepthMapTest}
 \subsection{CreateHeightMapTest}
 \subsection{CreateWidthMapTest}
