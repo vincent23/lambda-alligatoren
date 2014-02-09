@@ -1,1 +1,34 @@
 \section{Package: ui}
+
+Das gesamte Paket ui und die Unterpakete wurde wegen mangelnder Detailkenntnisse des benutzten Framesworks nur sehr allgemein entworfen. Trotzdem wurden hauptsächlich einige Hilfsklassen zu besseren Übersicht und Kapselung hinzugefügt.
+
+\subsection{ConfirmInterface}
+Hierbei handelt es sich um ein Interface, das lediglich die Klassen \textbf{yes()} und \textbf{no()} beinhaltet. Der Sinn ist es, eine Abstahierung für einfache zweiseitige Nutzerentscheidung zu bieten: Genutzt wird dieses Interface, um über einen Dialog (vgl: YesNoDialog) mitzuteilen, was bei Bestätigung und Ablehnung einer gestellten Option zu passieren hat.
+
+\subsection{Änderungen im StyleHelper}
+Der StyleHelper benutzt außer der "'Skin"' nun zusätzlich einen FreeTypeFontGenerator, um Schrift in allen beliebigen Größen darzustellen, da libgdx nur die Benutzung von Bitmap Fonts unterstützt. Er ist außerdem auf das Entwurfsmuster "'Singleton"' ausgelegt.
+
+\subsubsection{Neue Methoden}
+Methoden die nicht genauer erläutert sind, geben einfach den entsprechenden in der \textbf{skin.json} Datei definierten Style zurück.
+\begin{itemize}
+\item dispose() : Entfernt die genutzten Dateien aus dem Arbeitsspeicher. 
+\item getButtonStyle()
+\item getTextButtonStyleLevel()
+\item getTextButtonStyleSquare()
+\item getImageButtonStyleRound()
+\item getImageButtonStyle(String icon) : Erstellt einen Style, der das per String definierte Icon als Bild besitzt.
+\item getImageButtonStyleRound(String icon) : Erstellt einen Style, der das per String definierte Icon als Bild besitzt.
+\item getImageTextButtonStyleTransparent()
+\item getImageTextButtonStyle(String icon) : Erstellt einen Style, der das per String definierte Icon als Bild besitzt.
+\item getImageTextButtonStyleTransparent(String icon) : Erstellt einen Style, der das per String definierte Icon als Bild besitzt.
+\item getBlackLabelStyle()
+\item getLabelStyle(int size) : Erstellt den Style mit der übergebenen Schriftgröße.
+\item getBlackLabelStyle(int size) : Erstellt den Style mit der übergebenen Schriftgröße.
+\item getCheckBoxStyle()
+\item getSliderStyle()
+\item getTextFieldStyle()
+\item getSelectBoxStyle()
+\item getDialogStyle()
+\item getWindowStyle()
+\item getDrawable(String path) : Gibt, falls vorhanden, die Grafik zurück, die im verwendeten Texturatlas durch den gegebenen String repräsentiert wird.
+\end{itemize}
