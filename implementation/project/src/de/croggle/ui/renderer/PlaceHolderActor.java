@@ -2,10 +2,11 @@ package de.croggle.ui.renderer;
 
 import de.croggle.game.board.InternalBoardObject;
 
-public class PlaceHolderActor extends BoardObjectActor {
+class PlaceHolderActor extends BoardObjectActor {
 
 	private float siblingX;
 	private float siblingW;
+	private float supposedWidth;
 
 	public PlaceHolderActor(InternalBoardObject object) {
 		super(object);
@@ -20,24 +21,46 @@ public class PlaceHolderActor extends BoardObjectActor {
 		setHeight(h);
 	}
 
+	private boolean isLeftOfSibling(float x) {
+		return x < siblingX;
+	}
+
 	@Override
 	public void setX(float x) {
-		boolean leftOfSibling = x < siblingX;
-		super.setWidth(siblingX - x);
-		if (leftOfSibling) {
+		if (isLeftOfSibling(x)) {
+			super.setWidth(supposedWidth + (siblingX - x) + 1);
 			super.setX(x);
 		} else {
-			super.setX(siblingX + siblingW);
+			super.setWidth(supposedWidth + (x - siblingX) + 1);
+			super.setX(siblingX + siblingW - 1);
 		}
 	}
 
 	@Override
 	public void setWidth(float w) {
+		supposedWidth = w;
+		setX(getX());
+	}
 
+	@Override
+	public void setSize(float width, float height) {
+		setWidth(width);
+		setHeight(height);
 	}
 
 	public void setSiblingXAndWidth(float x, float w) {
 		siblingX = x;
 		siblingW = w;
+	}
+
+	// @Override
+	// public void draw(SpriteBatch batch, float parentAlpha) {
+	// batch.draw(AssetManager.getInstance()
+	// .getColorTexture(Color.uncolored()), getX(), getY(), getWidth()
+	// * getScaleX(), getHeight() * getScaleY());
+	// }
+
+	public void setActualX(float x) {
+		super.setX(x);
 	}
 }

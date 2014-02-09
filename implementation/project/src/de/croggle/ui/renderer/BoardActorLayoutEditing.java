@@ -39,6 +39,7 @@ class BoardActorLayoutEditing {
 	private final BoardObjectActorDragging dragging;
 	private final List<Target> temporaryTargets;
 	private Source temporarySource;
+	PlaceholderTarget placeholderTarget;
 
 	private final PlaceHolderActor placeHolderActor;
 
@@ -71,6 +72,7 @@ class BoardActorLayoutEditing {
 		placeHolderActor = new PlaceHolderActor(new AgedAlligator(false, false));
 		// make it invisible
 		placeHolderActor.setColor(0.f, 0.f, 0.f, 0.f);
+		placeholderTarget = new PlaceholderTarget(placeHolderActor);
 		addPermanentSourcesAndTargets();
 	}
 
@@ -86,7 +88,6 @@ class BoardActorLayoutEditing {
 					"Must not register permanent sources and targets more than once");
 		}
 
-		ReplaceTarget placeholderTarget = new ReplaceTarget(placeHolderActor);
 		dnd.addTarget(placeholderTarget);
 		boardActorTarget = new BoardActorTarget(b);
 		dnd.addTarget(boardActorTarget);
@@ -416,9 +417,10 @@ class BoardActorLayoutEditing {
 
 	}
 
-	private class ReplaceTarget extends Target {
+	private class PlaceholderTarget extends Target {
+		private boolean isDragging = false;
 
-		public ReplaceTarget(BoardObjectActor actor) {
+		public PlaceholderTarget(BoardObjectActor actor) {
 			super(actor);
 		}
 
@@ -426,7 +428,26 @@ class BoardActorLayoutEditing {
 		public boolean drag(Source source, Payload payload, float x, float y,
 				int pointer) {
 			// TODO Auto-generated method stub
+			isDragging = true;
 			return true;
+		}
+
+		@Override
+		public void reset(Source s, Payload l) {
+			isDragging = false;
+
+			BoardObjectActor targetActor = (BoardObjectActor) getActor();
+			InternalBoardObject target = targetActor.getBoardObject();
+			if (target.getParent() != null) {
+				Parent parent = target.getParent();
+				parent.removeChild(target);
+				target.setParent(null);
+			}
+			messenger.notifyObjectRemoved(target);
+		}
+
+		public boolean isDraggedOver() {
+			return isDragging;
 		}
 
 		@Override
@@ -457,9 +478,9 @@ class BoardActorLayoutEditing {
 				}
 			}
 			parent.replaceChild(target, payloadObject);
+			target.setParent(null);
 			b.addToWorld(payloadActor);
 			b.getLayout().addActor(payloadActor);
-			messenger.notifyObjectRemoved(target);
 		}
 
 	}
@@ -489,7 +510,7 @@ class BoardActorLayoutEditing {
 			final float right = targetActor.getWidth() - left;
 
 			/*
-			 * calculate if the drag actually occured on those areas
+			 * calculate if the drag actually occurred on those areas
 			 */
 			point.set(x, y);
 			point = targetActor.localToStageCoordinates(point);
@@ -522,10 +543,13 @@ class BoardActorLayoutEditing {
 					}
 
 					if (x < left) {
+						placeHolderActor.setActualX(targetActor.getX());
 						parent.insertChild(placeholder, targetChildPos);
 						b.getLayout().addActor(placeHolderActor);
 						b.addToWorld(placeHolderActor);
 					} else if (x > right) {
+						placeHolderActor.setActualX(targetActor.getX()
+								+ targetActor.getWidth());
 						parent.insertChild(placeholder, targetChildPos + 1);
 						b.getLayout().addActor(placeHolderActor);
 						b.addToWorld(placeHolderActor);
@@ -547,14 +571,15 @@ class BoardActorLayoutEditing {
 
 		@Override
 		public void reset(Source source, Payload payload) {
-			// InternalBoardObject placeholder =
-			// placeHolderActor.getBoardObject();
-			// if (placeholder.getParent() != null) {
-			// placeholder.getParent().removeChild(placeholder);
-			// placeholder.setParent(null);
-			// }
-			// b.getLayout().removeActor(placeHolderActor);
-			// b.removeFromWorld(placeHolderActor);
+			if (!placeholderTarget.isDraggedOver()) {
+				InternalBoardObject placeholder = placeHolderActor
+						.getBoardObject();
+				if (placeholder.getParent() != null) {
+					placeholder.getParent().removeChild(placeholder);
+					placeholder.setParent(null);
+				}
+				messenger.notifyObjectRemoved(placeholder);
+			}
 			placeholderPlacedBefore = false;
 		}
 
