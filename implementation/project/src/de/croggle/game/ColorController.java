@@ -40,7 +40,7 @@ public class ColorController {
 	public com.badlogic.gdx.graphics.Color getRepresentation(
 			de.croggle.game.Color color) {
 		if (color == uncolored) {
-			return de.croggle.util.convert.Color.fromHexString("#FFFFFF");
+			return de.croggle.util.convert.ColorConvert.fromHexString("#FFFFFF");
 		} else {
 			// return lookup.get(color);
 			return de.croggle.game.Color.getRepresentation(color);

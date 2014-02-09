@@ -26,7 +26,7 @@ public class Color implements Comparable<Color> {
 		// test
 		representations = new com.badlogic.gdx.graphics.Color[MAX_COLORS];
 		for (int i = 0; i < colorStrings.length; i++) {
-			representations[i] = de.croggle.util.convert.Color
+			representations[i] = de.croggle.util.convert.ColorConvert
 					.fromHexString(colorStrings[i]);
 		}
 	}

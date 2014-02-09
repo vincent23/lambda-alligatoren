@@ -1,7 +1,7 @@
 package de.croggle.util.convert;
 
-public class Color {
-	private Color() {
+public class ColorConvert {
+	private ColorConvert() {
 
 	}
 
