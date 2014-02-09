@@ -5,10 +5,10 @@
 \subsubsection{Hinzugefügte Methoden}
 
 \begin{description}
-	\item{Getter und Setter)}
+	\item[Getter und Setter]
 	Getter für \emph{Index}, \emph{Stage} und \emph{NumberOfStages}, sowie Setter für \emph{Index}, \emph{Description}, \emph{EmblemPathAchieved}, \emph{EmblemPathNotAchieved}, \emph{Id} und \emph{Stages} wurden hinzugefügt.
 	
-	\item{initialize()}
+	\item[initialize()]
 	Abstrakte Methode zur Initialisierung eines \emph{Achievements} wurde hinzugefügt.
 
 	
@@ -19,10 +19,10 @@
 \subsubsection{Modifizierte Methoden}
 
 \begin{description}
-	\item{getEmblemPath(int index)}
+	\item[getEmblemPath(int index)]
 	Methode wurde aufgespalten in \emph{getEmblemPathAchieved(int index)} und \emph{getEmblemPathNotAchieved(int index)}.
 	
-	\item{requirementsMet()}
+	\item[requirementsMet()]
 	Methode bekommt jetzt zwei Argumente: \emph{Statistic} statistic und \emph{Statistic} statisticDelta.
 \end{description}
 
@@ -33,13 +33,13 @@ Implementiert nun nicht mehr \emph{StatisticsDeltaProcessor}.
 \subsubsection{Hinzugefügte Methoden}
 
 \begin{description}
-	\item{updateAchievements(Statistic statistic, Statistic statisticsDelta))}
+	\item[updateAchievements(Statistic statistic, Statistic statisticsDelta)]
 	Korrigiert die Indices der \emph{AvailableAchievements}, gibt diese zurück und fügt Änderungen den neusten Änderungen hinzu.	
 	
-	\item{convertInputFromDataBase(SparseIntArray tupels)}
+	\item[convertInputFromDataBase(SparseIntArray tupels)]
 	Konvertiert die Eingabe in eine Liste von \emph{Achievements} mit richtigen Indices und gibt diese zurück.
 
-	\item{processStatisticChange(Statistic statisticsDelta, Statistic statistic)}
+	\item[processStatisticChange(Statistic statisticsDelta, Statistic statistic)]
 	Ersetze \emph{processDelta()} mit \emph{processStatisticChange()}.
 	
 \end{description}
@@ -49,10 +49,10 @@ Implementiert nun nicht mehr \emph{StatisticsDeltaProcessor}.
 \subsubsection{Modifizierte Methoden}
 
 \begin{description}
-	\item{initializeAvailableAchievements()}
+	\item[initializeAvailableAchievements()]
 	Sichtbarkeit von public zu private geändert.
 	
-	\item{requirementsMet()}
+	\item[requirementsMet()]
 	Entsprechend dem Interface geändert.	
 \end{description}
 
@@ -65,10 +65,10 @@ Erstellen von sowohl den einzelnen \emph{Achievements} als auch der \emph{Availa
 \subsubsection{Hinzugefügte Methoden}
 
 \begin{description}
-	\item{createAchievement(int id)}
+	\item[createAchievement(int id)]
 	Bekommt eine Id und gibt ein neues, initialisiertes \emph{Achievement} des entsprechenden Typs zurück.
 
-	\item{reateListOfAchievementTypes}
+	\item[createListOfAchievementTypes]
 	Gibt eine Liste mit einem neu initialisiertem \emph{Achievement} von jedem Typ zurück.
 
 \end{description}
@@ -79,7 +79,7 @@ Erstellen von sowohl den einzelnen \emph{Achievements} als auch der \emph{Availa
 \subsubsection{Modifizierte Methoden}
 
 \begin{description}
-	\item{requirementsMet()}
+	\item[requirementsMet()]
 	Entsprechend dem Interface geändert.
 \end{description}
 
@@ -88,7 +88,7 @@ Erstellen von sowohl den einzelnen \emph{Achievements} als auch der \emph{Availa
 \subsubsection{Modifizierte Methoden}
 
 \begin{description}
-	\item{requirementsMet()}
+	\item[requirementsMet()]
 	Entsprechend dem Interface geändert.
 \end{description}
 
@@ -97,7 +97,7 @@ Erstellen von sowohl den einzelnen \emph{Achievements} als auch der \emph{Availa
 \subsubsection{Modifizierte Methoden}
 
 \begin{description}
-	\item{requirementsMet()}
+	\item[requirementsMet()]
 	Entsprechend dem Interface geändert.
 \end{description}
 
@@ -106,7 +106,7 @@ Erstellen von sowohl den einzelnen \emph{Achievements} als auch der \emph{Availa
 \subsubsection{Modifizierte Methoden}
 
 \begin{description}
-	\item{requirementsMet()}
+	\item[requirementsMet()]
 	Entsprechend dem Interface geändert.
 \end{description}
 
@@ -115,7 +115,7 @@ Erstellen von sowohl den einzelnen \emph{Achievements} als auch der \emph{Availa
 \subsubsection{Modifizierte Methoden}
 
 \begin{description}
-	\item{requirementsMet()}
+	\item[requirementsMet()]
 	Entsprechend dem Interface geändert.
 \end{description}
 
@@ -124,7 +124,7 @@ Erstellen von sowohl den einzelnen \emph{Achievements} als auch der \emph{Availa
 \subsubsection{Modifizierte Methoden}
 
 \begin{description}
-	\item{requirementsMet()}
+	\item[requirementsMet()]
 	Entsprechend dem Interface geändert.
 \end{description}
 
@@ -133,7 +133,7 @@ Erstellen von sowohl den einzelnen \emph{Achievements} als auch der \emph{Availa
 \subsubsection{Modifizierte Methoden}
 
 \begin{description}
-	\item{requirementsMet()}
+	\item[requirementsMet()]
 	Entsprechend dem Interface geändert.
 \end{description}
 
@@ -142,7 +142,7 @@ Erstellen von sowohl den einzelnen \emph{Achievements} als auch der \emph{Availa
 \subsubsection{Modifizierte Methoden}
 
 \begin{description}
-	\item{requirementsMet()}
+	\item[requirementsMet()]
 	Entsprechend dem Interface geändert.
 \end{description}
 
