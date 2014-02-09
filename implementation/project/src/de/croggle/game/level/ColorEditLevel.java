@@ -35,20 +35,12 @@ public class ColorEditLevel extends EditLevel {
 	 * @param abortSimulationAfter
 	 *            number of evaluation steps the simulation is aborted after
 	 */
+
 	public ColorEditLevel(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, Animation animation, Color[] userColors,
+			Board goalBoard, String animation, Color[] userColors,
 			Color[] blockedColors, String hint, String description,
 			int abortSimulationAfter) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
-				userColors, blockedColors, hint, description,
-				abortSimulationAfter, false);
-	}
-
-	public ColorEditLevel(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, String animationPath, Color[] userColors,
-			Color[] blockedColors, String hint, String description,
-			int abortSimulationAfter) {
-		super(levelIndex, packageIndex, initialBoard, goalBoard, animationPath,
 				userColors, blockedColors, hint, description,
 				abortSimulationAfter, false);
 	}

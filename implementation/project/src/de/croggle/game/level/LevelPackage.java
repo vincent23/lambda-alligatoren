@@ -11,7 +11,7 @@ public class LevelPackage {
 	private String description;
 	private String emblemPath;
 	private boolean hasAnimation;
-	private Animation animation;
+	private String animation;
 	private String design;
 
 	/**
@@ -33,7 +33,7 @@ public class LevelPackage {
 	 *            the file path to the desing of this package
 	 */
 	public LevelPackage(int levelPackageId, String name, String description,
-			String emblemPath, boolean hasAnimation, Animation animation,
+			String emblemPath, boolean hasAnimation, String animation,
 			String design) {
 		this.levelPackageId = levelPackageId;
 		this.name = name;
@@ -96,7 +96,7 @@ public class LevelPackage {
 	 * 
 	 * @return the Animation if there is one else null is returned
 	 */
-	public Animation getAnimation() {
+	public String getAnimation() {
 		if (this.hasAnimation()) {
 			return this.animation;
 		} else {

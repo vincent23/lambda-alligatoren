@@ -36,20 +36,12 @@ public class TermEditLevel extends EditLevel {
 	 * @param abortSimulationAfter
 	 *            number of evaluation steps the simulation is aborted after
 	 */
+
 	public TermEditLevel(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, Animation animation, Color[] userColors,
+			Board goalBoard, String animation, Color[] userColors,
 			Color[] blockedColors, String hint, String description,
 			int abortSimulationAfter) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
-				userColors, blockedColors, hint, description,
-				abortSimulationAfter, true);
-	}
-
-	public TermEditLevel(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, String animationPath, Color[] userColors,
-			Color[] blockedColors, String hint, String description,
-			int abortSimulationAfter) {
-		super(levelIndex, packageIndex, initialBoard, goalBoard, animationPath,
 				userColors, blockedColors, hint, description,
 				abortSimulationAfter, true);
 	}

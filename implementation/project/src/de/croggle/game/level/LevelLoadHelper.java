@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 
@@ -107,7 +106,6 @@ class LevelLoadHelper {
 						"The user color Array in this json file has to contain six items!");
 			}
 			Color[] blockedColors = getColorfromJson(data.get("blocked colors"));
-			Animation animation = getAnimationfromJson(data, game);
 
 			level = new ColorEditLevel(levelIndex, packageIndex,
 					JsonToAlligator.convertBoard(initialBoard),
@@ -126,7 +124,6 @@ class LevelLoadHelper {
 						"The user color Array in this json file has to contain six items!");
 			}
 			Color[] blockedColors = getColorfromJson(data.get("blocked colors"));
-			Animation animation = getAnimationfromJson(data, game);
 			level = new TermEditLevel(levelIndex, packageIndex,
 					JsonToAlligator.convertBoard(initialBoard),
 					JsonToAlligator.convertBoard(goalBoard),
@@ -160,7 +157,6 @@ class LevelLoadHelper {
 		JsonValue initialBoard = data.get("initial");
 		int correctAnswer = data.getInt("correct answer");
 		Board[] answers = getAnswersfromJson(data.get("answers"));
-		Animation animation = getAnimationfromJson(data, game);
 		Level level = new MultipleChoiceLevel(levelIndex, packageIndex,
 				JsonToAlligator.convertBoard(initialBoard),
 				answers[correctAnswer], json.getString("animation"), json.get(
@@ -229,30 +225,4 @@ class LevelLoadHelper {
 
 	}
 
-	/**
-	 * Method to generate Animation from a path given in the json.
-	 * 
-	 * @param json
-	 *            JsonValue containing the path
-	 * @param game
-	 *            context of the game
-	 * @return the Animation created
-	 */
-	public static Animation getAnimationfromJson(JsonValue json,
-			AlligatorApp game) {
-		/*
-		 * AssetManager manager = game.getAssetManager(); Texture animationSheet
-		 * = manager.get(json.getString("animation"), Texture.class);
-		 * TextureRegion[][] tmp = TextureRegion.split(animationSheet,
-		 * animationSheet.getWidth() / FRAME_COLS, animationSheet.getHeight() /
-		 * FRAME_ROWS); TextureRegion[] animationFrames = new
-		 * TextureRegion[FRAME_COLS FRAME_ROWS]; int index = 0; for (int i = 0;
-		 * i < FRAME_ROWS; i++) { for (int j = 0; j < FRAME_COLS; j++) {
-		 * animationFrames[index++] = tmp[i][j]; } }
-		 * 
-		 * // TODO passt die frametime? return new Animation(0.025f,
-		 * animationFrames);
-		 */
-		return null;
-	}
 }

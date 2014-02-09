@@ -76,7 +76,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 		// load graphics for animation/tutorial
 		if (gameController.getLevel().hasAnimation()) {
-			assetManager.load(gameController.getLevel().getAnimationPath(),
+			assetManager.load(gameController.getLevel().getAnimation(),
 					Texture.class);
 		}
 	}
@@ -203,7 +203,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 		Table buttonTable = new Table();
 		Drawable drawable = new TextureRegionDrawable(new TextureRegion(
-				manager.get(gameController.getLevel().getAnimationPath(),
+				manager.get(gameController.getLevel().getAnimation(),
 						Texture.class)));
 		// used image button here because it keeps the ratio of the texture
 		ImageButton tutorialImage = new ImageButton(drawable);

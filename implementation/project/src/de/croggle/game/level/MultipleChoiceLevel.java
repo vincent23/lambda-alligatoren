@@ -43,20 +43,10 @@ public class MultipleChoiceLevel extends Level {
 	 *            the index of the correct answer
 	 */
 	public MultipleChoiceLevel(int levelIndex, int packageIndex,
-			Board initialBoard, Board goalBoard, Animation animation,
+			Board initialBoard, Board goalBoard, String animation,
 			String hint, String description, int abortSimulationAfter,
 			Board[] answers, int correctAnswer) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
-				hint, description, abortSimulationAfter, false);
-		this.answers = answers;
-		this.correctAnswer = correctAnswer;
-	}
-
-	public MultipleChoiceLevel(int levelIndex, int packageIndex,
-			Board initialBoard, Board goalBoard, String animationPath,
-			String hint, String description, int abortSimulationAfter,
-			Board[] answers, int correctAnswer) {
-		super(levelIndex, packageIndex, initialBoard, goalBoard, animationPath,
 				hint, description, abortSimulationAfter, false);
 		this.answers = answers;
 		this.correctAnswer = correctAnswer;

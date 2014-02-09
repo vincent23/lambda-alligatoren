@@ -1,6 +1,5 @@
 package de.croggle.game.level;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
 
 import de.croggle.AlligatorApp;
 import de.croggle.game.GameController;
@@ -15,8 +14,7 @@ public abstract class Level {
 
 	private Board initialBoard;
 	private Board goalBoard;
-	private Animation animation;
-	private String animationPath;
+	private String animation;
 	private String hint;
 	private String description;
 	private int abortSimulationAfter;
@@ -44,30 +42,15 @@ public abstract class Level {
 	 * @param abortSimulationAfter
 	 *            number of evaluation steps the simulation is aborted after
 	 */
+
 	public Level(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, Animation animation, String hint,
+			Board goalBoard, String animation, String hint,
 			String description, int abortSimulationAfter, boolean showObjectBar) {
 		this.levelIndex = levelIndex;
 		this.packageIndex = packageIndex;
 		this.initialBoard = initialBoard;
 		this.goalBoard = goalBoard;
 		this.animation = animation;
-		this.hint = hint;
-		this.description = description;
-		this.abortSimulationAfter = abortSimulationAfter;
-		this.solved = false;
-		this.unlocked = false;
-		this.showObjectBar = showObjectBar;
-	}
-
-	public Level(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, String animationPath, String hint,
-			String description, int abortSimulationAfter, boolean showObjectBar) {
-		this.levelIndex = levelIndex;
-		this.packageIndex = packageIndex;
-		this.initialBoard = initialBoard;
-		this.goalBoard = goalBoard;
-		this.animationPath = animationPath;
 		this.hint = hint;
 		this.description = description;
 		this.abortSimulationAfter = abortSimulationAfter;
@@ -119,7 +102,7 @@ public abstract class Level {
 	 * @return true if the level has a simulation, otherwise false
 	 */
 	public boolean hasAnimation() {
-		return animation != null || (animationPath != null && animationPath.length() >0);
+		return(animation != null && animation.length() >0);
 	}
 
 	/**
@@ -127,12 +110,9 @@ public abstract class Level {
 	 * 
 	 * @return the path to the animation of the level
 	 */
-	public Animation getAnimation() {
-		return animation;
-	}
 
-	public String getAnimationPath() {
-		return animationPath;
+	public String getAnimation() {
+		return animation;
 	}
 
 	/**

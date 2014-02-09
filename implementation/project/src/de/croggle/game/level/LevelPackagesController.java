@@ -86,7 +86,7 @@ public class LevelPackagesController {
 		LevelPackage levelPackage = new LevelPackage(packageIndex,
 				json.getString("name"), json.getString("description"),
 				json.getString("banner"), hasAnimation,
-				LevelLoadHelper.getAnimationfromJson(json, game),
+				json.getString("animation"),
 				json.getString("design"));
 		return levelPackage;
 	}

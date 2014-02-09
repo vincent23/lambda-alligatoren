@@ -14,15 +14,6 @@ public abstract class EditLevel extends Level {
 	private Color[] userColors;
 	private Color[] blockedColors;
 
-	public EditLevel(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, Animation animation, Color[] userColors,
-			Color[] blockedColors, String hint, String description,
-			int abortSimulationAfter, boolean showObjectBar) {
-		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,
-				hint, description, abortSimulationAfter, showObjectBar);
-		this.userColors = userColors;
-		this.blockedColors = blockedColors;
-	}
 
 	public EditLevel(int levelIndex, int packageIndex, Board initialBoard,
 			Board goalBoard, String animationPath, Color[] userColors,
