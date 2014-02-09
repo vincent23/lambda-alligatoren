@@ -79,14 +79,14 @@ public class AchievementScreen extends AbstractScreen {
 						if (i <= achievement.getIndex()) {
 							achievementButton = new ImageButton(
 									helper.getDrawable(achievement
-											.getEmblemPathachieved(i)));
+											.getEmblemPathAchieved(i)));
 							achievementButton
 									.addListener(new AchievementDetailViewListener(
 											achievement, i));
 						} else if (i == achievement.getNumberOfStages() - 1) {
 							achievementButton = new ImageButton(
 									helper.getDrawable(achievement
-											.getEmblemPathnotachieved(i)));
+											.getEmblemPathNotAchieved(i)));
 							final int index = i;
 							achievementButton.addListener(new ClickListener() {
 								@Override
@@ -102,7 +102,7 @@ public class AchievementScreen extends AbstractScreen {
 						} else {
 							achievementButton = new ImageButton(
 									helper.getDrawable(achievement
-											.getEmblemPathnotachieved(i)));
+											.getEmblemPathNotAchieved(i)));
 							final int index = i;
 							achievementButton.addListener(new ClickListener() {
 								@Override

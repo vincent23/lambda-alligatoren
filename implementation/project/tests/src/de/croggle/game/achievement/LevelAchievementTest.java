@@ -18,8 +18,8 @@ public class LevelAchievementTest extends TestCase {
 		for (int i = 1; i < 8; i++) {
 			assertTrue(testAchievement.getStage(i) == testStages[i]);
 			assertTrue(testAchievement.getDescription(i).endsWith("completed"));
-			assertTrue(testAchievement.getEmblemPathachieved(i).equals("emblems/levelCompleted/0" + i + "a"));
-			assertTrue(testAchievement.getEmblemPathnotachieved(i).equals("emblems/levelCompleted/0" + i + "n"));
+			assertTrue(testAchievement.getEmblemPathAchieved(i).equals("emblems/levelCompleted/0" + i + "a"));
+			assertTrue(testAchievement.getEmblemPathNotAchieved(i).equals("emblems/levelCompleted/0" + i + "n"));
 		}
 		
 	} 

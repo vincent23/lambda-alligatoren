@@ -29,7 +29,7 @@ public class NewAchievementDialog extends Dialog {
 		Image icon;
 		try {
 			icon = new Image(helper.getDrawable(achievement
-					.getEmblemPathachieved(index)));
+					.getEmblemPathAchieved(index)));
 		} catch (IllegalArgumentException ex) {
 			icon = new Image(helper.getDrawable("widgets/icon-trophy"));
 		} catch (GdxRuntimeException ex) {
