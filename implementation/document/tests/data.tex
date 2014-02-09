@@ -1,1 +1,16 @@
 \section{Package: data}
+\subsection{AndroidLocalizationBackendTest}
+\begin{description}
+\item[testAppName]
+	Testet, ob der Applikationsname richtig bezogen wird
+\item[testPluralMissing]
+	Testet, ob das Backend richtig mit fehlenden Pluralen umgehen kann. 
+	Erwartet den eingegeben "`key"' als Resultat.
+\item[testSetGetLocale]
+	Testet, ob die System-Locale richtig gesetzt und wieder ausgelesen werden kann.
+\item[testSystemLocale]
+	Testet, ob die default System-Locale zu beginn gesetzt ist.
+\end{description}
+
+\subsection{TestLocalizationBackend}
+Helferklasse, um ohne ein konkretes, plattformabhängiges Backend den LocalizationHelper zu initialisieren und zu benutzen.
