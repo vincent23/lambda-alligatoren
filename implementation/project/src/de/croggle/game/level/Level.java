@@ -104,7 +104,7 @@ public abstract class Level {
 	 * @return true if the level has a simulation, otherwise false
 	 */
 	public boolean hasAnimation() {
-		return(animation != null && animation.size() >0);
+		return(!animation.get(0).equals(""));
 	}
 
 	/**

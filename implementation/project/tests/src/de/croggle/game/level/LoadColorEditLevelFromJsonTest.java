@@ -26,7 +26,7 @@ public class LoadColorEditLevelFromJsonTest extends InstrumentationTestCase {
 	public void testCase0() {
 		Level l = LevelLoadHelper.instantiate(0, 0, app);
 		Assert.assertTrue(l.getDescription().equals("Erstes Tutorial Level in dem das Einfärben von Spielelementen erklärt wird."));
-		Assert.assertFalse(l.hasAnimation());
+		Assert.assertTrue(l.hasAnimation());
 		Assert.assertTrue(l.getAbortSimulationAfter() == 111);
 	}
 	
