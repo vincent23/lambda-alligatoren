@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Source;
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Target;
 
+import de.croggle.game.board.AgedAlligator;
 import de.croggle.game.board.ColoredBoardObject;
 import de.croggle.game.board.InternalBoardObject;
 import de.croggle.game.board.Parent;
@@ -38,6 +39,8 @@ class BoardActorLayoutEditing {
 	private final BoardObjectActorDragging dragging;
 	private final List<Target> temporaryTargets;
 	private Source temporarySource;
+
+	private final PlaceHolderActor placeHolderActor;
 
 	/*
 	 * TODO fix libgdx' DragAndDrop so it uses the highest target instead of the
@@ -64,6 +67,10 @@ class BoardActorLayoutEditing {
 			this.obar = null;
 		}
 
+		// TODO not really elegant
+		placeHolderActor = new PlaceHolderActor(new AgedAlligator(false, false));
+		// make it invisible
+		placeHolderActor.setColor(0.f, 0.f, 0.f, 0.f);
 		addPermanentSourcesAndTargets();
 	}
 
@@ -79,6 +86,8 @@ class BoardActorLayoutEditing {
 					"Must not register permanent sources and targets more than once");
 		}
 
+		ReplaceTarget placeholderTarget = new ReplaceTarget(placeHolderActor);
+		dnd.addTarget(placeholderTarget);
 		boardActorTarget = new BoardActorTarget(b);
 		dnd.addTarget(boardActorTarget);
 		if (obar != null) {
@@ -90,7 +99,13 @@ class BoardActorLayoutEditing {
 	}
 
 	private void addTemporaryTargets(BoardObjectActor dragged) {
+		CancelTarget cancel = new CancelTarget(dragged);
+		temporaryTargets.add(cancel);
+		dnd.addTarget(cancel);
 		for (BoardObjectActor actor : b.getLayout()) {
+			if (actor == dragged) {
+				continue;
+			}
 			if (areSiblings(actor.getBoardObject(), dragged.getBoardObject())) {
 				SiblingTarget target = new SiblingTarget(actor);
 				temporaryTargets.add(target);
@@ -168,9 +183,15 @@ class BoardActorLayoutEditing {
 		}
 	}
 
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 * @return true if a and b's parents are the same and a is not b
+	 */
 	private static boolean areSiblings(InternalBoardObject a,
 			InternalBoardObject b) {
-		return a.getParent() == b.getParent();
+		return a.getParent() == b.getParent() && a != b;
 	}
 
 	private class EnableDraggingListener extends ActorGestureListener {
@@ -373,15 +394,32 @@ class BoardActorLayoutEditing {
 			} else {
 				messenger.notifyObjectMoved(payloadObject);
 			}
-			b.boardSizeChanged();
 		}
 	}
 
-	private class SiblingTarget extends Target {
+	private class CancelTarget extends Target {
 
-		public SiblingTarget(BoardObjectActor actor) {
+		public CancelTarget(BoardObjectActor actor) {
 			super(actor);
-			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public boolean drag(Source source, Payload payload, float x, float y,
+				int pointer) {
+			return true;
+		}
+
+		@Override
+		public void drop(Source source, Payload payload, float x, float y,
+				int pointer) {
+		}
+
+	}
+
+	private class ReplaceTarget extends Target {
+
+		public ReplaceTarget(BoardObjectActor actor) {
+			super(actor);
 		}
 
 		@Override
@@ -394,8 +432,169 @@ class BoardActorLayoutEditing {
 		@Override
 		public void drop(Source source, Payload payload, float x, float y,
 				int pointer) {
-			// TODO Auto-generated method stub
+			BoardObjectActor targetActor = (BoardObjectActor) getActor();
+			InternalBoardObject target = targetActor.getBoardObject();
+			Parent parent = target.getParent();
 
+			BoardObjectActor payloadActor = (BoardObjectActor) payload
+					.getObject();
+			InternalBoardObject payloadObject = payloadActor.getBoardObject();
+			if (payloadObject.getParent() != null) {
+				Parent objParent = payloadObject.getParent();
+				int objectPos = objParent.getChildPosition(payloadObject);
+				objParent.removeChild(payloadObject);
+
+				if (payloadObject instanceof Parent) {
+					// sift up children
+					Parent objAsParent = (Parent) payloadObject;
+					// careful not to reverse the children order
+					for (int i = 0; i < objAsParent.getChildCount(); i++) {
+						InternalBoardObject child = objAsParent
+								.getChildAtPosition(i);
+						objParent.insertChild(child, objectPos + i);
+					}
+					objAsParent.clearChildren();
+				}
+			}
+			parent.replaceChild(target, payloadObject);
+			b.addToWorld(payloadActor);
+			b.getLayout().addActor(payloadActor);
+			messenger.notifyObjectRemoved(target);
+		}
+
+	}
+
+	private class SiblingTarget extends Target {
+		private Vector2 point = new Vector2();
+		private boolean placeholderIsLeft;
+		private boolean placeholderPlacedBefore;
+
+		public SiblingTarget(BoardObjectActor actor) {
+			super(actor);
+		}
+
+		@Override
+		public boolean drag(Source dragSource, Payload payload, float x,
+				float y, int pointer) {
+			BoardObjectActor targetActor = ((BoardObjectActor) getActor());
+			InternalBoardObject target = targetActor.getBoardObject();
+			boolean isParent = target instanceof Parent;
+
+			/*
+			 * calculate the areas where the source will be simulated to move
+			 * before/after if dragged over
+			 */
+			final float pushSpace = isParent ? 4 : 2;
+			final float left = targetActor.getWidth() / pushSpace;
+			final float right = targetActor.getWidth() - left;
+
+			/*
+			 * calculate if the drag actually occured on those areas
+			 */
+			point.set(x, y);
+			point = targetActor.localToStageCoordinates(point);
+			point = b.stageToLocalCoordinates(point);
+			point = b.boardActorToWorldCoordinates(point);
+
+			BoardObjectActor sourceActor = (BoardObjectActor) dragSource
+					.getActor();
+			Parent parent = target.getParent();
+			int targetChildPos = parent.getChildPosition(target);
+			int sourceChildPos = parent.getChildPosition(sourceActor
+					.getBoardObject());
+			if ((x < left && targetChildPos - sourceChildPos != 1)
+					|| (x > right && sourceChildPos - targetChildPos != 1)) {
+				if (!(placeholderPlacedBefore && x < left == placeholderIsLeft)) {
+					/*
+					 * Prepare the placeholder: move the actor on the drag
+					 * position and remove the placeholder board object from its
+					 * previous parent, if necessary
+					 */
+					placeHolderActor.setSiblingXAndWidth(targetActor.getX(),
+							targetActor.getWidth());
+					InternalBoardObject placeholder = placeHolderActor
+							.getBoardObject();
+					boolean moved = false;
+					if (placeholder.getParent() != null) {
+						placeholder.getParent().removeChild(placeholder);
+						placeholder.setParent(null);
+						moved = true;
+					}
+
+					if (x < left) {
+						parent.insertChild(placeholder, targetChildPos - 1);
+						b.getLayout().addActor(placeHolderActor);
+						b.addToWorld(placeHolderActor);
+					} else if (x > right) {
+						parent.insertChild(placeholder, targetChildPos + 1);
+						b.getLayout().addActor(placeHolderActor);
+						b.addToWorld(placeHolderActor);
+					}
+
+					if (moved) {
+						messenger.notifyObjectMoved(placeholder);
+					} else {
+						messenger.notifyObjectPlaced(placeholder);
+					}
+					placeholderPlacedBefore = true;
+				}
+			} else {
+				reset(dragSource, payload);
+			}
+
+			return isParent;
+		}
+
+		@Override
+		public void reset(Source source, Payload payload) {
+			// InternalBoardObject placeholder =
+			// placeHolderActor.getBoardObject();
+			// if (placeholder.getParent() != null) {
+			// placeholder.getParent().removeChild(placeholder);
+			// placeholder.setParent(null);
+			// }
+			// b.getLayout().removeActor(placeHolderActor);
+			// b.removeFromWorld(placeHolderActor);
+			placeholderPlacedBefore = false;
+		}
+
+		@Override
+		public void drop(Source source, Payload payload, float x, float y,
+				int pointer) {
+			// this method is only called if we have a parent actor as target
+			Parent p = ((Parent) ((BoardObjectActor) getActor())
+					.getBoardObject());
+			BoardObjectActor payloadActor = (BoardObjectActor) payload
+					.getObject();
+			InternalBoardObject payloadObject = payloadActor.getBoardObject();
+			if (payloadObject.getParent() != null) {
+				Parent objParent = payloadObject.getParent();
+				int objectPos = objParent.getChildPosition(payloadObject);
+				objParent.removeChild(payloadObject);
+
+				if (payloadObject instanceof Parent) {
+					// sift up children
+					Parent objAsParent = (Parent) payloadObject;
+					// careful not to reverse the children order
+					for (int i = 0; i < objAsParent.getChildCount(); i++) {
+						InternalBoardObject child = objAsParent
+								.getChildAtPosition(i);
+						objParent.insertChild(child, objectPos + i);
+					}
+					objAsParent.clearChildren();
+				}
+
+			}
+			p.addChild(payloadObject);
+			if (!b.getLayout().hasActor(payloadActor)) {
+				b.getLayout().addActor(payloadActor);
+				b.addToWorld(payloadActor);
+				registerLayoutListeners(payloadActor);
+
+				messenger.notifyObjectPlaced(payloadObject);
+			} else {
+				messenger.notifyObjectMoved(payloadObject);
+			}
 		}
 	}
 
@@ -452,7 +651,6 @@ class BoardActorLayoutEditing {
 			} else {
 				messenger.notifyObjectMoved(payloadObject);
 			}
-			b.boardSizeChanged();
 		}
 	}
 }

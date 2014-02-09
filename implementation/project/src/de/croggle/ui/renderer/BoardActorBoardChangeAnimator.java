@@ -191,6 +191,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		EggActor eggActor = (EggActor) b.getLayout().getActor(replacedEgg);
 		eggActor.enterHatchingState();
 		removeObjectAnimated(replacedEgg);
+		b.boardSizeChanged();
 	}
 
 	private void applyDeltasAnimated(List<ActorDelta> deltas) {
@@ -275,19 +276,24 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	@Override
 	public void onObjectPlaced(InternalBoardObject placed) {
 		applyDeltasAnimated(b.getLayout().getDeltasToFix());
+		b.boardSizeChanged();
 	}
 
 	@Override
 	public void onObjectRemoved(InternalBoardObject removed) {
 		BoardObjectActor removedActor = b.getLayout().getActor(removed);
-		b.removeFromWorld(removedActor);
-		b.getLayout().removeActor(removedActor);
-		applyDeltasAnimated(b.getLayout().getDeltasToFix());
+		if (removedActor != null) {
+			b.removeFromWorld(removedActor);
+			b.getLayout().removeActor(removedActor);
+			applyDeltasAnimated(b.getLayout().getDeltasToFix());
+			b.boardSizeChanged();
+		}
 	}
 
 	@Override
 	public void onObjectMoved(InternalBoardObject moved) {
 		applyDeltasAnimated(b.getLayout().getDeltasToFix());
+		b.boardSizeChanged();
 	}
 
 }
