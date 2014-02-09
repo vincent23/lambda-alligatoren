@@ -1,1 +1,138 @@
 \section{Package: game.board}
+
+\subsection{AgedAlligator}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Hinzufügen der Flags \emph{movable} und \emph{removable}.
+\end{description}
+
+\subsubsection{Entfernte Methoden}
+\begin{description}
+\item[getParent]
+Bereits in der übergeordneten Klasse \emph{Alligator} implementiert.
+\item[setParent]
+Bereits in der übergeordneten Klasse \emph{Alligator} implementiert.
+\item[isMovable]
+Bereits in der übergeordneten Klasse \emph{Alligator} implementiert.
+\item[isRemovable]
+Bereits in der übergeordneten Klasse \emph{Alligator} implementiert.
+\end{description}
+
+
+\subsection{Alligator}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[isMovable]
+Aus den erbenden Klassen \emph{AgedAlligator} und \emph{ColoredAlligator} verschoben.
+\item[isRemovable]
+Aus den erbenden Klassen \emph{AgedAlligator} und \emph{ColoredAlligator} verschoben.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Hinzufügen der Flags \emph{movable} und \emph{removable}.
+\end{description}
+
+
+\subsection{BoardObject}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[match]
+Methode, um verschiedene \emph{BoardObject}-Objekte auf Äquivalenz zu testen.
+\item[matchWithRecoloring]
+Methode, um verschiedene \emph{BoardObject}-Objekte auf Äquivalenz zu testen, unter Berücksichtigung von möglicher \(\alpha\)-Konversion.
+\end{description}
+
+
+\subsection{ColoredAlligator}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[match]
+Zur Implementierung der Änderungen am Interface \emph{BoardObject}.
+\item[matchWithRecoloring]
+Zur Implementierung der Änderungen am Interface \emph{BoardObject}.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Hinzufügen der Flags \emph{movable} und \emph{removable}.
+\end{description}
+
+
+\subsection{ColoredBoardObject}
+Erweitert nun auch das Interface \emph{InternalBoardObject}.
+
+
+\subsection{Egg}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[match]
+Zur Implementierung der Änderungen am Interface \emph{BoardObject}.
+\item[matchWithRecoloring]
+Zur Implementierung der Änderungen am Interface \emph{BoardObject}.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Hinzufügen der Flags \emph{movable} und \emph{removable}
+\end{description}
+
+
+\subsection{InternalBoardObject}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[copy]
+Zur Konkretisierung des Rückgabewertes der Methode aus BoardObject (Kovarianz).
+\end{description}
+
+
+\subsection{NoSuchChildException}
+Neu hinzugefügte Exception, die dann ausgelöst wird, wenn versucht wird auf ein nicht vorhandes Kindelement eines \emph{Parent}-Objekts zuzugreifen.
+
+
+\subsection{Parent}
+Implementiert nun das Interface \emph{BoardObject} sowie \emph{Iterable<InternalBoardObject>}.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[insertChild]
+Methode, um ein Kindobjekt an einer festen Stelle einzufügen.
+\item[getChildPosition]
+Methode, um die Position eines Kindobjektes zu bestimmen.
+\item[getChildAtPosition]
+Methode, um ein Kindobjekt an einer festen Position zu erhalten.
+\item[getFirstChild]
+Methode, um das erste Kindobjekt zu erhalten.
+\item[getChildCount]
+Methode, um die Anzahl der Kindobjekte zu bestimmen.
+\item[clearChildren]
+Methode, um alle Kindobjekte zu entfernen.
+\item[acceptOnChildren]
+Methode, die einen \emph{BoardObjectVisitor} entgegennimmt und ihn allen Kindelementen übergibt.
+\item[match]
+Zur Implementierung der Änderungen am Interface \emph{BoardObject}.
+\item[matchWithRecoloring]
+Zur Implementierung der Änderungen am Interface \emph{BoardObject}.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Erweiterung um einen Copy-Konstruktor.
+\item[replaceChild]
+Umbenannt von \emph{replaceChildWith}.
+\item[iterator]
+Umbenannt von \emph{getIterator}, außerdem Ergänzung um eine Version mit Startindex.
+\item[getChildAfter]
+Umbenannt von \emph{getNextChild}.
+\end{description}
