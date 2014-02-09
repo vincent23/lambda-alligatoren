@@ -6,10 +6,10 @@
 
 \begin{description}
 	\item{Getter und Setter)}
-	Getter für Index, Stage und NumberOfStages, sowie Setter für Index, Description, EmblemPathAchieved, EmblemPathNotAchieved, Id und Stages wurden hinzugefügt.
+	Getter für \emph{Index}, \emph{Stage} und \emph{NumberOfStages}, sowie Setter für \emph{Index}, \emph{Description}, \emph{EmblemPathAchieved}, \emph{EmblemPathNotAchieved}, \emph{Id} und \emph{Stages} wurden hinzugefügt.
 	
 	\item{initialize()}
-	Abstrakte Methode zur Initialisierung eines Achievements wurde hinzugefügt.
+	Abstrakte Methode zur Initialisierung eines \emph{Achievements} wurde hinzugefügt.
 
 	
 \end{description}
@@ -20,27 +20,27 @@
 
 \begin{description}
 	\item{getEmblemPath(int index)}
-	Methode wurde aufgespalten in getEmblemPathAchieved(int index) und getEmblemPathNotAchieved(int index).
+	Methode wurde aufgespalten in \emph{getEmblemPathAchieved(int index)} und \emph{getEmblemPathNotAchieved(int index)}.
 	
 	\item{requirementsMet()}
-	Methode bekommt jetzt zwei Argumente: Statistic statistic und Statistic statisticDelta.
+	Methode bekommt jetzt zwei Argumente: \emph{Statistic} statistic und \emph{Statistic} statisticDelta.
 \end{description}
 
 
 \subsection{AchievementController}
-Implementiert nun nicht mehr StatisticsDeltaProcessor.
+Implementiert nun nicht mehr \emph{StatisticsDeltaProcessor}.
 
 \subsubsection{Hinzugefügte Methoden}
 
 \begin{description}
 	\item{updateAchievements(Statistic statistic, Statistic statisticsDelta))}
-	Korrigiert die Indices der AvailableAchievements, gibt diese zurück und fügt Änderungen den neusten Änderungen hinzu.	
+	Korrigiert die Indices der \emph{AvailableAchievements}, gibt diese zurück und fügt Änderungen den neusten Änderungen hinzu.	
 	
 	\item{convertInputFromDataBase(SparseIntArray tupels)}
-	Konvertiert die Eingabe in eine Liste von Achievements mit richtigen Indices und gibt diese zurück.
+	Konvertiert die Eingabe in eine Liste von \emph{Achievements} mit richtigen Indices und gibt diese zurück.
 
 	\item{processStatisticChange(Statistic statisticsDelta, Statistic statistic)}
-	Ersetze processDelta() mit processStatisticChange().
+	Ersetze \emph{processDelta()} mit \emph{processStatisticChange()}.
 	
 \end{description}
 
@@ -60,16 +60,16 @@ Implementiert nun nicht mehr StatisticsDeltaProcessor.
 
 \subsection{AchievementFactory}
 Neu hinzugefügt.
-Erstellen von sowohl den einzelnen Achievements als auch der AvailableAchievements ausgelagert mit dem Factory Entwurfsmuster.
+Erstellen von sowohl den einzelnen \emph{Achievements} als auch der \emph{AvailableAchievements} ausgelagert mit dem Factory Entwurfsmuster.
 
 \subsubsection{Hinzugefügte Methoden}
 
 \begin{description}
 	\item{createAchievement(int id)}
-	Bekommt eine Id und gibt ein neues, initialisiertes Achievement des entsprechenden Typs zurück.
+	Bekommt eine Id und gibt ein neues, initialisiertes \emph{Achievement} des entsprechenden Typs zurück.
 
 	\item{reateListOfAchievementTypes}
-	Gibt eine Liste mit einem neu initialisiertem Achievement von jedem Typ zurück.
+	Gibt eine Liste mit einem neu initialisiertem \emph{Achievement} von jedem Typ zurück.
 
 \end{description}
 
