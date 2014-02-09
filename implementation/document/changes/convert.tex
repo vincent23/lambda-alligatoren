@@ -1,1 +1,12 @@
 \section{Package: util.convert}
+Das Paket "`convert"' wurde erst in der Implementierung eingeführt.
+Es beinhaltet statische Funktionen, um Objekte zu konvertieren.
+Hauptsächlich werden dabei verschiedene externe Formate und die applikationsinterne Darstellung von \(\lambda\)-Termen ineinander überführt.
+Diese externen Formate sind die gebräuchliche \(\lambda\)-Notation und JSON, wie es für die Levelspezifikation beschrieben ist.
+\begin{description}
+	\item[AlligatorToJson] überträgt Applikationsinterne Konstellationen (BoardObjects) in das spezifizierte JSON Format
+	\item[AlligatorToLambda] überträgt Applikationsinterne Konstellationen (BoardObjects) in die gebräuchliche \(\lambda\)-Notation
+	\item[JsonToAlligator] übersetzt nach der Spezifikation formatiertes JSON in Applikationsinterne Konstellationen (BoardObjects)
+	\item[LambdaToAlligator] übersetzt Zeichenketten, die nach der gebräuchlichen \(\lambda\)-Notation formatiert sind, in Applikationsinterne Konstellationen (BoardObjects)
+\end{description}
+Desweiteren können in der Klasse "`ColorConvert"' Strings, die die aus HTML bekannte Farbkodierung beinhalten, in das von libgdx verwendete Farbformat übertragen werden.
