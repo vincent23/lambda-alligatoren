@@ -1,1 +1,14 @@
 \section{Package: game.event}
+Die folgenden Listener wurden zusätzlich zum Entwurf in das "`event"' Paket aufgenommen:
+\begin{description}
+	\item[AlligatorAgesListener]
+		Wenn ein farbiger Alligator frisst, muss er (statt wie in der Entwurfsphase angenommen zu sterben) vorerst altern.
+		Um diesen Vorgang zu kommunizieren, z.B. um eine Animation dazu ablaufen zu lassen, exisitiert das hierzugehörige Event.
+	\item[BoardEditedListener]
+		In der Entwurfsphase wurde vernachlässigt, wie der BoardActor mit Änderungen durch den Nutzer umzugehen hat.
+		Da er auch sonst mit Events arbeitet, war es naheliegend, Änderungen zuerst intern durchzuführen und anschließend das Rendering zu benachrichtigen.
+		Der Listener bietet dazu Methoden zum Empfangen solcher Benachrichtungen.
+	\item[ReplaceEventListener $\rightarrow$ EggHatchListener]
+		Mit der Einführung der BoardEdited Events wurden allgemein gehaltene Eventnamen für diese reserviert.
+		Durch die Umbenennung entspricht der Name nun auch besser dem genauen Anwendungsszenario.
+\end{description}
