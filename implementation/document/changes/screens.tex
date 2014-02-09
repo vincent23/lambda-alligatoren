@@ -1,1 +1,315 @@
 \section{Package: ui.screens}
+
+subsection{AbstractScreen}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[getViewportWidth() und getViewportHeight()]
+Getter für die Breite und Höhe des Viewports.
+
+\item[initilizeWidgets() und areWidgetsInizilized()]
+Initialisierung und Abfrage der selben von Widgets.
+
+\end{description}
+
+
+\subsection{AchievementScreen}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[initilizeWidgets()]
+Initialisierung von Widgets.
+
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Nimmt nicht mehr den einen \emph{GameController} als Argument entgegen.
+
+\end{description}
+
+
+
+\subsection{CreditsScreen}
+Neuer Screen, der die Namen der App-Entwickler zeigt sowie einen Hinweis auf Brett Victor's Idee und seine Webseite.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[initilizeWidgets()]
+Initialisierung und Abfrage der selben von Widgets.
+
+\end{description}
+
+
+
+\subsection{LevelPackagesScreen}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[initilizeWidgets()]
+Initialisierung von Widgets.
+\item[showLogicalPredecessor()]
+Zeigt den Screen, der auf einer logischen Ebene direkt über dem aktuell Angezeigten liegt.
+
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Nimmt nicht mehr den einen \emph{LevelPackageController} als Argument entgegen.
+
+\end{description}
+
+
+\subsection{LevelsOverviewScreen}
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[showLogicalPredecessor()]
+Zeigt den Screen, der auf einer logischen Ebene direkt über dem aktuell Angezeigten liegt.
+
+\end{description}
+
+
+\subsection{LoadingScreen}
+Neuer Screen, der während Ladephasen des Spiels angezeigt wird.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[render(float delta)]
+Zeigt den aktuellen Ladefortschritt an.
+
+
+\end{description}
+
+
+
+\subsection{MainMenuScreen}
+Klasse implementiert jetzt noch zusätzlich \emph{ProfileChangeListener}.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[initilizeWidgets()]
+Initialisierung von Widgets.
+\item[onProfileChange]
+Methode wird beim Ändern des aktiven Profils aufgerufen.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Nimmt nur noch eine \emph{AlligatorApp} als Argument entgegen.
+
+\end{description}
+
+
+\subsection{MultipleChoiceScreen}
+Klasse implementiert jetzt \emph{SettingsChangeListener}.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+
+\item[onShow()]
+Methode wird beim Zeigen des Screens aufgerufen.
+
+\item[hide()]
+Methode wird aufgerufen um den Screen verschwinden zu lassen.
+
+\item[render(float delta)]
+Methode wird zum Rendern des Screens aufgerufen.
+
+\item[onSettingsChange(Profile profile)]
+Methode wird beim Ändern der aktuellen Einstellungen aufgerufen.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Nimmt statt einem \emph{GameController} einen \emph{MultipleChoiceGameController} als Argument entgegen.
+
+\end{description}
+
+\subsection{PlacementModeScreen}
+Klasse implementiert jetzt \emph{SettingsChangeListener}.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+
+\item[onShow()]
+Methode wird beim Zeigen des Screens aufgerufen.
+
+\item[hide()]
+Methode wird aufgerufen um den Screen verschwinden zu lassen.
+
+\item[render(float delta)]
+Methode wird zum Rendern des Screens aufgerufen.
+
+\item[onSettingsChange(Profile profile)]
+Methode wird beim Ändern der aktuellen Einstellungen aufgerufen.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Nimmt statt einem \emph{GameController} einen \emph{MultipleChoiceGameController} als Argument entgegen.
+
+\end{description}
+
+
+
+\subsection{ProfileSetAvatarScreen}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[initilizeWidgets()]
+Initialisierung von Widgets.
+\item[onShow()]
+Methode wird beim Zeigen des Screens aufgerufen.
+\item[setProfileName(String profileName)]
+Setter für den Profilnamen.
+\item[setIsInEditMode(boolean isInEditMode)]
+Setter für die Variable ob es im Bearbeitungsmodus ist.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Nimmt nur noch eine \emph{AlligatorApp} als Argument entgegen.
+
+\end{description}
+
+
+
+\subsection{ProfileSetNameScreen}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[initilizeWidgets()]
+Initialisierung von Widgets.
+\item[onShow()]
+Methode wird beim Zeigen des Screens aufgerufen.
+\item[setIsInEditMode(boolean isInEditMode)]
+Setter für die Variable ob es im Bearbeitungsmodus ist.
+\item[showBackButton(boolean showBackButton)]
+Legt fest ob der Zurückknopf angezeigt wird oder nicht.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Nimmt nur noch eine \emph{AlligatorApp} als Argument entgegen.
+
+\end{description}
+
+
+
+
+\subsection{QuitGameOverlay}
+Neues Overlay, dass beim Verlassen des Spiels den Spieler noch einmal fragt ob er wirklich das Spiel verlassen will.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[initilizeWidgets()]
+Initialisierung von Widgets.
+\item[onShow()]
+Methode wird beim Zeigen des Screens aufgerufen.
+\item[render(float delta)]
+Methode wird zum Rendern des Overlays aufgerufen.
+\item[resize(int width, int height)]
+%TODO: herrausfinden was das eigentlich tut.
+\item[dispose()]
+%TODO: herrausfinden was das eigentlich tut.
+\end{description}
+
+
+\subsection{SelectProfileScreen}
+Klasse implementiert jetzt ProfileChangeListener.
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[initilizeWidgets()]
+Initialisierung von Widgets.
+\item[onProfileChange]
+Methode wird beim Ändern des aktiven Profils aufgerufen.
+
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Nimmt nur noch eine \emph{AlligatorApp} als Argument entgegen.
+
+\end{description}
+
+
+\subsection{SettingsScreen}
+Klasse implementiert jetzt ProfileChangeListener.
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[initilizeWidgets()]
+Initialisierung von Widgets.
+\item[onProfileChange]
+Methode wird beim Ändern des aktiven Profils aufgerufen.
+
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Nimmt nur noch eine \emph{AlligatorApp} als Argument entgegen.
+
+\end{description}
+
+
+\subsection{SettingsScreen}
+Klasse implementiert jetzt SettingsChangeListener.
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[initilizeWidgets()]
+Initialisierung von Widgets.
+\item[onProfileChange]
+Methode wird beim Ändern des aktiven Profils aufgerufen.
+\item[render]
+Zeigt den aktuellen Ladefortschritt an.
+\item[onShow()]
+Methode wird beim Zeigen des Screens aufgerufen.
+\item[hide()]
+Methode wird aufgerufen um den Screen verschwinden zu lassen.
+\item[onSettingsChange(Profile profile)]
+Methode wird beim Ändern der aktuellen Einstellungen aufgerufen.
+
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Nimmt nur noch eine \emph{AlligatorApp} als Argument entgegen.
+
+\end{description}
+
+\subsection{SplashScreen}
+Funktionalität wurde mit den LoadingScreen zusammengeführt. Die Klasse selbst wurde entfernt.
+
+
+
+\subsection{StatisticScreen}
+Klasse implementiert jetzt ProfileChangeListener.
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[initilizeWidgets()]
+Initialisierung von Widgets.
+\item[onProfileChange]
+Methode wird beim Ändern des aktiven Profils aufgerufen.
+\item[onShow]
+Methode wird beim Zeigen des Screens aufgerufen.
+
+
+
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Nimmt nur noch eine \emph{AlligatorApp} als Argument entgegen.
+
+\end{description}
+
