@@ -1,6 +1,7 @@
 package de.croggle.game.level;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 
@@ -16,7 +17,7 @@ public abstract class EditLevel extends Level {
 
 
 	public EditLevel(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, String animationPath, Color[] userColors,
+			Board goalBoard, List<String> animationPath, Color[] userColors,
 			Color[] blockedColors, String hint, String description,
 			int abortSimulationAfter, boolean showObjectBar) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animationPath,

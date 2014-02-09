@@ -5,7 +5,8 @@
 			"type" : "color edit" ,
 			"description" : "" ,
 			"design" : "" ,
-			"animation" : "",
+			"animation" : [""
+			],
 			"abort simulation after" : 10 ,
 			"hints" : [ "hints/0008"
 			],

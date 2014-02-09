@@ -1,6 +1,7 @@
 package de.croggle.game.level;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 
@@ -43,7 +44,7 @@ public class MultipleChoiceLevel extends Level {
 	 *            the index of the correct answer
 	 */
 	public MultipleChoiceLevel(int levelIndex, int packageIndex,
-			Board initialBoard, Board goalBoard, String animation,
+			Board initialBoard, Board goalBoard, List<String> animation,
 			String hint, String description, int abortSimulationAfter,
 			Board[] answers, int correctAnswer) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,

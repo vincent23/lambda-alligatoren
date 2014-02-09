@@ -5,7 +5,8 @@
 			"type" : "term edit" ,
 			"description" : "Test für drag and drop" ,
 			"design" : "" ,
-			"animation" : "",
+			"animation" : [""
+			],
 			"abort simulation after" : 111 ,
 			"hints" : [ ""
 			],

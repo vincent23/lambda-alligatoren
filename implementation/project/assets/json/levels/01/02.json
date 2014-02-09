@@ -5,7 +5,8 @@
 			"type" : "color edit" ,
 			"description" : "Viertes Tutoriallevel, das das System der Schrittanzahllevel erklärt." ,
 			"design" : "" ,
-			"animation" : "",
+			"animation" : [""
+			],
 			"abort simulation after" : 5 ,
 			"hints" : [ "hints/0102"
 			],

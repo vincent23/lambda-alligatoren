@@ -5,7 +5,8 @@
 			"type" : "term edit" ,
 			"description" : "Drittes Tutoriallevel, in dem das Einfügen von Elementen auf das Spielfeld erklärt wird. Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
 			"design" : "" ,
-			"animation" : "",
+			"animation" : [""
+			],
 			"abort simulation after" : 111 ,
 			"hints" : [ "hints/0002"
 			],

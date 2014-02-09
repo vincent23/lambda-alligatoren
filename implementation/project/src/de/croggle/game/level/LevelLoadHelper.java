@@ -1,6 +1,8 @@
 package de.croggle.game.level;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -110,7 +112,7 @@ class LevelLoadHelper {
 			level = new ColorEditLevel(levelIndex, packageIndex,
 					JsonToAlligator.convertBoard(initialBoard),
 					JsonToAlligator.convertBoard(goalBoard),
-					json.getString("animation"), userColors, blockedColors,
+					getAnimation(json), userColors, blockedColors,
 					json.get("hints").getString(0),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
@@ -127,7 +129,7 @@ class LevelLoadHelper {
 			level = new TermEditLevel(levelIndex, packageIndex,
 					JsonToAlligator.convertBoard(initialBoard),
 					JsonToAlligator.convertBoard(goalBoard),
-					json.getString("animation"), userColors, blockedColors,
+					getAnimation(json), userColors, blockedColors,
 					json.get("hints").getString(0),
 					json.getString("description"),
 					json.getInt("abort simulation after"));
@@ -159,8 +161,7 @@ class LevelLoadHelper {
 		Board[] answers = getAnswersfromJson(data.get("answers"));
 		Level level = new MultipleChoiceLevel(levelIndex, packageIndex,
 				JsonToAlligator.convertBoard(initialBoard),
-				answers[correctAnswer], json.getString("animation"), json.get(
-						"hints").getString(0), json.getString("description"),
+				answers[correctAnswer], getAnimation(json), json.get("hints").getString(0), json.getString("description"),
 				json.getInt("abort simulation after"), answers, correctAnswer);
 		return level;
 	}
@@ -223,6 +224,17 @@ class LevelLoadHelper {
 		}
 		return color;
 
+	}
+	
+	private static List<String> getAnimation(JsonValue json){
+		List<String> animations = new LinkedList<String>();
+		
+		for(int i = 0; i < json.get("animation").size; i++ ){
+			animations.add(json.get("animation").getString(i));
+		}
+		
+		return animations;
+		
 	}
 
 }

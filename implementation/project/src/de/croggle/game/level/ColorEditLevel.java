@@ -1,5 +1,7 @@
 package de.croggle.game.level;
 
+import java.util.List;
+
 import com.badlogic.gdx.graphics.g2d.Animation;
 
 import de.croggle.game.Color;
@@ -37,7 +39,7 @@ public class ColorEditLevel extends EditLevel {
 	 */
 
 	public ColorEditLevel(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, String animation, Color[] userColors,
+			Board goalBoard, List<String> animation, Color[] userColors,
 			Color[] blockedColors, String hint, String description,
 			int abortSimulationAfter) {
 		super(levelIndex, packageIndex, initialBoard, goalBoard, animation,

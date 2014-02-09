@@ -5,7 +5,8 @@
 			"type" : "multiple choice" ,
 			"description" : "" ,
 			"design" : "" ,
-			"animation" : "",
+			"animation" :[""
+			],
 			"abort simulation after" : 111 ,
 			"hints" : [ ""
 			],

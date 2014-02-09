@@ -1,6 +1,8 @@
 package de.croggle.game.level;
 
 
+import java.util.List;
+
 import de.croggle.AlligatorApp;
 import de.croggle.game.GameController;
 import de.croggle.game.board.Board;
@@ -14,7 +16,7 @@ public abstract class Level {
 
 	private Board initialBoard;
 	private Board goalBoard;
-	private String animation;
+	private List<String> animation;
 	private String hint;
 	private String description;
 	private int abortSimulationAfter;
@@ -44,7 +46,7 @@ public abstract class Level {
 	 */
 
 	public Level(int levelIndex, int packageIndex, Board initialBoard,
-			Board goalBoard, String animation, String hint,
+			Board goalBoard, List<String> animation, String hint,
 			String description, int abortSimulationAfter, boolean showObjectBar) {
 		this.levelIndex = levelIndex;
 		this.packageIndex = packageIndex;
@@ -102,7 +104,7 @@ public abstract class Level {
 	 * @return true if the level has a simulation, otherwise false
 	 */
 	public boolean hasAnimation() {
-		return(animation != null && animation.length() >0);
+		return(animation != null && animation.size() >0);
 	}
 
 	/**
@@ -111,7 +113,7 @@ public abstract class Level {
 	 * @return the path to the animation of the level
 	 */
 
-	public String getAnimation() {
+	public List<String> getAnimation() {
 		return animation;
 	}
 
