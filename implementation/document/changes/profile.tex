@@ -1,1 +1,31 @@
 \section{Package: game.profile}
+
+\subsection{Profile}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[equals Methode]
+Eine simple equals Methode wurde erstellt um Testfälle zu vereinfachen.
+\end{description}
+
+
+\subsection{ProfileController}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[addProfileChangeListener]
+Über diese Methode können sich Screens, die \emph{ProfileChangeListener} implementieren beim \emph{ProfileController} anmelden und so über \emph{Profile}-Wechsel informiert werden.
+\item[getCurrentProfile]
+getter für das gerade aktive \emph{Profile}.
+\item[getCurrentProfileName]
+getter für den Namen des gerade aktiven \emph{Profile}.
+\item[deleteAllProfiles]
+Löscht alle gespeicherten Profile, was manche Testfälle vereinfacht.
+\end{description}
+
+\subsection{ProfileChangeListener}
+Dieses Interface wurde neu erstellt. Alle Screens die bei einem  \emph{Profile}-Wechsel informiert werden müssen implementieren dieses Interface und werden über die \emph{onProfileChange} Methode benachrichtigt.
+
+
+
+
