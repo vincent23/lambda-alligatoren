@@ -68,11 +68,148 @@ Wird hier genutzt um die Lösung des Benutzers zu validieren.
 \subsection{GameController}
 
 \subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[setupColorController]
+Wird zur Re-Initialisierung des \emph{ColorController} aufgerufen.
+
+\item[createColorController]
+Methode, um die Erstellung des \emph{ColorController} durch Unterklassen anpassen zu können.
+
+\item[getColorController]
+Methode, um den \emph{ColorController} zu erhalten.
+
+\item[enterPlacement]
+Methode, die für einen Wechsel in den Platziermodus sorgt.
+Sichtbarkeit von private auf public geändert.
+
+\item[enterSimulation]
+Methode, die für einen Wechsel in den Simulationsmodus sorgt.
+Sichtbarkeit von private auf public geändert.
+
+\item[onFinishedSimulation]
+Callbackmethode zum Überschreiben Unterklassen, die nach Abschluss der Simulation aufgerufen wird.
+
+\item[registerSimulationBoardEventListener]
+Siehe \emph{registerBoardEventListener} unter "`Entfernte Methoden"'.
+
+\item[unregisterSimulationBoardEventListener]
+Siehe \emph{unregisterBoardEventListener} unter "`Entfernte Methoden"'.
+
+\item[registerPlacementBoardEventListener]
+Siehe \emph{registerBoardEventListener} unter "`Entfernte Methoden"'.
+
+\item[unregisterPlacementBoardEventListener]
+Siehe \emph{unregisterBoardEventListener} unter "`Entfernte Methoden"'.
+
+\item[getPlacementBoardEventListener]
+Gibt den \emph{BoardEventMessenger} für den Platziermodus zurück.
+
+\item[onObjectPlaced]
+Neues Event, siehe \emph{BoardEventListener}.
+
+\item[onObjectRemoved]
+Neues Event, siehe \emph{BoardEventListener}.
+
+\item[onObjectMoved]
+Neues Event, siehe \emph{BoardEventListener}.
+
+\item[onAge]
+Neues Event, siehe \emph{BoardEventListener}.
+
+\item[evaluateStep]
+Führt einen Schritt der Simulation aus und prüft, ob diese abgeschlossen ist.
+
+\item[isInSimulationMode]
+Gibt zurück, ob sich der Spieler im Simulationsmodus befindet.
+
+\item[canUndo]
+Gibt zurück, ob ein Schritt in der Simulation rückgängig gemacht werden kann.
+
+\item[undo]
+Macht einen Schritt in der Simulation rückgängig.
+
+\item[reset]
+Setzt das durch den Benutzer bearbeitete \emph{Board} auf den ursprünglichen Zustand zurück.
+
+\item[getShownBoard]
+Gibt das aktuell angezeigte \emph{Board} zurück.
+
+\item[getElapsedTime]
+Gibt die bisher im Level verbrachte Zeit zurück.
+
+\item[getTimeStamp]
+Gibt den Zeitpunkt des Levelstarts zurück.
+
+\item[setElapsedTime]
+Setzt die bisher im Level verbrachte Zeit.
+
+\item[updateTime]
+Aktualisiert die verstrichene Zeit seit dem Levelstart.
+
+\item[setTimeStamp]
+Setzt den Zeitpunkt des Levelstarts.
+
+\item[getLevel]
+Gibt das aktuelle Level zurück.
+
+\item[createPlacementScreen]
+Methode zum Überschreiben durch Unterklassen, um eine andere Darstellung des Platziermodus zu erreichen.
+
+\item[isSolved]
+Gibt zurück, ob das aktuell geladene Level gelöst ist.
+
+\item[getProgress]
+Gibt den \emph{LevelProgress} des aktuellen Levels und Benutzers zurück.
+
+\item[setUserBoard]
+Setzt das durch den Benutzer bearbeitete \emph{Board}.
+
+\item[onBeforeSaveProgress]
+Methode zum Überschreiben durch Unterklassen, die vor dem Speichern des \emph{LevelProgress} aufgerufen wird.
+
+\item[onAfterLoadProgress]
+Methode zum Überschreiben durch Unterklassen, die nach dem Laden des \emph{LevelProgress} aufgerufen wird.
+
+\item[getUserBoard]
+Gibt das durch den Benutzer bearbeitete \emph{Board} zurück.
+
+\item[onUsedHint]
+Muss aufgerufen werden, um die Benutzung eines Hinweises zu registrieren.
+
+\item[getSimulator]
+Gibt den aktuell genutzten \emph{Simulator} zurück.
+\end{description}
 
 \subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[Konstruktor]
+Referenz auf \emph{AlligatorApp} als zusätzliches Argument eingefügt.
+
+\item[onObjectRecolored]
+Geändertes Interface, siehe \emph{ObjectRecoloredListener}.
+
+\item[onEat]
+Geändertes Interface, siehe \emph{EatEventListener}.
+
+\item[onAgedAlligatorVanishes]
+Geändertes Interface, siehe \emph{AgedAlligatorVanishesListener}.
+
+\item[onHatched]
+Umbenannt von \emph{onReplaceEgg}, siehe \emph{Listener}.
+\end{description}
 
 \subsubsection{Entfernte Methoden}
+\begin{description}
+\item[onCompletedLevel]
+Sichtbarkeit von public auf private geändert.
 
+\item[registerBoardEventListener]
+Aufteilung in \emph{registerPlacementBoardEventListener} und \emph{registerSimulationBoardEventListener}.
+
+\item[unregisterBoardEventListener]
+Aufteilung in \emph{unregisterPlacementBoardEventListener} und \emph{unregisterSimulationBoardEventListener}.
+
+\end{description}
 
 
 \subsection{MultipleChoiceGameController}
@@ -90,8 +227,22 @@ Methode, um die Auswahl des Benutzers zu setzen.
 \subsection{Simulator}
 
 \subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[canUndo]
+Methode, die zurückgibt, ob aktuell ein Schritt rückgängig gemacht werden kann.
+
+\item[getSteps]
+Methode, die die aktuelle Anzahl an ausgewerteten Schritten zurückgibt.
+
+\item[getCurrentBoard]
+Methode, die das aktuell verwendete \emph{Board} zurückgibt.
+
+\end{description}
 
 \subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[evaluate]
+Return-Wert von \emph{Board} auf \emph{boolean} geändert.
+Kann außerdem \emph{ColorOverflowException} und \emph{AlligatorOverflowException} auslösen.
 
-\subsubsection{Entfernte Methoden}
-
+\end{description}
