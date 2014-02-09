@@ -5,7 +5,7 @@ import java.util.Locale;
 import android.test.InstrumentationTestCase;
 import static de.croggle.data.LocalizationHelper._;
 
-public class LocalizationHelperTest extends InstrumentationTestCase {
+public class AndroidLocalizationBackendTest extends InstrumentationTestCase {
 
 	@Override
 	public void setUp() {
