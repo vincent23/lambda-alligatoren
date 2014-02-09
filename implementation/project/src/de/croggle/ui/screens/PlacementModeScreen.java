@@ -2,6 +2,8 @@ package de.croggle.ui.screens;
 
 import static de.croggle.data.LocalizationHelper._;
 
+import java.util.List;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -76,8 +78,10 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 		// load graphics for animation/tutorial
 		if (gameController.getLevel().hasAnimation()) {
-			assetManager.load(gameController.getLevel().getAnimation().get(0),
-					Texture.class);
+			List<String> animations = gameController.getLevel().getAnimation();
+			for (String animation : animations) {
+				assetManager.load(animation, Texture.class);
+			}
 		}
 	}
 
@@ -86,8 +90,12 @@ public class PlacementModeScreen extends AbstractScreen implements
 		gameController.setTimeStamp();
 		gameController.enterPlacement();
 
+		// simply open all tutorials over each other, beginning with the last
 		if (gameController.getLevel().hasAnimation()) {
-			buildTutorialDialog();
+			List<String> animations = gameController.getLevel().getAnimation();
+			for (int i = animations.size() - 1; i >= 0; i--) {
+				buildTutorialDialog(animations.get(i));
+			}
 		}
 	}
 
@@ -192,19 +200,18 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 	}
 
-	private void buildTutorialDialog() {
+	private void buildTutorialDialog(String animationPath) {
 		AssetManager manager = AssetManager.getInstance();
 		StyleHelper helper = StyleHelper.getInstance();
 
 		final Dialog tutorial = new Dialog("", StyleHelper.getInstance()
 				.getDialogStyle());
 		tutorial.clear();
-		tutorial.fadeDuration=0f;
+		tutorial.fadeDuration = 0f;
 
 		Table buttonTable = new Table();
 		Drawable drawable = new TextureRegionDrawable(new TextureRegion(
-				manager.get(gameController.getLevel().getAnimation().get(0),
-						Texture.class)));
+				manager.get(animationPath, Texture.class)));
 		// used image button here because it keeps the ratio of the texture
 		ImageButton tutorialImage = new ImageButton(drawable);
 		ImageButton okay = new ImageButton(
