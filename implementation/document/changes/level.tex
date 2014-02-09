@@ -1,1 +1,108 @@
-\section{Package: game.level}
+\section{Package: game/level}
+
+\subsection{ColorEditLevel}
+	Diese Klasse erbt nun von \emph{EditLevel}.
+
+	\subsubsection{modifizierte Methoden}
+		\begin{description}
+			\item[Konstruktor] Dem Konstruktor wurden alle ein Level beschreibenden Argumente hinzugefügt.
+		\end{description}
+
+
+\subsection{EditLevel}
+	Da die Klassen \emph{ColorEditLevel} und \emph{TermEditLevel} viele gemeinsame Methoden und in vielen Fällen 
+	eine gleiche Behandlung benötigen, hat es sich angeboten eine gemeinsame Oberklasse einzufügen. 
+
+	\subsubsection{hinzugefügte Methoden}
+		\begin{description}
+			\item[Konstruktor] Dem Konstruktor wurden alle ein Level beschreibenden Argumente hinzugefügt.
+			\item[getUserColor] Gibt ein Array von Farben zurück, die der Benutzer für dieses Level verwenden kann.
+			\item[getBlockedColor] Gibt ein Array von Farben zurück, die der Benutzer in diesem Level nicnt benutzen 
+				darf
+		\end{description}
+
+
+\subsection{InvalidJsonException}
+	Für die einfache Behandlung von Fehlern, die in den Json Dateien der Level auftreten können, hat es sich 
+	angeboten, eine eigene Exception für diese Fehlerursache einzufügen.   
+
+\subsection{Level}
+
+	\subsubsection{hinzugefügte Methoden}
+		\begin{description}
+			\item[getAbortSimulationAfter]
+			\item[getUnlocked]
+			\item[setUnlocked]
+			\item[isLevelSolved] Gibt zurück ob das übergebene \emph{Board} und Schrittanzahl 
+				das Level löst oder nicht.
+			\item[isSolveable] Gibt zurück ob die festgelegte maximale Simulationsschrittzahl bereits 
+				überschritten wurde.
+			\item[isSolved]
+			\item[setSolvedTrue]
+			\item[createGameController] Methode, die einen GameController für dieses Level erstellt und zurückgibt.
+			\item[getLevelId] Methode die eine Konkatenation von Levelpackage Index und Level Index zurückgibt.
+			\item[getShowObjectBar] Methode die zurückgibt ob im Plaziermodus für dieses Level die \emph{ObjectBar} 
+				angezeigt werden soll oder nicht.
+		\end{description}
+	\subsubsection{modifizierte Methoden}
+		\begin{description}
+			\item[Konstruktor] Dem Konstruktor wurden alle ein Level beschreibenden Argumente hinzugefügt.
+		\end{description}
+
+\subsection{LevelController}
+
+	\subsubsection{modifizierte Methoden}
+		\begin{description}
+			\item[Konstruktor] Der Konstruktor wurde um einige Argumente ergänzt.
+		\end{description}
+	\subsubsection{entfernte Methoden}
+		\begin{description}
+			\item[Konstruktor] Überflüssige Konstruktoren wurden entfernt.
+		\end{description}
+
+
+\subsection{LevelPackage}
+
+	\subsubsection{hinzugefügte Methoden}
+		\begin{description}
+			\item[getAnimation]
+			\item[getDesign]
+		\end{description}
+	\subsubsection{modifizierte Methoden}
+		\begin{description}
+			\item[Konstruktor] Der Konstruktor wurde um einige Argumente ergänzt.
+		\end{description}
+	\subsubsection{entfernte Methoden}
+		\begin{description}
+			\item[Konstruktor] Überflüssige Konstruktoren wurden entfernt.
+		\end{description}
+
+
+
+\subsection{LevelPackagesController}
+
+	\subsubsection{hinzugefügte Methoden}
+		\begin{description}
+			\item[getLevelController] Methode, die zu einem gegebenen \emph{LevelPackage} Index einen
+			 \emph{LevelController} zurückgibt. 
+			\item[getLevelPackages] Methode, die eine Liste aller vorhandenen Levelpakete zurückgibt.
+		\end{description}
+
+
+\subsection{MultipleChoiceLevel}
+
+	\subsubsection{modifizierte Methoden}
+		\begin{description}
+			\item[Konstruktor] Der Konstruktor wurde um einige Argumente ergänzt.
+		\end{description}
+
+
+
+\subsection{TermEditLevel}
+	Diese Klasse erbt nun von \emph{EditLevel}.
+
+	\subsubsection{modifizierte Methoden}
+		\begin{description}
+			\item[Konstruktor] Der Konstruktor wurde um einige Argumente ergänzt.
+		\end{description}
+
