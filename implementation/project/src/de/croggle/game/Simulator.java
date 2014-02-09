@@ -83,15 +83,15 @@ public class Simulator {
 
 		final Parent parent = eater.getParent();
 		final InternalBoardObject eaten = parent.getChildAfter(eater);
-		boardMessenger.notifyEat(eater, eaten, parent.getChildPosition(eaten));
 		parent.removeChild(eaten);
+		boardMessenger.notifyEat(eater, eaten, parent.getChildPosition(eaten));
+
 		final AgedAlligator constellation = replaceColoredWithAgedAlligator(eater);
 		ReplaceEggs.replace(constellation, eater.getColor(), eaten,
 				boardMessenger, colorController);
 
-		RemoveAgedAlligators.remove(constellation.getParent(), boardMessenger);
-		RemoveUselessAgedAlligators.remove(constellation.getParent(),
-				boardMessenger);
+		RemoveAgedAlligators.remove(currentBoard, boardMessenger);
+		RemoveUselessAgedAlligators.remove(currentBoard, boardMessenger);
 		if (MAX_ALLIGATORS < CountBoardObjects.count(currentBoard)) {
 			throw new AlligatorOverflowException();
 		}

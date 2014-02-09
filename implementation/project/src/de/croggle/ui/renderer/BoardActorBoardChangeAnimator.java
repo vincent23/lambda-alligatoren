@@ -191,6 +191,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		EggActor eggActor = (EggActor) b.getLayout().getActor(replacedEgg);
 		eggActor.enterHatchingState();
 		removeObjectAnimated(replacedEgg);
+		applyDeltasAnimated(b.getLayout().getDeltasToFix());
 		b.boardSizeChanged();
 	}
 
