@@ -43,7 +43,7 @@ public class AchievementFactory {
 
 	}
 
-	public static List<Achievement> createListofAchievementTypes() {
+	public static List<Achievement> createListOfAchievementTypes() {
 		List<Achievement> types = new ArrayList<Achievement>();
 		for (int i = 0; i < maxId + 1; i++) {
 			types.add(createAchievement(i));

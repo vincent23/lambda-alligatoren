@@ -70,7 +70,7 @@ public class AchievementController {
 	 */
 	private void initiateAvailableAchievements() {
 		availableAchievements = AchievementFactory
-				.createListofAchievementTypes();
+				.createListOfAchievementTypes();
 		latestUnlockedAchievements.clear();
 
 		for (Achievement achievement : availableAchievements) {
