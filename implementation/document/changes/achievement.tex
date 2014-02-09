@@ -1,36 +1,150 @@
 \section{Package: game.achievement}
 
-\subsection{Kleinere Änderungen}
+\subsection{Achievement}
 
-	\begin{description}
-		\item[getNumberOfStages]
-		Hinzufügen von Methode zum einfachen erhalten der Anzahl von Achievementstufen.
-		\item[Getter und Setter]
-		Hinzufügen von Gettern und Settern für alle Attribute, die solche noch nicht hatten.
+\subsubsection{Hinzugefügte Methoden}
 
-	\end{description}
+\begin{description}
+	\item{Getter und Setter)}
+	Getter für Index, Stage und NumberOfStages, sowie Setter für Index, Description, EmblemPathAchieved, EmblemPathNotAchieved, Id und Stages wurden hinzugefügt.
+	
+	\item{initialize()}
+	Abstrakte Methode zur Initialisierung eines Achievements wurde hinzugefügt.
 
-\subsection{Schwerwiegende Änderungen}
+	
+\end{description}
 
-	\begin{description}
-		\item[Größere Vielfalt an Achievements]
-		\begin {description}
-			\item[AlligatorsPlaced]
-			Alligatoren auf dem Spielfeld platziert.
-			\item[AlligatorsPlacedPerLevel]
-			Alligatoren in einem Level auf dem Spielfeld plaziert.
-		\end {description}
 
-		\item[AchievementFactory]
-		Auslagern des Erstellen von AvailableAchievements mit dem Factory Entwurfsmuster.
-		
-		\item[descriptionMet() Parameter]	
-		Die abstrakte descriptionMet() Methode nimmt nun 2 Parameter entgegen: die finale Statistik nach dem Level und die Statistic der Änderungen im Level.		
 
-		\item[Abstrakte Methode initilize()]
-		Hinzufügen einer abstrakten Methode zum Initialisieren von erbenden Achievements.
+\subsubsection{Modifizierte Methoden}
 
-		\item[Zwei Versionen des Emblems]
-		Zwei verscheidene Versionen des Emblems. Eine für das erreichte Achievement und eine für das nicht erreichte Achievement.
+\begin{description}
+	\item{getEmblemPath(int index)}
+	Methode wurde aufgespalten in getEmblemPathAchieved(int index) und getEmblemPathNotAchieved(int index).
+	
+	\item{requirementsMet()}
+	Methode bekommt jetzt zwei Argumente: Statistic statistic und Statistic statisticDelta.
+\end{description}
 
-	\end{description}
+
+\subsection{AchievementController}
+Implementiert nun nicht mehr StatisticsDeltaProcessor.
+
+\subsubsection{Hinzugefügte Methoden}
+
+\begin{description}
+	\item{updateAchievements(Statistic statistic, Statistic statisticsDelta))}
+	Korrigiert die Indices der AvailableAchievements, gibt diese zurück und fügt Änderungen den neusten Änderungen hinzu.	
+	
+	\item{convertInputFromDataBase(SparseIntArray tupels)}
+	Konvertiert die Eingabe in eine Liste von Achievements mit richtigen Indices und gibt diese zurück.
+
+	\item{processStatisticChange(Statistic statisticsDelta, Statistic statistic)}
+	Ersetze processDelta() mit processStatisticChange().
+	
+\end{description}
+
+
+
+\subsubsection{Modifizierte Methoden}
+
+\begin{description}
+	\item{initializeAvailableAchievements()}
+	Sichtbarkeit von public zu private geändert.
+	
+	\item{requirementsMet()}
+	Entsprechend dem Interface geändert.	
+\end{description}
+
+
+
+\subsection{AchievementFactory}
+Neu hinzugefügt.
+Erstellen von sowohl den einzelnen Achievements als auch der AvailableAchievements ausgelagert mit dem Factory Entwurfsmuster.
+
+\subsubsection{Hinzugefügte Methoden}
+
+\begin{description}
+	\item{createAchievement(int id)}
+	Bekommt eine Id und gibt ein neues, initialisiertes Achievement des entsprechenden Typs zurück.
+
+	\item{reateListOfAchievementTypes}
+	Gibt eine Liste mit einem neu initialisiertem Achievement von jedem Typ zurück.
+
+\end{description}
+
+
+\subsection{AlligatorsEatenAchievement}
+
+\subsubsection{Modifizierte Methoden}
+
+\begin{description}
+	\item{requirementsMet()}
+	Entsprechend dem Interface geändert.
+\end{description}
+
+\subsection{AlligatorsEatenPerLevelAchievement}
+
+\subsubsection{Modifizierte Methoden}
+
+\begin{description}
+	\item{requirementsMet()}
+	Entsprechend dem Interface geändert.
+\end{description}
+
+\subsection{AlligatorsPlacedAchievement}
+
+\subsubsection{Modifizierte Methoden}
+
+\begin{description}
+	\item{requirementsMet()}
+	Entsprechend dem Interface geändert.
+\end{description}
+
+\subsection{AlligatorsPlacedPerLevelAchievement}
+
+\subsubsection{Modifizierte Methoden}
+
+\begin{description}
+	\item{requirementsMet()}
+	Entsprechend dem Interface geändert.
+\end{description}
+
+\subsection{HintPerLevelAchievement}
+
+\subsubsection{Modifizierte Methoden}
+
+\begin{description}
+	\item{requirementsMet()}
+	Entsprechend dem Interface geändert.
+\end{description}
+
+\subsection{LevelAchievement}
+
+\subsubsection{Modifizierte Methoden}
+
+\begin{description}
+	\item{requirementsMet()}
+	Entsprechend dem Interface geändert.
+\end{description}
+
+\subsection{PerAchievement}
+
+\subsubsection{Modifizierte Methoden}
+
+\begin{description}
+	\item{requirementsMet()}
+	Entsprechend dem Interface geändert.
+\end{description}
+
+\subsection{TimeAchievement}
+
+\subsubsection{Modifizierte Methoden}
+
+\begin{description}
+	\item{requirementsMet()}
+	Entsprechend dem Interface geändert.
+\end{description}
+
+
+
