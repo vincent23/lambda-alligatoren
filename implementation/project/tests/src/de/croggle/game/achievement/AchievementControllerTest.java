@@ -12,7 +12,7 @@ import junit.framework.TestCase;
 
 public class AchievementControllerTest extends TestCase {
 
-	public void testInitialization() {
+	public void testUpdateAchievements() {
 		TestLocalizationBackend backend = new TestLocalizationBackend();
 		LocalizationHelper.setBackend(backend);
 		backend.putString("achievement_alligators_placed",
