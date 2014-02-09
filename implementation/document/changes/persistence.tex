@@ -1,1 +1,50 @@
 \section{Package: data.persistence}
+
+\subsection{LevelProgress}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[equals Methode]
+Eine einfache equals Methode wurde hinzugefügt um Testfälle zu vereinfachen.
+\end{description}
+
+\subsection{Setting}
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[Setting Konstruktor]
+Ein fehlender Konstruktor mit allen für \emph{Setting} relevanten Daten wurde hinzugefügt.
+\item[equals Methode]
+Eine einfache equals Methode wurde hinzugefügt um Testfälle zu vereinfachen.
+
+\end{description}
+
+\subsection{SettingChangeListener}
+
+Dieses Interface wurde neu erstellt. Alle Screens die bei einem  \emph{Setting}-Wechsel informiert werden müssen implementieren dieses Interface und werden über die \emph{onSettingChange} Methode benachrichtigt.
+
+
+\subsection{SettingController}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[addSettingChangeListener]
+Über diese Methode können sich Screens, die \emph{SettingChangeListener} implementieren beim \emph{SettingController} anmelden und so über \emph{Setting}-Wechsel informiert werden.
+\end{description}
+
+
+\subsection{Statistic}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[Setting Konstruktor]
+Ein fehlender Konstruktor mit allen für \emph{Statistic} relevanten Daten wurde hinzugefügt.
+\item[equals Methode]
+Eine einfache equals Methode wurde hinzugefügt um Testfälle zu vereinfachen.
+\end{description}
+
+
+
+
+
+
+
