@@ -1,1 +1,114 @@
 \section{Package: data.persistence.manager}
+
+\subsection{AchievementManager}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[clearTable]
+Diese Methode löscht alle in der Tabelle gespeicherten Einträge.
+\item[getRowCount]
+Diese Methode gibt die Anzahl der in der Tabelle gespeicherten Elemente zurück.
+\item[updateUnlockedAchievement]
+Diese Methode modifiziert ein schon in der Datenbank gespeichertes Achievement.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[deleteUnlockedAchievements]
+Diese Methode wurde entfernt, da das Löschen nun über Foreign Key ON DELETE statement geregelt wird.
+\end{description}
+
+
+\subsection{LevelProgressManager}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[clearTable]
+Diese Methode löscht alle in der Tabelle gespeicherten Einträge.
+\item[getRowCount]
+Diese Methode gibt die Anzahl der in der Tabelle gespeicherten Elemente zurück.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[deleteUnlockedAchievements]
+Diese Methode wurde entfernt, da das Löschen nun über Foreign Key ON DELETE Klause geregelt wird.
+\end{description}
+
+
+\subsection{PersistenceManager}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[clearTables]
+Löscht alle Einträge aus allen Tabellen.
+\item[isNameUsed]
+Gibt zurück ob ein gegebener Namen schon von einem in der Datenbank gespeicherten \emph{Profile} benutzt wird.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[loadProfile]
+Umbenannt in getProfile.
+\end{description}
+
+
+\subsection{ProfileManager}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[clearTable]
+Diese Methode löscht alle in der Tabelle gespeicherten Einträge.
+\item[getRowCount]
+Diese Methode gibt die Anzahl der in der Tabelle gespeicherten Elemente zurück.
+\item[isNameUsed]
+Gibt zurück ob ein gegebener Namen schon von einem in der Tabelle gespeicherten \emph{Profile} benutzt wird.
+\end{description}
+
+
+\subsection{SettingManager}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[clearTable]
+Diese Methode löscht alle in der Tabelle gespeicherten Einträge.
+\item[getRowCount]
+Diese Methode gibt die Anzahl der in der Tabelle gespeicherten Elemente zurück.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[deleteUnlockedAchievements]
+Diese Methode wurde entfernt, da das Löschen nun über Foreign Key ON DELETE statement geregelt wird.
+\end{description}
+
+
+\subsection{StatisticManager}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[clearTable]
+Diese Methode löscht alle in der Tabelle gespeicherten Einträge.
+\item[getRowCount]
+Diese Methode gibt die Anzahl der in der Tabelle gespeicherten Elemente zurück.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[deleteUnlockedAchievements]
+Diese Methode wurde entfernt, da das Löschen nun über Foreign Key ON DELETE statement geregelt wird.
+\end{description}
+
+\subsection{TableManager}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[clearTable]
+Diese abstrakte Methode soll alle in der Tabelle gespeicherten Einträge löschen.
+\item[getRowCount]
+Diese abstrakte Methode soll die Anzahl der in der Tabelle gespeicherten Elemente zurückgeben.
+\end{description}
+
+
+
+
