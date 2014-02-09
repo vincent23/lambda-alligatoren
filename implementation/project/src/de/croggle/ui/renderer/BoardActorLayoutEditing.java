@@ -522,7 +522,7 @@ class BoardActorLayoutEditing {
 					}
 
 					if (x < left) {
-						parent.insertChild(placeholder, targetChildPos - 1);
+						parent.insertChild(placeholder, targetChildPos);
 						b.getLayout().addActor(placeHolderActor);
 						b.addToWorld(placeHolderActor);
 					} else if (x > right) {
