@@ -37,7 +37,7 @@ public class AlligatorsPlacedAchievementTest extends TestCase {
 		}
 	}
 
-	public void testIndexingAndIncreaseDecrease() {
+	public void testRequirementsMet() {
 		Achievement testAchievement = new AlligatorsPlacedAchievement();
 		int[] testStages = { 0,  10, 25, 50, 100, 200, 300, 500, 750, 1000, 2000 };
 		testAchievement.setStages(testStages);

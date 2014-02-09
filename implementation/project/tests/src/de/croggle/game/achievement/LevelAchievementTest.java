@@ -24,7 +24,7 @@ public class LevelAchievementTest extends TestCase {
 		
 	} 
 	
-	public void testIndexingAndIncreaseDecrease() {
+	public void testRequirementsMet() {
 		Achievement testAchievement = new LevelAchievement();
 		int[] testStages = { 0, 1, 2, 4, 6, 8, 10, 12 };
 		testAchievement.setStages(testStages);
