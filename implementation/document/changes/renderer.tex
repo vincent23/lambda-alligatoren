@@ -46,9 +46,12 @@ Diese werden hier kurz erläutert:
 Desweiteren ist anzumerken, dass der BoardActor zu einer hoch integrierten grafischen Komponente gewachsen ist.
 Zu seinem Funktionsumfang gehören:
 \begin{description}
-\item[BoardActorZoomAndPan] Zooming und Panning Funktionalitäten für das dargestellte Layout
-\item[BoardActorLayoutEditing] Boardbearbeitungsfunktionalitäten, wie z.B. Farbauswahl Popups für ungefärbte Actos oder Drag and Drop.
-\item[BoardActorBoardChangeAnimator] Animationen bei eingehenden BoardEvents
+\item[BoardActorZoomAndPan] 
+	Zooming und Panning Funktionalitäten für das dargestellte Layout
+\item[BoardActorLayoutEditing] 
+	Boardbearbeitungsfunktionalitäten, wie z.B. Farbauswahl Popups für ungefärbte Actos oder Drag and Drop.
+\item[BoardActorBoardChangeAnimator] 
+	Animationen bei eingehenden BoardEvents
 \end{description}
 
 Alle diese Funktionen sind jedoch gesondert in Module gekapselt ohne sich gegenseitig direkt zu referenzieren.
@@ -57,8 +60,17 @@ Dazu bietet der BoardActor ein erweitertes Interface, welches aber nur im Paket 
 
 Zum Schluss seien noch die verbliebenen, nicht im Entwurf enthaltenen Klassen genannt und kurz erklärt:
 \begin{description}
+\item[BoardObjectActorDragging]
+	Helferklasse für alle Akteure, die bei Drag&Drop mit BoardObjectActors partizipieren möchten.
+	Für diesen Zweck werden für alle drei BoardObjectActor Typen Actors erzeugt, die in libgdx' DragAndDrop als DragActor, ValidDragActor und InvalidDragActor gesetzt werden können.
 \item[ColorSelectorPopup]
 	Dedizierte grafische Komponente, mit der BoardActorLayoutEditing dem Nutzer Eingabemöglichkeiten zur Änderung von Farben von ColoredBoardObjects bereitstellt.
+\item[ObjectBar]
+	Grafisches Element, welches eine Leiste darstellt, aus der neue BoardObjectActors mittels Drag&Drop gezogen und auf dem Spielfeld platziert werden können.
+	Außerdem werden bereits vorhandene BoardObjectActors, die auf die Leiste gezogen werden, gelöscht.
+\item[PlaceHolderActor]
+	Eine Erweiterung des BoardObjectActors, welcher keine grafische Repräsentation bietet, aber dafür als Platzhalter dient.
+	Werden vom Nutzer andere BoardObjectActors auf den Platzhalter geschoben, so wird die zugrundeligende Konstellation so modifiziert, dass der verschobene Actor den Platz des Platzhalters einnimmt.
 \item[TreeGrowth]
 	Enum (Aufzählung) von Richtungen, in die im Allgemeinen `"gewachsen"' werden kann. 
 	Wird hauptsächlich zur Angabe verwendet, in welche Richtung der Layout Baum wachsen soll.
