@@ -1,1 +1,22 @@
 \section{Package: ui.actors}
+
+Dieses Paket enthält jetzt einige Klassen mehr, die hauptsächlich der vereinfachten grafischen Darstellung dienen und deshalb von der Klasse "'Actor"' von libgdx (oder deren Unterklassen) erben. 
+
+\subsection{Neue Klassen}
+
+\begin{description}
+\item[HintDialog] Zeigt einen visuellen Hinweis und kann mit einem entsprechenden Button geschlossen werden. Wird im Platziermodus für die Hinweisanzeige genutzt.
+\item[IngameMenuDialog] Enthält das feste Format des Spielmenüs, sowie sämtliche Listener (siehe Pflichtenheft 10.5.7 Spielmenü).
+\item[NewAchievementDialog] Zeigt Beschreibung und Icon eines Achievements, sowie einen Button zum Schließen. Es kann auch eingestellt werden, dass zusätzlich eine Glückwunschnachricht angezeigt wird (siehe Pflichtenheft 10.5.9 Achievement-Benachrichtigung).
+\item[MaskedImage] Kombiniert ein Bild mit einer beliebigen Maske, um z.B. Transparenzbereiche festzulegen. 
+\item[NotificationDialog] Ein Dialog, der eine beliebige Nachricht darstellt, sowie einen Button zum Schließen. Das Aussehen des Dialogs ist festgelegt.
+\item[PagedScrollPane] Simuliert das für Geräte mit Toucheingabe übliche "'Blättern"' zwischen Ansichten, da libgdx keine solche Funktionalität bereitstellt. Es können verschiedene Widgets eingegeben werden, die dann nebeneinander dargestellt werden (es kann auch nur horizontal gescrollt werden). Durch eine "'Swipe"'-Geste kann der nächste Eintrag erreicht werden, der dann zentriert dargestellt wird.
+\item[ProfileButton] Dies ist lediglich ein Button, der eigenständig aus einem Profil die nötigen Daten (im Moment Profilbild und Name) herausliest, und diese wie gewünscht darstellt.
+\item[YesNoDialog] Ein Dialog, der eine Nachricht darstellt und dem Nutzer zwei Optionen bietet ("'Ja"' oder "'Nein"'). Es kann über ein ConfirmInterface (siehe package de.croggle.ui) festgelegt werden, was bei der Wahl der jeweiligen Option geschehen soll.
+\end{description}
+
+\subsection{SonstigeÄnderungen}
+
+\begin{itemize}
+\item Die \textbf{ObjectBar} wurde in das Paket de.croggle.ui.renderer verschoben, da sie dort intensiver genutzt wird. 
+\end{itemize}
