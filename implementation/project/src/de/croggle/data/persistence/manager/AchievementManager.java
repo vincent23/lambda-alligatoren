@@ -128,19 +128,7 @@ public class AchievementManager extends TableManager {
 		return unlockedAchievements;
 	}
 
-	/**
-	 * Deletes all achievements that were unlocked by the user with the given
-	 * profile name from the table.
-	 * 
-	 * @param profileName
-	 *            the name of the profile whose unlocked achievements are
-	 *            deleted
-	 */
-	void deleteUnlockedAchievements(String profileName) {
-		database.delete(TABLE_NAME, KEY_PROFILE_NAME + " = ?",
-				new String[] { profileName });
-	}
-
+	
 	void clearTable() {
 		database.execSQL("delete from " + TABLE_NAME);
 	}

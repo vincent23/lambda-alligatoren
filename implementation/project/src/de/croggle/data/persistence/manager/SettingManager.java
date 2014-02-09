@@ -143,19 +143,6 @@ public class SettingManager extends TableManager {
 				new String[] { profileName });
 	}
 
-	/**
-	 * Deletes the setting which belongs to the profile identified by the given
-	 * profile name from the table.
-	 * 
-	 * @param profileName
-	 *            the name of the profile whose setting is to be deleted
-	 */
-	void deleteSetting(String profileName) {
-
-		database.delete(TABLE_NAME, KEY_PROFILE_NAME + " = ?",
-				new String[] { profileName });
-
-	}
 
 	void clearTable() {
 		database.execSQL("delete from " + TABLE_NAME);

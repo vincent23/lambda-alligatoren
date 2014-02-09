@@ -168,17 +168,6 @@ public class LevelProgressManager extends TableManager {
 
 	}
 
-	/**
-	 * Deletes all level progresses which belong to the profile identified by
-	 * the profile name from the table.
-	 * 
-	 * @param profileName
-	 *            the name of the profile to which the level progresses belong
-	 */
-	void deleteLevelProgresses(String profileName) {
-		database.delete(TABLE_NAME, KEY_PROFILE_NAME + " = ?",
-				new String[] { profileName });
-	}
 
 	void clearTable() {
 		database.execSQL("delete from " + TABLE_NAME);

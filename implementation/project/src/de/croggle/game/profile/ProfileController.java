@@ -27,7 +27,7 @@ public class ProfileController {
 	 */
 	private AlligatorApp game;
 
-	private List<ProfileChangeListener> processors = new ArrayList<ProfileChangeListener>();
+	private List<ProfileChangeListener> listeners = new ArrayList<ProfileChangeListener>();
 
 	/**
 	 * Defines the max. amount of profiles that can be created.
@@ -81,7 +81,7 @@ public class ProfileController {
 			currentProfile = pm.getProfile(profileName);
 			saveProfileName();
 			updateControllers(profileName);
-			updateProcessors();
+			updateListeners();
 		}
 	}
 
@@ -151,7 +151,7 @@ public class ProfileController {
 		prefs.flush();
 		currentProfile = null;
 		updateControllers("");
-		updateProcessors();
+		updateListeners();
 	}
 
 	/**
@@ -183,7 +183,6 @@ public class ProfileController {
 	 * @return The name of the currently active user.
 	 */
 
-	// NEW
 	public String getCurrentProfileName() {
 		if (currentProfile == null) {
 			return "";
@@ -224,12 +223,12 @@ public class ProfileController {
 	 * @param listener the listener that receives the updated profile 
 	 */
 	public void addProfileChangeListener(ProfileChangeListener listener) {
-		processors.add(listener);
+		listeners.add(listener);
 	}
 
-	private void updateProcessors() {
-		for (ProfileChangeListener processor : processors) {
-			processor.onProfileChange(currentProfile);
+	private void updateListeners() {
+		for (ProfileChangeListener listener : listeners) {
+			listener.onProfileChange(currentProfile);
 		}
 	}
 
