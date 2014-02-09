@@ -1,1 +1,17 @@
 \section{Package: data}
+\subsection{Lokalisierung}
+Das Paket `"data"' wurde lediglich um eine Abstraktionsschicht des Lokalisierungsmechanismus' erweitert.
+Die dazugehörigen Klassen heißen:
+\begin{description}
+	\item[LocalizationBackend] Interface, dass grundlegende Methoden zur Lokalisierung bereitstellt.
+	\item[AndroidLocalizationBackend] Implementierung des LocalizationBackend für die Android Plattform
+\end{description}
+
+Die Funktionsweise des LocalizationHelpers wurde daingehend geändert, dass er seine Funktionalität statisch anbietet.
+Dies ermöglicht die äußerst dezente Anwendung bei der Lokalisierung der Software, da statische Importe verwendet und unnötig lange Bezeichner vermieden werden können.
+Die oben bereits genannten Backends werden einmalig zum Programmstart initialisiert.
+
+
+\subsection{AssetManager}
+Der AssetManager stellt eine Erweiterung des von libgdx gelieferten AssetManagers dar.
+Er kümmert sich zusätzlich um die Verwaltung von zur Laufzeit generierten Texturen, wie sie etwa für die Hintergründe farbiger Spielfeldelemente (BoardObjectActors) benötigt werden.
