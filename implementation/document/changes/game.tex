@@ -1,1 +1,97 @@
 \section{Package: game}
+
+\subsection{Color}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[uncolored]
+Methode, die die Farbe zurückgibt, die ungefärbten Objekten zugewiesen wird.
+
+\item[getRepresentations]
+Methode, die alle Farbrepräsentationen liefert.
+
+\item[getRepresentation]
+Methode zum Umwandeln einer Farbe im Spiel in eine tatsächlich darstellbare Farbe.
+
+\item[equals]
+Farben sind bei gleicher \emph{id} äquivalent, weshalb \emph{equals} überschrieben wurde.
+
+\item[hashCode]
+Siehe \emph{equals}.
+
+\item[compareTo]
+Siehe \emph{equals}.
+
+\end{description}
+
+
+\subsection{ColorController}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[getUncolored]
+Liefert die Farbe, die ungefärbten Objekten zugewiesen wird.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[getRepresentation]
+Umbenannt von \emph{getRepresantation}.
+
+\end{description}
+
+
+\subsection{EditLevelGameController}
+Neu hinzugefügte Klasse, die einen spezielleren \emph{GameController} repräsentiert, der für \emph{EditLevel} genutzt wird.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[onAfterLoadProgress]
+Callbackmethode aus \emph{GameController}.
+Wird hier genutzt um das letzte \emph{Board} des Benutzers zu laden.
+
+\item[onBeforeSaveProgress]
+Callbackmethode aus \emph{GameController}.
+Wird hier genutzt um das aktuelle \emph{Board} des Benutzers zu speichern.
+
+\item[createColorController]
+Callbackmethode aus \emph{GameController}.
+Wird hier genutzt um dem \emph{ColorController} nutzbare sowie gesperret Farben mitzuteilen.
+
+\item[onFinishedSimulation]
+Callbackmethode aus \emph{GameController}.
+Wird hier genutzt um die Lösung des Benutzers zu validieren.
+
+\end{description}
+
+
+\subsection{GameController}
+
+\subsubsection{Hinzugefügte Methoden}
+
+\subsubsection{Modifizierte Methoden}
+
+\subsubsection{Entfernte Methoden}
+
+
+
+\subsection{MultipleChoiceGameController}
+Neu hinzugefügte Klasse, die einen spezielleren \emph{GameController} repräsentiert, der für \emph{MultipleChoiceLevel} genutzt wird.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[setSelection]
+Methode, um die Auswahl des Benutzers zu setzen.
+\item[createPlacementScreen]
+Überschriebene Methode von \emph{GameController}, um für \emph{MultipleChoiceLevel} eine andere Darstellung zu erzeugen.
+\end{description}
+
+
+\subsection{Simulator}
+
+\subsubsection{Hinzugefügte Methoden}
+
+\subsubsection{Modifizierte Methoden}
+
+\subsubsection{Entfernte Methoden}
+
