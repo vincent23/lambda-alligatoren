@@ -80,25 +80,18 @@
 						"recolorable" : true
 						},
 						{
-						"type" : "aged alligator" ,
+						"type" : "egg" ,
 						"movable" : false ,
 						"removable" : false ,
-						"children" : [
-							{
-							"type" : "egg" ,
-							"movable" : false ,
-							"removable" : false ,
-							"color" : 8 ,
-							"recolorable" : true
-							},
-							{
-							"type" : "egg" ,
-							"movable" : false ,
-							"removable" : false ,
-							"color" : 8 ,
-							"recolorable" : true
-							}
-						]
+						"color" : 8 ,
+						"recolorable" : true
+						},
+						{
+						"type" : "egg" ,
+						"movable" : false ,
+						"removable" : false ,
+						"color" : 8 ,
+						"recolorable" : true
 						}
 						
 					]
