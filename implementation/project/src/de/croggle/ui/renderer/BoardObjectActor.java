@@ -9,7 +9,7 @@ import de.croggle.game.board.InternalBoardObject;
  */
 public abstract class BoardObjectActor extends Actor {
 
-	protected final InternalBoardObject object;
+	private final InternalBoardObject object;
 
 	/**
 	 * The superconstructor for all board object actors.

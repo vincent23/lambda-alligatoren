@@ -48,10 +48,10 @@ public class ColoredBoardObjectActor extends BoardObjectActor {
 	public void validate() {
 		if (colorBlind) {
 			background = AssetManager.getInstance().getPatternTexture(
-					((ColoredBoardObject) object).getColor());
+					((ColoredBoardObject) getBoardObject()).getColor());
 		} else {
 			background = AssetManager.getInstance().getColorTexture(
-					((ColoredBoardObject) object).getColor());
+					((ColoredBoardObject) getBoardObject()).getColor());
 		}
 		valid = true;
 	}

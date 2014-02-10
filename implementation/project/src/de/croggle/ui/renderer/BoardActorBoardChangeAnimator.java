@@ -66,12 +66,12 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		final List<InternalBoardObject> eatenLst = FlattenTree
 				.toList(eatenFamily);
 
-		final float animDuration = 0.2f;
+		final float animDuration = 0.4f;
 
 		BoardObjectActor actor;
+		// fade out the actors
 		for (InternalBoardObject eaten : eatenLst) {
 			actor = b.getLayout().getActor(eaten);
-			// automatically pooled actions, sooo convenient...
 			MoveToAction moveAction = Actions.moveTo(eaterActor.getX(),
 					eaterActor.getY(), animDuration);
 			actor.addAction(moveAction);
@@ -79,6 +79,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 			actor.addAction(scaleAction);
 		}
 
+		// Really remove the eaten actors from the layout
 		b.addAction(new TemporalAction() {
 			@Override
 			protected void begin() {
@@ -98,15 +99,17 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 					b.getLayout().removeActor(eatenActor);
 					b.removeFromWorld(eatenActor);
 				}
-				// the onAged event is responsible for this now
-				// removeObjectAnimated(eater);
 				applyDeltasAnimated(b.getLayout().getDeltasToFix());
 			}
 		});
 	}
 
 	/**
-	 * Removes
+	 * Animates the removal of the given {@link InternalBoardObject} by fading
+	 * it out. <br />
+	 * Careful: Don't rely on this method to add newly created objects to the
+	 * layout, since this would only occur after the animation time. During that
+	 * time, the layout would be in an inconsistent state.
 	 * 
 	 * @param object
 	 */
@@ -159,7 +162,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		if (firstRebuild) {
 			firstRebuild = false;
 		} else {
-			// TODO dirrrty
+			// dirrrty flash implementation
 			Image flash = new Image(AssetManager.getInstance().getColorTexture(
 					Color.uncolored()));
 			flash.setFillParent(true);
@@ -190,18 +193,15 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	public void onHatched(Egg replacedEgg, InternalBoardObject bornFamily) {
 		EggActor eggActor = (EggActor) b.getLayout().getActor(replacedEgg);
 		eggActor.enterHatchingState();
+		List<ActorDelta> deltas = b.getLayout().getDeltasToFix();
+		applyCreationDeltas(filterCreated(deltas, true));
 		removeObjectAnimated(replacedEgg);
-		applyDeltasAnimated(b.getLayout().getDeltasToFix());
 		b.boardSizeChanged();
 	}
 
 	private void applyDeltasAnimated(List<ActorDelta> deltas) {
-		List<ActorDelta> created = new ArrayList<ActorDelta>();
+		List<ActorDelta> created = filterCreated(deltas, true);
 		for (ActorDelta delta : deltas) {
-			if (delta.isCreated()) {
-				created.add(delta);
-				continue;
-			}
 			applyDeltaAnimated(delta);
 		}
 		applyCreationDeltas(created);
@@ -246,17 +246,50 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	}
 
 	private void applyCreationDeltas(final List<ActorDelta> deltas) {
-		float animDuration = 0.2f;
+		float animDuration = 0.3f;
 
 		BoardObjectActor actor;
 		for (ActorDelta delta : deltas) {
 			actor = delta.getActor();
+
+			// TODO why is this necessary? Workaround for #114
+			if (actor instanceof ColoredBoardObjectActor) {
+				((ColoredBoardObjectActor) actor).invalidate();
+			}
+
 			actor.setScale(0.f);
 			b.getLayout().addActor(actor);
 			b.addToWorld(actor);
 			ScaleToAction scaleAction = Actions.scaleTo(1, 1, animDuration);
 			actor.addAction(scaleAction);
 		}
+	}
+
+	/**
+	 * Finds and returns all deltas indicating an object creation in the given
+	 * list in a separate list. If "remove" is true, the deltas found to be
+	 * creation deltas are removed from the initial deltas list.
+	 * 
+	 * @param deltas
+	 * @param remove
+	 * @return
+	 */
+	private List<ActorDelta> filterCreated(List<ActorDelta> deltas,
+			boolean remove) {
+		List<ActorDelta> created = new ArrayList<ActorDelta>();
+		int deltaCount = deltas.size();
+		for (int i = 0; i < deltaCount; i++) {
+			ActorDelta delta = deltas.get(i);
+			if (delta.isCreated()) {
+				created.add(delta);
+				if (remove) {
+					deltas.remove(i);
+					deltaCount--;
+					i--;
+				}
+			}
+		}
+		return created;
 	}
 
 	@Override

@@ -24,27 +24,28 @@ import de.croggle.game.board.operations.CreateHeightMap;
  * inside this class
  */
 class ActorLayoutFixer extends ActorLayouter {
-	
-	private List<ActorDelta> deltas;
+
+	private final List<ActorDelta> deltas;
 	private ActorDelta unused;
-	
+
 	private final ActorLayout l;
-	
+
 	private final AgedAlligatorActor aaaDummy;
 	private final ColoredAlligatorActor caaDummy;
 	private final EggActor eaDummy;
-	
+
 	private InternalBoardObject lastProvidedFor;
 
 	private ActorLayoutFixer(ActorLayout l, Board b) {
 		super(b, l.getLayoutConfiguration());
 		this.l = l;
 		aaaDummy = new AgedAlligatorActor(new AgedAlligator(true, true));
-		caaDummy = new ColoredAlligatorActor(new ColoredAlligator(true, true, Color.uncolored(), true), false);
-		eaDummy = new EggActor(new Egg(true, true, Color.uncolored(), true), false);
-		
+		caaDummy = new ColoredAlligatorActor(new ColoredAlligator(true, true,
+				Color.uncolored(), true), false);
+		eaDummy = new EggActor(new Egg(true, true, Color.uncolored(), true),
+				false);
+
 		deltas = new ArrayList<ActorDelta>(l.size());
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -56,8 +57,7 @@ class ActorLayoutFixer extends ActorLayouter {
 	 * @param b
 	 * @return
 	 */
-	public static List<ActorDelta> getDeltas(ActorLayout l,
-			Board b) {
+	public static List<ActorDelta> getDeltas(ActorLayout l, Board b) {
 		ActorLayoutFixer fixer = new ActorLayoutFixer(l, b);
 		fixer.doLayout();
 		l.getLayoutStatistics().setWidthMap(fixer.widthMap);
@@ -90,7 +90,7 @@ class ActorLayoutFixer extends ActorLayouter {
 		lastProvidedFor = egg;
 		return eaDummy;
 	}
-	
+
 	@Override
 	protected void notifyLayouted(BoardObjectActor actor) {
 		BoardObjectActor current = l.getActor(lastProvidedFor);
@@ -99,8 +99,9 @@ class ActorLayoutFixer extends ActorLayouter {
 			deltas.add(delta);
 		}
 	}
-	
-	private ActorDelta buildDelta(BoardObjectActor current, BoardObjectActor newActor) {
+
+	private ActorDelta buildDelta(BoardObjectActor current,
+			BoardObjectActor newActor) {
 		if (unused == null) {
 			unused = new ActorDelta();
 		}
@@ -131,7 +132,7 @@ class ActorLayoutFixer extends ActorLayouter {
 				unused.setNewHeight(newActor.getHeight());
 			}
 		}
-		
+
 		if (unused.anythingChanged()) {
 			ActorDelta result = unused;
 			unused = null;
@@ -140,14 +141,16 @@ class ActorLayoutFixer extends ActorLayouter {
 			return null;
 		}
 	}
-	
+
 	private BoardObjectActor createActor(InternalBoardObject boardObject) {
 		if (boardObject.getClass() == AgedAlligator.class) {
 			return new AgedAlligatorActor((AgedAlligator) boardObject);
 		} else if (boardObject.getClass() == ColoredAlligator.class) {
-			return new ColoredAlligatorActor((ColoredAlligator) boardObject, l.getLayoutConfiguration().isColorBlindEnabled());
+			return new ColoredAlligatorActor((ColoredAlligator) boardObject, l
+					.getLayoutConfiguration().isColorBlindEnabled());
 		} else if (boardObject.getClass() == Egg.class) {
-			return new  EggActor((Egg) boardObject, l.getLayoutConfiguration().isColorBlindEnabled());
+			return new EggActor((Egg) boardObject, l.getLayoutConfiguration()
+					.isColorBlindEnabled());
 		} else {
 			throw new IllegalStateException();
 		}
