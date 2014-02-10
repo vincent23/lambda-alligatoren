@@ -5,7 +5,7 @@
 			"type" : "multiple choice" ,
 			"description" : "Fünftes Tutoriallevel, in dem das System der Multiple-Choice Levels erklärt wird" ,
 			"design" : "" ,
-			"animation" : [""
+			"animation" : ["tutorial/multiple-choice.png"
 			],
 			"abort simulation after" : 111 ,
 			"hints" : [ ""

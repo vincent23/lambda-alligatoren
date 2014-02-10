@@ -2,7 +2,11 @@ package de.croggle.ui.screens;
 
 import static de.croggle.data.LocalizationHelper._;
 
+import java.util.List;
+
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
@@ -11,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import de.croggle.AlligatorApp;
 import de.croggle.data.AssetManager;
@@ -67,12 +73,28 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 				packageIndex);
 		setBackground(pack.getDesign());
 		game.getSettingController().addSettingChangeListener(this);
+
+		// load graphics for animation/tutorial
+		if (gameController.getLevel().hasAnimation()) {
+			List<String> animations = gameController.getLevel().getAnimation();
+			for (String animation : animations) {
+				assetManager.load(animation, Texture.class);
+			}
+		}
 	}
 
 	@Override
 	protected void onShow() {
 		gameController.setTimeStamp();
 		gameController.enterPlacement();
+
+		// simply open all tutorials over each other, beginning with the last
+		if (gameController.getLevel().hasAnimation()) {
+			List<String> animations = gameController.getLevel().getAnimation();
+			for (int i = animations.size() - 1; i >= 0; i--) {
+				buildTutorialDialog(animations.get(i));
+			}
+		}
 	}
 
 	@Override
@@ -179,6 +201,35 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		dialog.add(goalTable).width(getViewportWidth() - 250)
 				.height(getViewportHeight());
 		dialog.stack(okay).center().bottom().width(300).height(70).pad(20);
+	}
+
+	private void buildTutorialDialog(String animationPath) {
+		AssetManager manager = AssetManager.getInstance();
+		StyleHelper helper = StyleHelper.getInstance();
+
+		final Dialog tutorial = new Dialog("", StyleHelper.getInstance()
+				.getDialogStyle());
+		tutorial.clear();
+		tutorial.fadeDuration = 0f;
+
+		Table buttonTable = new Table();
+		Drawable drawable = new TextureRegionDrawable(new TextureRegion(
+				manager.get(animationPath, Texture.class)));
+		// used image button here because it keeps the ratio of the texture
+		ImageButton tutorialImage = new ImageButton(drawable);
+		ImageButton okay = new ImageButton(
+				helper.getImageButtonStyleRound("widgets/icon-check"));
+
+		okay.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				tutorial.hide();
+			}
+		});
+
+		buttonTable.add(okay).size(100).bottom().right().expand().pad(30);
+		tutorial.stack(tutorialImage, buttonTable).height(500).width(800);
+		tutorial.show(stage);
 	}
 
 	private void checkZoom() {
