@@ -116,7 +116,8 @@ public class LevelTerminatedScreen extends AbstractScreen {
 			int currentLevelId = gameController.getLevel().getLevelIndex();
 			int currentPackageId = gameController.getLevel().getPackageIndex();
 
-			if (packagesController.getLevelPackages().size() - 1 <= currentPackageId) {
+			if (packagesController.getLevelPackages().size() < currentPackageId + 1 || (packagesController.getLevelPackages().size() == currentPackageId + 1 && packagesController.getLevelController(currentPackageId)
+					.getPackageSize() - 1 <= currentLevelId)) {
 				game.showMainMenuScreen(false);
 			} else if (packagesController.getLevelController(currentPackageId)
 					.getPackageSize() - 1 <= currentLevelId) {
