@@ -11,22 +11,16 @@ import de.croggle.game.event.BoardEventMessenger;
 
 public class RemoveUselessAgedAlligators implements BoardObjectVisitor {
 	private final BoardEventMessenger boardMessenger;
-	private boolean found;
 
 	private RemoveUselessAgedAlligators(BoardEventMessenger boardMessenger) {
 		this.boardMessenger = boardMessenger;
-		this.found = false;
 	}
 
 	public static void remove(BoardObject family,
 			BoardEventMessenger boardMessenger) {
 		RemoveUselessAgedAlligators visitor = new RemoveUselessAgedAlligators(
 				boardMessenger);
-		visitor.found = true;
-		while (visitor.found != false) {
-			visitor.found = false;
-			family.accept(visitor);
-		}
+		family.accept(visitor);
 	}
 
 	@Override
@@ -52,16 +46,25 @@ public class RemoveUselessAgedAlligators implements BoardObjectVisitor {
 	}
 
 	private void checkChildren(Parent p) {
-		InternalBoardObject first = p.getFirstChild();
-		if (first.getClass() == AgedAlligator.class) {
-			int i = 0;
-			for (InternalBoardObject child : (AgedAlligator) first) {
-				p.insertChild(child, i);
-				i++;
+		int firstNotEggPosition = 0;
+		while (firstNotEggPosition < p.getChildCount()
+				&& p.getChildAtPosition(firstNotEggPosition).getClass() == Egg.class) {
+			firstNotEggPosition++;
+		}
+		if (firstNotEggPosition < p.getChildCount()) {
+			InternalBoardObject firstNotEgg = p
+					.getChildAtPosition(firstNotEggPosition);
+
+			if (firstNotEgg.getClass() == AgedAlligator.class) {
+				int i = 0;
+				for (InternalBoardObject child : (AgedAlligator) firstNotEgg) {
+					p.insertChild(child, firstNotEggPosition + i);
+					i++;
+				}
+				p.removeChild(firstNotEgg);
+				this.boardMessenger.notifyAgedAlligatorVanishes(
+						(AgedAlligator) firstNotEgg, 0);
 			}
-			p.removeChild(first);
-			this.boardMessenger.notifyAgedAlligatorVanishes(
-					(AgedAlligator) first, 0);
 		}
 	}
 }
