@@ -2,17 +2,17 @@
 
 \subsection{Neuerungen in der AlligatorApp}
 
-Als Hauptcontroller ist die AlligatorApp nun auch dafür zuständig, das Verhalten des "'Back"'-Buttons von Androidgeräten zu steuern und verwalten. Dazu enthält sie einen Stack, auf dem bei Bildschirmwechsel die vorige Ansicht abgelegt wird, um sie bei Bedarf erneut aufzurufen. Dazu bietet die Klasse die neuen Methoden:
+Als Hauptcontroller ist die AlligatorApp nun auch dafür zuständig, das Verhalten des "Back"'-Buttons von Androidgeräten zu steuern und verwalten. Dazu enthält sie einen Stack, auf dem bei Bildschirmwechsel die vorige Ansicht abgelegt wird, um sie bei Bedarf erneut aufzurufen. Dazu bietet die Klasse die neuen Methoden:
 \begin{description}
-	\item[returnToPreviousScreen()] Der zuletzt gezeigte Screen wird erneut aufgerufen. Ist dies nicht möglich (z.B. weil der Stack leer ist), wird ein Dialog geöffnet, der es dem Nutzer ermöglicht, die App zu beenden.
-	\item[showPreviousScreen()] Der zuletzt gezeigte Screen wird erneut aufgerufen, mit dem Unterschied, dass das "'Zurückgehen"' zum vorigen Screen ebenfalls auf dem Stack gespeichert wird; man gelangt also bei erneutem Drücken des "'Back"'-Buttons zum Ursprungsbildschirm.
-	\item[clearScreenStack()] Leert den Stack. Dies ist sinnvoll, wenn durch das Zurückgehen Daten inkonsistent würden oder das Verhalten schlichtweg unerwartet wäre, z.B. nach Gewinnen einen Levels.
+	\item[returnToPreviousScreen] Der zuletzt gezeigte Screen wird erneut aufgerufen. Ist dies nicht möglich (z.B. weil der Stack leer ist), wird ein Dialog geöffnet, der es dem Nutzer ermöglicht, die App zu beenden.
+	\item[showPreviousScreen] Der zuletzt gezeigte Screen wird erneut aufgerufen, mit dem Unterschied, dass das "Zurückgehen"' zum vorigen Screen ebenfalls auf dem Stack gespeichert wird; man gelangt also bei erneutem Drücken des "`Back"'-Buttons zum Ursprungsbildschirm.
+	\item[clearScreenStack] Leert den Stack. Dies ist sinnvoll, wenn durch das "`Zurückgehen"' Daten inkonsistent würden oder das Verhalten schlichtweg unerwartet wäre, z.B. nach Gewinnen eines Levels.
 \end{description}
 
-Außerdem wurde eine Reihe von Methoden hinzugefügt, die für das Aufrufen von Screens verwendet werden sollten, da in ihnen genaueres Verhalten beim Screenwechsel für die verschiedenen Screens definiert wird, u.a. auch für die Routine beim Drücken des "'Back"'-Buttons:
+Außerdem wurden mehrere Methoden hinzugefügt, die für das Aufrufen von Screens verwendet werden sollten, da in ihnen genaueres Verhalten beim Screenwechsel für die verschiedenen Screens definiert wird, u.a. auch für die Routine beim Drücken des "`Back"'-Buttons:
 \begin{itemize}
 	\item showMainMenuScreen(boolean puOnStack)
-	\item shwLevelPackagesScreen()
+	\item showLevelPackagesScreen()
 	\item showLevelOverviewScreen(LevelController levelController)
 	\item showAcievementScreen()
 	\item showStatisticScreen()
@@ -26,5 +26,5 @@ Außerdem wurde eine Reihe von Methoden hinzugefügt, die für das Aufrufen von 
 	\item showLevelTerminatedScreen(GameController gameController)
 \end{itemize}
 
-Es wurde desweiteren die Methode \textbf{created()} hinzugefügt, die aufgerufen wird, sobald die eigentliche create() Methode beendet wurde und alle Daten vom AssetManager fertig geladen sind.
+Es wurde des Weiteren die Methode \textbf{created()} hinzugefügt, die aufgerufen wird, sobald die eigentliche create() Methode beendet wurde und alle Daten vom AssetManager fertig geladen sind.
  
