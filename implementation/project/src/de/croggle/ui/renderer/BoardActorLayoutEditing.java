@@ -488,7 +488,7 @@ class BoardActorLayoutEditing {
 	private class SiblingTarget extends Target {
 		private Vector2 point = new Vector2();
 		private boolean placeholderIsLeft;
-		private boolean placeholderPlacedBefore;
+		private boolean placeholderAlreadyVisible;
 
 		public SiblingTarget(BoardObjectActor actor) {
 			super(actor);
@@ -525,7 +525,7 @@ class BoardActorLayoutEditing {
 					.getBoardObject());
 			if ((x < left && targetChildPos - sourceChildPos != 1)
 					|| (x > right && sourceChildPos - targetChildPos != 1)) {
-				if (!(placeholderPlacedBefore && x < left == placeholderIsLeft)) {
+				if (!placeholderAlreadyVisible || x < left != placeholderIsLeft) {
 					/*
 					 * Prepare the placeholder: move the actor on the drag
 					 * position and remove the placeholder board object from its
@@ -533,6 +533,7 @@ class BoardActorLayoutEditing {
 					 */
 					placeHolderActor.setSiblingXAndWidth(targetActor.getX(),
 							targetActor.getWidth());
+					placeHolderActor.setHeight(targetActor.getHeight());
 					InternalBoardObject placeholder = placeHolderActor
 							.getBoardObject();
 					boolean moved = false;
@@ -547,12 +548,14 @@ class BoardActorLayoutEditing {
 						parent.insertChild(placeholder, targetChildPos);
 						b.getLayout().addActor(placeHolderActor);
 						b.addToWorld(placeHolderActor);
+						placeholderIsLeft = true;
 					} else if (x > right) {
 						placeHolderActor.setActualX(targetActor.getX()
 								+ targetActor.getWidth());
 						parent.insertChild(placeholder, targetChildPos + 1);
 						b.getLayout().addActor(placeHolderActor);
 						b.addToWorld(placeHolderActor);
+						placeholderIsLeft = false;
 					}
 
 					if (moved) {
@@ -560,7 +563,7 @@ class BoardActorLayoutEditing {
 					} else {
 						messenger.notifyObjectPlaced(placeholder);
 					}
-					placeholderPlacedBefore = true;
+					placeholderAlreadyVisible = true;
 				}
 			} else {
 				reset(dragSource, payload);
@@ -580,7 +583,7 @@ class BoardActorLayoutEditing {
 				}
 				messenger.notifyObjectRemoved(placeholder);
 			}
-			placeholderPlacedBefore = false;
+			placeholderAlreadyVisible = false;
 		}
 
 		@Override

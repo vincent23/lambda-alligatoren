@@ -55,9 +55,10 @@ class PlaceHolderActor extends BoardObjectActor {
 
 	// @Override
 	// public void draw(SpriteBatch batch, float parentAlpha) {
-	// batch.draw(AssetManager.getInstance()
-	// .getColorTexture(Color.uncolored()), getX(), getY(), getWidth()
-	// * getScaleX(), getHeight() * getScaleY());
+	// batch.draw(
+	// de.croggle.data.AssetManager.getInstance().getColorTexture(
+	// de.croggle.game.Color.uncolored()), getX(), getY(),
+	// getWidth() * getScaleX(), getHeight() * getScaleY());
 	// }
 
 	public void setActualX(float x) {
