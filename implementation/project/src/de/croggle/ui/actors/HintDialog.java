@@ -22,9 +22,9 @@ public class HintDialog extends Dialog {
 		try{
 			hint = new Image(helper.getDrawable(level.getHint()));
 		} catch (IllegalArgumentException ex) {
-			hint = new Image(helper.getDrawable("hints/testHint"));
+			hint = new Image(helper.getDrawable("hints/0000"));
 		} catch (GdxRuntimeException ex) {
-			hint = new Image(helper.getDrawable("hints/testHint"));
+			hint = new Image(helper.getDrawable("hints/0000"));
 		}
 		TextButton okay = new TextButton(_("button_ok"),
 				helper.getTextButtonStyle());
