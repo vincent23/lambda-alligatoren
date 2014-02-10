@@ -47,7 +47,7 @@ public class LevelPackagesScreen extends AbstractScreen {
 		ImageButton home = new ImageButton(StyleHelper.getInstance()
 				.getImageButtonStyleRound("widgets/icon-back"));
 
-		home.addListener(new MainMenuClickListener());
+		home.addListener(new LogicalPredecessorListener());
 
 		for (LevelPackage pack : packagesController.getLevelPackages()) {
 			Table pageTable = new Table();
