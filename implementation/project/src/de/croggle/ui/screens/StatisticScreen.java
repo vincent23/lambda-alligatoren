@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
@@ -25,6 +24,7 @@ import de.croggle.game.profile.Profile;
 import de.croggle.game.profile.ProfileChangeListener;
 import de.croggle.game.profile.ProfileController;
 import de.croggle.ui.StyleHelper;
+import de.croggle.ui.actors.SelectBox;
 
 /**
  * Screen which enables the teacher or parent to control the progress of every
@@ -116,7 +116,7 @@ public class StatisticScreen extends AbstractScreen implements
 		table.pad(30);
 		table.add(back).size(100).top().left();
 		table.add(profiles).height(70).padRight(20).padLeft(200).right();
-		table.add(profileList).height(70).width(300).expandX().left();
+		table.add(profileList).height(40).width(300).expandX().left();
 
 		table.row();
 		table.add(tabBar).colspan(3).height(100);
