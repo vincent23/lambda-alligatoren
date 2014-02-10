@@ -1,12 +1,83 @@
 \section{Package: game.board.operations.validation (ehemals game.visitor)}
 \subsection{AbstractBoardError}
+	Oberklasse aller \emph{BoardError}. Implementiert das \emph{BoardError}-Interface.
+	\subsubsection{Hinzugefügte Methoden}
+	\begin{description}
+		\item[Konstruktor] Es wurde ein Konstruktor hinzugefügt, der ein \emph{BoardObject} als Grund für den auftretenden 
+			Fehler übergeben bekommt.
+		\item[getCause]
+			Gibt den Grund, also das \emph{BoardObject} zurück, das den Error verursacht hat.
+	\end{description}
+
 \subsection{AbstractBoardValidator}
+
 \subsection{AgedAlligatorChildlessError}
+	\emph{BoardError}, der auftritt, wenn ein \emph{AgedAlligator} keine Kinder hat.
+	\subsubsection{Hinzugefügte Methoden}
+	\begin{description}
+		\item[Konstruktor] Es wurde ein Konstruktor hinzugefügt, der einen \emph{AgedAlligator} als Grund für den auftretenden 
+			Fehler übergeben bekommt.
+		\item[haveDispatched]
+			Behandelt den Error auf entsprechende Weise mit Hilfe eines \emph{BoardErrorDispatcher}.
+	\end{description}
+
 \subsection{BoardError}
+	Interface, dass alle \emph{BoardError} implementieren. \emph{BoardError} werden benutzt um bei einem invaliden
+	 \emph{Board} eine entsprechende, die Ursache des Fehlers enthaltene Fehlermeldung zu erhalten.
+	\subsubsection{Hinzugefügte Methoden}
+	\begin{description}
+		\item[getCause]
+			Gibt den Grund, also das \emph{BoardObject} zurück, das den Error verursacht hat.
+		\item[haveDispatched]
+			Behandelt den Error auf entsprechende Weise mit Hilfe eines \emph{BoardErrorDispatcher}.
+	\end{description}
+
 \subsection{BoardErrorDispatcher}
+	Interface in dem Methoden definiert werden um die unterschiedlichen Arten von \emph{BoardErrors} zu behandeln.
+	\subsubsection{Hinzugefügte Methoden}
+	\begin{description}
+		\item[dispatch]
+			Überladene Methode zur Behandlung unterschiedlicher Arten von \emph{BoardError}.
+	\end{description}
+
 \subsection{BoardErrorType}
+	Enum in dem die verschiedenen \emph{BoardError}-Typen definiert werden.
+	\subsubsection{Hinzugefügte Methoden}
+	\begin{description}
+		\item[all]
+			Gibt ein Array mit allen in diesem Enum definierten \emph{BoardError}-Typen zurück.
+	\end{description}
+
 \subsection{ColoredAlliagtorChildlessError}
+	\emph{BoardError}, der auftritt, wenn ein \emph{ColoredAlligator} keine Kinder hat.
+	\subsubsection{Hinzugefügte Methoden}
+	\begin{description}
+		\item[Konstruktor] Es wurde ein Konstruktor hinzugefügt, der einen \emph{ColoredAlligator} als Grund für den 
+			auftretenden Fehler übergeben bekommt.
+		\item[haveDispatched]
+			Behandelt den Error auf entsprechende Weise mit Hilfe eines \emph{BoardErrorDispatcher}.
+	\end{description}
+
 \subsection{EmptyBoardError}
+	\emph{BoardError}, der auftritt, wenn ein \emph{Board} leer ist.
+	\subsubsection{Hinzugefügte Methoden}
+	\begin{description}
+		\item[Konstruktor] Es wurde ein Konstruktor hinzugefügt, der ein \emph{Board} als Grund für den auftretenden 
+			Fehler übergeben bekommt.
+		\item[haveDispatched]
+			Behandelt den Error auf entsprechende Weise mit Hilfe eines \emph{BoardErrorDispatcher}.
+	\end{description}
+
 \subsection{FindBoardErrors}
+
 \subsection{ObjectUncoloredError}
+	\emph{BoardError}, der auftritt, wenn ein \emph{ColoredAlligator} oder ein \emph{Egg} nicht eingefärbt ist.
+	\subsubsection{Hinzugefügte Methoden}
+	\begin{description}
+		\item[Konstruktor] Es wurde ein Konstruktor hinzugefügt, der ein \emph{InternalBoardObject} als Grund für den 
+			auftretenden Fehler übergeben bekommt.
+		\item[haveDispatched]
+			Behandelt den Error auf entsprechende Weise mit Hilfe eines \emph{BoardErrorDispatcher}.
+	\end{description}
+
 \subsection{ValidateConstellation}
