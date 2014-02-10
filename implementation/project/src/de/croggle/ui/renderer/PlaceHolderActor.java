@@ -53,13 +53,16 @@ class PlaceHolderActor extends BoardObjectActor {
 		siblingW = w;
 	}
 
-	// @Override
-	// public void draw(SpriteBatch batch, float parentAlpha) {
-	// batch.draw(
-	// de.croggle.data.AssetManager.getInstance().getColorTexture(
-	// de.croggle.game.Color.uncolored()), getX(), getY(),
-	// getWidth() * getScaleX(), getHeight() * getScaleY());
-	// }
+	@Override
+	public void draw(com.badlogic.gdx.graphics.g2d.SpriteBatch batch,
+			float parentAlpha) {
+		if (de.croggle.AlligatorApp.DEBUG) {
+			batch.draw(de.croggle.data.AssetManager.getInstance()
+					.getColorTexture(de.croggle.game.Color.uncolored()),
+					getX(), getY(), getWidth() * getScaleX(), getHeight()
+							* getScaleY());
+		}
+	}
 
 	public void setActualX(float x) {
 		super.setX(x);
