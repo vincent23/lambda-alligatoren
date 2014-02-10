@@ -35,6 +35,7 @@ import de.croggle.ui.actors.NotificationDialog;
 import de.croggle.ui.actors.PagedScrollPane;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
+import de.croggle.util.BackendHelper;
 
 /**
  * Screen which the player sees when entering Multiple choice levels.
@@ -45,7 +46,7 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 	private final MultipleChoiceGameController gameController;
 	private BoardActor boardActor;
 	private CheckBox checkboxes[];
-	private Dialog dialog;
+	private final Dialog dialog;
 
 	/**
 	 * Creates the base screen of a multiple choice level, which is shown to the
@@ -85,6 +86,8 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 
 	@Override
 	protected void onShow() {
+		BackendHelper.acquireWakeLock();
+
 		gameController.setTimeStamp();
 		gameController.enterPlacement();
 
@@ -100,10 +103,9 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 	@Override
 	public void hide() {
 		super.hide();
+		BackendHelper.releaseWakeLock();
 		gameController.updateTime();
 		gameController.setTimeStamp();
-		// Log.d("check time", "elapsedTime: " + gameController.getElapsedTime()
-		// + " ms");
 	}
 
 	@Override

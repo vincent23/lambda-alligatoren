@@ -3,8 +3,6 @@ package de.croggle.ui.screens;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.util.Log;
-
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -32,6 +30,7 @@ import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.IngameMenuDialog;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
+import de.croggle.util.BackendHelper;
 
 /**
  * Screen which is shown during the evaluation-phase of a level. For reference
@@ -101,6 +100,8 @@ public class SimulationModeScreen extends AbstractScreen implements
 
 	@Override
 	protected void onShow() {
+		BackendHelper.acquireWakeLock();
+
 		ColorController cctrlr = gameController.getColorController();
 		gameController.setTimeStamp();
 		Board b = gameController.getShownBoard();
@@ -123,10 +124,9 @@ public class SimulationModeScreen extends AbstractScreen implements
 	@Override
 	public void hide() {
 		stopAutomaticSimulation();
+		BackendHelper.releaseWakeLock();
 		gameController.updateTime();
 		gameController.setTimeStamp();
-		Log.d("check time", "elapsedTime: " + gameController.getElapsedTime()
-				+ " ms");
 		table.clear();
 	}
 

@@ -32,6 +32,7 @@ import de.croggle.ui.actors.NotificationDialog;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
 import de.croggle.ui.renderer.ObjectBar;
+import de.croggle.util.BackendHelper;
 
 /**
  * Screen within which the player can manipulate the board by moving alligators
@@ -87,6 +88,8 @@ public class PlacementModeScreen extends AbstractScreen implements
 
 	@Override
 	protected void onShow() {
+		BackendHelper.acquireWakeLock();
+
 		gameController.setTimeStamp();
 		gameController.enterPlacement();
 
@@ -250,6 +253,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 	@Override
 	public void hide() {
 		super.hide();
+		BackendHelper.releaseWakeLock();
 		gameController.updateTime();
 		gameController.setTimeStamp();
 	}

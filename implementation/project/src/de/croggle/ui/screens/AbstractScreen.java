@@ -33,9 +33,6 @@ public abstract class AbstractScreen implements Screen {
 	private final OrthographicCamera camera;
 	private boolean widgetsInitialized = false;
 
-	// protected int screenWidth;
-	// protected int screenHeight;
-
 	private final InputMultiplexer inputMediator;
 
 	/**
@@ -56,9 +53,6 @@ public abstract class AbstractScreen implements Screen {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1024, 600);
 		stage.setCamera(camera);
-
-		// screenWidth = Gdx.graphics.getWidth();
-		// screenHeight = Gdx.graphics.getHeight();
 
 		// make the screen as well as the stage an input processor
 		inputMediator = new InputMultiplexer(stage, new BackButtonHandler());

@@ -1,6 +1,7 @@
 package de.croggle;
 
 import android.os.Bundle;
+import android.os.PowerManager.WakeLock;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -42,5 +43,29 @@ public class MainActivity extends AndroidApplication {
 		config.a = 8;
 
 		initialize(new AlligatorApp(this), config);
+	}
+
+	public WakeLock getWakeLock() {
+		return wakeLock;
+	}
+
+	@Override
+	protected void onResume() {
+		/*
+		 * we do not want libgdx to manage the wakelock for us as we want to do
+		 * this on a per-screen basis.
+		 */
+		WakeLock w = wakeLock;
+		wakeLock = null;
+		super.onResume();
+		wakeLock = w;
+	}
+
+	@Override
+	protected void onPause() {
+		WakeLock w = wakeLock;
+		wakeLock = null;
+		super.onPause();
+		wakeLock = w;
 	}
 }
