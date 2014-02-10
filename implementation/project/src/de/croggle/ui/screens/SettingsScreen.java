@@ -37,7 +37,7 @@ public class SettingsScreen extends AbstractScreen implements
 	Slider musicSlider;
 	Slider effectsSlider;
 
-	private SettingController settingController;
+	private final SettingController settingController;
 
 	/**
 	 * Creates the screen that is shown to the player while changing his
@@ -134,11 +134,11 @@ public class SettingsScreen extends AbstractScreen implements
 		scrollTable.add(profile).row();
 		scrollTable.add(editProfile).width(300).height(75);
 
-		scrollTable.pad(50).padRight(200);
+		scrollTable.pad(50).padRight(150);
 		table.add(back).size(100).top().left();
 		table.add(scrollTable).expand().fill();
 		table.pad(30);
-		
+
 		onProfileChange(null);
 	}
 
@@ -202,6 +202,7 @@ public class SettingsScreen extends AbstractScreen implements
 			});
 
 			avatar.addListener(new ClickListener() {
+				@Override
 				public void clicked(InputEvent event, float x, float y) {
 					game.getProfileSetAvatarScreen().setInEditMode(true);
 					EditProfileDialog.this.hide();
