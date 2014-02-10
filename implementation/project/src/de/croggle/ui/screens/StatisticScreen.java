@@ -33,8 +33,8 @@ import de.croggle.ui.StyleHelper;
 public class StatisticScreen extends AbstractScreen implements
 		ProfileChangeListener {
 
-	private StatisticController statisticController;
-	private ProfileController profileController;
+	private final StatisticController statisticController;
+	private final ProfileController profileController;
 
 	private SelectBox profileList;
 	private Table content;
@@ -153,70 +153,110 @@ public class StatisticScreen extends AbstractScreen implements
 		LabelStyle style = StyleHelper.getInstance().getLabelStyle();
 		Statistic statistic = statisticController.getStatistic(profileList
 				.getSelection());
+		/*
+		 * TODO make this nicer (e.g. special Category class, that can layout
+		 * itself)
+		 */
+		content.defaults().height(100).expandX().left().padLeft(10);
 		if (statistic != null) {
 			switch (category) {
 			case PROGRESS:
-				int sec = statistic.getPlaytime(); 
+				int sec = statistic.getPlaytime();
 				int hours = sec / 3600;
 				sec = sec % 3600;
 				int min = sec / 60;
-				sec = sec % 60; 
-				
-				Label time = new Label(_("statistic_label_progress_time")+" "
-						+  hours + " h  " + String.format("%02d", min) + " min  " + String.format("%02d", sec) + " s" , style);
-				Label packages = new Label(
-						_("statistic_label_progress_packages")
-								+ statistic.getPackagesComplete(), style);
-				Label levels = new Label(_("statistic_label_progress_levels")
-						+ statistic.getLevelsComplete(), style);
+				sec = sec % 60;
 
-				content.defaults().height(100).expandX().left().padLeft(10);
-				content.add(time);
+				Label timeText = new Label(_("statistic_label_progress_time"),
+						style);
+				Label timeVal = new Label(hours + " h  "
+						+ String.format("%02d", min) + " min  "
+						+ String.format("%02d", sec) + " s", style);
+
+				Label packagesText = new Label(
+						_("statistic_label_progress_packages"), style);
+				Label packagesVal = new Label(""
+						+ statistic.getPackagesComplete(), style);
+
+				Label levelsText = new Label(
+						_("statistic_label_progress_levels"), style);
+				Label levelsVal = new Label("" + statistic.getLevelsComplete(),
+						style);
+
+				content.add(timeText);
+				content.add(timeVal);
 				content.row();
-				content.add(packages);
+
+				content.add(packagesText);
+				content.add(packagesVal);
 				content.row();
-				content.add(levels);
+
+				content.add(levelsText);
+				content.add(levelsVal);
 				break;
+
 			case ACTION:
+				Label recoloringsText = new Label(
+						_("statistic_label_action_recolorings"), style);
+				Label recoloringsVal = new Label(""
+						+ statistic.getRecolorings(), style);
 
-				Label recolorings = new Label(
-						_("statistic_label_action_recolorings")
-								+ statistic.getRecolorings(), style);
-				Label resets = new Label(_("statistic_label_action_resets")
-						+ statistic.getResetsUsed(), style);
-				Label hints = new Label(_("statistic_label_action_hints")
-						+ statistic.getUsedHints(), style);
+				Label resetsText = new Label(
+						_("statistic_label_action_resets"), style);
+				Label resetsVal = new Label("" + statistic.getResetsUsed(),
+						style);
 
-				content.defaults().height(100).expandX().left().padLeft(10);
-				content.add(recolorings);
+				Label hintsText = new Label(_("statistic_label_action_hints"),
+						style);
+				Label hintsVal = new Label("" + statistic.getUsedHints(), style);
+
+				content.add(recoloringsText);
+				content.add(recoloringsVal);
 				content.row();
-				content.add(resets);
+
+				content.add(resetsText);
+				content.add(resetsVal);
 				content.row();
-				content.add(hints);
+
+				content.add(hintsText);
+				content.add(hintsVal);
 				break;
+
 			case GAME:
+				Label alligatorsEatenText = new Label(
+						_("statistic_label_game_alligators_eaten"), style);
+				Label alligatorsEatenVal = new Label(""
+						+ statistic.getAlligatorsEaten(), style);
 
-				Label alligatorsEaten = new Label(
-						_("statistic_label_game_alligators_eaten")
-								+ statistic.getAlligatorsEaten(), style);
-				Label alligatorsPlaced = new Label(
-						_("statistic_label_game_alligators_placed")
-								+ statistic.getAlligatorsPlaced(), style);
-				Label eggsHatched = new Label(
-						_("statistic_label_game_eggs_hatched")
-								+ statistic.getEggsHatched(), style);
-				Label eggsPlaced = new Label(
-						_("statistic_label_game_eggs_placed")
-								+ statistic.getEggsPlaced(), style);
+				Label alligatorsPlacedText = new Label(
+						_("statistic_label_game_alligators_placed"), style);
+				Label alligatorsPlacedVal = new Label(""
+						+ statistic.getAlligatorsPlaced(), style);
 
-				content.defaults().height(100).expandX().left().padLeft(10);
-				content.add(alligatorsEaten);
+				Label eggsHatchedText = new Label(
+						_("statistic_label_game_eggs_hatched"), style);
+				Label eggsHatchedVal = new Label(""
+						+ statistic.getEggsHatched(), style);
+
+				Label eggsPlacedText = new Label(
+						_("statistic_label_game_eggs_placed"), style);
+				Label eggsPlacedVal = new Label("" + statistic.getEggsPlaced(),
+						style);
+
+				content.add(alligatorsEatenText);
+				content.add(alligatorsEatenVal);
 				content.row();
-				content.add(alligatorsPlaced);
+
+				content.add(alligatorsPlacedText);
+				content.add(alligatorsPlacedVal);
 				content.row();
-				content.add(eggsHatched);
+
+				content.add(eggsHatchedText);
+				content.add(eggsHatchedVal);
 				content.row();
-				content.add(eggsPlaced);
+
+				content.add(eggsPlacedText);
+				content.add(eggsPlacedVal);
 				break;
 			}
 		}
@@ -239,7 +279,7 @@ public class StatisticScreen extends AbstractScreen implements
 			}
 		}
 	}
-	
+
 	@Override
 	protected void onShow() {
 		showCategory(lastCategory);
