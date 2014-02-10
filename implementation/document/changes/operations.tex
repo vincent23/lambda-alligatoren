@@ -1,1 +1,107 @@
 \section{Package: game.board.operations (ehemals game.visitor)}
+Alle Klassen aus dem ehemaligen Paket \emph{game.visitor} wurden entweder in dieses, oder in das untergeordnete Paket \emph{game.board.operations.validation} verschoben.
+Dabei wurde das Postfix "`Visitor"' vom Klassennamen gestrichen.
+Bei neu hinzugefügten \emph{BoardObjectVisitor} werden im Folgenden die Methoden des Interface nicht extra aufgeführt.
+
+\subsection{CountBoardObjects}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[count]
+Neue Version hinzugefügt, die eine Konfiguration der gezählten \emph{BoardObject}-Objekte erlaubt.
+\end{description}
+
+
+\subsection{CreateDepthMap}
+Neu für den Renderer hinzugefügter \emph{BoardObjectVisitor} um die Höhe der Hierarchie über Objekten zu berechnen.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[create]
+Gibt eine Abbildung von allen Objekten in der übergebenen Hierarchie und ihren berechneten Höhen zurück.
+\end{description}
+
+
+\subsection{CreateHeightMap}
+Neu für den Renderer hinzugefügter \emph{BoardObjectVisitor} um die Höhe der Hierarchie unter Objekten zu berechnen.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[create]
+Gibt eine Abbildung von allen Objekten in der übergebenen Hierarchie und ihren berechneten Höhen zurück.
+\end{description}
+
+
+\subsection{CreateWidthMap}
+Neu für den Renderer hinzugefügter \emph{BoardObjectVisitor} um die Breite von Objekten, inklusive der von ihren Kindelementen, zu berechnen.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[create]
+Gibt eine Abbildung von allen Objekten in der übergebenen Hierarchie und ihren berechneten Breiten zurück.
+\end{description}
+
+
+\subsection{ExchangeColor}
+Neu hinzugefügter \emph{BoardObjectVisitor}, um eine Farbe in einer Familie durch eine andere zu ersetzen.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[recolor]
+Färbt alle Alligatoren und Eier der übergebenen Farbe in der übergebenen Familie durch die zweite übergebene Farbe um.
+
+\end{description}
+
+
+\subsection{FlattenTree}
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[toList]
+Gleiches Verhalten wie \emph{toArray}, nur wird eine Liste anstatt eines Arrays zurückgegeben.
+\end{description}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[toArray]
+Umbenannt von \emph{flatten}. Hinzufügen einer Variante, die nur \emph{InternalBoardObject} arbeitet.
+\end{description}
+
+
+\subsection{GetParentHierarchy}
+Neu hinzugefügter \emph{BoardObjectVisitor}, um eine Liste der Elternelemente eines Objektes in der Hierarchie zu ermitteln.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[get]
+Gibt die Liste der Elternelemente des übergebenen Objekts zurück.
+\end{description}
+
+
+\subsection{RemoveAgedAlligators}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[remove]
+Hinzufügen einer Variante, bei der kein \emph{BoardEventMessenger} übergeben werden muss.
+\end{description}
+
+
+\subsection{RemoveUselessAgedAlligators}
+Neu hinzugefügter \emph{BoardObjectVisitor}, um auch solche \emph{AgedAlligator} zu entfernen, die durch die Assoziativität unnötig sind.
+
+\subsubsection{Hinzugefügte Methoden}
+\begin{description}
+\item[remove]
+Entfernt alle \emph{AgedAlligator} aus der übergebenen Konstellation, die durch die Assoziativität unnötig sind.
+\end{description}
+
+
+
+\subsection{ReplaceEggs}
+
+\subsubsection{Modifizierte Methoden}
+\begin{description}
+\item[replace]
+Hinzufügen verschiedene Varianten, bei denen kein \emph{ColorController} oder kein \emph{BoardEventMessenger} übergeben werden muss.
+\end{description}
