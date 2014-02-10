@@ -5,7 +5,7 @@
 			"type" : "color edit" ,
 			"description" : "Zweites Tutoriallevel, in dem die β-Reduktion gezeigt wird. Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen." ,
 			"design" : "" ,
-			"animation" : [""
+			"animation" : ["tutorial/eating1.png", "tutorial/eating2.png", "tutorial/eating3.png"
 			],
 			"abort simulation after" : 111 ,
 			"hints" : [ "hints/0001"
