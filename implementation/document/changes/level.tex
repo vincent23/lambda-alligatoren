@@ -30,15 +30,15 @@
 
 	\subsubsection{Hinzugefügte Methoden}
 		\begin{description}
-			\item[getAbortSimulationAfter]
-			\item[getUnlocked]
-			\item[setUnlocked]
+			\item[getAbortSimulationAfter] Gibt zurück nach wievielen Schritten die Simulation beendet werden soll.
+			\item[getUnlocked] Gibt zurück ob das Level schon freigeschaltet wurde.
+			\item[setUnlocked] Mit dieser Methode kann man ein Level auf freigeschaltet bzw. nicht freigeschaltet setzten.
 			\item[isLevelSolved] Gibt zurück ob das übergebene \emph{Board} und Schrittanzahl 
 				das Level löst oder nicht.
 			\item[isSolveable] Gibt zurück ob die festgelegte maximale Simulationsschrittzahl bereits 
 				überschritten wurde.
-			\item[isSolved]
-			\item[setSolvedTrue]
+			\item[isSolved]Gibt zurück ob das Level durch das übergebene Board und Schrittanzahl gelöst wird.
+			\item[setSolvedTrue] Setzt ein Level auf gelöst.
 			\item[createGameController] Methode, die einen GameController für dieses Level erstellt und zurückgibt.
 			\item[getLevelId] Methode, die eine Konkatenation von Levelpackage Index und Level Index zurückgibt.
 			\item[getShowObjectBar] Methode, die zurückgibt ob im Plaziermodus für dieses Level die \emph{ObjectBar} 
@@ -65,8 +65,8 @@
 
 	\subsubsection{Hinzugefügte Methoden}
 		\begin{description}
-			\item[getAnimation]
-			\item[getDesign]
+			\item[getAnimation] Gibt den Pfad zu der zum Package gehörende Animation zurück.
+			\item[getDesign] Gibt dem Pfad zum Design des Level Pakets zurück.
 		\end{description}
 	\subsubsection{Modifizierte Methoden}
 		\begin{description}
