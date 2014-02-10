@@ -25,14 +25,16 @@ public class LoadingScreen extends AbstractScreen {
 	private NinePatch bar;
 	private NinePatch barEmpty;
 
+	private Texture barTexture;
+	private Texture barEmptyTexture;
+
 	public LoadingScreen(AlligatorApp game, Screen nextScreen) {
 		super(game);
 		this.nextScreen = nextScreen;
 
 		// prepare loading bar graphics without using AssetManager
-		Texture barTexture = new Texture(
-				Gdx.files.internal("textures/loading-bar.png"));
-		Texture barEmptyTexture = new Texture(
+		barTexture = new Texture(Gdx.files.internal("textures/loading-bar.png"));
+		barEmptyTexture = new Texture(
 				Gdx.files.internal("textures/loading-bar-empty.png"));
 		bar = new NinePatch(barTexture, 8, 8, 8, 8);
 		barEmpty = new NinePatch(barEmptyTexture, 8, 8, 8, 8);
@@ -71,7 +73,14 @@ public class LoadingScreen extends AbstractScreen {
 
 	@Override
 	public void show() {
+		// do nothing, especially no finishLoading like super.show
+	}
 
+	@Override
+	public void hide() {
+		// release resources
+		barTexture.dispose();
+		barEmptyTexture.dispose();
 	}
 
 }
