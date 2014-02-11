@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	/**
 	 * The version number of the database.
 	 */
-	private static final int DATABASE_Version = 1;
+	private static final int DATABASE_Version = 2;
 
 	/**
 	 * Creates a new DatabaseHelper which is used for managing the database.

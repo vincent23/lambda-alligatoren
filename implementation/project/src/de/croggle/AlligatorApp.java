@@ -185,17 +185,6 @@ public class AlligatorApp extends Game {
 		this.batch = new SpriteBatch();
 		
 		
-		
-		//	|
-		//	|	Delete this after one run
-		//	V
-		context.deleteDatabase(DatabaseHelper.DATABASE_NAME);
-		//	^
-		//	|	Delete this after one run
-		//	|
-
-		
-		
 		// catch android back key
 		Gdx.input.setCatchBackKey(true);
 
