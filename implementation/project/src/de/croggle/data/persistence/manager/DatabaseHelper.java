@@ -13,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	/**
 	 * The name of the database.
 	 */
-	private static final String DATABASE_NAME = "persistenceDB";
+	public static final String DATABASE_NAME = "persistenceDB";
 
 	/**
 	 * The version number of the database.

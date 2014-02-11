@@ -350,7 +350,7 @@ public class GameController implements BoardEventListener {
 		setupColorController();
 		userBoard = level.getInitialBoard().copy();
 		placementMessenger.notifyBoardRebuilt(userBoard);
-		getProgress().setUsedResets(getProgress().getUsedResets() + 1);
+		statisticsDelta.setResetsUsed(statisticsDelta.getResetsUsed() + 1);
 		saveProgress();
 	}
 
@@ -432,7 +432,7 @@ public class GameController implements BoardEventListener {
 				.getLevelProgress(profileName, level.getLevelId());
 		if (previousProgress == null) {
 			Log.d("GameController", "No previous progress");
-			progress = new LevelProgress(level.getLevelId(), false, "", 0, 0, 0);
+			progress = new LevelProgress(level.getLevelId(), false, "", 0);
 			return;
 		}
 		onAfterLoadProgress(previousProgress);
@@ -445,7 +445,7 @@ public class GameController implements BoardEventListener {
 
 	// TODO call this somewhere
 	public void onUsedHint() {
-		getProgress().setUsedHints(getProgress().getUsedHints() + 1);
+		statisticsDelta.setUsedHints(statisticsDelta.getUsedHints() + 1);
 		saveProgress();
 	}
 

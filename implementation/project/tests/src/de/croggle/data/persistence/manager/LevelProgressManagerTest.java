@@ -26,6 +26,7 @@ public class LevelProgressManagerTest extends AndroidTestCase {
 		insertProfiles();
 		
 		levelProgressManager.open();
+		levelProgressManager.clearTable();
 		
 	}
 	
@@ -53,9 +54,9 @@ public class LevelProgressManagerTest extends AndroidTestCase {
 
 	public void testInsertLevelProgress() {
 
-		LevelProgress levelProgress1 = new LevelProgress(0, true, "board1", 4, 2, 5);
-		LevelProgress levelProgress2 = new LevelProgress(1, false, "", 0, 0, 0);
-		LevelProgress levelProgress3 = new LevelProgress(2, false, "boardXYZ", 5, 25, 125);
+		LevelProgress levelProgress1 = new LevelProgress(0, true, "board1", 5);
+		LevelProgress levelProgress2 = new LevelProgress(1, false, "", 0);
+		LevelProgress levelProgress3 = new LevelProgress(2, false, "boardXYZ", 125);
 		
 		assertTrue(0 == levelProgressManager.getRowCount());
 	
@@ -74,10 +75,10 @@ public class LevelProgressManagerTest extends AndroidTestCase {
 
 	public void testFetchLevelProgress() {
 
-		LevelProgress levelProgress1 = new LevelProgress(0, true, "board1", 4, 2, 5);
-		LevelProgress levelProgress2 = new LevelProgress(1, false, "board2", 1, 2, 3);
-		LevelProgress levelProgress3 = new LevelProgress(2, false, "board4", 5, 25, 125);
-		LevelProgress levelProgress4 = new LevelProgress(0, false, "adfadf", 0, 0, 0);
+		LevelProgress levelProgress1 = new LevelProgress(0, true, "board1", 5);
+		LevelProgress levelProgress2 = new LevelProgress(1, false, "board2", 3);
+		LevelProgress levelProgress3 = new LevelProgress(2, false, "board4", 125);
+		LevelProgress levelProgress4 = new LevelProgress(0, false, "adfadf", 0);
 
 		levelProgressManager.addLevelProgress("Tim", levelProgress1);
 		levelProgressManager.addLevelProgress("Tim", levelProgress2);
@@ -103,9 +104,9 @@ public class LevelProgressManagerTest extends AndroidTestCase {
 	
 	public void testDeleteLevelProgress() {
 		
-		LevelProgress levelProgress1 = new LevelProgress(0, true, "board1", 4, 2, 5);
-		LevelProgress levelProgress2 = new LevelProgress(1, false, "board2", 1, 2, 3);
-		LevelProgress levelProgress3 = new LevelProgress(2, false, "board4", 5, 25, 125);
+		LevelProgress levelProgress1 = new LevelProgress(0, true, "board1", 5);
+		LevelProgress levelProgress2 = new LevelProgress(1, false, "board2", 3);
+		LevelProgress levelProgress3 = new LevelProgress(2, false, "board4", 125);
 		
 		levelProgressManager.addLevelProgress("Tim", levelProgress1);
 		levelProgressManager.addLevelProgress("Tim", levelProgress2);
@@ -128,8 +129,8 @@ public class LevelProgressManagerTest extends AndroidTestCase {
 
 	public void testEditLevelProgress() {
 		
-		LevelProgress levelProgress1 = new LevelProgress(0, true, "board1", 4, 2, 5);
-		LevelProgress levelProgress2 = new LevelProgress(0, false, "board2", 9, 27, 81);
+		LevelProgress levelProgress1 = new LevelProgress(0, true, "board1", 5);
+		LevelProgress levelProgress2 = new LevelProgress(0, false, "board2", 81);
 
 		levelProgressManager.addLevelProgress("Max", levelProgress1);
 		levelProgressManager.updateLevelProgress("Max", levelProgress2);

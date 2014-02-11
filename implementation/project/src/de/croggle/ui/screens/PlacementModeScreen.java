@@ -281,6 +281,7 @@ public class PlacementModeScreen extends AbstractScreen implements
 	private class HintClickListener extends ClickListener {
 		@Override
 		public void clicked(InputEvent event, float x, float y) {
+			gameController.onUsedHint();
 			Dialog dialog = new HintDialog(gameController.getLevel());
 			dialog.show(stage);
 		}

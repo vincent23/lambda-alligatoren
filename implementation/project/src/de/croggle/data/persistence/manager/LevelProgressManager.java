@@ -35,15 +35,6 @@ public class LevelProgressManager extends TableManager {
 	 */
 	static final String KEY_CURRENT_BOARD = "currentBoard";
 
-	/**
-	 * Name for the column that stores the number of used resets.
-	 */
-	static final String KEY_USED_RESETS = "usedResets";
-
-	/**
-	 * Name of the column that stores the number of used hints.
-	 */
-	static final String KEY_USED_HINTS = "usedHints";
 
 	/**
 	 * Name of the column that stores the amount of used time.
@@ -61,8 +52,7 @@ public class LevelProgressManager extends TableManager {
 	static final String CREATE_TABLE = "create table " + TABLE_NAME + "("
 			+ KEY_PROFILE_NAME + " text not null, " + KEY_LEVEL_ID
 			+ " integer, " + KEY_SOLVED + " boolean, " + KEY_CURRENT_BOARD
-			+ " text not null, " + KEY_USED_RESETS + " int, " + KEY_USED_HINTS
-			+ " int, " + KEY_USED_TIME + " int, " + "FOREIGN KEY("
+			+ " text not null, "  + KEY_USED_TIME + " int, " + "FOREIGN KEY("
 			+ KEY_PROFILE_NAME + ") REFERENCES " + ProfileManager.TABLE_NAME
 			+ "(" + ProfileManager.KEY_PROFILE_NAME
 			+ ") ON UPDATE CASCADE ON DELETE CASCADE )";
@@ -95,8 +85,6 @@ public class LevelProgressManager extends TableManager {
 		values.put(KEY_LEVEL_ID, levelProgress.getLevelId());
 		values.put(KEY_SOLVED, levelProgress.isSolved());
 		values.put(KEY_CURRENT_BOARD, levelProgress.getCurrentBoard());
-		values.put(KEY_USED_RESETS, levelProgress.getUsedResets());
-		values.put(KEY_USED_HINTS, levelProgress.getUsedHints());
 		values.put(KEY_USED_TIME, levelProgress.getUsedTime());
 
 		database.insert(TABLE_NAME, null, values);
@@ -127,13 +115,8 @@ public class LevelProgressManager extends TableManager {
 					: false;
 			String currentBoard = cursor.getString(cursor
 					.getColumnIndex(KEY_CURRENT_BOARD));
-			int usedResets = cursor.getInt(cursor
-					.getColumnIndex(KEY_USED_RESETS));
-			int usedHints = cursor
-					.getInt(cursor.getColumnIndex(KEY_USED_HINTS));
 			int usedTime = cursor.getInt(cursor.getColumnIndex(KEY_USED_TIME));
-			return new LevelProgress(levelID, solved, currentBoard, usedResets,
-					usedHints, usedTime);
+			return new LevelProgress(levelID, solved, currentBoard, usedTime);
 		}
 
 		return null;
@@ -157,8 +140,6 @@ public class LevelProgressManager extends TableManager {
 
 		values.put(KEY_SOLVED, levelProgress.isSolved());
 		values.put(KEY_CURRENT_BOARD, levelProgress.getCurrentBoard());
-		values.put(KEY_USED_RESETS, levelProgress.getUsedResets());
-		values.put(KEY_USED_HINTS, levelProgress.getUsedHints());
 		values.put(KEY_USED_TIME, levelProgress.getUsedTime());
 
 		database.update(TABLE_NAME, values,

@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import de.croggle.data.persistence.SettingController;
 import de.croggle.data.persistence.StatisticController;
+import de.croggle.data.persistence.manager.DatabaseHelper;
 import de.croggle.data.persistence.manager.PersistenceManager;
 import de.croggle.game.GameController;
 import de.croggle.game.achievement.AchievementController;
@@ -182,7 +183,19 @@ public class AlligatorApp extends Game {
 		StyleHelper.initialize();
 		SoundHelper.initialize();
 		this.batch = new SpriteBatch();
+		
+		
+		
+		//	|
+		//	|	Delete this after one run
+		//	V
+		context.deleteDatabase(DatabaseHelper.DATABASE_NAME);
+		//	^
+		//	|	Delete this after one run
+		//	|
 
+		
+		
 		// catch android back key
 		Gdx.input.setCatchBackKey(true);
 
@@ -219,12 +232,14 @@ public class AlligatorApp extends Game {
 		profileController.addProfileChangeListener(mainMenuScreen);
 		profileController.addProfileChangeListener(statisticScreen);
 
+
 		if (profileController.getAllProfiles().isEmpty()) {
 			profileSetNameScreen.showBackButton(false);
 			setScreen(new LoadingScreen(this, profileSetNameScreen));
 		} else {
 			setScreen(new LoadingScreen(this, mainMenuScreen));
 		}
+		
 		
 	}
 

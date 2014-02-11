@@ -175,8 +175,8 @@ public class PersistenceManagerTest extends InstrumentationTestCase {
 	
 	public void testEditLevelProgress() {
 		Profile profile = new Profile("Anne", "test");
-		LevelProgress levelProgress1 = new LevelProgress(1,false,"board1", 0, 0, 20);
-		LevelProgress levelProgress2 = new LevelProgress(1,true, "board2", 1, 1, 30);
+		LevelProgress levelProgress1 = new LevelProgress(1,false,"board1", 20);
+		LevelProgress levelProgress2 = new LevelProgress(1,true, "board2", 30);
 		persistenceManager.addProfile(profile);
 		
 		persistenceManager.saveLevelProgress("Anne", levelProgress1);

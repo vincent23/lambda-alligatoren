@@ -8,8 +8,6 @@ public class LevelProgress {
 	private int levelId;
 	private boolean solved;
 	private String currentBoard;
-	private int usedResets;
-	private int usedHints;
 	private int usedTime;
 
 	/**
@@ -21,20 +19,14 @@ public class LevelProgress {
 	 *            whether the level has been solved
 	 * @param currentBoard
 	 *            the serialized representation of the current board
-	 * @param usedResets
-	 *            the number of resets used by the user
-	 * @param usedHints
-	 *            the number of hints used by the user
 	 * @param usedTime
 	 *            the time spent in the level by the user
 	 */
 	public LevelProgress(int levelId, boolean solved, String currentBoard,
-			int usedResets, int usedHints, int usedTime) {
+			int usedTime) {
 		this.levelId = levelId;
 		this.solved = solved;
 		this.currentBoard = currentBoard;
-		this.usedResets = usedResets;
-		this.usedHints = usedHints;
 		this.usedTime = usedTime;
 	}
 
@@ -105,44 +97,7 @@ public class LevelProgress {
 		this.currentBoard = currentBoard;
 	}
 
-	/**
-	 * Gets the number of resets triggered by the user.
-	 * 
-	 * @return the number of times the user resetted the level
-	 */
-	public int getUsedResets() {
-		return usedResets;
-	}
-
-	/**
-	 * Sets the number of resets by the user.
-	 * 
-	 * @param usedResets
-	 *            the number of times the user reseted the level
-	 */
-	public void setUsedResets(int usedResets) {
-		this.usedResets = usedResets;
-	}
-
-	/**
-	 * Gets the number of hints used by the user.
-	 * 
-	 * @return the number of times the user used hints
-	 */
-	public int getUsedHints() {
-		return usedHints;
-	}
-
-	/**
-	 * Sets the number of hints used by the user.
-	 * 
-	 * @param usedHints
-	 *            the number of times the user used hints
-	 */
-	public void setUsedHints(int usedHints) {
-		this.usedHints = usedHints;
-	}
-
+	
 	/**
 	 * Gets the time spent by the user in the level.
 	 * 
@@ -179,10 +134,6 @@ public class LevelProgress {
 		if (levelId != other.levelId)
 			return false;
 		if (solved != other.solved)
-			return false;
-		if (usedHints != other.usedHints)
-			return false;
-		if (usedResets != other.usedResets)
 			return false;
 		if (usedTime != other.usedTime)
 			return false;
