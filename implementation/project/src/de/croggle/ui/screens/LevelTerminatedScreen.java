@@ -123,12 +123,20 @@ public class LevelTerminatedScreen extends AbstractScreen {
 					.getPackageSize() - 1 <= currentLevelId) {
 				game.showLevelOverviewScreen(packagesController
 						.getLevelController(currentPackageId + 1));
-			} else {
+			} else{
 				final Level nextLevel = packagesController.getLevelController(
 						currentPackageId).getLevel(currentLevelId + 1);
-				final GameController newGameController = nextLevel
-						.createGameController(game);
-				game.showPlacementModeScreen(newGameController);
+				if(nextLevel.getUnlocked()){
+					final GameController newGameController = nextLevel
+							.createGameController(game);
+					game.showPlacementModeScreen(newGameController);
+				}else{
+					final Level currentLevel = gameController.getLevel();
+					final GameController newGameController = currentLevel
+							.createGameController(game);
+					newGameController.reset();
+					game.showPlacementModeScreen(newGameController);
+				}
 			}
 		}
 	}
