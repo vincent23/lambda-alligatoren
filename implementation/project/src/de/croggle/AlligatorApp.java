@@ -419,4 +419,9 @@ public class AlligatorApp extends Game {
 	public void clearScreenStack() {
 		screenStack.clear();
 	}
+	
+	public void clearScreenStackAfterSimulation(){
+		screenStack.push(mainMenuScreen);
+		screenStack.push(getLevelPackagesScreen());
+	}
 }
