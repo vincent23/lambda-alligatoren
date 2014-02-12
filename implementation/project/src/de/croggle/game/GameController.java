@@ -137,6 +137,7 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	private void onCompletedLevel(boolean won) {
+		boolean alreadyWon = progress.isSolved(); 
 		onFinishedSimulation();
 		saveProgress();
 		if (progress.isSolved()) {
@@ -158,6 +159,10 @@ public class GameController implements BoardEventListener {
 		statisticsDelta = new Statistic();
 		app.showLevelTerminatedScreen(this);
 		simulationPaused = false;
+		if(!progress.isSolved() && alreadyWon){
+			progress.setSolved(true);
+		}
+		saveProgress();
 	}
 
 	protected void onFinishedSimulation() {
