@@ -14,12 +14,12 @@ public class Color implements Comparable<Color> {
 	 * The predefined colors mapped onto variable names source:
 	 * http://tools.medialab.sciences-po.fr/iwanthue/index.php
 	 */
-	private static final String[] colorStrings = { "#72DC4E", "#D94628",
-			"#DA4381", "#6ED2D4", "#545092", "#D8A03D", "#4B7842", "#DE4CDF",
-			"#602D23", "#C3957A", "#C8D282", "#D386D1", "#95A9DB", "#CFD63C",
-			"#70D99D", "#3C314A", "#343D27", "#7E6B2B", "#CB8DA5", "#CBD1C7",
-			"#61877A", "#843756", "#CC4F58", "#669E38", "#6878DB", "#CC46A9",
-			"#B66032", "#577592", "#A05FD8", "#7E397E" };
+	private static final String[] colorStrings = { "#9cffff", "#8D2C95",
+			"#5FDB39", "#F48524", "#2ACBE7", "#32362D", "#BADB21", "#D93166",
+			"#CB52D7", "#FD96EA", "#6F6BD2", "#733320", "#4D971B", "#F9F20F",
+			"#EE191E", "#EF5C38", "#52043D", "#6CD882", "#F7F186", "#429DF9",
+			"#2FE2BE", "#033665", "#084F0E", "#A4A4F8", "#E2339D", "#F4AB13",
+			"#0F90C0", "#D37EFC", "#DDC84E", "#940B66" };
 	private static final com.badlogic.gdx.graphics.Color[] representations;
 	static {
 		// assert (MAX_COLORS == colorStrings.length); // done by ColorTest unit
