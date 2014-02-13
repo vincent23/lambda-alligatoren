@@ -185,13 +185,6 @@ public class AlligatorApp extends Game {
 		achievementController = new AchievementController(this);
 		levelPackagesController = new LevelPackagesController(this);
 
-		// add onProfileChangeListener
-		settingController.addSettingChangeListener(soundController);
-		profileController.addProfileChangeListener(settingsScreen);
-		profileController.addProfileChangeListener(selectProfileScreen);
-		profileController.addProfileChangeListener(mainMenuScreen);
-		profileController.addProfileChangeListener(statisticScreen);
-
 		if (!HEADLESS) {
 			// / initialize screens
 			mainMenuScreen = new MainMenuScreen(this);
@@ -206,6 +199,13 @@ public class AlligatorApp extends Game {
 			profileSetNameScreen = new ProfileSetNameScreen(this);
 			profileSetAvatarScreen = new ProfileSetAvatarScreen(this);
 			creditsScreen = new CreditsScreen(this);
+
+			// add onProfileChangeListener
+			settingController.addSettingChangeListener(soundController);
+			profileController.addProfileChangeListener(settingsScreen);
+			profileController.addProfileChangeListener(selectProfileScreen);
+			profileController.addProfileChangeListener(mainMenuScreen);
+			profileController.addProfileChangeListener(statisticScreen);
 
 			if (profileController.getAllProfiles().isEmpty()) {
 				profileSetNameScreen.showBackButton(false);

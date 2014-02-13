@@ -228,6 +228,9 @@ public class ProfileController {
 	 *            the listener that receives the updated profile
 	 */
 	public void addProfileChangeListener(ProfileChangeListener listener) {
+		if (listener == null) {
+			throw new IllegalArgumentException("Listener must not be null");
+		}
 		listeners.add(listener);
 	}
 
