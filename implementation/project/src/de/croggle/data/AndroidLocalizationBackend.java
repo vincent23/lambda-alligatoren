@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import de.croggle.R;
+import de.croggle.backends.LocalizationBackend;
 
 /**
  * LocalizationBackend for android. It expects at least the R class to be

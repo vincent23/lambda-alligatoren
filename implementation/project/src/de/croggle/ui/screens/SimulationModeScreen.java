@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.TimeUtils;
 
 import de.croggle.AlligatorApp;
+import de.croggle.backends.BackendHelper;
 import de.croggle.data.AssetManager;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingChangeListener;
@@ -30,7 +31,6 @@ import de.croggle.ui.StyleHelper;
 import de.croggle.ui.actors.IngameMenuDialog;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
-import de.croggle.util.BackendHelper;
 
 /**
  * Screen which is shown during the evaluation-phase of a level. For reference

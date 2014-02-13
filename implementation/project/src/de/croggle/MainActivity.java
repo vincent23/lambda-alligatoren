@@ -6,8 +6,8 @@ import android.os.PowerManager.WakeLock;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
+import de.croggle.backends.LocalizationBackend;
 import de.croggle.data.AndroidLocalizationBackend;
-import de.croggle.data.LocalizationBackend;
 import de.croggle.data.LocalizationHelper;
 
 /**

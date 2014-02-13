@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import de.croggle.AlligatorApp;
+import de.croggle.backends.BackendHelper;
 import de.croggle.data.AssetManager;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.SettingChangeListener;
@@ -35,7 +36,6 @@ import de.croggle.ui.actors.NotificationDialog;
 import de.croggle.ui.actors.PagedScrollPane;
 import de.croggle.ui.renderer.ActorLayoutConfiguration;
 import de.croggle.ui.renderer.BoardActor;
-import de.croggle.util.BackendHelper;
 
 /**
  * Screen which the player sees when entering Multiple choice levels.

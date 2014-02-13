@@ -2,6 +2,8 @@ package de.croggle.data;
 
 import java.util.Locale;
 
+import de.croggle.backends.LocalizationBackend;
+
 /**
  * Helper whose task it is to handle the translation of the app from one
  * language to another. Uses LocalizationBackends for portability. Must be set

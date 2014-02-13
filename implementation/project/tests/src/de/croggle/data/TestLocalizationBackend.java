@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import de.croggle.backends.LocalizationBackend;
+
 public class TestLocalizationBackend implements LocalizationBackend {
 
 	private Locale c;

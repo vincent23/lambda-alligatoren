@@ -2,6 +2,7 @@ package de.croggle.data;
 
 import java.util.Locale;
 
+import de.croggle.backends.LocalizationBackend;
 import android.test.InstrumentationTestCase;
 import static de.croggle.data.LocalizationHelper._;
 
