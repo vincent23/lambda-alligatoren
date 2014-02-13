@@ -4,8 +4,8 @@ import java.util.List;
 
 import android.content.Context;
 import android.util.SparseIntArray;
-
 import de.croggle.AlligatorApp;
+import de.croggle.backends.BackendHelper;
 import de.croggle.data.persistence.LevelProgress;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.Statistic;
@@ -22,32 +22,32 @@ public class PersistenceManager {
 	/**
 	 * The profileManager is used to save and load Profiles.
 	 */
-	private ProfileManager profileManager;
+	private final ProfileManager profileManager;
 
 	/**
 	 * The settingManager is used to save and load Settings.
 	 */
-	private SettingManager settingManager;
+	private final SettingManager settingManager;
 
 	/**
 	 * The statisticManager is used to save and load Statistics.
 	 */
-	private StatisticManager statisticManager;
+	private final StatisticManager statisticManager;
 
 	/**
 	 * The levelProgressManager is used to save and load LevelProgresses.
 	 */
-	private LevelProgressManager levelProgressManager;
+	private final LevelProgressManager levelProgressManager;
 
 	/**
 	 * The AchievementManager is used to save and load unlocked Achievements.
 	 */
-	private AchievementManager achievementManager;
+	private final AchievementManager achievementManager;
 
 	/**
 	 * The reference to the central game object.
 	 */
-	private AlligatorApp game;
+	private final AlligatorApp game;
 
 	/**
 	 * Creates a new PersistenceManager and initializes the different managers.
@@ -56,7 +56,7 @@ public class PersistenceManager {
 	 *            the backwards reference to the central game object
 	 */
 	public PersistenceManager(AlligatorApp game) {
-		Context context = game.getContext();
+		Context context = BackendHelper.getAndroidContext();
 		profileManager = new ProfileManager(context);
 		settingManager = new SettingManager(context);
 		statisticManager = new StatisticManager(context);
@@ -108,7 +108,7 @@ public class PersistenceManager {
 			achievementManager.close();
 
 		}
-		
+
 	}
 
 	/**

@@ -6,15 +6,17 @@ import java.util.List;
 
 import android.content.res.AssetManager;
 import de.croggle.AlligatorApp;
+import de.croggle.backends.BackendHelper;
 
 /**
  * Controls the content of a level package.
  */
 public class LevelController {
 	// The index of the package the controller controls
-	private int packageIndex;
+	private final int packageIndex;
 	private List<Level> levels;
-	private AlligatorApp game;
+	private final AlligatorApp game;
+
 	/**
 	 * Creates the controller with the given package index. It will manage the
 	 * levels from the level package defined by <code>packageIndex</code>.
@@ -44,7 +46,6 @@ public class LevelController {
 		return levels.get(levelIndex);
 	}
 
-
 	/**
 	 * Returns the package index of the package of the level the controller
 	 * currently holds.
@@ -69,7 +70,7 @@ public class LevelController {
 	 * Method to load the level of the package the LevelController manages.
 	 */
 	private void getLevelFromPackage() {
-		AssetManager manager = game.getContext().getAssets();
+		AssetManager manager = BackendHelper.getAndroidContext().getAssets();
 		String[] levelNames = null;
 		try {
 			levelNames = manager.list("json/levels/"
@@ -83,13 +84,19 @@ public class LevelController {
 			levels.add(LevelLoadHelper.instantiate(this.packageIndex, i,
 					this.game));
 		}
-		
-		for(int i = 0; i < levels.size(); i++){
-			if(!(game.getPersistenceManager().getLevelProgress(game.getProfileController().getCurrentProfileName(), levels.get(i).getLevelId()) == null)){
-				if(game.getPersistenceManager().getLevelProgress(game.getProfileController().getCurrentProfileName(), levels.get(i).getLevelId()).isSolved()){
+
+		for (int i = 0; i < levels.size(); i++) {
+			if (!(game.getPersistenceManager().getLevelProgress(
+					game.getProfileController().getCurrentProfileName(),
+					levels.get(i).getLevelId()) == null)) {
+				if (game.getPersistenceManager()
+						.getLevelProgress(
+								game.getProfileController()
+										.getCurrentProfileName(),
+								levels.get(i).getLevelId()).isSolved()) {
 					levels.get(i).setSolvedTrue();
-					if(i+1 < levels.size()){
-						levels.get(i+1).setUnlocked(true);
+					if (i + 1 < levels.size()) {
+						levels.get(i + 1).setUnlocked(true);
 					}
 				}
 			}

@@ -2,8 +2,6 @@ package de.croggle;
 
 import java.util.Stack;
 
-import android.content.Context;
-
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -12,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import de.croggle.data.persistence.SettingController;
 import de.croggle.data.persistence.StatisticController;
-import de.croggle.data.persistence.manager.DatabaseHelper;
 import de.croggle.data.persistence.manager.PersistenceManager;
 import de.croggle.game.GameController;
 import de.croggle.game.achievement.AchievementController;
@@ -47,9 +44,6 @@ public class AlligatorApp extends Game {
 
 	public static final boolean DEBUG = false;
 
-	// the Android Context
-	private final Context context;
-
 	private ProfileController profileController;
 	private AchievementController achievementController;
 	private StatisticController statisticController;
@@ -82,18 +76,8 @@ public class AlligatorApp extends Game {
 	 * @param context
 	 *            the Android Activity's context
 	 */
-	public AlligatorApp(Context context) {
-		this.context = context;
+	public AlligatorApp() {
 		screenStack = new Stack<Screen>();
-	}
-
-	/**
-	 * Returns the Android Context the game operates in.
-	 * 
-	 * @return the Android Context
-	 */
-	public Context getContext() {
-		return context;
 	}
 
 	/**
@@ -183,8 +167,7 @@ public class AlligatorApp extends Game {
 		StyleHelper.initialize();
 		SoundHelper.initialize();
 		this.batch = new SpriteBatch();
-		
-		
+
 		// catch android back key
 		Gdx.input.setCatchBackKey(true);
 
@@ -200,7 +183,7 @@ public class AlligatorApp extends Game {
 		achievementController = new AchievementController(this);
 		levelPackagesController = new LevelPackagesController(this);
 
-		/// initialize screens
+		// / initialize screens
 		mainMenuScreen = new MainMenuScreen(this);
 		levelPackagesScreen = new LevelPackagesScreen(this);
 		// levelsOverviewScreen = new LevelsOverviewScreen(this, null);
@@ -221,15 +204,13 @@ public class AlligatorApp extends Game {
 		profileController.addProfileChangeListener(mainMenuScreen);
 		profileController.addProfileChangeListener(statisticScreen);
 
-
 		if (profileController.getAllProfiles().isEmpty()) {
 			profileSetNameScreen.showBackButton(false);
 			setScreen(new LoadingScreen(this, profileSetNameScreen));
 		} else {
 			setScreen(new LoadingScreen(this, mainMenuScreen));
 		}
-		
-		
+
 	}
 
 	/**
@@ -239,7 +220,7 @@ public class AlligatorApp extends Game {
 	public void created() {
 		soundController.addToPlaylist("music1.mp3");
 		soundController.startPlaylist();
-		
+
 		profileController.loadLastActiveProfile();
 
 	}
@@ -419,8 +400,8 @@ public class AlligatorApp extends Game {
 	public void clearScreenStack() {
 		screenStack.clear();
 	}
-	
-	public void clearScreenStackAfterSimulation(){
+
+	public void clearScreenStackAfterSimulation() {
 		screenStack.push(mainMenuScreen);
 		screenStack.push(getLevelPackagesScreen());
 	}

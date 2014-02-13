@@ -42,7 +42,7 @@ public class MainActivity extends AndroidApplication {
 		config.b = 8;
 		config.a = 8;
 
-		initialize(new AlligatorApp(this), config);
+		initialize(new AlligatorApp(), config);
 	}
 
 	public WakeLock getWakeLock() {

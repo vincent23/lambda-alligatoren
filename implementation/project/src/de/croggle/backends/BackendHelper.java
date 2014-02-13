@@ -3,6 +3,8 @@ package de.croggle.backends;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import android.content.Context;
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 
@@ -81,5 +83,9 @@ public class BackendHelper {
 			}
 		}
 		return false;
+	}
+
+	public static Context getAndroidContext() {
+		return (Context) Gdx.app;
 	}
 }
