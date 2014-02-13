@@ -3,13 +3,9 @@ package de.croggle.data.persistence.manager;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
 import android.test.InstrumentationTestCase;
 import android.util.SparseIntArray;
 import de.croggle.AlligatorApp;
-import de.croggle.backends.LocalizationBackend;
-import de.croggle.data.LocalizationHelper;
-import de.croggle.data.TestLocalizationBackend;
 import de.croggle.data.persistence.LevelProgress;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.Statistic;
@@ -18,6 +14,7 @@ import de.croggle.game.achievement.AlligatorsPlacedAchievement;
 import de.croggle.game.achievement.AlligatorsPlacedPerLevelAchievement;
 import de.croggle.game.achievement.TimeAchievement;
 import de.croggle.game.profile.Profile;
+import de.croggle.test.TestActivity;
 
 public class PersistenceManagerTest extends InstrumentationTestCase {
 
@@ -25,12 +22,10 @@ public class PersistenceManagerTest extends InstrumentationTestCase {
 
 	@Override
 	public void setUp() {
-
-		Context ctxt = getInstrumentation().getTargetContext();
-		AlligatorApp app = new AlligatorApp(ctxt);
-		LocalizationBackend be = new TestLocalizationBackend();
-		LocalizationHelper.setBackend(be);
-		persistenceManager = new PersistenceManager(app);
+		TestActivity test = new TestActivity(getInstrumentation()
+				.getTargetContext(), true);
+		AlligatorApp app = test.getApp();
+		persistenceManager = app.getPersistenceManager();
 	}
 
 	@Override
@@ -112,7 +107,7 @@ public class PersistenceManagerTest extends InstrumentationTestCase {
 		}
 	}
 
-	public void testAddDublicate() {
+	public void testAddDuplicate() {
 		Profile profile1 = new Profile("Tim", "assets/path1");
 		Profile profile2 = new Profile("Tim", "assets/path2");
 		persistenceManager.addProfile(profile1);

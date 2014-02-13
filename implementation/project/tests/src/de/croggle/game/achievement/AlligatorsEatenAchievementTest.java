@@ -5,9 +5,9 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import de.croggle.data.LocalizationHelper;
-import de.croggle.data.TestLocalizationBackend;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.game.achievement.*;
+import de.croggle.test.TestLocalizationBackend;
 
 public class AlligatorsEatenAchievementTest extends TestCase {
 	

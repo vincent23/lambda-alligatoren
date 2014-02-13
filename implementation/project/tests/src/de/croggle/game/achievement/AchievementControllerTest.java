@@ -4,10 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.util.SparseIntArray;
-
 import de.croggle.data.LocalizationHelper;
-import de.croggle.data.TestLocalizationBackend;
 import de.croggle.data.persistence.Statistic;
+import de.croggle.test.TestLocalizationBackend;
 import junit.framework.TestCase;
 
 public class AchievementControllerTest extends TestCase {

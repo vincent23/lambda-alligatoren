@@ -1,8 +1,8 @@
 package de.croggle.game.achievement;
 
 import de.croggle.data.LocalizationHelper;
-import de.croggle.data.TestLocalizationBackend;
 import de.croggle.data.persistence.Statistic;
+import de.croggle.test.TestLocalizationBackend;
 import junit.framework.TestCase;
 
 public class LevelAchievementTest extends TestCase {

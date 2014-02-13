@@ -43,6 +43,7 @@ import de.croggle.ui.screens.StatisticScreen;
 public class AlligatorApp extends Game {
 
 	public static final boolean DEBUG = false;
+	public static boolean HEADLESS = false;
 
 	private ProfileController profileController;
 	private AchievementController achievementController;
@@ -166,7 +167,10 @@ public class AlligatorApp extends Game {
 		de.croggle.data.AssetManager.initialize();
 		StyleHelper.initialize();
 		SoundHelper.initialize();
-		this.batch = new SpriteBatch();
+
+		if (!HEADLESS) {
+			this.batch = new SpriteBatch();
+		}
 
 		// catch android back key
 		Gdx.input.setCatchBackKey(true);
@@ -183,20 +187,6 @@ public class AlligatorApp extends Game {
 		achievementController = new AchievementController(this);
 		levelPackagesController = new LevelPackagesController(this);
 
-		// / initialize screens
-		mainMenuScreen = new MainMenuScreen(this);
-		levelPackagesScreen = new LevelPackagesScreen(this);
-		// levelsOverviewScreen = new LevelsOverviewScreen(this, null);
-		// placementModeScreen = new PlacementModeScreen(this, null);
-		// simulationModeScreen = new SimulationModeScreen(this, null);
-		achievementScreen = new AchievementScreen(this);
-		settingsScreen = new SettingsScreen(this);
-		statisticScreen = new StatisticScreen(this);
-		selectProfileScreen = new SelectProfileScreen(this);
-		profileSetNameScreen = new ProfileSetNameScreen(this);
-		profileSetAvatarScreen = new ProfileSetAvatarScreen(this);
-		creditsScreen = new CreditsScreen(this);
-
 		// add onProfileChangeListener
 		settingController.addSettingChangeListener(soundController);
 		profileController.addProfileChangeListener(settingsScreen);
@@ -204,11 +194,27 @@ public class AlligatorApp extends Game {
 		profileController.addProfileChangeListener(mainMenuScreen);
 		profileController.addProfileChangeListener(statisticScreen);
 
-		if (profileController.getAllProfiles().isEmpty()) {
-			profileSetNameScreen.showBackButton(false);
-			setScreen(new LoadingScreen(this, profileSetNameScreen));
-		} else {
-			setScreen(new LoadingScreen(this, mainMenuScreen));
+		if (!HEADLESS) {
+			// / initialize screens
+			mainMenuScreen = new MainMenuScreen(this);
+			levelPackagesScreen = new LevelPackagesScreen(this);
+			// levelsOverviewScreen = new LevelsOverviewScreen(this, null);
+			// placementModeScreen = new PlacementModeScreen(this, null);
+			// simulationModeScreen = new SimulationModeScreen(this, null);
+			achievementScreen = new AchievementScreen(this);
+			settingsScreen = new SettingsScreen(this);
+			statisticScreen = new StatisticScreen(this);
+			selectProfileScreen = new SelectProfileScreen(this);
+			profileSetNameScreen = new ProfileSetNameScreen(this);
+			profileSetAvatarScreen = new ProfileSetAvatarScreen(this);
+			creditsScreen = new CreditsScreen(this);
+
+			if (profileController.getAllProfiles().isEmpty()) {
+				profileSetNameScreen.showBackButton(false);
+				setScreen(new LoadingScreen(this, profileSetNameScreen));
+			} else {
+				setScreen(new LoadingScreen(this, mainMenuScreen));
+			}
 		}
 
 	}

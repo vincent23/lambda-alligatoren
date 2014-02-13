@@ -1,4 +1,4 @@
-package de.croggle.data;
+package de.croggle.test;
 
 import java.util.HashMap;
 import java.util.Locale;
