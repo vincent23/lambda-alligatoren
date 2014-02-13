@@ -1,12 +1,13 @@
 package de.croggle.game.level;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.res.AssetManager;
+import com.badlogic.gdx.Application.ApplicationType;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+
 import de.croggle.AlligatorApp;
-import de.croggle.backends.BackendHelper;
 
 /**
  * Controls the content of a level package.
@@ -70,13 +71,19 @@ public class LevelController {
 	 * Method to load the level of the package the LevelController manages.
 	 */
 	private void getLevelFromPackage() {
-		AssetManager manager = BackendHelper.getAndroidContext().getAssets();
-		String[] levelNames = null;
-		try {
-			levelNames = manager.list("json/levels/"
+		FileHandle dirHandle;
+		if (Gdx.app.getType() == ApplicationType.Android) {
+			dirHandle = Gdx.files.internal("json/levels/"
 					+ String.format("%02d", this.packageIndex));
-		} catch (IOException e) {
-			// TODO
+		} else {
+			// ApplicationType.Desktop ..
+			dirHandle = Gdx.files.internal("./assets/json/levels/"
+					+ String.format("%02d", this.packageIndex));
+		}
+		FileHandle[] files = dirHandle.list();
+		String[] levelNames = new String[files.length];
+		for (int i = 0; i < files.length; i++) {
+			levelNames[i] = files[i].name();
 		}
 		int numberOfLevel = levelNames.length - 1;
 		levels = new ArrayList<Level>();
