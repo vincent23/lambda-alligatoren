@@ -31,16 +31,6 @@ public class LevelProgress {
 	}
 
 	/**
-	 * Constructs a new LevelProgress using a cursor to the correct database
-	 * row.
-	 * 
-	 * @param cursor
-	 *            the cursor
-	 */
-	public LevelProgress(android.database.Cursor cursor) {
-	}
-
-	/**
 	 * Gets the id of the level.
 	 * 
 	 * @return the level id
@@ -97,7 +87,6 @@ public class LevelProgress {
 		this.currentBoard = currentBoard;
 	}
 
-	
 	/**
 	 * Gets the time spent by the user in the level.
 	 * 

@@ -3,9 +3,7 @@ package de.croggle.game.achievement;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.Log;
 import android.util.SparseIntArray;
-
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.manager.PersistenceManager;
@@ -29,7 +27,7 @@ public class AchievementController {
 	/**
 	 * The backreference to the central game object.
 	 */
-	private AlligatorApp game;
+	private final AlligatorApp game;
 
 	/**
 	 * Creates a new Controller. On initialization the unlocked achievements are
@@ -89,12 +87,12 @@ public class AchievementController {
 	public void changeUnlockedAchievements(String profileName) {
 		initiateAvailableAchievements();
 		PersistenceManager pm = game.getPersistenceManager();
-		SparseIntArray unlockedAchievements = pm.getAllUnlockedAchievements(profileName);
+		SparseIntArray unlockedAchievements = pm
+				.getAllUnlockedAchievements(profileName);
 		for (Achievement achievement : availableAchievements) {
 			achievement.setIndex(unlockedAchievements.get(achievement.getId()));
 		}
-	
-		
+
 	}
 
 	/**
@@ -144,14 +142,10 @@ public class AchievementController {
 	 */
 	protected List<Achievement> updateAchievements(Statistic statistic,
 			Statistic statisticDelta) {
-		Log.d("statistic trace", "Statistic: Playtime:" + statistic.getPlaytime());
-		Log.d("statistic trace", "Statistic: Alligators Eaten " + statistic.getAlligatorsEaten() );
-		Log.d("statistic trace", "Statistic: Alligators placed " + statistic.getAlligatorsPlaced() );
-		Log.d("statistic trace", "Statistic: LevelsCompleted " + statistic.getLevelsComplete() );
 		List<Achievement> latestChanges = new ArrayList<Achievement>();
 		for (Achievement achievement : availableAchievements) {
 			int oldVal = achievement.getIndex();
-			int newVal = achievement.requirementsMet(statistic, statisticDelta); 
+			int newVal = achievement.requirementsMet(statistic, statisticDelta);
 			if (oldVal != newVal) {
 				achievement.setIndex(newVal);
 				latestChanges.add(achievement);
@@ -159,7 +153,7 @@ public class AchievementController {
 		}
 		return latestChanges;
 	}
-	
+
 	/**
 	 * Checks whether the new statistic changes in a level cause new
 	 * achievements to get unlocked. In this case it sets them as unlocked; the
@@ -173,10 +167,6 @@ public class AchievementController {
 	 */
 	public void processStatisticChange(Statistic statisticsDelta,
 			Statistic statistic) {
-		Log.d("statistic trace", "Statistic in AchievementController: Playtime:" + statisticsDelta.getPlaytime()); // TODO remove Debug code
-		Log.d("statistic trace", "Statistic in AchievementController: Alligators Eaten " + statisticsDelta.getAlligatorsEaten() );
-		Log.d("statistic trace", "Statistic in AchievementController: Alligators placed " + statisticsDelta.getAlligatorsPlaced() );
-		Log.d("statistic trace", "Statistic in AchievementController: LevelsCompleted " + statisticsDelta.getLevelsComplete() );
 		latestUnlockedAchievements.clear();
 		latestUnlockedAchievements = updateAchievements(statistic,
 				statisticsDelta);

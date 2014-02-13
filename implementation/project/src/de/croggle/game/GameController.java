@@ -3,8 +3,6 @@ package de.croggle.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.Log;
-
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.Timer;
@@ -137,7 +135,7 @@ public class GameController implements BoardEventListener {
 	 * 
 	 */
 	private void onCompletedLevel(boolean won) {
-		boolean alreadyWon = progress.isSolved(); 
+		boolean alreadyWon = progress.isSolved();
 		onFinishedSimulation();
 		saveProgress();
 		if (progress.isSolved()) {
@@ -148,10 +146,6 @@ public class GameController implements BoardEventListener {
 																// elapsedTime
 																// in
 																// millisec.
-			Log.d("statistic trace", "Statistic: Playtime:" + statisticsDelta.getPlaytime()); // TODO remove debug code
-			Log.d("statistic trace", "Statistic: Alligators Eaten " + statisticsDelta.getAlligatorsEaten() );
-			Log.d("statistic trace", "Statistic: Alligators placed " + statisticsDelta.getAlligatorsPlaced() );
-			Log.d("statistic trace", "Statistic: LevelsCompleted " + statisticsDelta.getLevelsComplete() );
 			for (StatisticsDeltaProcessor processor : statisticsDeltaProcessors) {
 				processor.processDelta(statisticsDelta);
 			}
@@ -159,12 +153,12 @@ public class GameController implements BoardEventListener {
 		statisticsDelta = new Statistic();
 		app.showLevelTerminatedScreen(this);
 		simulationPaused = false;
-		if(!progress.isSolved() && alreadyWon){
+		if (!progress.isSolved() && alreadyWon) {
 			progress.setSolved(true);
 		}
 		saveProgress();
 		app.clearScreenStackAfterSimulation();
-		
+
 	}
 
 	protected void onFinishedSimulation() {
@@ -315,6 +309,7 @@ public class GameController implements BoardEventListener {
 			Timer timer = new Timer();
 			simulationPaused = true;
 			timer.scheduleTask(new Task() {
+				@Override
 				public void run() {
 					if (isInSimulationMode()) {
 						onCompletedLevel(true);
@@ -326,6 +321,7 @@ public class GameController implements BoardEventListener {
 			Timer timer = new Timer();
 			simulationPaused = true;
 			timer.scheduleTask(new Task() {
+				@Override
 				public void run() {
 					if (isInSimulationMode()) {
 						onCompletedLevel(false);
@@ -438,7 +434,6 @@ public class GameController implements BoardEventListener {
 		final LevelProgress previousProgress = app.getPersistenceManager()
 				.getLevelProgress(profileName, level.getLevelId());
 		if (previousProgress == null) {
-			Log.d("GameController", "No previous progress");
 			progress = new LevelProgress(level.getLevelId(), false, "", 0);
 			return;
 		}

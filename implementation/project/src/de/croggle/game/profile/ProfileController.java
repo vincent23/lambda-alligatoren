@@ -3,8 +3,6 @@ package de.croggle.game.profile;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.Log;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
@@ -25,9 +23,9 @@ public class ProfileController {
 	/**
 	 * The backreference to the central game object.
 	 */
-	private AlligatorApp game;
+	private final AlligatorApp game;
 
-	private List<ProfileChangeListener> listeners = new ArrayList<ProfileChangeListener>();
+	private final List<ProfileChangeListener> listeners = new ArrayList<ProfileChangeListener>();
 
 	/**
 	 * Defines the max. amount of profiles that can be created.
@@ -130,7 +128,9 @@ public class ProfileController {
 		if (!name.equals(getCurrentProfileName())
 				&& game.getPersistenceManager().isNameUsed(name)) {
 			throw new IllegalArgumentException();
-		} else if (!name.equals(getCurrentProfileName()) || !(currentProfile != null && picturePath.equals(currentProfile.getPicturePath()))) {
+		} else if (!name.equals(getCurrentProfileName())
+				|| !(currentProfile != null && picturePath
+						.equals(currentProfile.getPicturePath()))) {
 			Profile profile = new Profile(name, picturePath);
 			game.getPersistenceManager().editProfile(currentProfile.getName(),
 					profile);
@@ -192,6 +192,7 @@ public class ProfileController {
 
 	/**
 	 * Get the currently active profile.
+	 * 
 	 * @return the currently active profile
 	 */
 	public Profile getCurrentProfile() {
@@ -209,7 +210,8 @@ public class ProfileController {
 	}
 
 	/**
-	 * Deletes all stored profiles and their settings, statistics, unlocked achievements and level progresses.
+	 * Deletes all stored profiles and their settings, statistics, unlocked
+	 * achievements and level progresses.
 	 */
 	public void deleteAllProfiles() {
 		game.getPersistenceManager().clearTables();
@@ -219,8 +221,11 @@ public class ProfileController {
 	}
 
 	/**
-	 * Add a listener to whom the updated current profile is passed after it was changed.
-	 * @param listener the listener that receives the updated profile 
+	 * Add a listener to whom the updated current profile is passed after it was
+	 * changed.
+	 * 
+	 * @param listener
+	 *            the listener that receives the updated profile
 	 */
 	public void addProfileChangeListener(ProfileChangeListener listener) {
 		listeners.add(listener);

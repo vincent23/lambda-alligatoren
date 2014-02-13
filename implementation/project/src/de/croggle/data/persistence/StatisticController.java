@@ -1,6 +1,5 @@
 package de.croggle.data.persistence;
 
-import android.util.Log;
 import de.croggle.AlligatorApp;
 
 /**
@@ -121,10 +120,6 @@ public class StatisticController implements StatisticsDeltaProcessor {
 
 		game.getAchievementController().processStatisticChange(statisticsDelta,
 				currentStatistic);
-		Log.d("statistic trace", "Statistic in StatisticsController: Playtime:" + statisticsDelta.getPlaytime()); // TODO remove Debug code
-		Log.d("statistic trace", "Statistic in StatisticsController: Alligators Eaten " + statisticsDelta.getAlligatorsEaten() );
-		Log.d("statistic trace", "Statistic in StatisticsController: Alligators placed " + statisticsDelta.getAlligatorsPlaced() );
-		Log.d("statistic trace", "Statistic in StatisticsController: LevelsCompleted " + statisticsDelta.getLevelsComplete() );
 		game.getPersistenceManager().editStatistic(
 				game.getProfileController().getCurrentProfileName(),
 				currentStatistic);

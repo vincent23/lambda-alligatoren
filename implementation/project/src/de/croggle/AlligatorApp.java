@@ -55,9 +55,7 @@ public class AlligatorApp extends Game {
 
 	private MainMenuScreen mainMenuScreen;
 	private LevelPackagesScreen levelPackagesScreen;
-	// private LevelsOverviewScreen levelsOverviewScreen;
-	// private PlacementModeScreen placementModeScreen;
-	// private SimulationModeScreen simulationModeScreen;
+
 	private AchievementScreen achievementScreen;
 	private SettingsScreen settingsScreen;
 	private StatisticScreen statisticScreen;
