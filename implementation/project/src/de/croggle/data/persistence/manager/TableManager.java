@@ -1,8 +1,9 @@
 package de.croggle.data.persistence.manager;
 
-import android.content.Context;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
+import de.croggle.backends.BackendHelper;
+import de.croggle.backends.sqlite.Database;
+import de.croggle.backends.sqlite.DatabaseHelper;
 
 /**
  * An abstract superclass for all classes which manage tables.
@@ -19,7 +20,7 @@ public abstract class TableManager {
 	/**
 	 * The database in which the table is stored.
 	 */
-	protected SQLiteDatabase database;
+	protected Database database;
 
 	/**
 	 * Creates a new TableManager, which manages a specific table from the
@@ -29,8 +30,8 @@ public abstract class TableManager {
 	 *            the context that is used for opening or, if needed, creating
 	 *            the database
 	 */
-	TableManager(Context context) {
-		databaseHelper = new DatabaseHelper(context);
+	TableManager() {
+		databaseHelper = BackendHelper.getNewDatabaseHelper();
 	}
 
 	/**

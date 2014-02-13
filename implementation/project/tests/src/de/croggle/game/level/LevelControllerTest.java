@@ -12,7 +12,7 @@ public class LevelControllerTest extends InstrumentationTestCase {
 	@Override
 	protected void setUp() throws Exception {
 		TestActivity test = new TestActivity(getInstrumentation()
-				.getTargetContext(), true);
+				.getTargetContext(), false);
 		AlligatorApp app = test.getApp();
 		controller = new LevelController(0, app);
 	}

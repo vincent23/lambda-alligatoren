@@ -7,7 +7,7 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
 import de.croggle.backends.LocalizationBackend;
-import de.croggle.data.AndroidLocalizationBackend;
+import de.croggle.backends.android.AndroidLocalizationBackend;
 import de.croggle.data.LocalizationHelper;
 
 /**

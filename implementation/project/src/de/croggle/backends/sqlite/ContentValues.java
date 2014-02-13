@@ -8,4 +8,6 @@ public interface ContentValues {
 	void put(String key, int value);
 
 	void put(String key, boolean value);
+
+	Object get();
 }

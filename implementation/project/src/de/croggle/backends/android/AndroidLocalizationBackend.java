@@ -1,4 +1,4 @@
-package de.croggle.data;
+package de.croggle.backends.android;
 
 import java.lang.reflect.Field;
 import java.util.Locale;

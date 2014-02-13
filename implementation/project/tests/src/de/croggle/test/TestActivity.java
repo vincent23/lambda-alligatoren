@@ -50,7 +50,7 @@ import com.badlogic.gdx.backends.android.surfaceview.FillResolutionStrategy;
 
 import de.croggle.AlligatorApp;
 import de.croggle.backends.LocalizationBackend;
-import de.croggle.data.AndroidLocalizationBackend;
+import de.croggle.backends.android.AndroidLocalizationBackend;
 import de.croggle.data.LocalizationHelper;
 
 /**
@@ -71,11 +71,13 @@ public class TestActivity extends AndroidApplication {
 		if (initializeAll) {
 			onCreate(null);
 		} else {
-			// init();
+			init();
 			Gdx.app = this;
-			// Gdx.files = new AndroidFiles(getAssets(), getFilesDir()
-			// .getAbsolutePath());
-			// app.create();
+			Gdx.files = new AndroidFiles(getAssets(), getFilesDir()
+					.getAbsolutePath());
+			Gdx.input = new TestInput(this, this, null,
+					new AndroidApplicationConfiguration());
+			app.create();
 		}
 	}
 

@@ -1,9 +1,10 @@
 package de.croggle.data.persistence.manager;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
+import de.croggle.backends.BackendHelper;
+import de.croggle.backends.sqlite.ContentValues;
+import de.croggle.backends.sqlite.Cursor;
+import de.croggle.backends.sqlite.DatabaseUtils;
 import de.croggle.data.persistence.Setting;
 
 /**
@@ -43,29 +44,18 @@ public class SettingManager extends TableManager {
 	/**
 	 * The name of the table.
 	 */
-	static final String TABLE_NAME = "SettingTable";
+	public static final String TABLE_NAME = "SettingTable";
 
 	/**
 	 * The string used for creating the setting table via a sql query.
 	 */
-	static final String CREATE_TABLE = "create table " + TABLE_NAME + "("
-			+ KEY_PROFILE_NAME + " text not null, " + KEY_VOLUME_MUSIC
+	public static final String CREATE_TABLE = "create table " + TABLE_NAME
+			+ "(" + KEY_PROFILE_NAME + " text not null, " + KEY_VOLUME_MUSIC
 			+ " float, " + KEY_VOLUME_EFFECTS + " float, " + KEY_ZOOM_ENABLED
 			+ " boolean, " + KEY_COLORBLIND_ENABLED + " boolean, "
 			+ "FOREIGN KEY(" + KEY_PROFILE_NAME + ") REFERENCES "
 			+ ProfileManager.TABLE_NAME + "(" + ProfileManager.KEY_PROFILE_NAME
 			+ ") ON UPDATE CASCADE ON DELETE CASCADE )";
-
-	/**
-	 * Creates a new SettingManager which manages the setting table.
-	 * 
-	 * @param context
-	 *            used for accessing the database
-	 */
-	SettingManager(Context context) {
-		super(context);
-
-	}
 
 	/**
 	 * Adds a new setting to the table.
@@ -76,7 +66,7 @@ public class SettingManager extends TableManager {
 	 *            contains the values to be stored in the table
 	 */
 	void addSetting(String profileName, Setting setting) {
-		ContentValues values = new ContentValues();
+		ContentValues values = BackendHelper.getNewContentValues();
 
 		values.put(KEY_PROFILE_NAME, profileName);
 		values.put(KEY_VOLUME_MUSIC, setting.getVolumeMusic());
@@ -132,7 +122,7 @@ public class SettingManager extends TableManager {
 	 */
 	void editSetting(String profileName, Setting setting) {
 
-		ContentValues values = new ContentValues();
+		ContentValues values = BackendHelper.getNewContentValues();
 
 		values.put(KEY_VOLUME_MUSIC, setting.getVolumeMusic());
 		values.put(KEY_VOLUME_EFFECTS, setting.getVolumeEffects());
@@ -143,7 +133,7 @@ public class SettingManager extends TableManager {
 				new String[] { profileName });
 	}
 
-
+	@Override
 	void clearTable() {
 		database.execSQL("delete from " + TABLE_NAME);
 	}

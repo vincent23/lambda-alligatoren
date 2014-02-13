@@ -1,10 +1,10 @@
 package de.croggle.data.persistence.manager;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.util.SparseIntArray;
+import de.croggle.backends.BackendHelper;
+import de.croggle.backends.sqlite.ContentValues;
+import de.croggle.backends.sqlite.Cursor;
+import de.croggle.backends.sqlite.DatabaseUtils;
 import de.croggle.game.achievement.Achievement;
 
 /**
@@ -32,28 +32,17 @@ public class AchievementManager extends TableManager {
 	/**
 	 * The name of the table.
 	 */
-	static final String TABLE_NAME = "AchievementTable";
+	public static final String TABLE_NAME = "AchievementTable";
 
 	/**
 	 * The string used for creating the achievement table via a sql query.
 	 */
-	static final String CREATE_TABLE = "create table " + TABLE_NAME + "("
-			+ KEY_PROFILE_NAME + " text not null, " + KEY_ACHIEVEMENT_ID
+	public static final String CREATE_TABLE = "create table " + TABLE_NAME
+			+ "(" + KEY_PROFILE_NAME + " text not null, " + KEY_ACHIEVEMENT_ID
 			+ " integer, " + KEY_ACHIEVEMENT_INDEX + " integer, "
 			+ "FOREIGN KEY(" + KEY_PROFILE_NAME + ") REFERENCES "
 			+ ProfileManager.TABLE_NAME + "(" + ProfileManager.KEY_PROFILE_NAME
 			+ ") ON UPDATE CASCADE ON DELETE CASCADE )";;
-
-	/**
-	 * Creates a new AchievementManager used for managing the achievement table.
-	 * 
-	 * @param context
-	 *            the context used for accessing the database
-	 */
-	AchievementManager(Context context) {
-		super(context);
-
-	}
 
 	/**
 	 * Searches the table for a unlocked achievement that belongs to the profile
@@ -69,7 +58,7 @@ public class AchievementManager extends TableManager {
 	 */
 	void updateUnlockedAchievement(String profileName, Achievement achievement) {
 
-		ContentValues values = new ContentValues();
+		ContentValues values = BackendHelper.getNewContentValues();
 
 		values.put(KEY_PROFILE_NAME, profileName);
 		values.put(KEY_ACHIEVEMENT_INDEX, achievement.getIndex());
@@ -90,7 +79,7 @@ public class AchievementManager extends TableManager {
 	 */
 	void addUnlockedAchievement(String profileName, Achievement achievement) {
 
-		ContentValues values = new ContentValues();
+		ContentValues values = BackendHelper.getNewContentValues();
 
 		values.put(KEY_PROFILE_NAME, profileName);
 		values.put(KEY_ACHIEVEMENT_ID, achievement.getId());
@@ -128,7 +117,7 @@ public class AchievementManager extends TableManager {
 		return unlockedAchievements;
 	}
 
-	
+	@Override
 	void clearTable() {
 		database.execSQL("delete from " + TABLE_NAME);
 	}

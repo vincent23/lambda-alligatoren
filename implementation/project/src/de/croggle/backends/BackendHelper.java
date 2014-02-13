@@ -8,6 +8,11 @@ import android.content.Context;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 
+import de.croggle.backends.android.AndroidContentValues;
+import de.croggle.backends.android.AndroidDatabaseHelper;
+import de.croggle.backends.sqlite.ContentValues;
+import de.croggle.backends.sqlite.DatabaseHelper;
+
 /**
  * A class to help with additional capabilities of the different backends,
  * without directly referencing them (using reflection). By doing so, the helper
@@ -87,5 +92,17 @@ public class BackendHelper {
 
 	public static Context getAndroidContext() {
 		return (Context) Gdx.app;
+	}
+
+	public static DatabaseHelper getNewDatabaseHelper() {
+		return new AndroidDatabaseHelper(getAndroidContext());
+	}
+
+	public static ContentValues getNewContentValues() {
+		return new AndroidContentValues();
+	}
+
+	public static String getAssetDirPath() {
+		return "";
 	}
 }

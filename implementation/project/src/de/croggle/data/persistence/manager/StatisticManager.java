@@ -1,9 +1,10 @@
 package de.croggle.data.persistence.manager;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
+import de.croggle.backends.BackendHelper;
+import de.croggle.backends.sqlite.ContentValues;
+import de.croggle.backends.sqlite.Cursor;
+import de.croggle.backends.sqlite.DatabaseUtils;
 import de.croggle.data.persistence.Statistic;
 
 /**
@@ -71,14 +72,14 @@ public class StatisticManager extends TableManager {
 	/**
 	 * The name of the table.
 	 */
-	static final String TABLE_NAME = "StatisticTable";
+	public static final String TABLE_NAME = "StatisticTable";
 
 	/**
 	 * The string used for creating the statistic table via a sql query.
 	 */
-	static final String CREATE_TABLE = "create table " + TABLE_NAME + "("
-			+ KEY_PROFILE_NAME + " text not null, " + KEY_PLAYTIME + " int, "
-			+ KEY_USED_HINTS + " int, " + KEY_USED_RESETS + " int, "
+	public static final String CREATE_TABLE = "create table " + TABLE_NAME
+			+ "(" + KEY_PROFILE_NAME + " text not null, " + KEY_PLAYTIME
+			+ " int, " + KEY_USED_HINTS + " int, " + KEY_USED_RESETS + " int, "
 			+ KEY_RECOLORINGS + " int, " + KEY_LEVELS_COMPLETE + " int, "
 			+ KEY_PACKAGES_COMPLETE + " int, " + KEY_ALLIGATORS_EATEN
 			+ " int, " + KEY_ALLIGATORS_PLACED + " int, " + KEY_EGGS_HATCHED
@@ -86,17 +87,6 @@ public class StatisticManager extends TableManager {
 			+ KEY_PROFILE_NAME + ") REFERENCES " + ProfileManager.TABLE_NAME
 			+ "(" + ProfileManager.KEY_PROFILE_NAME
 			+ ") ON UPDATE CASCADE ON DELETE CASCADE )";
-
-	/**
-	 * Creates a new StatisticManager which manages the statistic table.
-	 * 
-	 * @param context
-	 *            used for accessing the database
-	 */
-	StatisticManager(Context context) {
-		super(context);
-
-	}
 
 	/**
 	 * Adds a new statistic to the table.
@@ -108,7 +98,7 @@ public class StatisticManager extends TableManager {
 	 */
 	void addStatistic(String profileName, Statistic statistic) {
 
-		ContentValues values = new ContentValues();
+		ContentValues values = BackendHelper.getNewContentValues();
 
 		values.put(KEY_PROFILE_NAME, profileName);
 		values.put(KEY_PLAYTIME, statistic.getPlaytime());
@@ -182,7 +172,7 @@ public class StatisticManager extends TableManager {
 	 */
 	void editStatistic(String profileName, Statistic statistic) {
 
-		ContentValues values = new ContentValues();
+		ContentValues values = BackendHelper.getNewContentValues();
 
 		values.put(KEY_PROFILE_NAME, profileName);
 		values.put(KEY_PLAYTIME, statistic.getPlaytime());
@@ -200,8 +190,7 @@ public class StatisticManager extends TableManager {
 				new String[] { profileName });
 	}
 
-
-
+	@Override
 	void clearTable() {
 		database.execSQL("delete from " + TABLE_NAME);
 	}

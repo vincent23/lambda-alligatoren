@@ -3,10 +3,11 @@ package de.croggle.data.persistence.manager;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
+import de.croggle.backends.BackendHelper;
+import de.croggle.backends.sqlite.ContentValues;
+import de.croggle.backends.sqlite.Cursor;
+import de.croggle.backends.sqlite.DatabaseUtils;
 import de.croggle.game.profile.Profile;
 
 /**
@@ -29,25 +30,14 @@ public class ProfileManager extends TableManager {
 	/**
 	 * The name of the table.
 	 */
-	static final String TABLE_NAME = "profileTable";
+	public static final String TABLE_NAME = "profileTable";
 
 	/**
 	 * The string used for creating the profile table via a sql query.
 	 */
-	static final String CREATE_TABLE = "create table " + TABLE_NAME + "("
-			+ KEY_PROFILE_NAME + " text not null primary key, "
+	public static final String CREATE_TABLE = "create table " + TABLE_NAME
+			+ "(" + KEY_PROFILE_NAME + " text not null primary key, "
 			+ KEY_PICTUREPATH + " text not null" + ")";
-
-	/**
-	 * Creates a new ProfileManager which manages the profile table.
-	 * 
-	 * @param context
-	 *            the context used for accessing the database
-	 */
-	ProfileManager(Context context) {
-		super(context);
-
-	}
 
 	/**
 	 * Adds a new profile to the table.
@@ -56,7 +46,7 @@ public class ProfileManager extends TableManager {
 	 *            contains the values to be stored in the table
 	 */
 	void addProfile(Profile profile) {
-		ContentValues values = new ContentValues();
+		ContentValues values = BackendHelper.getNewContentValues();
 
 		values.put(KEY_PROFILE_NAME, profile.getName());
 		values.put(KEY_PICTUREPATH, profile.getPicturePath());
@@ -102,7 +92,7 @@ public class ProfileManager extends TableManager {
 	 */
 	void editProfile(String profileName, Profile profile) {
 
-		ContentValues values = new ContentValues();
+		ContentValues values = BackendHelper.getNewContentValues();
 		values.put(KEY_PROFILE_NAME, profile.getName());
 		values.put(KEY_PICTUREPATH, profile.getPicturePath());
 
@@ -167,6 +157,7 @@ public class ProfileManager extends TableManager {
 		return false;
 	}
 
+	@Override
 	void clearTable() {
 		database.execSQL("delete from " + TABLE_NAME);
 	}

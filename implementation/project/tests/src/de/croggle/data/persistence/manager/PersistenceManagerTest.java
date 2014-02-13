@@ -23,7 +23,7 @@ public class PersistenceManagerTest extends InstrumentationTestCase {
 	@Override
 	public void setUp() {
 		TestActivity test = new TestActivity(getInstrumentation()
-				.getTargetContext(), true);
+				.getTargetContext(), false);
 		AlligatorApp app = test.getApp();
 		persistenceManager = app.getPersistenceManager();
 	}
