@@ -14,7 +14,7 @@ import de.croggle.game.achievement.AlligatorsPlacedPerLevelAchievement;
 import de.croggle.game.achievement.TimeAchievement;
 import de.croggle.game.profile.Profile;
 import de.croggle.test.TestHelper;
-import de.croggle.util.Tuple2;
+import de.croggle.util.SparseArray;
 
 public class PersistenceManagerTest extends InstrumentationTestCase {
 
@@ -198,12 +198,12 @@ public class PersistenceManagerTest extends InstrumentationTestCase {
 		achievements.add(achievement3);
 		persistenceManager.saveUnlockedAchievements("Anne", achievements);
 
-		Tuple2<Integer, Integer>[] sia = persistenceManager
+		SparseArray<Integer> sia = persistenceManager
 				.getAllUnlockedAchievements("Anne");
-		assertTrue(sia.length == 3);
+		assertTrue(sia.size() == 3);
 
-		assertTrue(sia[1].el2 == achievement1.getIndex());
-		assertTrue(sia[2].el2 == achievement2.getIndex());
-		assertTrue(sia[10].el2 == achievement3.getIndex());
+		assertTrue(sia.get(1) == achievement1.getIndex());
+		assertTrue(sia.get(2) == achievement2.getIndex());
+		assertTrue(sia.get(10) == achievement3.getIndex());
 	}
 }

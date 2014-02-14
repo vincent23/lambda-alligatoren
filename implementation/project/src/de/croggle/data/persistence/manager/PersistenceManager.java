@@ -8,7 +8,7 @@ import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.game.achievement.Achievement;
 import de.croggle.game.profile.Profile;
-import de.croggle.util.Tuple2;
+import de.croggle.util.SparseArray;
 
 /**
  * 
@@ -318,10 +318,9 @@ public class PersistenceManager {
 	 *         achievements unlocked by the user
 	 */
 
-	public Tuple2<Integer, Integer>[] getAllUnlockedAchievements(
-			String profileName) {
+	public SparseArray<Integer> getAllUnlockedAchievements(String profileName) {
 		achievementManager.open();
-		Tuple2<Integer, Integer>[] unlockedAchievements = achievementManager
+		SparseArray<Integer> unlockedAchievements = achievementManager
 				.getUnlockedAchievements(profileName);
 		achievementManager.close();
 		return unlockedAchievements;

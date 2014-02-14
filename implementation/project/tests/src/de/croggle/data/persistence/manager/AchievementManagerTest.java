@@ -10,7 +10,7 @@ import de.croggle.game.achievement.HintPerLevelAchievement;
 import de.croggle.game.achievement.TimeAchievement;
 import de.croggle.game.profile.Profile;
 import de.croggle.test.TestHelper;
-import de.croggle.util.Tuple2;
+import de.croggle.util.SparseArray;
 
 public class AchievementManagerTest extends AndroidTestCase {
 
@@ -90,13 +90,13 @@ public class AchievementManagerTest extends AndroidTestCase {
 		achievementManager.addUnlockedAchievement("Max", achievement1);
 		achievementManager.addUnlockedAchievement("Max", achievement2);
 
-		Tuple2<Integer, Integer>[] unlockedAchievements = achievementManager
+		SparseArray<Integer> unlockedAchievements = achievementManager
 				.getUnlockedAchievements("Anna");
 
-		assertTrue(3 == unlockedAchievements.length);
-		assertTrue(unlockedAchievements[1].el2 == achievement1.getIndex());
-		assertTrue(unlockedAchievements[2].el2 == achievement2.getIndex());
-		assertTrue(unlockedAchievements[10].el2 == achievement3.getIndex());
+		assertTrue(3 == unlockedAchievements.size());
+		assertTrue(unlockedAchievements.get(1) == achievement1.getIndex());
+		assertTrue(unlockedAchievements.get(2) == achievement2.getIndex());
+		assertTrue(unlockedAchievements.get(10) == achievement3.getIndex());
 
 	}
 
@@ -117,10 +117,10 @@ public class AchievementManagerTest extends AndroidTestCase {
 
 		achievementManager.updateUnlockedAchievement("Tim", achievement1);
 
-		Tuple2<Integer, Integer>[] unlockedAchievements = achievementManager
+		SparseArray<Integer> unlockedAchievements = achievementManager
 				.getUnlockedAchievements("Tim");
 
-		assertTrue(unlockedAchievements[1].el2 == achievement1.getIndex());
+		assertTrue(unlockedAchievements.get(1) == achievement1.getIndex());
 
 	}
 
@@ -142,17 +142,17 @@ public class AchievementManagerTest extends AndroidTestCase {
 		achievementManager.addUnlockedAchievement("Anna", achievement2);
 		achievementManager.addUnlockedAchievement("Anna", achievement3);
 
-		Tuple2<Integer, Integer>[] unlockedAchivements = achievementManager
+		SparseArray<Integer> unlockedAchivements = achievementManager
 				.getUnlockedAchievements("Anna");
 
-		assertTrue(unlockedAchivements.length == 3);
+		assertTrue(unlockedAchivements.size() == 3);
 
 		profileManager.deleteProfile("Anna");
 
 		unlockedAchivements = achievementManager
 				.getUnlockedAchievements("Anna");
 
-		assertTrue(unlockedAchivements.length == 0);
+		assertTrue(unlockedAchivements.size() == 0);
 
 	}
 
