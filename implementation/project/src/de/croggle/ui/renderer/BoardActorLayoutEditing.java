@@ -602,7 +602,16 @@ class BoardActorLayoutEditing {
 					.getObject();
 			InternalBoardObject payloadObject = payloadActor.getBoardObject();
 			extractBoardObject(payloadObject);
-			p.addChild(payloadObject);
+
+			Vector2 point = new Vector2(x, y);
+			if (b.boardActorToWorldCoordinates(point).x < b
+					.getLayoutConfiguration().getTreeOrigin().x
+					+ b.getLayout().getLayoutStatistics().getWidthMap()
+							.get(b.getLayout().getBoard()) / 2) {
+				p.insertChild(payloadObject, 0);
+			} else {
+				p.addChild(payloadObject);
+			}
 			if (!b.getLayout().hasActor(payloadActor)) {
 				b.getLayout().addActor(payloadActor);
 				b.addToWorld(payloadActor);
