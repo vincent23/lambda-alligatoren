@@ -73,5 +73,6 @@
     <string name="achievement_dialog_last">the final stage:\n</string>
     <string name="level_solved">Yeah! You solved the level!</string>
     <string name="level_failed">Level failed.</string>
+    <string name="quit_game_prompt">Would you really like to quit?</string>
 
 </resources>

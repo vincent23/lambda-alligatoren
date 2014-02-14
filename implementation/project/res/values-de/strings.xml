@@ -73,5 +73,5 @@
     <string name="achievement_dialog_last">Die allerhöchste Stufe: \n</string>
     <string name="level_solved">Yeah! Du hast das Level gelöst!</string>
     <string name="level_failed">Level verloren.</string>
-
+	<string name="quit_game_prompt">Möchstest du das Spiel wirklich beenden?</string>
 </resources>

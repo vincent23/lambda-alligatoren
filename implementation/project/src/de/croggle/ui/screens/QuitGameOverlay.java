@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.data.LocalizationHelper._;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
@@ -76,7 +78,7 @@ public class QuitGameOverlay implements Screen {
 		Gdx.input.setInputProcessor(inputMediator);
 		camera.update();
 
-		Dialog quitDialog = new YesNoDialog("Would you really like to quit?",
+		Dialog quitDialog = new YesNoDialog(_("quit_game_prompt"),
 				new ConfirmInterface() {
 
 					@Override
