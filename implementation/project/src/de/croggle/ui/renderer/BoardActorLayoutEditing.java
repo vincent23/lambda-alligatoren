@@ -367,24 +367,7 @@ class BoardActorLayoutEditing {
 			BoardObjectActor payloadActor = (BoardObjectActor) payload
 					.getObject();
 			InternalBoardObject payloadObject = payloadActor.getBoardObject();
-			if (payloadObject.getParent() != null) {
-				Parent objParent = payloadObject.getParent();
-				int objectPos = objParent.getChildPosition(payloadObject);
-				objParent.removeChild(payloadObject);
-
-				if (payloadObject instanceof Parent) {
-					// sift up children
-					Parent objAsParent = (Parent) payloadObject;
-					// careful not to reverse the children order
-					for (int i = 0; i < objAsParent.getChildCount(); i++) {
-						InternalBoardObject child = objAsParent
-								.getChildAtPosition(i);
-						objParent.insertChild(child, objectPos + i);
-					}
-					objAsParent.clearChildren();
-				}
-
-			}
+			extractBoardObject(payloadObject);
 			p.addChild(payloadObject);
 			if (!b.getLayout().hasActor(payloadActor)) {
 				b.getLayout().addActor(payloadActor);
@@ -460,23 +443,7 @@ class BoardActorLayoutEditing {
 			BoardObjectActor payloadActor = (BoardObjectActor) payload
 					.getObject();
 			InternalBoardObject payloadObject = payloadActor.getBoardObject();
-			if (payloadObject.getParent() != null) {
-				Parent objParent = payloadObject.getParent();
-				int objectPos = objParent.getChildPosition(payloadObject);
-				objParent.removeChild(payloadObject);
-
-				if (payloadObject instanceof Parent) {
-					// sift up children
-					Parent objAsParent = (Parent) payloadObject;
-					// careful not to reverse the children order
-					for (int i = 0; i < objAsParent.getChildCount(); i++) {
-						InternalBoardObject child = objAsParent
-								.getChildAtPosition(i);
-						objParent.insertChild(child, objectPos + i);
-					}
-					objAsParent.clearChildren();
-				}
-			}
+			extractBoardObject(payloadObject);
 			parent.replaceChild(target, payloadObject);
 			target.setParent(null);
 			b.addToWorld(payloadActor);
@@ -595,24 +562,7 @@ class BoardActorLayoutEditing {
 			BoardObjectActor payloadActor = (BoardObjectActor) payload
 					.getObject();
 			InternalBoardObject payloadObject = payloadActor.getBoardObject();
-			if (payloadObject.getParent() != null) {
-				Parent objParent = payloadObject.getParent();
-				int objectPos = objParent.getChildPosition(payloadObject);
-				objParent.removeChild(payloadObject);
-
-				if (payloadObject instanceof Parent) {
-					// sift up children
-					Parent objAsParent = (Parent) payloadObject;
-					// careful not to reverse the children order
-					for (int i = 0; i < objAsParent.getChildCount(); i++) {
-						InternalBoardObject child = objAsParent
-								.getChildAtPosition(i);
-						objParent.insertChild(child, objectPos + i);
-					}
-					objAsParent.clearChildren();
-				}
-
-			}
+			extractBoardObject(payloadObject);
 			p.addChild(payloadObject);
 			if (!b.getLayout().hasActor(payloadActor)) {
 				b.getLayout().addActor(payloadActor);
@@ -651,24 +601,7 @@ class BoardActorLayoutEditing {
 			BoardObjectActor payloadActor = (BoardObjectActor) payload
 					.getObject();
 			InternalBoardObject payloadObject = payloadActor.getBoardObject();
-			if (payloadObject.getParent() != null) {
-				Parent objParent = payloadObject.getParent();
-				int objectPos = objParent.getChildPosition(payloadObject);
-				objParent.removeChild(payloadObject);
-
-				if (payloadObject instanceof Parent) {
-					// sift up children
-					Parent objAsParent = (Parent) payloadObject;
-					// careful not to reverse the children order
-					for (int i = 0; i < objAsParent.getChildCount(); i++) {
-						InternalBoardObject child = objAsParent
-								.getChildAtPosition(i);
-						objParent.insertChild(child, objectPos + i);
-					}
-					objAsParent.clearChildren();
-				}
-
-			}
+			extractBoardObject(payloadObject);
 			p.addChild(payloadObject);
 			if (!b.getLayout().hasActor(payloadActor)) {
 				b.getLayout().addActor(payloadActor);
@@ -679,6 +612,27 @@ class BoardActorLayoutEditing {
 			} else {
 				messenger.notifyObjectMoved(payloadObject);
 			}
+		}
+	}
+
+	private static void extractBoardObject(InternalBoardObject object) {
+		if (object.getParent() != null) {
+			Parent objParent = object.getParent();
+			int objectPos = objParent.getChildPosition(object);
+			objParent.removeChild(object);
+
+			if (object instanceof Parent) {
+				// sift up children
+				Parent objAsParent = (Parent) object;
+				// careful not to reverse the children order
+				for (int i = 0; i < objAsParent.getChildCount(); i++) {
+					InternalBoardObject child = objAsParent
+							.getChildAtPosition(i);
+					objParent.insertChild(child, objectPos + i);
+				}
+				objAsParent.clearChildren();
+			}
+
 		}
 	}
 }
