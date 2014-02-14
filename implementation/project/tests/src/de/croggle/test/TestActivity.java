@@ -33,10 +33,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.PowerManager.WakeLock;
 import android.os.UserHandle;
 import android.view.Display;
-import android.view.Window;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -45,13 +43,8 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.badlogic.gdx.backends.android.AndroidFiles;
 import com.badlogic.gdx.backends.android.AndroidGraphics;
+import com.badlogic.gdx.backends.android.AndroidInput;
 import com.badlogic.gdx.backends.android.AndroidNet;
-import com.badlogic.gdx.backends.android.surfaceview.FillResolutionStrategy;
-
-import de.croggle.AlligatorApp;
-import de.croggle.backends.LocalizationBackend;
-import de.croggle.backends.android.AndroidLocalizationBackend;
-import de.croggle.data.LocalizationHelper;
 
 /**
  * Forwards all calls on a context done by libgdx's AndroidApplication to a user
@@ -62,75 +55,17 @@ import de.croggle.data.LocalizationHelper;
 public class TestActivity extends AndroidApplication {
 
 	private final Context context;
-	private final AlligatorApp app;
 
-	public TestActivity(Context context, boolean initializeAll) {
-		AlligatorApp.HEADLESS = true;
+	TestActivity(Context context) {
 		this.context = context;
-		this.app = new AlligatorApp();
-		if (initializeAll) {
-			onCreate(null);
-		} else {
-			init();
-			Gdx.app = this;
-			Gdx.files = new AndroidFiles(getAssets(), getFilesDir()
-					.getAbsolutePath());
-			Gdx.input = new TestInput(this, this, null,
-					new AndroidApplicationConfiguration());
-			app.create();
-		}
-	}
-
-	public AlligatorApp getApp() {
-		return app;
 	}
 
 	private void init() {
-		LocalizationBackend locBack = new AndroidLocalizationBackend(this);
-		LocalizationHelper.setBackend(locBack);
+
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// super.onCreate(savedInstanceState);
-		init();
-		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-
-		config.useGL20 = true;
-		config.useAccelerometer = false;
-		config.useCompass = false;
-		config.useWakelock = true;
-		config.r = 8;
-		config.g = 8;
-		config.b = 8;
-		config.a = 8;
-
-		initialize(app, config);
-		app.create();
-	}
-
-	public WakeLock getWakeLock() {
-		return wakeLock;
-	}
-
-	@Override
-	protected void onResume() {
-		/*
-		 * we do not want libgdx to manage the wakelock for us as we want to do
-		 * this on a per-screen basis.
-		 */
-		WakeLock w = wakeLock;
-		wakeLock = null;
-		super.onResume();
-		wakeLock = w;
-	}
-
-	@Override
-	protected void onPause() {
-		WakeLock w = wakeLock;
-		wakeLock = null;
-		super.onPause();
-		wakeLock = w;
 	}
 
 	/**
@@ -139,15 +74,10 @@ public class TestActivity extends AndroidApplication {
 	@Override
 	public void initialize(ApplicationListener listener,
 			AndroidApplicationConfiguration config) {
-		graphics = new AndroidGraphics(
-				this,
-				config,
-				config.resolutionStrategy == null ? new FillResolutionStrategy()
-						: config.resolutionStrategy);
-		input = new TestInput(this, this, graphics.getView(), config);
+		graphics = (AndroidGraphics) Gdx.graphics;
+		input = (AndroidInput) Gdx.input;
 		// audio = new AndroidAudio(this, config);
-		files = new AndroidFiles(this.getAssets(), this.getFilesDir()
-				.getAbsolutePath());
+		files = (AndroidFiles) Gdx.files;
 		net = new AndroidNet(this);
 		this.listener = listener;
 		this.handler = new Handler();
@@ -158,21 +88,6 @@ public class TestActivity extends AndroidApplication {
 		Gdx.files = this.getFiles();
 		Gdx.graphics = this.getGraphics();
 		Gdx.net = this.getNet();
-
-		try {
-			requestWindowFeature(Window.FEATURE_NO_TITLE);
-		} catch (Exception ex) {
-			log("AndroidApplication",
-					"Content already displayed, cannot request FEATURE_NO_TITLE",
-					ex);
-		}
-		// getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		// WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		// getWindow().clearFlags(
-		// WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-		// setContentView(graphics.getView(), createLayoutParams());
-		// createWakeLock(config);
-		// hideStatusBar(config);
 	}
 
 	@Override

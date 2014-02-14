@@ -10,7 +10,7 @@ import de.croggle.game.achievement.AlligatorsPlacedPerLevelAchievement;
 import de.croggle.game.achievement.HintPerLevelAchievement;
 import de.croggle.game.achievement.TimeAchievement;
 import de.croggle.game.profile.Profile;
-import de.croggle.test.TestActivity;
+import de.croggle.test.TestHelper;
 
 public class AchievementManagerTest extends AndroidTestCase {
 
@@ -19,7 +19,7 @@ public class AchievementManagerTest extends AndroidTestCase {
 
 	@Override
 	public void setUp() {
-		TestActivity test = new TestActivity(getContext(), false);
+		TestHelper.setupAll(getContext());
 		achievementManager = new AchievementManager();
 		profileManager = new ProfileManager();
 

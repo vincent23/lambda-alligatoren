@@ -4,7 +4,7 @@ import java.util.List;
 
 import android.test.AndroidTestCase;
 import de.croggle.game.profile.Profile;
-import de.croggle.test.TestActivity;
+import de.croggle.test.TestHelper;
 
 public class ProfileManagerTest extends AndroidTestCase {
 
@@ -12,7 +12,7 @@ public class ProfileManagerTest extends AndroidTestCase {
 
 	@Override
 	public void setUp() {
-		TestActivity test = new TestActivity(getContext(), false);
+		TestHelper.setupAll(getContext());
 		getContext().deleteDatabase("persistenceDB");
 		profileManager = new ProfileManager();
 		profileManager.open();

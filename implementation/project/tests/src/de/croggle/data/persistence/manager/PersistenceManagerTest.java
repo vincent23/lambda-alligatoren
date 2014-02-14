@@ -14,7 +14,7 @@ import de.croggle.game.achievement.AlligatorsPlacedAchievement;
 import de.croggle.game.achievement.AlligatorsPlacedPerLevelAchievement;
 import de.croggle.game.achievement.TimeAchievement;
 import de.croggle.game.profile.Profile;
-import de.croggle.test.TestActivity;
+import de.croggle.test.TestHelper;
 
 public class PersistenceManagerTest extends InstrumentationTestCase {
 
@@ -22,9 +22,8 @@ public class PersistenceManagerTest extends InstrumentationTestCase {
 
 	@Override
 	public void setUp() {
-		TestActivity test = new TestActivity(getInstrumentation()
-				.getTargetContext(), false);
-		AlligatorApp app = test.getApp();
+		TestHelper.setupAll(getInstrumentation().getTargetContext());
+		AlligatorApp app = TestHelper.getApp();
 		persistenceManager = app.getPersistenceManager();
 	}
 

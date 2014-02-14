@@ -3,7 +3,7 @@ package de.croggle.data.persistence.manager;
 import android.test.AndroidTestCase;
 import de.croggle.data.persistence.LevelProgress;
 import de.croggle.game.profile.Profile;
-import de.croggle.test.TestActivity;
+import de.croggle.test.TestHelper;
 
 public class LevelProgressManagerTest extends AndroidTestCase {
 
@@ -12,7 +12,7 @@ public class LevelProgressManagerTest extends AndroidTestCase {
 
 	@Override
 	public void setUp() {
-		TestActivity test = new TestActivity(getContext(), false);
+		TestHelper.setupAll(getContext());
 
 		levelProgressManager = new LevelProgressManager();
 		profileManager = new ProfileManager();

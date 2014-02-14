@@ -3,7 +3,7 @@ package de.croggle.game.level;
 import junit.framework.Assert;
 import android.test.InstrumentationTestCase;
 import de.croggle.AlligatorApp;
-import de.croggle.test.TestActivity;
+import de.croggle.test.TestHelper;
 
 public class LevelControllerTest extends InstrumentationTestCase {
 
@@ -11,9 +11,8 @@ public class LevelControllerTest extends InstrumentationTestCase {
 
 	@Override
 	protected void setUp() throws Exception {
-		TestActivity test = new TestActivity(getInstrumentation()
-				.getTargetContext(), false);
-		AlligatorApp app = test.getApp();
+		TestHelper.setupAll(getInstrumentation().getTargetContext());
+		AlligatorApp app = TestHelper.getApp();
 		controller = new LevelController(0, app);
 	}
 
