@@ -1,12 +1,15 @@
 package de.croggle.game.achievement;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import android.util.SparseIntArray;
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.manager.PersistenceManager;
+import de.croggle.util.Tuple2;
 
 /**
  * Controller responsible for the achievements and for checking whether
@@ -87,10 +90,21 @@ public class AchievementController {
 	public void changeUnlockedAchievements(String profileName) {
 		initiateAvailableAchievements();
 		PersistenceManager pm = game.getPersistenceManager();
-		SparseIntArray unlockedAchievements = pm
+		Tuple2<Integer, Integer>[] unlockedAchievements = pm
 				.getAllUnlockedAchievements(profileName);
+		Comparator<Tuple2<Integer, Integer>> comp = new Comparator<Tuple2<Integer, Integer>>() {
+			@Override
+			public int compare(Tuple2<Integer, Integer> lhs,
+					Tuple2<Integer, Integer> rhs) {
+				return lhs.el1 - rhs.el1;
+			}
+		};
+		Arrays.sort(unlockedAchievements, comp);
+		Tuple2<Integer, Integer> finder = new Tuple2<Integer, Integer>();
 		for (Achievement achievement : availableAchievements) {
-			achievement.setIndex(unlockedAchievements.get(achievement.getId()));
+			finder.el1 = achievement.getId();
+			int pos = Arrays.binarySearch(unlockedAchievements, finder, comp);
+			achievement.setIndex(unlockedAchievements[pos].el2);
 		}
 
 	}

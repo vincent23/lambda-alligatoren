@@ -1,11 +1,11 @@
 package de.croggle.data.persistence.manager;
 
-import android.util.SparseIntArray;
 import de.croggle.backends.BackendHelper;
 import de.croggle.backends.sqlite.ContentValues;
 import de.croggle.backends.sqlite.Cursor;
 import de.croggle.backends.sqlite.DatabaseUtils;
 import de.croggle.game.achievement.Achievement;
+import de.croggle.util.Tuple2;
 
 /**
  * A concrete table manager which is responsible for managing the SQLite table
@@ -98,20 +98,25 @@ public class AchievementManager extends TableManager {
 	 * @return a sparseIntArray containing the ids and states of all
 	 *         achievements unlocked by the user
 	 */
-	SparseIntArray getUnlockedAchievements(String profileName) {
-
-		SparseIntArray unlockedAchievements = new SparseIntArray();
+	Tuple2<Integer, Integer>[] getUnlockedAchievements(String profileName) {
+		int achivementc = (int) DatabaseUtils.queryNumEntries(database,
+				TABLE_NAME);
+		Tuple2<Integer, Integer>[] unlockedAchievements = new Tuple2[achivementc];
 
 		String selectQuery = "SELECT  * FROM " + TABLE_NAME + " WHERE "
 				+ KEY_PROFILE_NAME + " = '" + profileName + "'";
 		Cursor cursor = database.rawQuery(selectQuery, null);
 		if (cursor.moveToFirst()) {
+			int i = 0;
+
 			do {
 				int achievementId = cursor.getInt(cursor
 						.getColumnIndex(KEY_ACHIEVEMENT_ID));
 				int index = cursor.getInt(cursor
 						.getColumnIndex(KEY_ACHIEVEMENT_INDEX));
-				unlockedAchievements.put(achievementId, index);
+				unlockedAchievements[i] = new Tuple2<Integer, Integer>(
+						achievementId, index);
+				i++;
 			} while (cursor.moveToNext());
 		}
 		return unlockedAchievements;

@@ -2,13 +2,13 @@ package de.croggle.data.persistence.manager;
 
 import java.util.List;
 
-import android.util.SparseIntArray;
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.LevelProgress;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.game.achievement.Achievement;
 import de.croggle.game.profile.Profile;
+import de.croggle.util.Tuple2;
 
 /**
  * 
@@ -318,9 +318,10 @@ public class PersistenceManager {
 	 *         achievements unlocked by the user
 	 */
 
-	public SparseIntArray getAllUnlockedAchievements(String profileName) {
+	public Tuple2<Integer, Integer>[] getAllUnlockedAchievements(
+			String profileName) {
 		achievementManager.open();
-		SparseIntArray unlockedAchievements = achievementManager
+		Tuple2<Integer, Integer>[] unlockedAchievements = achievementManager
 				.getUnlockedAchievements(profileName);
 		achievementManager.close();
 		return unlockedAchievements;
