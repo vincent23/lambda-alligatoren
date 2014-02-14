@@ -47,5 +47,8 @@ com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
 		scrollStyle: { background: widgets/selectbox-open, vScroll: widgets/dummy-icon },
 		listStyle: { font: default-font, fontColorSelected: black, fontColorUnselected: black, selection: widgets/selectbox-open }
 	}
+},
+com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
+	default: { handle: widgets/slider-horizontal }
 }
 }

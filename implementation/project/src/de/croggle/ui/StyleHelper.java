@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox.SelectBoxStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.SplitPane.SplitPaneStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
@@ -230,6 +231,10 @@ public class StyleHelper {
 
 	public WindowStyle getWindowStyle() {
 		return skin.get(WindowStyle.class);
+	}
+
+	public SplitPaneStyle getSplitPaneStyle() {
+		return skin.get(SplitPaneStyle.class);
 	}
 
 	public Drawable getDrawable(String path) {
