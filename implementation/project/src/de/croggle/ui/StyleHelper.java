@@ -1,5 +1,7 @@
 package de.croggle.ui;
 
+import static de.croggle.backends.BackendHelper.getAssetDirPath;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -32,7 +34,8 @@ public class StyleHelper {
 
 	private StyleHelper() {
 		AssetManager manager = AssetManager.getInstance();
-		manager.load("textures/pack.atlas", TextureAtlas.class);
+		manager.load(getAssetDirPath() + "textures/pack.atlas",
+				TextureAtlas.class);
 
 	}
 
@@ -48,11 +51,13 @@ public class StyleHelper {
 		}
 		if (instance.skin == null) {
 			instance.atlas = AssetManager.getInstance().get(
-					"textures/pack.atlas", TextureAtlas.class);
+					getAssetDirPath() + "textures/pack.atlas",
+					TextureAtlas.class);
 			instance.skin = new Skin(Gdx.files.internal("skin.json"),
 					instance.atlas);
 			instance.generator = new FreeTypeFontGenerator(
-					Gdx.files.internal("fonts/rawengulk_sans.otf"));
+					Gdx.files.internal(getAssetDirPath()
+							+ "fonts/rawengulk_sans.otf"));
 			instance.generateFonts(instance.generator, instance.skin);
 		}
 		return instance;

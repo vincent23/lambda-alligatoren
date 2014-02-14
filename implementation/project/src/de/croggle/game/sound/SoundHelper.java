@@ -1,5 +1,7 @@
 package de.croggle.game.sound;
 
+import static de.croggle.backends.BackendHelper.getAssetDirPath;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,11 +20,12 @@ public class SoundHelper {
 
 	private static SoundHelper instance;
 
-	private static final String pathMusic = "sound/music";
-	private static final String pathEffects = "sound/effects";
+	private static final String pathMusic = getAssetDirPath() + "sound/music";
+	private static final String pathEffects = getAssetDirPath()
+			+ "sound/effects";
 
-	private Map<String, Sound> effects = new HashMap<String, Sound>();
-	private Map<String, Music> music = new HashMap<String, Music>();
+	private final Map<String, Sound> effects = new HashMap<String, Sound>();
+	private final Map<String, Music> music = new HashMap<String, Music>();
 
 	private SoundHelper() {
 		AssetManager manager = AssetManager.getInstance();

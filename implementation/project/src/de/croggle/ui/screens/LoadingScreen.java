@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.backends.BackendHelper.getAssetDirPath;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
@@ -22,20 +24,21 @@ public class LoadingScreen extends AbstractScreen {
 	private final Screen nextScreen;
 
 	private float percent;
-	private NinePatch bar;
-	private NinePatch barEmpty;
+	private final NinePatch bar;
+	private final NinePatch barEmpty;
 
-	private Texture barTexture;
-	private Texture barEmptyTexture;
+	private final Texture barTexture;
+	private final Texture barEmptyTexture;
 
 	public LoadingScreen(AlligatorApp game, Screen nextScreen) {
 		super(game);
 		this.nextScreen = nextScreen;
 
 		// prepare loading bar graphics without using AssetManager
-		barTexture = new Texture(Gdx.files.internal("textures/loading-bar.png"));
-		barEmptyTexture = new Texture(
-				Gdx.files.internal("textures/loading-bar-empty.png"));
+		barTexture = new Texture(Gdx.files.internal(getAssetDirPath()
+				+ "textures/loading-bar.png"));
+		barEmptyTexture = new Texture(Gdx.files.internal(getAssetDirPath()
+				+ "textures/loading-bar-empty.png"));
 		bar = new NinePatch(barTexture, 8, 8, 8, 8);
 		barEmpty = new NinePatch(barEmptyTexture, 8, 8, 8, 8);
 	}

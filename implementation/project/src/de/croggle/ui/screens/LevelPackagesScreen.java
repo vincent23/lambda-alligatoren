@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.backends.BackendHelper.getAssetDirPath;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -55,10 +57,10 @@ public class LevelPackagesScreen extends AbstractScreen {
 
 			try {
 				levelImage = new MaskedImage(pack.getDesign(),
-						"textures/package-mask.png");
+						getAssetDirPath() + "textures/package-mask.png");
 			} catch (GdxRuntimeException ex) {
 				levelImage = new MaskedImage("textures/swamp.png",
-						"textures/package-mask.png");
+						getAssetDirPath() + "textures/package-mask.png");
 			}
 
 			levelImage.addListener(new OpenPackageListener(pack

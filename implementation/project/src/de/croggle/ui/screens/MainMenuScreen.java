@@ -1,5 +1,6 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.backends.BackendHelper.getAssetDirPath;
 import static de.croggle.data.LocalizationHelper._;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -23,7 +24,7 @@ import de.croggle.ui.actors.ProfileButton;
 public class MainMenuScreen extends AbstractScreen implements
 		ProfileChangeListener {
 
-	private ProfileController profileController;
+	private final ProfileController profileController;
 
 	/**
 	 * Creates the main menu screen from whom the player can navigate into the
@@ -38,7 +39,7 @@ public class MainMenuScreen extends AbstractScreen implements
 		super(app);
 		profileController = app.getProfileController();
 
-		setBackground("textures/swamp.png");
+		setBackground(getAssetDirPath() + "textures/swamp.png");
 	}
 
 	@Override

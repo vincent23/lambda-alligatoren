@@ -1,7 +1,9 @@
 package de.croggle.ui.screens;
 
-import java.util.List;
+import static de.croggle.backends.BackendHelper.getAssetDirPath;
 import static de.croggle.data.LocalizationHelper._;
+
+import java.util.List;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -25,9 +27,9 @@ import de.croggle.ui.actors.NewAchievementDialog;
  */
 public class LevelTerminatedScreen extends AbstractScreen {
 
-	private GameController gameController;
-	private AchievementController achievementController;
-	private LevelPackagesController packagesController;
+	private final GameController gameController;
+	private final AchievementController achievementController;
+	private final LevelPackagesController packagesController;
 
 	/**
 	 * Creates the level terminated screen that is shown to the player after the
@@ -45,7 +47,7 @@ public class LevelTerminatedScreen extends AbstractScreen {
 		achievementController = game.getAchievementController();
 		packagesController = game.getLevelPackagesController();
 
-		setBackground("textures/background-default.png");
+		setBackground(getAssetDirPath() + "textures/background-default.png");
 		AssetManager.getInstance().finishLoading();
 
 		fillTable();
@@ -56,9 +58,8 @@ public class LevelTerminatedScreen extends AbstractScreen {
 
 		ImageButton image = new ImageButton(
 				helper.getDrawable("widgets/icon-trophy"));
-		Label message = new Label(
-				gameController.isSolved() ? _("level_solved")
-						: _("level_failed"), helper.getBlackLabelStyle(50));
+		Label message = new Label(gameController.isSolved() ? _("level_solved")
+				: _("level_failed"), helper.getBlackLabelStyle(50));
 		ImageButton next = new ImageButton(
 				helper.getImageButtonStyleRound("widgets/icon-next"));
 		ImageButton levelOverview = new ImageButton(
@@ -116,22 +117,24 @@ public class LevelTerminatedScreen extends AbstractScreen {
 			int currentLevelId = gameController.getLevel().getLevelIndex();
 			int currentPackageId = gameController.getLevel().getPackageIndex();
 
-			if (packagesController.getLevelPackages().size() < currentPackageId + 1 || (packagesController.getLevelPackages().size() == currentPackageId + 1 && packagesController.getLevelController(currentPackageId)
-					.getPackageSize() - 1 <= currentLevelId)) {
+			if (packagesController.getLevelPackages().size() < currentPackageId + 1
+					|| (packagesController.getLevelPackages().size() == currentPackageId + 1 && packagesController
+							.getLevelController(currentPackageId)
+							.getPackageSize() - 1 <= currentLevelId)) {
 				game.showMainMenuScreen(false);
 			} else if (packagesController.getLevelController(currentPackageId)
 					.getPackageSize() - 1 <= currentLevelId) {
 				game.showLevelOverviewScreen(packagesController
 						.getLevelController(currentPackageId + 1));
-			} else{
+			} else {
 				final Level nextLevel = packagesController.getLevelController(
 						currentPackageId).getLevel(currentLevelId + 1);
-				if(nextLevel.getUnlocked()){
+				if (nextLevel.getUnlocked()) {
 					final GameController newGameController = nextLevel
 							.createGameController(game);
 					newGameController.register(game.getStatisticController());
 					game.showPlacementModeScreen(newGameController);
-				}else{
+				} else {
 					final Level currentLevel = gameController.getLevel();
 					final GameController newGameController = currentLevel
 							.createGameController(game);

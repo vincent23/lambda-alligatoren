@@ -1,5 +1,7 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.backends.BackendHelper.getAssetDirPath;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -78,7 +80,8 @@ public class SimulationModeScreen extends AbstractScreen implements
 
 		// load the texture atlas
 		AssetManager assetManager = AssetManager.getInstance();
-		assetManager.load("textures/pack.atlas", TextureAtlas.class);
+		assetManager.load(getAssetDirPath() + "textures/pack.atlas",
+				TextureAtlas.class);
 
 		final int packageIndex = gameController.getLevel().getPackageIndex();
 		final LevelPackagesController packagesController = game

@@ -1,5 +1,6 @@
 package de.croggle.ui.screens;
 
+import static de.croggle.backends.BackendHelper.getAssetDirPath;
 import static de.croggle.data.LocalizationHelper._;
 
 import java.util.List;
@@ -63,7 +64,8 @@ public class MultipleChoiceScreen extends AbstractScreen implements
 		gameController = controller;
 
 		AssetManager assetManager = AssetManager.getInstance();
-		assetManager.load("textures/pack.atlas", TextureAtlas.class);
+		assetManager.load(getAssetDirPath() + "textures/pack.atlas",
+				TextureAtlas.class);
 		dialog = new Dialog("", StyleHelper.getInstance().getDialogStyle());
 
 		fillTable();
