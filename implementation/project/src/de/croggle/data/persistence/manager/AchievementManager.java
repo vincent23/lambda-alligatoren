@@ -63,7 +63,7 @@ public class AchievementManager extends TableManager {
 	 * 
 	 * @param profileName
 	 *            the name of the profile to which the achievement belongs
-	 * @param levelProgress
+	 * @param achievement
 	 *            the achievement whose values are used for overwriting the old
 	 *            achievement
 	 */

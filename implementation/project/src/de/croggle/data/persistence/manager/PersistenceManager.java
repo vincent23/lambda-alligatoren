@@ -272,9 +272,27 @@ public class PersistenceManager {
 		levelProgressManager.close();
 		return levelProgress;
 	}
+	
 
 	/**
-	 * Saves an unlocked achievement for a specific profile identified by the
+	 * Updates unlocked achievements for a specific profile identified by the
+	 * given profile name.
+	 * 
+	 * @param profileName
+	 *            the name of the user that unlocked the achievement
+	 * @param achievements
+	 *            a list containing the values used to update old achievements
+	 */
+	public void updateUnlockedAchievements(String profileName, List<Achievement> achievements) {
+		achievementManager.open();
+		for (Achievement achievement : achievements) {
+			achievementManager.updateUnlockedAchievement(profileName, achievement);
+		}
+		achievementManager.close();
+	}
+
+	/**
+	 * Saves unlocked achievements for a specific profile identified by the
 	 * given profile name.
 	 * 
 	 * @param profileName

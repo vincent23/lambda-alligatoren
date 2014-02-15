@@ -181,7 +181,7 @@ public class AchievementController {
 		latestUnlockedAchievements = updateAchievements(statistic,
 				statisticsDelta);
 		PersistenceManager pm = game.getPersistenceManager();
-		pm.saveUnlockedAchievements(game.getProfileController()
+		pm.updateUnlockedAchievements(game.getProfileController()
 				.getCurrentProfileName(), latestUnlockedAchievements);
 
 	}
