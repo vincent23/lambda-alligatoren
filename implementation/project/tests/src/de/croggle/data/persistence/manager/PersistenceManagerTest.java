@@ -9,6 +9,7 @@ import de.croggle.data.persistence.LevelProgress;
 import de.croggle.data.persistence.Setting;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.game.achievement.Achievement;
+import de.croggle.game.achievement.AchievementController;
 import de.croggle.game.achievement.AlligatorsPlacedAchievement;
 import de.croggle.game.achievement.AlligatorsPlacedPerLevelAchievement;
 import de.croggle.game.achievement.TimeAchievement;
@@ -19,12 +20,14 @@ import de.croggle.util.SparseArray;
 public class PersistenceManagerTest extends InstrumentationTestCase {
 
 	PersistenceManager persistenceManager;
+	AchievementController achievementController;
 
 	@Override
 	public void setUp() {
 		TestHelper.setupAll(getInstrumentation().getTargetContext());
 		AlligatorApp app = TestHelper.getApp();
 		persistenceManager = app.getPersistenceManager();
+		achievementController = app.getAchievementController();
 	}
 
 	@Override
@@ -175,35 +178,46 @@ public class PersistenceManagerTest extends InstrumentationTestCase {
 				levelProgress2));
 	}
 
-	public void testSaveAndLoadAchievements() {
+	public void testInsertUnlockedAchievements() {
 
-		Profile profile = new Profile("Anne", "test");
+		Profile profile = new Profile("Tim", "test");
 		persistenceManager.addProfile(profile);
+		
+		SparseArray<Integer> sia = persistenceManager
+				.getAllUnlockedAchievements("Tim");
+		System.out.println(sia.size());
+		assertTrue(sia.size() == achievementController.getAvailableAchievements().size());
 
+
+	}
+	
+	public void testEditUnlockedAchievements() {
+		Profile profile = new Profile("Tom", "test");
+		persistenceManager.addProfile(profile);
+		
 		Achievement achievement1 = new TimeAchievement();
 		achievement1.setId(1);
 		achievement1.setIndex(3);
 
-		Achievement achievement2 = new AlligatorsPlacedAchievement();
+		Achievement achievement2 = new TimeAchievement();
 		achievement2.setId(2);
-		achievement2.setIndex(6);
+		achievement2.setIndex(2);
 
-		Achievement achievement3 = new AlligatorsPlacedPerLevelAchievement();
-		achievement3.setId(10);
-		achievement3.setIndex(9);
-
+		Achievement achievement3 = new TimeAchievement();
+		achievement3.setId(3);
+		achievement3.setIndex(4);
+		
 		List<Achievement> achievements = new ArrayList<Achievement>();
+		
 		achievements.add(achievement1);
 		achievements.add(achievement2);
 		achievements.add(achievement3);
-		persistenceManager.saveUnlockedAchievements("Anne", achievements);
-
-		SparseArray<Integer> sia = persistenceManager
-				.getAllUnlockedAchievements("Anne");
-		assertTrue(sia.size() == 3);
-
-		assertTrue(sia.get(1) == achievement1.getIndex());
-		assertTrue(sia.get(2) == achievement2.getIndex());
-		assertTrue(sia.get(10) == achievement3.getIndex());
+		
+		persistenceManager.updateUnlockedAchievements("Tom", achievements);
+		SparseArray<Integer> sa = persistenceManager.getAllUnlockedAchievements("Tom");
+	
+		assertTrue(sa.get(1) == achievement1.getIndex());
+		assertTrue(sa.get(2) == achievement2.getIndex());
+		assertTrue(sa.get(3) == achievement3.getIndex());
 	}
 }
