@@ -129,11 +129,13 @@ public class LevelTerminatedScreen extends AbstractScreen {
 				if(nextLevel.getUnlocked()){
 					final GameController newGameController = nextLevel
 							.createGameController(game);
+					newGameController.register(game.getStatisticController());
 					game.showPlacementModeScreen(newGameController);
 				}else{
 					final Level currentLevel = gameController.getLevel();
 					final GameController newGameController = currentLevel
 							.createGameController(game);
+					newGameController.register(game.getStatisticController());
 					newGameController.reset();
 					game.showPlacementModeScreen(newGameController);
 				}
@@ -147,6 +149,7 @@ public class LevelTerminatedScreen extends AbstractScreen {
 			final Level currentLevel = gameController.getLevel();
 			final GameController newGameController = currentLevel
 					.createGameController(game);
+			newGameController.register(game.getStatisticController());
 			newGameController.reset();
 			game.showPlacementModeScreen(newGameController);
 		}
