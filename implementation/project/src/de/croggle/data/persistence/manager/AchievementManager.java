@@ -111,7 +111,10 @@ public class AchievementManager extends TableManager {
 						.getColumnIndex(KEY_ACHIEVEMENT_ID));
 				int index = cursor.getInt(cursor
 						.getColumnIndex(KEY_ACHIEVEMENT_INDEX));
-				unlockedAchievements.put(achievementId, index);
+				if (unlockedAchievements.put(achievementId, index) != null) {
+					throw new IllegalStateException(
+							"Database contains multiple lines with same achievement id");
+				}
 			} while (cursor.moveToNext());
 		}
 		return unlockedAchievements;
