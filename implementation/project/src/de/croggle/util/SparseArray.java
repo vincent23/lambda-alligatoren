@@ -20,20 +20,28 @@ public class SparseArray<T> {
 		finder = new Tuple2<Integer, T>();
 	}
 
-	public void put(int key, T val) {
+	public T put(int key, T val) {
 		int pos = find(key);
 		if (pos < 0) {
 			// insert
 			pos = -pos - 1;
 			l.add(pos, new Tuple2<Integer, T>(key, val));
+			return null;
 		} else {
 			// replace
-			l.get(pos).el2 = val;
+			Tuple2<Integer, T> elm = l.get(pos);
+			T previous = elm.el2;
+			elm.el2 = val;
+			return previous;
 		}
 	}
 
 	public T get(int key) {
-		return l.get(find(key)).el2;
+		int pos = find(key);
+		if (pos < 0) {
+			return null;
+		}
+		return l.get(pos).el2;
 	}
 
 	public int size() {
