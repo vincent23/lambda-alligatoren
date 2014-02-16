@@ -37,7 +37,7 @@ public class LoadColorEditLevelFromJsonTest extends InstrumentationTestCase {
 		Assert.assertTrue(l
 				.getDescription()
 				.equals("Zweites Tutoriallevel, in dem die β-Reduktion gezeigt wird. Benötigte Kenntnis des Spielers hierfür ist das Einfärben von Elementen."));
-		Assert.assertFalse(l.hasAnimation());
+		Assert.assertTrue(l.hasAnimation());
 		Assert.assertTrue(l.getAbortSimulationAfter() == 111);
 	}
 
