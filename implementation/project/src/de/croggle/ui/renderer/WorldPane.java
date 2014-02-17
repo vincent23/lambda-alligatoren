@@ -17,9 +17,10 @@ class WorldPane extends Group {
 
 	WorldPane(BoardActor b) {
 		this.b = b;
+		setTransform(false);
 	}
 
-	private Vector2 point = new Vector2();
+	private final Vector2 point = new Vector2();
 
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
@@ -29,10 +30,37 @@ class WorldPane extends Group {
 		setX(x + b.getWorldX());
 		setY(y + b.getWorldY());
 
+		if (!isTransform()) {
+			for (Actor child : getChildren().begin()) {
+				if (child == null) {
+					continue;
+				}
+				child.setScale(child.getScaleX() * getScaleX(),
+						child.getScaleY() * getScaleY());
+				child.setPosition(child.getX() * getScaleX(), child.getY()
+						* getScaleY());
+			}
+			getChildren().end();
+		}
+
 		super.draw(batch, parentAlpha);
 
 		setX(x);
 		setY(y);
+
+		// TODO maybe ugly floating point issues
+		if (!isTransform()) {
+			for (Actor child : getChildren().begin()) {
+				if (child == null) {
+					continue;
+				}
+				child.setScale(child.getScaleX() / getScaleX(),
+						child.getScaleY() / getScaleY());
+				child.setPosition(child.getX() / getScaleX(), child.getY()
+						/ getScaleY());
+			}
+			getChildren().end();
+		}
 	}
 
 	@Override
@@ -77,8 +105,7 @@ class WorldPane extends Group {
 
 	@Override
 	public Actor hit(float x, float y, boolean touchable) {
-		// TODO custom implementation still necessary with bug free coordination
-		// converter methods?
+		// Necessary for the reasons explained below
 		if (touchable && getTouchable() == Touchable.disabled)
 			return null;
 		Array<Actor> children = getChildren();
@@ -93,6 +120,8 @@ class WorldPane extends Group {
 				return hit;
 			}
 		}
+		// Nifty detail: Here we check for the BoardActor's bounds, so we do not
+		// need to cheat around the WorldPane's bounds being totally gone
 		localToParentCoordinates(point.set(x, y));
 		if (point.x <= this.b.getWidth() && point.y <= this.b.getHeight()) {
 			return this;
@@ -147,9 +176,8 @@ class WorldPane extends Group {
 	}
 
 	public void syncBounds() {
-		float s = getScaleX();
 		// keep the world actor bounds in sync with BoardActor
-		setWidth(b.getWidth() / s);
-		setHeight(b.getHeight() / s);
+		setWidth(b.getWidth() / getScaleX());
+		setHeight(b.getHeight() / getScaleY());
 	}
 }
