@@ -72,8 +72,11 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 		// fade out the actors
 		for (InternalBoardObject eaten : eatenLst) {
 			actor = b.getLayout().getActor(eaten);
-			MoveToAction moveAction = Actions.moveTo(eaterActor.getX(),
-					eaterActor.getY(), animDuration);
+			MoveToAction moveAction = Actions.moveTo(
+					eaterActor.getX() + eaterActor.getWidth()
+							* eaterActor.getScaleX() / 2,
+					eaterActor.getY() + eaterActor.getHeight()
+							* eaterActor.getScaleY() / 2, animDuration);
 			actor.addAction(moveAction);
 			ScaleToAction scaleAction = Actions.scaleTo(0, 0, animDuration);
 			actor.addAction(scaleAction);
@@ -114,7 +117,7 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	 * @param object
 	 */
 	private void removeObjectAnimated(final InternalBoardObject object) {
-		final float fadingtime = .3f;
+		final float fadingtime = .4f;
 		BoardObjectActor ba = b.getLayout().getActor(object);
 		ba.addAction(Actions.fadeOut(fadingtime));
 		b.addAction(new TemporalAction() {
@@ -147,6 +150,11 @@ class BoardActorBoardChangeAnimator implements BoardEventListener {
 	@Override
 	public void onAgedAlligatorVanishes(AgedAlligator alligator,
 			int positionInParent) {
+		BoardObjectActor gator = b.getLayout().getActor(alligator);
+		gator.setOrigin(
+				gator.getX() + gator.getWidth() * gator.getScaleX() / 2,
+				gator.getY() + gator.getHeight() * gator.getScaleY() / 2);
+		gator.addAction(Actions.rotateBy(180, 0.4f));
 		removeObjectAnimated(alligator);
 	}
 
