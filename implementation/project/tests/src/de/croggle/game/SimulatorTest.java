@@ -65,7 +65,7 @@ public class SimulatorTest extends TestCase {
 	public void testYCombinatorOneStep() throws IllegalBoardException,
 			ColorOverflowException, AlligatorOverflowException {
 		inputOutputTest("λg.(λx.g (x x)) (λx.g (x x))",
-				"λg.g (λx.g x x) (λx.g x x)", 1);
+				"λg.g ((λx.g (x x)) λx.g (x x))", 1);
 	}
 
 	public void testIncrementZero() throws IllegalBoardException,
@@ -77,14 +77,14 @@ public class SimulatorTest extends TestCase {
 			ColorOverflowException, AlligatorOverflowException {
 		inputOutputTest(
 				"(λa.λb.λs.λz.(a s (b s z))) (λs.λz.(s z)) (λs.λz.(s z))",
-				"(λs.λz.s s z)", 6);
+				"(λs.λz.s (s z))", 6);
 	}
 
 	public void testThreePlusFour() throws IllegalBoardException,
 			ColorOverflowException, AlligatorOverflowException {
 		inputOutputTest(
 				"(λa.λb.λs.λz.(a s (b s z))) (λs.λz.(s (s (s z)))) (λs.λz.(s (s (s (s z)))))",
-				"(λs.λz.s s s s s s s z)", 6);
+				"(λs.λz.s (s (s (s (s (s (s z)))))))", 6);
 	}
 
 	private void inputOutputTest(String input, String output, int maxSteps)
