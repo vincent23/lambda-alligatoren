@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import de.croggle.AlligatorApp;
+import de.croggle.backends.BackendHelper;
 import de.croggle.data.AssetManager;
 
 /**
@@ -217,7 +218,8 @@ public abstract class AbstractScreen implements Screen {
 		} catch (GdxRuntimeException ex) {
 			System.err.println("Couldn't load background \"" + backgroundPath
 					+ "\". Falling back to standard.");
-			setBackground("textures/swamp.png");
+			setBackground(BackendHelper.getAssetDirPath()
+					+ "textures/swamp.png");
 			return;
 		}
 		AssetManager manager = de.croggle.data.AssetManager.getInstance();
