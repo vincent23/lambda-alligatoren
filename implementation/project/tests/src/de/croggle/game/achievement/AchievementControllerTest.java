@@ -1,13 +1,12 @@
 package de.croggle.game.achievement;
 
-import java.util.HashMap;
 import java.util.List;
 
-import android.util.SparseIntArray;
+import junit.framework.TestCase;
 import de.croggle.data.LocalizationHelper;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.test.TestLocalizationBackend;
-import junit.framework.TestCase;
+import de.croggle.util.SparseArray;
 
 public class AchievementControllerTest extends TestCase {
 
@@ -120,7 +119,7 @@ public class AchievementControllerTest extends TestCase {
 												// its final stage
 		}
 	}
-	
+
 	public void testConvert() {
 		TestLocalizationBackend backend = new TestLocalizationBackend();
 		LocalizationHelper.setBackend(backend);
@@ -146,15 +145,16 @@ public class AchievementControllerTest extends TestCase {
 		backend.putString("achievement_time_final", "played .");
 		AchievementController achievementController = new AchievementController(
 				null);
-		SparseIntArray testTupels = new SparseIntArray();
-		testTupels.append(0,2);
-		testTupels.append(1, 3);
-		testTupels.append(2, 5);
-		testTupels.append(3, 1);
-		testTupels.append(4, 0);
-		testTupels.append(5, 8);
-		testTupels.append(6, 6);
-		List<Achievement> converted = achievementController.convertInputFromDatabase(testTupels);
+		SparseArray<Integer> testTupels = new SparseArray<Integer>();
+		testTupels.put(0, 2);
+		testTupels.put(1, 3);
+		testTupels.put(2, 5);
+		testTupels.put(3, 1);
+		testTupels.put(4, 0);
+		testTupels.put(5, 8);
+		testTupels.put(6, 6);
+		List<Achievement> converted = achievementController
+				.convertInputFromDatabase(testTupels);
 		assertTrue(converted.get(0).getIndex() == 2);
 		assertTrue(converted.get(1).getIndex() == 3);
 		assertTrue(converted.get(2).getIndex() == 5);
