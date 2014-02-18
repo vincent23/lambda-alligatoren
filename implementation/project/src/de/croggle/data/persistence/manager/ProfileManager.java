@@ -3,7 +3,6 @@ package de.croggle.data.persistence.manager;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
 import de.croggle.backends.BackendHelper;
 import de.croggle.backends.sqlite.ContentValues;
 import de.croggle.backends.sqlite.Cursor;

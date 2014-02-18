@@ -44,6 +44,14 @@ public class SparseArray<T> {
 		return l.get(pos).el2;
 	}
 
+	public int keyAt(int i) {
+		return l.get(i).el1;
+	}
+
+	public T valueAt(int i) {
+		return l.get(i).el2;
+	}
+
 	public int size() {
 		return l.size();
 	}

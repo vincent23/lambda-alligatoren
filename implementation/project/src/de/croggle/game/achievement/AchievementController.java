@@ -3,7 +3,6 @@ package de.croggle.game.achievement;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.SparseIntArray;
 import de.croggle.AlligatorApp;
 import de.croggle.data.persistence.Statistic;
 import de.croggle.data.persistence.manager.PersistenceManager;
@@ -52,7 +51,9 @@ public class AchievementController {
 	 *            information coming from the database
 	 * @return list of achievements represented in the input
 	 */
-	protected List<Achievement> convertInputFromDatabase(SparseIntArray tupels) {
+	protected List<Achievement> convertInputFromDatabase(
+			SparseArray<Integer> tupels) {
+		// TODO is this method necessary? Does not seem to be used anywhere
 		List<Achievement> converted = new ArrayList<Achievement>();
 		for (int i = 0; i < tupels.size(); i++) {
 			int id = tupels.keyAt(i);

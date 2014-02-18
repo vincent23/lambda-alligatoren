@@ -1,9 +1,9 @@
 package de.croggle.data.persistence.manager;
 
-import android.database.SQLException;
 import de.croggle.backends.BackendHelper;
 import de.croggle.backends.sqlite.Database;
 import de.croggle.backends.sqlite.DatabaseHelper;
+import de.croggle.backends.sqlite.SQLException;
 
 /**
  * An abstract superclass for all classes which manage tables.
